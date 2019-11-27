@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="">
+    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="starting to add tests">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2019_11_24_131324_create_activities_table.php" afterPath="$PROJECT_DIR$/database/migrations/2019_11_24_131324_create_activities_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2019_11_24_131340_create_companies_table.php" afterPath="$PROJECT_DIR$/database/migrations/2019_11_24_131340_create_companies_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2019_11_24_131407_create_categories_table.php" afterPath="$PROJECT_DIR$/database/migrations/2019_11_24_131407_create_categories_table.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,11 +14,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="2019_11_24_131407_create_categories_table.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/database/migrations/2019_11_24_131407_create_categories_table.php">
+      <file leaf-file-name="ActivityTest.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tests/Unit/ActivityTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="519">
-              <caret line="23" column="7" lean-forward="true" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
+            <state relative-caret-position="467">
+              <caret line="28" column="1" lean-forward="true" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -44,6 +41,12 @@
         <option value="$PROJECT_DIR$/database/migrations/2019_11_24_131340_create_companies_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_11_24_131324_create_activities_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_11_24_131407_create_categories_table.php" />
+        <option value="$PROJECT_DIR$/database/factories/CompanyFactory.php" />
+        <option value="$PROJECT_DIR$/database/factories/ActivityFactory.php" />
+        <option value="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Database/Query/Grammars/Grammar.php" />
+        <option value="$PROJECT_DIR$/database/factories/CategoryFactory.php" />
+        <option value="$PROJECT_DIR$/app/Activity.php" />
+        <option value="$PROJECT_DIR$/tests/Unit/ActivityTest.php" />
       </list>
     </option>
   </component>
@@ -120,7 +123,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="migrations" />
+              <option name="myItemId" value="factories" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -130,7 +133,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="SearchEverywhereHistoryKey" value=".env&#9;FILE&#9;file:///home/altaif/Projects/Mustakshif/.env" />
+    <property name="SearchEverywhereHistoryKey" value="Activity&#9;null&#9;null&#10;Grammar&#9;null&#9;null&#10;coFacto&#9;FILE&#9;file:///home/altaif/Projects/Mustakshif/database/factories/CompanyFactory.php&#10;compaf&#9;null&#9;null&#10;categ&#9;FILE&#9;file:///home/altaif/Projects/Mustakshif/database/migrations/2019_11_24_131407_create_categories_table.php&#10;categorf&#9;FILE&#9;file:///home/altaif/Projects/Mustakshif/database/factories/CategoryFactory.php&#10;activif&#9;FILE&#9;file:///home/altaif/Projects/Mustakshif/database/factories/ActivityFactory.php&#10;ActivT&#9;null&#9;null&#10;.env&#9;FILE&#9;file:///home/altaif/Projects/Mustakshif/.env" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -158,21 +161,35 @@
       <option name="presentableId" value="Default" />
       <updated>1574601147925</updated>
       <workItem from="1574601149388" duration="1287000" />
-      <workItem from="1574765963050" duration="311000" />
+      <workItem from="1574765963050" duration="2773000" />
     </task>
+    <task id="LOCAL-00001" summary="schema for activities,companies and categories">
+      <created>1574766304196</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1574766304196</updated>
+    </task>
+    <task id="LOCAL-00002" summary="starting to add tests">
+      <created>1574771996571</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1574771996571</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1598000" />
+    <option name="totallyTimeSpent" value="4060000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="-11" width="1368" height="780" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Key Promoter X" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32988167" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -196,6 +213,11 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="schema for activities,companies and categories" />
+    <MESSAGE value="starting to add tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="starting to add tests" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
@@ -217,26 +239,626 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_11_24_131340_create_companies_table.php">
+    <entry file="file://$PROJECT_DIR$/vendor/phpunit/phpunit/src/Framework/Assert/Functions.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="15" column="23" lean-forward="true" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
+        <state relative-caret-position="459">
+          <caret line="359" column="9" lean-forward="false" selection-start-line="359" selection-start-column="9" selection-end-line="359" selection-end-column="9" />
           <folding>
-            <marker date="1574766085860" expanded="true" signature="11:133" ph="..." />
-            <marker date="1574766085860" expanded="true" signature="179:677" ph="{...}" />
-            <marker date="1574766085860" expanded="true" signature="189:249" ph=" Run the migrations. ..." />
-            <marker date="1574766085860" expanded="true" signature="276:518" ph="{...}" />
-            <marker date="1574766085860" expanded="true" signature="306:510" ph="..." />
-            <marker date="1574766085860" expanded="true" signature="348:509" ph="..." />
-            <marker date="1574766085860" expanded="true" signature="527:591" ph=" Reverse the migrations. ..." />
-            <marker date="1574766085860" expanded="true" signature="620:675" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="33:250" ph="..." />
+            <marker date="1573033343000" expanded="true" signature="258:3135" ph="..." />
+            <marker date="1573033343000" expanded="true" signature="3140:3430" ph=" Asserts that an array has a specified key. ..." />
+            <marker date="1573033343000" expanded="true" signature="3501:3557" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="3562:3956" ph=" Asserts that an array has a specified subset. ..." />
+            <marker date="1573033343000" expanded="true" signature="4068:4124" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="4129:4432" ph=" Asserts that an array does not have a specified key. ..." />
+            <marker date="1573033343000" expanded="true" signature="4506:4565" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="4570:4786" ph=" Asserts that a haystack contains a needle. ..." />
+            <marker date="1573033343000" expanded="true" signature="4964:5017" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="5105:5164" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="5169:5622" ph=" Asserts that a haystack that is stored in a static attribute of a class ..." />
+            <marker date="1573033343000" expanded="true" signature="5853:5915" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="5920:6147" ph=" Asserts that a haystack does not contain a needle. ..." />
+            <marker date="1573033343000" expanded="true" signature="6328:6384" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="6475:6537" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="6542:7006" ph=" Asserts that a haystack that is stored in a static attribute of a class ..." />
+            <marker date="1573033343000" expanded="true" signature="7240:7305" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="7310:7528" ph=" Asserts that a haystack contains only values of a given type. ..." />
+            <marker date="1573033343000" expanded="true" signature="7648:7705" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="7710:7948" ph=" Asserts that a haystack contains only instances of a given class name. ..." />
+            <marker date="1573033343000" expanded="true" signature="8056:8124" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="8129:8643" ph=" Asserts that a haystack that is stored in a static attribute of a class ..." />
+            <marker date="1573033343000" expanded="true" signature="8807:8873" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="8878:9107" ph=" Asserts that a haystack does not contain only values of a given type. ..." />
+            <marker date="1573033343000" expanded="true" signature="9230:9290" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="9295:9823" ph=" Asserts that a haystack that is stored in a static attribute of a class ..." />
+            <marker date="1573033343000" expanded="true" signature="9990:10059" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="10064:10346" ph=" Asserts the number of elements of an array, Countable or Traversable. ..." />
+            <marker date="1573033343000" expanded="true" signature="10428:10478" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="10483:10914" ph=" Asserts the number of elements of an array, Countable or Traversable ..." />
+            <marker date="1573033343000" expanded="true" signature="11049:11108" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="11113:11398" ph=" Asserts the number of elements of an array, Countable or Traversable. ..." />
+            <marker date="1573033343000" expanded="true" signature="11483:11536" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="11541:11975" ph=" Asserts the number of elements of an array, Countable or Traversable ..." />
+            <marker date="1573033343000" expanded="true" signature="12113:12175" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="12180:12368" ph=" Asserts that two variables are equal. ..." />
+            <marker date="1573033343000" expanded="true" signature="12534:12585" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="12590:12809" ph=" Asserts that two variables are equal (canonicalizing). ..." />
+            <marker date="1573033343000" expanded="true" signature="12895:12960" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="12965:13181" ph=" Asserts that two variables are equal (ignoring case). ..." />
+            <marker date="1573033343000" expanded="true" signature="13265:13328" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="13333:13543" ph=" Asserts that two variables are equal (with delta). ..." />
+            <marker date="1573033343000" expanded="true" signature="13638:13698" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="13703:14092" ph=" Asserts that a variable is equal to an attribute of an object. ..." />
+            <marker date="1573033343000" expanded="true" signature="14309:14369" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="14374:14679" ph=" Asserts that two variables are not equal. ..." />
+            <marker date="1573033343000" expanded="true" signature="14828:14882" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="14887:15113" ph=" Asserts that two variables are not equal (canonicalizing). ..." />
+            <marker date="1573033343000" expanded="true" signature="15202:15270" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="15275:15498" ph=" Asserts that two variables are not equal (ignoring case). ..." />
+            <marker date="1573033343000" expanded="true" signature="15585:15651" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="15656:15873" ph=" Asserts that two variables are not equal (with delta). ..." />
+            <marker date="1573033343000" expanded="true" signature="15971:16034" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="16039:16435" ph=" Asserts that a variable is not equal to an attribute of an object. ..." />
+            <marker date="1573033343000" expanded="true" signature="16655:16718" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="16723:16940" ph=" Asserts that a variable is empty. ..." />
+            <marker date="1573033343000" expanded="true" signature="17000:17050" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="17055:17467" ph=" Asserts that a static attribute of a class or an attribute of an object ..." />
+            <marker date="1573033343000" expanded="true" signature="17582:17641" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="17646:17871" ph=" Asserts that a variable is not empty. ..." />
+            <marker date="1573033343000" expanded="true" signature="17934:17987" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="17992:18411" ph=" Asserts that a static attribute of a class or an attribute of an object ..." />
+            <marker date="1573033343000" expanded="true" signature="18529:18591" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="18596:18803" ph=" Asserts that a value is greater than another value. ..." />
+            <marker date="1573033343000" expanded="true" signature="18880:18936" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="18941:19329" ph=" Asserts that an attribute is greater than another value. ..." />
+            <marker date="1573033343000" expanded="true" signature="19457:19522" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="19527:19753" ph=" Asserts that a value is greater than or equal to another value. ..." />
+            <marker date="1573033343000" expanded="true" signature="19837:19900" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="19905:20312" ph=" Asserts that an attribute is greater than or equal to another value. ..." />
+            <marker date="1573033343000" expanded="true" signature="20447:20519" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="20524:20728" ph=" Asserts that a value is smaller than another value. ..." />
+            <marker date="1573033343000" expanded="true" signature="20802:20855" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="20860:21245" ph=" Asserts that an attribute is smaller than another value. ..." />
+            <marker date="1573033343000" expanded="true" signature="21370:21432" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="21437:21660" ph=" Asserts that a value is smaller than or equal to another value. ..." />
+            <marker date="1573033343000" expanded="true" signature="21741:21801" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="21806:22210" ph=" Asserts that an attribute is smaller than or equal to another value. ..." />
+            <marker date="1573033343000" expanded="true" signature="22342:22411" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="22416:22653" ph=" Asserts that the contents of one file is equal to the contents of another ..." />
+            <marker date="1573033343000" expanded="true" signature="22797:22852" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="22857:23101" ph=" Asserts that the contents of one file is not equal to the contents of ..." />
+            <marker date="1573033343000" expanded="true" signature="23248:23306" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="23311:23548" ph=" Asserts that the contents of a string is equal ..." />
+            <marker date="1573033343000" expanded="true" signature="23708:23769" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="23774:24018" ph=" Asserts that the contents of a string is not equal ..." />
+            <marker date="1573033343000" expanded="true" signature="24181:24245" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="24250:24441" ph=" Asserts that a file/dir is readable. ..." />
+            <marker date="1573033343000" expanded="true" signature="24515:24570" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="24575:24784" ph=" Asserts that a file/dir exists and is not readable. ..." />
+            <marker date="1573033343000" expanded="true" signature="24861:24919" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="24924:25126" ph=" Asserts that a file/dir exists and is writable. ..." />
+            <marker date="1573033343000" expanded="true" signature="25200:25255" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="25260:25469" ph=" Asserts that a file/dir exists and is not writable. ..." />
+            <marker date="1573033343000" expanded="true" signature="25546:25604" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="25609:25801" ph=" Asserts that a directory exists. ..." />
+            <marker date="1573033343000" expanded="true" signature="25881:25941" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="25946:26149" ph=" Asserts that a directory does not exist. ..." />
+            <marker date="1573033343000" expanded="true" signature="26232:26295" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="26300:26512" ph=" Asserts that a directory exists and is readable. ..." />
+            <marker date="1573033343000" expanded="true" signature="26596:26660" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="26665:26884" ph=" Asserts that a directory exists and is not readable. ..." />
+            <marker date="1573033343000" expanded="true" signature="26971:27038" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="27043:27255" ph=" Asserts that a directory exists and is writable. ..." />
+            <marker date="1573033343000" expanded="true" signature="27339:27403" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="27408:27627" ph=" Asserts that a directory exists and is not writable. ..." />
+            <marker date="1573033343000" expanded="true" signature="27714:27781" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="27786:27968" ph=" Asserts that a file exists. ..." />
+            <marker date="1573033343000" expanded="true" signature="28042:28097" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="28102:28295" ph=" Asserts that a file does not exist. ..." />
+            <marker date="1573033343000" expanded="true" signature="28372:28430" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="28435:28637" ph=" Asserts that a file exists and is readable. ..." />
+            <marker date="1573033343000" expanded="true" signature="28711:28770" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="28775:28984" ph=" Asserts that a file exists and is not readable. ..." />
+            <marker date="1573033343000" expanded="true" signature="29061:29123" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="29128:29330" ph=" Asserts that a file exists and is writable. ..." />
+            <marker date="1573033343000" expanded="true" signature="29404:29463" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="29468:29677" ph=" Asserts that a file exists and is not writable. ..." />
+            <marker date="1573033343000" expanded="true" signature="29754:29816" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="29821:30039" ph=" Asserts that a condition is true. ..." />
+            <marker date="1573033343000" expanded="true" signature="30101:30150" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="30155:30381" ph=" Asserts that a condition is not true. ..." />
+            <marker date="1573033343000" expanded="true" signature="30446:30498" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="30503:30724" ph=" Asserts that a condition is false. ..." />
+            <marker date="1573033343000" expanded="true" signature="30787:30837" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="30842:31071" ph=" Asserts that a condition is not false. ..." />
+            <marker date="1573033343000" expanded="true" signature="31137:31190" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="31195:31409" ph=" Asserts that a variable is null. ..." />
+            <marker date="1573033343000" expanded="true" signature="31468:31517" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="31522:31744" ph=" Asserts that a variable is not null. ..." />
+            <marker date="1573033343000" expanded="true" signature="31806:31858" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="31863:32048" ph=" Asserts that a variable is finite. ..." />
+            <marker date="1573033343000" expanded="true" signature="32109:32160" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="32165:32354" ph=" Asserts that a variable is infinite. ..." />
+            <marker date="1573033343000" expanded="true" signature="32417:32470" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="32475:32654" ph=" Asserts that a variable is nan. ..." />
+            <marker date="1573033343000" expanded="true" signature="32712:32760" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="32765:32995" ph=" Asserts that a class has a specified attribute. ..." />
+            <marker date="1573033343000" expanded="true" signature="33100:33162" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="33167:33410" ph=" Asserts that a class does not have a specified attribute. ..." />
+            <marker date="1573033343000" expanded="true" signature="33518:33583" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="33588:33831" ph=" Asserts that a class has a specified static attribute. ..." />
+            <marker date="1573033343000" expanded="true" signature="33942:34010" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="34015:34271" ph=" Asserts that a class does not have a specified static attribute. ..." />
+            <marker date="1573033343000" expanded="true" signature="34385:34456" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="34461:34722" ph=" Asserts that an object has a specified attribute. ..." />
+            <marker date="1573033343000" expanded="true" signature="34818:34881" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="34886:35160" ph=" Asserts that an object does not have a specified attribute. ..." />
+            <marker date="1573033343000" expanded="true" signature="35259:35325" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="35330:35728" ph=" Asserts that two variables have the same type and value. ..." />
+            <marker date="1573033343000" expanded="true" signature="35798:35847" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="35852:36263" ph=" Asserts that a variable and an attribute of an object have the same type ..." />
+            <marker date="1573033343000" expanded="true" signature="36384:36442" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="36447:36749" ph=" Asserts that two variables do not have the same type and value. ..." />
+            <marker date="1573033343000" expanded="true" signature="36822:36874" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="36879:37300" ph=" Asserts that a variable and an attribute of an object do not have the ..." />
+            <marker date="1573033343000" expanded="true" signature="37424:37485" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="37490:37845" ph=" Asserts that a variable is of a given type. ..." />
+            <marker date="1573033343000" expanded="true" signature="37928:37983" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="37988:38400" ph=" Asserts that an attribute is of a given type. ..." />
+            <marker date="1573033343000" expanded="true" signature="38522:38586" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="38591:38954" ph=" Asserts that a variable is not of a given type. ..." />
+            <marker date="1573033343000" expanded="true" signature="39040:39098" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="39103:39518" ph=" Asserts that an attribute is of a given type. ..." />
+            <marker date="1573033343000" expanded="true" signature="39643:39710" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="39715:40013" ph=" Asserts that a variable is of a given type. ..." />
+            <marker date="1573033343000" expanded="true" signature="40098:40155" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="40160:40532" ph=" Asserts that an attribute is of a given type. ..." />
+            <marker date="1573033343000" expanded="true" signature="40656:40722" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="40727:40954" ph=" Asserts that a variable is of type array. ..." />
+            <marker date="1573033343000" expanded="true" signature="41016:41068" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="41073:41297" ph=" Asserts that a variable is of type bool. ..." />
+            <marker date="1573033343000" expanded="true" signature="41358:41409" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="41414:41641" ph=" Asserts that a variable is of type float. ..." />
+            <marker date="1573033343000" expanded="true" signature="41703:41755" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="41760:41981" ph=" Asserts that a variable is of type int. ..." />
+            <marker date="1573033343000" expanded="true" signature="42041:42091" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="42096:42329" ph=" Asserts that a variable is of type numeric. ..." />
+            <marker date="1573033343000" expanded="true" signature="42393:42447" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="42452:42682" ph=" Asserts that a variable is of type object. ..." />
+            <marker date="1573033343000" expanded="true" signature="42745:42798" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="42803:43039" ph=" Asserts that a variable is of type resource. ..." />
+            <marker date="1573033343000" expanded="true" signature="43104:43159" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="43164:43394" ph=" Asserts that a variable is of type string. ..." />
+            <marker date="1573033343000" expanded="true" signature="43457:43510" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="43515:43745" ph=" Asserts that a variable is of type scalar. ..." />
+            <marker date="1573033343000" expanded="true" signature="43808:43861" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="43866:44102" ph=" Asserts that a variable is of type callable. ..." />
+            <marker date="1573033343000" expanded="true" signature="44167:44222" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="44227:44463" ph=" Asserts that a variable is of type iterable. ..." />
+            <marker date="1573033343000" expanded="true" signature="44528:44583" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="44588:44893" ph=" Asserts that a variable is not of a given type. ..." />
+            <marker date="1573033343000" expanded="true" signature="44981:45041" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="45046:45281" ph=" Asserts that a variable is not of type array. ..." />
+            <marker date="1573033343000" expanded="true" signature="45346:45401" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="45406:45638" ph=" Asserts that a variable is not of type bool. ..." />
+            <marker date="1573033343000" expanded="true" signature="45702:45756" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="45761:45996" ph=" Asserts that a variable is not of type float. ..." />
+            <marker date="1573033343000" expanded="true" signature="46061:46116" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="46121:46350" ph=" Asserts that a variable is not of type int. ..." />
+            <marker date="1573033343000" expanded="true" signature="46413:46466" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="46471:46712" ph=" Asserts that a variable is not of type numeric. ..." />
+            <marker date="1573033343000" expanded="true" signature="46779:46836" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="46841:47079" ph=" Asserts that a variable is not of type object. ..." />
+            <marker date="1573033343000" expanded="true" signature="47145:47201" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="47206:47450" ph=" Asserts that a variable is not of type resource. ..." />
+            <marker date="1573033343000" expanded="true" signature="47518:47576" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="47581:47819" ph=" Asserts that a variable is not of type string. ..." />
+            <marker date="1573033343000" expanded="true" signature="47885:47941" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="47946:48184" ph=" Asserts that a variable is not of type scalar. ..." />
+            <marker date="1573033343000" expanded="true" signature="48250:48306" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="48311:48555" ph=" Asserts that a variable is not of type callable. ..." />
+            <marker date="1573033343000" expanded="true" signature="48623:48681" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="48686:48930" ph=" Asserts that a variable is not of type iterable. ..." />
+            <marker date="1573033343000" expanded="true" signature="48998:49056" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="49061:49436" ph=" Asserts that an attribute is of a given type. ..." />
+            <marker date="1573033343000" expanded="true" signature="49563:49632" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="49637:49845" ph=" Asserts that a string matches a given regular expression. ..." />
+            <marker date="1573033343000" expanded="true" signature="49930:49981" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="49986:50204" ph=" Asserts that a string does not match a given regular expression. ..." />
+            <marker date="1573033343000" expanded="true" signature="50292:50346" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="50351:50696" ph=" Assert that the size of two arrays (or `Countable` or `Traversable` objects) ..." />
+            <marker date="1573033343000" expanded="true" signature="50770:50823" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="50828:51180" ph=" Assert that the size of two arrays (or `Countable` or `Traversable` objects) ..." />
+            <marker date="1573033343000" expanded="true" signature="51257:51313" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="51318:51534" ph=" Asserts that a string matches a given format string. ..." />
+            <marker date="1573033343000" expanded="true" signature="51631:51695" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="51700:51926" ph=" Asserts that a string does not match a given format string. ..." />
+            <marker date="1573033343000" expanded="true" signature="52026:52093" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="52098:52316" ph=" Asserts that a string matches a given format file. ..." />
+            <marker date="1573033343000" expanded="true" signature="52421:52489" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="52494:52724" ph=" Asserts that a string does not match a given format string. ..." />
+            <marker date="1573033343000" expanded="true" signature="52832:52903" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="52908:53118" ph=" Asserts that a string starts with a given prefix. ..." />
+            <marker date="1573033343000" expanded="true" signature="53212:53273" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="53278:53548" ph=" Asserts that a string starts not with a given prefix. ..." />
+            <marker date="1573033343000" expanded="true" signature="53631:53695" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="53700:53858" ph=" @throws ExpectationFailedException ..." />
+            <marker date="1573033343000" expanded="true" signature="53958:54023" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="54028:54198" ph=" @throws ExpectationFailedException ..." />
+            <marker date="1573033343000" expanded="true" signature="54310:54387" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="54392:54553" ph=" @throws ExpectationFailedException ..." />
+            <marker date="1573033343000" expanded="true" signature="54656:54724" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="54729:54902" ph=" @throws ExpectationFailedException ..." />
+            <marker date="1573033343000" expanded="true" signature="55017:55097" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="55102:55308" ph=" Asserts that a string ends with a given suffix. ..." />
+            <marker date="1573033343000" expanded="true" signature="55400:55459" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="55464:55677" ph=" Asserts that a string ends not with a given suffix. ..." />
+            <marker date="1573033343000" expanded="true" signature="55772:55834" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="55839:56062" ph=" Asserts that two XML files are equal. ..." />
+            <marker date="1573033343000" expanded="true" signature="56170:56235" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="56240:56470" ph=" Asserts that two XML files are not equal. ..." />
+            <marker date="1573033343000" expanded="true" signature="56581:56649" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="56654:56926" ph=" Asserts that two XML documents are equal. ..." />
+            <marker date="1573033343000" expanded="true" signature="57028:57095" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="57100:57379" ph=" Asserts that two XML documents are not equal. ..." />
+            <marker date="1573033343000" expanded="true" signature="57484:57554" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="57559:57875" ph=" Asserts that two XML documents are equal. ..." />
+            <marker date="1573033343000" expanded="true" signature="57971:58040" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="58045:58368" ph=" Asserts that two XML documents are not equal. ..." />
+            <marker date="1573033343000" expanded="true" signature="58467:58539" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="58544:58786" ph=" Asserts that a hierarchy of DOMElements matches. ..." />
+            <marker date="1573033343000" expanded="true" signature="58936:58998" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="59003:59208" ph=" Evaluates a PHPUnit\Framework\Constraint matcher object. ..." />
+            <marker date="1573033343000" expanded="true" signature="59290:59339" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="59344:59538" ph=" Asserts that a string is a valid JSON string. ..." />
+            <marker date="1573033343000" expanded="true" signature="59608:59657" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="59662:59897" ph=" Asserts that two given JSON encoded objects or arrays are equal. ..." />
+            <marker date="1573033343000" expanded="true" signature="60011:60082" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="60087:60392" ph=" Asserts that two given JSON encoded objects or arrays are not equal. ..." />
+            <marker date="1573033343000" expanded="true" signature="60495:60569" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="60574:60834" ph=" Asserts that the generated JSON encoded object and the content of the given file are equal. ..." />
+            <marker date="1573033343000" expanded="true" signature="60946:61015" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="61020:61287" ph=" Asserts that the generated JSON encoded object and the content of the given file are not equal. ..." />
+            <marker date="1573033343000" expanded="true" signature="61402:61474" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="61479:61684" ph=" Asserts that two JSON files are equal. ..." />
+            <marker date="1573033343000" expanded="true" signature="61794:61861" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="61866:62078" ph=" Asserts that two JSON files are not equal. ..." />
+            <marker date="1573033343000" expanded="true" signature="62191:62261" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="62296:62352" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="62385:62440" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="62497:62553" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="62588:62644" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="62677:62731" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="62758:62810" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="62859:62913" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="62942:62995" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="63022:63074" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="63101:63153" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="63184:63238" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="63273:63329" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="63354:63405" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="63483:63538" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="63664:63718" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="63780:63838" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="63916:63985" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="64026:64083" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="64212:64265" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="64428:64490" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="64519:64572" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="64607:64663" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="64698:64754" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="64799:64860" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="64895:64951" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="64994:65051" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="65099:65163" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="65233:65296" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="65378:65447" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="65512:65576" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="65619:65676" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="65732:65790" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="65829:65881" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="65918:65972" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="66017:66078" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="66149:66219" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="66285:66338" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="66392:66454" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="66530:66590" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="66647:66707" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="66744:66797" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="66802:66889" ph=" Returns a matcher that matches when the method is executed ..." />
+            <marker date="1573033343000" expanded="true" signature="66930:66973" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="66978:67049" ph=" Returns a matcher that matches when the method is never executed. ..." />
+            <marker date="1573033343000" expanded="true" signature="67089:67132" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="67137:67222" ph=" Returns a matcher that matches when the method is executed ..." />
+            <marker date="1573033343000" expanded="true" signature="67295:67378" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="67383:67462" ph=" Returns a matcher that matches when the method is executed at least once. ..." />
+            <marker date="1573033343000" expanded="true" signature="67514:67560" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="67565:67643" ph=" Returns a matcher that matches when the method is executed exactly once. ..." />
+            <marker date="1573033343000" expanded="true" signature="67682:67725" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="67730:67819" ph=" Returns a matcher that matches when the method is executed ..." />
+            <marker date="1573033343000" expanded="true" signature="67871:67919" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="67924:68008" ph=" Returns a matcher that matches when the method is executed ..." />
+            <marker date="1573033343000" expanded="true" signature="68078:68145" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="68150:68237" ph=" Returns a matcher that matches when the method is executed ..." />
+            <marker date="1573033343000" expanded="true" signature="68286:68336" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="68378:68417" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="68479:68529" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="68594:68649" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="68705:68755" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="68760:68854" ph=" Returns the current object. ..." />
+            <marker date="1573033343000" expanded="true" signature="68894:68929" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="68991:69037" ph="{...}" />
+            <marker date="1573033343000" expanded="true" signature="69090:69169" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/sebastian/comparator/src/ComparisonFailure.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="17" column="6" lean-forward="false" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
+          <folding>
+            <marker date="1531408366000" expanded="true" signature="8:238" ph="..." />
+            <marker date="1531408366000" expanded="true" signature="286:376" ph="..." />
+            <marker date="1531408366000" expanded="true" signature="381:439" ph=" Thrown when an assertion for string equality failed. ..." />
+            <marker date="1531408366000" expanded="true" signature="491:2988" ph="{...}" />
+            <marker date="1531408366000" expanded="true" signature="501:601" ph=" Expected value of the retrieval which does not match $actual. ..." />
+            <marker date="1531408366000" expanded="true" signature="637:732" ph=" Actually retrieved value which does not match $expected. ..." />
+            <marker date="1531408366000" expanded="true" signature="766:853" ph=" The string representation of the expected value ..." />
+            <marker date="1531408366000" expanded="true" signature="897:982" ph=" The string representation of the actual value ..." />
+            <marker date="1531408366000" expanded="true" signature="1024:1047" ph=" @var bool ..." />
+            <marker date="1531408366000" expanded="true" signature="1084:1214" ph=" Optional message which is placed in front of the first line ..." />
+            <marker date="1531408366000" expanded="true" signature="1249:1713" ph=" Initialises with the expected value and the actual value. ..." />
+            <marker date="1531408366000" expanded="true" signature="1838:2086" ph="{...}" />
+            <marker date="1531408366000" expanded="true" signature="2119:2161" ph="{...}" />
+            <marker date="1531408366000" expanded="true" signature="2196:2240" ph="{...}" />
+            <marker date="1531408366000" expanded="true" signature="2249:2277" ph=" @return string ..." />
+            <marker date="1531408366000" expanded="true" signature="2319:2369" ph="{...}" />
+            <marker date="1531408366000" expanded="true" signature="2378:2406" ph=" @return string ..." />
+            <marker date="1531408366000" expanded="true" signature="2450:2502" ph="{...}" />
+            <marker date="1531408366000" expanded="true" signature="2511:2539" ph=" @return string ..." />
+            <marker date="1531408366000" expanded="true" signature="2571:2854" ph="{...}" />
+            <marker date="1531408366000" expanded="true" signature="2643:2675" ph="..." />
+            <marker date="1531408366000" expanded="true" signature="2863:2891" ph=" @return string ..." />
+            <marker date="1531408366000" expanded="true" signature="2924:2986" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Database/Query/Grammars/Grammar.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="867" column="64" lean-forward="true" selection-start-line="867" selection-start-column="64" selection-end-line="867" selection-end-column="64" />
+          <folding>
+            <marker date="1574767666084" expanded="true" signature="58:260" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="295:34937" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="305:375" ph=" The grammar specific operators. ..." />
+            <marker date="1574767666084" expanded="true" signature="417:500" ph=" The components that make up a select clause. ..." />
+            <marker date="1574767666084" expanded="true" signature="538:740" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="751:884" ph=" Compile a select query into SQL. ..." />
+            <marker date="1574767666084" expanded="true" signature="936:1955" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="993:1059" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="1383:1429" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="1696:1770" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="1715:1760" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="1803:1888" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="1964:2117" ph=" Compile the components necessary for a select clause. ..." />
+            <marker date="1574767666084" expanded="true" signature="2176:2783" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="2260:2754" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="2594:2744" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="2792:2962" ph=" Compile an aggregated select clause. ..." />
+            <marker date="1574767666084" expanded="true" signature="3032:3664" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="3399:3478" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="3526:3578" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="3673:3854" ph=" Compile the &quot;select *&quot; portion of the query. ..." />
+            <marker date="1574767666084" expanded="true" signature="3920:4446" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="4223:4252" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="4286:4337" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="4345:4387" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="4455:4626" ph=" Compile the &quot;from&quot; portion of the query. ..." />
+            <marker date="1574767666084" expanded="true" signature="4687:4748" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="4757:4928" ph=" Compile the &quot;join&quot; portions of the query. ..." />
+            <marker date="1574767666084" expanded="true" signature="4990:5452" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="5033:5430" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="5064:5429" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="5441:5444" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="5461:5604" ph=" Compile the &quot;where&quot; portions of the query. ..." />
+            <marker date="1574767666084" expanded="true" signature="5659:6420" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="5963:5995" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="6319:6393" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="6429:6581" ph=" Get an array of all the where clauses for the query. ..." />
+            <marker date="1574767666084" expanded="true" signature="6635:6834" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="6686:6819" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="6718:6818" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="6843:7022" ph=" Format the where clause statements into one string. ..." />
+            <marker date="1574767666084" expanded="true" signature="7085:7249" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="7258:7415" ph=" Compile a raw where clause. ..." />
+            <marker date="1574767666084" expanded="true" signature="7473:7515" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="7524:7683" ph=" Compile a basic where clause. ..." />
+            <marker date="1574767666084" expanded="true" signature="7743:7888" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="7897:8055" ph=" Compile a &quot;where in&quot; clause. ..." />
+            <marker date="1574767666084" expanded="true" signature="8112:8300" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="8159:8268" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="8309:8471" ph=" Compile a &quot;where not in&quot; clause. ..." />
+            <marker date="1574767666084" expanded="true" signature="8531:8723" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="8578:8691" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="8732:8996" ph=" Compile a &quot;where not in raw&quot; clause. ..." />
+            <marker date="1574767666084" expanded="true" signature="9059:9245" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="9106:9213" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="9254:9514" ph=" Compile a &quot;where in raw&quot; clause. ..." />
+            <marker date="1574767666084" expanded="true" signature="9574:9756" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="9621:9724" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="9765:9925" ph=" Compile a &quot;where null&quot; clause. ..." />
+            <marker date="1574767666084" expanded="true" signature="9984:10053" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="10062:10226" ph=" Compile a &quot;where not null&quot; clause. ..." />
+            <marker date="1574767666084" expanded="true" signature="10288:10361" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="10370:10533" ph=" Compile a &quot;between&quot; where clause. ..." />
+            <marker date="1574767666084" expanded="true" signature="10595:10867" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="10876:11036" ph=" Compile a &quot;where date&quot; clause. ..." />
+            <marker date="1574767666084" expanded="true" signature="11095:11169" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="11178:11338" ph=" Compile a &quot;where time&quot; clause. ..." />
+            <marker date="1574767666084" expanded="true" signature="11397:11471" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="11480:11639" ph=" Compile a &quot;where day&quot; clause. ..." />
+            <marker date="1574767666084" expanded="true" signature="11697:11770" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="11779:11940" ph=" Compile a &quot;where month&quot; clause. ..." />
+            <marker date="1574767666084" expanded="true" signature="12000:12075" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="12084:12244" ph=" Compile a &quot;where year&quot; clause. ..." />
+            <marker date="1574767666084" expanded="true" signature="12303:12377" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="12386:12579" ph=" Compile a date based where clause. ..." />
+            <marker date="1574767666084" expanded="true" signature="12650:12806" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="12815:12991" ph=" Compile a where clause comparing two columns.. ..." />
+            <marker date="1574767666084" expanded="true" signature="13052:13166" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="13175:13335" ph=" Compile a nested where clause. ..." />
+            <marker date="1574767666084" expanded="true" signature="13396:13800" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="13809:13983" ph=" Compile a where condition with a sub-select. ..." />
+            <marker date="1574767666084" expanded="true" signature="14041:14193" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="14202:14362" ph=" Compile a where exists clause. ..." />
+            <marker date="1574767666084" expanded="true" signature="14423:14504" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="14513:14673" ph=" Compile a where exists clause. ..." />
+            <marker date="1574767666084" expanded="true" signature="14737:14822" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="14831:14998" ph=" Compile a where row values condition. ..." />
+            <marker date="1574767666084" expanded="true" signature="15062:15259" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="15268:15436" ph=" Compile a &quot;where JSON boolean&quot; clause. ..." />
+            <marker date="1574767666084" expanded="true" signature="15502:15745" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="15623:15678" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="15754:15923" ph=" Compile a &quot;where JSON contains&quot; clause. ..." />
+            <marker date="1574767666084" expanded="true" signature="15990:16170" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="16089:16162" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="16179:16368" ph=" Compile a &quot;JSON contains&quot; statement into SQL. ..." />
+            <marker date="1574767666084" expanded="true" signature="16430:16545" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="16554:16680" ph=" Prepare the binding for a &quot;JSON contains&quot; statement. ..." />
+            <marker date="1574767666084" expanded="true" signature="16742:16792" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="16801:16968" ph=" Compile a &quot;where JSON length&quot; clause. ..." />
+            <marker date="1574767666084" expanded="true" signature="17033:17181" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="17080:17173" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="17190:17410" ph=" Compile a &quot;JSON length&quot; statement into SQL. ..." />
+            <marker date="1574767666084" expanded="true" signature="17481:17594" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="17603:17779" ph=" Compile the &quot;group by&quot; portions of the query. ..." />
+            <marker date="1574767666084" expanded="true" signature="17843:17909" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="17918:18093" ph=" Compile the &quot;having&quot; portions of the query. ..." />
+            <marker date="1574767666084" expanded="true" signature="18159:18308" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="18317:18422" ph=" Compile a single having clause. ..." />
+            <marker date="1574767666084" expanded="true" signature="18476:19007" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="18773:18840" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="18882:18948" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="19016:19120" ph=" Compile a basic having clause. ..." />
+            <marker date="1574767666084" expanded="true" signature="19173:19380" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="19389:19496" ph=" Compile a &quot;between&quot; having clause. ..." />
+            <marker date="1574767666084" expanded="true" signature="19551:19878" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="19887:20063" ph=" Compile the &quot;order by&quot; portions of the query. ..." />
+            <marker date="1574767666084" expanded="true" signature="20127:20293" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="20165:20266" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="20302:20469" ph=" Compile the query orders to an array. ..." />
+            <marker date="1574767666084" expanded="true" signature="20540:20709" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="20572:20701" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="20591:20691" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="20718:20828" ph=" Compile the random statement into SQL. ..." />
+            <marker date="1574767666084" expanded="true" signature="20871:20910" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="20919:21089" ph=" Compile the &quot;limit&quot; portions of the query. ..." />
+            <marker date="1574767666084" expanded="true" signature="21151:21201" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="21210:21382" ph=" Compile the &quot;offset&quot; portions of the query. ..." />
+            <marker date="1574767666084" expanded="true" signature="21446:21498" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="21507:21663" ph=" Compile the &quot;union&quot; queries attached to the main query. ..." />
+            <marker date="1574767666084" expanded="true" signature="21718:22266" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="21789:21847" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="21893:21977" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="22020:22102" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="22146:22230" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="22275:22380" ph=" Compile a single union statement. ..." />
+            <marker date="1574767666084" expanded="true" signature="22432:22583" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="22592:22700" ph=" Wrap a union subquery in parentheses. ..." />
+            <marker date="1574767666084" expanded="true" signature="22741:22782" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="22791:22933" ph=" Compile a union aggregate query into SQL. ..." />
+            <marker date="1574767666084" expanded="true" signature="22996:23210" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="23219:23357" ph=" Compile an exists statement into SQL. ..." />
+            <marker date="1574767666084" expanded="true" signature="23409:23540" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="23549:23717" ph=" Compile an insert statement into SQL. ..." />
+            <marker date="1574767666084" expanded="true" signature="23784:24823" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="24126:24193" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="24147:24182" ph="insert into $... " />
+            <marker date="1574767666084" expanded="true" signature="24237:24279" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="24645:24732" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="24665:24731" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="24743:24747" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="24767:24804" ph="insert into ${$table}... " />
+            <marker date="1574767666084" expanded="true" signature="24832:25007" ph=" Compile an insert ignore statement into SQL. ..." />
+            <marker date="1574767666084" expanded="true" signature="25082:25204" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="25213:25426" ph=" Compile an insert and get ID statement into SQL. ..." />
+            <marker date="1574767666084" expanded="true" signature="25503:25569" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="25578:25792" ph=" Compile an insert statement using a subquery into SQL. ..." />
+            <marker date="1574767666084" expanded="true" signature="25878:25989" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="25901:25977" ph="insert into $... " />
+            <marker date="1574767666084" expanded="true" signature="25998:26166" ph=" Compile an update statement into SQL. ..." />
+            <marker date="1574767666084" expanded="true" signature="26233:26641" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="26424:26633" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="26650:26825" ph=" Compile the columns for an update statement. ..." />
+            <marker date="1574767666084" expanded="true" signature="26902:27073" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="26946:27050" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="26971:27049" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="27061:27065" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="27082:27326" ph=" Compile an update statement without joins into SQL. ..." />
+            <marker date="1574767666084" expanded="true" signature="27419:27489" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="27442:27473" ph="update ${{$t... " />
+            <marker date="1574767666084" expanded="true" signature="27498:27739" ph=" Compile an update statement with joins into SQL. ..." />
+            <marker date="1574767666084" expanded="true" signature="27829:27970" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="27914:27954" ph="update ${{$t... " />
+            <marker date="1574767666084" expanded="true" signature="27979:28128" ph=" Prepare the bindings for an update statement. ..." />
+            <marker date="1574767666084" expanded="true" signature="28207:28411" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="28312:28403" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="28420:28557" ph=" Compile a delete statement into SQL. ..." />
+            <marker date="1574767666084" expanded="true" signature="28609:28931" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="28734:28923" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="28940:29151" ph=" Compile a delete statement without joins into SQL. ..." />
+            <marker date="1574767666084" expanded="true" signature="29234:29294" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="29257:29278" ph="delete from " />
+            <marker date="1574767666084" expanded="true" signature="29303:29511" ph=" Compile a delete statement with joins into SQL. ..." />
+            <marker date="1574767666084" expanded="true" signature="29591:29780" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="29789:29907" ph=" Prepare the bindings for a delete statement. ..." />
+            <marker date="1574767666084" expanded="true" signature="29971:30068" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="30006:30060" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="30077:30221" ph=" Compile a truncate table statement into SQL. ..." />
+            <marker date="1574767666084" expanded="true" signature="30275:30360" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="30369:30531" ph=" Compile the lock into SQL. ..." />
+            <marker date="1574767666084" expanded="true" signature="30592:30652" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="30661:30747" ph=" Determine if the grammar supports savepoints. ..." />
+            <marker date="1574767666084" expanded="true" signature="30790:30823" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="30832:30952" ph=" Compile the SQL statement to define a savepoint. ..." />
+            <marker date="1574767666084" expanded="true" signature="30998:31045" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="31054:31184" ph=" Compile the SQL statement to execute a savepoint rollback. ..." />
+            <marker date="1574767666084" expanded="true" signature="31238:31297" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="31306:31489" ph=" Wrap a value in keyword identifiers. ..." />
+            <marker date="1574767666084" expanded="true" signature="31546:32442" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="31595:31648" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="31949:32024" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="32315:32376" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="32451:32553" ph=" Wrap the given JSON selector. ..." />
+            <marker date="1574767666084" expanded="true" signature="32603:32709" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="32718:32839" ph=" Wrap the given JSON selector for boolean values. ..." />
+            <marker date="1574767666084" expanded="true" signature="32896:32956" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="32965:33072" ph=" Wrap the given JSON boolean value. ..." />
+            <marker date="1574767666084" expanded="true" signature="33126:33161" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="33170:33335" ph=" Split the given JSON selector into the field and the optional path and wrap them separately. ..." />
+            <marker date="1574767666084" expanded="true" signature="33390:33606" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="33615:33747" ph=" Wrap the given JSON path. ..." />
+            <marker date="1574767666084" expanded="true" signature="33812:33959" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="33968:34088" ph=" Determine if the given string is a JSON selector. ..." />
+            <marker date="1574767666084" expanded="true" signature="34136:34192" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="34201:34328" ph=" Concatenate an array of segments, removing empties. ..." />
+            <marker date="1574767666084" expanded="true" signature="34376:34516" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="34406:34508" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="34424:34507" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="34454:34506" ph="..." />
+            <marker date="1574767666084" expanded="true" signature="34525:34642" ph=" Remove the leading boolean from a statement. ..." />
+            <marker date="1574767666084" expanded="true" signature="34696:34767" ph="{...}" />
+            <marker date="1574767666084" expanded="true" signature="34776:34853" ph=" Get the grammar specific operators. ..." />
+            <marker date="1574767666084" expanded="true" signature="34890:34935" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_11_24_131324_create_activities_table.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
+        <state relative-caret-position="130">
           <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
           <folding>
             <marker date="1574766212648" expanded="true" signature="11:133" ph="..." />
@@ -251,10 +873,108 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_11_24_131340_create_companies_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="16" column="28" lean-forward="true" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+          <folding>
+            <marker date="1574766085860" expanded="true" signature="11:133" ph="..." />
+            <marker date="1574766085860" expanded="true" signature="179:677" ph="{...}" />
+            <marker date="1574766085860" expanded="true" signature="189:249" ph=" Run the migrations. ..." />
+            <marker date="1574766085860" expanded="true" signature="276:518" ph="{...}" />
+            <marker date="1574766085860" expanded="true" signature="306:510" ph="..." />
+            <marker date="1574766085860" expanded="true" signature="348:509" ph="..." />
+            <marker date="1574766085860" expanded="true" signature="527:591" ph=" Reverse the migrations. ..." />
+            <marker date="1574766085860" expanded="true" signature="620:675" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_11_24_131407_create_categories_table.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="519">
+        <state relative-caret-position="400">
           <caret line="23" column="7" lean-forward="true" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
+          <folding>
+            <marker date="1574766256280" expanded="true" signature="11:133" ph="..." />
+            <marker date="1574766256280" expanded="true" signature="180:675" ph="{...}" />
+            <marker date="1574766256280" expanded="true" signature="190:250" ph=" Run the migrations. ..." />
+            <marker date="1574766256280" expanded="true" signature="277:515" ph="{...}" />
+            <marker date="1574766256280" expanded="true" signature="307:507" ph="..." />
+            <marker date="1574766256280" expanded="true" signature="350:506" ph="..." />
+            <marker date="1574766256280" expanded="true" signature="524:588" ph=" Reverse the migrations. ..." />
+            <marker date="1574766256280" expanded="true" signature="617:673" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/factories/UserFactory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-406">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1574594728280" expanded="true" signature="70:137" ph="..." />
+            <marker date="1574594728280" expanded="true" signature="141:530" ph="..." />
+            <marker date="1574594728280" expanded="true" signature="551:872" ph="..." />
+            <marker date="1574594728280" expanded="true" signature="589:871" ph="..." />
+            <marker date="1574594728280" expanded="true" signature="602:868" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/factories/CategoryFactory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="9" column="30" lean-forward="false" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+          <folding>
+            <marker date="1574767709900" expanded="true" signature="71:114" ph="..." />
+            <marker date="1574767709900" expanded="true" signature="133:266" ph="..." />
+            <marker date="1574767709900" expanded="true" signature="175:265" ph="..." />
+            <marker date="1574767709900" expanded="true" signature="188:262" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/factories/ActivityFactory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="10" column="61" lean-forward="true" selection-start-line="10" selection-start-column="61" selection-end-line="10" selection-end-column="61" />
+          <folding>
+            <marker date="1574767273176" expanded="true" signature="71:114" ph="..." />
+            <marker date="1574767273176" expanded="true" signature="133:401" ph="..." />
+            <marker date="1574767273176" expanded="true" signature="175:400" ph="..." />
+            <marker date="1574767273176" expanded="true" signature="188:397" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Activity.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+          <folding>
+            <marker date="1574767757228" expanded="true" signature="92:187" ph="{...}" />
+            <marker date="1574767757228" expanded="true" signature="124:185" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/factories/CompanyFactory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding>
+            <marker date="1574767062336" expanded="true" signature="71:113" ph="..." />
+            <marker date="1574767062336" expanded="true" signature="132:274" ph="..." />
+            <marker date="1574767062336" expanded="true" signature="173:273" ph="..." />
+            <marker date="1574767062336" expanded="true" signature="186:270" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Unit/ActivityTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="467">
+          <caret line="28" column="1" lean-forward="true" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
           <folding />
         </state>
       </provider>
