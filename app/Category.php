@@ -10,4 +10,9 @@ class Category extends Model
     {
         return $this->hasMany(Activity::class);
     }
+
+    public function getPathAttribute()
+    {
+        return "/admin/categories/$this->id";
+    }
 }

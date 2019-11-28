@@ -15,3 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::namespace('Admin')
+    ->prefix('admin')
+    ->group(function () {
+
+        Route::get('/categories', 'CategoriesController@index');
+        Route::get('/categories/create', 'CategoriesController@create');
+        Route::get('/categories/{category}', 'CategoriesController@show');
+
+    });

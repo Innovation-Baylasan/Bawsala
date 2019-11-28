@@ -13,9 +13,13 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/categories', 'Api\CategoriesController@index');
+Route::namespace('Api')->group(function () {
 
-Route::get('/categories/{category}/activities', 'Api\CategoryActivitiesController@index');
+    Route::get('/categories', 'CategoriesController@index');
+
+    Route::get('/categories/{category}/activities', 'CategoryActivitiesController@index');
+
+});
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
