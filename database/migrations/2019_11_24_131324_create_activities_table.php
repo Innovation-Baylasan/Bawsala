@@ -19,6 +19,7 @@ class CreateActivitiesTable extends Migration
             $table->unsignedBigInteger('category_id');
             $table->string('name');
             $table->text('description');
+            $table->json('location');
             $table->timestamps();
         });
     }

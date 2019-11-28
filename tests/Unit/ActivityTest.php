@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\Activity;
+use App\Category;
 use App\Company;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -25,6 +26,21 @@ class ActivityTest extends TestCase
 
 
         $this->assertEquals($company->toArray(), $activity->company->toArray());
+    }
+
+    /**
+     * @test
+     */
+    public function its_belong_to_a_category()
+    {
+        $category = factory(Category::class)->create();
+
+        $activity = factory(Activity::class)->create([
+            'category_id' => $category->id
+        ]);
+
+
+        $this->assertEquals($category->toArray(), $activity->category->toArray());
     }
 }
 
