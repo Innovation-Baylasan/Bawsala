@@ -28,10 +28,10 @@ class CategoriesController extends Controller
      */
     public function show(Category $category)
     {
-        $activities = $category->activities()
+        $entities = $category->entities()
             ->with('company')->paginate(10);
 
-        return view('admin.categories.show', compact('category', 'activities'));
+        return view('admin.categories.show', compact('category', 'entities'));
     }
 
     /**

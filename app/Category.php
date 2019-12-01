@@ -6,11 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    public function activities()
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function entities()
     {
-        return $this->hasMany(Activity::class);
+        return $this->hasMany(Entity::class);
     }
 
+    /**
+     * @return string
+     */
     public function getPathAttribute()
     {
         return "/admin/categories/$this->id";
