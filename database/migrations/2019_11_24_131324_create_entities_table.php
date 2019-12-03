@@ -17,7 +17,7 @@ class CreateEntitiesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('profile_id');
+            $table->unsignedBigInteger('profile_id')->nullable();
             $table->string('name');
             $table->text('description');
             $table->json('location');

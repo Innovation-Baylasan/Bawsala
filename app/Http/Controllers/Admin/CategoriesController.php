@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 class CategoriesController extends Controller
 {
     /**
+     * return a view with all categories
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
@@ -22,6 +24,8 @@ class CategoriesController extends Controller
     }
 
     /**
+     * return a view for single category
+     *
      * @param \App\Category $category
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -29,12 +33,14 @@ class CategoriesController extends Controller
     public function show(Category $category)
     {
         $entities = $category->entities()
-            ->with('company')->paginate(10);
+            ->with('user')->paginate(10);
 
         return view('admin.categories.show', compact('category', 'entities'));
     }
 
     /**
+     * return a view to create category
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()

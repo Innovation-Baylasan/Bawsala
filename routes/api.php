@@ -17,7 +17,13 @@ Route::namespace('Api')->group(function () {
 
     Route::get('/categories', 'CategoriesController@index');
 
-    Route::get('/categories/{category}/activities', 'CategoryActivitiesController@index');
+    Route::get('/categories/{category}', 'CategoriesController@show');
+
+    Route::get('/categories/{category}/entities', 'CategoryEntitiesController@index');
+
+    Route::get('/entities', 'EntitiesController@index');
+
+    Route::get('/entities/{entity}', 'EntitiesController@show');
 
 });
 
