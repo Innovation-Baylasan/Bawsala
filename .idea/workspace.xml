@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/Unit/EntityTest.php" afterPath="$PROJECT_DIR$/tests/Unit/EntityTest.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,11 +15,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="CategoriesController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/CategoriesController.php">
+      <file leaf-file-name="EntityTest.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tests/Unit/EntityTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="536">
-              <caret line="50" column="0" lean-forward="true" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+            <state relative-caret-position="380">
+              <caret line="27" column="44" lean-forward="false" selection-start-line="27" selection-start-column="44" selection-end-line="27" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -62,7 +63,6 @@
         <option value="$PROJECT_DIR$/app/Category.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_11_24_131407_create_categories_table.php" />
         <option value="$PROJECT_DIR$/database/factories/EntityFactory.php" />
-        <option value="$PROJECT_DIR$/tests/Unit/EntityTest.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_12_01_151443_create_entity_tags_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_12_01_151342_create_tags_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_12_01_151356_create_roles_table.php" />
@@ -77,6 +77,7 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/EntitiesController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/CategoriesController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/CategoriesController.php" />
+        <option value="$PROJECT_DIR$/tests/Unit/EntityTest.php" />
       </list>
     </option>
   </component>
@@ -160,172 +161,6 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mustakshif" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mustakshif" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mustakshif" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mustakshif" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="admin" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mustakshif" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mustakshif" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mustakshif" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mustakshif" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="database" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mustakshif" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mustakshif" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="database" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="migrations" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mustakshif" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mustakshif" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mustakshif" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mustakshif" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mustakshif" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mustakshif" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mustakshif" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mustakshif" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Admin" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
@@ -334,7 +169,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="api&#9;FILE&#9;file:///home/oweisnama/Projects/Mustakshif/routes/api.php&#10;co/au&#9;FILE&#9;file:///home/oweisnama/Projects/Mustakshif/config/auth.php&#10;Auths&#9;null&#9;null&#10;User&#9;null&#9;null&#10;Catego&#9;FILE&#9;file:///home/oweisnama/Projects/Mustakshif/app/Category.php&#10;Activ&#9;FILE&#9;file:///home/oweisnama/Projects/Mustakshif/app/Activity.php&#10;web.ph&#9;FILE&#9;file:///home/oweisnama/Projects/Mustakshif/routes/web.php&#10;Act&#9;FILE&#9;file:///home/oweisnama/Projects/Mustakshif/app/Http/Controllers/Api/CategoryActivitiesController.php&#10;Acti&#9;FILE&#9;file:///home/oweisnama/Projects/Mustakshif/app/Activity.php&#10;Activity&#9;null&#9;null&#10;Grammar&#9;null&#9;null&#10;coFacto&#9;FILE&#9;file:///home/altaif/Projects/Mustakshif/database/factories/CompanyFactory.php&#10;compaf&#9;null&#9;null&#10;categ&#9;FILE&#9;file:///home/altaif/Projects/Mustakshif/database/migrations/2019_11_24_131407_create_categories_table.php&#10;categorf&#9;FILE&#9;file:///home/altaif/Projects/Mustakshif/database/factories/CategoryFactory.php&#10;activif&#9;FILE&#9;file:///home/altaif/Projects/Mustakshif/database/factories/ActivityFactory.php&#10;ActivT&#9;null&#9;null&#10;.env&#9;FILE&#9;file:///home/altaif/Projects/Mustakshif/.env" />
+    <property name="SearchEverywhereHistoryKey" value="Entity&#9;FILE&#9;file:///home/oweisnama/Projects/Mustakshif/app/Entity.php&#10;api&#9;FILE&#9;file:///home/oweisnama/Projects/Mustakshif/routes/api.php&#10;co/au&#9;FILE&#9;file:///home/oweisnama/Projects/Mustakshif/config/auth.php&#10;Auths&#9;null&#9;null&#10;User&#9;null&#9;null&#10;Catego&#9;FILE&#9;file:///home/oweisnama/Projects/Mustakshif/app/Category.php&#10;Activ&#9;FILE&#9;file:///home/oweisnama/Projects/Mustakshif/app/Activity.php&#10;web.ph&#9;FILE&#9;file:///home/oweisnama/Projects/Mustakshif/routes/web.php&#10;Act&#9;FILE&#9;file:///home/oweisnama/Projects/Mustakshif/app/Http/Controllers/Api/CategoryActivitiesController.php&#10;Acti&#9;FILE&#9;file:///home/oweisnama/Projects/Mustakshif/app/Activity.php&#10;Activity&#9;null&#9;null&#10;Grammar&#9;null&#9;null&#10;coFacto&#9;FILE&#9;file:///home/altaif/Projects/Mustakshif/database/factories/CompanyFactory.php&#10;compaf&#9;null&#9;null&#10;categ&#9;FILE&#9;file:///home/altaif/Projects/Mustakshif/database/migrations/2019_11_24_131407_create_categories_table.php&#10;categorf&#9;FILE&#9;file:///home/altaif/Projects/Mustakshif/database/factories/CategoryFactory.php&#10;activif&#9;FILE&#9;file:///home/altaif/Projects/Mustakshif/database/factories/ActivityFactory.php&#10;ActivT&#9;null&#9;null&#10;.env&#9;FILE&#9;file:///home/altaif/Projects/Mustakshif/.env" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -442,7 +277,7 @@
       <workItem from="1575194680391" duration="523000" />
       <workItem from="1575212426618" duration="4392000" />
       <workItem from="1575361609651" duration="2719000" />
-      <workItem from="1575392735502" duration="1601000" />
+      <workItem from="1575392735502" duration="1812000" />
     </task>
     <task id="LOCAL-00001" summary="schema for activities,companies and categories">
       <created>1574766304196</created>
@@ -521,11 +356,18 @@
       <option name="project" value="LOCAL" />
       <updated>1575397474643</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="API enhancements , add laravel passport as a main api authentication driver, add doc blocks to controllers">
+      <created>1575397653140</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1575397653140</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22113000" />
+    <option name="totallyTimeSpent" value="22324000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="46" y="-11" width="1321" height="780" extended-state="6" />
@@ -858,23 +700,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Entity.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="28" column="36" lean-forward="false" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
-          <folding>
-            <marker date="1575212742582" expanded="true" signature="90:729" ph="{...}" />
-            <marker date="1575212742582" expanded="true" signature="100:192" ph=" Determine what to eager load when retrieving activity ..." />
-            <marker date="1575212742582" expanded="true" signature="238:320" ph=" Determine what to cast when retrieving data ..." />
-            <marker date="1575212742582" expanded="true" signature="347:382" ph="..." />
-            <marker date="1575212742582" expanded="true" signature="393:464" ph=" @return \Illuminate\Database\Eloquent\Relations\BelongsTo ..." />
-            <marker date="1575212742582" expanded="true" signature="493:551" ph="{...}" />
-            <marker date="1575212742582" expanded="true" signature="560:631" ph=" @return \Illuminate\Database\Eloquent\Relations\BelongsTo ..." />
-            <marker date="1575212742582" expanded="true" signature="664:726" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/factories/EntityFactory.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
@@ -886,13 +711,6 @@
             <marker date="1575213038260" expanded="true" signature="184:473" ph="..." />
             <marker date="1575213038260" expanded="true" signature="379:467" ph="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Unit/EntityTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="27" column="33" lean-forward="false" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -1126,6 +944,44 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="536">
           <caret line="50" column="0" lean-forward="true" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding>
+            <marker date="1575397467722" expanded="true" signature="50:129" ph="..." />
+            <marker date="1575397467722" expanded="true" signature="176:1192" ph="{...}" />
+            <marker date="1575397467722" expanded="true" signature="186:312" ph=" return a view with all categories ..." />
+            <marker date="1575397467722" expanded="true" signature="342:562" ph="{...}" />
+            <marker date="1575397467722" expanded="true" signature="406:483" ph="..." />
+            <marker date="1575397467722" expanded="true" signature="427:482" ph="..." />
+            <marker date="1575397467722" expanded="true" signature="571:742" ph=" return a view for single category ..." />
+            <marker date="1575397467722" expanded="true" signature="789:965" ph="{...}" />
+            <marker date="1575397467722" expanded="true" signature="857:863" ph="..." />
+            <marker date="1575397467722" expanded="true" signature="875:877" ph="..." />
+            <marker date="1575397467722" expanded="true" signature="974:1099" ph=" return a view to create category ..." />
+            <marker date="1575397467722" expanded="true" signature="1130:1190" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Entity.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="28" column="36" lean-forward="false" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
+          <folding>
+            <marker date="1575212742582" expanded="true" signature="90:729" ph="{...}" />
+            <marker date="1575212742582" expanded="true" signature="100:192" ph=" Determine what to eager load when retrieving activity ..." />
+            <marker date="1575212742582" expanded="true" signature="238:320" ph=" Determine what to cast when retrieving data ..." />
+            <marker date="1575212742582" expanded="true" signature="347:382" ph="..." />
+            <marker date="1575212742582" expanded="true" signature="393:464" ph=" @return \Illuminate\Database\Eloquent\Relations\BelongsTo ..." />
+            <marker date="1575212742582" expanded="true" signature="493:551" ph="{...}" />
+            <marker date="1575212742582" expanded="true" signature="560:631" ph=" @return \Illuminate\Database\Eloquent\Relations\BelongsTo ..." />
+            <marker date="1575212742582" expanded="true" signature="664:726" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Unit/EntityTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="27" column="44" lean-forward="false" selection-start-line="27" selection-start-column="44" selection-end-line="27" selection-end-column="44" />
           <folding />
         </state>
       </provider>

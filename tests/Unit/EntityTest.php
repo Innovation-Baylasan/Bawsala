@@ -25,11 +25,10 @@ class EntityTest extends TestCase
         ]);
 
 
-        $this->assertEquals($user->toArray(), $entity->user->toArray());
+        $this->assertEquals($user->fresh()->toArray(), $entity->user->toArray());
     }
 
     /**
-     * entity
      *
      * @test
      */
