@@ -21,6 +21,14 @@ class Entity extends Model
         'location' => 'array'
     ];
 
+    protected $fillable = [
+        'user_id',
+        'category_id',
+        'name',
+        'description',
+        'location'
+    ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

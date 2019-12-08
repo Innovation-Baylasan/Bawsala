@@ -1,30 +1,35 @@
-{{--$table->unsignedBigInteger('user_id');--}}
-{{--$table->unsignedBigInteger('category_id');--}}
-{{--$table->unsignedBigInteger('profile_id')->nullable();--}}
-{{--$table->string('name');--}}
-{{--$table->text('description');--}}
-{{--$table->json('location');--}}
+<h1> Create Entity </h1>
 
-<form method="POST" action="">
+@if($errors->any())
 
-    <label for="name"></label>
-    <input type="text" id="name">
+    <hr>
+    <ul>
+        @foreach($errors->all() as $error)
+            <li> {{ $error  }} </li>
+        @endforeach
+    </ul>
+    <hr>
+
+@endif
+
+<form method="POST" action="{{ route('entities.store')  }}">
+
+    @csrf
+
+    <label for="name">Entity Name</label>
+    <input type="text" id="name" name="name">
 
     <br>
+    <br>
 
-    <label for="description"></label>
+    <label for="description">Entity Description</label>
     <input type="text" id="description" name="description">
 
     <br>
-
-    <label for="longitude"></label>
-    <input type="text" id="longitude" name="longitude">
-
     <br>
 
-
-    <label for="latitude"></label>
-    <input type="text" id="latitude" name="latitude">
+    <label for="location">Entity Location</label>
+    <input type="text" id="location" name="location">
 
     <br>
     <br>

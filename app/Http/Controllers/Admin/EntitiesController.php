@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Category;
+use App\Entity;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class CategoriesController extends Controller
+class EntitiesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,11 +16,11 @@ class CategoriesController extends Controller
     public function index()
     {
 
-        $data = Category::latest()->paginate(5);
+        $data = Entity::latest()->paginate(5);
 
         // dd($data);
 
-        return view('admin.categories.index', compact('data'))
+        return view('admin.entities.index', compact('data'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
 
     }
@@ -32,7 +32,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        return view('admin.categories.create');
+        return view('admin.entities.create');
     }
 
     /**
@@ -43,24 +43,23 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
             'name' => 'required',
-            'icon' => 'required|image|max:2048'
+            'description' => 'required',
+            'location' => 'required'
         ]);
 
-        $icon = $request->file('icon');
-        $new_icon_name = rand() . '.' . $icon->getClientOriginalExtension();
-        $icon->move(public_path('images').'/categoryIcon', $new_icon_name);
-
         $form_data = array(
+            'user_id' => 1,
+            'category_id' => 1,
             'name' => $request->name,
-            'icon' => $new_icon_name
+            'description' => $request->description,
+            'location' => $request->location
         );
 
-        Category::create($form_data);
+        Entity::create($form_data);
 
-        return redirect('/admin/categories')
+        return redirect('/admin/entities')
             ->with('success', 'Data added successfully.');
 
     }
@@ -74,9 +73,9 @@ class CategoriesController extends Controller
     public function show($id)
     {
 
-        $data = Category::findOrFail($id);
+        $data = Entity::findOrFail($id);
 
-        return View('admin.categories.show', compact('data'));
+        return View('admin.entities.show', compact('data'));
 
     }
 
@@ -89,9 +88,9 @@ class CategoriesController extends Controller
     public function edit($id)
     {
 
-        $data = Category::findOrFail($id);
+        $data = Entity::findOrFail($id);
 
-        return view('admin.categories.edit', compact('data'));
+        return view('admin.entities.edit', compact('data'));
 
     }
 
@@ -104,32 +103,21 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $icon_name = $request->old_icon;
-        $icon = $request->file('icon');
-        if ($icon != '')
-        {
-            $request->validate([
-                'name' => 'required',
-                'icon' => 'image|max:2048'
-            ]);
-            $icon_name = rand().'.'.$icon->getClientOriginalExtension();
-            $icon->move(public_path('images').'/categoryIcon', $icon_name);
-        }
-        else
-        {
-            $request->validate([
-                'name' => 'required'
-            ]);
-        }
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'location' => 'required'
+        ]);
 
         $form_data = array(
             'name' => $request->name,
-            'icon' => $icon_name
+            'description' => $request->description,
+            'location' => $request->location
         );
 
-        Category::whereId($id)->update($form_data);
+        Entity::whereId($id)->update($form_data);
 
-        return redirect('/admin/categories')
+        return redirect('/admin/entities')
             ->with('success', 'Data updated successfully.');
     }
 
@@ -141,10 +129,10 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        $data = Category::findOrFail($id);
+        $data = Entity::findOrFail($id);
         $data->delete();
 
-        return redirect('/admin/categories')
+        return redirect('/admin/entities')
             ->with('success', 'Data deleted successfully');
     }
 }
