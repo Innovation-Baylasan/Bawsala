@@ -1,100 +1,69 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="{{asset('css/app.css')}}">
+<body>
+<div id="app">
+    <header class="fixed top-0 left-0 w-full flex items-center justify-center">
+        <div class="shadow mt-10 rounded flex p-2 bg-white">
+            <input class="outline-none text-black px-8"
+                   type="text"
+                   placeholder="Startups">
 
-        <title>Laravel</title>
+            <a href="#" class="p-2  bg-red-100 rounded">
+                <img src="{{asset('svg/search-icon.svg')}}" alt="search what you looking for">
+            </a>
+        </div>
+    </header>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
+    <nav class="fixed w-24 bg-white shadow top-0 left-0 h-screen flex flex-col pt-10 overflow-y-scroll">
+        <div class="px-6 mb-10">
+            <img class="rounded-full" src="https://i.pravatar.cc/300" alt="avatar">
+        </div>
+        <div class="flex flex-col justify-between">
+            <a href="" class="flex  items-center justify-center p-3">
+                <img  src="{{asset('svg/map-icon.svg')}}" alt="all items on the map">
+            </a>
+            <a href="" class="flex items-center justify-center p-3 border-l-4 border-solid border-red-500">
+                <div class="p-2 flex items-center justify-center  w-12 h-12 rounded -m-2 bg-red-100">
+                    <img class="" src="{{asset('svg/startups-icon.svg')}}" alt="">
                 </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+            </a>
+            <a href="" class="flex items-center justify-center p-3">
+                <div class="p-2 flex items-center justify-center  w-12 h-12 rounded -m-2 bg-gray-100">
+                    <img class="" src="{{asset('svg/accelerator-icon.svg')}}" alt="">
                 </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+            </a>
+            <a href="" class="flex items-center justify-center p-3">
+                <div class="p-2 flex items-center justify-center  w-12 h-12 rounded -m-2 bg-gray-100">
+                    <img class="" src="{{asset('svg/search-icon.svg')}}" alt="">
                 </div>
+            </a>
+            <a href="" class="flex items-center justify-center p-3">
+                <div class="p-2 flex items-center justify-center  w-12 h-12 rounded -m-2 bg-gray-100">
+                    <img class="" src="{{asset('svg/labs-icon.svg')}}" alt="">
+                </div>
+            </a>
+            <a href="" class="flex items-center justify-center p-3">
+                <div class="p-2 flex items-center justify-center  w-12 h-12 rounded -m-2 bg-gray-100">
+                    <img class="" src="{{asset('svg/investors-icon.svg')}}" alt="">
+                </div>
+            </a>
+            <a href="" class="flex items-center justify-center p-3">
+                <div class="p-2 flex items-center justify-center  w-12 h-12 rounded -m-2 bg-gray-100">
+                    <img class="" src="{{asset('svg/research-icon.svg')}}" alt="">
+                </div>
+            </a>
+
+        </div>
+        <div class="flex items-center justify-center mt-auto mb-2">
+            <div class="rounded  w-12 h-12 w-16 h-16 bg-red-500 flex items-center justify-center">
+                <img class="" src="{{asset('svg/notify-icon.svg')}}" alt="">
             </div>
         </div>
-    </body>
-</html>
+
+    </nav>
+
+    
+    <main>
+        <img src="{{asset('img/map.jpg')}}" alt="">
+    </main>
+</div>
+</body>

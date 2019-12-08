@@ -6,10 +6,10 @@
     </tr>
     </thead>
     <tbody>
-    @forelse($entities as $activity)
+    @forelse($entities as $entity)
         <tr>
-            <td>{{$activity->name}}</td>
-            <td>{{$activity->company->name}}</td>
+            <td>{{$entity->name}}</td>
+            <td>{{$entity->user->name}}</td>
         </tr>
     @empty
         <tr>
