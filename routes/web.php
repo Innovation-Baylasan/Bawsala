@@ -25,5 +25,6 @@ Route::namespace('Admin')
 
         Route::resource('roles', 'RolesController');
         Route::resource('tags', 'TagsController');
+        Route::resource('users', 'UsersController');
 
     });
