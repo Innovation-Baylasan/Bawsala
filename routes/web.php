@@ -28,5 +28,6 @@ Route::namespace('Admin')
         Route::resource('users', 'UsersController');
         Route::resource('entities', 'EntitiesController');
         Route::resource('categories', 'CategoriesController');
+        Route::resource('profiles', 'ProfilesController');
 
     });
