@@ -24,5 +24,6 @@ Route::namespace('Admin')
         Route::get('/categories/{category}', 'CategoriesController@show');
 
         Route::resource('roles', 'RolesController');
+        Route::resource('tags', 'TagsController');
 
     });

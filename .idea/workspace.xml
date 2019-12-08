@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="Ignoring .idea configuration file">
+    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="Added Role Admin CRUD&#10;url /admin/roles">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/TagsController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/tags/create.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/tags/edit.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/tags/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/tags/show.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Role.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Role.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Tag.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Tag.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,11 +21,6 @@
     <execution>
       <executable />
     </execution>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>acti</find>
-    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -56,6 +55,7 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\10-PROJECTS\Baylasan\sudan-map-back-end\resources\views\admin" />
+      <recent name="D:\10-PROJECTS\Baylasan\sudan-map-back-end\app\Http\Controllers\Admin" />
       <recent name="D:\10-PROJECTS\Baylasan\sudan-map-back-end\resources\views\admin\entities" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -196,7 +196,21 @@
       <option name="project" value="LOCAL" />
       <updated>1575796451764</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Added Role Admin CRUD&#10;url /admin/roles">
+      <created>1575802162813</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1575802162813</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Added Role Admin CRUD&#10;url /admin/roles">
+      <created>1575802182178</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1575802182178</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -221,7 +235,8 @@
     <MESSAGE value="passport:wip" />
     <MESSAGE value="API enhancements , add laravel passport as a main api authentication driver, add doc blocks to controllers" />
     <MESSAGE value="Ignoring .idea configuration file" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ignoring .idea configuration file" />
+    <MESSAGE value="Added Role Admin CRUD&#10;url /admin/roles" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Role Admin CRUD&#10;url /admin/roles" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
