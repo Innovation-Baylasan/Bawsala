@@ -26,6 +26,16 @@
     <label for="email">Enter User Email</label>
     <input type="email" id="email" name="email" value="{{ $data->email  }}">
 
+    <br>
+    <br>
+
+
+    <label for="role">Select user role</label>
+    <select id="role" name="role_id" >
+        @foreach($roles as $role)
+            <option @if($role->id == $data->role->id) selected @endif value="{{ $role->id  }}">{{ $role->role }}</option>
+        @endforeach
+    </select>
 
     <br>
     <br>

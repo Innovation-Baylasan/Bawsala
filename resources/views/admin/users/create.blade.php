@@ -28,6 +28,17 @@
     <br>
     <br>
 
+
+    <label for="role">Select user role</label>
+    <select id="role" name="role_id" >
+        @foreach($roles as $role)
+            <option value="{{ $role->id  }}">{{ $role->role }}</option>
+        @endforeach
+    </select>
+
+    <br>
+    <br>
+
     <label for="password">Enter Password</label>
     <input type="password" id="password" name="password">
 

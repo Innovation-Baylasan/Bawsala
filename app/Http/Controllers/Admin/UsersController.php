@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Role;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -32,7 +33,8 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        $roles = Role::all();
+        return view('admin.users.create', compact('roles'));
     }
 
     /**
@@ -45,12 +47,14 @@ class UsersController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'role_id' => 'required',
             'email' => 'email|required',
             'password' => 'required'
         ]);
 
         $form_data = array(
             'name' => $request->name,
+            'role_id' => $request->role_id,
             'email' => $request->email,
             'password' => bcrypt($request->password)
         );
@@ -87,8 +91,9 @@ class UsersController extends Controller
     {
 
         $data = User::findOrFail($id);
+        $roles = Role::all();
 
-        return view('admin.users.edit', compact('data'));
+        return view('admin.users.edit', compact('data'), compact('roles'));
 
     }
 
@@ -103,11 +108,21 @@ class UsersController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users'
+            'role_id' => 'required'
         ]);
+
+        // find the user
+        $user = User::find($id);
+        // check if email changed on update opreation and make sure the email is not taken by validation rules
+        if ($request->email != $user->email) {
+            $request->validate([
+                'email' => 'required|email|unique:users'
+            ]);
+        }
 
         $form_data = array(
             'name' => $request->name,
+            'role_id' => $request->role_id,
             'email' => $request->email
         );
 

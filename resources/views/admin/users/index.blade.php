@@ -32,7 +32,7 @@
     @foreach($data as $row)
         <tr>
             <td> {{ $row->id  }} </td>
-            <td> {{ $row->role_id  }} </td>
+            <td> {{ $row->role->role  }} </td>
             <td> {{ $row->name  }} </td>
             <td> {{ $row->email  }} </td>
             <td> {{ $row->email_verified_at  }} </td>
