@@ -45,4 +45,11 @@ class Entity extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function profile ()
+    {
+        // Every entity has one profile
+        return $this->hasOne(Profile::class);
+
+    }
+
 }

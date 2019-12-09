@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Entity;
 use App\Profile;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -32,7 +33,8 @@ class ProfilesController extends Controller
      */
     public function create()
     {
-        return view('admin.profiles.create');
+        $entities = Entity::all();
+        return view('admin.profiles.create', compact('entities'));
     }
 
     /**
@@ -45,6 +47,7 @@ class ProfilesController extends Controller
     {
 
         $request->validate([
+            'entity_id' => 'required',
             'cover' => 'image|max:2048',
             'Logo' => 'image|max:2048',
             'Address' => 'required'
@@ -59,7 +62,7 @@ class ProfilesController extends Controller
         $Logo->move(public_path('images').'/profiles/logos', $new_logo_name);
 
         $form_data = array(
-            'entity_id' => 1,
+            'entity_id' => $request->entity_id,
             'cover' => $new_cover_name,
             'Logo' => $new_logo_name,
             'Address' => $request->Address
@@ -98,7 +101,9 @@ class ProfilesController extends Controller
 
         $data = Profile::findOrFail($id);
 
-        return view('admin.profiles.edit', compact('data'));
+        $entities = Entity::all();
+
+        return view('admin.profiles.edit', compact('data', 'entities'));
 
     }
 
@@ -134,10 +139,12 @@ class ProfilesController extends Controller
         }
 
         $request->validate([
+            'entity_id' => 'required',
             'Address' => 'required'
         ]);
 
         $form_data = array(
+            'entity_id' => $request->entity_id,
             'cover' => $cover_name,
             'Logo' => $Logo_name,
             'Address' => $request->Address

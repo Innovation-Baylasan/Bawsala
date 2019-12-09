@@ -16,7 +16,15 @@
 
     @csrf
 
-    <p> After selecting entity </p>
+    <label for="entity">Select entity owner</label>
+    <select id="entity" name="entity_id" >
+        @foreach($entities as $entity)
+            <option value="{{ $entity->id  }}">{{ $entity->name }}</option>
+        @endforeach
+    </select>
+
+    <br>
+    <br>
 
     <label for="cover">Cover Image *</label>
     <input type="file" id="cover" name="cover">

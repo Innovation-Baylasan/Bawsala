@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="User Role relation ship&#10;added relation ship to the front end crud">
+    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="Entities relation ship with User, Categories table&#10;added relation ship to the front end crud">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/EntitiesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/EntitiesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/entities/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/entities/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/entities/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/entities/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/entities/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/entities/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/users/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/users/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Entity.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Entity.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProfilesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProfilesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Profile.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/profiles/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/profiles/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/profiles/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/profiles/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/profiles/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/profiles/index.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -219,7 +220,7 @@
       <workItem from="1575212426618" duration="4392000" />
       <workItem from="1575361609651" duration="2719000" />
       <workItem from="1575392735502" duration="1812000" />
-      <workItem from="1575881916607" duration="5440000" />
+      <workItem from="1575881916607" duration="6728000" />
     </task>
     <task id="LOCAL-00001" summary="schema for activities,companies and categories">
       <created>1574766304196</created>
@@ -368,7 +369,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575885947485</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Entities relation ship with User, Categories table&#10;added relation ship to the front end crud">
+      <created>1575888215519</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1575888215519</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -404,6 +412,7 @@
     <MESSAGE value="Added Categories Admin CRUD&#10;url /admin/categories" />
     <MESSAGE value="Added Profiles Admin CRUD&#10;url /admin/profiles" />
     <MESSAGE value="User Role relation ship&#10;added relation ship to the front end crud" />
-    <option name="LAST_COMMIT_MESSAGE" value="User Role relation ship&#10;added relation ship to the front end crud" />
+    <MESSAGE value="Entities relation ship with User, Categories table&#10;added relation ship to the front end crud" />
+    <option name="LAST_COMMIT_MESSAGE" value="Entities relation ship with User, Categories table&#10;added relation ship to the front end crud" />
   </component>
 </project>

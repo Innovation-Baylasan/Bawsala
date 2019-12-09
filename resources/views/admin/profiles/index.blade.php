@@ -30,7 +30,7 @@
     @foreach($data as $row)
         <tr>
             <td> {{ $row->id  }} </td>
-            <td> {{ $row->entity_id  }} </td>
+            <td> {{ $row->entity->name  }} </td>
             <td>
                 <img src="{{ URL::to('/')  }}/images/profiles/covers/{{ $row->cover  }}" alt="">
             </td>

@@ -17,6 +17,15 @@
     @csrf
     @method('PATCH')
 
+    <label for="entity">Select entity owner</label>
+    <select id="entity" name="entity_id" >
+        @foreach($entities as $entity)
+            <option @if($entity->id == $data->entity->id) selected @endif value="{{ $entity->id  }}">{{ $entity->name }}</option>
+        @endforeach
+    </select>
+
+    <br>
+    <br>
 
     <label for="cover">Icon</label>
     <input type="file" id="cover" name="cover">
