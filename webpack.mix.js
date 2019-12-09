@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+require('mix-tailwindcss');
 
 /*
  |--------------------------------------------------------------------------
@@ -12,4 +13,15 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+    .sass('resources/sass/app.scss', 'public/css')
+    .tailwind()
+    .override(config => {
+        config.module.rules.find(rule => rule.test.test('.svg')).exclude = /\.svg$/;
+
+        config.module.rules.push({
+            test: /\.svg$/,
+            use: [
+                {loader: 'html-loader'}
+            ]
+        })
+    });
