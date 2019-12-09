@@ -12,5 +12,19 @@
 <br>
 <br>
 
-<h3>Role ID: {{ $data->id  }}</h3>
-<h3>   Role: {{ $data->role  }}</h3>
+<table>
+    <tr>
+        <th>Field</th>
+        <th>Value</th>
+    </tr>
+
+    <tr>
+        <td>ID</td>
+        <td>{{ $data->id  }}</td>
+    </tr>
+    <tr>
+        <td>Role</td>
+        <td>{{ $data->name  }}</td>
+    </tr>
+
+</table>

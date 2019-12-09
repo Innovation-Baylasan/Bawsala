@@ -23,11 +23,11 @@
     </tr>
     <tr>
         <td>USER</td>
-        <td>{{ $data->user_id  }} </td>
+        <td>{{ $data->user->name  }} </td>
     </tr>
     <tr>
         <td>CATEGORY</td>
-        <td>{{ $data->category_id  }} </td>
+        <td>{{ $data->category->name  }} </td>
     </tr>
     <tr>
         <td>PROFILE</td>

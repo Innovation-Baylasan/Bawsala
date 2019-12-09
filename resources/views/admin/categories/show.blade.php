@@ -12,6 +12,23 @@
 <br>
 <br>
 
-<h3>   ID: {{ $data->id  }}</h3>
-<h3>   Name: {{ $data->name  }}</h3>
-<h3>   Icon: <img src="{{ URL::to('/')  }}/images/categoryIcon/{{ $data->icon  }}" alt=""></h3>
+<table border="1">
+    <tr>
+        <th>Field</th>
+        <th>Value</th>
+    </tr>
+
+    <tr>
+        <td>ID</td>
+        <td>{{ $data->id  }}</td>
+    </tr>
+    <tr>
+        <td>Tag</td>
+        <td>{{ $data->name  }}</td>
+    </tr>
+    <tr>
+        <td>Icon</td>
+        <td><img src="{{ URL::to('/')  }}/images/categoryIcon/{{ $data->icon  }}" alt=""></td>
+    </tr>
+
+</table>

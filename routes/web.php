@@ -19,6 +19,10 @@ Route::namespace('Admin')
     ->prefix('admin')
     ->group(function () {
 
+        Route::get('', function () {
+            return view('admin.all');
+        });
+
         Route::get('/categories', 'CategoriesController@index');
         Route::get('/categories/create', 'CategoriesController@create');
         Route::get('/categories/{category}', 'CategoriesController@show');
@@ -29,5 +33,6 @@ Route::namespace('Admin')
         Route::resource('entities', 'EntitiesController');
         Route::resource('categories', 'CategoriesController');
         Route::resource('profiles', 'ProfilesController');
+        Route::resource('entity_tags', 'EntityTagsController');
 
     });

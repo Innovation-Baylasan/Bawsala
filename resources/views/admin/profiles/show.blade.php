@@ -12,11 +12,32 @@
 <br>
 <br>
 
-<h3>   ID: {{ $data->id  }}</h3>
-<h3>   ENTITY: {{ $data->entity_id  }}</h3>
-<br>
-COVER <img src="{{ URL::to('/')  }}/images/profiles/covers/{{ $data->cover  }}" alt="">
-<br>
-Logo <img src="{{ URL::to('/')  }}/images/profiles/logos/{{ $data->Logo  }}" alt="">
-<br>
-<h3>   Address: {{ $data->entity_id  }}</h3>
+<table border="1">
+    <tr>
+        <th>Field</th>
+        <th>Value</th>
+    </tr>
+
+    <tr>
+        <td>ID</td>
+        <td>{{ $data->id  }}</td>
+    </tr>
+    <tr>
+        <td>Entity</td>
+        <td>{{ $data->entity->name  }}</td>
+    </tr>
+    <tr>
+        <td>COVER</td>
+        <td><img src="{{ URL::to('/')  }}/images/profiles/covers/{{ $data->cover  }}" alt=""></td>
+    </tr>
+    <tr>
+        <td>Logo</td>
+        <td><img src="{{ URL::to('/')  }}/images/profiles/logos/{{ $data->Logo  }}" alt=""></td>
+    </tr>
+    <tr>
+        <td>Address</td>
+        <td>{{ $data->Address  }}</td>
+    </tr>
+
+</table>
+
