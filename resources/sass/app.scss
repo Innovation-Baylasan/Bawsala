@@ -3,3 +3,11 @@
 @tailwind components;
 
 @tailwind utilities;
+
+input[type='checkbox']:checked, input[type='radio']:checked + .select-label {
+  @apply border-red-500 text-red-500;
+}
+
+.select-label {
+  @apply border-2 border-gray-300 flex items-center justify-between px-4 py-4 rounded cursor-pointer font-bold;
+}
