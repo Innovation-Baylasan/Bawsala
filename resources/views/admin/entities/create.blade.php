@@ -16,6 +16,26 @@
 
     @csrf
 
+    <label for="user">Select entity owner</label>
+    <select id="user" name="user_id" >
+        @foreach($users as $user)
+            <option value="{{ $user->id  }}">{{ $user->name }}</option>
+        @endforeach
+    </select>
+
+    <br>
+    <br>
+
+    <label for="category">Select entity category</label>
+    <select id="category" name="category_id" >
+        @foreach($categories as $category)
+            <option value="{{ $category->id  }}">{{ $category->name }}</option>
+        @endforeach
+    </select>
+
+    <br>
+    <br>
+
     <label for="name">Entity Name</label>
     <input type="text" id="name" name="name">
 

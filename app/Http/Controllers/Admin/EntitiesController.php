@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Category;
 use App\Entity;
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
 
 class EntitiesController extends Controller
@@ -32,7 +34,10 @@ class EntitiesController extends Controller
      */
     public function create()
     {
-        return view('admin.entities.create');
+        $categories = Category::all();
+        $users = User::all();
+
+        return view('admin.entities.create', compact('categories','users'));
     }
 
     /**
@@ -44,14 +49,16 @@ class EntitiesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'user_id' =>'required',
+            'category_id' =>'required',
             'name' => 'required',
             'description' => 'required',
             'location' => 'required'
         ]);
 
         $form_data = array(
-            'user_id' => 1,
-            'category_id' => 1,
+            'user_id' => $request->user_id,
+            'category_id' => $request->category_id,
             'name' => $request->name,
             'description' => $request->description,
             'location' => $request->location
@@ -90,7 +97,10 @@ class EntitiesController extends Controller
 
         $data = Entity::findOrFail($id);
 
-        return view('admin.entities.edit', compact('data'));
+        $categories = Category::all();
+        $users = User::all();
+
+        return view('admin.entities.edit', compact('data','categories', 'users'));
 
     }
 
@@ -104,12 +114,16 @@ class EntitiesController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
+            'user_id' =>'required',
+            'category_id' =>'required',
             'name' => 'required',
             'description' => 'required',
             'location' => 'required'
         ]);
 
         $form_data = array(
+            'user_id' => $request->user_id,
+            'category_id' => $request->category_id,
             'name' => $request->name,
             'description' => $request->description,
             'location' => $request->location

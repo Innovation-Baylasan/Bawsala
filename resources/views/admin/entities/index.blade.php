@@ -33,8 +33,8 @@
     @foreach($data as $row)
         <tr>
             <td> {{ $row->id  }} </td>
-            <td> {{ $row->user_id  }} </td>
-            <td> {{ $row->category_id  }} </td>
+            <td> {{ $row->user->name  }} </td>
+            <td> {{ $row->category->name  }} </td>
             <td> {{ $row->profile_id  }} </td>
             <td> {{ $row->name  }} </td>
             <td> {{ $row->description  }} </td>

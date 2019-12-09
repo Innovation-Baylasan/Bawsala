@@ -17,7 +17,25 @@
     @csrf
     @method('PATCH')
 
-    @csrf
+    <label for="user">Select entity owner</label>
+    <select id="user" name="user_id" >
+        @foreach($users as $user)
+            <option @if($user->id == $data->user->id) selected @endif value="{{ $user->id  }}">{{ $user->name }}</option>
+        @endforeach
+    </select>
+
+    <br>
+    <br>
+
+    <label for="category">Select entity category</label>
+    <select id="category" name="category_id" >
+        @foreach($categories as $category)
+            <option @if($category->id == $data->category->id) selected @endif value="{{ $category->id  }}">{{ $category->name }}</option>
+        @endforeach
+    </select>
+
+    <br>
+    <br>
 
     <label for="name">Entity Name</label>
     <input type="text" id="name" name="name" value="{{ $data->name  }}">

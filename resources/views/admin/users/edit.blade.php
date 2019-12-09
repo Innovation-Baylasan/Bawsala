@@ -17,6 +17,7 @@
     @csrf
     @method('PATCH')
 
+
     <label for="name">Enter User Name</label>
     <input type="text" id="name" name="name" value="{{ $data->name  }}">
 
