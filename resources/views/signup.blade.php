@@ -26,6 +26,14 @@
                             typesetting, remaining essentially unchanged.</p>
                     </template>
                 </slide>
+                <slide classes="editor-interaction w-3/4 h-3/4">
+                    <template v-slot:footer>
+                        <h3 class="uppercase text-2xl font-bold mb-4">Explore</h3>
+                        <p class="text-gray-500 font-hairline capitalize">rambled it to make a type specimen book. It has survived not
+                            only five centuries, but also the leap into electronic
+                            typesetting, remaining essentially unchanged.</p>
+                    </template>
+                </slide>
             </Carousel>
         </div>
 
@@ -102,6 +110,12 @@
     let mapInteracion = lottie.loadAnimation({
         container: document.querySelector('.map-interaction'),
         path: '/js/mapInteraction.json',
+        renderer: 'svg',
+        loop: true,
+    })
+    let editorInteraction = lottie.loadAnimation({
+        container: document.querySelector('.editor-interaction'),
+        path: '/js/editorInteraction.json',
         renderer: 'svg',
         loop: true,
     })
