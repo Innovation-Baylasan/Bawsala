@@ -1,24 +1,34 @@
-<table>
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Entity</th>
-    </tr>
-    </thead>
-    <tbody>
-    @forelse($entities as $entity)
-        <tr>
-            <td>{{$entity->name}}</td>
-            <td>{{$entity->user->name}}</td>
-        </tr>
-    @empty
-        <tr>
-            <td colspan="100%">
-                <p>there is no entities under this category</p>
-            </td>
-        </tr>
-    @endforelse
-    </tbody>
-</table>
+<h1> Show Category </h1>
 
-{{$entities->links()}}
+
+<br>
+<br>
+<br>
+
+
+<a href="{{ route('categories.index')  }}"><< Back</a>
+
+<br>
+<br>
+<br>
+
+<table border="1">
+    <tr>
+        <th>Field</th>
+        <th>Value</th>
+    </tr>
+
+    <tr>
+        <td>ID</td>
+        <td>{{ $data->id  }}</td>
+    </tr>
+    <tr>
+        <td>Tag</td>
+        <td>{{ $data->name  }}</td>
+    </tr>
+    <tr>
+        <td>Icon</td>
+        <td><img src="{{ URL::to('/')  }}/images/categoryIcon/{{ $data->icon  }}" alt=""></td>
+    </tr>
+
+</table>

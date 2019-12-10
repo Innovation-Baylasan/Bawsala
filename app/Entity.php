@@ -21,6 +21,14 @@ class Entity extends Model
         'location' => 'array'
     ];
 
+    protected $fillable = [
+        'user_id',
+        'category_id',
+        'name',
+        'description',
+        'location'
+    ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -35,6 +43,13 @@ class Entity extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function profile ()
+    {
+        // Every entity has one profile
+        return $this->hasOne(Profile::class);
+
     }
 
 }
