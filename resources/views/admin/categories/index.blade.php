@@ -20,26 +20,26 @@
 
 <table border="1">
     <tr>
-        <th> id </th>
-        <th> name </th>
-        <th> icon </th>
+        <th> id</th>
+        <th> name</th>
+        <th> icon</th>
     </tr>
 
-    @foreach($data as $row)
+    @foreach($categories as $category)
         <tr>
-            <td> {{ $row->id  }} </td>
-            <td> {{ $row->name  }} </td>
+            <td> {{ $category->id  }} </td>
+            <td> {{ $category->name  }} </td>
             <td>
-                <img src="{{ URL::to('/')  }}/images/categoryIcon/{{ $row->icon  }}" alt="">
+                <img src="{{ URL::to('/')  }}/images/categoryIcon/{{ $category->icon  }}" alt="">
             </td>
             <td>
-                <a href="{{ route('categories.show', $row->id)  }}">show</a> |
-                <a href="{{ route('categories.edit', $row->id)  }}">edit</a> |
-                <form method="POST" action="{{ route('categories.destroy', $row->id)  }}">
+                <a href="{{ route('categories.show', $category->id)  }}">show</a> |
+                <a href="{{ route('categories.edit', $category->id)  }}">edit</a> |
+                <form method="POST" action="{{ route('categories.destroy', $category->id)  }}">
 
                     @csrf
                     @method('DELETE')
-                    <input type="submit" value="delete" />
+                    <input type="submit" value="delete"/>
 
                 </form>
             </td>
@@ -50,4 +50,4 @@
 <br>
 <br>
 
-{!! $data->links() !!}
+{{$categories->links() }}

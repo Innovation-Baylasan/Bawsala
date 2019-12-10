@@ -20,15 +20,15 @@
 
     <tr>
         <td>ID</td>
-        <td>{{ $data->id  }}</td>
+        <td>{{ $category->id  }}</td>
     </tr>
     <tr>
         <td>Tag</td>
-        <td>{{ $data->name  }}</td>
+        <td>{{ $category->name  }}</td>
     </tr>
     <tr>
         <td>Icon</td>
-        <td><img src="{{ URL::to('/')  }}/images/categoryIcon/{{ $data->icon  }}" alt=""></td>
+        <td><img src="{{ URL::to('/')  }}/images/categoryIcon/{{ $category->icon  }}" alt=""></td>
     </tr>
 
 </table>

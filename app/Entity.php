@@ -4,6 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property mixed $profile
+ */
 class Entity extends Model
 {
     /**
@@ -45,11 +48,22 @@ class Entity extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function profile ()
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function profile()
     {
-        // Every entity has one profile
         return $this->hasOne(Profile::class);
-
     }
 
+    public function toArray()
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'description' => $this->description,
+            'avatar' => $this->profile->logo,
+            'cover' => $this->profile->cover,
+        ];
+    }
 }
