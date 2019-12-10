@@ -64,6 +64,7 @@ class Entity extends Model
             'description' => $this->description,
             'avatar' => $this->profile->logo,
             'cover' => $this->profile->cover,
+            'location' => $this->location,
         ];
     }
 }
