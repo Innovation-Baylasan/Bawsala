@@ -9,24 +9,21 @@ use Illuminate\Http\Request;
 class CategoriesController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a view with all categories paginated.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
 
-        $data = Category::latest()->paginate(5);
+        $categories = Category::latest()->paginate(5);
 
-        // dd($data);
-
-        return view('admin.categories.index', compact('data'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('admin.categories.index', compact('categories'));
 
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Display a view for creating a category.
      *
      * @return \Illuminate\Http\Response
      */
@@ -36,9 +33,9 @@ class CategoriesController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created category.
      *
-     * @param  \Illuminate\Http\Request  $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -50,15 +47,13 @@ class CategoriesController extends Controller
         ]);
 
         $icon = $request->file('icon');
-        $new_icon_name = rand() . '.' . $icon->getClientOriginalExtension();
-        $icon->move(public_path('images').'/categoryIcon', $new_icon_name);
 
-        $form_data = array(
+        $icon->move(public_path('images') . '/categoryIcon', $iconPath = rand() . '.' . $icon->getClientOriginalExtension());
+
+        Category::create([
             'name' => $request->name,
-            'icon' => $new_icon_name
-        );
-
-        Category::create($form_data);
+            'icon' => $iconPath
+        ]);
 
         return redirect('/admin/categories')
             ->with('success', 'Data added successfully.');
@@ -66,85 +61,70 @@ class CategoriesController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified category.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Category $category)
+    {
+        return View('admin.categories.show', compact('category'));
+    }
+
+    /**
+     * Show the form for editing the specified category.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Category $category)
     {
 
-        $data = Category::findOrFail($id);
-
-        return View('admin.categories.show', compact('data'));
+        return view('admin.categories.edit', compact('category'));
 
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Update the specified category in database.
      *
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-
-        $data = Category::findOrFail($id);
-
-        return view('admin.categories.edit', compact('data'));
-
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(Category $category, Request $request)
     {
         $icon_name = $request->old_icon;
         $icon = $request->file('icon');
-        if ($icon != '')
-        {
-            $request->validate([
-                'name' => 'required',
-                'icon' => 'image|max:2048'
-            ]);
-            $icon_name = rand().'.'.$icon->getClientOriginalExtension();
-            $icon->move(public_path('images').'/categoryIcon', $icon_name);
-        }
-        else
-        {
-            $request->validate([
-                'name' => 'required'
-            ]);
+
+        $request->validate([
+            'name' => 'required',
+            'icon' => 'sometimes|image|max:2048'
+        ]);
+
+        if ($icon) {
+            $icon_name = rand() . '.' . $icon->getClientOriginalExtension();
+            $icon->move(public_path('images') . '/categoryIcon', $icon_name);
         }
 
-        $form_data = array(
+        $category->update([
             'name' => $request->name,
             'icon' => $icon_name
-        );
-
-        Category::whereId($id)->update($form_data);
+        ]);
 
         return redirect('/admin/categories')
             ->with('success', 'Data updated successfully.');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified category from database.
      *
-     * @param  int  $id
+     * @param Category $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        $data = Category::findOrFail($id);
-        $data->delete();
+        $category->delete();
 
-        return redirect('/admin/categories')
-            ->with('success', 'Data deleted successfully');
+        return back()->with('success', 'Data deleted successfully');
     }
 }

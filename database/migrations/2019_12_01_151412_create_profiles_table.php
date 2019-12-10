@@ -17,8 +17,8 @@ class CreateProfilesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('entity_id');
             $table->string('cover');
-            $table->string('Logo');
-            $table->text('Address');
+            $table->string('logo');
+            $table->text('address');
             $table->timestamps();
         });
     }
