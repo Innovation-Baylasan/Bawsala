@@ -4,6 +4,9 @@
 
 @tailwind utilities;
 
+
+@import "~@glidejs/glide/src/assets/sass/glide.core";
+
 input[type='checkbox']:checked, input[type='radio']:checked + .select-label {
   @apply border-red-500 text-red-500;
 }

@@ -20,6 +20,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@glidejs/glide": "^3.4.1",
         "mix-tailwindcss": "^1.2.0",
         "tailwindcss": "^1.1.4",
         "vue": "^2.6.10"

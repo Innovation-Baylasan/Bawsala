@@ -8,8 +8,25 @@
 <body>
 <div id="app">
     <div class="flex">
-        <div class="flex-1">
-            <div class="lottie"></div>
+        <div class="flex-1 w-1/2 px-16 py-4">
+            <Carousel>
+                <slide classes="search-interaction w-3/4 h-3/4">
+                    <template v-slot:footer>
+                        <h3 class="uppercase text-2xl font-bold mb-4">find out</h3>
+                        <p class="text-gray-500 font-hairline capitalize">rambled it to make a type specimen book. It has survived not
+                            only five centuries, but also the leap into electronic
+                            typesetting, remaining essentially unchanged.</p>
+                    </template>
+                </slide>
+                <slide classes="map-interaction w-3/4 h-3/4">
+                    <template v-slot:footer>
+                        <h3 class="uppercase text-2xl font-bold mb-4">Communicate</h3>
+                        <p class="text-gray-500 font-hairline capitalize">rambled it to make a type specimen book. It has survived not
+                            only five centuries, but also the leap into electronic
+                            typesetting, remaining essentially unchanged.</p>
+                    </template>
+                </slide>
+            </Carousel>
         </div>
 
         <div class="flex-1 px-16 py-4 border-l border-gray-100 border-solid">
@@ -75,12 +92,18 @@
 <script src="{{asset('js/app.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.5.9/lottie_light.min.js"></script>
 <script>
-    let animation = lottie.loadAnimation({
-        container: document.querySelector('.lottie'),
-        path: '/js/mapInterActions.json',
+    let searchInteraction = lottie.loadAnimation({
+        container: document.querySelector('.search-interaction'),
+        path: '/js/searchInteraction.json',
         renderer: 'svg',
         loop: true,
-        autoplay: true,
+    })
+
+    let mapInteracion = lottie.loadAnimation({
+        container: document.querySelector('.map-interaction'),
+        path: '/js/mapInteraction.json',
+        renderer: 'svg',
+        loop: true,
     })
 </script>
 </body>
