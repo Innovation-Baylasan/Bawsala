@@ -11,40 +11,47 @@ use Illuminate\Http\Request;
 class EntitiesController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the entities.
      *
      * @return \Illuminate\Http\Response
+     *
+     *
      */
     public function index()
     {
 
-        $data = Entity::latest()->paginate(5);
+        $entity = Entity::latest()->paginate(5);
 
         // dd($data);
 
-        return view('admin.entities.index', compact('data'))
+        return view('admin.entities.index', compact('entity'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
 
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new entity.
      *
      * @return \Illuminate\Http\Response
+     *
      */
     public function create()
     {
+
         $categories = Category::all();
         $users = User::all();
 
         return view('admin.entities.create', compact('categories','users'));
+
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created entity in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     *
+     *
      */
     public function store(Request $request)
     {
@@ -72,35 +79,33 @@ class EntitiesController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified entity.
      *
-     * @param  int  $id
+     * @param  Entity  $entity
      * @return \Illuminate\Http\Response
+     *
      */
-    public function show($id)
+    public function show(Entity $entity)
     {
 
-        $data = Entity::findOrFail($id);
-
-        return View('admin.entities.show', compact('data'));
+        return View('admin.entities.show', compact('entity'));
 
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified entity.
      *
-     * @param  int  $id
+     * @param  Entity  $entity
      * @return \Illuminate\Http\Response
+     *
      */
-    public function edit($id)
+    public function edit(Entity $entity)
     {
-
-        $data = Entity::findOrFail($id);
 
         $categories = Category::all();
         $users = User::all();
 
-        return view('admin.entities.edit', compact('data','categories', 'users'));
+        return view('admin.entities.edit', compact('entity','categories', 'users'));
 
     }
 
@@ -108,10 +113,11 @@ class EntitiesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
+     * @param  Entity  $entity
+     *
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Entity $entity)
     {
         $request->validate([
             'user_id' =>'required',
@@ -129,22 +135,24 @@ class EntitiesController extends Controller
             'location' => $request->location
         );
 
-        Entity::whereId($id)->update($form_data);
+        $entity->update($form_data);
 
         return redirect('/admin/entities')
             ->with('success', 'Data updated successfully.');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified entity from storage.
      *
-     * @param  int  $id
+     * @param Entity $entity
      * @return \Illuminate\Http\Response
+     *
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Entity $entity)
     {
-        $data = Entity::findOrFail($id);
-        $data->delete();
+
+        $entity->delete();
 
         return redirect('/admin/entities')
             ->with('success', 'Data deleted successfully');

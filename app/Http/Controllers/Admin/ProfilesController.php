@@ -10,24 +10,24 @@ use Illuminate\Http\Request;
 class ProfilesController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the profiles.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
 
-        $data = Profile::latest()->paginate(5);
+        $profile = Profile::latest()->paginate(5);
 
-        // dd($data);
+        // dd($profile);
 
-        return view('admin.profiles.index', compact('data'))
+        return view('admin.profiles.index', compact('profile'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
 
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new profile.
      *
      * @return \Illuminate\Http\Response
      */
@@ -38,10 +38,11 @@ class ProfilesController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created profile in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     *
      */
     public function store(Request $request)
     {
@@ -76,45 +77,44 @@ class ProfilesController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified profile.
      *
-     * @param  int  $id
+     * @param  Profile  profile
      * @return \Illuminate\Http\Response
+     *
      */
-    public function show($id)
+    public function show(Profile $profile)
     {
 
-        $data = Profile::findOrFail($id);
-
-        return View('admin.profiles.show', compact('data'));
+        return View('admin.profiles.show', compact('profile'));
 
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified profile.
      *
-     * @param  int  $id
+     * @param  Profile  profile
      * @return \Illuminate\Http\Response
+     *
      */
-    public function edit($id)
+    public function edit(Profile $profile)
     {
-
-        $data = Profile::findOrFail($id);
 
         $entities = Entity::all();
 
-        return view('admin.profiles.edit', compact('data', 'entities'));
+        return view('admin.profiles.edit', compact('profile', 'entities'));
 
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified profile in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Profile  profile
      * @return \Illuminate\Http\Response
+     *
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Profile $profile)
     {
         $cover_name = $request->old_cover;
         $cover = $request->file('cover');
@@ -150,24 +150,27 @@ class ProfilesController extends Controller
             'Address' => $request->Address
         );
 
-        Profile::whereId($id)->update($form_data);
+        $profile->update($form_data);
 
         return redirect('/admin/profiles')
             ->with('success', 'Data updated successfully.');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified profile from storage.
      *
-     * @param  int  $id
+     * @param Profile  profile
      * @return \Illuminate\Http\Response
+     *
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Profile $profile)
     {
-        $data = Profile::findOrFail($id);
-        $data->delete();
+
+        $profile->delete();
 
         return redirect('/admin/profiles')
             ->with('success', 'Data deleted successfully');
+
     }
 }

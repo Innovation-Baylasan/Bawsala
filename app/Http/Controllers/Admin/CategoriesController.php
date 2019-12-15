@@ -63,7 +63,7 @@ class CategoriesController extends Controller
     /**
      * Display the specified category.
      *
-     * @param  int $id
+     * @param  Category $category
      * @return \Illuminate\Http\Response
      */
     public function show(Category $category)
@@ -74,7 +74,7 @@ class CategoriesController extends Controller
     /**
      * Show the form for editing the specified category.
      *
-     * @param  int $id
+     * @param  Category $category
      * @return \Illuminate\Http\Response
      */
     public function edit(Category $category)
@@ -88,7 +88,7 @@ class CategoriesController extends Controller
      * Update the specified category in database.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param  Category $category
      * @return \Illuminate\Http\Response
      */
     public function update(Category $category, Request $request)
@@ -120,6 +120,7 @@ class CategoriesController extends Controller
      *
      * @param Category $category
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Category $category)
     {

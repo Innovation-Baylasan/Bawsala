@@ -9,24 +9,24 @@ use Illuminate\Http\Request;
 class TagsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the tags.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
 
-        $data = Tag::latest()->paginate(5);
+        $tag = Tag::latest()->paginate(5);
 
-        // dd($data);
+        // dd($tag);
 
-        return view('admin.tags.index', compact('data'))
+        return view('admin.tags.index', compact('tag'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
 
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new tag.
      *
      * @return \Illuminate\Http\Response
      */
@@ -36,7 +36,7 @@ class TagsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created tag in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -59,43 +59,39 @@ class TagsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified tag.
      *
-     * @param  int  $id
+     * @param  Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Tag  $tag)
     {
 
-        $data = Tag::findOrFail($id);
-
-        return View('admin.tags.show', compact('data'));
+        return View('admin.tags.show', compact('tag'));
 
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified tag.
      *
-     * @param  int  $id
+     * @param  Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Tag $tag)
     {
 
-        $data = Tag::findOrFail($id);
-
-        return view('admin.tags.edit', compact('data'));
+        return view('admin.tags.edit', compact('tag'));
 
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified tag in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Tag $tag)
     {
         $request->validate([
             'name' => 'required'
@@ -105,22 +101,23 @@ class TagsController extends Controller
             'name' => $request->name
         );
 
-        Tag::whereId($id)->update($form_data);
+        $tag->update($form_data);
 
         return redirect('/admin/tags')
             ->with('success', 'Data updated successfully.');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified tag from storage.
      *
-     * @param  int  $id
+     * @param Tag $tag
      * @return \Illuminate\Http\Response
+     *
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Tag  $tag)
     {
-        $data = Tag::findOrFail($id);
-        $data->delete();
+        $tag->delete();
 
         return redirect('/admin/tags')
             ->with('success', 'Data deleted successfully');

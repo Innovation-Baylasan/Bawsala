@@ -19,15 +19,15 @@
     </tr>
     <tr>
         <td>ID</td>
-        <td>{{ $data->id  }}</td>
+        <td>{{ $entityTag->id  }}</td>
     </tr>
     <tr>
         <td>ENTITY</td>
-        <td>{{ $data->entity->name  }} </td>
+        <td>{{ $entityTag->entity->name  }} </td>
     </tr>
     <tr>
         <td>TAG</td>
-        <td>{{ $data->tag->name  }} </td>
+        <td>{{ $entityTag->tag->name  }} </td>
     </tr>
 </table>
 

@@ -19,31 +19,31 @@
     </tr>
     <tr>
         <td>ID</td>
-        <td>{{ $data->id  }}</td>
+        <td>{{ $entity->id  }}</td>
     </tr>
     <tr>
         <td>USER</td>
-        <td>{{ $data->user->name  }} </td>
+        <td>{{ $entity->user->name  }} </td>
     </tr>
     <tr>
         <td>CATEGORY</td>
-        <td>{{ $data->category->name  }} </td>
+        <td>{{ $entity->category->name  }} </td>
     </tr>
     <tr>
         <td>PROFILE</td>
-        <td>{{ $data->profile_id  }} </td>
+        <td>{{ $entity->profile_id  }} </td>
     </tr>
     <tr>
         <td>Name</td>
-        <td>{{ $data->name  }} </td>
+        <td>{{ $entity->name  }} </td>
     </tr>
     <tr>
         <td>DESCRIPTION</td>
-        <td>{{ $data->description  }} </td>
+        <td>{{ $entity->description  }} </td>
     </tr>
     <tr>
         <td>LOCATION</td>
-        <td>{{ json_encode($data->location)  }} </td>
+        <td>{{ json_encode($entity->location)  }} </td>
     </tr>
 </table>
 

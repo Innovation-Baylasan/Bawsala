@@ -27,7 +27,7 @@
         <th> address </th>
     </tr>
 
-    @foreach($data as $row)
+    @foreach($profile as $row)
         <tr>
             <td> {{ $row->id  }} </td>
             <td> {{ $row->entity->name  }} </td>
@@ -56,4 +56,4 @@
 <br>
 <br>
 
-{!! $data->links() !!}
+{!! $profile->links() !!}

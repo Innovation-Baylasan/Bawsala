@@ -20,11 +20,11 @@
 
     <tr>
         <td>ID</td>
-        <td>{{ $data->id  }}</td>
+        <td>{{ $role->id  }}</td>
     </tr>
     <tr>
         <td>Role</td>
-        <td>{{ $data->name  }}</td>
+        <td>{{ $role->name  }}</td>
     </tr>
 
 </table>

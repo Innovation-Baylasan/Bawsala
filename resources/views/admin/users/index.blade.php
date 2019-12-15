@@ -29,7 +29,7 @@
         <th> options </th>
     </tr>
 
-    @foreach($data as $row)
+    @foreach($user as $row)
         <tr>
             <td> {{ $row->id  }} </td>
             <td> {{ $row->role->role  }} </td>
@@ -55,4 +55,4 @@
 <br>
 <br>
 
-{!! $data->links() !!}
+{!! $user->links() !!}

@@ -12,7 +12,7 @@
 
 @endif
 
-<form method="POST" action="{{ route('profiles.update', $data->id)  }}" enctype="multipart/form-data">
+<form method="POST" action="{{ route('profiles.update', $profile->id)  }}" enctype="multipart/form-data">
 
     @csrf
     @method('PATCH')
@@ -20,7 +20,7 @@
     <label for="entity">Select entity owner</label>
     <select id="entity" name="entity_id" >
         @foreach($entities as $entity)
-            <option @if($entity->id == $data->entity->id) selected @endif value="{{ $entity->id  }}">{{ $entity->name }}</option>
+            <option @if($entity->id == $profile->entity->id) selected @endif value="{{ $entity->id  }}">{{ $entity->name }}</option>
         @endforeach
     </select>
 
@@ -30,8 +30,8 @@
     <label for="cover">Icon</label>
     <input type="file" id="cover" name="cover">
     <br>
-    <img src="{{ URL::to('/')  }}/images/profiles/covers/{{ $data->cover  }}" alt="">
-    <input type="hidden" name="old_cover" value="{{ $data->cover  }}">
+    <img src="{{ URL::to('/')  }}/images/profiles/covers/{{ $profile->cover  }}" alt="">
+    <input type="hidden" name="old_cover" value="{{ $profile->cover  }}">
 
     <br>
     <br>
@@ -39,15 +39,15 @@
     <label for="Logo">Icon</label>
     <input type="file" id="Logo" name="Logo">
     <br>
-    <img src="{{ URL::to('/')  }}/images/profiles/logos/{{ $data->Logo  }}" alt="">
-    <input type="hidden" name="old_Logo" value="{{ $data->Logo  }}">
+    <img src="{{ URL::to('/')  }}/images/profiles/logos/{{ $profile->Logo  }}" alt="">
+    <input type="hidden" name="old_Logo" value="{{ $profile->Logo  }}">
 
 
     <br>
     <br>
 
     <label for="address">Address</label>
-    <input type="text" id="address" name="Address" value="{{ $data->Address  }}">
+    <input type="text" id="address" name="Address" value="{{ $profile->Address  }}">
 
     <br>
     <br>

@@ -16,11 +16,11 @@ class RolesController extends Controller
     public function index()
     {
 
-        $data = Role::latest()->paginate(5);
+        $role = Role::latest()->paginate(5);
 
-        // dd($data);
+        // dd($role);
 
-        return view('admin.roles.index', compact('data'))
+        return view('admin.roles.index', compact('role'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
 
     }
@@ -61,30 +61,26 @@ class RolesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Role $role)
     {
 
-        $data = Role::findOrFail($id);
-
-        return View('admin.roles.show', compact('data'));
+        return View('admin.roles.show', compact('role'));
 
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Role $role)
     {
 
-        $data = Role::findOrFail($id);
-
-        return view('admin.roles.edit', compact('data'));
+        return view('admin.roles.edit', compact('role'));
 
     }
 
@@ -92,10 +88,10 @@ class RolesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Role $role)
     {
         $request->validate([
             'role' => 'required'
@@ -105,7 +101,7 @@ class RolesController extends Controller
             'role' => $request->role
         );
 
-        Role::whereId($id)->update($form_data);
+        $role->update($form_data);
 
         return redirect('/admin/roles')
             ->with('success', 'Data updated successfully.');
@@ -114,13 +110,15 @@ class RolesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Role $role
      * @return \Illuminate\Http\Response
+     * @throws \Exception
+     *
+     *
      */
-    public function destroy($id)
+    public function destroy(Role $role)
     {
-        $data = Role::findOrFail($id);
-        $data->delete();
+        $role->delete();
 
         return redirect('/admin/roles')
             ->with('success', 'Data deleted successfully');

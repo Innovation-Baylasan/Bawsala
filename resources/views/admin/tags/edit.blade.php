@@ -12,13 +12,13 @@
 
 @endif
 
-<form method="POST" action="{{ route('tags.update', $data->id)  }}">
+<form method="POST" action="{{ route('tags.update', $tag->id)  }}">
 
     @csrf
     @method('PATCH')
 
     <label for="tag">Tag</label>
-    <input type="text" id="tag" name="name" value="{{ $data->name  }}">
+    <input type="text" id="tag" name="name" value="{{ $tag->name  }}">
 
     <br>
     <br>
