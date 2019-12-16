@@ -24,7 +24,7 @@
 
     <nav class="fixed w-24 bg-white shadow top-0 left-0 h-screen flex flex-col pt-6">
         <div class="px-4 mb-6">
-            <img class="rounded-full" src="https://i.pravatar.cc/300" alt="avatar">
+            <img class="rounded" src="https://i.pravatar.cc/300" alt="avatar">
         </div>
         <map-categories></map-categories>
         <div class="flex items-center justify-center mt-auto mb-2">
