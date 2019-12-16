@@ -3,7 +3,7 @@
         <a href="#"
            class="flex  items-center justify-center p-2  fade"
            v-for="(category,index) in categories"
-           :class="[selectedCategory == category ? 'border-l-2 border-rounded border-red-500':'']"
+           :class="[selectedCategory == category ? 'active':'']"
            :key="index"
            @click.prevent="selectedCategory = category"
         >
@@ -38,7 +38,7 @@
 </script>
 <style>
     .fade {
-        transition: border .3s ease-in;
+        transition: all .3s ease-in;
     }
 
     .svg-red path {

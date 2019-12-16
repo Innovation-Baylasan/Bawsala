@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/profile.blade.php" afterPath="$PROJECT_DIR$/resources/views/profile.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/app.css" afterPath="$PROJECT_DIR$/public/css/app.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/app.js" afterPath="$PROJECT_DIR$/public/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/components/MapCategories.vue" afterPath="$PROJECT_DIR$/resources/js/components/MapCategories.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/sass/app.scss" afterPath="$PROJECT_DIR$/resources/sass/app.scss" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -45,7 +48,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="profile.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="profile.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/profile.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="430">
@@ -62,7 +65,7 @@
       <file leaf-file-name="welcome.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="104">
+            <state relative-caret-position="650">
               <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="27" selection-end-column="14" />
               <folding />
             </state>
@@ -72,8 +75,8 @@
       <file leaf-file-name="MapCategories.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/js/components/MapCategories.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="508">
-              <caret line="33" column="31" lean-forward="false" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
+            <state relative-caret-position="234">
+              <caret line="40" column="24" lean-forward="false" selection-start-line="40" selection-start-column="24" selection-end-line="40" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -109,11 +112,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.scss" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.scss" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/sass/app.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="10" column="11" lean-forward="false" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
+            <state relative-caret-position="349">
+              <caret line="30" column="24" lean-forward="false" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -202,13 +205,13 @@
         <option value="$PROJECT_DIR$/database/factories/ProfileFactory.php" />
         <option value="$PROJECT_DIR$/app/Entity.php" />
         <option value="$PROJECT_DIR$/resources/views/signup.blade.php" />
-        <option value="$PROJECT_DIR$/resources/sass/app.scss" />
         <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/resources/js/components/InlineSvg.vue" />
-        <option value="$PROJECT_DIR$/resources/js/components/MapCategories.vue" />
         <option value="$PROJECT_DIR$/resources/js/app.js" />
         <option value="$PROJECT_DIR$/tailwind.config.js" />
         <option value="$PROJECT_DIR$/resources/views/profile.blade.php" />
+        <option value="$PROJECT_DIR$/resources/js/components/MapCategories.vue" />
+        <option value="$PROJECT_DIR$/resources/sass/app.scss" />
       </list>
     </option>
   </component>
@@ -301,7 +304,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="tai&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/tailwind.config.js&#10;app.js&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/app.js&#10;categ.v&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/components/MapCategories.vue&#10;welco&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/welcome.blade.php&#10;app.&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/sass/app.scss&#10;web&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/routes/web.php&#10;slide&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/components/Slide.vue&#10;si&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/signup.blade.php&#10;Proff&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/database/factories/ProfileFactory.php&#10;create_pro&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/database/migrations/2019_12_01_151412_create_profiles_table.php&#10;Enti&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Entity.php&#10;app.scs&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/sass/app.scss&#10;app&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/app.js&#10;app.s&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/sass/app.scss&#10;lay&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/public/svg/layer-icon.svg&#10;layer&#9;null&#9;null&#10;we&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/welcome.blade.php&#10;tail&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/tailwind.config.js&#10;mix.js&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/webpack.mix.js&#10;wel&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/welcome.blade.php&#10;app.css&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/public/css/app.css&#10;cate/show&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/admin/categories/show.blade.php&#10;Entity&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Entity.php&#10;Entit&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/tests/Unit/EntityTest.php&#10;CateEn&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Http/Controllers/Api/CategoryEntitiesController.php&#10;.env&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/.env&#10;api&#9;FILE&#9;file:///home/oweisnama/Projects/Mustakshif/routes/api.php&#10;co/au&#9;FILE&#9;file:///home/oweisnama/Projects/Mustakshif/config/auth.php&#10;Auths&#9;null&#9;null&#10;User&#9;null&#9;null&#10;Catego&#9;FILE&#9;file:///home/oweisnama/Projects/Mustakshif/app/Category.php&#10;Activ&#9;FILE&#9;file:///home/oweisnama/Projects/Mustakshif/app/Activity.php&#10;web.ph&#9;FILE&#9;file:///home/oweisnama/Projects/Mustakshif/routes/web.php&#10;Act&#9;FILE&#9;file:///home/oweisnama/Projects/Mustakshif/app/Http/Controllers/Api/CategoryActivitiesController.php&#10;Acti&#9;FILE&#9;file:///home/oweisnama/Projects/Mustakshif/app/Activity.php&#10;Activity&#9;null&#9;null&#10;Grammar&#9;null&#9;null&#10;coFacto&#9;FILE&#9;file:///home/altaif/Projects/Mustakshif/database/factories/CompanyFactory.php&#10;compaf&#9;null&#9;null&#10;categ&#9;FILE&#9;file:///home/altaif/Projects/Mustakshif/database/migrations/2019_11_24_131407_create_categories_table.php&#10;categorf&#9;FILE&#9;file:///home/altaif/Projects/Mustakshif/database/factories/CategoryFactory.php&#10;activif&#9;FILE&#9;file:///home/altaif/Projects/Mustakshif/database/factories/ActivityFactory.php&#10;ActivT&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="app&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/sass/app.scss&#10;tai&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/tailwind.config.js&#10;app.js&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/app.js&#10;categ.v&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/components/MapCategories.vue&#10;welco&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/welcome.blade.php&#10;app.&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/sass/app.scss&#10;web&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/routes/web.php&#10;slide&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/components/Slide.vue&#10;si&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/signup.blade.php&#10;Proff&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/database/factories/ProfileFactory.php&#10;create_pro&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/database/migrations/2019_12_01_151412_create_profiles_table.php&#10;Enti&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Entity.php&#10;app.scs&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/sass/app.scss&#10;app.s&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/sass/app.scss&#10;lay&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/public/svg/layer-icon.svg&#10;layer&#9;null&#9;null&#10;we&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/welcome.blade.php&#10;tail&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/tailwind.config.js&#10;mix.js&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/webpack.mix.js&#10;wel&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/welcome.blade.php&#10;app.css&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/public/css/app.css&#10;cate/show&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/admin/categories/show.blade.php&#10;Entity&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Entity.php&#10;Entit&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/tests/Unit/EntityTest.php&#10;CateEn&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Http/Controllers/Api/CategoryEntitiesController.php&#10;.env&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/.env&#10;api&#9;FILE&#9;file:///home/oweisnama/Projects/Mustakshif/routes/api.php&#10;co/au&#9;FILE&#9;file:///home/oweisnama/Projects/Mustakshif/config/auth.php&#10;Auths&#9;null&#9;null&#10;User&#9;null&#9;null&#10;Catego&#9;FILE&#9;file:///home/oweisnama/Projects/Mustakshif/app/Category.php&#10;Activ&#9;FILE&#9;file:///home/oweisnama/Projects/Mustakshif/app/Activity.php&#10;web.ph&#9;FILE&#9;file:///home/oweisnama/Projects/Mustakshif/routes/web.php&#10;Act&#9;FILE&#9;file:///home/oweisnama/Projects/Mustakshif/app/Http/Controllers/Api/CategoryActivitiesController.php&#10;Acti&#9;FILE&#9;file:///home/oweisnama/Projects/Mustakshif/app/Activity.php&#10;Activity&#9;null&#9;null&#10;Grammar&#9;null&#9;null&#10;coFacto&#9;FILE&#9;file:///home/altaif/Projects/Mustakshif/database/factories/CompanyFactory.php&#10;compaf&#9;null&#9;null&#10;categ&#9;FILE&#9;file:///home/altaif/Projects/Mustakshif/database/migrations/2019_11_24_131407_create_categories_table.php&#10;categorf&#9;FILE&#9;file:///home/altaif/Projects/Mustakshif/database/factories/CategoryFactory.php&#10;activif&#9;FILE&#9;file:///home/altaif/Projects/Mustakshif/database/factories/ActivityFactory.php&#10;ActivT&#9;null&#9;null" />
     <property name="nodejs_interpreter_path" value="$USER_HOME$/.nvm/versions/node/v12.6.0/bin/node" />
     <property name="settings.editor.selected.configurable" value="fileTemplates" />
   </component>
@@ -428,7 +431,7 @@
       <workItem from="1575979004838" duration="2575000" />
       <workItem from="1575982286512" duration="9521000" />
       <workItem from="1576092144062" duration="353000" />
-      <workItem from="1576523728122" duration="3590000" />
+      <workItem from="1576523728122" duration="5244000" />
     </task>
     <task id="LOCAL-00001" summary="schema for activities,companies and categories">
       <created>1574766304196</created>
@@ -584,11 +587,18 @@
       <option name="project" value="LOCAL" />
       <updated>1576526810495</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="profile view">
+      <created>1576527323778</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1576527323778</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61725000" />
+    <option name="totallyTimeSpent" value="63379000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="723" extended-state="6" />
@@ -935,14 +945,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/sass/app.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="10" column="11" lean-forward="false" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
@@ -991,26 +993,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/components/MapCategories.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="508">
-          <caret line="33" column="31" lean-forward="false" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="78">
           <caret line="3" column="65" lean-forward="true" selection-start-line="3" selection-start-column="65" selection-end-line="3" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="27" selection-end-column="14" />
           <folding />
         </state>
       </provider>
@@ -1040,6 +1026,30 @@
             <element signature="n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="650">
+          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="27" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/components/MapCategories.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="40" column="24" lean-forward="false" selection-start-line="40" selection-start-column="24" selection-end-line="40" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/sass/app.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="349">
+          <caret line="30" column="24" lean-forward="false" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>

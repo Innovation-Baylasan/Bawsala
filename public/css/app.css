@@ -10299,6 +10299,28 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   font-weight: 700;
 }
 
+.active {
+  position: relative;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.active:after {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0.25rem;
+  background-color: #f04238;
+  height: 100%;
+  border-radius: 8px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  content: "";
+}
+
 @media (min-width: 640px) {
   .sm\:sr-only {
     position: absolute;

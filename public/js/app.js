@@ -5617,7 +5617,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".fade {\n  -webkit-transition: border .3s ease-in;\n  transition: border .3s ease-in;\n}\n.svg-red path {\n  fill: #f04238;\n}\n", ""]);
+exports.push([module.i, ".fade {\n  -webkit-transition: all .3s ease-in;\n  transition: all .3s ease-in;\n}\n.svg-red path {\n  fill: #f04238;\n}\n", ""]);
 
 // exports
 
@@ -23910,11 +23910,7 @@ var render = function() {
         {
           key: index,
           staticClass: "flex  items-center justify-center p-2  fade",
-          class: [
-            _vm.selectedCategory == category
-              ? "border-l-2 border-rounded border-red-500"
-              : ""
-          ],
+          class: [_vm.selectedCategory == category ? "active" : ""],
           attrs: { href: "#" },
           on: {
             click: function($event) {
