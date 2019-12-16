@@ -19,6 +19,10 @@ Route::get('/register', function () {
     return view('signup');
 });
 
+Route::get('/@{name}', function ($name) {
+    return view('profile')->withName($name);
+});
+
 Route::namespace('Admin')
     ->prefix('admin')
     ->group(function () {

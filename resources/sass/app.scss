@@ -4,8 +4,16 @@
 
 @tailwind utilities;
 
-
 @import "~@glidejs/glide/src/assets/sass/glide.core";
+
+.cover-skewer{
+  transform: skewY(-5deg);
+  top: 90%;
+}
+
+.-translate-y-50 {
+  transform: translateY(-50%);
+}
 
 input[type='checkbox']:checked, input[type='radio']:checked + .select-label {
   @apply border-red-500 text-red-500;
