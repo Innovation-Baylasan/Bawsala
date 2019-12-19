@@ -1,3 +1,6 @@
+@extends('layouts.admin')
+
+@section('content')
 <h1> Show Category </h1>
 
 
@@ -32,3 +35,4 @@
     </tr>
 
 </table>
+@endsection

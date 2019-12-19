@@ -1,3 +1,7 @@
+
+@extends('layouts.admin')
+
+@section('conetent')
 <h1> Create Category </h1>
 
 @if($errors->any())
@@ -33,3 +37,4 @@
     <input type="submit" value="Create" />
 
 </form>
+@endsection
