@@ -25,6 +25,8 @@ Route::namespace('Api')->group(function () {
 
     Route::get('/entities/{entity}', 'EntitiesController@show');
 
+    Route::post('/entities/find', 'EntitiesController@find');
+
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

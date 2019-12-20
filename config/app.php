@@ -167,6 +167,10 @@ return [
          */
 
         /*
+         * Search Service Providers...
+         */
+        TeamTNT\Scout\TNTSearchScoutServiceProvider::class,
+        /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
