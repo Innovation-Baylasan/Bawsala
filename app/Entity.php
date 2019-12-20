@@ -64,6 +64,7 @@ class Entity extends Model
         return $this->hasOne(Profile::class);
     }
 
+
     public function toArray()
     {
         return [
@@ -75,4 +76,59 @@ class Entity extends Model
             'location' => $this->location,
         ];
     }
+
+
+
+    /**
+     * Get the index name for the Entity model to make searchable.
+     *
+     * @return string
+     */
+    public function searchableAs()
+    {
+        return 'entities_index';
+    }
+
+
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+
+        // Customize array...
+
+        return $array;
+    }
+
+    /**
+     * Get the value used to index the model.
+     *
+     * By default, Scout will use the
+     * primary key of the model as the unique ID stored in the search index.
+     * If you need to customize this behavior by using the entity name as a
+     * search index
+     *
+     * @return mixed
+     */
+    public function getScoutKey()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Get the key name used to index the model.
+     *
+     *
+     *
+     * @return mixed
+     */
+    public function getScoutKeyName()
+    {
+        return 'name';
+    }
+
 }
