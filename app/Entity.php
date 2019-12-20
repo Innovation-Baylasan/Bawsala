@@ -3,12 +3,20 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 /**
  * @property mixed $profile
  */
 class Entity extends Model
 {
+    /**
+     * Make the model searchable using Laravel Scout
+     *
+     * @Laravel\Scout\Searchable
+     * */
+    use Searchable;
+
     /**
      * Determine what to eager load when retrieving activity
      *

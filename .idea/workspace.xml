@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="Refactoring the admin page,&#10;added the dependency injection the admin from Categories to Users.&#10;added comments about the injected data.&#10;modify the front end to the backend changes.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-    </list>
+    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="installed Scout via the Composer package manager&#10;```&#10;composer require laravel/scout&#10;```" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -246,7 +242,7 @@
       <workItem from="1576354577647" duration="599000" />
       <workItem from="1576395908836" duration="6748000" />
       <workItem from="1576734980612" duration="1678000" />
-      <workItem from="1576844314883" duration="2534000" />
+      <workItem from="1576844314883" duration="2904000" />
     </task>
     <task id="LOCAL-00001" summary="schema for activities,companies and categories">
       <created>1574766304196</created>
@@ -395,7 +391,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576403185429</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="installed Scout via the Composer package manager&#10;```&#10;composer require laravel/scout&#10;```">
+      <created>1576857924387</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1576857924387</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -429,6 +432,7 @@
     <MESSAGE value="Merge branch 'development' of https://gitlab.com/baylasan-back-end/sudan-map-back-end into Ui/Feature&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
     <MESSAGE value="refactoring and change api responses" />
     <MESSAGE value="Refactoring the admin page,&#10;added the dependency injection the admin from Categories to Users.&#10;added comments about the injected data.&#10;modify the front end to the backend changes." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactoring the admin page,&#10;added the dependency injection the admin from Categories to Users.&#10;added comments about the injected data.&#10;modify the front end to the backend changes." />
+    <MESSAGE value="installed Scout via the Composer package manager&#10;```&#10;composer require laravel/scout&#10;```" />
+    <option name="LAST_COMMIT_MESSAGE" value="installed Scout via the Composer package manager&#10;```&#10;composer require laravel/scout&#10;```" />
   </component>
 </project>
