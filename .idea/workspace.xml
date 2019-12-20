@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="Struggled at setting up algloia as a search engine,&#10;i used null for scout">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="Added TNTsearch instead of algolia,&#10;installed TNTsearch&#10;&#10;added TNTsearch to the service provider, &#10;Added SCOUT_DRIVER=tntsearch to my local .env file,&#10;&#10;&#10;added tntsearch in the scout.php, it contains all of the seararch options related stuff.&#10;&#10;To prevent your search indexes being commited to your project repository, add the following line to your .gitignore file.&#10;/storage/*.index&#10;&#10;The asYouType option can be set per model basis.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Entity.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Entity.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/EntitiesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/EntitiesController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/scout.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/scout.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -225,7 +220,7 @@
       <workItem from="1576354577647" duration="599000" />
       <workItem from="1576395908836" duration="6748000" />
       <workItem from="1576734980612" duration="1678000" />
-      <workItem from="1576844314883" duration="11296000" />
+      <workItem from="1576844314883" duration="13165000" />
     </task>
     <task id="LOCAL-00001" summary="schema for activities,companies and categories">
       <created>1574766304196</created>
@@ -416,7 +411,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576862786197</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Added TNTsearch instead of algolia,&#10;installed TNTsearch&#10;&#10;added TNTsearch to the service provider, &#10;Added SCOUT_DRIVER=tntsearch to my local .env file,&#10;&#10;&#10;added tntsearch in the scout.php, it contains all of the seararch options related stuff.&#10;&#10;To prevent your search indexes being commited to your project repository, add the following line to your .gitignore file.&#10;/storage/*.index&#10;&#10;The asYouType option can be set per model basis.">
+      <created>1576867115466</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1576867115466</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -456,6 +458,7 @@
     <MESSAGE value="Algolia Site ...&#10;Adding algolia &#10;&#10;```&#10;composer require algolia/algoliasearch-client-php&#10;```&#10;&#10;There was a problem creating the Algolia Keys, the site gives access&#10;denied so i added the variable to my local .env" />
     <MESSAGE value="Each Eloquent model is synced with a given search &quot;index&quot;, which &#10;contains all of the searchable records for that model added the &#10;&quot;entities_index&quot; to the searchableAs method.&#10;&#10;Added toSearchableArray method on the model, for future if we want to &#10;override the returned values.&#10;&#10;Used the name as a unique ID stored in the search index. you may &#10;override the getScoutKey and the getScoutKeyName methods on the model.&#10;&#10;Import all the existing records into the entity search indexes using the&#10;```&#10;php artisan scout:import &quot;App\Entity&quot;&#10;```&#10;&#10;Remove all of a model's records from the entity search indexes using.&#10;Import all the existing records into the entity search indexes using the&#10;```&#10;php artisan scout:flush &quot;App\Entity&quot;&#10;```" />
     <MESSAGE value="Struggled at setting up algloia as a search engine,&#10;i used null for scout" />
-    <option name="LAST_COMMIT_MESSAGE" value="Struggled at setting up algloia as a search engine,&#10;i used null for scout" />
+    <MESSAGE value="Added TNTsearch instead of algolia,&#10;installed TNTsearch&#10;&#10;added TNTsearch to the service provider, &#10;Added SCOUT_DRIVER=tntsearch to my local .env file,&#10;&#10;&#10;added tntsearch in the scout.php, it contains all of the seararch options related stuff.&#10;&#10;To prevent your search indexes being commited to your project repository, add the following line to your .gitignore file.&#10;/storage/*.index&#10;&#10;The asYouType option can be set per model basis." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added TNTsearch instead of algolia,&#10;installed TNTsearch&#10;&#10;added TNTsearch to the service provider, &#10;Added SCOUT_DRIVER=tntsearch to my local .env file,&#10;&#10;&#10;added tntsearch in the scout.php, it contains all of the seararch options related stuff.&#10;&#10;To prevent your search indexes being commited to your project repository, add the following line to your .gitignore file.&#10;/storage/*.index&#10;&#10;The asYouType option can be set per model basis." />
   </component>
 </project>
