@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="installed Scout via the Composer package manager&#10;```&#10;composer require laravel/scout&#10;```" />
+    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="published the Scout configuration using the vendor:publish Artisan command. &#10;Added the Laravel\Scout\Searchable trait to the Entity model to make it searchable.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,32 +15,6 @@
     <execution>
       <executable />
     </execution>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>acti</find>
-      <find>fil</find>
-      <find>fill</find>
-      <find>.cls-1</find>
-      <find>input</find>
-      <find>stroke</find>
-      <find>fill:#9A9A9A;/* stroke:#eb413c; */stroke-width:1.8px;</find>
-      <find>cls-1</find>
-      <find>eb413c</find>
-      <find>#eb413c</find>
-      <find>$i</find>
-      <find>$data</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>$categories</replace>
-      <replace>$category</replace>
-    </replaceStrings>
-    <dirStrings>
-      <dir>$PROJECT_DIR$</dir>
-      <dir>$PROJECT_DIR$/public</dir>
-      <dir>$PROJECT_DIR$/public/svg</dir>
-      <dir>$PROJECT_DIR$/public/images</dir>
-    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -242,7 +218,7 @@
       <workItem from="1576354577647" duration="599000" />
       <workItem from="1576395908836" duration="6748000" />
       <workItem from="1576734980612" duration="1678000" />
-      <workItem from="1576844314883" duration="2904000" />
+      <workItem from="1576844314883" duration="3274000" />
     </task>
     <task id="LOCAL-00001" summary="schema for activities,companies and categories">
       <created>1574766304196</created>
@@ -398,7 +374,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576857924387</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="published the Scout configuration using the vendor:publish Artisan command. &#10;Added the Laravel\Scout\Searchable trait to the Entity model to make it searchable.">
+      <created>1576858309717</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1576858309717</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -433,6 +416,7 @@
     <MESSAGE value="refactoring and change api responses" />
     <MESSAGE value="Refactoring the admin page,&#10;added the dependency injection the admin from Categories to Users.&#10;added comments about the injected data.&#10;modify the front end to the backend changes." />
     <MESSAGE value="installed Scout via the Composer package manager&#10;```&#10;composer require laravel/scout&#10;```" />
-    <option name="LAST_COMMIT_MESSAGE" value="installed Scout via the Composer package manager&#10;```&#10;composer require laravel/scout&#10;```" />
+    <MESSAGE value="published the Scout configuration using the vendor:publish Artisan command. &#10;Added the Laravel\Scout\Searchable trait to the Entity model to make it searchable." />
+    <option name="LAST_COMMIT_MESSAGE" value="published the Scout configuration using the vendor:publish Artisan command. &#10;Added the Laravel\Scout\Searchable trait to the Entity model to make it searchable." />
   </component>
 </project>
