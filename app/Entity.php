@@ -18,6 +18,14 @@ class Entity extends Model
     use Searchable;
 
     /**
+     * The Entity primarykey
+     *
+     * @var string
+     */
+
+    protected $primaryKey = 'id';
+
+    /**
      * Determine what to eager load when retrieving activity
      *
      * @var array
@@ -71,9 +79,9 @@ class Entity extends Model
             'id' => $this->id,
             'name' => $this->name,
             'description' => $this->description,
-            'avatar' => $this->profile->logo,
-            'cover' => $this->profile->cover,
-            'location' => $this->location,
+//            'avatar' => $this->profile->logo,
+//            'cover' => $this->profile->cover,
+//            'location' => $this->location,
         ];
     }
 
@@ -97,38 +105,45 @@ class Entity extends Model
      */
     public function toSearchableArray()
     {
-        $array = $this->toArray();
+        // $array = $this->toArray();
 
         // Customize array...
 
-        return $array;
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'description' => $this->description,
+//            'avatar' => $this->profile->logo,
+//            'cover' => $this->profile->cover,
+//            'location' => $this->location,
+        ];
     }
 
-//    /**
-//     * Get the value used to index the model.
-//     *
-//     * By default, Scout will use the
-//     * primary key of the model as the unique ID stored in the search index.
-//     * If you need to customize this behavior by using the entity name as a
-//     * search index
-//     *
-//     * @return mixed
-//     */
-//    public function getScoutKey()
-//    {
-//        return $this->name;
-//    }
-//
-//    /**
-//     * Get the key name used to index the model.
-//     *
-//     *
-//     *
-//     * @return mixed
-//     */
-//    public function getScoutKeyName()
-//    {
-//        return 'name';
-//    }
+    /**
+     * Get the value used to index the model.
+     *
+     * By default, Scout will use the
+     * primary key of the model as the unique ID stored in the search index.
+     * If you need to customize this behavior by using the entity name as a
+     * search index
+     *
+     * @return mixed
+     */
+    public function getScoutKey()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Get the key name used to index the model.
+     *
+     *
+     *
+     * @return mixed
+     */
+    public function getScoutKeyName()
+    {
+        return 'id';
+    }
 
 }

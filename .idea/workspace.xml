@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="Added TNTsearch instead of algolia,&#10;installed TNTsearch&#10;&#10;added TNTsearch to the service provider, &#10;Added SCOUT_DRIVER=tntsearch to my local .env file,&#10;&#10;&#10;added tntsearch in the scout.php, it contains all of the seararch options related stuff.&#10;&#10;To prevent your search indexes being commited to your project repository, add the following line to your .gitignore file.&#10;/storage/*.index&#10;&#10;The asYouType option can be set per model basis.">
+    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="Resolved tntsearch problem by removing comments from the &#10;&#10;Resolved by removing comment (php.ini)&#10;&#10;extension=php_pdo_sqlite.dll&#10;extension=php_sqlite3.dll">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Entity.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Entity.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,6 +16,36 @@
     <execution>
       <executable />
     </execution>
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="entities_index" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="entities_index" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="entities_index" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
+      </path>
+    </expand>
+    <select />
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -140,6 +170,8 @@
       <path value="$PROJECT_DIR$/vendor/zendframework/zend-diactoros" />
       <path value="$PROJECT_DIR$/vendor/laravel/scout" />
       <path value="$PROJECT_DIR$/vendor/algolia/algoliasearch-client-php" />
+      <path value="$PROJECT_DIR$/vendor/teamtnt/tntsearch" />
+      <path value="$PROJECT_DIR$/vendor/teamtnt/laravel-scout-tntsearch-driver" />
     </include_path>
   </component>
   <component name="ProjectId" id="1UpCZYgZ57M0IuW8ElvjwTJtELK" />
@@ -186,6 +218,16 @@
       <method v="2" />
     </configuration>
   </component>
+  <component name="ServiceViewManager">
+    <option name="allServicesViewState">
+      <serviceView>
+        <treeState>
+          <expand />
+          <select />
+        </treeState>
+      </serviceView>
+    </option>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -220,7 +262,8 @@
       <workItem from="1576354577647" duration="599000" />
       <workItem from="1576395908836" duration="6748000" />
       <workItem from="1576734980612" duration="1678000" />
-      <workItem from="1576844314883" duration="13165000" />
+      <workItem from="1576844314883" duration="16317000" />
+      <workItem from="1576871839810" duration="315000" />
     </task>
     <task id="LOCAL-00001" summary="schema for activities,companies and categories">
       <created>1574766304196</created>
@@ -418,7 +461,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576867115466</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Resolved tntsearch problem by removing comments from the &#10;&#10;Resolved by removing comment (php.ini)&#10;&#10;extension=php_pdo_sqlite.dll&#10;extension=php_sqlite3.dll">
+      <created>1576868813280</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1576868813280</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -459,6 +509,7 @@
     <MESSAGE value="Each Eloquent model is synced with a given search &quot;index&quot;, which &#10;contains all of the searchable records for that model added the &#10;&quot;entities_index&quot; to the searchableAs method.&#10;&#10;Added toSearchableArray method on the model, for future if we want to &#10;override the returned values.&#10;&#10;Used the name as a unique ID stored in the search index. you may &#10;override the getScoutKey and the getScoutKeyName methods on the model.&#10;&#10;Import all the existing records into the entity search indexes using the&#10;```&#10;php artisan scout:import &quot;App\Entity&quot;&#10;```&#10;&#10;Remove all of a model's records from the entity search indexes using.&#10;Import all the existing records into the entity search indexes using the&#10;```&#10;php artisan scout:flush &quot;App\Entity&quot;&#10;```" />
     <MESSAGE value="Struggled at setting up algloia as a search engine,&#10;i used null for scout" />
     <MESSAGE value="Added TNTsearch instead of algolia,&#10;installed TNTsearch&#10;&#10;added TNTsearch to the service provider, &#10;Added SCOUT_DRIVER=tntsearch to my local .env file,&#10;&#10;&#10;added tntsearch in the scout.php, it contains all of the seararch options related stuff.&#10;&#10;To prevent your search indexes being commited to your project repository, add the following line to your .gitignore file.&#10;/storage/*.index&#10;&#10;The asYouType option can be set per model basis." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added TNTsearch instead of algolia,&#10;installed TNTsearch&#10;&#10;added TNTsearch to the service provider, &#10;Added SCOUT_DRIVER=tntsearch to my local .env file,&#10;&#10;&#10;added tntsearch in the scout.php, it contains all of the seararch options related stuff.&#10;&#10;To prevent your search indexes being commited to your project repository, add the following line to your .gitignore file.&#10;/storage/*.index&#10;&#10;The asYouType option can be set per model basis." />
+    <MESSAGE value="Resolved tntsearch problem by removing comments from the &#10;&#10;Resolved by removing comment (php.ini)&#10;&#10;extension=php_pdo_sqlite.dll&#10;extension=php_sqlite3.dll" />
+    <option name="LAST_COMMIT_MESSAGE" value="Resolved tntsearch problem by removing comments from the &#10;&#10;Resolved by removing comment (php.ini)&#10;&#10;extension=php_pdo_sqlite.dll&#10;extension=php_sqlite3.dll" />
   </component>
 </project>
