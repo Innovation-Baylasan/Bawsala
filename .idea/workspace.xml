@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="published the Scout configuration using the vendor:publish Artisan command. &#10;Added the Laravel\Scout\Searchable trait to the Entity model to make it searchable.">
+    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -138,6 +140,7 @@
       <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
       <path value="$PROJECT_DIR$/vendor/zendframework/zend-diactoros" />
       <path value="$PROJECT_DIR$/vendor/laravel/scout" />
+      <path value="$PROJECT_DIR$/vendor/algolia/algoliasearch-client-php" />
     </include_path>
   </component>
   <component name="ProjectId" id="1UpCZYgZ57M0IuW8ElvjwTJtELK" />
@@ -218,7 +221,7 @@
       <workItem from="1576354577647" duration="599000" />
       <workItem from="1576395908836" duration="6748000" />
       <workItem from="1576734980612" duration="1678000" />
-      <workItem from="1576844314883" duration="3274000" />
+      <workItem from="1576844314883" duration="4210000" />
     </task>
     <task id="LOCAL-00001" summary="schema for activities,companies and categories">
       <created>1574766304196</created>
@@ -381,7 +384,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576858309717</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Running a queue worker will allow Scout to queue all operations that sync your model information to your search indexes, providing much better response times for your application's web interface.&#10;&#10;I have added the QUEUE_SCOUT in my local .env environment variable and i have turned it to true, in the scout.php it is false so i haven't touched this file.&#10;I have added a comment in the file to show that turning this to true in the .env is very important.">
+      <created>1576858648758</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1576858648758</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -417,6 +427,7 @@
     <MESSAGE value="Refactoring the admin page,&#10;added the dependency injection the admin from Categories to Users.&#10;added comments about the injected data.&#10;modify the front end to the backend changes." />
     <MESSAGE value="installed Scout via the Composer package manager&#10;```&#10;composer require laravel/scout&#10;```" />
     <MESSAGE value="published the Scout configuration using the vendor:publish Artisan command. &#10;Added the Laravel\Scout\Searchable trait to the Entity model to make it searchable." />
-    <option name="LAST_COMMIT_MESSAGE" value="published the Scout configuration using the vendor:publish Artisan command. &#10;Added the Laravel\Scout\Searchable trait to the Entity model to make it searchable." />
+    <MESSAGE value="Running a queue worker will allow Scout to queue all operations that sync your model information to your search indexes, providing much better response times for your application's web interface.&#10;&#10;I have added the QUEUE_SCOUT in my local .env environment variable and i have turned it to true, in the scout.php it is false so i haven't touched this file.&#10;I have added a comment in the file to show that turning this to true in the .env is very important." />
+    <option name="LAST_COMMIT_MESSAGE" value="Running a queue worker will allow Scout to queue all operations that sync your model information to your search indexes, providing much better response times for your application's web interface.&#10;&#10;I have added the QUEUE_SCOUT in my local .env environment variable and i have turned it to true, in the scout.php it is false so i haven't touched this file.&#10;I have added a comment in the file to show that turning this to true in the .env is very important." />
   </component>
 </project>
