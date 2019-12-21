@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="Resolved tntsearch problem by removing comments from the &#10;&#10;Resolved by removing comment (php.ini)&#10;&#10;extension=php_pdo_sqlite.dll&#10;extension=php_sqlite3.dll">
+    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="Added TNTSearch for the Entity it is working properly but there is a problem with the array.&#10;&#10;when retrieving a forign data, or array like location it is not indexed using scout and tntsearch :import artisan command.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Entity.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Entity.php" afterDir="false" />
     </list>
@@ -263,7 +263,9 @@
       <workItem from="1576395908836" duration="6748000" />
       <workItem from="1576734980612" duration="1678000" />
       <workItem from="1576844314883" duration="16317000" />
-      <workItem from="1576871839810" duration="315000" />
+      <workItem from="1576871839810" duration="2587000" />
+      <workItem from="1576921467925" duration="1758000" />
+      <workItem from="1576932880692" duration="587000" />
     </task>
     <task id="LOCAL-00001" summary="schema for activities,companies and categories">
       <created>1574766304196</created>
@@ -468,7 +470,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576868813280</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Added TNTSearch for the Entity it is working properly but there is a problem with the array.&#10;&#10;when retrieving a forign data, or array like location it is not indexed using scout and tntsearch :import artisan command.">
+      <created>1576872251173</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1576872251173</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -510,6 +519,7 @@
     <MESSAGE value="Struggled at setting up algloia as a search engine,&#10;i used null for scout" />
     <MESSAGE value="Added TNTsearch instead of algolia,&#10;installed TNTsearch&#10;&#10;added TNTsearch to the service provider, &#10;Added SCOUT_DRIVER=tntsearch to my local .env file,&#10;&#10;&#10;added tntsearch in the scout.php, it contains all of the seararch options related stuff.&#10;&#10;To prevent your search indexes being commited to your project repository, add the following line to your .gitignore file.&#10;/storage/*.index&#10;&#10;The asYouType option can be set per model basis." />
     <MESSAGE value="Resolved tntsearch problem by removing comments from the &#10;&#10;Resolved by removing comment (php.ini)&#10;&#10;extension=php_pdo_sqlite.dll&#10;extension=php_sqlite3.dll" />
-    <option name="LAST_COMMIT_MESSAGE" value="Resolved tntsearch problem by removing comments from the &#10;&#10;Resolved by removing comment (php.ini)&#10;&#10;extension=php_pdo_sqlite.dll&#10;extension=php_sqlite3.dll" />
+    <MESSAGE value="Added TNTSearch for the Entity it is working properly but there is a problem with the array.&#10;&#10;when retrieving a forign data, or array like location it is not indexed using scout and tntsearch :import artisan command." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added TNTSearch for the Entity it is working properly but there is a problem with the array.&#10;&#10;when retrieving a forign data, or array like location it is not indexed using scout and tntsearch :import artisan command." />
   </component>
 </project>
