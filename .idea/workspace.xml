@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="Added TNTSearch for the Entity it is working properly but there is a problem with the array.&#10;&#10;when retrieving a forign data, or array like location it is not indexed using scout and tntsearch :import artisan command.">
+    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="* Added the appends to load the external relation ships.&#10;* there was a problem when using the toArray method, so i have commented it out instead i have commented it.&#10;&#10;* I have added get()Attribute to the Entity class (getAvatarAttribute) and (getCoverAttribute) ...">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Entity.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Entity.php" afterDir="false" />
     </list>
@@ -265,7 +265,7 @@
       <workItem from="1576844314883" duration="16317000" />
       <workItem from="1576871839810" duration="2587000" />
       <workItem from="1576921467925" duration="1758000" />
-      <workItem from="1576932880692" duration="587000" />
+      <workItem from="1576932880692" duration="1239000" />
     </task>
     <task id="LOCAL-00001" summary="schema for activities,companies and categories">
       <created>1574766304196</created>
@@ -477,7 +477,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576872251173</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="* Added the appends to load the external relation ships.&#10;* there was a problem when using the toArray method, so i have commented it out instead i have commented it.&#10;&#10;* I have added get()Attribute to the Entity class (getAvatarAttribute) and (getCoverAttribute) ...">
+      <created>1576933941104</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1576933941105</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -520,6 +527,7 @@
     <MESSAGE value="Added TNTsearch instead of algolia,&#10;installed TNTsearch&#10;&#10;added TNTsearch to the service provider, &#10;Added SCOUT_DRIVER=tntsearch to my local .env file,&#10;&#10;&#10;added tntsearch in the scout.php, it contains all of the seararch options related stuff.&#10;&#10;To prevent your search indexes being commited to your project repository, add the following line to your .gitignore file.&#10;/storage/*.index&#10;&#10;The asYouType option can be set per model basis." />
     <MESSAGE value="Resolved tntsearch problem by removing comments from the &#10;&#10;Resolved by removing comment (php.ini)&#10;&#10;extension=php_pdo_sqlite.dll&#10;extension=php_sqlite3.dll" />
     <MESSAGE value="Added TNTSearch for the Entity it is working properly but there is a problem with the array.&#10;&#10;when retrieving a forign data, or array like location it is not indexed using scout and tntsearch :import artisan command." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added TNTSearch for the Entity it is working properly but there is a problem with the array.&#10;&#10;when retrieving a forign data, or array like location it is not indexed using scout and tntsearch :import artisan command." />
+    <MESSAGE value="* Added the appends to load the external relation ships.&#10;* there was a problem when using the toArray method, so i have commented it out instead i have commented it.&#10;&#10;* I have added get()Attribute to the Entity class (getAvatarAttribute) and (getCoverAttribute) ..." />
+    <option name="LAST_COMMIT_MESSAGE" value="* Added the appends to load the external relation ships.&#10;* there was a problem when using the toArray method, so i have commented it out instead i have commented it.&#10;&#10;* I have added get()Attribute to the Entity class (getAvatarAttribute) and (getCoverAttribute) ..." />
   </component>
 </project>
