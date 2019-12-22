@@ -24,8 +24,8 @@
             <main>
 
                 <label class="text-gray-700 capitalize block mb-2" for="">email</label>
-                <div class="border border-gray-300 border-solid rounded flex px-1 flex mb-4">
-                    <input class="flex-1 outline-none leading-loose" type="text">
+                <div class="input">
+                    <input type="text">
                 </div>
 
                 <label class="text-gray-700 capitalize block mb-2" for="">password</label>

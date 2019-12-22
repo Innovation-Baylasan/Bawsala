@@ -1,0 +1,19 @@
+.table {
+  @apply w-full;
+  thead {
+    box-shadow: 0 0.8px 1px 0 rgba(139, 139, 139, 0.59);
+    @apply uppercase;
+  }
+  th, td {
+    @apply px-3 py-1;
+  }
+  td {
+    @apply text-center;
+  }
+
+  &.table-striped {
+    tr:nth-child(even) {
+      @apply bg-gray-100;
+    }
+  }
+}

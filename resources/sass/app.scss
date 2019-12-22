@@ -4,6 +4,10 @@
 
 @tailwind utilities;
 
+@import "./components/input";
+@import "./components/table";
+@import "./components/pagination";
+@import "./components/button";
 @import "~@glidejs/glide/src/assets/sass/glide.core";
 
 .cover-skewer {

@@ -13,7 +13,8 @@
                 <slide classes="search-interaction w-3/4 h-3/4 mb-auto">
                     <template v-slot:footer>
                         <h3 class="uppercase text-2xl font-bold mb-4">find out</h3>
-                        <p class="text-gray-500 font-hairline capitalize">rambled it to make a type specimen book. It has survived not
+                        <p class="text-gray-500 font-hairline capitalize">rambled it to make a type specimen book. It
+                            has survived not
                             only five centuries, but also the leap into electronic
                             typesetting, remaining essentially unchanged.</p>
                     </template>
@@ -21,7 +22,8 @@
                 <slide classes="map-interaction w-3/4 h-3/4 mb-auto">
                     <template v-slot:footer>
                         <h3 class="uppercase text-2xl font-bold mb-4">Communicate</h3>
-                        <p class="text-gray-500 font-hairline capitalize">rambled it to make a type specimen book. It has survived not
+                        <p class="text-gray-500 font-hairline capitalize">rambled it to make a type specimen book. It
+                            has survived not
                             only five centuries, but also the leap into electronic
                             typesetting, remaining essentially unchanged.</p>
                     </template>
@@ -29,7 +31,8 @@
                 <slide classes="editor-interaction w-3/4 h-3/4 mb-auto">
                     <template v-slot:footer>
                         <h3 class="uppercase text-2xl font-bold mb-4">Explore</h3>
-                        <p class="text-gray-500 font-hairline capitalize">rambled it to make a type specimen book. It has survived not
+                        <p class="text-gray-500 font-hairline capitalize">rambled it to make a type specimen book. It
+                            has survived not
                             only five centuries, but also the leap into electronic
                             typesetting, remaining essentially unchanged.</p>
                     </template>
@@ -45,24 +48,24 @@
             </header>
             <main>
 
-                <label class="text-gray-700 capitalize block mb-2" for="">User name</label>
-                <div class="border border-gray-300 border-solid rounded flex px-1 flex mb-4">
-                    <input class="flex-1 outline-none leading-loose" type="text">
+                <label class="input-label" for="">User name</label>
+                <div class="input">
+                    <input type="text">
                 </div>
 
-                <label class="text-gray-700 capitalize block mb-2" for="">email</label>
-                <div class="border border-gray-300 border-solid rounded flex px-1 flex mb-4">
-                    <input class="flex-1 outline-none leading-loose" type="text">
+                <label class="input-label" for="">email</label>
+                <div class="input">
+                    <input type="text">
                 </div>
 
-                <label class="text-gray-700 capitalize block mb-2" for="">password</label>
-                <div class="border border-gray-300 border-solid rounded flex px-1 flex mb-4">
-                    <input class="flex-1 outline-none leading-loose" type="text">
+                <label class="input-label" for="">password</label>
+                <div class="input">
+                    <input type="text">
                 </div>
 
-                <label class="text-gray-700 capitalize block mb-2" for="">password confirmation</label>
-                <div class="border border-gray-300 border-solid rounded flex px-1 flex mb-4">
-                    <input class="flex-1 outline-none leading-loose" type="text">
+                <label class="input-label" for="">password confirmation</label>
+                <div class="input">
+                    <input type="text">
                 </div>
 
                 <label class="text-gray-700 capitalize block mb-2" for="">Register as</label>

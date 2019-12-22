@@ -1,50 +1,54 @@
-<h1> All Tags </h1>
+@extends('layouts.admin')
 
-<br>
+@section('content')
+    <h1> All Tags </h1>
 
-
-@if($message = Session::get('success'))
-    <hr>
-    <p>
-        {{ $message  }}
-    </p>
-    <hr>
-@endif
+    <br>
 
 
-<a href="{{ route('tags.create')  }}">Create Tag</a>
+    @if($message = Session::get('success'))
+        <hr>
+        <p>
+            {{ $message  }}
+        </p>
+        <hr>
+    @endif
 
-<br>
-<br>
-<br>
 
-<table border="1">
-    <tr>
-        <th> id </th>
-        <th> tag </th>
-        <th> options </th>
-    </tr>
+    <a href="{{ route('tags.create')  }}">Create Tag</a>
 
-    @foreach($tag as $row)
+    <br>
+    <br>
+    <br>
+
+    <table class="table-auto table">
         <tr>
-            <td> {{ $row->id  }} </td>
-            <td> {{ $row->name  }} </td>
-            <td>
-                <a href="{{ route('tags.show', $row->id)  }}">show</a> |
-                <a href="{{ route('tags.edit', $row->id)  }}">edit</a> |
-                <form method="POST" action="{{ route('tags.destroy', $row->id)  }}">
-
-                    @csrf
-                    @method('DELETE')
-                    <input type="submit" value="delete" />
-
-                </form>
-            </td>
+            <th> id</th>
+            <th> tag</th>
+            <th> options</th>
         </tr>
-    @endforeach
-</table>
 
-<br>
-<br>
+        @foreach($tag as $row)
+            <tr>
+                <td> {{ $row->id  }} </td>
+                <td> {{ $row->name  }} </td>
+                <td>
+                    <a href="{{ route('tags.show', $row->id)  }}">show</a> |
+                    <a href="{{ route('tags.edit', $row->id)  }}">edit</a> |
+                    <form method="POST" action="{{ route('tags.destroy', $row->id)  }}">
 
-{!! $tag->links() !!}
+                        @csrf
+                        @method('DELETE')
+                        <input type="submit" value="delete"/>
+
+                    </form>
+                </td>
+            </tr>
+        @endforeach
+    </table>
+
+    <br>
+    <br>
+
+    {!! $tag->links() !!}
+@endsection

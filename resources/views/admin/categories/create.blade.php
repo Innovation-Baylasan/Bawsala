@@ -1,40 +1,38 @@
-
 @extends('layouts.admin')
 
-@section('conetent')
-<h1> Create Category </h1>
+@section('content')
+    <div class="p-4">
+        <h1 class="mb-8"> Create Category </h1>
 
-@if($errors->any())
+        @if($errors->any())
+            <hr>
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li> {{ $error  }} </li>
+                @endforeach
+            </ul>
+            <hr>
+        @endif
 
-    <hr>
-    <ul>
-        @foreach($errors->all() as $error)
-            <li> {{ $error  }} </li>
-        @endforeach
-    </ul>
-    <hr>
+        <form method="POST"
+              action="{{ route('categories.store')  }}"
+              class="w-3/4"
+              enctype="multipart/form-data">
 
-@endif
+            @csrf
 
-<form method="POST" action="{{ route('categories.store')  }}" enctype="multipart/form-data">
+            <label class="input-label" for="category">Category Name</label>
+            <div class="input">
+                <input type="text" id="category" name="name">
+            </div>
 
-    @csrf
+            <label class="input-label" for="icon">Icon</label>
+            <div class="input">
+                <input type="file" id="icon" name="icon">
+            </div>
 
-    <label for="name"></label>
+            <button class="button" type="submit">Create</button>
 
-    <label for="category">Cateogry Name</label>
-    <input type="text" id="category" name="name">
-
-    <br>
-    <br>
-
-    <label for="icon">Icon</label>
-    <input type="file" id="icon" name="icon">
-
-    <br>
-    <br>
-
-    <input type="submit" value="Create" />
-
-</form>
+        </form>
+    </div>
 @endsection

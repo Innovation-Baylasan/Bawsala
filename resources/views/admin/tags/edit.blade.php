@@ -1,28 +1,32 @@
-<h1> Create Tag </h1>
+@extends('layouts.admin')
 
-@if($errors->any())
+@section('content')
+    <h1> Create Tag </h1>
 
-    <hr>
-    <ul>
-        @foreach($errors->all() as $error)
-            <li> {{ $error  }} </li>
-        @endforeach
-    </ul>
-    <hr>
+    @if($errors->any())
 
-@endif
+        <hr>
+        <ul>
+            @foreach($errors->all() as $error)
+                <li> {{ $error  }} </li>
+            @endforeach
+        </ul>
+        <hr>
 
-<form method="POST" action="{{ route('tags.update', $tag->id)  }}">
+    @endif
 
-    @csrf
-    @method('PATCH')
+    <form method="POST" action="{{ route('tags.update', $tag->id)  }}">
 
-    <label for="tag">Tag</label>
-    <input type="text" id="tag" name="name" value="{{ $tag->name  }}">
+        @csrf
+        @method('PATCH')
 
-    <br>
-    <br>
+        <label for="tag">Tag</label>
+        <input type="text" id="tag" name="name" value="{{ $tag->name  }}">
 
-    <input type="submit" value="Update" />
+        <br>
+        <br>
 
-</form>
+        <input type="submit" value="Update"/>
+
+    </form>
+@endsection
