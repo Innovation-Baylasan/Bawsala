@@ -39,7 +39,7 @@
                         <img src="{{ URL::to('/')  }}/images/categoryIcon/{{ $category->icon  }}" alt="">
                     </td>
                     <td class="flex justify-end">
-                        <a href="#"
+                        <a href="{{route('categories.edit',$category)}}"
                            class="flex  items-center justify-center p-2"
                         >
                             <div class="w-8 h-8 flex items-center justify-center p-1 rounded bg-gray-100">
