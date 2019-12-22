@@ -20,23 +20,23 @@
 
     <tr>
         <td>ID</td>
-        <td>{{ $data->id  }}</td>
+        <td>{{ $profile->id  }}</td>
     </tr>
     <tr>
         <td>Entity</td>
-        <td>{{ $data->entity->name  }}</td>
+        <td>{{ $profile->entity->name  }}</td>
     </tr>
     <tr>
         <td>COVER</td>
-        <td><img src="{{ URL::to('/')  }}/images/profiles/covers/{{ $data->cover  }}" alt=""></td>
+        <td><img src="{{ URL::to('/')  }}/images/profiles/covers/{{ $profile->cover  }}" alt=""></td>
     </tr>
     <tr>
         <td>Logo</td>
-        <td><img src="{{ URL::to('/')  }}/images/profiles/logos/{{ $data->Logo  }}" alt=""></td>
+        <td><img src="{{ URL::to('/')  }}/images/profiles/logos/{{ $profile->Logo  }}" alt=""></td>
     </tr>
     <tr>
         <td>Address</td>
-        <td>{{ $data->Address  }}</td>
+        <td>{{ $profile->Address  }}</td>
     </tr>
 
 </table>

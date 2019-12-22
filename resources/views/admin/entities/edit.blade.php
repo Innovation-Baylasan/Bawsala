@@ -12,7 +12,7 @@
 
 @endif
 
-<form method="POST" action="{{ route('entities.update', $data->id)  }}">
+<form method="POST" action="{{ route('entities.update', $entity->id)  }}">
 
     @csrf
     @method('PATCH')
@@ -20,7 +20,7 @@
     <label for="user">Select entity owner</label>
     <select id="user" name="user_id" >
         @foreach($users as $user)
-            <option @if($user->id == $data->user->id) selected @endif value="{{ $user->id  }}">{{ $user->name }}</option>
+            <option @if($user->id == $entity->user->id) selected @endif value="{{ $user->id  }}">{{ $user->name }}</option>
         @endforeach
     </select>
 
@@ -30,7 +30,7 @@
     <label for="category">Select entity category</label>
     <select id="category" name="category_id" >
         @foreach($categories as $category)
-            <option @if($category->id == $data->category->id) selected @endif value="{{ $category->id  }}">{{ $category->name }}</option>
+            <option @if($category->id == $entity->category->id) selected @endif value="{{ $category->id  }}">{{ $category->name }}</option>
         @endforeach
     </select>
 
@@ -38,19 +38,19 @@
     <br>
 
     <label for="name">Entity Name</label>
-    <input type="text" id="name" name="name" value="{{ $data->name  }}">
+    <input type="text" id="name" name="name" value="{{ $entity->name  }}">
 
     <br>
     <br>
 
     <label for="description">Entity Description</label>
-    <input type="text" id="description" name="description" value="{{ $data->description  }}">
+    <input type="text" id="description" name="description" value="{{ $entity->description  }}">
 
     <br>
     <br>
 
     <label for="location">Entity Location</label>
-    <input type="text" id="location" name="location" value="{{ json_encode($data->location) }}">
+    <input type="text" id="location" name="location" value="{{ json_encode($entity->location) }}">
 
     <br>
     <br>

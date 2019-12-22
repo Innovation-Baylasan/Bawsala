@@ -30,7 +30,7 @@
         <th> options </th>
     </tr>
 
-    @foreach($data as $row)
+    @foreach($entity as $row)
         <tr>
             <td> {{ $row->id  }} </td>
             <td> {{ $row->user->name  }} </td>
@@ -57,4 +57,4 @@
 <br>
 <br>
 
-{!! $data->links() !!}
+{!! $entity->links() !!}

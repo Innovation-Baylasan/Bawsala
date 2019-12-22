@@ -10,24 +10,24 @@ use Illuminate\Http\Request;
 class UsersController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the users
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
 
-        $data = User::latest()->paginate(5);
+        $user = User::latest()->paginate(5);
 
-        // dd($data);
+        // dd($user);
 
-        return view('admin.users.index', compact('data'))
+        return view('admin.users.index', compact('user'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
 
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new user.
      *
      * @return \Illuminate\Http\Response
      */
@@ -38,7 +38,7 @@ class UsersController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created user in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -67,52 +67,47 @@ class UsersController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified user.
      *
-     * @param  int  $id
+     * @param  User $user
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
 
-        $data = User::findOrFail($id);
-
-        return View('admin.users.show', compact('data'));
+        return View('admin.users.show', compact('user'));
 
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified user.
      *
-     * @param  int  $id
+     * @param  User $user
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
 
-        $data = User::findOrFail($id);
         $roles = Role::all();
 
-        return view('admin.users.edit', compact('data'), compact('roles'));
+        return view('admin.users.edit', compact('user','roles'));
 
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified user in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  User $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
         $request->validate([
             'name' => 'required',
             'role_id' => 'required'
         ]);
 
-        // find the user
-        $user = User::find($id);
         // check if email changed on update opreation and make sure the email is not taken by validation rules
         if ($request->email != $user->email) {
             $request->validate([
@@ -126,22 +121,23 @@ class UsersController extends Controller
             'email' => $request->email
         );
 
-        User::whereId($id)->update($form_data);
+        $user->update($form_data);
 
         return redirect('/admin/users')
             ->with('success', 'Data updated successfully.');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified user from storage.
      *
-     * @param  int  $id
+     * @param User $user
      * @return \Illuminate\Http\Response
+     *
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        $data = User::findOrFail($id);
-        $data->delete();
+        $user->delete();
 
         return redirect('/admin/users')
             ->with('success', 'Data deleted successfully');

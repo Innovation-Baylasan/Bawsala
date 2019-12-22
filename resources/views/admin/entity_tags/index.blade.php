@@ -26,7 +26,7 @@
         <th> options </th>
     </tr>
 
-    @foreach($data as $row)
+    @foreach($entityTag as $row)
         <tr>
             <td> {{ $row->id  }} </td>
             <td> {{ $row->entity->name  }} </td>
@@ -49,4 +49,4 @@
 <br>
 <br>
 
-{!! $data->links() !!}
+{!! $entityTag->links() !!}

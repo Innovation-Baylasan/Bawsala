@@ -19,11 +19,11 @@
 
     <tr>
         <td>ID</td>
-        <td>{{ $data->id  }}</td>
+        <td>{{ $tag->id  }}</td>
     </tr>
     <tr>
         <td>Tag</td>
-        <td>{{ $data->name  }}</td>
+        <td>{{ $tag->name  }}</td>
     </tr>
 
 </table>

@@ -20,11 +20,11 @@ class EntityTagsController extends Controller
     public function index()
     {
 
-        $data = EntityTag::latest()->paginate(5);
+        $entityTag = EntityTag::latest()->paginate(5);
 
-        // dd($data);
+        // dd($entityTag);
 
-        return view('admin.entity_tags.index', compact('data'))
+        return view('admin.entity_tags.index', compact('entityTag'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
 
     }
@@ -68,35 +68,31 @@ class EntityTagsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified entityTag.
      *
-     * @param  int  $id
+     * @param  EntityTag  $entityTag
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(EntityTag $entityTag)
     {
 
-        $data = EntityTag::findOrFail($id);
-
-        return View('admin.entity_tags.show', compact('data'));
+        return View('admin.entity_tags.show', compact('entityTag'));
 
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  EntityTag  $entityTag
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(EntityTag $entityTag)
     {
-
-        $data = EntityTag::findOrFail($id);
 
         $tags = Tag::all();
         $entities = Entity::all();
 
-        return view('admin.entity_tags.edit', compact('data','tags', 'entities'));
+        return view('admin.entity_tags.edit', compact('entityTag','tags', 'entities'));
 
     }
 
@@ -104,10 +100,10 @@ class EntityTagsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  EntityTag   $entityTag
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, EntityTag $entityTag)
     {
         $request->validate([
             'entity_id' =>'required',
@@ -119,22 +115,22 @@ class EntityTagsController extends Controller
             'tag_id' => $request->tag_id
         );
 
-        EntityTag::whereId($id)->update($form_data);
+        $entityTag->update($form_data);
 
         return redirect('/admin/entity_tags')
             ->with('success', 'Data updated successfully.');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified entity from storage.
      *
-     * @param  int  $id
+     * @param  EntityTag  $entityTag
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(EntityTag $entityTag)
     {
-        $data = EntityTag::findOrFail($id);
-        $data->delete();
+
+        $entityTag->delete();
 
         return redirect('/admin/entity_tags')
             ->with('success', 'Data deleted successfully');

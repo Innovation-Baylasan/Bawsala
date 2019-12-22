@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="33.962" height="36.867" viewBox="0 0 33.962 36.867">
+    <defs>
+        <style>
+            .cls-1{fill:none;stroke:#707070;stroke-width:2px}.cls-2{fill:#eb413c}
+        </style>
+    </defs>
+    <g id="Group_1439" data-name="Group 1439" transform="translate(-1093.381 -27.566)">
+        <g id="notifications-button" transform="translate(1094.381 28.566)">
+            <g id="notifications">
+                <path id="Path_451" d="M53.069 34.867a3.5 3.5 0 0 0 3.487-3.487h-6.974a3.5 3.5 0 0 0 3.487 3.487zM64.4 24.407v-9.588a11.219 11.219 0 0 0-8.716-10.984v-1.22a2.615 2.615 0 0 0-5.23 0v1.22a11.219 11.219 0 0 0-8.717 10.983v9.589l-3.487 3.487v1.743h29.637v-1.743z" class="cls-1" data-name="Path 451" transform="translate(-38.25)"/>
+            </g>
+        </g>
+        <circle id="Ellipse_12" cx="6.846" cy="6.846" r="6.846" class="cls-2" data-name="Ellipse 12" transform="translate(1113.65 29.569)"/>
+    </g>
+</svg>

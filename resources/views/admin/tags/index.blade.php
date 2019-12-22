@@ -25,7 +25,7 @@
         <th> options </th>
     </tr>
 
-    @foreach($data as $row)
+    @foreach($tag as $row)
         <tr>
             <td> {{ $row->id  }} </td>
             <td> {{ $row->name  }} </td>
@@ -47,4 +47,4 @@
 <br>
 <br>
 
-{!! $data->links() !!}
+{!! $tag->links() !!}
