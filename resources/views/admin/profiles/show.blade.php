@@ -12,7 +12,7 @@
 <br>
 <br>
 
-<table border="1">
+<table class="table-auto table">
     <tr>
         <th>Field</th>
         <th>Value</th>

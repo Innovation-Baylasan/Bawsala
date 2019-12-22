@@ -1,29 +1,33 @@
-<h1> Create Role </h1>
+@extends('layouts.admin')
 
-@if($errors->any())
+@section('content')
+    <h1> Create Role </h1>
 
-    <hr>
-    <ul>
-        @foreach($errors->all() as $error)
-            <li> {{ $error  }} </li>
-        @endforeach
-    </ul>
-    <hr>
+    @if($errors->any())
 
-@endif
+        <hr>
+        <ul>
+            @foreach($errors->all() as $error)
+                <li> {{ $error  }} </li>
+            @endforeach
+        </ul>
+        <hr>
 
-<form method="POST" action="{{ route('roles.store')  }}">
+    @endif
 
-    @csrf
+    <form method="POST" action="{{ route('roles.store')  }}">
 
-    <label for="name"></label>
+        @csrf
 
-    <label for="role">Role</label>
-    <input type="text" id="role" name="role">
+        <label for="name"></label>
 
-    <br>
-    <br>
+        <label for="role">Role</label>
+        <input type="text" id="role" name="role">
 
-    <input type="submit" value="Create" />
+        <br>
+        <br>
 
-</form>
+        <input type="submit" value="Create"/>
+
+    </form>
+@endsection

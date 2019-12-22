@@ -1,0 +1,7 @@
+.button {
+  @apply bg-red-500  px-6 py-2 outline-none text-sm capitalize text-white rounded;
+  &.is-green {
+    @apply bg-green-600;
+  }
+
+}

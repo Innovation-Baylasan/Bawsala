@@ -1,3 +1,6 @@
+@extends('layouts.admin')
+
+@section('content')
 <h1> Create Entity </h1>
 
 @if($errors->any())
@@ -57,3 +60,4 @@
     <input type="submit" value="Create" />
 
 </form>
+@endsection

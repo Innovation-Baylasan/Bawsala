@@ -15,8 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/register', function () {
-    return view('signup');
+
+Route::get('/@{name}', function ($name) {
+    return view('profile')->withName($name);
 });
 
 Route::namespace('Admin')
@@ -40,3 +41,7 @@ Route::namespace('Admin')
         Route::resource('entity_tags', 'EntityTagsController');
 
     });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

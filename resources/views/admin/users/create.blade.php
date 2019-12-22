@@ -1,50 +1,54 @@
-<h1> Create User </h1>
+@extends('layouts.admin')
 
-@if($errors->any())
+@section('content')
+    <h1> Create User </h1>
 
-    <hr>
-    <ul>
-        @foreach($errors->all() as $error)
-            <li> {{ $error  }} </li>
-        @endforeach
-    </ul>
-    <hr>
+    @if($errors->any())
 
-@endif
+        <hr>
+        <ul>
+            @foreach($errors->all() as $error)
+                <li> {{ $error  }} </li>
+            @endforeach
+        </ul>
+        <hr>
 
-<form method="POST" action="{{ route('users.store')  }}">
+    @endif
 
-    @csrf
+    <form method="POST" action="{{ route('users.store')  }}">
 
-    <label for="name">Enter User Name</label>
-    <input type="text" id="name" name="name">
+        @csrf
 
-    <br>
-    <br>
+        <label for="name">Enter User Name</label>
+        <input type="text" id="name" name="name">
 
-    <label for="email">Enter User Email</label>
-    <input type="email" id="email" name="email">
+        <br>
+        <br>
 
-    <br>
-    <br>
+        <label for="email">Enter User Email</label>
+        <input type="email" id="email" name="email">
+
+        <br>
+        <br>
 
 
-    <label for="role">Select user role</label>
-    <select id="role" name="role_id" >
-        @foreach($roles as $role)
-            <option value="{{ $role->id  }}">{{ $role->role }}</option>
-        @endforeach
-    </select>
+        <label for="role">Select user role</label>
+        <select id="role" name="role_id">
+            @foreach($roles as $role)
+                <option value="{{ $role->id  }}">{{ $role->role }}</option>
+            @endforeach
+        </select>
 
-    <br>
-    <br>
+        <br>
+        <br>
 
-    <label for="password">Enter Password</label>
-    <input type="password" id="password" name="password">
+        <label for="password">Enter Password</label>
+        <input type="password" id="password" name="password">
 
-    <br>
-    <br>
+        <br>
+        <br>
 
-    <input type="submit" value="Create User" />
+        <input type="submit" value="Create User"/>
 
-</form>
+    </form>
+@endsection

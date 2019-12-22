@@ -1,6 +1,7 @@
 module.exports = {
     theme: {
         boxShadow: {
+            sm: ' 0 1px 4px 0 rgba(0, 0, 0, 0.16)',
             default: ' 0 3px 42px 0 rgba(114, 114, 114, 0.42)',
             md: ' 0 4px 6px -1px rgba(0, 0, 0, .1), 0 2px 4px -1px rgba(0, 0, 0, .06)',
             lg: ' 0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -2px rgba(0, 0, 0, .05)',
@@ -25,12 +26,22 @@ module.exports = {
                 red: {
                     '100': '#FEEEED',
                     '500': '#f04238',
+                    '700': '#820400',
                 },
                 gray: {
                     '100': '#F0F0F0',
+                    '200': '#f2f2f2',
                     '300': '#d9d9d9',
                     '500': '#9A9A9A',
                     '700': '#818181',
+                    '900': '#1c1a1a',
+                },
+                blue:{
+                    '100':'#e3f0ff',
+                    '700':'#0e5ab0'
+                },
+                green:{
+                    '600':'#4aab50',
                 }
             }
         }

@@ -1,58 +1,62 @@
-<h1> All Users </h1>
+@extends('layouts.admin')
 
-<br>
+@section('content')
+    <h1> All Users </h1>
 
-
-@if($message = Session::get('success'))
-    <hr>
-    <p>
-        {{ $message  }}
-    </p>
-    <hr>
-@endif
+    <br>
 
 
-<a href="{{ route('users.create')  }}">Create User</a>
+    @if($message = Session::get('success'))
+        <hr>
+        <p>
+            {{ $message  }}
+        </p>
+        <hr>
+    @endif
 
-<br>
-<br>
-<br>
 
-<table border="1">
-    <tr>
-        <th> id </th>
-        <th> role </th>
-        <th> Name </th>
-        <th> Email </th>
-        <th> Email Verified At </th>
-        <th> Password </th>
-        <th> options </th>
-    </tr>
+    <a href="{{ route('users.create')  }}">Create User</a>
 
-    @foreach($user as $row)
+    <br>
+    <br>
+    <br>
+
+    <table class="table-auto table">
         <tr>
-            <td> {{ $row->id  }} </td>
-            <td> {{ $row->role->role  }} </td>
-            <td> {{ $row->name  }} </td>
-            <td> {{ $row->email  }} </td>
-            <td> {{ $row->email_verified_at  }} </td>
-            <td> {{ $row->password  }} </td>
-            <td>
-                <a href="{{ route('users.show', $row->id)  }}">show</a> |
-                <a href="{{ route('users.edit', $row->id)  }}">edit</a> |
-                <form method="POST" action="{{ route('users.destroy', $row->id)  }}">
-
-                    @csrf
-                    @method('DELETE')
-                    <input type="submit" value="delete" />
-
-                </form>
-            </td>
+            <th> id</th>
+            <th> role</th>
+            <th> Name</th>
+            <th> Email</th>
+            <th> Email Verified At</th>
+            <th> Password</th>
+            <th> options</th>
         </tr>
-    @endforeach
-</table>
 
-<br>
-<br>
+        @foreach($user as $row)
+            <tr>
+                <td> {{ $row->id  }} </td>
+                <td> {{ $row->role->role ?? ''  }} </td>
+                <td> {{ $row->name  }} </td>
+                <td> {{ $row->email  }} </td>
+                <td> {{ $row->email_verified_at  }} </td>
+                <td> {{ $row->password  }} </td>
+                <td>
+                    <a href="{{ route('users.show', $row->id)  }}">show</a> |
+                    <a href="{{ route('users.edit', $row->id)  }}">edit</a> |
+                    <form method="POST" action="{{ route('users.destroy', $row->id)  }}">
 
-{!! $user->links() !!}
+                        @csrf
+                        @method('DELETE')
+                        <input type="submit" value="delete"/>
+
+                    </form>
+                </td>
+            </tr>
+        @endforeach
+    </table>
+
+    <br>
+    <br>
+
+    {!! $user->links() !!}
+@endsection
