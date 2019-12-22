@@ -15,13 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/register', function () {
-    return view('signup');
-});
-
-Route::get('/login', function () {
-    return view('sign-in');
-});
 
 Route::get('/@{name}', function ($name) {
     return view('profile')->withName($name);

@@ -1,77 +1,124 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+</head>
+<body>
+<div id="app">
+    <div class="flex">
+        <div class="flex-1 w-1/2 px-16 py-4">
+            <Carousel>
+                <slide classes="search-interaction w-3/4 h-3/4 mb-auto">
+                    <template v-slot:footer>
+                        <h3 class="uppercase text-2xl font-bold mb-4">find out</h3>
+                        <p class="text-gray-500 font-hairline capitalize">rambled it to make a type specimen book. It has survived not
+                            only five centuries, but also the leap into electronic
+                            typesetting, remaining essentially unchanged.</p>
+                    </template>
+                </slide>
+                <slide classes="map-interaction w-3/4 h-3/4 mb-auto">
+                    <template v-slot:footer>
+                        <h3 class="uppercase text-2xl font-bold mb-4">Communicate</h3>
+                        <p class="text-gray-500 font-hairline capitalize">rambled it to make a type specimen book. It has survived not
+                            only five centuries, but also the leap into electronic
+                            typesetting, remaining essentially unchanged.</p>
+                    </template>
+                </slide>
+                <slide classes="editor-interaction w-3/4 h-3/4 mb-auto">
+                    <template v-slot:footer>
+                        <h3 class="uppercase text-2xl font-bold mb-4">Explore</h3>
+                        <p class="text-gray-500 font-hairline capitalize">rambled it to make a type specimen book. It has survived not
+                            only five centuries, but also the leap into electronic
+                            typesetting, remaining essentially unchanged.</p>
+                    </template>
+                </slide>
+            </Carousel>
+        </div>
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+        <div class="flex-1 px-16 py-4 border-l border-gray-100 border-solid">
+            <header class="mb-8">
+                <h3 class="text-4xl font-bold">Sign up</h3>
+                <p class="leading-normal font-hairline text-gray-500 pr-10">Here is placed a text the user wants to
+                    register to log in to obtain additional features</p>
+            </header>
+            <main>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                <label class="text-gray-700 capitalize block mb-2" for="">User name</label>
+                <div class="border border-gray-300 border-solid rounded flex px-1 flex mb-4">
+                    <input class="flex-1 outline-none leading-loose" type="text">
                 </div>
-            </div>
+
+                <label class="text-gray-700 capitalize block mb-2" for="">email</label>
+                <div class="border border-gray-300 border-solid rounded flex px-1 flex mb-4">
+                    <input class="flex-1 outline-none leading-loose" type="text">
+                </div>
+
+                <label class="text-gray-700 capitalize block mb-2" for="">password</label>
+                <div class="border border-gray-300 border-solid rounded flex px-1 flex mb-4">
+                    <input class="flex-1 outline-none leading-loose" type="text">
+                </div>
+
+                <label class="text-gray-700 capitalize block mb-2" for="">password confirmation</label>
+                <div class="border border-gray-300 border-solid rounded flex px-1 flex mb-4">
+                    <input class="flex-1 outline-none leading-loose" type="text">
+                </div>
+
+                <label class="text-gray-700 capitalize block mb-2" for="">Register as</label>
+                <div class="flex items-center -mx-2 mb-4">
+                    <div class="flex mx-2">
+                        <input class="appearance-none" name="type" type="radio" id="company">
+                        <label class="select-label" for="company">company</label>
+                    </div>
+                    <div class="flex">
+                        <input class="appearance-none" name="type" type="radio" id="user">
+                        <label class="select-label" for="user">user</label>
+                    </div>
+                </div>
+
+
+                <p class="text-gray-500">
+                    Here a text is placed explaining to the user that upon registration, the <a href="#"
+                                                                                                class="text-red-500 font-bold">agreement
+                        policy</a> and
+                    <a href="#"
+                       class="text-red-500 font-bold">privacy policy</a>
+                    will be approved and their consequences bear
+                </p>
+
+                <div class="flex items-center justify-center mt-8">
+                    <button class="bg-red-500 rounded px-20 py-3 outline-none uppercase text-white font-bold">register
+                        now
+                    </button>
+                </div>
+
+            </main>
         </div>
     </div>
 </div>
-@endsection
+<script src="{{asset('js/app.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.5.9/lottie_light.min.js"></script>
+<script>
+    let searchInteraction = lottie.loadAnimation({
+        container: document.querySelector('.search-interaction'),
+        path: '/js/searchInteraction.json',
+        renderer: 'svg',
+        loop: true,
+    })
+
+    let mapInteracion = lottie.loadAnimation({
+        container: document.querySelector('.map-interaction'),
+        path: '/js/mapInteraction.json',
+        renderer: 'svg',
+        loop: true,
+    })
+    let editorInteraction = lottie.loadAnimation({
+        container: document.querySelector('.editor-interaction'),
+        path: '/js/editorInteraction.json',
+        renderer: 'svg',
+        loop: true,
+    })
+</script>
+</body>
+</html>

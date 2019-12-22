@@ -1,73 +1,81 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+</head>
+<body>
+<div id="app">
+    <div class="flex">
+        <div class="flex-1 w-1/2  py-4">
+            <div class="relative">
+                <img class="absolute top-0 left-0" src="{{asset('/images/map-overlay.png')}}" alt="">
+                <img class="absolute top-0 left-0" src="{{asset('/images/app-mockup.png')}}" alt="">
             </div>
+        </div>
+
+        <div class="flex-1 px-16 py-4 ">
+            <header class="mb-8">
+                <h3 class="text-4xl font-bold">Sign in</h3>
+                <p class="leading-normal font-hairline text-gray-500 pr-10">Here is placed a text the user wants to
+                    register to log in to obtain additional features</p>
+            </header>
+            <main>
+
+                <label class="text-gray-700 capitalize block mb-2" for="">email</label>
+                <div class="border border-gray-300 border-solid rounded flex px-1 flex mb-4">
+                    <input class="flex-1 outline-none leading-loose" type="text">
+                </div>
+
+                <label class="text-gray-700 capitalize block mb-2" for="">password</label>
+                <div class="border border-gray-300 border-solid rounded flex px-1 flex mb-4">
+                    <input class="flex-1 outline-none leading-loose" type="text">
+                </div>
+
+
+
+
+                <p class="text-gray-500">
+                    Here a text is placed explaining to the user that upon registration, the <a href="#"
+                                                                                                class="text-red-500 font-bold">agreement
+                        policy</a> and
+                    <a href="#"
+                       class="text-red-500 font-bold">privacy policy</a>
+                    will be approved and their consequences bear
+                </p>
+
+                <div class="flex items-center justify-center mt-8">
+                    <button class="bg-red-500 rounded px-24 py-3 outline-none uppercase text-white font-bold">Sing In
+                    </button>
+                </div>
+
+            </main>
         </div>
     </div>
 </div>
-@endsection
+<script src="{{asset('js/app.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.5.9/lottie_light.min.js"></script>
+<script>
+    let searchInteraction = lottie.loadAnimation({
+        container: document.querySelector('.search-interaction'),
+        path: '/js/searchInteraction.json',
+        renderer: 'svg',
+        loop: true,
+    })
+
+    let mapInteracion = lottie.loadAnimation({
+        container: document.querySelector('.map-interaction'),
+        path: '/js/mapInteraction.json',
+        renderer: 'svg',
+        loop: true,
+    })
+    let editorInteraction = lottie.loadAnimation({
+        container: document.querySelector('.editor-interaction'),
+        path: '/js/editorInteraction.json',
+        renderer: 'svg',
+        loop: true,
+    })
+</script>
+</body>
+</html>
