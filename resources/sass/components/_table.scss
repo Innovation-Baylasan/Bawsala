@@ -1,5 +1,5 @@
 .table {
-  @apply w-full;
+  @apply w-full mb-6;
   thead {
     box-shadow: 0 0.8px 1px 0 rgba(139, 139, 139, 0.59);
     @apply uppercase;
@@ -8,7 +8,7 @@
     @apply px-3 py-1;
   }
   td {
-    @apply text-center;
+    @apply text-center text-sm;
   }
 
   &.table-striped {

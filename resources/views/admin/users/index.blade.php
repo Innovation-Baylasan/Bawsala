@@ -1,28 +1,22 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1> All Users </h1>
+    <div class="p-4">
+        @if($message = Session::get('success'))
+            <hr>
+            <p>
+                {{ $message  }}
+            </p>
+            <hr>
+        @endif
 
-    <br>
-
-
-    @if($message = Session::get('success'))
-        <hr>
-        <p>
-            {{ $message  }}
-        </p>
-        <hr>
-    @endif
-
-
-    <a href="{{ route('users.create')  }}">Create User</a>
-
+        <a class="button" href="{{ route('users.create')  }}">Create User</a>
+    </div>
     <table class="table table-striped">
         <thead>
         <tr>
-            <th> id</th>
-            <th> role</th>
             <th> Name</th>
+            <th> role</th>
             <th> Email</th>
             <th></th>
         </tr>
@@ -31,9 +25,8 @@
         <tbody>
         @foreach($user as $row)
             <tr>
-                <td> {{ $row->id  }} </td>
-                <td> {{ $row->role->role ?? ''  }} </td>
                 <td><a href="{{route('users.show',$row)}}">{{ $row->name  }}</a></td>
+                <td> {{ $row->role->role ?? ''  }} </td>
                 <td> {{ $row->email  }} </td>
                 <td class="flex">
                     <a href="{{route('users.edit',$row)}}"
