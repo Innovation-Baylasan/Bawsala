@@ -9682,6 +9682,7 @@ video {
 
 .table {
   width: 100%;
+  margin-bottom: 1.5rem;
 }
 
 .table thead {
@@ -9698,6 +9699,7 @@ video {
 
 .table td {
   text-align: center;
+  font-size: 0.875rem;
 }
 
 .table.table-striped tr:nth-child(even) {
@@ -9734,6 +9736,7 @@ video {
   text-transform: capitalize;
   color: #fff;
   border-radius: 8px;
+  text-align: center;
 }
 
 .button.is-green {

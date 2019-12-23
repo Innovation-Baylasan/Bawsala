@@ -1,50 +1,49 @@
 @extends('layouts.admin')
 
 @section('content')
-<h1> Create Role </h1>
+    <div class="p-4">
+        <h1> Create Role </h1>
 
-@if($errors->any())
+        @if($errors->any())
 
-    <hr>
-    <ul>
-        @foreach($errors->all() as $error)
-            <li> {{ $error  }} </li>
-        @endforeach
-    </ul>
-    <hr>
+            <hr>
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li> {{ $error  }} </li>
+                @endforeach
+            </ul>
+            <hr>
 
-@endif
+        @endif
 
-<form method="POST" action="{{ route('users.update', $user->id)  }}">
+        <form class="w-3/4" method="POST" action="{{ route('users.update', $user->id)  }}">
 
-    @csrf
-    @method('PATCH')
+            @csrf
+            @method('PATCH')
 
+            <label class="input-label" for="name">Name</label>
+            <div class="input">
+                <input type="text" id="name" name="name" value="{{ $user->name  }}">
+            </div>
 
-    <label for="name">Enter User Name</label>
-    <input type="text" id="name" name="name" value="{{ $user->name  }}">
-
-    <br>
-    <br>
-
-    <label for="email">Enter User Email</label>
-    <input type="email" id="email" name="email" value="{{ $user->email  }}">
-
-    <br>
-    <br>
+            <label class="input-label" for="email">Email</label>
+            <div class="input">
+                <input type="email" id="email" name="email" value="{{ $user->email  }}">
+            </div>
 
 
-    <label for="role">Select user role</label>
-    <select id="role" name="role_id" >
-        @foreach($roles as $role)
-            <option @if($role->id == $user->role->id) selected @endif value="{{ $role->id  }}">{{ $role->role }}</option>
-        @endforeach
-    </select>
+            <label class="input-label" for="role">Select user role</label>
+            <div class="input">
+                <select id="role" name="role_id">
+                    @foreach($roles as $role)
+                        <option @if($role->id == $user->role->id) selected
+                                @endif value="{{ $role->id  }}">{{ $role->role }}</option>
+                    @endforeach
+                </select>
+            </div>
 
-    <br>
-    <br>
+            <button class="button is-green" type="submit">Update</button>
 
-    <input type="submit" value="Update" />
-
-</form>
+        </form>
+    </div>
 @endsection

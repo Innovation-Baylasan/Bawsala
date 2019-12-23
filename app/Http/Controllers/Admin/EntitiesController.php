@@ -20,7 +20,7 @@ class EntitiesController extends Controller
     public function index()
     {
 
-        $entity = Entity::latest()->paginate(5);
+        $entity = Entity::latest()->paginate(10);
 
         // dd($data);
 

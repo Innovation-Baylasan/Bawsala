@@ -1,33 +1,29 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1> All Tags </h1>
-
-    <br>
-
-
-    @if($message = Session::get('success'))
-        <hr>
-        <p>
-            {{ $message  }}
-        </p>
-        <hr>
-    @endif
+    <div class="p-4">
+        @if($message = Session::get('success'))
+            <hr>
+            <p>
+                {{ $message  }}
+            </p>
+            <hr>
+        @endif
 
 
-    <a href="{{ route('tags.create')  }}">Create Tag</a>
+        <a class="button" href="{{ route('tags.create')  }}">Create Tag</a>
+    </div>
 
-    <br>
-    <br>
-    <br>
-
-    <table class="table-auto table">
+    <table class="table table-striped">
+        <thead>
         <tr>
             <th> id</th>
             <th> tag</th>
             <th> options</th>
         </tr>
+        </thead>
 
+        <tbody>
         @foreach($tag as $row)
             <tr>
                 <td> {{ $row->id  }} </td>
@@ -45,10 +41,9 @@
                 </td>
             </tr>
         @endforeach
+        </tbody>
     </table>
 
-    <br>
-    <br>
 
-    {!! $tag->links() !!}
+    {{ $tag->links() }}
 @endsection
