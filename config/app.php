@@ -233,4 +233,6 @@ return [
 
     ],
 
+    'google_map_key' => 'AIzaSyB__zInSzV-ggI9nyQjxK09oPEBNN5Qf6k',
+
 ];

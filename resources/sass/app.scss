@@ -4,8 +4,21 @@
 
 @tailwind utilities;
 
-
+@import "./components/input";
+@import "./components/table";
+@import "./components/pagination";
+@import "./components/button";
+@import "./components/tag";
 @import "~@glidejs/glide/src/assets/sass/glide.core";
+
+.cover-skewer {
+  transform: skewY(-5deg);
+  top: 90%;
+}
+
+.-translate-y-50 {
+  transform: translateY(-50%);
+}
 
 input[type='checkbox']:checked, input[type='radio']:checked + .select-label {
   @apply border-red-500 text-red-500;
@@ -13,4 +26,14 @@ input[type='checkbox']:checked, input[type='radio']:checked + .select-label {
 
 .select-label {
   @apply border-2 border-gray-300 flex items-center justify-between px-4 py-4 rounded cursor-pointer font-bold;
+}
+
+.active {
+  @apply relative;
+  transition: all .3s;
+  &:after {
+    @apply block absolute top-0 left-0 w-1 bg-red-500 h-full rounded rounded-l-none;
+    transition: all .3s;
+    content: "";
+  }
 }

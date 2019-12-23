@@ -1,59 +1,62 @@
-<h1> Create Entity </h1>
+@extends('layouts.admin')
 
-@if($errors->any())
+@section('content')
+    <div class="p-4">
+        <h1> Create Entity </h1>
 
-    <hr>
-    <ul>
-        @foreach($errors->all() as $error)
-            <li> {{ $error  }} </li>
-        @endforeach
-    </ul>
-    <hr>
+        @if($errors->any())
 
-@endif
+            <hr>
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li> {{ $error  }} </li>
+                @endforeach
+            </ul>
+            <hr>
 
-<form method="POST" action="{{ route('entities.store')  }}">
+        @endif
 
-    @csrf
+        <form method="POST"
+              class="w-3/4"
+              action="{{ route('entities.store')  }}">
 
-    <label for="user">Select entity owner</label>
-    <select id="user" name="user_id" >
-        @foreach($users as $user)
-            <option value="{{ $user->id  }}">{{ $user->name }}</option>
-        @endforeach
-    </select>
+            @csrf
 
-    <br>
-    <br>
+            <label class="input-label" for="user">Select entity owner</label>
+            <div class="input">
+                <select id="user" name="user_id">
+                    @foreach($users as $user)
+                        <option value="{{ $user->id  }}">{{ $user->name }}</option>
+                    @endforeach
+                </select>
+            </div>
 
-    <label for="category">Select entity category</label>
-    <select id="category" name="category_id" >
-        @foreach($categories as $category)
-            <option value="{{ $category->id  }}">{{ $category->name }}</option>
-        @endforeach
-    </select>
+            <label class="input-label" for="category">Select entity category</label>
+            <div class="input">
+                <select id="category" name="category_id">
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id  }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+            </div>
 
-    <br>
-    <br>
+            <label class="input-label" for="name">Entity Name</label>
+            <div class="input">
+                <input type="text" id="name" name="name">
+            </div>
 
-    <label for="name">Entity Name</label>
-    <input type="text" id="name" name="name">
+            <label class="input-label" for="description">Entity Description</label>
+            <div class="input">
+                <input type="text" id="description" name="description">
+            </div>
 
-    <br>
-    <br>
+            <label class="input-label" for="location">Entity Location</label>
+            <div class="input">
+                <input type="text" id="location" name="location">
+            </div>
 
-    <label for="description">Entity Description</label>
-    <input type="text" id="description" name="description">
+            <button class="button is-green" type="submit">Create</button>
 
-    <br>
-    <br>
-
-    <label for="location">Entity Location</label>
-    <input type="text" id="location" name="location">
-
-    <br>
-    <br>
-
-    <input type="submit" value="Create" />
-
-</form>
+        </form>
+    </div>
+@endsection

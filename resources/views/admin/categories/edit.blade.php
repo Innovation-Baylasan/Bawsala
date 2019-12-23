@@ -1,37 +1,45 @@
-<h1> Create Category </h1>
+@extends('layouts.admin')
 
-@if($errors->any())
+@section('content')
+    <div class="p-4">
 
-    <hr>
-    <ul>
-        @foreach($errors->all() as $error)
-            <li> {{ $error  }} </li>
-        @endforeach
-    </ul>
-    <hr>
+        <h1> Create Category </h1>
 
-@endif
+        @if($errors->any())
 
-<form method="POST" action="{{ route('categories.update', $category->id)  }}" enctype="multipart/form-data">
+            <hr>
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li> {{ $error  }} </li>
+                @endforeach
+            </ul>
+            <hr>
 
-    @csrf
-    @method('PATCH')
+        @endif
+        <form class="w-3/4" method="POST" action="{{ route('categories.update', $category->id)  }}"
+              enctype="multipart/form-data">
 
-    <label for="category">Cateogry Name</label>
-    <input type="text" id="category" name="name" value="{{ $category->name  }}">
+            @csrf
+            @method('PATCH')
 
-    <br>
-    <br>
+            <label class="input-label" for="category">Cateogry Name</label>
+            <div class="input">
+                <input type="text" id="category" name="name" value="{{ $category->name  }}">
+            </div>
 
-    <label for="icon">Icon</label>
-    <input type="file" id="icon" name="icon">
-    <br>
-    <img src="/images/categoryIcon/{{ $category->icon  }}" alt="">
-    <input type="hidden" name="old_icon" value="{{ $category->icon  }}">
 
-    <br>
-    <br>
+            <label class="input-label" for="icon">Icon</label>
+            <div class="input">
+                <input type="file" id="icon" name="icon">
+            </div>
 
-    <input type="submit" value="Update"/>
+            <input type="hidden" name="old_icon" value="{{ $category->icon  }}">
 
-</form>
+
+            <img src="/images/categoryIcon/{{ $category->icon  }}" alt="">
+
+            <button class="button is-green" type="submit">Update</button>
+
+        </form>
+    </div>
+@endsection

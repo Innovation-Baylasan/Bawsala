@@ -1,4 +1,7 @@
-<h1> Create Role </h1>
+@extends('layouts.admin')
+
+@section('content')
+    <h1> Create Role </h1>
 
 @if($errors->any())
 
@@ -26,3 +29,4 @@
     <input type="submit" value="Update" />
 
 </form>
+@endsection

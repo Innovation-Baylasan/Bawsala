@@ -3,7 +3,7 @@
         <a href="#"
            class="flex  items-center justify-center p-2  fade"
            v-for="(category,index) in categories"
-           :class="[selectedCategory == category ? 'border-l-2 border-rounded border-red-500':'']"
+           :class="[selectedCategory == category ? 'active':'']"
            :key="index"
            @click.prevent="selectedCategory = category"
         >
@@ -18,27 +18,27 @@
         data(){
             return {
                 categories: [
-                    'map-icon.svg',
-                    'startups-icon.svg',
-                    'accelerator-icon.svg',
-                    'search-icon.svg',
-                    'labs-icon.svg',
-                    'investors-icon.svg',
-                    'research-icon.svg',
+                    'map-icon',
+                    'startups-icon',
+                    'accelerator-icon',
+                    'search-icon',
+                    'labs-icon',
+                    'investors-icon',
+                    'research-icon',
                 ],
-                selectedCategory: ''
+                selectedCategory: 'map-icon'
             }
         },
         methods: {
             icon(name){
-                return require('../../../public/svg/' + name);
+                return require('../../../public/svg/' + name + '.svg');
             }
         }
     }
 </script>
 <style>
     .fade {
-        transition: border .3s ease-in;
+        transition: all .3s ease-in;
     }
 
     .svg-red path {

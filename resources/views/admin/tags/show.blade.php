@@ -1,29 +1,33 @@
-<h1> Show Tag </h1>
+@extends('layouts.admin')
+
+@section('content')
+    <h1> Show Tag </h1>
 
 
-<br>
-<br>
-<br>
+    <br>
+    <br>
+    <br>
 
 
-<a href="{{ route('tags.index')  }}"><< Back</a>
+    <a href="{{ route('tags.index')  }}"><< Back</a>
 
-<br>
-<br>
+    <br>
+    <br>
 
-<table border="1">
-    <tr>
-        <th>Field</th>
-        <th>Value</th>
-    </tr>
+    <table class="table-auto table">
+        <tr>
+            <th>Field</th>
+            <th>Value</th>
+        </tr>
 
-    <tr>
-        <td>ID</td>
-        <td>{{ $tag->id  }}</td>
-    </tr>
-    <tr>
-        <td>Tag</td>
-        <td>{{ $tag->name  }}</td>
-    </tr>
+        <tr>
+            <td>ID</td>
+            <td>{{ $tag->id  }}</td>
+        </tr>
+        <tr>
+            <td>Tag</td>
+            <td>{{ $tag->name  }}</td>
+        </tr>
 
-</table>
+    </table>
+@endsection

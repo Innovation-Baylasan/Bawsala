@@ -1,58 +1,61 @@
-<h1> All Users </h1>
+@extends('layouts.admin')
 
-<br>
+@section('content')
+    <div class="p-4">
+        @if($message = Session::get('success'))
+            <hr>
+            <p>
+                {{ $message  }}
+            </p>
+            <hr>
+        @endif
 
-
-@if($message = Session::get('success'))
-    <hr>
-    <p>
-        {{ $message  }}
-    </p>
-    <hr>
-@endif
-
-
-<a href="{{ route('users.create')  }}">Create User</a>
-
-<br>
-<br>
-<br>
-
-<table border="1">
-    <tr>
-        <th> id </th>
-        <th> role </th>
-        <th> Name </th>
-        <th> Email </th>
-        <th> Email Verified At </th>
-        <th> Password </th>
-        <th> options </th>
-    </tr>
-
-    @foreach($user as $row)
+        <a class="button" href="{{ route('users.create')  }}">Create User</a>
+    </div>
+    <table class="table table-striped">
+        <thead>
         <tr>
-            <td> {{ $row->id  }} </td>
-            <td> {{ $row->role->role  }} </td>
-            <td> {{ $row->name  }} </td>
-            <td> {{ $row->email  }} </td>
-            <td> {{ $row->email_verified_at  }} </td>
-            <td> {{ $row->password  }} </td>
-            <td>
-                <a href="{{ route('users.show', $row->id)  }}">show</a> |
-                <a href="{{ route('users.edit', $row->id)  }}">edit</a> |
-                <form method="POST" action="{{ route('users.destroy', $row->id)  }}">
-
-                    @csrf
-                    @method('DELETE')
-                    <input type="submit" value="delete" />
-
-                </form>
-            </td>
+            <th> Name</th>
+            <th> role</th>
+            <th> Email</th>
+            <th></th>
         </tr>
-    @endforeach
-</table>
 
-<br>
-<br>
+        </thead>
+        <tbody>
+        @foreach($user as $row)
+            <tr>
+                <td><a href="{{route('users.show',$row)}}">{{ $row->name  }}</a></td>
+                <td> {{ $row->role->role ?? ''  }} </td>
+                <td> {{ $row->email  }} </td>
+                <td class="flex">
+                    <a href="{{route('users.edit',$row)}}"
+                       class="flex  items-center justify-center p-2"
+                    >
+                        <div class="w-8 h-8 flex items-center justify-center p-1 rounded bg-gray-100">
+                            <img src="{{asset('/svg/edit-icon.svg')}}" alt="">
+                        </div>
+                    </a>
+                    <form method="POST"
+                          action="{{ route('users.destroy', $row)  }}"
+                          id="remove-user-form"
+                    >
+                        <a href="#"
+                           onclick="event.preventDefault();document.getElementById('remove-user-form').submit();"
+                           class="flex items-center justify-center p-2"
+                        >
+                            <div class="w-8 h-8 flex items-center justify-center p-1 rounded bg-gray-100">
+                                <img src="{{asset('/svg/remove-icon.svg')}}" alt="">
+                            </div>
+                            @csrf
+                            @method('DELETE')
+                        </a>
+                    </form>
+                </td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
 
-{!! $user->links() !!}
+    {{$user->links()}}
+@endsection

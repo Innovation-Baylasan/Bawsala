@@ -125,20 +125,14 @@ class Entity extends Model
      */
     public function toSearchableArray()
     {
-         $array = $this->toArray();
-
-        // Customize array...
-
-//        return [
-//            'id' => $this->id,
-//            'name' => $this->name,
-//            'description' => $this->description,
-////            'avatar' => $this->profile->logo,
-////            'cover' => $this->profile->cover,
-////            'location' => $this->location,
-//        ];
-
-        return $array;
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'description' => $this->description,
+            'avatar' => $this->profile->logo,
+            'cover' => $this->profile->cover,
+            'location' => $this->location,
+        ];
     }
 
     /**

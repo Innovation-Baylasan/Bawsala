@@ -1,60 +1,64 @@
-<h1> All Entities </h1>
+@extends('layouts.admin')
 
-<br>
+@section('content')
+    <div class="p-4">
 
-
-@if($message = Session::get('success'))
-    <hr>
-    <p>
-        {{ $message  }}
-    </p>
-    <hr>
-@endif
-
-
-<a href="{{ route('entities.create')  }}">Create Entity</a>
-
-<br>
-<br>
-<br>
-
-<table border="1">
-    <tr>
-        <th> id </th>
-        <th> user </th>
-        <th> category </th>
-        <th> profile </th>
-        <th> name </th>
-        <th> description </th>
-        <th> location </th>
-        <th> options </th>
-    </tr>
-
-    @foreach($entity as $row)
+        @if($message = Session::get('success'))
+            <hr>
+            <p>
+                {{ $message  }}
+            </p>
+            <hr>
+        @endif
+        <a class="button text-center" href="{{ route('entities.create')  }}">Create Entity</a>
+    </div>
+    <table class="table-striped table">
+        <thead>
         <tr>
-            <td> {{ $row->id  }} </td>
-            <td> {{ $row->user->name  }} </td>
-            <td> {{ $row->category->name  }} </td>
-            <td> {{ $row->profile_id  }} </td>
-            <td> {{ $row->name  }} </td>
-            <td> {{ $row->description  }} </td>
-            <td> {{ json_encode($row->location)  }} </td>
-            <td>
-                <a href="{{ route('entities.show', $row->id)  }}">show</a> |
-                <a href="{{ route('entities.edit', $row->id)  }}">edit</a> |
-                <form method="POST" action="{{ route('entities.destroy', $row->id)  }}">
-
-                    @csrf
-                    @method('DELETE')
-                    <input type="submit" value="delete" />
-
-                </form>
-            </td>
+            <th> user</th>
+            <th> category</th>
+            <th> name</th>
+            <th> description</th>
+            <th></th>
         </tr>
-    @endforeach
-</table>
+        </thead>
 
-<br>
-<br>
+        <tbody>
+        @foreach($entity as $row)
+            <tr>
+                <td> {{ $row->user->name  }} </td>
+                <td> {{ $row->category->name ?? ''}} </td>
+                <td> {{ $row->name  }} </td>
+                <td> {{ Str::limit($row->description,50)}} </td>
+                <td class="flex">
+                    <a href="{{route('entities.edit',$row)}}"
+                       class="flex  items-center justify-center p-2"
+                    >
+                        <div class="w-8 h-8 flex items-center justify-center p-1 rounded bg-gray-100">
+                            <img src="{{asset('/svg/edit-icon.svg')}}" alt="">
+                        </div>
+                    </a>
+                    <form method="POST"
+                          action="{{ route('entities.destroy', $row)  }}"
+                          id="remove-category-form"
+                    >
+                        <a href="#"
+                           onclick="event.preventDefault();
+                                                     document.getElementById('remove-category-form').submit();"
+                           class="flex items-center justify-center p-2"
+                        >
+                            <div class="w-8 h-8 flex items-center justify-center p-1 rounded bg-gray-100">
+                                <img src="{{asset('/svg/remove-icon.svg')}}" alt="">
+                            </div>
+                            @csrf
+                            @method('DELETE')
+                        </a>
+                    </form>
+                </td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
 
-{!! $entity->links() !!}
+    {{$entity->links()}}
+@endsection

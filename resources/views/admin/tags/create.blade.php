@@ -1,3 +1,6 @@
+@extends('layouts.admin')
+
+@section('content')
 <h1> Create Tag </h1>
 
 @if($errors->any())
@@ -27,3 +30,4 @@
     <input type="submit" value="Create" />
 
 </form>
+@endsection
