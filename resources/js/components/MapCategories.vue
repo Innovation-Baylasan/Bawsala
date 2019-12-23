@@ -18,20 +18,20 @@
         data(){
             return {
                 categories: [
-                    'map-icon.svg',
-                    'startups-icon.svg',
-                    'accelerator-icon.svg',
-                    'search-icon.svg',
-                    'labs-icon.svg',
-                    'investors-icon.svg',
-                    'research-icon.svg',
+                    'map-icon',
+                    'startups-icon',
+                    'accelerator-icon',
+                    'search-icon',
+                    'labs-icon',
+                    'investors-icon',
+                    'research-icon',
                 ],
-                selectedCategory: 'map-icon.svg'
+                selectedCategory: 'map-icon'
             }
         },
         methods: {
             icon(name){
-                return require('../../../public/svg/' + name);
+                return require('../../../public/svg/' + name + '.svg');
             }
         }
     }

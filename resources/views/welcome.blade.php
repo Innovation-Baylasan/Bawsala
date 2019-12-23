@@ -24,7 +24,10 @@
 
     <nav class="fixed w-24 z-10 bg-white shadow top-0 left-0 h-screen flex flex-col pt-6">
         <div class="px-4 mb-6">
-            <img class="rounded" src="https://i.pravatar.cc/300" alt="avatar">
+            <form action="/logout" method="post" id="logout-form">
+                @csrf
+            </form>
+            <avatar img="https://i.pravatar.cc/300" auth="{{Auth::check()}}"></avatar>
         </div>
         <map-categories></map-categories>
         <div class="flex items-center justify-center mt-auto mb-2">
@@ -39,15 +42,15 @@
     <main>
         <div class="w-full h-screen" id="map"></div>
     </main>
-@include('partials.modals.filteringModal')
+    @include('partials.modals.filteringModal')
 </div>
 
 <script>
     var map;
     function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: 12.8628, lng: 30.2176},
-            zoom: 8
+            center: {lat: 15.5007, lng: 32.5599},
+            zoom: 16
         });
     }
 </script>

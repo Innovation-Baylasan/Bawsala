@@ -61,9 +61,10 @@ class Entity extends Model
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'category' => $this->category,
             'description' => $this->description,
-            'avatar' => $this->profile->logo,
-            'cover' => $this->profile->cover,
+            'avatar' => $this->profile->logo ?? '',
+            'cover' => $this->profile->cover ?? '',
             'location' => $this->location,
         ];
     }
