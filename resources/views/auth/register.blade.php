@@ -47,55 +47,59 @@
                     register to log in to obtain additional features</p>
             </header>
             <main>
+                <form action="{{route('register')}}"
+                      method="post">
 
-                <label class="input-label" for="">User name</label>
-                <div class="input">
-                    <input type="text">
-                </div>
-
-                <label class="input-label" for="">email</label>
-                <div class="input">
-                    <input type="text">
-                </div>
-
-                <label class="input-label" for="">password</label>
-                <div class="input">
-                    <input type="text">
-                </div>
-
-                <label class="input-label" for="">password confirmation</label>
-                <div class="input">
-                    <input type="text">
-                </div>
-
-                <label class="text-gray-700 capitalize block mb-2" for="">Register as</label>
-                <div class="flex items-center -mx-2 mb-4">
-                    <div class="flex mx-2">
-                        <input class="appearance-none" name="type" type="radio" id="company">
-                        <label class="select-label" for="company">company</label>
+                    @csrf
+                    <label class="input-label" for="">User name</label>
+                    <div class="input">
+                        <input type="text" name="name">
                     </div>
-                    <div class="flex">
-                        <input class="appearance-none" name="type" type="radio" id="user">
-                        <label class="select-label" for="user">user</label>
+
+                    <label class="input-label" for="">email</label>
+                    <div class="input">
+                        <input type="text" name="email">
                     </div>
-                </div>
+
+                    <label class="input-label" for="">password</label>
+                    <div class="input">
+                        <input type="password" name="password">
+                    </div>
+
+                    <label class="input-label" for="">password confirmation</label>
+                    <div class="input">
+                        <input type="password" name="password_confirmation">
+                    </div>
+
+                    <label class="text-gray-700 capitalize block mb-2" for="">Register as</label>
+                    <div class="flex items-center -mx-2 mb-4">
+                        <div class="flex mx-2">
+                            <input class="appearance-none" name="type" type="radio" id="company">
+                            <label class="select-label" for="company">company</label>
+                        </div>
+                        <div class="flex">
+                            <input class="appearance-none" name="type" type="radio" id="user">
+                            <label class="select-label" for="user">user</label>
+                        </div>
+                    </div>
 
 
-                <p class="text-gray-500">
-                    Here a text is placed explaining to the user that upon registration, the <a href="#"
-                                                                                                class="text-red-500 font-bold">agreement
-                        policy</a> and
-                    <a href="#"
-                       class="text-red-500 font-bold">privacy policy</a>
-                    will be approved and their consequences bear
-                </p>
+                    <p class="text-gray-500">
+                        Here a text is placed explaining to the user that upon registration, the <a href="#"
+                                                                                                    class="text-red-500 font-bold">agreement
+                            policy</a> and
+                        <a href="#"
+                           class="text-red-500 font-bold">privacy policy</a>
+                        will be approved and their consequences bear
+                    </p>
 
-                <div class="flex items-center justify-center mt-8">
-                    <button class="bg-red-500 rounded px-20 py-3 outline-none uppercase text-white font-bold">register
-                        now
-                    </button>
-                </div>
-
+                    <div class="flex items-center justify-center mt-8">
+                        <button class="bg-red-500 rounded px-20 py-3 outline-none uppercase text-white font-bold">
+                            register
+                            now
+                        </button>
+                    </div>
+                </form>
             </main>
         </div>
     </div>

@@ -19,7 +19,7 @@
                 </div>
             </header>
             <div class="px-10 flex flex-col">
-                <h3 class="uppercase text-xl font-bold text-center mb-4">{{$name}} innovation</h3>
+                <h3 class="uppercase text-xl font-bold text-center mb-4">{{auth()->user()->name }}</h3>
                 <div class="flex justify-between mb-4">
                     <span class="text-gray-500">Followers</span>
                     <span class="text-gray-500">Events</span>

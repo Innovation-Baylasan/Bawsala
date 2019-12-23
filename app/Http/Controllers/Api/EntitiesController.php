@@ -15,7 +15,7 @@ class EntitiesController extends Controller
      */
     public function index()
     {
-        $entities = Entity::paginate(15);
+        $entities = Entity::all();
 
         return response($entities, 200);
     }
