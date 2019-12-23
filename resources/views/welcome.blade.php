@@ -7,9 +7,9 @@
 </head>
 <body>
 <div id="app">
-    <header class="fixed top-0 left-0 w-full flex items-center justify-center">
+    <header class="fixed top-0 z-10 left-0 w-full flex items-center justify-center">
         <div class="shadow mt-4 rounded flex justify-between p-2 bg-white">
-            <a href="#" class="p-2  h-8 w-8 flex items-center justify-center">
+            <a href="#" @click="$modal.show('filteringModal')" class="p-2  h-8 w-8 flex items-center justify-center">
                 <img src="{{asset('svg/layer-icon.svg')}}" alt="search what you looking for">
             </a>
             <input class="outline-none text-black px-8"
@@ -22,7 +22,7 @@
         </div>
     </header>
 
-    <nav class="fixed w-24 bg-white shadow top-0 left-0 h-screen flex flex-col pt-6">
+    <nav class="fixed w-24 z-10 bg-white shadow top-0 left-0 h-screen flex flex-col pt-6">
         <div class="px-4 mb-6">
             <img class="rounded" src="https://i.pravatar.cc/300" alt="avatar">
         </div>
@@ -37,9 +37,23 @@
 
 
     <main>
-        <img src="{{asset('img/map.jpg')}}" alt="">
+        <div class="w-full h-screen" id="map"></div>
     </main>
+@include('partials.modals.filteringModal')
 </div>
+
+<script>
+    var map;
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 12.8628, lng: 30.2176},
+            zoom: 8
+        });
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{config('app.google_map_key')}}&callback=initMap"
+        async defer></script>
 <script src="{{asset('js/app.js')}}"></script>
+
 </body>
 </html>

@@ -1,0 +1,12 @@
+.tag {
+  label {
+    @apply inline-block text-center px-6 text-sm mx-2 cursor-pointer py-1 capitalize rounded border border-solid border-gray-300;
+  }
+  input[type='checkbox'] {
+    @apply appearance-none;
+  }
+
+  input[type='checkbox']:checked + label {
+    @apply bg-red-500 border-0 text-white;
+  }
+}

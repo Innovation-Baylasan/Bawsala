@@ -3,5 +3,8 @@
   &.is-green {
     @apply bg-green-600;
   }
+  &.is-wide {
+    @apply px-24;
+  }
 
 }

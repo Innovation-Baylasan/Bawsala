@@ -26,7 +26,7 @@
                     'investors-icon.svg',
                     'research-icon.svg',
                 ],
-                selectedCategory: ''
+                selectedCategory: 'map-icon.svg'
             }
         },
         methods: {
