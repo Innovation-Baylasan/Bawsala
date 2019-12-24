@@ -1,16 +1,14 @@
 <h1> Create Role </h1>
-
 @if($errors->any())
-
-    <hr>
-    <ul>
-        @foreach($errors->all() as $error)
-            <li> {{ $error  }} </li>
-        @endforeach
-    </ul>
-    <hr>
-
+    <div class="alert is-danger">
+        <ul>
+            @foreach($errors->all() as $error)
+                <li> {{ $error  }} </li>
+            @endforeach
+        </ul>
+    </div>
 @endif
+
 
 <form method="POST" action="{{ route('roles.update', $data->id)  }}">
 

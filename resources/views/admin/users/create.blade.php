@@ -5,16 +5,15 @@
         <h1> Create User </h1>
 
         @if($errors->any())
-
-            <hr>
-            <ul>
-                @foreach($errors->all() as $error)
-                    <li> {{ $error  }} </li>
-                @endforeach
-            </ul>
-            <hr>
-
+            <div class="alert is-danger">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li> {{ $error  }} </li>
+                    @endforeach
+                </ul>
+            </div>
         @endif
+
 
         <form class="w-3/4" method="POST" action="{{ route('users.store')  }}">
 

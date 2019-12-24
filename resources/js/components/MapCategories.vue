@@ -5,7 +5,7 @@
            v-for="(category,index) in categories"
            :class="[selectedCategory == category ? 'active':'']"
            :key="index"
-           @click.prevent="selectedCategory = category"
+           @click.prevent="selectCategory(category)"
         >
             <div :class="{'w-10 h-10 flex items-center justify-center p-1 rounded bg-gray-100': index >= 1 ,   'bg-red-100 svg-red' :  (selectedCategory == category) && index>= 1 }"
                  v-html="icon(category)"></div>
@@ -18,20 +18,25 @@
         data(){
             return {
                 categories: [
-                    'map-icon',
-                    'startups-icon',
-                    'accelerator-icon',
-                    'search-icon',
-                    'labs-icon',
-                    'investors-icon',
-                    'research-icon',
+                    'map',
+                    'startups',
+                    'accelerator',
+                    'search',
+                    'labs',
+                    'investors',
+                        'research',
                 ],
-                selectedCategory: 'map-icon'
+                selectedCategory: 'map'
             }
         },
         methods: {
+            selectCategory(category){
+                this.selectedCategory = category
+                this.$emit('category-change', category)
+            },
+
             icon(name){
-                return require('../../../public/svg/' + name + '.svg');
+                return require('../../../public/svg/' + name + '-icon.svg');
             }
         }
     }

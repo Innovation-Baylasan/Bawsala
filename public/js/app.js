@@ -5570,6 +5570,64 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/GoogleMap.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/GoogleMap.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var google_maps_api_loader__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! google-maps-api-loader */ "./node_modules/google-maps-api-loader/index.js");
+/* harmony import */ var google_maps_api_loader__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(google_maps_api_loader__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    mapConfig: {
+      type: Object,
+      "default": function _default() {
+        return {};
+      }
+    },
+    apiKey: String
+  },
+  data: function data() {
+    return {
+      google: null,
+      map: null
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    google_maps_api_loader__WEBPACK_IMPORTED_MODULE_0___default()({
+      apiKey: this.apiKey
+    }).then(function (response) {
+      _this.google = response;
+
+      _this.initializeMap();
+    });
+  },
+  methods: {
+    initializeMap: function initializeMap() {
+      this.map = new this.google.maps.Map(this.$el, {
+        center: {
+          lat: 15.5007,
+          lng: 32.5599
+        },
+        zoom: 16
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MapCategories.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MapCategories.vue?vue&type=script&lang=js& ***!
@@ -5597,13 +5655,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      categories: ['map-icon', 'startups-icon', 'accelerator-icon', 'search-icon', 'labs-icon', 'investors-icon', 'research-icon'],
-      selectedCategory: 'map-icon'
+      categories: ['map', 'startups', 'accelerator', 'search', 'labs', 'investors', 'research'],
+      selectedCategory: 'map'
     };
   },
   methods: {
+    selectCategory: function selectCategory(category) {
+      this.selectedCategory = category;
+      this.$emit('category-change', category);
+    },
     icon: function icon(name) {
-      return __webpack_require__("./public/svg sync recursive ^\\.\\/.*\\.svg$")("./" + name + ".svg");
+      return __webpack_require__("./public/svg sync recursive ^\\.\\/.*\\-icon\\.svg$")("./" + name + "-icon.svg");
     }
   }
 });
@@ -5629,6 +5691,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['classes']
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/MapView.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/MapView.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_GoogleMap_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/GoogleMap.vue */ "./resources/js/components/GoogleMap.vue");
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    GoogleMap: _components_GoogleMap_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  }
 });
 
 /***/ }),
@@ -5735,6 +5816,1336 @@ function toComment(sourceMap) {
 
 	return '/*# ' + data + ' */';
 }
+
+
+/***/ }),
+
+/***/ "./node_modules/es6-promise/dist/es6-promise.js":
+/*!******************************************************!*\
+  !*** ./node_modules/es6-promise/dist/es6-promise.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(process, global) {/*!
+ * @overview es6-promise - a tiny implementation of Promises/A+.
+ * @copyright Copyright (c) 2014 Yehuda Katz, Tom Dale, Stefan Penner and contributors (Conversion to ES6 API by Jake Archibald)
+ * @license   Licensed under MIT license
+ *            See https://raw.githubusercontent.com/stefanpenner/es6-promise/master/LICENSE
+ * @version   v4.2.8+1e68dce6
+ */
+
+(function (global, factory) {
+	 true ? module.exports = factory() :
+	undefined;
+}(this, (function () { 'use strict';
+
+function objectOrFunction(x) {
+  var type = typeof x;
+  return x !== null && (type === 'object' || type === 'function');
+}
+
+function isFunction(x) {
+  return typeof x === 'function';
+}
+
+
+
+var _isArray = void 0;
+if (Array.isArray) {
+  _isArray = Array.isArray;
+} else {
+  _isArray = function (x) {
+    return Object.prototype.toString.call(x) === '[object Array]';
+  };
+}
+
+var isArray = _isArray;
+
+var len = 0;
+var vertxNext = void 0;
+var customSchedulerFn = void 0;
+
+var asap = function asap(callback, arg) {
+  queue[len] = callback;
+  queue[len + 1] = arg;
+  len += 2;
+  if (len === 2) {
+    // If len is 2, that means that we need to schedule an async flush.
+    // If additional callbacks are queued before the queue is flushed, they
+    // will be processed by this flush that we are scheduling.
+    if (customSchedulerFn) {
+      customSchedulerFn(flush);
+    } else {
+      scheduleFlush();
+    }
+  }
+};
+
+function setScheduler(scheduleFn) {
+  customSchedulerFn = scheduleFn;
+}
+
+function setAsap(asapFn) {
+  asap = asapFn;
+}
+
+var browserWindow = typeof window !== 'undefined' ? window : undefined;
+var browserGlobal = browserWindow || {};
+var BrowserMutationObserver = browserGlobal.MutationObserver || browserGlobal.WebKitMutationObserver;
+var isNode = typeof self === 'undefined' && typeof process !== 'undefined' && {}.toString.call(process) === '[object process]';
+
+// test for web worker but not in IE10
+var isWorker = typeof Uint8ClampedArray !== 'undefined' && typeof importScripts !== 'undefined' && typeof MessageChannel !== 'undefined';
+
+// node
+function useNextTick() {
+  // node version 0.10.x displays a deprecation warning when nextTick is used recursively
+  // see https://github.com/cujojs/when/issues/410 for details
+  return function () {
+    return process.nextTick(flush);
+  };
+}
+
+// vertx
+function useVertxTimer() {
+  if (typeof vertxNext !== 'undefined') {
+    return function () {
+      vertxNext(flush);
+    };
+  }
+
+  return useSetTimeout();
+}
+
+function useMutationObserver() {
+  var iterations = 0;
+  var observer = new BrowserMutationObserver(flush);
+  var node = document.createTextNode('');
+  observer.observe(node, { characterData: true });
+
+  return function () {
+    node.data = iterations = ++iterations % 2;
+  };
+}
+
+// web worker
+function useMessageChannel() {
+  var channel = new MessageChannel();
+  channel.port1.onmessage = flush;
+  return function () {
+    return channel.port2.postMessage(0);
+  };
+}
+
+function useSetTimeout() {
+  // Store setTimeout reference so es6-promise will be unaffected by
+  // other code modifying setTimeout (like sinon.useFakeTimers())
+  var globalSetTimeout = setTimeout;
+  return function () {
+    return globalSetTimeout(flush, 1);
+  };
+}
+
+var queue = new Array(1000);
+function flush() {
+  for (var i = 0; i < len; i += 2) {
+    var callback = queue[i];
+    var arg = queue[i + 1];
+
+    callback(arg);
+
+    queue[i] = undefined;
+    queue[i + 1] = undefined;
+  }
+
+  len = 0;
+}
+
+function attemptVertx() {
+  try {
+    var vertx = Function('return this')().require('vertx');
+    vertxNext = vertx.runOnLoop || vertx.runOnContext;
+    return useVertxTimer();
+  } catch (e) {
+    return useSetTimeout();
+  }
+}
+
+var scheduleFlush = void 0;
+// Decide what async method to use to triggering processing of queued callbacks:
+if (isNode) {
+  scheduleFlush = useNextTick();
+} else if (BrowserMutationObserver) {
+  scheduleFlush = useMutationObserver();
+} else if (isWorker) {
+  scheduleFlush = useMessageChannel();
+} else if (browserWindow === undefined && "function" === 'function') {
+  scheduleFlush = attemptVertx();
+} else {
+  scheduleFlush = useSetTimeout();
+}
+
+function then(onFulfillment, onRejection) {
+  var parent = this;
+
+  var child = new this.constructor(noop);
+
+  if (child[PROMISE_ID] === undefined) {
+    makePromise(child);
+  }
+
+  var _state = parent._state;
+
+
+  if (_state) {
+    var callback = arguments[_state - 1];
+    asap(function () {
+      return invokeCallback(_state, child, callback, parent._result);
+    });
+  } else {
+    subscribe(parent, child, onFulfillment, onRejection);
+  }
+
+  return child;
+}
+
+/**
+  `Promise.resolve` returns a promise that will become resolved with the
+  passed `value`. It is shorthand for the following:
+
+  ```javascript
+  let promise = new Promise(function(resolve, reject){
+    resolve(1);
+  });
+
+  promise.then(function(value){
+    // value === 1
+  });
+  ```
+
+  Instead of writing the above, your code now simply becomes the following:
+
+  ```javascript
+  let promise = Promise.resolve(1);
+
+  promise.then(function(value){
+    // value === 1
+  });
+  ```
+
+  @method resolve
+  @static
+  @param {Any} value value that the returned promise will be resolved with
+  Useful for tooling.
+  @return {Promise} a promise that will become fulfilled with the given
+  `value`
+*/
+function resolve$1(object) {
+  /*jshint validthis:true */
+  var Constructor = this;
+
+  if (object && typeof object === 'object' && object.constructor === Constructor) {
+    return object;
+  }
+
+  var promise = new Constructor(noop);
+  resolve(promise, object);
+  return promise;
+}
+
+var PROMISE_ID = Math.random().toString(36).substring(2);
+
+function noop() {}
+
+var PENDING = void 0;
+var FULFILLED = 1;
+var REJECTED = 2;
+
+function selfFulfillment() {
+  return new TypeError("You cannot resolve a promise with itself");
+}
+
+function cannotReturnOwn() {
+  return new TypeError('A promises callback cannot return that same promise.');
+}
+
+function tryThen(then$$1, value, fulfillmentHandler, rejectionHandler) {
+  try {
+    then$$1.call(value, fulfillmentHandler, rejectionHandler);
+  } catch (e) {
+    return e;
+  }
+}
+
+function handleForeignThenable(promise, thenable, then$$1) {
+  asap(function (promise) {
+    var sealed = false;
+    var error = tryThen(then$$1, thenable, function (value) {
+      if (sealed) {
+        return;
+      }
+      sealed = true;
+      if (thenable !== value) {
+        resolve(promise, value);
+      } else {
+        fulfill(promise, value);
+      }
+    }, function (reason) {
+      if (sealed) {
+        return;
+      }
+      sealed = true;
+
+      reject(promise, reason);
+    }, 'Settle: ' + (promise._label || ' unknown promise'));
+
+    if (!sealed && error) {
+      sealed = true;
+      reject(promise, error);
+    }
+  }, promise);
+}
+
+function handleOwnThenable(promise, thenable) {
+  if (thenable._state === FULFILLED) {
+    fulfill(promise, thenable._result);
+  } else if (thenable._state === REJECTED) {
+    reject(promise, thenable._result);
+  } else {
+    subscribe(thenable, undefined, function (value) {
+      return resolve(promise, value);
+    }, function (reason) {
+      return reject(promise, reason);
+    });
+  }
+}
+
+function handleMaybeThenable(promise, maybeThenable, then$$1) {
+  if (maybeThenable.constructor === promise.constructor && then$$1 === then && maybeThenable.constructor.resolve === resolve$1) {
+    handleOwnThenable(promise, maybeThenable);
+  } else {
+    if (then$$1 === undefined) {
+      fulfill(promise, maybeThenable);
+    } else if (isFunction(then$$1)) {
+      handleForeignThenable(promise, maybeThenable, then$$1);
+    } else {
+      fulfill(promise, maybeThenable);
+    }
+  }
+}
+
+function resolve(promise, value) {
+  if (promise === value) {
+    reject(promise, selfFulfillment());
+  } else if (objectOrFunction(value)) {
+    var then$$1 = void 0;
+    try {
+      then$$1 = value.then;
+    } catch (error) {
+      reject(promise, error);
+      return;
+    }
+    handleMaybeThenable(promise, value, then$$1);
+  } else {
+    fulfill(promise, value);
+  }
+}
+
+function publishRejection(promise) {
+  if (promise._onerror) {
+    promise._onerror(promise._result);
+  }
+
+  publish(promise);
+}
+
+function fulfill(promise, value) {
+  if (promise._state !== PENDING) {
+    return;
+  }
+
+  promise._result = value;
+  promise._state = FULFILLED;
+
+  if (promise._subscribers.length !== 0) {
+    asap(publish, promise);
+  }
+}
+
+function reject(promise, reason) {
+  if (promise._state !== PENDING) {
+    return;
+  }
+  promise._state = REJECTED;
+  promise._result = reason;
+
+  asap(publishRejection, promise);
+}
+
+function subscribe(parent, child, onFulfillment, onRejection) {
+  var _subscribers = parent._subscribers;
+  var length = _subscribers.length;
+
+
+  parent._onerror = null;
+
+  _subscribers[length] = child;
+  _subscribers[length + FULFILLED] = onFulfillment;
+  _subscribers[length + REJECTED] = onRejection;
+
+  if (length === 0 && parent._state) {
+    asap(publish, parent);
+  }
+}
+
+function publish(promise) {
+  var subscribers = promise._subscribers;
+  var settled = promise._state;
+
+  if (subscribers.length === 0) {
+    return;
+  }
+
+  var child = void 0,
+      callback = void 0,
+      detail = promise._result;
+
+  for (var i = 0; i < subscribers.length; i += 3) {
+    child = subscribers[i];
+    callback = subscribers[i + settled];
+
+    if (child) {
+      invokeCallback(settled, child, callback, detail);
+    } else {
+      callback(detail);
+    }
+  }
+
+  promise._subscribers.length = 0;
+}
+
+function invokeCallback(settled, promise, callback, detail) {
+  var hasCallback = isFunction(callback),
+      value = void 0,
+      error = void 0,
+      succeeded = true;
+
+  if (hasCallback) {
+    try {
+      value = callback(detail);
+    } catch (e) {
+      succeeded = false;
+      error = e;
+    }
+
+    if (promise === value) {
+      reject(promise, cannotReturnOwn());
+      return;
+    }
+  } else {
+    value = detail;
+  }
+
+  if (promise._state !== PENDING) {
+    // noop
+  } else if (hasCallback && succeeded) {
+    resolve(promise, value);
+  } else if (succeeded === false) {
+    reject(promise, error);
+  } else if (settled === FULFILLED) {
+    fulfill(promise, value);
+  } else if (settled === REJECTED) {
+    reject(promise, value);
+  }
+}
+
+function initializePromise(promise, resolver) {
+  try {
+    resolver(function resolvePromise(value) {
+      resolve(promise, value);
+    }, function rejectPromise(reason) {
+      reject(promise, reason);
+    });
+  } catch (e) {
+    reject(promise, e);
+  }
+}
+
+var id = 0;
+function nextId() {
+  return id++;
+}
+
+function makePromise(promise) {
+  promise[PROMISE_ID] = id++;
+  promise._state = undefined;
+  promise._result = undefined;
+  promise._subscribers = [];
+}
+
+function validationError() {
+  return new Error('Array Methods must be provided an Array');
+}
+
+var Enumerator = function () {
+  function Enumerator(Constructor, input) {
+    this._instanceConstructor = Constructor;
+    this.promise = new Constructor(noop);
+
+    if (!this.promise[PROMISE_ID]) {
+      makePromise(this.promise);
+    }
+
+    if (isArray(input)) {
+      this.length = input.length;
+      this._remaining = input.length;
+
+      this._result = new Array(this.length);
+
+      if (this.length === 0) {
+        fulfill(this.promise, this._result);
+      } else {
+        this.length = this.length || 0;
+        this._enumerate(input);
+        if (this._remaining === 0) {
+          fulfill(this.promise, this._result);
+        }
+      }
+    } else {
+      reject(this.promise, validationError());
+    }
+  }
+
+  Enumerator.prototype._enumerate = function _enumerate(input) {
+    for (var i = 0; this._state === PENDING && i < input.length; i++) {
+      this._eachEntry(input[i], i);
+    }
+  };
+
+  Enumerator.prototype._eachEntry = function _eachEntry(entry, i) {
+    var c = this._instanceConstructor;
+    var resolve$$1 = c.resolve;
+
+
+    if (resolve$$1 === resolve$1) {
+      var _then = void 0;
+      var error = void 0;
+      var didError = false;
+      try {
+        _then = entry.then;
+      } catch (e) {
+        didError = true;
+        error = e;
+      }
+
+      if (_then === then && entry._state !== PENDING) {
+        this._settledAt(entry._state, i, entry._result);
+      } else if (typeof _then !== 'function') {
+        this._remaining--;
+        this._result[i] = entry;
+      } else if (c === Promise$1) {
+        var promise = new c(noop);
+        if (didError) {
+          reject(promise, error);
+        } else {
+          handleMaybeThenable(promise, entry, _then);
+        }
+        this._willSettleAt(promise, i);
+      } else {
+        this._willSettleAt(new c(function (resolve$$1) {
+          return resolve$$1(entry);
+        }), i);
+      }
+    } else {
+      this._willSettleAt(resolve$$1(entry), i);
+    }
+  };
+
+  Enumerator.prototype._settledAt = function _settledAt(state, i, value) {
+    var promise = this.promise;
+
+
+    if (promise._state === PENDING) {
+      this._remaining--;
+
+      if (state === REJECTED) {
+        reject(promise, value);
+      } else {
+        this._result[i] = value;
+      }
+    }
+
+    if (this._remaining === 0) {
+      fulfill(promise, this._result);
+    }
+  };
+
+  Enumerator.prototype._willSettleAt = function _willSettleAt(promise, i) {
+    var enumerator = this;
+
+    subscribe(promise, undefined, function (value) {
+      return enumerator._settledAt(FULFILLED, i, value);
+    }, function (reason) {
+      return enumerator._settledAt(REJECTED, i, reason);
+    });
+  };
+
+  return Enumerator;
+}();
+
+/**
+  `Promise.all` accepts an array of promises, and returns a new promise which
+  is fulfilled with an array of fulfillment values for the passed promises, or
+  rejected with the reason of the first passed promise to be rejected. It casts all
+  elements of the passed iterable to promises as it runs this algorithm.
+
+  Example:
+
+  ```javascript
+  let promise1 = resolve(1);
+  let promise2 = resolve(2);
+  let promise3 = resolve(3);
+  let promises = [ promise1, promise2, promise3 ];
+
+  Promise.all(promises).then(function(array){
+    // The array here would be [ 1, 2, 3 ];
+  });
+  ```
+
+  If any of the `promises` given to `all` are rejected, the first promise
+  that is rejected will be given as an argument to the returned promises's
+  rejection handler. For example:
+
+  Example:
+
+  ```javascript
+  let promise1 = resolve(1);
+  let promise2 = reject(new Error("2"));
+  let promise3 = reject(new Error("3"));
+  let promises = [ promise1, promise2, promise3 ];
+
+  Promise.all(promises).then(function(array){
+    // Code here never runs because there are rejected promises!
+  }, function(error) {
+    // error.message === "2"
+  });
+  ```
+
+  @method all
+  @static
+  @param {Array} entries array of promises
+  @param {String} label optional string for labeling the promise.
+  Useful for tooling.
+  @return {Promise} promise that is fulfilled when all `promises` have been
+  fulfilled, or rejected if any of them become rejected.
+  @static
+*/
+function all(entries) {
+  return new Enumerator(this, entries).promise;
+}
+
+/**
+  `Promise.race` returns a new promise which is settled in the same way as the
+  first passed promise to settle.
+
+  Example:
+
+  ```javascript
+  let promise1 = new Promise(function(resolve, reject){
+    setTimeout(function(){
+      resolve('promise 1');
+    }, 200);
+  });
+
+  let promise2 = new Promise(function(resolve, reject){
+    setTimeout(function(){
+      resolve('promise 2');
+    }, 100);
+  });
+
+  Promise.race([promise1, promise2]).then(function(result){
+    // result === 'promise 2' because it was resolved before promise1
+    // was resolved.
+  });
+  ```
+
+  `Promise.race` is deterministic in that only the state of the first
+  settled promise matters. For example, even if other promises given to the
+  `promises` array argument are resolved, but the first settled promise has
+  become rejected before the other promises became fulfilled, the returned
+  promise will become rejected:
+
+  ```javascript
+  let promise1 = new Promise(function(resolve, reject){
+    setTimeout(function(){
+      resolve('promise 1');
+    }, 200);
+  });
+
+  let promise2 = new Promise(function(resolve, reject){
+    setTimeout(function(){
+      reject(new Error('promise 2'));
+    }, 100);
+  });
+
+  Promise.race([promise1, promise2]).then(function(result){
+    // Code here never runs
+  }, function(reason){
+    // reason.message === 'promise 2' because promise 2 became rejected before
+    // promise 1 became fulfilled
+  });
+  ```
+
+  An example real-world use case is implementing timeouts:
+
+  ```javascript
+  Promise.race([ajax('foo.json'), timeout(5000)])
+  ```
+
+  @method race
+  @static
+  @param {Array} promises array of promises to observe
+  Useful for tooling.
+  @return {Promise} a promise which settles in the same way as the first passed
+  promise to settle.
+*/
+function race(entries) {
+  /*jshint validthis:true */
+  var Constructor = this;
+
+  if (!isArray(entries)) {
+    return new Constructor(function (_, reject) {
+      return reject(new TypeError('You must pass an array to race.'));
+    });
+  } else {
+    return new Constructor(function (resolve, reject) {
+      var length = entries.length;
+      for (var i = 0; i < length; i++) {
+        Constructor.resolve(entries[i]).then(resolve, reject);
+      }
+    });
+  }
+}
+
+/**
+  `Promise.reject` returns a promise rejected with the passed `reason`.
+  It is shorthand for the following:
+
+  ```javascript
+  let promise = new Promise(function(resolve, reject){
+    reject(new Error('WHOOPS'));
+  });
+
+  promise.then(function(value){
+    // Code here doesn't run because the promise is rejected!
+  }, function(reason){
+    // reason.message === 'WHOOPS'
+  });
+  ```
+
+  Instead of writing the above, your code now simply becomes the following:
+
+  ```javascript
+  let promise = Promise.reject(new Error('WHOOPS'));
+
+  promise.then(function(value){
+    // Code here doesn't run because the promise is rejected!
+  }, function(reason){
+    // reason.message === 'WHOOPS'
+  });
+  ```
+
+  @method reject
+  @static
+  @param {Any} reason value that the returned promise will be rejected with.
+  Useful for tooling.
+  @return {Promise} a promise rejected with the given `reason`.
+*/
+function reject$1(reason) {
+  /*jshint validthis:true */
+  var Constructor = this;
+  var promise = new Constructor(noop);
+  reject(promise, reason);
+  return promise;
+}
+
+function needsResolver() {
+  throw new TypeError('You must pass a resolver function as the first argument to the promise constructor');
+}
+
+function needsNew() {
+  throw new TypeError("Failed to construct 'Promise': Please use the 'new' operator, this object constructor cannot be called as a function.");
+}
+
+/**
+  Promise objects represent the eventual result of an asynchronous operation. The
+  primary way of interacting with a promise is through its `then` method, which
+  registers callbacks to receive either a promise's eventual value or the reason
+  why the promise cannot be fulfilled.
+
+  Terminology
+  -----------
+
+  - `promise` is an object or function with a `then` method whose behavior conforms to this specification.
+  - `thenable` is an object or function that defines a `then` method.
+  - `value` is any legal JavaScript value (including undefined, a thenable, or a promise).
+  - `exception` is a value that is thrown using the throw statement.
+  - `reason` is a value that indicates why a promise was rejected.
+  - `settled` the final resting state of a promise, fulfilled or rejected.
+
+  A promise can be in one of three states: pending, fulfilled, or rejected.
+
+  Promises that are fulfilled have a fulfillment value and are in the fulfilled
+  state.  Promises that are rejected have a rejection reason and are in the
+  rejected state.  A fulfillment value is never a thenable.
+
+  Promises can also be said to *resolve* a value.  If this value is also a
+  promise, then the original promise's settled state will match the value's
+  settled state.  So a promise that *resolves* a promise that rejects will
+  itself reject, and a promise that *resolves* a promise that fulfills will
+  itself fulfill.
+
+
+  Basic Usage:
+  ------------
+
+  ```js
+  let promise = new Promise(function(resolve, reject) {
+    // on success
+    resolve(value);
+
+    // on failure
+    reject(reason);
+  });
+
+  promise.then(function(value) {
+    // on fulfillment
+  }, function(reason) {
+    // on rejection
+  });
+  ```
+
+  Advanced Usage:
+  ---------------
+
+  Promises shine when abstracting away asynchronous interactions such as
+  `XMLHttpRequest`s.
+
+  ```js
+  function getJSON(url) {
+    return new Promise(function(resolve, reject){
+      let xhr = new XMLHttpRequest();
+
+      xhr.open('GET', url);
+      xhr.onreadystatechange = handler;
+      xhr.responseType = 'json';
+      xhr.setRequestHeader('Accept', 'application/json');
+      xhr.send();
+
+      function handler() {
+        if (this.readyState === this.DONE) {
+          if (this.status === 200) {
+            resolve(this.response);
+          } else {
+            reject(new Error('getJSON: `' + url + '` failed with status: [' + this.status + ']'));
+          }
+        }
+      };
+    });
+  }
+
+  getJSON('/posts.json').then(function(json) {
+    // on fulfillment
+  }, function(reason) {
+    // on rejection
+  });
+  ```
+
+  Unlike callbacks, promises are great composable primitives.
+
+  ```js
+  Promise.all([
+    getJSON('/posts'),
+    getJSON('/comments')
+  ]).then(function(values){
+    values[0] // => postsJSON
+    values[1] // => commentsJSON
+
+    return values;
+  });
+  ```
+
+  @class Promise
+  @param {Function} resolver
+  Useful for tooling.
+  @constructor
+*/
+
+var Promise$1 = function () {
+  function Promise(resolver) {
+    this[PROMISE_ID] = nextId();
+    this._result = this._state = undefined;
+    this._subscribers = [];
+
+    if (noop !== resolver) {
+      typeof resolver !== 'function' && needsResolver();
+      this instanceof Promise ? initializePromise(this, resolver) : needsNew();
+    }
+  }
+
+  /**
+  The primary way of interacting with a promise is through its `then` method,
+  which registers callbacks to receive either a promise's eventual value or the
+  reason why the promise cannot be fulfilled.
+   ```js
+  findUser().then(function(user){
+    // user is available
+  }, function(reason){
+    // user is unavailable, and you are given the reason why
+  });
+  ```
+   Chaining
+  --------
+   The return value of `then` is itself a promise.  This second, 'downstream'
+  promise is resolved with the return value of the first promise's fulfillment
+  or rejection handler, or rejected if the handler throws an exception.
+   ```js
+  findUser().then(function (user) {
+    return user.name;
+  }, function (reason) {
+    return 'default name';
+  }).then(function (userName) {
+    // If `findUser` fulfilled, `userName` will be the user's name, otherwise it
+    // will be `'default name'`
+  });
+   findUser().then(function (user) {
+    throw new Error('Found user, but still unhappy');
+  }, function (reason) {
+    throw new Error('`findUser` rejected and we're unhappy');
+  }).then(function (value) {
+    // never reached
+  }, function (reason) {
+    // if `findUser` fulfilled, `reason` will be 'Found user, but still unhappy'.
+    // If `findUser` rejected, `reason` will be '`findUser` rejected and we're unhappy'.
+  });
+  ```
+  If the downstream promise does not specify a rejection handler, rejection reasons will be propagated further downstream.
+   ```js
+  findUser().then(function (user) {
+    throw new PedagogicalException('Upstream error');
+  }).then(function (value) {
+    // never reached
+  }).then(function (value) {
+    // never reached
+  }, function (reason) {
+    // The `PedgagocialException` is propagated all the way down to here
+  });
+  ```
+   Assimilation
+  ------------
+   Sometimes the value you want to propagate to a downstream promise can only be
+  retrieved asynchronously. This can be achieved by returning a promise in the
+  fulfillment or rejection handler. The downstream promise will then be pending
+  until the returned promise is settled. This is called *assimilation*.
+   ```js
+  findUser().then(function (user) {
+    return findCommentsByAuthor(user);
+  }).then(function (comments) {
+    // The user's comments are now available
+  });
+  ```
+   If the assimliated promise rejects, then the downstream promise will also reject.
+   ```js
+  findUser().then(function (user) {
+    return findCommentsByAuthor(user);
+  }).then(function (comments) {
+    // If `findCommentsByAuthor` fulfills, we'll have the value here
+  }, function (reason) {
+    // If `findCommentsByAuthor` rejects, we'll have the reason here
+  });
+  ```
+   Simple Example
+  --------------
+   Synchronous Example
+   ```javascript
+  let result;
+   try {
+    result = findResult();
+    // success
+  } catch(reason) {
+    // failure
+  }
+  ```
+   Errback Example
+   ```js
+  findResult(function(result, err){
+    if (err) {
+      // failure
+    } else {
+      // success
+    }
+  });
+  ```
+   Promise Example;
+   ```javascript
+  findResult().then(function(result){
+    // success
+  }, function(reason){
+    // failure
+  });
+  ```
+   Advanced Example
+  --------------
+   Synchronous Example
+   ```javascript
+  let author, books;
+   try {
+    author = findAuthor();
+    books  = findBooksByAuthor(author);
+    // success
+  } catch(reason) {
+    // failure
+  }
+  ```
+   Errback Example
+   ```js
+   function foundBooks(books) {
+   }
+   function failure(reason) {
+   }
+   findAuthor(function(author, err){
+    if (err) {
+      failure(err);
+      // failure
+    } else {
+      try {
+        findBoooksByAuthor(author, function(books, err) {
+          if (err) {
+            failure(err);
+          } else {
+            try {
+              foundBooks(books);
+            } catch(reason) {
+              failure(reason);
+            }
+          }
+        });
+      } catch(error) {
+        failure(err);
+      }
+      // success
+    }
+  });
+  ```
+   Promise Example;
+   ```javascript
+  findAuthor().
+    then(findBooksByAuthor).
+    then(function(books){
+      // found books
+  }).catch(function(reason){
+    // something went wrong
+  });
+  ```
+   @method then
+  @param {Function} onFulfilled
+  @param {Function} onRejected
+  Useful for tooling.
+  @return {Promise}
+  */
+
+  /**
+  `catch` is simply sugar for `then(undefined, onRejection)` which makes it the same
+  as the catch block of a try/catch statement.
+  ```js
+  function findAuthor(){
+  throw new Error('couldn't find that author');
+  }
+  // synchronous
+  try {
+  findAuthor();
+  } catch(reason) {
+  // something went wrong
+  }
+  // async with promises
+  findAuthor().catch(function(reason){
+  // something went wrong
+  });
+  ```
+  @method catch
+  @param {Function} onRejection
+  Useful for tooling.
+  @return {Promise}
+  */
+
+
+  Promise.prototype.catch = function _catch(onRejection) {
+    return this.then(null, onRejection);
+  };
+
+  /**
+    `finally` will be invoked regardless of the promise's fate just as native
+    try/catch/finally behaves
+  
+    Synchronous example:
+  
+    ```js
+    findAuthor() {
+      if (Math.random() > 0.5) {
+        throw new Error();
+      }
+      return new Author();
+    }
+  
+    try {
+      return findAuthor(); // succeed or fail
+    } catch(error) {
+      return findOtherAuther();
+    } finally {
+      // always runs
+      // doesn't affect the return value
+    }
+    ```
+  
+    Asynchronous example:
+  
+    ```js
+    findAuthor().catch(function(reason){
+      return findOtherAuther();
+    }).finally(function(){
+      // author was either found, or not
+    });
+    ```
+  
+    @method finally
+    @param {Function} callback
+    @return {Promise}
+  */
+
+
+  Promise.prototype.finally = function _finally(callback) {
+    var promise = this;
+    var constructor = promise.constructor;
+
+    if (isFunction(callback)) {
+      return promise.then(function (value) {
+        return constructor.resolve(callback()).then(function () {
+          return value;
+        });
+      }, function (reason) {
+        return constructor.resolve(callback()).then(function () {
+          throw reason;
+        });
+      });
+    }
+
+    return promise.then(callback, callback);
+  };
+
+  return Promise;
+}();
+
+Promise$1.prototype.then = then;
+Promise$1.all = all;
+Promise$1.race = race;
+Promise$1.resolve = resolve$1;
+Promise$1.reject = reject$1;
+Promise$1._setScheduler = setScheduler;
+Promise$1._setAsap = setAsap;
+Promise$1._asap = asap;
+
+/*global self*/
+function polyfill() {
+  var local = void 0;
+
+  if (typeof global !== 'undefined') {
+    local = global;
+  } else if (typeof self !== 'undefined') {
+    local = self;
+  } else {
+    try {
+      local = Function('return this')();
+    } catch (e) {
+      throw new Error('polyfill failed because global object is unavailable in this environment');
+    }
+  }
+
+  var P = local.Promise;
+
+  if (P) {
+    var promiseToString = null;
+    try {
+      promiseToString = Object.prototype.toString.call(P.resolve());
+    } catch (e) {
+      // silently ignored
+    }
+
+    if (promiseToString === '[object Promise]' && !P.cast) {
+      return;
+    }
+  }
+
+  local.Promise = Promise$1;
+}
+
+// Strange compat..
+Promise$1.polyfill = polyfill;
+Promise$1.Promise = Promise$1;
+
+return Promise$1;
+
+})));
+
+
+
+//# sourceMappingURL=es6-promise.map
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../process/browser.js */ "./node_modules/process/browser.js"), __webpack_require__(/*! ./../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
+/***/ "./node_modules/google-maps-api-loader/index.js":
+/*!******************************************************!*\
+  !*** ./node_modules/google-maps-api-loader/index.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! ./src/google-maps-api-loader.js */ "./node_modules/google-maps-api-loader/src/google-maps-api-loader.js");
+
+
+/***/ }),
+
+/***/ "./node_modules/google-maps-api-loader/lib/url-builder.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/google-maps-api-loader/lib/url-builder.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * urlBuilder
+ *
+ * @param  {object} params
+ * @param  {string} params.base       the base url
+ * @param  {array}  params.libraries  an array of the libraries to be requested
+ * @param  {string} params.callback   the callback function
+ *
+ * @return {string}
+ */
+function urlBuilder(params) {
+  var builtUrl = params.base;
+
+  builtUrl += '?';
+
+  if (params.apiKey) {
+    builtUrl += 'key=' + params.apiKey + '&';
+  }
+
+  if (params.client) {
+    builtUrl += 'client=' + params.client + '&';
+  }
+
+  if (params.libraries.length > 0) {
+    builtUrl += 'libraries=';
+
+    params.libraries.forEach(function(library, index) {
+      builtUrl += library;
+
+      if (index !== params.libraries.length - 1) {
+        builtUrl += ',';
+      }
+    });
+
+    builtUrl += '&';
+  }
+
+  if (params.language) {
+    builtUrl += 'language=' + params.language + '&';
+  }
+
+  if (params.version) {
+    builtUrl += 'v=' + params.version + '&';
+  }
+
+  builtUrl += 'callback=' + params.callback;
+
+  return builtUrl;
+}
+
+module.exports = urlBuilder;
+
+
+/***/ }),
+
+/***/ "./node_modules/google-maps-api-loader/src/google-maps-api-loader.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/google-maps-api-loader/src/google-maps-api-loader.js ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var Promise = __webpack_require__(/*! es6-promise */ "./node_modules/es6-promise/dist/es6-promise.js").Promise;
+var urlBuilder = __webpack_require__(/*! ../lib/url-builder.js */ "./node_modules/google-maps-api-loader/lib/url-builder.js");
+
+var googleApi;
+
+function loadAutoCompleteAPI(params) {
+  var script = document.createElement('script');
+
+  script.type = 'text/javascript';
+
+  script.src = urlBuilder({
+    base: 'https://maps.googleapis.com/maps/api/js',
+    libraries: params.libraries || [],
+    callback: 'googleMapsAutoCompleteAPILoad',
+    apiKey: params.apiKey,
+    client: params.client,
+    language: params.language,
+    version: params.version
+  });
+
+  document.querySelector('head').appendChild(script);
+}
+
+/**
+ * googleMapsApiLoader
+ *
+ * @param  {object} params
+ * @param  {object} params.libraries
+ *
+ * @return {promise}
+ */
+function googleMapsApiLoader(params) {
+  if (googleApi) {
+    return Promise.resolve(googleApi);
+  }
+
+  return new Promise(function(resolve, reject) {
+    loadAutoCompleteAPI(params);
+
+    window.googleMapsAutoCompleteAPILoad = function() {
+      googleApi = window.google;
+      resolve(googleApi);
+    };
+
+    setTimeout(function() {
+      if (!window.google) {
+        reject(new Error('Loading took too long'));
+      }
+    }, 5000);
+  });
+}
+
+module.exports = googleMapsApiLoader;
+
 
 
 /***/ }),
@@ -23991,6 +25402,30 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/GoogleMap.vue?vue&type=template&id=70fcb908&":
+/*!************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/GoogleMap.vue?vue&type=template&id=70fcb908& ***!
+  \************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "w-full h-screen" })
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MapCategories.vue?vue&type=template&id=036ed43d&":
 /*!****************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MapCategories.vue?vue&type=template&id=036ed43d& ***!
@@ -24020,7 +25455,7 @@ var render = function() {
           on: {
             click: function($event) {
               $event.preventDefault()
-              _vm.selectedCategory = category
+              return _vm.selectCategory(category)
             }
           }
         },
@@ -36216,10 +37651,10 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./public/svg sync recursive ^\\.\\/.*\\.svg$":
-/*!***************************************!*\
-  !*** ./public/svg sync ^\.\/.*\.svg$ ***!
-  \***************************************/
+/***/ "./public/svg sync recursive ^\\.\\/.*\\-icon\\.svg$":
+/*!*********************************************!*\
+  !*** ./public/svg sync ^\.\/.*\-icon\.svg$ ***!
+  \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -36235,7 +37670,6 @@ var map = {
 	"./layer-icon.svg": "./public/svg/layer-icon.svg",
 	"./map-icon.svg": "./public/svg/map-icon.svg",
 	"./notifications-icon.svg": "./public/svg/notifications-icon.svg",
-	"./notifications-illustration.svg": "./public/svg/notifications-illustration.svg",
 	"./notify-icon.svg": "./public/svg/notify-icon.svg",
 	"./remove-icon.svg": "./public/svg/remove-icon.svg",
 	"./research-icon.svg": "./public/svg/research-icon.svg",
@@ -36263,7 +37697,7 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = "./public/svg sync recursive ^\\.\\/.*\\.svg$";
+webpackContext.id = "./public/svg sync recursive ^\\.\\/.*\\-icon\\.svg$";
 
 /***/ }),
 
@@ -36388,17 +37822,6 @@ module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"33.962\" hei
 
 /***/ }),
 
-/***/ "./public/svg/notifications-illustration.svg":
-/*!***************************************************!*\
-  !*** ./public/svg/notifications-illustration.svg ***!
-  \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"149.646\" height=\"99.594\" viewBox=\"0 0 149.646 99.594\">\n    <defs>\n        <style>\n            .cls-1{fill:#e6e6e6}.cls-2{fill:#3f3d56}.cls-3{fill:#eb413c}.cls-4{fill:#ffb8b8}.cls-5{fill:#2f2e41}.cls-6{fill:#d0cde1}\n        </style>\n    </defs>\n    <g id=\"undraw_manage_chats_ylx0\">\n        <path id=\"Path_452\" d=\"M669.941 243.331a29.43 29.43 0 0 0-.941-.016V243c.317 0 .637.005.951.016z\" class=\"cls-1\" data-name=\"Path 452\" transform=\"translate(-583.297 -225.844)\"/>\n        <path id=\"Path_453\" d=\"M519.091 299.912c-.424 0-.851-.01-1.271-.028l.014-.315c.628.028 1.271.035 1.9.021l.007.315q-.323.007-.65.007zm2.573-.116l-.029-.314c.63-.057 1.265-.137 1.887-.237l.05.311c-.629.1-1.271.182-1.908.24zm-5.761-.063a28.404 28.404 0 0 1-1.9-.281l.057-.31c.62.113 1.253.207 1.881.278zm9.557-.547l-.071-.307a28.415 28.415 0 0 0 1.837-.493l.092.3c-.611.187-1.236.355-1.858.5zm-13.339-.146c-.618-.158-1.24-.34-1.846-.54l.1-.3c.6.2 1.214.378 1.826.534zm17.016-.979l-.113-.294a27.434 27.434 0 0 0 1.749-.741l.133.286a28.06 28.06 0 0 1-1.769.749zm-20.669-.229a27.934 27.934 0 0 1-1.756-.791l.139-.283c.566.279 1.151.542 1.736.782zm24.152-1.39l-.152-.276c.553-.3 1.1-.633 1.632-.974l.171.265c-.536.345-1.092.677-1.651.985zm-27.606-.31c-.553-.321-1.1-.665-1.63-1.023l.177-.261c.523.354 1.065.694 1.612 1.012zm30.836-1.771l-.188-.253a27.775 27.775 0 0 0 1.485-1.188l.205.239c-.485.416-.99.82-1.5 1.2zm-34.023-.384c-.5-.393-1-.809-1.475-1.236l.211-.235c.47.422.961.833 1.459 1.222zm36.942-2.118l-.221-.225c.45-.443.891-.907 1.31-1.379l.236.209c-.424.478-.87.947-1.325 1.395zm-39.8-.45a28.083 28.083 0 0 1-1.293-1.424l.241-.2c.408.481.838.955 1.279 1.408zm42.357-2.427l-.249-.193c.386-.5.759-1.019 1.111-1.545l.262.175a27.468 27.468 0 0 1-1.124 1.563zm-44.843-.505a27.96 27.96 0 0 1-1.087-1.586l.266-.169c.339.532.7 1.06 1.075 1.569zm46.98-2.694l-.273-.157a27.86 27.86 0 0 0 .889-1.683l.284.138a27.277 27.277 0 0 1-.9 1.7zm-49.043-.549a31.66 31.66 0 0 1-.86-1.719l.287-.131c.263.573.548 1.145.85 1.7zm50.723-2.914l-.293-.118c.236-.587.455-1.189.65-1.791l.3.1a29.62 29.62 0 0 1-.657 1.811zm-52.322-.578c-.225-.6-.433-1.211-.616-1.822l.3-.091c.181.6.386 1.211.609 1.8zm53.509-3.082l-.306-.076c.153-.613.286-1.239.4-1.86l.31.055a28.202 28.202 0 0 1-.4 1.881zm-54.613-.6a27.595 27.595 0 0 1-.359-1.89l.312-.048c.1.624.216 1.253.355 1.868zM547 274.873l-.313-.034c.067-.627.114-1.265.138-1.9l.315.012a31.306 31.306 0 0 1-.14 1.922zm-55.873-.615a29.98 29.98 0 0 1-.1-1.921l.315-.005c.011.632.044 1.271.1 1.9zm55.707-3.218a28.697 28.697 0 0 0-.118-1.9l.314-.03c.061.635.1 1.281.12 1.92zm-.365-3.784c-.1-.624-.231-1.251-.377-1.864l.307-.073c.148.62.276 1.255.381 1.886zm-.881-3.7c-.188-.6-.4-1.205-.629-1.793l.294-.115c.232.594.445 1.2.636 1.813zm-1.38-3.538c-.27-.571-.562-1.14-.869-1.69l.275-.154c.311.557.607 1.132.879 1.71zm-1.853-3.317a27.301 27.301 0 0 0-1.093-1.556l.252-.19c.384.509.756 1.038 1.105 1.574zm-2.289-3.035a28.416 28.416 0 0 0-1.294-1.394l.224-.222c.451.453.891.927 1.309 1.409zm-2.681-2.7a28.229 28.229 0 0 0-1.473-1.205l.191-.251c.507.387 1.008.8 1.489 1.219zm-3.024-2.307a27.83 27.83 0 0 0-1.623-.993l.155-.275c.555.314 1.108.652 1.642 1zm-3.312-1.873a27.563 27.563 0 0 0-1.745-.762l.116-.293c.594.235 1.188.494 1.765.77zm-3.538-1.4c-.6-.191-1.218-.364-1.831-.513l.075-.306c.621.151 1.244.326 1.852.519zm-3.694-.9a27.71 27.71 0 0 0-1.885-.257l.032-.314a28.33 28.33 0 0 1 1.906.26z\" class=\"cls-1\" data-name=\"Path 453\" transform=\"translate(-433.387 -226.619)\"/>\n        <path id=\"Path_454\" d=\"M491.557 406.585l-.315-.016c.016-.318.038-.637.065-.949l.314.027c-.026.308-.048.624-.064.938z\" class=\"cls-1\" data-name=\"Path 454\" transform=\"translate(-433.569 -362.821)\"/>\n        <path id=\"Path_455\" d=\"M270.632 440.069H191v-35.48l39.816 17.9 39.816-17.9z\" class=\"cls-2\" data-name=\"Path 455\" transform=\"translate(-160.882 -340.79)\"/>\n        <path id=\"Path_456\" d=\"M191 404.589h79.632l-39.737 20.5z\" class=\"cls-3\" data-name=\"Path 456\" transform=\"translate(-160.882 -340.79)\"/>\n        <circle id=\"Ellipse_13\" cx=\"3.311\" cy=\"3.311\" r=\"3.311\" class=\"cls-1\" data-name=\"Ellipse 13\" transform=\"translate(66.702 80.987)\"/>\n        <path id=\"Path_457\" d=\"M184.8 548.507a11.227 11.227 0 0 1-1.185-4.442c-.271-2.714-.1-7.289 2.276-13.671a27.57 27.57 0 0 0-1.092-21.942l.273-.158a24.214 24.214 0 0 1 2.285 6.472 28.236 28.236 0 0 1-1.169 15.738c-4.487 12.069-1.151 17.783-1.117 17.839z\" class=\"cls-2\" data-name=\"Path 457\" transform=\"translate(-174.373 -449.304)\"/>\n        <circle id=\"Ellipse_14\" cx=\"2.05\" cy=\"2.05\" r=\"2.05\" class=\"cls-3\" data-name=\"Ellipse 14\" transform=\"translate(6.623 54.338)\"/>\n        <circle id=\"Ellipse_15\" cx=\"2.05\" cy=\"2.05\" r=\"2.05\" class=\"cls-3\" data-name=\"Ellipse 15\" transform=\"translate(13.088 61.907)\"/>\n        <circle id=\"Ellipse_16\" cx=\"2.05\" cy=\"2.05\" r=\"2.05\" class=\"cls-3\" data-name=\"Ellipse 16\" transform=\"translate(8.673 66.953)\"/>\n        <circle id=\"Ellipse_17\" cx=\"2.05\" cy=\"2.05\" r=\"2.05\" class=\"cls-3\" data-name=\"Ellipse 17\" transform=\"translate(14.034 71.21)\"/>\n        <circle id=\"Ellipse_18\" cx=\"2.05\" cy=\"2.05\" r=\"2.05\" class=\"cls-3\" data-name=\"Ellipse 18\" transform=\"translate(7.096 77.833)\"/>\n        <path id=\"Path_458\" d=\"M197.748 716.625s-2.05-5.046 4.1-8.831z\" class=\"cls-2\" data-name=\"Path 458\" transform=\"translate(-186.079 -617.346)\"/>\n        <path id=\"Path_459\" d=\"M139.957 734.795s-.933-5.366-8.154-5.32z\" class=\"cls-2\" data-name=\"Path 459\" transform=\"translate(-130.81 -635.608)\"/>\n        <path id=\"Path_460\" d=\"M307.226 207.437a19.312 19.312 0 0 1 4.106-11.934 19.4 19.4 0 1 0 2.51 37.834 23.667 23.667 0 0 0 11.676 1.853l-6.2-4.409a19.5 19.5 0 0 0 4.455-4.157 19.4 19.4 0 0 1-16.547-19.187z\" class=\"cls-2\" data-name=\"Path 460\" transform=\"translate(-263.31 -185.662)\"/>\n        <path id=\"Path_461\" d=\"M497.722 155.684a19.4 19.4 0 0 0-34.686-11.934 19.395 19.395 0 0 1 12.444 31.121 19.521 19.521 0 0 0 8.2-.541 23.667 23.667 0 0 0 11.676 1.853l-6.2-4.409a19.376 19.376 0 0 0 8.566-16.09z\" class=\"cls-3\" data-name=\"Path 461\" transform=\"translate(-409.811 -135.959)\"/>\n        <path id=\"Path_462\" d=\"M424.1 189.614a19.4 19.4 0 0 0 12.444 31.121 19.395 19.395 0 0 0-12.444-31.121z\" class=\"cls-1\" data-name=\"Path 462\" transform=\"translate(-373.56 -180.877)\"/>\n        <path id=\"Rectangle_568\" d=\"M0 0h149.646v.315H0z\" class=\"cls-2\" data-name=\"Rectangle 568\" transform=\"translate(0 99.279)\"/>\n        <path id=\"Path_463\" d=\"M841.31 294.753l-.935 6.226-10.692 7.232s-5.622 2.694-5.268 4.367c.316 1.492 4.653 1.315 6.019-.992l12.783-5.811 4.275-8.464z\" class=\"cls-4\" data-name=\"Path 463\" transform=\"translate(-714.191 -269.437)\"/>\n        <path id=\"Path_464\" d=\"M806.5 558.589l.473 6.623 4.573-.315-.788-6.307z\" class=\"cls-4\" data-name=\"Path 464\" transform=\"translate(-679.325 -470.506)\"/>\n        <path id=\"Path_465\" d=\"M888.993 709.961s-.631-2.365-1.261-2.208l-.946 1.735s-4.258 3.942-5.519 4.1c0 0-4.1 1.262 0 3.154H886a29.827 29.827 0 0 1 3.784 0c.631.158 4.258.158 4.415-.788a8.441 8.441 0 0 0-.473-2.838s-.582-4.652-1.237-3.745a12.39 12.39 0 0 1-1.129 1.38z\" class=\"cls-5\" data-name=\"Path 465\" transform=\"translate(-760.557 -617.306)\"/>\n        <path id=\"Path_466\" d=\"M881.5 559.089l.473 6.623 4.573-.315-.789-6.307z\" class=\"cls-4\" data-name=\"Path 466\" transform=\"translate(-742.498 -470.927)\"/>\n        <path id=\"Path_467\" d=\"M963.993 710.461s-.631-2.365-1.262-2.208l-.946 1.735s-4.258 3.942-5.519 4.1c0 0-4.1 1.261 0 3.154H961a25.652 25.652 0 0 1 3.785-.158c.631.158 4.258.158 4.415-.788a7.314 7.314 0 0 0-.473-2.681s-.582-4.652-1.237-3.745a12.367 12.367 0 0 1-1.128 1.38z\" class=\"cls-5\" data-name=\"Path 467\" transform=\"translate(-823.73 -617.727)\"/>\n        <path id=\"Path_468\" d=\"M888.788 433.422l-.788 1.1v2.208l5.046 18.765.946 4.1s0 15.769.946 15.769 5.2.473 5.2-.473-.315-22.392-.315-22.392l4.258 8.042s1.892 14.192 2.523 14.35 5.046 0 5.361-.946l-.946-8.988s.158-10.092-2.523-12.3a25.2 25.2 0 0 0-.946-3.784c-.473-1.1-1.262-1.735-.789-2.523s-.631-9.461-.631-9.461.315-2.681-.315-3.469-17.027.002-17.027.002z\" class=\"cls-5\" data-name=\"Path 468\" transform=\"translate(-767.763 -385.944)\"/>\n        <circle id=\"Ellipse_19\" cx=\"4.888\" cy=\"4.888\" r=\"4.888\" class=\"cls-4\" data-name=\"Ellipse 19\" transform=\"translate(126.229 1.906)\"/>\n        <path id=\"Path_469\" d=\"M938.6 192.425l-.315 3.154 1.261 1.1-8.042 3.785c1.981-3.385 2.568-6.466 1.577-8.673z\" class=\"cls-4\" data-name=\"Path 469\" transform=\"translate(-804.404 -182.713)\"/>\n        <path id=\"Path_470\" d=\"M896.857 217.371s-1.261 2.523.315 1.892l4.888-3.469s5.361 2.05 7.254 4.415l-1.577 16.715-1.262 11.827s.789 1.419.631 1.577-.315-.158-.158.315.631 0 .158.473-.946 0-.473.473 0 .631 0 .631-.631-3.785-6.15-.946-7.884 3.627-11.984.158l4.731-17.976.382-6.78a27.931 27.931 0 0 1 1.2-6.673 5.046 5.046 0 0 1 2.045-2.947z\" class=\"cls-6\" data-name=\"Path 470\" transform=\"translate(-768.184 -202.928)\"/>\n        <path id=\"Path_471\" d=\"M974.242 308.24l2.365 5.834-5.519 11.669a3.061 3.061 0 0 0-.473 3.154 20.844 20.844 0 0 0 1.419 2.681s1.419-.631 1.419-3.311l8.042-11.511-.631-9.461z\" class=\"cls-4\" data-name=\"Path 471\" transform=\"translate(-837.132 -280)\"/>\n        <path id=\"Path_472\" d=\"M985 243.03a6.027 6.027 0 0 0-1.261 5.677c.946 3.469 1.735 6.15 1.735 6.15s3.784-2.838 6.938-1.1c0 0-.473-10.25-3.154-11.2a4.294 4.294 0 0 0-4.258.473z\" class=\"cls-6\" data-name=\"Path 472\" transform=\"translate(-848.208 -225.197)\"/>\n        <path id=\"Path_473\" d=\"M934.388 136.807s-1.494-3.236-4.356-2.489-4.481 1.867-4.605 2.987a15.986 15.986 0 0 0 .062 2.8s.311-2.3 2.3-1.8a17.763 17.763 0 0 0 5.1.124l.5 4.481s.849-.9 1.471-.407 1.519-4.703-.472-5.696z\" class=\"cls-5\" data-name=\"Path 473\" transform=\"translate(-799.252 -134.206)\"/>\n        <path id=\"Path_474\" d=\"M824.024 370.028l2.91-.674a.635.635 0 0 1 .715.343l2.981 6.182a.513.513 0 0 1-.322.717l-2.958.84a.678.678 0 0 1-.808-.384l-1.9-4.419-.058.032-.362-.837.06-.031-.531-1.233a.391.391 0 0 1 .274-.536z\" class=\"cls-2\" data-name=\"Path 474\" transform=\"translate(-713.617 -332.26)\"/>\n        <path id=\"Path_475\" d=\"M828.2 370.415l.34-.079a.439.439 0 0 1 .5.24l2.91 6.143a.272.272 0 0 1-.167.377l-2.937.886a.352.352 0 0 1-.425-.2l-2.753-6.408a.309.309 0 0 1 .214-.422l.322-.075a.146.146 0 0 1 .161.073.128.128 0 0 0 .142.065l1.53-.354a.22.22 0 0 0 .168-.247z\" class=\"cls-3\" data-name=\"Path 475\" transform=\"translate(-715.238 -333.092)\"/>\n    </g>\n</svg>\n";
-
-/***/ }),
-
 /***/ "./public/svg/notify-icon.svg":
 /*!************************************!*\
   !*** ./public/svg/notify-icon.svg ***!
@@ -36498,6 +37921,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('MapCategories', __webpack_
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('Carousel', __webpack_require__(/*! ./components/Carsouel.vue */ "./resources/js/components/Carsouel.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('Slide', __webpack_require__(/*! ./components/Slide.vue */ "./resources/js/components/Slide.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('Avatar', __webpack_require__(/*! ./components/Avatar.vue */ "./resources/js/components/Avatar.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('MapView', __webpack_require__(/*! ./pages/MapView.vue */ "./resources/js/pages/MapView.vue")["default"]);
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app'
 });
@@ -36674,6 +38098,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/GoogleMap.vue":
+/*!***********************************************!*\
+  !*** ./resources/js/components/GoogleMap.vue ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _GoogleMap_vue_vue_type_template_id_70fcb908___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./GoogleMap.vue?vue&type=template&id=70fcb908& */ "./resources/js/components/GoogleMap.vue?vue&type=template&id=70fcb908&");
+/* harmony import */ var _GoogleMap_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./GoogleMap.vue?vue&type=script&lang=js& */ "./resources/js/components/GoogleMap.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _GoogleMap_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _GoogleMap_vue_vue_type_template_id_70fcb908___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _GoogleMap_vue_vue_type_template_id_70fcb908___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/GoogleMap.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/GoogleMap.vue?vue&type=script&lang=js&":
+/*!************************************************************************!*\
+  !*** ./resources/js/components/GoogleMap.vue?vue&type=script&lang=js& ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GoogleMap_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./GoogleMap.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/GoogleMap.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GoogleMap_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/GoogleMap.vue?vue&type=template&id=70fcb908&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/GoogleMap.vue?vue&type=template&id=70fcb908& ***!
+  \******************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GoogleMap_vue_vue_type_template_id_70fcb908___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./GoogleMap.vue?vue&type=template&id=70fcb908& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/GoogleMap.vue?vue&type=template&id=70fcb908&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GoogleMap_vue_vue_type_template_id_70fcb908___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GoogleMap_vue_vue_type_template_id_70fcb908___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/MapCategories.vue":
 /*!***************************************************!*\
   !*** ./resources/js/components/MapCategories.vue ***!
@@ -36827,6 +38320,56 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Slide_vue_vue_type_template_id_ba451454___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/pages/MapView.vue":
+/*!****************************************!*\
+  !*** ./resources/js/pages/MapView.vue ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _MapView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MapView.vue?vue&type=script&lang=js& */ "./resources/js/pages/MapView.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  _MapView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"],
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/pages/MapView.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/pages/MapView.vue?vue&type=script&lang=js&":
+/*!*****************************************************************!*\
+  !*** ./resources/js/pages/MapView.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MapView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./MapView.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/MapView.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MapView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 

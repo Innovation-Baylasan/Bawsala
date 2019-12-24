@@ -9,6 +9,7 @@
 @import "./components/pagination";
 @import "./components/button";
 @import "./components/tag";
+@import "./components/alert";
 @import "~@glidejs/glide/src/assets/sass/glide.core";
 
 .cover-skewer {
@@ -36,4 +37,9 @@ input[type='checkbox']:checked, input[type='radio']:checked + .select-label {
     transition: all .3s;
     content: "";
   }
+}
+
+.left-position-centered {
+  left: 50%;
+  transform: translateX(-50%);
 }

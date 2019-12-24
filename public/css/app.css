@@ -9778,6 +9778,19 @@ video {
   color: #fff;
 }
 
+.alert {
+  padding: 0.75rem;
+  color: #fff;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  box-shadow:  0 1px 4px 0 rgba(0, 0, 0, 0.16);
+  border-radius: 8px;
+}
+
+.alert.is-danger {
+  background-color: #f04238;
+}
+
 .glide {
   position: relative;
   width: 100%;
@@ -9912,6 +9925,12 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   content: "";
+}
+
+.left-position-centered {
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
 }
 
 @media (min-width: 640px) {
