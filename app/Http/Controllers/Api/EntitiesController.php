@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Category;
 use App\Entity;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Resources\EntityResource;
 
 class EntitiesController extends Controller
 {
@@ -12,13 +13,25 @@ class EntitiesController extends Controller
      * return all entities of different categories paginated in 15
      * per page
      *
-     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
     {
-        $entities = Entity::all();
+        $entities = new Entity();
 
-        return response($entities, 200);
+        if (request('q')) {
+            $entities = $entities->search(request('q'));
+        }
+
+        if (\request('category')) {
+            $category = Category::where('name', \request('category'))->first();
+            if ($category) {
+
+                $entities = $entities->where('category_id', $category->id);
+            }
+        }
+
+        return EntityResource::collection($entities->get());
     }
 
     /**
@@ -31,18 +44,5 @@ class EntitiesController extends Controller
     public function show(Entity $entity)
     {
         return response($entity, 200);
-    }
-
-
-    /**
-     * return entity search option
-     *
-     * @param Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
-     */
-    public function find(Request $request) {
-        $entities = Entity::search($request->search)->get();
-        return response($entities, 200);
     }
 }
