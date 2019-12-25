@@ -18,7 +18,7 @@ Route::get('/', function () {
 
 Route::get('/@{name}', function ($name) {
     return view('profile')->withName($name);
-});
+})->middleware('auth');
 
 Route::namespace('Admin')
     ->prefix('admin')

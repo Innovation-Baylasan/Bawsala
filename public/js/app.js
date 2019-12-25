@@ -5611,16 +5611,27 @@ __webpack_require__.r(__webpack_exports__);
       _this.google = response;
 
       _this.initializeMap();
+
+      _this.ipLookUp();
     });
   },
   methods: {
     initializeMap: function initializeMap() {
       this.map = new this.google.maps.Map(this.$el, {
         center: {
-          lat: 15.5007,
-          lng: 32.5599
+          lat: 0.5007,
+          lng: 0.5599
         },
         zoom: 16
+      });
+    },
+    ipLookUp: function ipLookUp() {
+      var _this2 = this;
+
+      return axios.get('http://ip-api.com/json').then(function (_ref) {
+        var data = _ref.data;
+
+        _this2.map.setCenter(new _this2.google.maps.LatLng(data.lat, data.lon));
       });
     }
   }
