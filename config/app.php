@@ -167,6 +167,11 @@ return [
          */
 
         /*
+         * Search Service Providers...
+         */
+        Laravel\Scout\ScoutServiceProvider::class,
+        TeamTNT\Scout\TNTSearchScoutServiceProvider::class,
+        /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,

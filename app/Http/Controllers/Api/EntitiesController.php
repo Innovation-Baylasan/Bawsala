@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Entity;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class EntitiesController extends Controller
 {
@@ -30,5 +31,18 @@ class EntitiesController extends Controller
     public function show(Entity $entity)
     {
         return response($entity, 200);
+    }
+
+
+    /**
+     * return entity search option
+     *
+     * @param Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     */
+    public function find(Request $request) {
+        $entities = Entity::search($request->search)->get();
+        return response($entities, 200);
     }
 }
