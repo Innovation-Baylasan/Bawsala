@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Laravel\Scout\Searchable;
 
 /**
@@ -34,22 +35,13 @@ class Entity extends Model
      */
     protected $appends = ['cover', 'avatar'];
 
-
-    /**
-     * Determine what to cast when retrieving data
-     *
-     * @var array
-     */
-    protected $casts = [
-        'location' => 'array'
-    ];
-
     protected $fillable = [
         'user_id',
         'category_id',
         'name',
         'description',
-        'location'
+        'latitude',
+        'longitude',
     ];
 
     /**
@@ -98,9 +90,35 @@ class Entity extends Model
             'id' => $this->id,
             'name' => $this->name,
             'description' => $this->description,
-            'avatar' => $this->avatar,
-            'cover' => $this->cover,
             'location' => json_encode($this->location),
         ];
+    }
+
+    /**
+     * Query builder scope to list neighboring locations
+     * within a given distance from a given location
+     *
+     * @param  Illuminate\Database\Query\Builder $query Query builder instance
+     * @param  mixed $lat Lattitude of given location
+     * @param  mixed $lng Longitude of given location
+     * @param  integer $radius Optional distance
+     * @param  string $unit Optional unit
+     *
+     * @return Illuminate\Database\Query\Builder          Modified query builder
+     */
+    public function scopeNearby($query, $lat, $lng, $radius = 100, $unit = "km")
+    {
+        $unit = ($unit === "km") ? 6378.10 : 3963.17;
+        $lat = (float)$lat;
+        $lng = (float)$lng;
+        $radius = (double)$radius;
+        return $query->having('distance', '<=', $radius)
+            ->select(DB::raw("*,
+                            ($unit * ACOS(COS(RADIANS($lat))
+                                * COS(RADIANS(latitude))
+                                * COS(RADIANS($lng) - RADIANS(longitude))
+                                + SIN(RADIANS($lat))
+                                * SIN(RADIANS(latitude)))) AS distance")
+            )->orderBy('distance', 'asc');
     }
 }

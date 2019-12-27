@@ -10,19 +10,7 @@
     <map-view inline-template>
         <div>
             <header class="fixed top-0 z-10 left-0 flex items-center inline-block left-position-centered justify-center">
-                <div class="shadow mt-4 rounded flex justify-between p-2 bg-white">
-                    <a href="#" @click="$modal.show('filteringModal')"
-                       class="p-2  h-8 w-8 flex items-center justify-center">
-                        <img src="{{asset('svg/layer-icon.svg')}}" alt="search what you looking for">
-                    </a>
-                    <input class="outline-none text-black px-8"
-                           type="text"
-                           placeholder="Startups">
-
-                    <a href="#" class="p-2 w-8 h-8 bg-red-100 rounded flex items-center justify-center">
-                        <img src="{{asset('svg/search-icon.svg')}}" alt="search what you looking for">
-                    </a>
-                </div>
+                <search-input></search-input>
             </header>
 
             <nav class="fixed w-24 z-10 bg-white shadow top-0 left-0 h-screen flex flex-col pt-6">

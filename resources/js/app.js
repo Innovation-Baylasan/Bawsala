@@ -5,6 +5,7 @@ import VModal from 'vue-js-modal'
 Vue.use(VModal)
 
 Vue.component('MapCategories', require('./components/MapCategories.vue').default)
+Vue.component('SearchInput', require('./components/SearchInput.vue').default)
 Vue.component('Carousel', require('./components/Carsouel.vue').default)
 Vue.component('Slide', require('./components/Slide.vue').default)
 Vue.component('Avatar', require('./components/Avatar.vue').default)

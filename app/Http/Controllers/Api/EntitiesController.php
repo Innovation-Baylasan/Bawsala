@@ -20,15 +20,17 @@ class EntitiesController extends Controller
         $entities = new Entity();
 
         if (request('q')) {
-            $entities = $entities->search(request('q'));
+            $entities = $entities->search(request('q'))->take(7);
         }
 
         if (\request('category')) {
             $category = Category::where('name', \request('category'))->first();
             if ($category) {
-
                 $entities = $entities->where('category_id', $category->id);
             }
+        }
+        if (($latitude = request('@lat')) && ($longitude = request('@long'))) {
+            $entities = $entities->nearby($latitude, $longitude);
         }
 
         return EntityResource::collection($entities->get());
