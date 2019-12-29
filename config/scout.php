@@ -16,7 +16,7 @@ return [
     */
 
 //    'driver' => env('SCOUT_DRIVER', 'null'),
-    'driver' => env('SCOUT_DRIVER', 'algolia'), // I have added tntsearch in the laravel
+    'driver' => env('SCOUT_DRIVER', 'tntsearch'), // I have added tntsearch in the laravel
 
     /*
     |--------------------------------------------------------------------------

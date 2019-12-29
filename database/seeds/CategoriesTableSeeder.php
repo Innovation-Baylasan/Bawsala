@@ -12,14 +12,28 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Category::class, 6)
-            ->create()
-            ->each(function ($category) {
-                $category->entities()->saveMany(factory(App\Entity::class, 5)->make());
-            })->each(function ($category) {
-                $category->entities->each(function ($entity) {
-                    $entity->profile()->save(factory(Profile::class)->make());
-                });
-            });
+        factory(App\Category::class)
+            ->create(['name' => 'startups',
+                'icon' => '/svg/startups-icon.svg'])
+            ->entities()->saveMany(factory(App\Entity::class, 5)->make(['category_id' => '']));
+
+
+        factory(App\Category::class)
+            ->create(['name' => 'investors',
+                'icon' => '/svg/investors-icon.svg'])
+            ->entities()->saveMany(factory(App\Entity::class, 5)->make(['category_id' => '']));
+
+
+        factory(App\Category::class)
+            ->create(['name' => 'labs',
+                'icon' => '/svg/labs-icon.svg'])
+            ->entities()->saveMany(factory(App\Entity::class, 5)->make(['category_id' => '']));
+
+
+        factory(App\Category::class)
+            ->create(['name' => 'research',
+                'icon' => '/svg/research-centers-icon.svg'])
+            ->entities()->saveMany(factory(App\Entity::class, 5)->make(['category_id' => '']));
+
     }
 }

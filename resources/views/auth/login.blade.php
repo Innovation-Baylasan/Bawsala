@@ -28,12 +28,17 @@
                     <div class="input">
                         <input type="email" name="email">
                     </div>
-
                     <label class="input-label" for="">password</label>
                     <div class="input">
                         <input type="password" name="password">
                     </div>
 
+
+                    @if($errors->any())
+                        @foreach($errors->all() as $error)
+                            <p class="text-sm text-red-500 -mt-2 mb-2">{{$error}}</p>
+                        @endforeach
+                    @endif
 
                     <p class="text-gray-500">
                         Here a text is placed explaining to the user that upon registration, the <a href="#"
@@ -46,7 +51,8 @@
 
                     <div class="flex items-center justify-center mt-8">
                         <button type="submit"
-                                class="bg-red-500 rounded px-24 py-3 outline-none uppercase text-white font-bold">Sing
+                                class="bg-red-500 rounded px-24 py-3 outline-none uppercase text-white font-bold">
+                            Sing
                             In
                         </button>
                     </div>

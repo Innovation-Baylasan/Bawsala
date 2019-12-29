@@ -47,29 +47,46 @@
                     register to log in to obtain additional features</p>
             </header>
             <main>
+                @if($errors->any())
+                    @foreach($errors->all() as $error)
+                        <p>{{$error}}</p>
+                    @endforeach
+                @endif
                 <form action="{{route('register')}}"
                       method="post">
 
                     @csrf
                     <label class="input-label" for="">User name</label>
                     <div class="input">
-                        <input type="text" name="name">
+                        <input type="text" required name="name">
                     </div>
+                    @error('name')
+                    <p class="text-sm text-red-500 -mt-2 mb-2">{{$message}}</p>
+                    @enderror
 
                     <label class="input-label" for="">email</label>
                     <div class="input">
-                        <input type="text" name="email">
+                        <input type="text" required name="email">
                     </div>
+                    @error('email')
+                    <p class="text-sm text-red-500 -mt-2 mb-2">{{$message}}</p>
+                    @enderror
 
                     <label class="input-label" for="">password</label>
                     <div class="input">
                         <input type="password" name="password">
                     </div>
+                    @error('password')
+                    <p class="text-sm text-red-500 -mt-2 mb-2">{{$message}}</p>
+                    @enderror
 
                     <label class="input-label" for="">password confirmation</label>
                     <div class="input">
                         <input type="password" name="password_confirmation">
                     </div>
+                    @error('password')
+                    <p class="text-sm text-red-500 -mt-2 mb-2">{{$message}}</p>
+                    @enderror
 
                     <label class="text-gray-700 capitalize block mb-2" for="">Register as</label>
                     <div class="flex items-center -mx-2 mb-4">
@@ -78,7 +95,7 @@
                             <label class="select-label" for="company">company</label>
                         </div>
                         <div class="flex">
-                            <input class="appearance-none" name="type" type="radio" id="user">
+                            <input class="appearance-none" name="type" checked type="radio" id="user">
                             <label class="select-label" for="user">user</label>
                         </div>
                     </div>

@@ -1,0 +1,6 @@
+.alert {
+  @apply p-3 text-white my-2 shadow-sm rounded;
+  &.is-danger {
+    @apply bg-red-500;
+  }
+}

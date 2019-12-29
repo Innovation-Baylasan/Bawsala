@@ -9,7 +9,30 @@
 @import "./components/pagination";
 @import "./components/button";
 @import "./components/tag";
+@import "./components/alert";
 @import "~@glidejs/glide/src/assets/sass/glide.core";
+//
+//@font-face {
+//  font-family: "NeoSans";
+//  src: url("../../public/fonts/NeoSansArabic.ttf") format('truetype');
+//  font-weight: normal;
+//}
+//
+//@font-face {
+//  font-family: "NeoSans";
+//  src: url("../../public/fonts/NeoSansArabic-Bold.ttf") format('truetype');
+//  font-weight: bold;
+//}
+//
+//@font-face {
+//  font-family: "NeoSans";
+//  src: url("../../public/fonts/NeoSansArabic-Light.ttf") format('truetype');
+//  font-weight: 300;
+//}
+//
+//body, p, h1, h2, h3, h4, h5, h6, button, input {
+//  font-family: 'NeoSans';
+//}
 
 .cover-skewer {
   transform: skewY(-5deg);
@@ -36,4 +59,9 @@ input[type='checkbox']:checked, input[type='radio']:checked + .select-label {
     transition: all .3s;
     content: "";
   }
+}
+
+.left-position-centered {
+  left: 50%;
+  transform: translateX(-50%);
 }

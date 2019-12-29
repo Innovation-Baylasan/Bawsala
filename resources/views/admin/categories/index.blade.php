@@ -20,6 +20,7 @@
         <tr>
             <th> name</th>
             <th> icon</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -30,8 +31,8 @@
                         {{ $category->name  }}
                     </a>
                 </td>
-                <td>
-                    <img src="{{ URL::to('/')  }}/images/categoryIcon/{{ $category->icon  }}" alt="">
+                <td class="text-center">
+                    <img class="inline-block" src=" {{$category->icon}}" alt="">
                 </td>
                 <td class="flex justify-end">
                     <a href="{{route('categories.edit',$category)}}"

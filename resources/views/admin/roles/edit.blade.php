@@ -3,17 +3,16 @@
 @section('content')
     <h1> Create Role </h1>
 
-@if($errors->any())
+    @if($errors->any())
+        <div class="alert is-danger">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li> {{ $error  }} </li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
-    <hr>
-    <ul>
-        @foreach($errors->all() as $error)
-            <li> {{ $error  }} </li>
-        @endforeach
-    </ul>
-    <hr>
-
-@endif
 
 <form method="POST" action="{{ route('roles.update', $role->id)  }}">
 

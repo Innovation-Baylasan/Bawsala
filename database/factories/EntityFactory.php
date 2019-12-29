@@ -14,9 +14,7 @@ $factory->define(Entity::class, function (Faker $faker) use ($places) {
         'user_id' => factory('App\User'),
         'name' => $places[array_rand($places)]->name,
         'description' => $faker->paragraph,
-        'location' => [
-            'lat' => $places[array_rand($places)]->location->latitude,
-            'long' => $places[array_rand($places)]->location->longitude
-        ]
+        'latitude' => $places[array_rand($places)]->location->latitude,
+        'longitude' => $places[array_rand($places)]->location->longitude
     ];
 });
