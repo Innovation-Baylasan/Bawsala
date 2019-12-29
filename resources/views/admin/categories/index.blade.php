@@ -4,11 +4,9 @@
     <div class="p-4">
 
         @if($message = Session::get('success'))
-            <hr>
-            <p>
+            <div class="alert is-green">
                 {{ $message  }}
-            </p>
-            <hr>
+            </div>
         @endif
 
 

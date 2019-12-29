@@ -5527,8 +5527,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['img', 'auth'],
+  props: ['img', 'auth', 'user'],
   data: function data() {
     return {
       showDropdown: false
@@ -5708,7 +5719,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      categories: ['map', 'startups', 'accelerator', 'search', 'labs', 'investors', 'research'],
+      categories: ['map', 'startups', 'accelerator', 'labs', 'investors', 'research-centers'],
       selectedCategory: 'map'
     };
   },
@@ -25448,49 +25459,94 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "a",
-    {
-      staticClass: "relative",
-      attrs: { href: "" },
+  return _c("div", { staticClass: "relative" }, [
+    _c("img", {
+      staticClass: "rounded",
+      attrs: { src: _vm.img, alt: "avatar" },
       on: {
         click: function($event) {
           $event.preventDefault()
           _vm.showDropdown = !_vm.showDropdown
         }
       }
-    },
-    [
-      _c("img", {
-        staticClass: "rounded",
-        attrs: { src: _vm.img, alt: "avatar" }
-      }),
-      _vm._v(" "),
-      _vm.showDropdown && _vm.auth
-        ? _c(
-            "div",
-            {
-              staticClass: "shadow rounded bg-white absolute py-1 top-0",
-              staticStyle: { left: "60px" }
-            },
-            [
-              _c(
-                "a",
-                {
-                  staticClass: "p-1",
-                  attrs: {
-                    href: "#",
-                    onclick:
-                      "event.preventDefault();getElementById('logout-form').submit()"
-                  }
-                },
-                [_vm._v("Logout")]
-              )
-            ]
-          )
-        : _vm._e()
-    ]
-  )
+    }),
+    _vm._v(" "),
+    _vm.showDropdown && !!_vm.auth
+      ? _c(
+          "div",
+          {
+            staticClass: "shadow rounded flex flex-col bg-white absolute top-0",
+            staticStyle: { left: "60px" }
+          },
+          [
+            _vm.user.role.role == "company"
+              ? _c(
+                  "a",
+                  {
+                    staticClass: "py-2 px-6 border-b border-gray-200 cap ",
+                    attrs: { href: "/@" + _vm.user.username }
+                  },
+                  [_vm._v("Profile")]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.user.role.role == "admin"
+              ? _c(
+                  "a",
+                  {
+                    staticClass: "py-2 px-6 border-b border-gray-200 cap ",
+                    attrs: { href: "/admin" }
+                  },
+                  [_vm._v("Dashboard")]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "py-2 px-6 border-b border-gray-200 cap ",
+                attrs: {
+                  href: "#",
+                  onclick:
+                    "event.preventDefault();getElementById('logout-form').submit()"
+                }
+              },
+              [_vm._v("Logout")]
+            )
+          ]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.showDropdown && !_vm.auth
+      ? _c(
+          "div",
+          {
+            staticClass:
+              "shadow rounded flex flex-col bg-white absolute py-2 top-0",
+            staticStyle: { left: "60px" }
+          },
+          [
+            _c(
+              "a",
+              {
+                staticClass: "py-2 px-6 border-b border-gray-200 cap ",
+                attrs: { href: "/register" }
+              },
+              [_vm._v("register")]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "py-2 px-6 border-b border-gray-200 cap ",
+                attrs: { href: "/login" }
+              },
+              [_vm._v("login")]
+            )
+          ]
+        )
+      : _vm._e()
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -37933,7 +37989,7 @@ var map = {
 	"./notifications-icon.svg": "./public/svg/notifications-icon.svg",
 	"./notify-icon.svg": "./public/svg/notify-icon.svg",
 	"./remove-icon.svg": "./public/svg/remove-icon.svg",
-	"./research-icon.svg": "./public/svg/research-icon.svg",
+	"./research-centers-icon.svg": "./public/svg/research-centers-icon.svg",
 	"./search-icon.svg": "./public/svg/search-icon.svg",
 	"./startups-icon.svg": "./public/svg/startups-icon.svg",
 	"./tags-icon.svg": "./public/svg/tags-icon.svg",
@@ -38105,10 +38161,10 @@ module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"8.324\" heig
 
 /***/ }),
 
-/***/ "./public/svg/research-icon.svg":
-/*!**************************************!*\
-  !*** ./public/svg/research-icon.svg ***!
-  \**************************************/
+/***/ "./public/svg/research-centers-icon.svg":
+/*!**********************************************!*\
+  !*** ./public/svg/research-centers-icon.svg ***!
+  \**********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 

@@ -10,8 +10,9 @@
     <div class="flex flex-1 h-full bg-gray-200">
         <nav class="bg-white shadow-sm w-56 pt-16 pb-2">
             <header class="flex flex-col justify-center items-center mb-12 h-full">
-                <div class="rounded-full mb-4 w-20 h-20 overflow-hidden shadow-sm p-2 bg-white">
-                    <img src="https://avatars.dicebear.com/v2/bottts/avatar.svg" alt="">
+                <div class="rounded-full mb-4 w-20 h-20 overflow-hidden shadow-sm bg-white">
+                    <img src="{{"https://www.gravatar.com/avatar/" . md5( strtolower( trim( auth()->user()->email ) ) ) . "?s=100&d=https%3A%2F%2Fs3.amazonaws.com%2Flaracasts%2Fimages%2Fforum%2Favatars%2Favatar-18.png"}}"
+                         alt="">
                 </div>
                 <div class="text-center text-sm">
                     <h3 class="font-bold uppercase">Baylassan Inevation</h3>
@@ -72,9 +73,10 @@
 
                     <div class="flex flex-col items-center">
                         <div class="rounded-full w-12 h-12  overflow-hidden p-2 bg-white">
-                            <img src="https://avatars.dicebear.com/v2/bottts/avatar.svg" alt="">
+                            <img src="{{"https://www.gravatar.com/avatar/" . md5( strtolower( trim( auth()->user()->email ) ) ) . "?s=100&d=https%3A%2F%2Fs3.amazonaws.com%2Flaracasts%2Fimages%2Fforum%2Favatars%2Favatar-18.png"}}"
+                                 alt="">
                         </div>
-                        <h3 class="text-red-500 capitalize font-bold text-xs leading-tight">M.Akasha</h3>
+                        <h3 class="text-red-500 capitalize font-bold text-xs leading-tight">{{auth()->user()->name}}</h3>
                     </div>
                 </div>
                 <div class="bg-white mb-2  shadow-sm p-4 flex flex-col justify-center">

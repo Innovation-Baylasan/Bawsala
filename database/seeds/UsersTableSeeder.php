@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
@@ -11,6 +12,12 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        User::create([
+            'name' => 'Baylsaan Admin',
+            'email' => 'admin@baylsaan.com',
+            'username' => User::generateUsername('Baylsaan Admin'),
+            'password' => bcrypt('admin12345678'),
+            'role_id' => '1',
+        ]);
     }
 }
