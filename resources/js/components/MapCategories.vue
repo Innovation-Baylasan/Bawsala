@@ -21,10 +21,9 @@
                     'map',
                     'startups',
                     'accelerator',
-                    'search',
                     'labs',
                     'investors',
-                        'research',
+                    'research-centers',
                 ],
                 selectedCategory: 'map'
             }

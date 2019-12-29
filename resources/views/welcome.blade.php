@@ -30,7 +30,7 @@
             </nav>
 
             <main>
-                <google-map  api-key="{{config('app.google_map_key')}}"></google-map>
+                <google-map :center="mapCenter" api-key="{{config('app.google_map_key')}}"></google-map>
             </main>
             @include('partials.modals.filteringModal')
         </div>

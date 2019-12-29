@@ -5599,7 +5599,10 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       google: null,
-      map: null
+      map: null,
+      center: {},
+      places: {},
+      markers: []
     };
   },
   mounted: function mounted() {
@@ -5612,26 +5615,65 @@ __webpack_require__.r(__webpack_exports__);
 
       _this.initializeMap();
 
-      _this.ipLookUp();
+      _this.setMarkers();
     });
   },
   methods: {
     initializeMap: function initializeMap() {
       this.map = new this.google.maps.Map(this.$el, {
         center: {
-          lat: 0.5007,
-          lng: 0.5599
+          lat: 32.23232,
+          lng: 18.5599
         },
-        zoom: 16
+        zoom: 12
+      });
+    },
+    addMarker: function addMarker(latitude, longitude) {
+      var marker = new this.google.maps.Marker({
+        position: new this.google.maps.LatLng(latitude, longitude),
+        map: this.map,
+        icon: '/svg/startups-icon.svg'
+      });
+      this.markers.push(marker);
+    },
+    setMarkers: function setMarkers() {
+      var _this2 = this;
+
+      this.ipLookUp().then(function () {
+        _this2.getPlaces().then(function () {
+          _this2.places.forEach(function (place) {
+            _this2.addMarker(place.location.lat, place.location["long"]);
+          });
+        });
+      });
+    },
+    removeMarkers: function removeMarkers() {
+      var _this3 = this;
+
+      this.markers.forEach(function (marker) {
+        marker.setMap(null);
+
+        _this3.markers.slice(_this3.markers.indexOf(marker), 1);
+      });
+    },
+    getPlaces: function getPlaces() {
+      var _this4 = this;
+
+      return axios.get("/api/entities?@long=".concat(this.center.longitude, "&&lat=").concat(this.center.latitude)).then(function (_ref) {
+        var data = _ref.data;
+        _this4.places = data.data;
       });
     },
     ipLookUp: function ipLookUp() {
-      var _this2 = this;
+      var _this5 = this;
 
-      return axios.get('http://ip-api.com/json').then(function (_ref) {
-        var data = _ref.data;
+      return axios.get('http://ip-api.com/json').then(function (_ref2) {
+        var data = _ref2.data;
 
-        _this2.map.setCenter(new _this2.google.maps.LatLng(data.lat, data.lon));
+        _this5.map.setCenter(new _this5.google.maps.LatLng(data.lat, data.lon));
+
+        _this5.center.longitude = data.lon;
+        _this5.center.latitude = data.lat;
       });
     }
   }
@@ -5780,6 +5822,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     GoogleMap: _components_GoogleMap_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      mapCenter: {}
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get('http://ip-api.com/json').then(function (_ref) {
+      var data = _ref.data;
+      _this.mapCenter['latitude'] = data.lat;
+      _this.mapCenter['longitude'] = data.lon;
+    });
   }
 });
 
