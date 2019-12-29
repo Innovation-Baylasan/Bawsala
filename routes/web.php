@@ -22,15 +22,12 @@ Route::get('/@{name}', function ($name) {
 
 Route::namespace('Admin')
     ->prefix('admin')
+    ->middleware(['admin'])
     ->group(function () {
 
         Route::get('', function () {
             return view('admin.all');
         });
-
-//        Route::get('/categories', 'CategoriesController@index');
-//        Route::get('/categories/create', 'CategoriesController@create');
-//        Route::get('/categories/{category}', 'CategoriesController@show');
 
         Route::resource('roles', 'RolesController');
         Route::resource('tags', 'TagsController');
@@ -40,7 +37,7 @@ Route::namespace('Admin')
         Route::resource('profiles', 'ProfilesController');
         Route::resource('entity_tags', 'EntityTagsController');
 
-    });
+    }, []);
 
 Auth::routes();
 

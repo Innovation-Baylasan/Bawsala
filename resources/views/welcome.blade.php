@@ -18,7 +18,14 @@
                     <form action="/logout" method="post" id="logout-form">
                         @csrf
                     </form>
-                    <avatar img="https://i.pravatar.cc/300" auth="{{Auth::check()}}"></avatar>
+                    @auth()
+                    <avatar img="{{"https://www.gravatar.com/avatar/" . md5( strtolower( trim( auth()->user()->email ) ) ) . "?s=100&d=https%3A%2F%2Fs3.amazonaws.com%2Flaracasts%2Fimages%2Fforum%2Favatars%2Favatar-18.png"}}"
+                            :auth="{{auth()->check()}}" :user="{{auth()->user()}}"></avatar>
+                    @endauth
+                    @guest()
+                    <avatar img="{{"https://www.gravatar.com/avatar/"  . "?s=120"}}"
+                            auth="{{auth()->check()}}"></avatar>
+                    @endguest
                 </div>
                 <map-categories></map-categories>
                 <div class="flex items-center justify-center mt-auto mb-2">
