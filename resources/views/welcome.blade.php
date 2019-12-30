@@ -9,8 +9,11 @@
 <div id="app">
     <map-view inline-template>
         <div>
-            <header class="fixed top-0 z-10 left-0 flex items-center inline-block left-position-centered justify-center">
-                <search-input></search-input>
+            <header class="fixed w-full z-10 flex items-center inline-block justify-center">
+                <search-input :category="selectedCategory" @result-clicked="selectPlace"></search-input>
+                <place-profile-card @close="selectedPlace =null"
+                v-if="selectedPlace"
+                :place="selectedPlace"></place-profile-card>
             </header>
 
             <nav class="fixed w-24 z-10 bg-white shadow top-0 left-0 h-screen flex flex-col pt-6">
@@ -27,7 +30,7 @@
                             auth="{{auth()->check()}}"></avatar>
                     @endguest
                 </div>
-                <map-categories></map-categories>
+                <map-categories @category-change="getPlaces"></map-categories>
                 <div class="flex items-center justify-center mt-auto mb-2">
                     <div class="rounded  w-12 h-12 w-16 h-16 bg-red-500 flex items-center justify-center">
                         <img class="" src="{{asset('svg/notify-icon.svg')}}" alt="">
@@ -37,7 +40,9 @@
             </nav>
 
             <main>
-                <google-map :center="mapCenter" api-key="{{config('app.google_map_key')}}"></google-map>
+                <google-map :places="places"
+                            :center="mapCenter"
+                            api-key="{{config('app.google_map_key')}}"></google-map>
             </main>
             @include('partials.modals.filteringModal')
         </div>

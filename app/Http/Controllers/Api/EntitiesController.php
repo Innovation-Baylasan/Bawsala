@@ -30,7 +30,9 @@ class EntitiesController extends Controller
             }
         }
         if (($latitude = request('@lat')) && ($longitude = request('@long'))) {
-            $entities = $entities->nearby($latitude, $longitude);
+            $entities = $entities->nearby($latitude, $longitude,
+                request('radios') ?: '100', request('unit') ?: 'km'
+            );
         }
 
         return EntityResource::collection($entities->get());

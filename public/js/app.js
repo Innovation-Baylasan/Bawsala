@@ -5605,14 +5605,14 @@ __webpack_require__.r(__webpack_exports__);
         return {};
       }
     },
-    apiKey: String
+    places: Array,
+    apiKey: String,
+    center: Object
   },
   data: function data() {
     return {
       google: null,
       map: null,
-      center: {},
-      places: {},
       markers: []
     };
   },
@@ -5626,66 +5626,72 @@ __webpack_require__.r(__webpack_exports__);
 
       _this.initializeMap();
 
+      _this.centeringMap();
+
       _this.setMarkers();
     });
   },
+  watch: {
+    places: function places() {
+      this.removeMarkers();
+      this.setMarkers();
+    },
+    center: function center(newCenter) {
+      this.centeringMap();
+    }
+  },
   methods: {
     initializeMap: function initializeMap() {
-      this.map = new this.google.maps.Map(this.$el, {
-        center: {
-          lat: 32.23232,
-          lng: 18.5599
-        },
-        zoom: 12
-      });
-    },
-    addMarker: function addMarker(latitude, longitude) {
-      var marker = new this.google.maps.Marker({
-        position: new this.google.maps.LatLng(latitude, longitude),
-        map: this.map,
-        icon: '/svg/startups-icon.svg'
-      });
-      this.markers.push(marker);
-    },
-    setMarkers: function setMarkers() {
       var _this2 = this;
 
-      this.ipLookUp().then(function () {
-        _this2.getPlaces().then(function () {
-          _this2.places.forEach(function (place) {
-            _this2.addMarker(place.location.lat, place.location["long"]);
-          });
+      this.map = new this.google.maps.Map(this.$el, {
+        center: {
+          lat: 15.5007,
+          lng: 32.5599
+        },
+        zoom: 12,
+        streetViewControl: false,
+        disableDefaultUI: true
+      });
+      this.map.addListener('center_changed', function () {
+        return _this2.$emit('centerChanged', _this2.map.center);
+      });
+    },
+    addMarker: function addMarker(place) {
+      if (this.google) {
+        var marker = new this.google.maps.Marker({
+          position: new this.google.maps.LatLng(place.location.lat, place.location["long"]),
+          map: this.map,
+          icon: {
+            url: "/svg/markers/".concat(place.category.name, "-marker-icon.svg"),
+            scaledSize: new google.maps.Size(50, 50),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(0, 0)
+          }
         });
+        this.markers.push(marker);
+      }
+    },
+    setMarkers: function setMarkers() {
+      var _this3 = this;
+
+      this.places.forEach(function (place) {
+        _this3.addMarker(place);
       });
     },
     removeMarkers: function removeMarkers() {
-      var _this3 = this;
+      var _this4 = this;
 
       this.markers.forEach(function (marker) {
         marker.setMap(null);
 
-        _this3.markers.slice(_this3.markers.indexOf(marker), 1);
+        _this4.markers.slice(_this4.markers.indexOf(marker), 1);
       });
     },
-    getPlaces: function getPlaces() {
-      var _this4 = this;
-
-      return axios.get("/api/entities?@long=".concat(this.center.longitude, "&&lat=").concat(this.center.latitude)).then(function (_ref) {
-        var data = _ref.data;
-        _this4.places = data.data;
-      });
-    },
-    ipLookUp: function ipLookUp() {
-      var _this5 = this;
-
-      return axios.get('http://ip-api.com/json').then(function (_ref2) {
-        var data = _ref2.data;
-
-        _this5.map.setCenter(new _this5.google.maps.LatLng(data.lat, data.lon));
-
-        _this5.center.longitude = data.lon;
-        _this5.center.latitude = data.lat;
-      });
+    centeringMap: function centeringMap() {
+      if (this.center.latitude && this.map) {
+        this.map.panTo(new this.google.maps.LatLng(this.center.latitude, this.center.longitude));
+      }
     }
   }
 });
@@ -5736,6 +5742,43 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PlaceProfileCard.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PlaceProfileCard.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['place']
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SearchInput.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SearchInput.vue?vue&type=script&lang=js& ***!
@@ -5775,7 +5818,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['category'],
   data: function data() {
     return {
       query: '',
@@ -5786,11 +5838,25 @@ __webpack_require__.r(__webpack_exports__);
     search: function search() {
       var _this = this;
 
-      axios.get("/api/entities?q=".concat(this.query)).then(function (_ref) {
+      this.searching = true;
+      axios.get("/api/entities?q=".concat(this.query, "&&").concat(this.category ? 'category=' + this.category : '')).then(function (_ref) {
         var data = _ref.data;
         _this.results = data.data;
       });
+    },
+    selectResult: function selectResult(place) {
+      this.$emit('result-clicked', place);
+      this.results = [];
+    },
+    close: function close(e) {
+      if (!this.$el.contains(e.target)) {
+        this.results = [];
+        this.searching = false;
+      }
     }
+  },
+  mounted: function mounted() {
+    document.addEventListener('click', this.close);
   }
 });
 
@@ -5829,24 +5895,54 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_GoogleMap_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/GoogleMap.vue */ "./resources/js/components/GoogleMap.vue");
+/* harmony import */ var _components_PlaceProfileCard_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/PlaceProfileCard.vue */ "./resources/js/components/PlaceProfileCard.vue");
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    GoogleMap: _components_GoogleMap_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    GoogleMap: _components_GoogleMap_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    PlaceProfileCard: _components_PlaceProfileCard_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
+      places: [],
+      selectedPlace: null,
+      selectedCategory: null,
       mapCenter: {}
     };
   },
-  created: function created() {
-    var _this = this;
+  methods: {
+    getPlaces: function getPlaces() {
+      var _this = this;
 
-    axios.get('http://ip-api.com/json').then(function (_ref) {
-      var data = _ref.data;
-      _this.mapCenter['latitude'] = data.lat;
-      _this.mapCenter['longitude'] = data.lon;
-    });
+      var category = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+      this.selectedCategory = category;
+      axios.get("/api/entities".concat(category ? '?category=' + category : '')).then(function (_ref) {
+        var data = _ref.data;
+        return _this.places = data.data;
+      });
+    },
+    getCenter: function getCenter() {
+      var _this2 = this;
+
+      return axios.get('http://ip-api.com/json').then(function (_ref2) {
+        var data = _ref2.data;
+        _this2.mapCenter = {
+          latitude: data.lat,
+          longitude: data.lon
+        };
+      });
+    },
+    selectPlace: function selectPlace(place) {
+      this.selectedPlace = place;
+      this.mapCenter = {};
+      this.mapCenter.latitude = place.location.lat;
+      this.mapCenter.longitude = place.location["long"];
+    }
+  },
+  created: function created() {
+    this.getPlaces();
+    this.getCenter();
   }
 });
 
@@ -25665,6 +25761,108 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PlaceProfileCard.vue?vue&type=template&id=614beb86&":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PlaceProfileCard.vue?vue&type=template&id=614beb86& ***!
+  \*******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass:
+        "top-0 absolute bg-white rounded overflow-hidden shadow m-4 right-0",
+      staticStyle: { width: "393px" }
+    },
+    [
+      _c("div", { staticClass: "flex flex-col justify-center items-center" }, [
+        _c("div", { staticClass: "relative" }, [
+          _c(
+            "span",
+            {
+              staticClass:
+                "block cursor-pointer w-8 h-8 flex items-center justify-center  p-4 rounded-full text-gray-500 absolute m-4 top-0 right-0 bg-white",
+              on: {
+                click: function($event) {
+                  return _vm.$emit("close")
+                }
+              }
+            },
+            [_vm._v("\n                ×")]
+          ),
+          _vm._v(" "),
+          _c("img", {
+            attrs: { src: "https://placeimg.com/640/460/tech", alt: "" }
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass: "bg-white absolute w-full h-12 cover-skewer"
+          })
+        ]),
+        _vm._v(" "),
+        _vm._m(0)
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "px-10 flex flex-col" }, [
+        _c("h3", {
+          staticClass: "uppercase text-xl font-bold text-center mb-4",
+          domProps: { textContent: _vm._s(_vm.place.name) }
+        }),
+        _vm._v(" "),
+        _c("p", {
+          staticClass: "text-sm text-gray-500 capitalize",
+          domProps: { textContent: _vm._s(_vm.place.description) }
+        }),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "text-red-500 p-4 text-xl block text-center font-bold",
+            attrs: { href: "/@" + _vm.place.name }
+          },
+          [_vm._v("Visit Profile")]
+        )
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "rounded-full w-24 h-24 overflow-hidden shadow-sm p-2 bg-white -translate-y-50 -mb-5"
+      },
+      [
+        _c("img", {
+          attrs: {
+            src: "https://avatars.dicebear.com/v2/bottts/avatar.svg",
+            alt: ""
+          }
+        })
+      ]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SearchInput.vue?vue&type=template&id=3e361632&":
 /*!**************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SearchInput.vue?vue&type=template&id=3e361632& ***!
@@ -25735,12 +25933,17 @@ var render = function() {
       ? _c("div", { staticClass: "bg-gray-200" }, [
           _c(
             "ul",
-            _vm._l(_vm.results, function(entity) {
+            _vm._l(_vm.results, function(place) {
               return _c(
                 "li",
                 {
                   staticClass:
-                    "flex border-t border-gray-300 items-center p-3 justify-between"
+                    "flex border-t cursor-pointer border-gray-300 items-center p-3 justify-between",
+                  on: {
+                    click: function($event) {
+                      return _vm.selectResult(place)
+                    }
+                  }
                 },
                 [
                   _c("div", { staticClass: "flex items-center" }, [
@@ -25751,13 +25954,13 @@ var render = function() {
                     _vm._v(" "),
                     _c("h3", {
                       staticClass: "text-gray-500",
-                      domProps: { textContent: _vm._s(entity.name) }
+                      domProps: { textContent: _vm._s(place.name) }
                     })
                   ]),
                   _vm._v(" "),
                   _c("img", {
                     attrs: {
-                      src: "/svg/" + entity.category.name + "-icon.svg",
+                      src: "/svg/" + place.category.name + "-icon.svg",
                       alt: ""
                     }
                   })
@@ -25767,6 +25970,10 @@ var render = function() {
             0
           )
         ])
+      : _vm._e(),
+    _vm._v(" "),
+    !_vm.results.length && _vm.searching
+      ? _c("div", { staticClass: "bg-gray-200" }, [_vm._m(1)])
       : _vm._e()
   ])
 }
@@ -25791,6 +25998,25 @@ var staticRenderFns = [
         })
       ]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", [
+      _c(
+        "li",
+        {
+          staticClass:
+            "flex border-t text-gray-500 cursor-pointer border-gray-300 items-center p-3 justify-between"
+        },
+        [
+          _vm._v(
+            "\n                it seems like there is no results for now\n            "
+          )
+        ]
+      )
+    ])
   }
 ]
 render._withStripped = true
@@ -37986,6 +38212,11 @@ var map = {
 	"./labs-icon.svg": "./public/svg/labs-icon.svg",
 	"./layer-icon.svg": "./public/svg/layer-icon.svg",
 	"./map-icon.svg": "./public/svg/map-icon.svg",
+	"./markers/accelaraters-marker-icon.svg": "./public/svg/markers/accelaraters-marker-icon.svg",
+	"./markers/co-workspaces-marker-icon.svg": "./public/svg/markers/co-workspaces-marker-icon.svg",
+	"./markers/investors-marker-icon.svg": "./public/svg/markers/investors-marker-icon.svg",
+	"./markers/research-centers-marker-icon.svg": "./public/svg/markers/research-centers-marker-icon.svg",
+	"./markers/startups-marker-icon.svg": "./public/svg/markers/startups-marker-icon.svg",
 	"./notifications-icon.svg": "./public/svg/notifications-icon.svg",
 	"./notify-icon.svg": "./public/svg/notify-icon.svg",
 	"./remove-icon.svg": "./public/svg/remove-icon.svg",
@@ -38125,6 +38356,61 @@ module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" id=\"_1203985\" widt
 /***/ (function(module, exports) {
 
 module.exports = "<svg  xmlns=\"http://www.w3.org/2000/svg\" id=\"_854878\" width=\"51.614\" height=\"29.529\" data-name=\"854878\" viewBox=\"0 0 51.614 29.529\">\n    <defs>\n        <style>\n            .cls-1{fill:#44c868}.cls-2{fill:#4ce166}.cls-3{fill:#ffdb56}.cls-4{fill:#a8eefc}.cls-5{fill:#ffbb24}.cls-6{fill:#1ea4e9}\n        </style>\n    </defs>\n    <g id=\"Group_1227\" data-name=\"Group 1227\" transform=\"translate(13.22)\">\n        <path id=\"Path_397\" d=\"M377.5 220.246l-4.055-22.34a.757.757 0 0 0-.377-.526l-10.201-5.68a.754.754 0 0 0-.427-.092l1.857 23.953-.062.028 12.214 5.48a.757.757 0 0 0 1.056-.825z\" class=\"cls-1\" data-name=\"Path 397\" transform=\"translate(-339.123 -191.609)\"/>\n        <path id=\"Path_398\" d=\"M143.729 197.128l-10.438-5.437a.755.755 0 0 0-.4-.083.783.783 0 0 1 .109 0l-1.857 23.953 12.276 5.508a.759.759 0 0 0 .31.066z\" class=\"cls-1\" data-name=\"Path 398\" transform=\"translate(-131.142 -191.607)\"/>\n    </g>\n    <g id=\"Group_1228\" data-name=\"Group 1228\">\n        <path id=\"Path_399\" d=\"M15.077 191.612a.756.756 0 0 0-.427.092L4.444 197.38a.756.756 0 0 0-.377.526L.012 220.247a.757.757 0 0 0 1.056.826l12.148-5.45z\" class=\"cls-2\" data-name=\"Path 399\" transform=\"translate(0 -191.61)\"/>\n        <path id=\"Path_400\" d=\"M266.73 191.628a.755.755 0 0 0-.292.082L256 197.147v24.008a.756.756 0 0 0 .31-.066l12.276-5.508z\" class=\"cls-2\" data-name=\"Path 400\" transform=\"translate(-230.193 -191.626)\"/>\n    </g>\n    <path id=\"Path_401\" d=\"M20.807 266.26l-.824 4.538 12.2-6.442.283-3.653.047-.606z\" class=\"cls-3\" data-name=\"Path 401\" transform=\"translate(-17.969 -253.193)\"/>\n    <path id=\"Path_402\" d=\"M14.321 288.294l-.11 1.417-12.2 6.442-2 11.032a.758.758 0 0 0 1.056.826l12.148-5.45 1.106-14.266z\" class=\"cls-4\" data-name=\"Path 402\" transform=\"translate(0 -278.547)\"/>\n    <g id=\"Group_1229\" data-name=\"Group 1229\" transform=\"translate(14.212 2.597)\">\n        <path id=\"Path_403\" d=\"M152.575 261.708l-11.268-1.608-.33 4.259 11.6 17.609v-6.4l-6.919-10.9 6.922.828z\" class=\"cls-5\" data-name=\"Path 403\" transform=\"translate(-140.977 -255.79)\"/>\n        <path id=\"Path_404\" d=\"M374.813 220.1l-4.9-2.727-4.641 1.085.058.75.229 2.957z\" class=\"cls-5\" data-name=\"Path 404\" transform=\"translate(-342.659 -217.37)\"/>\n    </g>\n    <path id=\"Path_405\" d=\"M267.741 237.145l-.44-5.67-.259-3.347-11.012 4.834v3.787l7.193-3.128z\" class=\"cls-3\" data-name=\"Path 405\" transform=\"translate(-230.22 -224.446)\"/>\n    <path id=\"Path_406\" d=\"M382.611 286.147l-1.019-5.612-13.473-15.635.412 5.31 13.818 16.656a.756.756 0 0 0 .262-.719z\" class=\"cls-5\" data-name=\"Path 406\" transform=\"translate(-331.01 -257.51)\"/>\n    <path id=\"Path_409\" d=\"M256.31 420.6l4.565-2.048-4.875-5.045v7.16a.755.755 0 0 0 .31-.067z\" class=\"cls-3\" data-name=\"Path 409\" transform=\"translate(-230.193 -391.138)\"/>\n    <g id=\"Group_1230\" data-name=\"Group 1230\" transform=\"translate(13.22 5.324)\">\n        <path id=\"Path_410\" d=\"M378.555 245.393a.757.757 0 0 0-.377-.526l-.8-.447-9.257 2.064 13.474 15.637z\" class=\"cls-6\" data-name=\"Path 410\" transform=\"translate(-344.229 -244.42)\"/>\n        <path id=\"Path_411\" d=\"M143.727 320.712v-.757l-11.6-17.609-.992 12.792 12.276 5.508a.757.757 0 0 0 .316.066z\" class=\"cls-6\" data-name=\"Path 411\" transform=\"translate(-131.14 -296.507)\"/>\n    </g>\n</svg>\n";
+
+/***/ }),
+
+/***/ "./public/svg/markers/accelaraters-marker-icon.svg":
+/*!*********************************************************!*\
+  !*** ./public/svg/markers/accelaraters-marker-icon.svg ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25.951\" height=\"25.951\" viewBox=\"0 0 25.951 25.951\">\n    <defs>\n        <style>\n            .cls-1{fill:#f04238}.cls-2{fill:#fff}\n        </style>\n    </defs>\n    <g id=\"Group_1158\" data-name=\"Group 1158\" transform=\"translate(-305.74 -126.875)\">\n        <rect id=\"Rectangle_514\" width=\"25.951\" height=\"25.951\" class=\"cls-1\" data-name=\"Rectangle 514\" rx=\"12.976\" transform=\"translate(305.74 126.875)\"/>\n        <g id=\"Group_1157\" data-name=\"Group 1157\" transform=\"translate(309.628 133.034)\">\n            <path id=\"Path_380\" d=\"M335.211 152a9.081 9.081 0 0 0-15 6.9c0 .135.013 1.391.019 1.525v.511a.85.85 0 0 0 .85.85h16.624a.647.647 0 0 0 .647-.647v-.615l.017-.1c.005-.135.02-1.391.02-1.525a9.141 9.141 0 0 0-3.177-6.899zm-12.789 8.177v-.879a.247.247 0 0 1 .248-.247h1.366a.248.248 0 0 0 .248-.248v-.103a.248.248 0 0 0-.248-.248h-1.485a.821.821 0 0 0-.131 0 6.916 6.916 0 0 1 1.79-4.345l.047-.05.084.073 1.065 1.066a.248.248 0 0 0 .351 0l.039-.039a.248.248 0 0 0 0-.351l-.954-.953a.249.249 0 0 1 .012-.364 6.816 6.816 0 0 1 4.121-1.612h.093s.039 0 .036.023v1.59a.248.248 0 0 0 .248.248.248.248 0 0 0 .248-.248v-1.347a.25.25 0 0 1 .275-.247c.153.014.305.034.456.058a6.811 6.811 0 0 1 3.519 1.559.249.249 0 0 1 .012.364l-.952.953a.248.248 0 0 0 0 .35l.016.016a.248.248 0 0 0 .351 0l1.087-1.088.07-.056.06.079a6.816 6.816 0 0 1 1.773 4.056.248.248 0 0 1-.249.266h-1.348a.248.248 0 0 0-.248.248v.105a.248.248 0 0 0 .249.248h1.374a.247.247 0 0 1 .248.247v.878a.247.247 0 0 1-.248.245H322.67a.247.247 0 0 1-.248-.248zm9.179-3.637a.248.248 0 0 0-.313-.313 12.218 12.218 0 0 0-3.063 1.325 1.451 1.451 0 0 0 2.052 2.052 12.219 12.219 0 0 0 1.323-3.065z\" class=\"cls-2\" data-name=\"Path 380\" transform=\"translate(-320.214 -149.808)\"/>\n        </g>\n    </g>\n</svg>\n";
+
+/***/ }),
+
+/***/ "./public/svg/markers/co-workspaces-marker-icon.svg":
+/*!**********************************************************!*\
+  !*** ./public/svg/markers/co-workspaces-marker-icon.svg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"49.77\" height=\"49.77\" viewBox=\"0 0 49.77 49.77\">\n    <defs>\n        <style>\n            .cls-1{fill:#38479b}.cls-2{fill:#fff}\n        </style>\n    </defs>\n    <g id=\"Group_1152\" data-name=\"Group 1152\" transform=\"translate(-45.783 -126.875)\">\n        <rect id=\"Rectangle_512\" width=\"49.77\" height=\"49.77\" class=\"cls-1\" data-name=\"Rectangle 512\" rx=\"24.885\" transform=\"translate(45.783 126.875)\"/>\n        <g id=\"Group_1151\" data-name=\"Group 1151\" transform=\"translate(56.472 139.815)\">\n            <path id=\"Path_376\" d=\"M84.033 156.348a5.159 5.159 0 0 1 1.973 3.147.817.817 0 0 0 .542.624 4.135 4.135 0 0 0 2.082.128 4.164 4.164 0 1 0-4.921-4.66.819.819 0 0 0 .324.761zm-3.8 8.217a4.166 4.166 0 1 0-3.4-3.4 4.168 4.168 0 0 0 3.403 3.4zm2.471.342h-3.529a5.331 5.331 0 0 0-5.331 5.331v4.321l.011.067.3.093a24.268 24.268 0 0 0 7.249 1.169 14.868 14.868 0 0 0 6.326-1.188l.278-.141h.03v-4.321a5.336 5.336 0 0 0-5.331-5.331zm6.889-4.3h-3.211a.311.311 0 0 0-.307.291 5.121 5.121 0 0 1-1.246 2.945.3.3 0 0 0 .117.486 6.334 6.334 0 0 1 4.087 5.914v.463a.818.818 0 0 0 .881.816 13.61 13.61 0 0 0 4.706-1.121l.278-.141h.03v-4.322a5.331 5.331 0 0 0-5.328-5.33zm-16.493-.316a4.132 4.132 0 0 0 2.254-.343 1.081 1.081 0 0 0 .584-.728 5.149 5.149 0 0 1 1.48-2.514l.362-.888a4.164 4.164 0 1 0-4.68 4.473zm3.832 4.04a.3.3 0 0 0 .117-.486 5.128 5.128 0 0 1-1.261-3.217c-.13-.009-.259-.02-.391-.02h-3.529a5.331 5.331 0 0 0-5.331 5.331v4.321l.011.066.3.094a25.519 25.519 0 0 0 5.11 1.058.816.816 0 0 0 .893-.816v-.419a6.335 6.335 0 0 1 4.085-5.912z\" class=\"cls-2\" data-name=\"Path 376\" transform=\"translate(-66.537 -151.997)\"/>\n        </g>\n    </g>\n</svg>\n";
+
+/***/ }),
+
+/***/ "./public/svg/markers/investors-marker-icon.svg":
+/*!******************************************************!*\
+  !*** ./public/svg/markers/investors-marker-icon.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"34.527\" height=\"34.527\" viewBox=\"0 0 34.527 34.527\">\n    <defs>\n        <style>\n            .cls-1{fill:#46a252}.cls-2{fill:#fff}\n        </style>\n    </defs>\n    <g id=\"Group_1167\" data-name=\"Group 1167\" transform=\"translate(-231.384 -297.734)\">\n        <g id=\"Group_1166\" data-name=\"Group 1166\" transform=\"translate(231.384 297.734)\">\n            <rect id=\"Rectangle_517\" width=\"34.527\" height=\"34.527\" class=\"cls-1\" data-name=\"Rectangle 517\" rx=\"17.263\"/>\n            <g id=\"Group_1165\" data-name=\"Group 1165\" transform=\"translate(11.894 6.9)\">\n                <path id=\"Path_389\" d=\"M272.923 326.461a24.993 24.993 0 0 0-2.534-1.147 5.7 5.7 0 0 1-1.391-.779 1.21 1.21 0 0 1 .3-2.153 2.448 2.448 0 0 1 .852-.175 6.463 6.463 0 0 1 3.2.634c.505.244.672.167.843-.359.18-.557.33-1.122.5-1.683a.587.587 0 0 0-.381-.783 8.127 8.127 0 0 0-2.021-.6c-.916-.141-.916-.145-.92-1.066 0-1.3 0-1.3-1.306-1.3h-.565c-.608.017-.71.124-.728.736-.009.274 0 .548 0 .826 0 .813-.009.8-.788 1.083a4.342 4.342 0 0 0-3.172 4.024 4.123 4.123 0 0 0 2.333 3.942 25.748 25.748 0 0 0 2.915 1.31 4.342 4.342 0 0 1 1.062.625 1.456 1.456 0 0 1-.347 2.551 3.489 3.489 0 0 1-1.871.244 8.342 8.342 0 0 1-2.851-.852c-.527-.274-.681-.2-.86.368-.154.492-.291.989-.428 1.486-.184.667-.116.826.522 1.138a9.111 9.111 0 0 0 2.568.736c.694.111.715.141.724.86 0 .325 0 .655.009.98a.582.582 0 0 0 .625.659c.48.009.963.009 1.442 0a.549.549 0 0 0 .595-.621c0-.445.021-.895 0-1.34a.707.707 0 0 1 .612-.8 4.839 4.839 0 0 0 2.522-1.618 4.55 4.55 0 0 0-1.461-6.926z\" class=\"cls-2\" data-name=\"Path 389\" transform=\"translate(-264.671 -317.046)\"/>\n            </g>\n        </g>\n    </g>\n</svg>\n";
+
+/***/ }),
+
+/***/ "./public/svg/markers/research-centers-marker-icon.svg":
+/*!*************************************************************!*\
+  !*** ./public/svg/markers/research-centers-marker-icon.svg ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"48.107\" height=\"48.107\" viewBox=\"0 0 48.107 48.107\">\n    <defs>\n        <style>\n            .cls-1{fill:#03b6cd}.cls-2{fill:#fff}\n        </style>\n    </defs>\n    <g id=\"Group_1174\" data-name=\"Group 1174\" transform=\"translate(-361.363 -297.734)\">\n        <g id=\"Group_1173\" data-name=\"Group 1173\" transform=\"translate(361.363 297.734)\">\n            <rect id=\"Rectangle_518\" width=\"48.107\" height=\"48.107\" class=\"cls-1\" data-name=\"Rectangle 518\" rx=\"24.053\"/>\n            <g id=\"Group_1172\" data-name=\"Group 1172\" transform=\"translate(12.536 11.687)\">\n                <g id=\"Group_1169\" data-name=\"Group 1169\" transform=\"translate(13.592 13.592)\">\n                    <g id=\"Group_1168\" data-name=\"Group 1168\">\n                        <path id=\"Path_390\" d=\"M424.595 357.529l-1.606-1.606a4.456 4.456 0 0 0 .741-2.471 4.942 4.942 0 1 0-4.942 4.942 4.453 4.453 0 0 0 2.471-.741l1.607 1.607a1.163 1.163 0 0 0 1.73 0 1.194 1.194 0 0 0-.001-1.731zm-5.807-1.606a2.471 2.471 0 1 1 2.471-2.471 2.478 2.478 0 0 1-2.471 2.471z\" class=\"cls-2\" data-name=\"Path 390\" transform=\"translate(-413.845 -348.509)\"/>\n                    </g>\n                </g>\n                <g id=\"Group_1171\" data-name=\"Group 1171\">\n                    <g id=\"Group_1170\" data-name=\"Group 1170\">\n                        <path id=\"Path_391\" d=\"M405.079 321.208h-17.3a1.168 1.168 0 0 0-1.236 1.236v22.241a1.168 1.168 0 0 0 1.236 1.236H401a7.4 7.4 0 0 1 4.078-13.592 4.187 4.187 0 0 1 1.235.124v-10.009a1.167 1.167 0 0 0-1.234-1.236zm-8.65 9.885h-6.178a1.238 1.238 0 0 1-1.236-1.235 1.167 1.167 0 0 1 1.236-1.236h6.178a1.167 1.167 0 0 1 1.236 1.236 1.238 1.238 0 0 1-1.236 1.235zm6.178-4.942h-12.356a1.238 1.238 0 0 1-1.236-1.236 1.168 1.168 0 0 1 1.236-1.236h12.356a1.168 1.168 0 0 1 1.236 1.236 1.238 1.238 0 0 1-1.236 1.236z\" class=\"cls-2\" data-name=\"Path 391\" transform=\"translate(-386.544 -321.208)\"/>\n                    </g>\n                </g>\n            </g>\n        </g>\n    </g>\n</svg>\n";
+
+/***/ }),
+
+/***/ "./public/svg/markers/startups-marker-icon.svg":
+/*!*****************************************************!*\
+  !*** ./public/svg/markers/startups-marker-icon.svg ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"88.043\" height=\"88.043\" viewBox=\"0 0 88.043 88.043\">\n    <defs>\n        <style>\n            .cls-1{fill:#ffb800}.cls-2{fill:#fff}\n        </style>\n    </defs>\n    <g id=\"Group_1156\" data-name=\"Group 1156\" transform=\"translate(-175.762 -126.875)\">\n        <g id=\"Group_1155\" data-name=\"Group 1155\" transform=\"translate(175.762 126.875)\">\n            <rect id=\"Rectangle_513\" width=\"88.043\" height=\"88.043\" class=\"cls-1\" data-name=\"Rectangle 513\" rx=\"44.022\"/>\n            <g id=\"Group_1154\" data-name=\"Group 1154\" transform=\"translate(27.214 20.895)\">\n                <g id=\"Group_1153\" data-name=\"Group 1153\">\n                    <path id=\"Path_377\" d=\"M222.437 196.061a7.617 7.617 0 0 1-7.383-7.835h14.765a7.617 7.617 0 0 1-7.382 7.835zm6.851-11.95h-13.7c-.37-4.033-9.957-7.55-9.957-17.631 0-10.754 8.043-16.457 16.808-16.672a18.075 18.075 0 0 1 11.69 4.384 15.963 15.963 0 0 1 5.118 12.288c-.002 10.081-9.589 13.598-9.959 17.631z\" class=\"cls-2\" data-name=\"Path 377\" transform=\"translate(-205.629 -149.808)\"/>\n                    <path id=\"Path_378\" d=\"M230.738 191.972a7.4 7.4 0 1 1-14.765 0z\" class=\"cls-2\" data-name=\"Path 378\" transform=\"translate(-206.548 -153.554)\"/>\n                    <path id=\"Path_379\" d=\"M239.245 166.48c0 10.081-9.587 13.6-9.957 17.631h-13.7c-.37-4.033-9.957-7.55-9.957-17.631 0-10.754 8.043-16.457 16.808-16.672a18.075 18.075 0 0 1 11.69 4.384 15.963 15.963 0 0 1 5.116 12.288z\" class=\"cls-2\" data-name=\"Path 379\" transform=\"translate(-205.629 -149.808)\"/>\n                </g>\n            </g>\n        </g>\n    </g>\n</svg>\n";
 
 /***/ }),
 
@@ -38567,6 +38853,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MapCategories_vue_vue_type_template_id_036ed43d___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MapCategories_vue_vue_type_template_id_036ed43d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/PlaceProfileCard.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/PlaceProfileCard.vue ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _PlaceProfileCard_vue_vue_type_template_id_614beb86___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PlaceProfileCard.vue?vue&type=template&id=614beb86& */ "./resources/js/components/PlaceProfileCard.vue?vue&type=template&id=614beb86&");
+/* harmony import */ var _PlaceProfileCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PlaceProfileCard.vue?vue&type=script&lang=js& */ "./resources/js/components/PlaceProfileCard.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _PlaceProfileCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _PlaceProfileCard_vue_vue_type_template_id_614beb86___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _PlaceProfileCard_vue_vue_type_template_id_614beb86___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/PlaceProfileCard.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/PlaceProfileCard.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/PlaceProfileCard.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PlaceProfileCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./PlaceProfileCard.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PlaceProfileCard.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PlaceProfileCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/PlaceProfileCard.vue?vue&type=template&id=614beb86&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/PlaceProfileCard.vue?vue&type=template&id=614beb86& ***!
+  \*************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PlaceProfileCard_vue_vue_type_template_id_614beb86___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./PlaceProfileCard.vue?vue&type=template&id=614beb86& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PlaceProfileCard.vue?vue&type=template&id=614beb86&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PlaceProfileCard_vue_vue_type_template_id_614beb86___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PlaceProfileCard_vue_vue_type_template_id_614beb86___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

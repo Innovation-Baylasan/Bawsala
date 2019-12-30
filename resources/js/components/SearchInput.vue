@@ -17,12 +17,20 @@
         </div>
         <div v-if="results && query" class="bg-gray-200">
             <ul>
-                <li v-for="entity in results" class="flex border-t border-gray-300 items-center p-3 justify-between">
+                <li @click="selectResult(place)" v-for="place in results"
+                    class="flex border-t cursor-pointer border-gray-300 items-center p-3 justify-between">
                     <div class="flex items-center">
                         <img class="w-8 h-8 rounded mr-2" src="https://i.pravatar.cc/300" alt="">
-                        <h3 class="text-gray-500" v-text="entity.name"></h3>
+                        <h3 class="text-gray-500" v-text="place.name"></h3>
                     </div>
-                    <img :src="'/svg/'+ entity.category.name + '-icon.svg'" alt="">
+                    <img :src="'/svg/'+ place.category.name + '-icon.svg'" alt="">
+                </li>
+            </ul>
+        </div>
+        <div v-if="!results.length && searching" class="bg-gray-200">
+            <ul>
+                <li class="flex border-t text-gray-500 cursor-pointer border-gray-300 items-center p-3 justify-between">
+                    it seems like there is no results for now
                 </li>
             </ul>
         </div>
@@ -30,6 +38,7 @@
 </template>
 <script>
     export default{
+        props: ['category'],
         data(){
             return {
                 query: '',
@@ -39,10 +48,24 @@
 
         methods: {
             search(){
-                axios.get(`/api/entities?q=${this.query}`).then(({data}) => {
+                this.searching = true
+                axios.get(`/api/entities?q=${this.query}&&${this.category ? 'category=' + this.category : '' }`).then(({data}) => {
                     this.results = data.data
                 })
+            },
+            selectResult(place){
+                this.$emit('result-clicked', place)
+                this.results = [];
+            },
+            close(e){
+                if (!this.$el.contains(e.target)) {
+                    this.results = []
+                    this.searching = false
+                }
             }
+        },
+        mounted(){
+            document.addEventListener('click', this.close)
         }
     }
 </script>

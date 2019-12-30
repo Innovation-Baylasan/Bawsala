@@ -13,15 +13,15 @@
                     return {};
                 }
             },
+            places: Array,
             apiKey: String,
+            center: Object,
         },
 
         data() {
             return {
                 google: null,
                 map: null,
-                center: {},
-                places: {},
                 markers: [],
             }
         },
@@ -32,34 +32,49 @@
             }).then((response) => {
                 this.google = response
                 this.initializeMap()
+                this.centeringMap()
                 this.setMarkers()
             })
         },
-
+        watch: {
+            places(){
+                this.removeMarkers()
+                this.setMarkers()
+            },
+            center(newCenter){
+                this.centeringMap()
+            }
+        },
         methods: {
             initializeMap() {
                 this.map = new this.google.maps.Map(this.$el,
                     {
-                        center: {lat: 32.23232, lng: 18.5599},
-                        zoom: 12
+                        center: {lat: 15.5007, lng: 32.5599},
+                        zoom: 12,
+                        streetViewControl: false,
+                        disableDefaultUI: true
                     }
                 )
+                this.map.addListener('center_changed', () => this.$emit('centerChanged', this.map.center))
             },
-            addMarker(latitude, longitude) {
-                let marker = new this.google.maps.Marker({
-                    position: new this.google.maps.LatLng(latitude, longitude),
-                    map: this.map,
-                    icon: '/svg/startups-icon.svg'
-                });
-                this.markers.push(marker)
+            addMarker(place) {
+                if (this.google) {
+                    let marker = new this.google.maps.Marker({
+                        position: new this.google.maps.LatLng(place.location.lat, place.location.long),
+                        map: this.map,
+                        icon: {
+                            url: `/svg/markers/${place.category.name}-marker-icon.svg`,
+                            scaledSize: new google.maps.Size(50, 50),
+                            origin: new google.maps.Point(0, 0),
+                            anchor: new google.maps.Point(0, 0)
+                        }
+                    });
+                    this.markers.push(marker)
+                }
             },
             setMarkers(){
-                this.ipLookUp().then(() => {
-                    this.getPlaces().then(() => {
-                        this.places.forEach((place) => {
-                            this.addMarker(place.location.lat, place.location.long)
-                        })
-                    })
+                this.places.forEach((place) => {
+                    this.addMarker(place)
                 })
             },
             removeMarkers(){
@@ -68,18 +83,10 @@
                     this.markers.slice(this.markers.indexOf(marker), 1);
                 })
             },
-            getPlaces(){
-                return axios.get(`/api/entities?@long=${this.center.longitude}&&lat=${this.center.latitude}`)
-                    .then(({data}) => {
-                        this.places = data.data
-                    })
-            },
-            ipLookUp () {
-                return axios.get('http://ip-api.com/json').then(({data}) => {
-                    this.map.setCenter(new this.google.maps.LatLng(data.lat, data.lon));
-                    this.center.longitude = data.lon
-                    this.center.latitude = data.lat
-                })
+            centeringMap () {
+                if (this.center.latitude && this.map) {
+                    this.map.panTo(new this.google.maps.LatLng(this.center.latitude, this.center.longitude));
+                }
             },
         }
     }
