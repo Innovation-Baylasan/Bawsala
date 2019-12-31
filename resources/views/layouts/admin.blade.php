@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Baylasan Innovation | Eco Map Dashboard</title>
+    <link rel="shortcut icon" type="image/jpg" href="/img/logo.png"/>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
 <body>
@@ -11,7 +12,7 @@
         <nav class="bg-white shadow-sm w-56 pt-16 pb-2">
             <header class="flex flex-col justify-center items-center mb-12 h-full">
                 <div class="rounded-full mb-4 w-20 h-20 overflow-hidden shadow-sm bg-white">
-                    <img src="{{"https://www.gravatar.com/avatar/" . md5( strtolower( trim( auth()->user()->email ) ) ) . "?s=100&d=https%3A%2F%2Fs3.amazonaws.com%2Flaracasts%2Fimages%2Fforum%2Favatars%2Favatar-18.png"}}"
+                    <img src="{{"https://www.gravatar.com/avatar/" . md5( strtolower( trim( auth()->user()->email ) ) ) . "?s=100&d"}}"
                          alt="">
                 </div>
                 <div class="text-center text-sm">

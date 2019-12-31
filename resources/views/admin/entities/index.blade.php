@@ -13,9 +13,8 @@
     <table class="table-striped table">
         <thead>
         <tr>
-            <th> user</th>
-            <th> category</th>
             <th> name</th>
+            <th> category</th>
             <th> description</th>
             <th></th>
         </tr>
@@ -24,9 +23,8 @@
         <tbody>
         @foreach($entity as $row)
             <tr>
-                <td> {{ $row->user->name  }} </td>
-                <td> {{ $row->category->name ?? ''}} </td>
                 <td> {{ $row->name  }} </td>
+                <td> {{ $row->category->name ?? ''}} </td>
                 <td> {{ Str::limit($row->description,50)}} </td>
                 <td class="flex">
                     <a href="{{route('entities.edit',$row)}}"

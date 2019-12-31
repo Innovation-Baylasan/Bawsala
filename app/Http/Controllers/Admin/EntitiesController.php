@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Category;
 use App\Entity;
 use App\Http\Controllers\Controller;
+use App\Profile;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -41,37 +42,37 @@ class EntitiesController extends Controller
         $categories = Category::all();
         $users = User::all();
 
-        return view('admin.entities.create', compact('categories','users'));
+        return view('admin.entities.create', compact('categories', 'users'));
 
     }
 
     /**
      * Store a newly created entity in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      *
      *
      */
-    public function store(Request $request)
+    public function store()
     {
-        $request->validate([
-            'user_id' =>'required',
-            'category_id' =>'required',
+        $attributes = request()->validate([
+            'user_id' => 'required',
+            'category_id' => 'required',
             'name' => 'required',
+            'avatar' => 'required',
+            'cover' => 'required',
             'description' => 'required',
-            'location' => 'required'
+            'latitude' => 'required',
+            'longitude' => 'required'
         ]);
 
-        $form_data = array(
-            'user_id' => $request->user_id,
-            'category_id' => $request->category_id,
-            'name' => $request->name,
-            'description' => $request->description,
-            'location' => $request->location
-        );
 
-        Entity::create($form_data);
+        $entity = Entity::create($attributes);
+
+        $entity->profile
+            ->setAvatar($attributes['avatar'])
+            ->setCover($attributes['cover']);
 
         return redirect('/admin/entities')
             ->with('success', 'Data added successfully.');
@@ -81,7 +82,7 @@ class EntitiesController extends Controller
     /**
      * Display the specified entity.
      *
-     * @param  Entity  $entity
+     * @param  Entity $entity
      * @return \Illuminate\Http\Response
      *
      */
@@ -95,7 +96,7 @@ class EntitiesController extends Controller
     /**
      * Show the form for editing the specified entity.
      *
-     * @param  Entity  $entity
+     * @param  Entity $entity
      * @return \Illuminate\Http\Response
      *
      */
@@ -105,23 +106,23 @@ class EntitiesController extends Controller
         $categories = Category::all();
         $users = User::all();
 
-        return view('admin.entities.edit', compact('entity','categories', 'users'));
+        return view('admin.entities.edit', compact('entity', 'categories', 'users'));
 
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
-     * @param  Entity  $entity
+     * @param  Entity $entity
      *
      */
     public function update(Request $request, Entity $entity)
     {
         $request->validate([
-            'user_id' =>'required',
-            'category_id' =>'required',
+            'user_id' => 'required',
+            'category_id' => 'required',
             'name' => 'required',
             'description' => 'required',
             'location' => 'required'
