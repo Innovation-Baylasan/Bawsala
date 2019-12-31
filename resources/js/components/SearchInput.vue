@@ -43,6 +43,7 @@
             return {
                 query: '',
                 results: [],
+                searching: false
             }
         },
 

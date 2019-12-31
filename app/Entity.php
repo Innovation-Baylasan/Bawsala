@@ -22,6 +22,19 @@ class Entity extends Model
     public $asYouType = true;
 
     /**
+     * Determine fillable fields
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'user_id',
+        'category_id',
+        'name',
+        'description',
+        'latitude',
+        'longitude',
+    ];
+    /**
      * Determine what to eager load when retrieving activity
      *
      * @var array
@@ -34,15 +47,6 @@ class Entity extends Model
      * @var array
      */
     protected $appends = ['cover', 'avatar'];
-
-    protected $fillable = [
-        'user_id',
-        'category_id',
-        'name',
-        'description',
-        'latitude',
-        'longitude',
-    ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

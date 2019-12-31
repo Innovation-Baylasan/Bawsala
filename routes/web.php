@@ -12,7 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $categories = \App\Category::all();
+    return view('welcome', compact('categories'));
 });
 
 
@@ -24,7 +25,6 @@ Route::namespace('Admin')
     ->prefix('admin')
     ->middleware(['admin'])
     ->group(function () {
-
         Route::get('', function () {
             return view('admin.all');
         });

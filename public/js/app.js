@@ -5658,6 +5658,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     addMarker: function addMarker(place) {
+      var _this3 = this;
+
       if (this.google) {
         var marker = new this.google.maps.Marker({
           position: new this.google.maps.LatLng(place.location.lat, place.location["long"]),
@@ -5669,23 +5671,138 @@ __webpack_require__.r(__webpack_exports__);
             anchor: new google.maps.Point(0, 0)
           }
         });
+        this.google.maps.event.addListener(marker, 'click', function () {
+          _this3.$emit('marker-clicked', {
+            place: place,
+            marker: marker
+          });
+        });
         this.markers.push(marker);
       }
     },
     setMarkers: function setMarkers() {
-      var _this3 = this;
+      var _this4 = this;
 
       this.places.forEach(function (place) {
-        _this3.addMarker(place);
+        _this4.addMarker(place);
       });
     },
     removeMarkers: function removeMarkers() {
-      var _this4 = this;
+      var _this5 = this;
 
       this.markers.forEach(function (marker) {
         marker.setMap(null);
 
-        _this4.markers.slice(_this4.markers.indexOf(marker), 1);
+        _this5.markers.slice(_this5.markers.indexOf(marker), 1);
+      });
+    },
+    centeringMap: function centeringMap() {
+      if (this.center.latitude && this.map) {
+        this.map.panTo(new this.google.maps.LatLng(this.center.latitude, this.center.longitude));
+      }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LocationPicker.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/LocationPicker.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var google_maps_api_loader__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! google-maps-api-loader */ "./node_modules/google-maps-api-loader/index.js");
+/* harmony import */ var google_maps_api_loader__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(google_maps_api_loader__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    mapConfig: {
+      type: Object,
+      "default": function _default() {
+        return {};
+      }
+    },
+    apiKey: String,
+    multiple: Boolean,
+    center: Object
+  },
+  data: function data() {
+    return {
+      google: null,
+      map: null,
+      markers: []
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    google_maps_api_loader__WEBPACK_IMPORTED_MODULE_0___default()({
+      apiKey: this.apiKey
+    }).then(function (response) {
+      _this.google = response;
+
+      _this.initializeMap();
+
+      _this.centeringMap();
+    });
+  },
+  watch: {
+    center: function center(newCenter) {
+      this.centeringMap();
+    }
+  },
+  methods: {
+    initializeMap: function initializeMap() {
+      var _this2 = this;
+
+      this.map = new this.google.maps.Map(this.$el, {
+        center: {
+          lat: 15.5007,
+          lng: 32.5599
+        },
+        zoom: 12,
+        streetViewControl: false,
+        disableDefaultUI: true
+      });
+      this.map.addListener('click', function (event) {
+        _this2.placeMarker(event.latLng);
+      });
+      this.map.addListener('center_changed', function () {
+        return _this2.$emit('centerChanged', _this2.map.center);
+      });
+    },
+    placeMarker: function placeMarker(latLang) {
+      if (this.google) {
+        var marker = new this.google.maps.Marker({
+          position: latLang,
+          map: this.map
+        });
+        this.multiple ? '' : this.removeMarkers();
+        this.markers.push(marker);
+        this.$emit('marker-placed', {
+          marker: marker,
+          location: {
+            latitude: marker.position.lat(),
+            longitude: marker.position.lng()
+          }
+        });
+      }
+    },
+    removeMarkers: function removeMarkers() {
+      var _this3 = this;
+
+      this.markers.forEach(function (marker) {
+        marker.setMap(null);
+
+        _this3.markers.slice(_this3.markers.indexOf(marker), 1);
       });
     },
     centeringMap: function centeringMap() {
@@ -5722,20 +5839,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['categories'],
   data: function data() {
     return {
-      categories: ['map', 'startups', 'accelerator', 'labs', 'investors', 'research-centers'],
-      selectedCategory: 'map'
+      selectedCategory: ''
     };
   },
   methods: {
     selectCategory: function selectCategory(category) {
       this.selectedCategory = category;
       this.$emit('category-change', category);
-    },
-    icon: function icon(name) {
-      return __webpack_require__("./public/svg sync recursive ^\\.\\/.*\\-icon\\.svg$")("./" + name + "-icon.svg");
     }
   }
 });
@@ -5831,7 +5958,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       query: '',
-      results: []
+      results: [],
+      searching: false
     };
   },
   methods: {
@@ -5881,6 +6009,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['classes']
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/CreateEntityView.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/CreateEntityView.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      location: {
+        latitude: '',
+        longitude: ''
+      }
+    };
+  },
+  methods: {
+    setLocation: function setLocation(event) {
+      this.location.latitude = event.location.latitude;
+      this.location.longitude = event.location.longitude;
+    }
+  }
 });
 
 /***/ }),
@@ -25705,6 +25861,30 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LocationPicker.vue?vue&type=template&id=17f8cb64&":
+/*!*****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/LocationPicker.vue?vue&type=template&id=17f8cb64& ***!
+  \*****************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "w-full h-screen" })
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MapCategories.vue?vue&type=template&id=036ed43d&":
 /*!****************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MapCategories.vue?vue&type=template&id=036ed43d& ***!
@@ -25723,38 +25903,72 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "flex flex-col justify-between" },
-    _vm._l(_vm.categories, function(category, index) {
-      return _c(
+    [
+      _c(
         "a",
         {
-          key: index,
           staticClass: "flex  items-center justify-center p-2  fade",
-          class: [_vm.selectedCategory == category ? "active" : ""],
+          class: [_vm.selectedCategory == "" ? "active" : ""],
           attrs: { href: "#" },
           on: {
             click: function($event) {
               $event.preventDefault()
-              return _vm.selectCategory(category)
+              return _vm.selectCategory("")
             }
           }
         },
-        [
-          _c("div", {
-            class: {
-              "w-10 h-10 flex items-center justify-center p-1 rounded bg-gray-100":
-                index >= 1,
-              "bg-red-100 svg-red":
-                _vm.selectedCategory == category && index >= 1
-            },
-            domProps: { innerHTML: _vm._s(_vm.icon(category)) }
-          })
-        ]
-      )
-    }),
-    0
+        [_vm._m(0)]
+      ),
+      _vm._v(" "),
+      _vm._l(_vm.categories, function(category, index) {
+        return _c(
+          "a",
+          {
+            key: index,
+            staticClass: "flex items-center justify-center p-2 fade",
+            class: [_vm.selectedCategory == category.name ? "active" : ""],
+            attrs: { href: "#" },
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                return _vm.selectCategory(category.name)
+              }
+            }
+          },
+          [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "w-10 h-10 flex items-center justify-center p-1 rounded bg-gray-100",
+                class: {
+                  "bg-red-100 svg-red": _vm.selectedCategory == category
+                }
+              },
+              [_c("img", { attrs: { src: category.icon, alt: "" } })]
+            )
+          ]
+        )
+      })
+    ],
+    2
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "w-10 h-10 flex items-center justify-center p-1 rounded bg-gray-100bg-red-100 svg-red"
+      },
+      [_c("img", { attrs: { src: "/svg/map-icon.svg", alt: "" } })]
+    )
+  }
+]
 render._withStripped = true
 
 
@@ -38194,314 +38408,6 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./public/svg sync recursive ^\\.\\/.*\\-icon\\.svg$":
-/*!*********************************************!*\
-  !*** ./public/svg sync ^\.\/.*\-icon\.svg$ ***!
-  \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var map = {
-	"./accelerator-icon.svg": "./public/svg/accelerator-icon.svg",
-	"./categories-icon.svg": "./public/svg/categories-icon.svg",
-	"./co-spaces-icon.svg": "./public/svg/co-spaces-icon.svg",
-	"./edit-icon.svg": "./public/svg/edit-icon.svg",
-	"./entities-icon.svg": "./public/svg/entities-icon.svg",
-	"./exceclamation-icon.svg": "./public/svg/exceclamation-icon.svg",
-	"./investors-icon.svg": "./public/svg/investors-icon.svg",
-	"./labs-icon.svg": "./public/svg/labs-icon.svg",
-	"./layer-icon.svg": "./public/svg/layer-icon.svg",
-	"./map-icon.svg": "./public/svg/map-icon.svg",
-	"./markers/accelaraters-marker-icon.svg": "./public/svg/markers/accelaraters-marker-icon.svg",
-	"./markers/co-workspaces-marker-icon.svg": "./public/svg/markers/co-workspaces-marker-icon.svg",
-	"./markers/investors-marker-icon.svg": "./public/svg/markers/investors-marker-icon.svg",
-	"./markers/research-centers-marker-icon.svg": "./public/svg/markers/research-centers-marker-icon.svg",
-	"./markers/startups-marker-icon.svg": "./public/svg/markers/startups-marker-icon.svg",
-	"./notifications-icon.svg": "./public/svg/notifications-icon.svg",
-	"./notify-icon.svg": "./public/svg/notify-icon.svg",
-	"./remove-icon.svg": "./public/svg/remove-icon.svg",
-	"./research-centers-icon.svg": "./public/svg/research-centers-icon.svg",
-	"./search-icon.svg": "./public/svg/search-icon.svg",
-	"./startups-icon.svg": "./public/svg/startups-icon.svg",
-	"./tags-icon.svg": "./public/svg/tags-icon.svg",
-	"./users-icon.svg": "./public/svg/users-icon.svg"
-};
-
-
-function webpackContext(req) {
-	var id = webpackContextResolve(req);
-	return __webpack_require__(id);
-}
-function webpackContextResolve(req) {
-	if(!__webpack_require__.o(map, req)) {
-		var e = new Error("Cannot find module '" + req + "'");
-		e.code = 'MODULE_NOT_FOUND';
-		throw e;
-	}
-	return map[req];
-}
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
-};
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = "./public/svg sync recursive ^\\.\\/.*\\-icon\\.svg$";
-
-/***/ }),
-
-/***/ "./public/svg/accelerator-icon.svg":
-/*!*****************************************!*\
-  !*** ./public/svg/accelerator-icon.svg ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" id=\"Group_697\" width=\"27.317\" height=\"17.997\" data-name=\"Group 697\" viewBox=\"0 0 27.317 17.997\">\n    <defs>\n        <style>\n            .cls-1{fill:#9A9A9A}\n        </style>\n    </defs>\n    <path id=\"Path_233\" d=\"M342.751 153.1a13.647 13.647 0 0 0-22.537 10.367c0 .2.02 2.091.029 2.292v.768a1.277 1.277 0 0 0 1.277 1.277h24.98a.973.973 0 0 0 .973-.972v-.924l.026-.149c.008-.2.029-2.09.029-2.292a13.737 13.737 0 0 0-4.777-10.367zm-19.219 12.29v-1.321a.372.372 0 0 1 .373-.371h2.053a.373.373 0 0 0 .373-.373v-.159a.373.373 0 0 0-.373-.373h-2.232a1.233 1.233 0 0 0-.2 0 10.393 10.393 0 0 1 2.69-6.53l.071-.076.126.109 1.6 1.6a.373.373 0 0 0 .528 0l.059-.059a.373.373 0 0 0 0-.527l-1.434-1.433a.374.374 0 0 1 .018-.547 10.243 10.243 0 0 1 6.193-2.423h.14s.059 0 .055.035v2.39a.373.373 0 0 0 .373.373.373.373 0 0 0 .373-.373v-2.022a.375.375 0 0 1 .413-.371c.23.021.458.052.685.087a10.235 10.235 0 0 1 5.288 2.343.374.374 0 0 1 .018.547l-1.431 1.432a.373.373 0 0 0 0 .527l.023.023a.373.373 0 0 0 .528 0l1.634-1.635.1-.084.09.119a10.243 10.243 0 0 1 2.665 6.095.373.373 0 0 1-.374.4h-2.026a.373.373 0 0 0-.373.373v.158a.373.373 0 0 0 .374.373h2.064a.371.371 0 0 1 .373.371v1.319a.371.371 0 0 1-.373.369l-20.1.006a.371.371 0 0 1-.364-.372zm13.795-5.466a.372.372 0 0 0-.47-.47c-1.283.42-3.963 1.351-4.6 1.991a2.181 2.181 0 0 0 3.083 3.084c.637-.643 1.567-3.323 1.987-4.606z\" class=\"cls-1\" data-name=\"Path 233\" transform=\"translate(-320.214 -149.808)\"/>\n</svg>\n";
-
-/***/ }),
-
-/***/ "./public/svg/categories-icon.svg":
-/*!****************************************!*\
-  !*** ./public/svg/categories-icon.svg ***!
-  \****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"17\" height=\"17\" viewBox=\"0 0 17 17\">\n    <defs>\n        <style>\n            .cls-1{fill:#9f9f9f}\n        </style>\n    </defs>\n    <g id=\"Group_1331\" data-name=\"Group 1331\" transform=\"translate(-.225 .209)\">\n        <path id=\"Rectangle_544\" d=\"M0 0h8v7H0z\" class=\"cls-1\" data-name=\"Rectangle 544\" transform=\"translate(.225 9.791)\"/>\n        <path id=\"Rectangle_545\" d=\"M0 0h8v9H0z\" class=\"cls-1\" data-name=\"Rectangle 545\" transform=\"translate(.225 -.209)\"/>\n        <path id=\"Rectangle_546\" d=\"M0 0h8v7H0z\" class=\"cls-1\" data-name=\"Rectangle 546\" transform=\"translate(9.225 9.791)\"/>\n        <path id=\"Rectangle_547\" d=\"M0 0h8v9H0z\" class=\"cls-1\" data-name=\"Rectangle 547\" transform=\"translate(9.225 -.209)\"/>\n    </g>\n</svg>\n";
-
-/***/ }),
-
-/***/ "./public/svg/co-spaces-icon.svg":
-/*!***************************************!*\
-  !*** ./public/svg/co-spaces-icon.svg ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"23.443\" height=\"20.38\" viewBox=\"0 0 23.443 20.38\">\n    <defs>\n        <style>\n            .cls-1{fill:#9A9A9A}\n        </style>\n    </defs>\n    <g id=\"Group_699\" data-name=\"Group 699\">\n        <path id=\"Path_234\" d=\"M464.891 158.5a2.366 2.366 0 1 0-2.366-2.366 2.368 2.368 0 0 0 2.366 2.366z\" class=\"cls-1\" data-name=\"Path 234\" transform=\"translate(-459.585 -152.322)\"/>\n        <path id=\"Path_235\" d=\"M466.034 159.081a1 1 0 0 0-.686.272l-.915.861a7.356 7.356 0 0 1-.723.58l-1.84 1.251h-2.755a1.016 1.016 0 0 0-.9.375l-1.2 1.5c-.194.243-.5.645-.688.9l-.812 1.108a1 1 0 0 0 1.615 1.184l.813-1.108.013-.018-.172 1.919-1.405 6.674a1.056 1.056 0 0 0 .815 1.25 1.055 1.055 0 0 0 1.251-.815l1.315-6.246h.343l.188 2.108a9.507 9.507 0 0 1 .024.953l-.111 2.928a1.055 1.055 0 0 0 1.015 1.095h.04a1.052 1.052 0 0 0 1.054-1.016l.111-2.928a11.473 11.473 0 0 0-.031-1.22l-.281-3.152v-.025l.305-3.412 2.419-1.645a9.313 9.313 0 0 0 .97-.778l.915-.861a1 1 0 0 0-.686-1.73z\" class=\"cls-1\" data-name=\"Path 235\" transform=\"translate(-455.324 -155.468)\"/>\n        <path id=\"Path_236\" d=\"M496.069 156.708a2.366 2.366 0 1 0-2.365-2.366 2.369 2.369 0 0 0 2.365 2.366z\" class=\"cls-1\" data-name=\"Path 236\" transform=\"translate(-478.034 -151.264)\"/>\n        <path id=\"Path_237\" d=\"M494.872 166.316a1.006 1.006 0 0 0 .808.409 1 1 0 0 0 .807-1.594l-.812-1.108a37.522 37.522 0 0 0-.688-.9l-1.2-1.5a.9.9 0 0 0-.782-.376h-2.973l-1.84-1.247a6.438 6.438 0 0 1-.617-.48l-.289-.273a1 1 0 0 0-1.373 1.458l.29.272a8.21 8.21 0 0 0 .863.678l2.419 1.644.305 3.412v.025l-.281 3.152a3.723 3.723 0 0 0 .232 1.539l.839 2.053a1.055 1.055 0 1 0 1.954-.8l-.839-2.053a1.731 1.731 0 0 1-.083-.553l.188-2.108h.343l.5 2.377a1.529 1.529 0 0 0 .751 1.027 1.51 1.51 0 0 0 .731.188 1.555 1.555 0 0 0 .537-.1l1.105-.4a1.056 1.056 0 0 0-.363-2.047 1.043 1.043 0 0 0-.363.065l-.472.173-.452-2.144-.186-2.076.13.175z\" class=\"cls-1\" data-name=\"Path 237\" transform=\"translate(-473.238 -155.407)\"/>\n        <path id=\"Path_238\" d=\"M486.556 152.333a.333.333 0 0 0 .085.011.343.343 0 0 0 .332-.258c.11-.434.386-1.093.619-1.2a.342.342 0 1 0-.29-.621c-.619.289-.936 1.428-.993 1.654a.342.342 0 0 0 .247.414z\" class=\"cls-1\" data-name=\"Path 238\" transform=\"translate(-473.652 -150.231)\"/>\n        <path id=\"Path_239\" d=\"M482.353 153.13a.343.343 0 0 0-.289.621c.231.108.508.767.619 1.2a.343.343 0 0 0 .332.258.352.352 0 0 0 .084-.011.342.342 0 0 0 .248-.416c-.058-.223-.374-1.363-.994-1.652z\" class=\"cls-1\" data-name=\"Path 239\" transform=\"translate(-471.029 -151.928)\"/>\n    </g>\n</svg>\n";
-
-/***/ }),
-
-/***/ "./public/svg/edit-icon.svg":
-/*!**********************************!*\
-  !*** ./public/svg/edit-icon.svg ***!
-  \**********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" id=\"pencil-edit-button\" width=\"12.29\" height=\"12.23\" viewBox=\"0 0 12.29 12.23\">\n    <defs>\n        <style>\n            .cls-1{fill:#012496}\n        </style>\n    </defs>\n    <path id=\"Path_445\" d=\"M7.643 3.33l2.5 2.5-6.329 6.328-2.5-2.5zm4.4-.6l-1.118-1.118a1.106 1.106 0 0 0-1.563 0L8.294 2.68l2.5 2.5 1.246-1.246a.852.852 0 0 0 0-1.207zM.008 13.172a.284.284 0 0 0 .344.338l2.786-.675-2.5-2.5z\" class=\"cls-1\" data-name=\"Path 445\" transform=\"translate(-.001 -1.289)\"/>\n</svg>\n";
-
-/***/ }),
-
-/***/ "./public/svg/entities-icon.svg":
-/*!**************************************!*\
-  !*** ./public/svg/entities-icon.svg ***!
-  \**************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" id=\"skycraper\" width=\"20.072\" height=\"20.072\" viewBox=\"0 0 20.072 20.072\">\n    <defs>\n        <style>\n            .cls-1{fill:#9f9f9f}\n        </style>\n    </defs>\n    <path id=\"Path_441\" d=\"M19.485 125.151h-2v-11.843l-8.815-3.624v15.471H7.477v-13.683l-3.8 1.968a1.981 1.981 0 0 0-1.077 1.766v.782h2.524a.588.588 0 0 1 0 1.176H2.6v1.013h2.524a.588.588 0 0 1 0 1.176H2.6v.983h2.524a.588.588 0 0 1 0 1.176H2.6v3.639H.589a.588.588 0 1 0 0 1.176h18.9a.588.588 0 1 0 0-1.176zm-14.949 0v-1.871a.588.588 0 1 1 1.176 0v1.871zm10.314-4.227a.588.588 0 1 1-1.176 0v-1.192a.588.588 0 1 1 1.176 0zm-1.18-7.493a.588.588 0 0 1 1.176 0v1.192a.588.588 0 0 1-1.176 0zm0 3.145a.588.588 0 1 1 1.176 0v1.192a.588.588 0 1 1-1.176 0zm-2.358-3.145a.588.588 0 0 1 1.176 0v1.192a.588.588 0 1 1-1.176 0zm1.18 6.3v1.192a.588.588 0 1 1-1.176 0v-1.192a.588.588 0 1 1 1.176 0zm-1.192-3.156a.588.588 0 1 1 1.176 0v1.192a.588.588 0 1 1-1.176 0zm.009 8.575v-1.87a.588.588 0 1 1 1.176 0v1.87zm2.352 0v-1.87a.588.588 0 1 1 1.176 0v1.87zm0 0\" class=\"cls-1\" data-name=\"Path 441\" transform=\"translate(-.001 -106.254)\"/>\n    <path id=\"Path_442\" d=\"M245.662 65.454a.588.588 0 0 0-.447 1.088l.624.257v-1.272zm0 0\" class=\"cls-1\" data-name=\"Path 442\" transform=\"translate(-237.172 -63.369)\"/>\n    <path id=\"Path_443\" d=\"M558.07 186.194a.588.588 0 0 0 .447-1.088l-1.056-.434v1.272zm0 0\" class=\"cls-1\" data-name=\"Path 443\" transform=\"translate(-539.977 -178.89)\"/>\n    <path id=\"Path_444\" d=\"M254.651 5.345l.609.25a.588.588 0 1 0 .447-1.088L245.659.377a.588.588 0 1 0-.447 1.088l.624.257v.769l8.815 3.623zm0 0\" class=\"cls-1\" data-name=\"Path 444\" transform=\"translate(-237.168 -.333)\"/>\n</svg>\n";
-
-/***/ }),
-
-/***/ "./public/svg/exceclamation-icon.svg":
-/*!*******************************************!*\
-  !*** ./public/svg/exceclamation-icon.svg ***!
-  \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" id=\"_1176\" width=\"28.533\" height=\"28.533\" data-name=\"1176\" viewBox=\"0 0 28.533 28.533\">\n    <defs>\n        <style>\n            .cls-1{fill:#030104}\n        </style>\n    </defs>\n    <path id=\"Path_424\" d=\"M14.266 0a14.267 14.267 0 1 0 14.267 14.266A14.267 14.267 0 0 0 14.266 0zm2.97 22.111q-1.1.435-1.757.662a4.636 4.636 0 0 1-1.524.227 3.038 3.038 0 0 1-2.074-.651 2.1 2.1 0 0 1-.738-1.651 6 6 0 0 1 .054-.8c.037-.271.1-.575.178-.917l.919-3.246c.081-.312.151-.608.207-.883a3.915 3.915 0 0 0 .082-.765 1.177 1.177 0 0 0-.256-.866 1.454 1.454 0 0 0-.982-.243 2.577 2.577 0 0 0-.731.109 9.904 9.904 0 0 0-.639.213l.243-1q.9-.368 1.727-.629a5.1 5.1 0 0 1 1.558-.263 2.981 2.981 0 0 1 2.044.64 2.127 2.127 0 0 1 .717 1.662q0 .212-.05.745a4.986 4.986 0 0 1-.184.979l-.914 3.237a8.79 8.79 0 0 0-.2.889 4.7 4.7 0 0 0-.088.756 1.086 1.086 0 0 0 .289.879 1.616 1.616 0 0 0 1 .234 2.9 2.9 0 0 0 .756-.117 4.3 4.3 0 0 0 .611-.205zm-.162-13.139a2.182 2.182 0 0 1-1.54.594 2.2 2.2 0 0 1-1.546-.594 1.9 1.9 0 0 1-.644-1.441 1.916 1.916 0 0 1 .644-1.444 2.189 2.189 0 0 1 1.546-.6 2.164 2.164 0 0 1 1.54.6 1.946 1.946 0 0 1 0 2.885z\" class=\"cls-1\" data-name=\"Path 424\"/>\n</svg>\n";
-
-/***/ }),
-
-/***/ "./public/svg/investors-icon.svg":
-/*!***************************************!*\
-  !*** ./public/svg/investors-icon.svg ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" id=\"Group_703\" width=\"12.131\" height=\"23.411\" data-name=\"Group 703\" viewBox=\"0 0 12.131 23.411\">\n    <defs>\n        <style>\n            .cls-1{fill:#9A9A9A}\n        </style>\n    </defs>\n    <path id=\"Path_242\" d=\"M273.992 327.68a28.24 28.24 0 0 0-2.862-1.3 6.433 6.433 0 0 1-1.571-.88 1.367 1.367 0 0 1 .338-2.432 2.766 2.766 0 0 1 .962-.2 7.3 7.3 0 0 1 3.617.716c.571.276.759.188.953-.406.2-.629.373-1.267.561-1.9a.664.664 0 0 0-.43-.885 9.181 9.181 0 0 0-2.282-.682c-1.034-.159-1.034-.164-1.039-1.2 0-1.465 0-1.465-1.475-1.465h-.639c-.687.019-.8.14-.822.832-.01.309 0 .619 0 .933 0 .919-.01.9-.89 1.223a4.9 4.9 0 0 0-3.583 4.545 4.658 4.658 0 0 0 2.635 4.453 29.1 29.1 0 0 0 3.293 1.48 4.9 4.9 0 0 1 1.2.706 1.644 1.644 0 0 1-.392 2.882 3.941 3.941 0 0 1-2.113.276 9.424 9.424 0 0 1-3.22-.962c-.595-.31-.769-.227-.972.416-.174.556-.329 1.117-.484 1.678-.208.754-.131.933.59 1.286a10.294 10.294 0 0 0 2.9.832c.783.126.808.159.817.972 0 .367 0 .74.01 1.107a.658.658 0 0 0 .706.745c.542.01 1.088.01 1.629 0a.62.62 0 0 0 .672-.7c0-.5.024-1.011 0-1.514a.8.8 0 0 1 .691-.909 5.465 5.465 0 0 0 2.848-1.828 5.139 5.139 0 0 0-1.648-7.819z\" class=\"cls-1\" data-name=\"Path 242\" transform=\"translate(-264.671 -317.046)\"/>\n</svg>\n";
-
-/***/ }),
-
-/***/ "./public/svg/labs-icon.svg":
-/*!**********************************!*\
-  !*** ./public/svg/labs-icon.svg ***!
-  \**********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" id=\"Group_701\" width=\"17.955\" height=\"24.51\" data-name=\"Group 701\" viewBox=\"0 0 17.955 24.51\">\n    <defs>\n        <style>\n            .cls-1{fill:#9A9A9A}\n        </style>\n    </defs>\n    <path id=\"Path_240\" d=\"M145.595 338.016l-5.52-11.4a1.789 1.789 0 0 1-.174-.769v-8.926a.723.723 0 0 0-.722-.722h-4.7a.72.72 0 0 0-.719.722v8.926a1.734 1.734 0 0 1-.178.769l-5.516 11.4a1.837 1.837 0 0 0 1.634 2.69h14.268a1.841 1.841 0 0 0 1.634-2.69zm-10.72-10.773a3.228 3.228 0 0 0 .321-1.4v-8.207h3.263v8.207a3.227 3.227 0 0 0 .32 1.4l1.3 2.676h-6.499zm9.428 11.83a.4.4 0 0 1-.342.192h-14.267a.4.4 0 0 1-.345-.192.406.406 0 0 1-.011-.391.094.094 0 0 0 .014-.025l3.53-7.3h7.89l3.53 7.3c0 .007.007.018.011.025a.387.387 0 0 1-.013.391z\" class=\"cls-1\" data-name=\"Path 240\" transform=\"translate(-127.85 -316.197)\"/>\n    <path id=\"Path_241\" d=\"M146.923 360.716c0-.008-.007-.019-.011-.026l-3.657-7.557h-8.173l-3.657 7.557a.1.1 0 0 1-.015.026.421.421 0 0 0 .011.405.412.412 0 0 0 .358.2h14.78a.41.41 0 0 0 .354-.2.4.4 0 0 0 .01-.405zm-9.029-2.212a.747.747 0 1 1-1.493 0v-.019a.747.747 0 1 1 1.493 0zm1.615-2.481a.747.747 0 1 1-1.493 0V356a.747.747 0 1 1 1.493 0zm2.422 1.364a.747.747 0 0 1-1.493 0v-.022a.747.747 0 0 1 1.493 0z\" class=\"cls-1\" data-name=\"Path 241\" transform=\"translate(-130.191 -338.111)\"/>\n</svg>\n";
-
-/***/ }),
-
-/***/ "./public/svg/layer-icon.svg":
-/*!***********************************!*\
-  !*** ./public/svg/layer-icon.svg ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" id=\"_1203985\" width=\"23.512\" height=\"24.57\" data-name=\"1203985\" viewBox=\"0 0 23.512 24.57\">\n    <defs>\n        <style>\n            .cls-1{fill:#eb413c}\n        </style>\n    </defs>\n    <path id=\"Path_253\" d=\"M22.87 336.466l-1.347-.674-6.5 3.249a6.319 6.319 0 0 1-2.769.6 6.315 6.315 0 0 1-2.769-.6l-6.5-3.249-1.347.674a1.617 1.617 0 0 0 0 3.091l8.489 4.245a4.873 4.873 0 0 0 2.125.447 4.876 4.876 0 0 0 2.125-.447l8.489-4.244a1.617 1.617 0 0 0 0-3.091zm0 0\" class=\"cls-1\" data-name=\"Path 253\" transform=\"translate(-.5 -319.679)\"/>\n    <path id=\"Path_254\" d=\"M22.87 210.444l-1.347-.674-6.5 3.249a6.314 6.314 0 0 1-2.769.6 6.314 6.314 0 0 1-2.769-.6l-6.5-3.249-1.347.674a1.617 1.617 0 0 0 0 3.091l8.489 4.245a4.873 4.873 0 0 0 2.125.447 4.875 4.875 0 0 0 2.125-.447l8.489-4.245a1.617 1.617 0 0 0 0-3.091zm0 0\" class=\"cls-1\" data-name=\"Path 254\" transform=\"translate(-.5 -199.703)\"/>\n    <path id=\"Path_255\" d=\"M1.642 7.784l8.489 4.245a4.856 4.856 0 0 0 2.125.448 4.856 4.856 0 0 0 2.125-.448l8.489-4.245a1.8 1.8 0 0 0 1.142-1.545 1.8 1.8 0 0 0-1.142-1.546L14.381.449A4.857 4.857 0 0 0 12.256 0a4.856 4.856 0 0 0-2.125.448L1.642 4.693A1.8 1.8 0 0 0 .5 6.239a1.8 1.8 0 0 0 1.142 1.545zm0 0\" class=\"cls-1\" data-name=\"Path 255\" transform=\"translate(-.5 -.001)\"/>\n</svg>\n";
-
-/***/ }),
-
-/***/ "./public/svg/map-icon.svg":
-/*!*********************************!*\
-  !*** ./public/svg/map-icon.svg ***!
-  \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<svg  xmlns=\"http://www.w3.org/2000/svg\" id=\"_854878\" width=\"51.614\" height=\"29.529\" data-name=\"854878\" viewBox=\"0 0 51.614 29.529\">\n    <defs>\n        <style>\n            .cls-1{fill:#44c868}.cls-2{fill:#4ce166}.cls-3{fill:#ffdb56}.cls-4{fill:#a8eefc}.cls-5{fill:#ffbb24}.cls-6{fill:#1ea4e9}\n        </style>\n    </defs>\n    <g id=\"Group_1227\" data-name=\"Group 1227\" transform=\"translate(13.22)\">\n        <path id=\"Path_397\" d=\"M377.5 220.246l-4.055-22.34a.757.757 0 0 0-.377-.526l-10.201-5.68a.754.754 0 0 0-.427-.092l1.857 23.953-.062.028 12.214 5.48a.757.757 0 0 0 1.056-.825z\" class=\"cls-1\" data-name=\"Path 397\" transform=\"translate(-339.123 -191.609)\"/>\n        <path id=\"Path_398\" d=\"M143.729 197.128l-10.438-5.437a.755.755 0 0 0-.4-.083.783.783 0 0 1 .109 0l-1.857 23.953 12.276 5.508a.759.759 0 0 0 .31.066z\" class=\"cls-1\" data-name=\"Path 398\" transform=\"translate(-131.142 -191.607)\"/>\n    </g>\n    <g id=\"Group_1228\" data-name=\"Group 1228\">\n        <path id=\"Path_399\" d=\"M15.077 191.612a.756.756 0 0 0-.427.092L4.444 197.38a.756.756 0 0 0-.377.526L.012 220.247a.757.757 0 0 0 1.056.826l12.148-5.45z\" class=\"cls-2\" data-name=\"Path 399\" transform=\"translate(0 -191.61)\"/>\n        <path id=\"Path_400\" d=\"M266.73 191.628a.755.755 0 0 0-.292.082L256 197.147v24.008a.756.756 0 0 0 .31-.066l12.276-5.508z\" class=\"cls-2\" data-name=\"Path 400\" transform=\"translate(-230.193 -191.626)\"/>\n    </g>\n    <path id=\"Path_401\" d=\"M20.807 266.26l-.824 4.538 12.2-6.442.283-3.653.047-.606z\" class=\"cls-3\" data-name=\"Path 401\" transform=\"translate(-17.969 -253.193)\"/>\n    <path id=\"Path_402\" d=\"M14.321 288.294l-.11 1.417-12.2 6.442-2 11.032a.758.758 0 0 0 1.056.826l12.148-5.45 1.106-14.266z\" class=\"cls-4\" data-name=\"Path 402\" transform=\"translate(0 -278.547)\"/>\n    <g id=\"Group_1229\" data-name=\"Group 1229\" transform=\"translate(14.212 2.597)\">\n        <path id=\"Path_403\" d=\"M152.575 261.708l-11.268-1.608-.33 4.259 11.6 17.609v-6.4l-6.919-10.9 6.922.828z\" class=\"cls-5\" data-name=\"Path 403\" transform=\"translate(-140.977 -255.79)\"/>\n        <path id=\"Path_404\" d=\"M374.813 220.1l-4.9-2.727-4.641 1.085.058.75.229 2.957z\" class=\"cls-5\" data-name=\"Path 404\" transform=\"translate(-342.659 -217.37)\"/>\n    </g>\n    <path id=\"Path_405\" d=\"M267.741 237.145l-.44-5.67-.259-3.347-11.012 4.834v3.787l7.193-3.128z\" class=\"cls-3\" data-name=\"Path 405\" transform=\"translate(-230.22 -224.446)\"/>\n    <path id=\"Path_406\" d=\"M382.611 286.147l-1.019-5.612-13.473-15.635.412 5.31 13.818 16.656a.756.756 0 0 0 .262-.719z\" class=\"cls-5\" data-name=\"Path 406\" transform=\"translate(-331.01 -257.51)\"/>\n    <path id=\"Path_409\" d=\"M256.31 420.6l4.565-2.048-4.875-5.045v7.16a.755.755 0 0 0 .31-.067z\" class=\"cls-3\" data-name=\"Path 409\" transform=\"translate(-230.193 -391.138)\"/>\n    <g id=\"Group_1230\" data-name=\"Group 1230\" transform=\"translate(13.22 5.324)\">\n        <path id=\"Path_410\" d=\"M378.555 245.393a.757.757 0 0 0-.377-.526l-.8-.447-9.257 2.064 13.474 15.637z\" class=\"cls-6\" data-name=\"Path 410\" transform=\"translate(-344.229 -244.42)\"/>\n        <path id=\"Path_411\" d=\"M143.727 320.712v-.757l-11.6-17.609-.992 12.792 12.276 5.508a.757.757 0 0 0 .316.066z\" class=\"cls-6\" data-name=\"Path 411\" transform=\"translate(-131.14 -296.507)\"/>\n    </g>\n</svg>\n";
-
-/***/ }),
-
-/***/ "./public/svg/markers/accelaraters-marker-icon.svg":
-/*!*********************************************************!*\
-  !*** ./public/svg/markers/accelaraters-marker-icon.svg ***!
-  \*********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25.951\" height=\"25.951\" viewBox=\"0 0 25.951 25.951\">\n    <defs>\n        <style>\n            .cls-1{fill:#f04238}.cls-2{fill:#fff}\n        </style>\n    </defs>\n    <g id=\"Group_1158\" data-name=\"Group 1158\" transform=\"translate(-305.74 -126.875)\">\n        <rect id=\"Rectangle_514\" width=\"25.951\" height=\"25.951\" class=\"cls-1\" data-name=\"Rectangle 514\" rx=\"12.976\" transform=\"translate(305.74 126.875)\"/>\n        <g id=\"Group_1157\" data-name=\"Group 1157\" transform=\"translate(309.628 133.034)\">\n            <path id=\"Path_380\" d=\"M335.211 152a9.081 9.081 0 0 0-15 6.9c0 .135.013 1.391.019 1.525v.511a.85.85 0 0 0 .85.85h16.624a.647.647 0 0 0 .647-.647v-.615l.017-.1c.005-.135.02-1.391.02-1.525a9.141 9.141 0 0 0-3.177-6.899zm-12.789 8.177v-.879a.247.247 0 0 1 .248-.247h1.366a.248.248 0 0 0 .248-.248v-.103a.248.248 0 0 0-.248-.248h-1.485a.821.821 0 0 0-.131 0 6.916 6.916 0 0 1 1.79-4.345l.047-.05.084.073 1.065 1.066a.248.248 0 0 0 .351 0l.039-.039a.248.248 0 0 0 0-.351l-.954-.953a.249.249 0 0 1 .012-.364 6.816 6.816 0 0 1 4.121-1.612h.093s.039 0 .036.023v1.59a.248.248 0 0 0 .248.248.248.248 0 0 0 .248-.248v-1.347a.25.25 0 0 1 .275-.247c.153.014.305.034.456.058a6.811 6.811 0 0 1 3.519 1.559.249.249 0 0 1 .012.364l-.952.953a.248.248 0 0 0 0 .35l.016.016a.248.248 0 0 0 .351 0l1.087-1.088.07-.056.06.079a6.816 6.816 0 0 1 1.773 4.056.248.248 0 0 1-.249.266h-1.348a.248.248 0 0 0-.248.248v.105a.248.248 0 0 0 .249.248h1.374a.247.247 0 0 1 .248.247v.878a.247.247 0 0 1-.248.245H322.67a.247.247 0 0 1-.248-.248zm9.179-3.637a.248.248 0 0 0-.313-.313 12.218 12.218 0 0 0-3.063 1.325 1.451 1.451 0 0 0 2.052 2.052 12.219 12.219 0 0 0 1.323-3.065z\" class=\"cls-2\" data-name=\"Path 380\" transform=\"translate(-320.214 -149.808)\"/>\n        </g>\n    </g>\n</svg>\n";
-
-/***/ }),
-
-/***/ "./public/svg/markers/co-workspaces-marker-icon.svg":
-/*!**********************************************************!*\
-  !*** ./public/svg/markers/co-workspaces-marker-icon.svg ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"49.77\" height=\"49.77\" viewBox=\"0 0 49.77 49.77\">\n    <defs>\n        <style>\n            .cls-1{fill:#38479b}.cls-2{fill:#fff}\n        </style>\n    </defs>\n    <g id=\"Group_1152\" data-name=\"Group 1152\" transform=\"translate(-45.783 -126.875)\">\n        <rect id=\"Rectangle_512\" width=\"49.77\" height=\"49.77\" class=\"cls-1\" data-name=\"Rectangle 512\" rx=\"24.885\" transform=\"translate(45.783 126.875)\"/>\n        <g id=\"Group_1151\" data-name=\"Group 1151\" transform=\"translate(56.472 139.815)\">\n            <path id=\"Path_376\" d=\"M84.033 156.348a5.159 5.159 0 0 1 1.973 3.147.817.817 0 0 0 .542.624 4.135 4.135 0 0 0 2.082.128 4.164 4.164 0 1 0-4.921-4.66.819.819 0 0 0 .324.761zm-3.8 8.217a4.166 4.166 0 1 0-3.4-3.4 4.168 4.168 0 0 0 3.403 3.4zm2.471.342h-3.529a5.331 5.331 0 0 0-5.331 5.331v4.321l.011.067.3.093a24.268 24.268 0 0 0 7.249 1.169 14.868 14.868 0 0 0 6.326-1.188l.278-.141h.03v-4.321a5.336 5.336 0 0 0-5.331-5.331zm6.889-4.3h-3.211a.311.311 0 0 0-.307.291 5.121 5.121 0 0 1-1.246 2.945.3.3 0 0 0 .117.486 6.334 6.334 0 0 1 4.087 5.914v.463a.818.818 0 0 0 .881.816 13.61 13.61 0 0 0 4.706-1.121l.278-.141h.03v-4.322a5.331 5.331 0 0 0-5.328-5.33zm-16.493-.316a4.132 4.132 0 0 0 2.254-.343 1.081 1.081 0 0 0 .584-.728 5.149 5.149 0 0 1 1.48-2.514l.362-.888a4.164 4.164 0 1 0-4.68 4.473zm3.832 4.04a.3.3 0 0 0 .117-.486 5.128 5.128 0 0 1-1.261-3.217c-.13-.009-.259-.02-.391-.02h-3.529a5.331 5.331 0 0 0-5.331 5.331v4.321l.011.066.3.094a25.519 25.519 0 0 0 5.11 1.058.816.816 0 0 0 .893-.816v-.419a6.335 6.335 0 0 1 4.085-5.912z\" class=\"cls-2\" data-name=\"Path 376\" transform=\"translate(-66.537 -151.997)\"/>\n        </g>\n    </g>\n</svg>\n";
-
-/***/ }),
-
-/***/ "./public/svg/markers/investors-marker-icon.svg":
-/*!******************************************************!*\
-  !*** ./public/svg/markers/investors-marker-icon.svg ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"34.527\" height=\"34.527\" viewBox=\"0 0 34.527 34.527\">\n    <defs>\n        <style>\n            .cls-1{fill:#46a252}.cls-2{fill:#fff}\n        </style>\n    </defs>\n    <g id=\"Group_1167\" data-name=\"Group 1167\" transform=\"translate(-231.384 -297.734)\">\n        <g id=\"Group_1166\" data-name=\"Group 1166\" transform=\"translate(231.384 297.734)\">\n            <rect id=\"Rectangle_517\" width=\"34.527\" height=\"34.527\" class=\"cls-1\" data-name=\"Rectangle 517\" rx=\"17.263\"/>\n            <g id=\"Group_1165\" data-name=\"Group 1165\" transform=\"translate(11.894 6.9)\">\n                <path id=\"Path_389\" d=\"M272.923 326.461a24.993 24.993 0 0 0-2.534-1.147 5.7 5.7 0 0 1-1.391-.779 1.21 1.21 0 0 1 .3-2.153 2.448 2.448 0 0 1 .852-.175 6.463 6.463 0 0 1 3.2.634c.505.244.672.167.843-.359.18-.557.33-1.122.5-1.683a.587.587 0 0 0-.381-.783 8.127 8.127 0 0 0-2.021-.6c-.916-.141-.916-.145-.92-1.066 0-1.3 0-1.3-1.306-1.3h-.565c-.608.017-.71.124-.728.736-.009.274 0 .548 0 .826 0 .813-.009.8-.788 1.083a4.342 4.342 0 0 0-3.172 4.024 4.123 4.123 0 0 0 2.333 3.942 25.748 25.748 0 0 0 2.915 1.31 4.342 4.342 0 0 1 1.062.625 1.456 1.456 0 0 1-.347 2.551 3.489 3.489 0 0 1-1.871.244 8.342 8.342 0 0 1-2.851-.852c-.527-.274-.681-.2-.86.368-.154.492-.291.989-.428 1.486-.184.667-.116.826.522 1.138a9.111 9.111 0 0 0 2.568.736c.694.111.715.141.724.86 0 .325 0 .655.009.98a.582.582 0 0 0 .625.659c.48.009.963.009 1.442 0a.549.549 0 0 0 .595-.621c0-.445.021-.895 0-1.34a.707.707 0 0 1 .612-.8 4.839 4.839 0 0 0 2.522-1.618 4.55 4.55 0 0 0-1.461-6.926z\" class=\"cls-2\" data-name=\"Path 389\" transform=\"translate(-264.671 -317.046)\"/>\n            </g>\n        </g>\n    </g>\n</svg>\n";
-
-/***/ }),
-
-/***/ "./public/svg/markers/research-centers-marker-icon.svg":
-/*!*************************************************************!*\
-  !*** ./public/svg/markers/research-centers-marker-icon.svg ***!
-  \*************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"48.107\" height=\"48.107\" viewBox=\"0 0 48.107 48.107\">\n    <defs>\n        <style>\n            .cls-1{fill:#03b6cd}.cls-2{fill:#fff}\n        </style>\n    </defs>\n    <g id=\"Group_1174\" data-name=\"Group 1174\" transform=\"translate(-361.363 -297.734)\">\n        <g id=\"Group_1173\" data-name=\"Group 1173\" transform=\"translate(361.363 297.734)\">\n            <rect id=\"Rectangle_518\" width=\"48.107\" height=\"48.107\" class=\"cls-1\" data-name=\"Rectangle 518\" rx=\"24.053\"/>\n            <g id=\"Group_1172\" data-name=\"Group 1172\" transform=\"translate(12.536 11.687)\">\n                <g id=\"Group_1169\" data-name=\"Group 1169\" transform=\"translate(13.592 13.592)\">\n                    <g id=\"Group_1168\" data-name=\"Group 1168\">\n                        <path id=\"Path_390\" d=\"M424.595 357.529l-1.606-1.606a4.456 4.456 0 0 0 .741-2.471 4.942 4.942 0 1 0-4.942 4.942 4.453 4.453 0 0 0 2.471-.741l1.607 1.607a1.163 1.163 0 0 0 1.73 0 1.194 1.194 0 0 0-.001-1.731zm-5.807-1.606a2.471 2.471 0 1 1 2.471-2.471 2.478 2.478 0 0 1-2.471 2.471z\" class=\"cls-2\" data-name=\"Path 390\" transform=\"translate(-413.845 -348.509)\"/>\n                    </g>\n                </g>\n                <g id=\"Group_1171\" data-name=\"Group 1171\">\n                    <g id=\"Group_1170\" data-name=\"Group 1170\">\n                        <path id=\"Path_391\" d=\"M405.079 321.208h-17.3a1.168 1.168 0 0 0-1.236 1.236v22.241a1.168 1.168 0 0 0 1.236 1.236H401a7.4 7.4 0 0 1 4.078-13.592 4.187 4.187 0 0 1 1.235.124v-10.009a1.167 1.167 0 0 0-1.234-1.236zm-8.65 9.885h-6.178a1.238 1.238 0 0 1-1.236-1.235 1.167 1.167 0 0 1 1.236-1.236h6.178a1.167 1.167 0 0 1 1.236 1.236 1.238 1.238 0 0 1-1.236 1.235zm6.178-4.942h-12.356a1.238 1.238 0 0 1-1.236-1.236 1.168 1.168 0 0 1 1.236-1.236h12.356a1.168 1.168 0 0 1 1.236 1.236 1.238 1.238 0 0 1-1.236 1.236z\" class=\"cls-2\" data-name=\"Path 391\" transform=\"translate(-386.544 -321.208)\"/>\n                    </g>\n                </g>\n            </g>\n        </g>\n    </g>\n</svg>\n";
-
-/***/ }),
-
-/***/ "./public/svg/markers/startups-marker-icon.svg":
-/*!*****************************************************!*\
-  !*** ./public/svg/markers/startups-marker-icon.svg ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"88.043\" height=\"88.043\" viewBox=\"0 0 88.043 88.043\">\n    <defs>\n        <style>\n            .cls-1{fill:#ffb800}.cls-2{fill:#fff}\n        </style>\n    </defs>\n    <g id=\"Group_1156\" data-name=\"Group 1156\" transform=\"translate(-175.762 -126.875)\">\n        <g id=\"Group_1155\" data-name=\"Group 1155\" transform=\"translate(175.762 126.875)\">\n            <rect id=\"Rectangle_513\" width=\"88.043\" height=\"88.043\" class=\"cls-1\" data-name=\"Rectangle 513\" rx=\"44.022\"/>\n            <g id=\"Group_1154\" data-name=\"Group 1154\" transform=\"translate(27.214 20.895)\">\n                <g id=\"Group_1153\" data-name=\"Group 1153\">\n                    <path id=\"Path_377\" d=\"M222.437 196.061a7.617 7.617 0 0 1-7.383-7.835h14.765a7.617 7.617 0 0 1-7.382 7.835zm6.851-11.95h-13.7c-.37-4.033-9.957-7.55-9.957-17.631 0-10.754 8.043-16.457 16.808-16.672a18.075 18.075 0 0 1 11.69 4.384 15.963 15.963 0 0 1 5.118 12.288c-.002 10.081-9.589 13.598-9.959 17.631z\" class=\"cls-2\" data-name=\"Path 377\" transform=\"translate(-205.629 -149.808)\"/>\n                    <path id=\"Path_378\" d=\"M230.738 191.972a7.4 7.4 0 1 1-14.765 0z\" class=\"cls-2\" data-name=\"Path 378\" transform=\"translate(-206.548 -153.554)\"/>\n                    <path id=\"Path_379\" d=\"M239.245 166.48c0 10.081-9.587 13.6-9.957 17.631h-13.7c-.37-4.033-9.957-7.55-9.957-17.631 0-10.754 8.043-16.457 16.808-16.672a18.075 18.075 0 0 1 11.69 4.384 15.963 15.963 0 0 1 5.116 12.288z\" class=\"cls-2\" data-name=\"Path 379\" transform=\"translate(-205.629 -149.808)\"/>\n                </g>\n            </g>\n        </g>\n    </g>\n</svg>\n";
-
-/***/ }),
-
-/***/ "./public/svg/notifications-icon.svg":
-/*!*******************************************!*\
-  !*** ./public/svg/notifications-icon.svg ***!
-  \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"33.962\" height=\"36.867\" viewBox=\"0 0 33.962 36.867\">\n    <defs>\n        <style>\n            .cls-1{fill:none;stroke:#707070;stroke-width:2px}.cls-2{fill:#eb413c}\n        </style>\n    </defs>\n    <g id=\"Group_1439\" data-name=\"Group 1439\" transform=\"translate(-1093.381 -27.566)\">\n        <g id=\"notifications-button\" transform=\"translate(1094.381 28.566)\">\n            <g id=\"notifications\">\n                <path id=\"Path_451\" d=\"M53.069 34.867a3.5 3.5 0 0 0 3.487-3.487h-6.974a3.5 3.5 0 0 0 3.487 3.487zM64.4 24.407v-9.588a11.219 11.219 0 0 0-8.716-10.984v-1.22a2.615 2.615 0 0 0-5.23 0v1.22a11.219 11.219 0 0 0-8.717 10.983v9.589l-3.487 3.487v1.743h29.637v-1.743z\" class=\"cls-1\" data-name=\"Path 451\" transform=\"translate(-38.25)\"/>\n            </g>\n        </g>\n        <circle id=\"Ellipse_12\" cx=\"6.846\" cy=\"6.846\" r=\"6.846\" class=\"cls-2\" data-name=\"Ellipse 12\" transform=\"translate(1113.65 29.569)\"/>\n    </g>\n</svg>\n";
-
-/***/ }),
-
-/***/ "./public/svg/notify-icon.svg":
-/*!************************************!*\
-  !*** ./public/svg/notify-icon.svg ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"33.738\" height=\"36.576\" viewBox=\"0 0 33.738 36.576\">\n    <defs>\n        <style>\n            .cls-1{fill:#fff;stroke:#fff;stroke-width:.25px}\n        </style>\n    </defs>\n    <g id=\"_747322\" data-name=\"747322\" transform=\"translate(.125 .125)\">\n        <g id=\"Group_1103\" data-name=\"Group 1103\" transform=\"translate(29.278 7.246)\">\n            <g id=\"Group_1102\" data-name=\"Group 1102\">\n                <path id=\"Path_355\" d=\"M435.822 103.449l-.513-1.323-2.646 1.025.513 1.323a12.677 12.677 0 0 1 .859 4.6v6.526h2.838v-6.53a15.5 15.5 0 0 0-1.051-5.621z\" class=\"cls-1\" data-name=\"Path 355\" transform=\"translate(-432.663 -102.126)\"/>\n            </g>\n        </g>\n        <g id=\"Group_1105\" data-name=\"Group 1105\" transform=\"translate(0 7.246)\">\n            <g id=\"Group_1104\" data-name=\"Group 1104\">\n                <path id=\"Path_356\" d=\"M21.564 102.127l-.513 1.323A15.5 15.5 0 0 0 20 109.071v6.529h2.838v-6.527a12.676 12.676 0 0 1 .859-4.6l.513-1.323z\" class=\"cls-1\" data-name=\"Path 356\" transform=\"translate(-20 -102.127)\"/>\n            </g>\n        </g>\n        <g id=\"Group_1107\" data-name=\"Group 1107\" transform=\"translate(1.703)\">\n            <g id=\"Group_1106\" data-name=\"Group 1106\">\n                <path id=\"Path_357\" d=\"M74.083 27.812h-1.419a2.19 2.19 0 0 1-1.756-.761 4.334 4.334 0 0 1-.8-2.811v-9.766A11.119 11.119 0 0 0 60.46 3.5V0h-2.838v3.5a11.119 11.119 0 0 0-9.649 10.976v10.215a3.474 3.474 0 0 1-.766 2.38 2.34 2.34 0 0 1-1.788.742H44v3.973h11.452a3.689 3.689 0 1 0 7.178 0h11.453zm-15.042 5.676a.851.851 0 1 1 .851-.851.852.852 0 0 1-.851.851zm-9.705-4.541a6.253 6.253 0 0 0 1.475-4.257V14.474a8.262 8.262 0 0 1 8.11-8.229h.241a8.262 8.262 0 0 1 8.11 8.229v9.766a7.072 7.072 0 0 0 1.472 4.647l.053.061z\" class=\"cls-1\" data-name=\"Path 357\" transform=\"translate(-44)\"/>\n            </g>\n        </g>\n    </g>\n</svg>\n";
-
-/***/ }),
-
-/***/ "./public/svg/remove-icon.svg":
-/*!************************************!*\
-  !*** ./public/svg/remove-icon.svg ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"8.324\" height=\"10.702\" viewBox=\"0 0 8.324 10.702\">\n    <defs>\n        <style>\n            .cls-1{fill:#eb413c}\n        </style>\n    </defs>\n    <g id=\"rubbish-bin-delete-button\">\n        <g id=\"delete\">\n            <path id=\"Path_446\" d=\"M51.595 9.513a1.193 1.193 0 0 0 1.189 1.187h4.756a1.193 1.193 0 0 0 1.189-1.189V2.378h-7.134zM59.324.595h-2.081L56.648 0h-2.972l-.595.595H51v1.189h8.324z\" class=\"cls-1\" data-name=\"Path 446\" transform=\"translate(-51)\"/>\n        </g>\n    </g>\n</svg>\n";
-
-/***/ }),
-
-/***/ "./public/svg/research-centers-icon.svg":
-/*!**********************************************!*\
-  !*** ./public/svg/research-centers-icon.svg ***!
-  \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" id=\"Group_709\" width=\"20.63\" height=\"20.648\" data-name=\"Group 709\" viewBox=\"0 0 20.63 20.648\">\n    <defs>\n        <style>\n            .cls-1{fill:#9A9A9A}\n        </style>\n    </defs>\n    <g id=\"Group_706\" data-name=\"Group 706\" transform=\"translate(11.347 11.347)\">\n        <g id=\"Group_705\" data-name=\"Group 705\">\n            <path id=\"Path_243\" d=\"M422.819 356.039l-1.341-1.341a3.72 3.72 0 0 0 .619-2.063 4.126 4.126 0 1 0-4.126 4.126 3.718 3.718 0 0 0 2.063-.619l1.341 1.341a.971.971 0 0 0 1.444 0 1 1 0 0 0 0-1.444zm-4.848-1.341a2.063 2.063 0 1 1 2.063-2.063 2.069 2.069 0 0 1-2.063 2.065z\" class=\"cls-1\" data-name=\"Path 243\" transform=\"translate(-413.845 -348.509)\"/>\n        </g>\n    </g>\n    <g id=\"Group_708\" data-name=\"Group 708\">\n        <g id=\"Group_707\" data-name=\"Group 707\">\n            <path id=\"Path_244\" d=\"M402.017 321.208h-14.441a.975.975 0 0 0-1.032 1.032v18.568a.975.975 0 0 0 1.032 1.032h11.037a6.182 6.182 0 0 1 3.4-11.347 3.5 3.5 0 0 1 1.031.1v-8.353a.974.974 0 0 0-1.027-1.032zm-7.217 8.252h-5.157a1.033 1.033 0 0 1-1.032-1.031.974.974 0 0 1 1.032-1.032h5.157a.975.975 0 0 1 1.032 1.032 1.033 1.033 0 0 1-1.032 1.031zm5.158-4.126h-10.319a1.034 1.034 0 0 1-1.032-1.032.975.975 0 0 1 1.032-1.032h10.315a.975.975 0 0 1 1.032 1.032 1.034 1.034 0 0 1-1.032 1.032z\" class=\"cls-1\" data-name=\"Path 244\" transform=\"translate(-386.544 -321.208)\"/>\n        </g>\n    </g>\n</svg>\n";
-
-/***/ }),
-
-/***/ "./public/svg/search-icon.svg":
-/*!************************************!*\
-  !*** ./public/svg/search-icon.svg ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"23.496\" height=\"24.142\" viewBox=\"0 0 23.496 24.142\">\n    <defs>\n        <style>\n            .cls-1{fill:#9A9A9A;stroke-width:1.8px}\n        </style>\n    </defs>\n    <path id=\"_149852\" d=\"M22.226 20.35l-5.317-5.53A9.017 9.017 0 1 0 10 18.041a8.924 8.924 0 0 0 5.168-1.632l5.358 5.572a1.176 1.176 0 1 0 1.7-1.631zM10 2.353A6.667 6.667 0 1 1 3.337 9.02 6.675 6.675 0 0 1 10 2.353z\" class=\"cls-1\" data-name=\"149852\" transform=\"translate(-.084 .9)\"/>\n</svg>\n";
-
-/***/ }),
-
-/***/ "./public/svg/startups-icon.svg":
-/*!**************************************!*\
-  !*** ./public/svg/startups-icon.svg ***!
-  \**************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" id=\"Group_695\" width=\"14.891\" height=\"20.488\" data-name=\"Group 695\" viewBox=\"0 0 14.891 20.488\">\n    <defs>\n        <style>\n            .cls-1{fill:#9A9A9A}\n        </style>\n    </defs>\n    <g id=\"Group_694\" data-name=\"Group 694\">\n        <path id=\"Path_230\" d=\"M213.074 170.3a3.374 3.374 0 0 1-3.27-3.471h6.54a3.374 3.374 0 0 1-3.27 3.471zm3.035-5.3h-6.069c-.164-1.786-4.411-3.344-4.411-7.81 0-4.764 3.563-7.29 7.445-7.385a8.007 8.007 0 0 1 5.178 1.942 7.071 7.071 0 0 1 2.267 5.443c.001 4.469-4.246 6.027-4.41 7.81z\" class=\"cls-1\" data-name=\"Path 230\" transform=\"translate(-205.629 -149.808)\"/>\n        <path id=\"Path_231\" d=\"M222.513 191.972a3.276 3.276 0 1 1-6.54 0z\" class=\"cls-1\" data-name=\"Path 231\" transform=\"translate(-211.798 -174.954)\"/>\n        <path id=\"Path_232\" d=\"M220.52 157.193c0 4.466-4.247 6.023-4.411 7.81h-6.069c-.164-1.786-4.411-3.344-4.411-7.81 0-4.764 3.563-7.29 7.445-7.385a8.007 8.007 0 0 1 5.178 1.942 7.071 7.071 0 0 1 2.268 5.443z\" class=\"cls-1\" data-name=\"Path 232\" transform=\"translate(-205.629 -149.808)\"/>\n    </g>\n</svg>\n";
-
-/***/ }),
-
-/***/ "./public/svg/tags-icon.svg":
-/*!**********************************!*\
-  !*** ./public/svg/tags-icon.svg ***!
-  \**********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" id=\"Group_1334\" width=\"23.949\" height=\"16.692\" data-name=\"Group 1334\" viewBox=\"0 0 23.949 16.692\">\n    <defs>\n        <style>\n            .cls-1{fill:#9f9f9f}\n        </style>\n    </defs>\n    <path id=\"Path_435\" d=\"M176 178.895c-.8.475-1.414.969-1.441 1.94a5.421 5.421 0 0 0-1.057-.685 5.292 5.292 0 0 0-1.228-.134 2.192 2.192 0 0 0-.048-2.332 2.365 2.365 0 0 0 2.3-.673 2.284 2.284 0 0 0 1.474 1.884z\" class=\"cls-1\" data-name=\"Path 435\" transform=\"translate(-162.636 -170.542)\"/>\n    <g id=\"Group_1333\" data-name=\"Group 1333\">\n        <path id=\"Path_437\" d=\"M68.268 99.327a10.31 10.31 0 0 0-1.677-.158q-1.443-.021-2.886-.019c-1.424 0-2.848.011-4.272.018a10.408 10.408 0 0 0-1.534.12A8.378 8.378 0 0 0 51 106.553a2.795 2.795 0 0 0-.016.16l-.013.151c0 .067-.01.135-.013.2s-.006.131-.007.2v.612a7.565 7.565 0 0 0 .081.789 8.34 8.34 0 0 0 8.33 7.163c1.463 0 2.926.016 4.39.016.965 0 1.928-.006 2.892-.023a10.171 10.171 0 0 0 1.634-.158 8.347 8.347 0 0 0-.02-16.334zm.848 8.849a3.839 3.839 0 0 0 .833 1 6.128 6.128 0 0 0 2.091 1.021c.146.049.292.093.468.15a6.185 6.185 0 0 1-1.411 1.894 6.372 6.372 0 0 1-4.4 1.727c-2.488.01-4.976.016-7.465 0a6.478 6.478 0 0 1-.94-12.879 7.3 7.3 0 0 1 1.106-.075q3.593-.01 7.187 0a6.465 6.465 0 0 1 6.495 5.38 5.8 5.8 0 0 1 0 2.2c-.867-.322-1.792-.463-2.366-1.282a.928.928 0 0 0-1.182-.286.864.864 0 0 0-.417 1.149z\" class=\"cls-1\" data-name=\"Path 437\" transform=\"translate(-50.95 -99.15)\"/>\n        <path id=\"Path_438\" d=\"M154.248 150.89c-.421-.3-.851-.577-1.26-.888a1 1 0 0 1-.315-.421c-.2-.528-.363-1.068-.547-1.6a.92.92 0 0 0-1.5-.474c-.406.3-.8.618-1.211.9a1 1 0 0 1-.5.167c-.565.024-1.131.006-1.7.023a.926.926 0 0 0-.9 1.3c.148.449.292.9.467 1.337a.951.951 0 0 1 0 .712c-.171.494-.323 1-.475 1.5a.933.933 0 0 0 .979 1.287c.5-.007 1.007-.034 1.511-.029a.809.809 0 0 1 .421.133c.485.328.952.682 1.434 1.015a.916.916 0 0 0 1.471-.506c.161-.5.3-1 .47-1.5a.8.8 0 0 1 .253-.359c.463-.36.939-.7 1.41-1.049a.916.916 0 0 0 .4-.772.892.892 0 0 0-.408-.776zm-3.478 2.745a5.541 5.541 0 0 0-1.08-.7 5.406 5.406 0 0 0-1.255-.137 2.24 2.24 0 0 0-.049-2.383 2.416 2.416 0 0 0 2.35-.688 2.334 2.334 0 0 0 1.505 1.926c-.82.485-1.441.989-1.471 1.982z\" class=\"cls-1\" data-name=\"Path 438\" transform=\"translate(-138.406 -143.319)\"/>\n        <path id=\"Path_439\" d=\"M176.086 178.936c-.822.486-1.445.99-1.472 1.983a5.539 5.539 0 0 0-1.08-.7 5.409 5.409 0 0 0-1.255-.137 2.24 2.24 0 0 0-.049-2.383 2.416 2.416 0 0 0 2.35-.688 2.334 2.334 0 0 0 1.506 1.925z\" class=\"cls-1\" data-name=\"Path 439\" transform=\"translate(-162.249 -170.602)\"/>\n        <path id=\"Path_440\" d=\"M68.268 99.327a8.356 8.356 0 0 0-1.715-.177H59.3a8.347 8.347 0 0 0-8.292 7.4 2.795 2.795 0 0 0-.016.16l-.013.151c0 .067-.01.135-.013.2s-.006.131-.007.2v.612a8.341 8.341 0 0 0 8.335 7.968h7.257a8.347 8.347 0 0 0 1.715-16.515zm.848 8.849a3.839 3.839 0 0 0 .833 1 6.128 6.128 0 0 0 2.091 1.021c.146.049.292.093.468.15a6.185 6.185 0 0 1-1.411 1.894 6.372 6.372 0 0 1-4.4 1.727c-2.488.01-4.976.016-7.465 0a6.478 6.478 0 0 1-.94-12.879 7.3 7.3 0 0 1 1.106-.075q3.593-.01 7.187 0a6.465 6.465 0 0 1 6.495 5.38 5.8 5.8 0 0 1 0 2.2c-.867-.322-1.792-.463-2.366-1.282a.928.928 0 0 0-1.182-.286.864.864 0 0 0-.417 1.149zm-2.323-1.454c-.421-.3-.851-.577-1.26-.888a1 1 0 0 1-.315-.421c-.2-.528-.363-1.068-.547-1.6a.92.92 0 0 0-1.5-.474c-.406.3-.8.618-1.211.9a1 1 0 0 1-.5.167c-.565.024-1.131.006-1.7.023a.926.926 0 0 0-.9 1.3c.148.449.292.9.467 1.337a.951.951 0 0 1 0 .712c-.171.494-.323 1-.475 1.5a.933.933 0 0 0 .979 1.287c.5-.007 1.007-.034 1.511-.029a.809.809 0 0 1 .421.133c.485.328.952.682 1.434 1.015a.916.916 0 0 0 1.471-.506c.161-.5.3-1 .47-1.5a.8.8 0 0 1 .253-.359c.462-.36.939-.7 1.41-1.049a.916.916 0 0 0 .4-.772.892.892 0 0 0-.409-.777zm-3.478 2.745a5.54 5.54 0 0 0-1.08-.7 5.409 5.409 0 0 0-1.255-.137 2.24 2.24 0 0 0-.049-2.383 2.416 2.416 0 0 0 2.35-.688 2.334 2.334 0 0 0 1.505 1.926c-.822.484-1.445.988-1.472 1.981z\" class=\"cls-1\" data-name=\"Path 440\" transform=\"translate(-50.95 -99.15)\"/>\n    </g>\n</svg>\n";
-
-/***/ }),
-
-/***/ "./public/svg/users-icon.svg":
-/*!***********************************!*\
-  !*** ./public/svg/users-icon.svg ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" id=\"multiple-users-silhouette\" width=\"22.457\" height=\"18.899\" viewBox=\"0 0 22.457 18.899\">\n    <defs>\n        <style>\n            .cls-1{fill:#9f9f9f}\n        </style>\n    </defs>\n    <path id=\"Path_431\" d=\"M13.552 9.592a4.081 4.081 0 0 1 1.9 3.032 3.292 3.292 0 1 0-1.9-3.032zm-2.158 6.744A3.293 3.293 0 1 0 8.1 13.042a3.294 3.294 0 0 0 3.294 3.293zm1.4.224H10a4.222 4.222 0 0 0-4.217 4.217v3.418l.009.054.235.074a19.2 19.2 0 0 0 5.734.925 11.771 11.771 0 0 0 5.007-.94l.22-.111h.024v-3.42a4.221 4.221 0 0 0-4.221-4.217zm5.449-3.4h-2.776a4.059 4.059 0 0 1-1.253 2.827 5.011 5.011 0 0 1 3.579 4.8v1.053a11.348 11.348 0 0 0 4.42-.928l.22-.112h.024v-3.424a4.222 4.222 0 0 0-4.217-4.216zm-12.628-.225a3.272 3.272 0 0 0 1.752-.508 4.076 4.076 0 0 1 1.533-2.6c0-.062.009-.123.009-.185a3.293 3.293 0 1 0-3.293 3.293zm2.958 3.051a4.061 4.061 0 0 1-1.252-2.812c-.1-.008-.2-.016-.309-.016H4.217A4.222 4.222 0 0 0 0 17.376v3.418l.009.053.235.074a19.772 19.772 0 0 0 4.749.893v-1.032a5.012 5.012 0 0 1 3.58-4.795z\" class=\"cls-1\" data-name=\"Path 431\" transform=\"translate(0 -6.348)\"/>\n</svg>\n";
-
-/***/ }),
-
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -38525,7 +38431,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('SearchInput', __webpack_re
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('Carousel', __webpack_require__(/*! ./components/Carsouel.vue */ "./resources/js/components/Carsouel.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('Slide', __webpack_require__(/*! ./components/Slide.vue */ "./resources/js/components/Slide.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('Avatar', __webpack_require__(/*! ./components/Avatar.vue */ "./resources/js/components/Avatar.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('LocationPicker', __webpack_require__(/*! ./components/LocationPicker.vue */ "./resources/js/components/LocationPicker.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('MapView', __webpack_require__(/*! ./pages/MapView.vue */ "./resources/js/pages/MapView.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('CreateEntityView', __webpack_require__(/*! ./pages/CreateEntityView.vue */ "./resources/js/pages/CreateEntityView.vue")["default"]);
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app'
 });
@@ -38766,6 +38674,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GoogleMap_vue_vue_type_template_id_70fcb908___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GoogleMap_vue_vue_type_template_id_70fcb908___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/LocationPicker.vue":
+/*!****************************************************!*\
+  !*** ./resources/js/components/LocationPicker.vue ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _LocationPicker_vue_vue_type_template_id_17f8cb64___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LocationPicker.vue?vue&type=template&id=17f8cb64& */ "./resources/js/components/LocationPicker.vue?vue&type=template&id=17f8cb64&");
+/* harmony import */ var _LocationPicker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LocationPicker.vue?vue&type=script&lang=js& */ "./resources/js/components/LocationPicker.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _LocationPicker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _LocationPicker_vue_vue_type_template_id_17f8cb64___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _LocationPicker_vue_vue_type_template_id_17f8cb64___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/LocationPicker.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/LocationPicker.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/components/LocationPicker.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationPicker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./LocationPicker.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LocationPicker.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationPicker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/LocationPicker.vue?vue&type=template&id=17f8cb64&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/LocationPicker.vue?vue&type=template&id=17f8cb64& ***!
+  \***********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationPicker_vue_vue_type_template_id_17f8cb64___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./LocationPicker.vue?vue&type=template&id=17f8cb64& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LocationPicker.vue?vue&type=template&id=17f8cb64&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationPicker_vue_vue_type_template_id_17f8cb64___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationPicker_vue_vue_type_template_id_17f8cb64___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -39062,6 +39039,56 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Slide_vue_vue_type_template_id_ba451454___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/pages/CreateEntityView.vue":
+/*!*************************************************!*\
+  !*** ./resources/js/pages/CreateEntityView.vue ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CreateEntityView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CreateEntityView.vue?vue&type=script&lang=js& */ "./resources/js/pages/CreateEntityView.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  _CreateEntityView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"],
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/pages/CreateEntityView.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/pages/CreateEntityView.vue?vue&type=script&lang=js&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/pages/CreateEntityView.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateEntityView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./CreateEntityView.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/CreateEntityView.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateEntityView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 

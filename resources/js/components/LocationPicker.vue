@@ -13,8 +13,8 @@
                     return {};
                 }
             },
-            places: Array,
             apiKey: String,
+            multiple: Boolean,
             center: Object,
         },
 
@@ -33,18 +33,15 @@
                 this.google = response
                 this.initializeMap()
                 this.centeringMap()
-                this.setMarkers()
             })
         },
+
         watch: {
-            places(){
-                this.removeMarkers()
-                this.setMarkers()
-            },
             center(newCenter){
                 this.centeringMap()
             }
         },
+
         methods: {
             initializeMap() {
                 this.map = new this.google.maps.Map(this.$el,
@@ -55,30 +52,29 @@
                         disableDefaultUI: true
                     }
                 )
+                this.map.addListener('click', (event) => {
+                    this.placeMarker(event.latLng);
+                });
                 this.map.addListener('center_changed', () => this.$emit('centerChanged', this.map.center))
             },
-            addMarker(place) {
+
+            placeMarker(latLang) {
                 if (this.google) {
                     let marker = new this.google.maps.Marker({
-                        position: new this.google.maps.LatLng(place.location.lat, place.location.long),
+                        position: latLang,
                         map: this.map,
-                        icon: {
-                            url: `/svg/markers/${place.category.name}-marker-icon.svg`,
-                            scaledSize: new google.maps.Size(50, 50),
-                            origin: new google.maps.Point(0, 0),
-                            anchor: new google.maps.Point(0, 0)
-                        }
                     });
-                    this.google.maps.event.addListener(marker, 'click', () => {
-                        this.$emit('marker-clicked', {place, marker})
-                    });
+
+                    this.multiple ? '' : this.removeMarkers()
                     this.markers.push(marker)
+                    this.$emit('marker-placed', {
+                        marker: marker,
+                        location: {
+                            latitude: marker.position.lat(),
+                            longitude: marker.position.lng()
+                        }
+                    })
                 }
-            },
-            setMarkers(){
-                this.places.forEach((place) => {
-                    this.addMarker(place)
-                })
             },
             removeMarkers(){
                 this.markers.forEach(marker => {
@@ -91,6 +87,6 @@
                     this.map.panTo(new this.google.maps.LatLng(this.center.latitude, this.center.longitude));
                 }
             },
-        }
+        },
     }
 </script>

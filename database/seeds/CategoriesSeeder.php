@@ -23,6 +23,16 @@ class CategoriesSeeder extends Seeder
                 'icon' => '/svg/investors-icon.svg'])
             ->entities()->saveMany(factory(App\Entity::class, 5)->make(['category_id' => '']));
 
+        factory(App\Category::class)
+            ->create(['name' => 'accelerators',
+                'icon' => '/svg/accelerators-icon.svg'])
+            ->entities()->saveMany(factory(App\Entity::class, 5)->make(['category_id' => '']));
+
+        factory(App\Category::class)
+            ->create(['name' => 'co-workspaces',
+                'icon' => '/svg/co-workspaces-icon.svg'])
+            ->entities()->saveMany(factory(App\Entity::class, 5)->make(['category_id' => '']));
+
 
         factory(App\Category::class)
             ->create(['name' => 'labs',
@@ -31,7 +41,7 @@ class CategoriesSeeder extends Seeder
 
 
         factory(App\Category::class)
-            ->create(['name' => 'research',
+            ->create(['name' => 'research-centers',
                 'icon' => '/svg/research-centers-icon.svg'])
             ->entities()->saveMany(factory(App\Entity::class, 5)->make(['category_id' => '']));
 

@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Campos | Map Eco system</title>
+    <link rel="shortcut icon" type="image/jpg" href="/img/logo.png"/>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
 <body>
@@ -22,7 +23,7 @@
                         @csrf
                     </form>
                     @auth()
-                    <avatar img="{{"https://www.gravatar.com/avatar/" . md5( strtolower( trim( auth()->user()->email ) ) ) . "?s=100&d=https%3A%2F%2Fs3.amazonaws.com%2Flaracasts%2Fimages%2Fforum%2Favatars%2Favatar-18.png"}}"
+                    <avatar img="{{"https://www.gravatar.com/avatar/" . md5( strtolower( trim( auth()->user()->email ) ) ) . "?s=100&d"}}"
                             :auth="{{auth()->check()}}" :user="{{auth()->user()}}"></avatar>
                     @endauth
                     @guest()
@@ -30,7 +31,7 @@
                             auth="{{auth()->check()}}"></avatar>
                     @endguest
                 </div>
-                <map-categories @category-change="getPlaces"></map-categories>
+                <map-categories :categories="{{$categories}}" @category-change="getPlaces"></map-categories>
                 <div class="flex items-center justify-center mt-auto mb-2">
                     <div class="rounded  w-12 h-12 w-16 h-16 bg-red-500 flex items-center justify-center">
                         <img class="" src="{{asset('svg/notify-icon.svg')}}" alt="">
@@ -42,7 +43,9 @@
             <main>
                 <google-map :places="places"
                             :center="mapCenter"
-                            api-key="{{config('app.google_map_key')}}"></google-map>
+                @marker-clicked="selectPlace($event.place)"
+                api-key="{{config('app.google_map_key')}}"
+                ></google-map>
             </main>
             @include('partials.modals.filteringModal')
         </div>

@@ -3,16 +3,28 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
+/**
+ * @property mixed $entity
+ */
 class Profile extends Model
 {
+    use HasMediaTrait;
+    /**
+     * Determine fillable fields
+     *
+     * @var array
+     */
     protected $fillable = [
         'entity_id', 'cover', 'Logo', 'Address'
     ];
 
-    public function entity ()
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function entity()
     {
-        // Every profile related to one entity
         return $this->belongsTo(Entity::class);
     }
 }
