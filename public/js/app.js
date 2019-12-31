@@ -5510,6 +5510,29 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AddressText.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AddressText.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['place', 'apiKey'],
+  mounted: function mounted() {
+    axios.get("https://maps.googleapis.com/maps/api/geocode/json?latlng=".concat(this.place.latitude, ",").concat(this.place.longitude, "&key=").concat(this.apiKey)).then(function (res) {
+      return console.log(res);
+    });
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Avatar.vue?vue&type=script&lang=js&":
 /*!*****************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Avatar.vue?vue&type=script&lang=js& ***!
@@ -25696,6 +25719,30 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AddressText.vue?vue&type=template&id=b0aca4b4&":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AddressText.vue?vue&type=template&id=b0aca4b4& ***!
+  \**************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("p")
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Avatar.vue?vue&type=template&id=62781b04&":
 /*!*********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Avatar.vue?vue&type=template&id=62781b04& ***!
@@ -26014,16 +26061,21 @@ var render = function() {
             [_vm._v("\n                ×")]
           ),
           _vm._v(" "),
-          _c("img", {
-            attrs: { src: "https://placeimg.com/640/460/tech", alt: "" }
-          }),
+          _c("img", { attrs: { src: _vm.place.cover, alt: "" } }),
           _vm._v(" "),
           _c("div", {
             staticClass: "bg-white absolute w-full h-12 cover-skewer"
           })
         ]),
         _vm._v(" "),
-        _vm._m(0)
+        _c(
+          "div",
+          {
+            staticClass:
+              "rounded-full w-24 h-24 overflow-hidden shadow-sm p-2 bg-white -translate-y-50 -mb-5"
+          },
+          [_c("img", { attrs: { src: _vm.place.avatar, alt: "" } })]
+        )
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "px-10 flex flex-col" }, [
@@ -26041,7 +26093,7 @@ var render = function() {
           "a",
           {
             staticClass: "text-red-500 p-4 text-xl block text-center font-bold",
-            attrs: { href: "/@" + _vm.place.name }
+            attrs: { href: "/@" + _vm.place.id }
           },
           [_vm._v("Visit Profile")]
         )
@@ -26049,28 +26101,7 @@ var render = function() {
     ]
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass:
-          "rounded-full w-24 h-24 overflow-hidden shadow-sm p-2 bg-white -translate-y-50 -mb-5"
-      },
-      [
-        _c("img", {
-          attrs: {
-            src: "https://avatars.dicebear.com/v2/bottts/avatar.svg",
-            alt: ""
-          }
-        })
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -38432,6 +38463,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('Carousel', __webpack_requi
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('Slide', __webpack_require__(/*! ./components/Slide.vue */ "./resources/js/components/Slide.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('Avatar', __webpack_require__(/*! ./components/Avatar.vue */ "./resources/js/components/Avatar.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('LocationPicker', __webpack_require__(/*! ./components/LocationPicker.vue */ "./resources/js/components/LocationPicker.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('AddressText', __webpack_require__(/*! ./components/AddressText.vue */ "./resources/js/components/AddressText.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('MapView', __webpack_require__(/*! ./pages/MapView.vue */ "./resources/js/pages/MapView.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('CreateEntityView', __webpack_require__(/*! ./pages/CreateEntityView.vue */ "./resources/js/pages/CreateEntityView.vue")["default"]);
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
@@ -38469,6 +38501,75 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/components/AddressText.vue":
+/*!*************************************************!*\
+  !*** ./resources/js/components/AddressText.vue ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _AddressText_vue_vue_type_template_id_b0aca4b4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddressText.vue?vue&type=template&id=b0aca4b4& */ "./resources/js/components/AddressText.vue?vue&type=template&id=b0aca4b4&");
+/* harmony import */ var _AddressText_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AddressText.vue?vue&type=script&lang=js& */ "./resources/js/components/AddressText.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AddressText_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AddressText_vue_vue_type_template_id_b0aca4b4___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _AddressText_vue_vue_type_template_id_b0aca4b4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/AddressText.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/AddressText.vue?vue&type=script&lang=js&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/AddressText.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddressText_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./AddressText.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AddressText.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddressText_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/AddressText.vue?vue&type=template&id=b0aca4b4&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/AddressText.vue?vue&type=template&id=b0aca4b4& ***!
+  \********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddressText_vue_vue_type_template_id_b0aca4b4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./AddressText.vue?vue&type=template&id=b0aca4b4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AddressText.vue?vue&type=template&id=b0aca4b4&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddressText_vue_vue_type_template_id_b0aca4b4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddressText_vue_vue_type_template_id_b0aca4b4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 

@@ -15,11 +15,13 @@
                     <div class="bg-white absolute w-full h-12 cover-skewer"></div>
                 </div>
                 <div class="rounded-full w-40 h-40 overflow-hidden shadow-sm p-2 bg-white -translate-y-50 -mb-16">
-                    <img src="https://avatars.dicebear.com/v2/bottts/avatar.svg" alt="">
+                    <img src="{{$entity->avatar}}" alt="">
                 </div>
             </header>
             <div class="px-10 flex flex-col">
-                <h3 class="uppercase text-xl font-bold text-center mb-4">{{auth()->user()->name }}</h3>
+                <h3 class="uppercase text-xl font-bold text-center mb-4">{{$entity->name }}</h3>
+                <address-text api-key="{{config('app.google_map_key')}}"
+                              :place="{{$entity}}"></address-text>
                 <div class="flex justify-between mb-4">
                     <span class="text-gray-500">Followers</span>
                     <span class="text-gray-500">Events</span>
@@ -36,24 +38,24 @@
                 <h3 class="uppercase border-b mb-4 border-solid border-gray-100 text-2xl font-bold">
                     Info
                 </h3>
-                <p class="text-gray-500 mr-8 ">rambled it to make a type specimen book. It has survived not only five
-                    centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was
-                    popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and
-                    more recently with desktorambled it to make a type specimen book. It has survived not only five
-                    centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was
-                    popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and
-                    more recently with deskto</p>
+                <p class="text-gray-500 mr-8 ">{{$entity->description}}</p>
             </div>
             <div class="bg-white p-8 mb-4 rounded">
                 <div class="flex flex-col justify-between">
+                    {{--<div class="flex flex-1 py-4 items-start border-b border-solid border-gray-100">--}}
+                    {{--<img class="rounded shadow-sm w-12 h-12 mr-4" src="https://i.pravatar.cc/300" alt="avatar">--}}
+                    {{--<div class="flex-col">--}}
+                    {{--<h3 class="capitalize font-bold">Ahmed Adel</h3>--}}
+                    {{--<p class=" font-hairline">Professional company, such an awesome service</p>--}}
+                    {{--<span class="self-end text-gray-500 text-sm">5 minutes ago</span>--}}
+                    {{--</div>--}}
+                    {{--</div>--}}
                     <div class="flex flex-1 py-4 items-start border-b border-solid border-gray-100">
-                        <img class="rounded shadow-sm w-12 h-12 mr-4" src="https://i.pravatar.cc/300" alt="avatar">
                         <div class="flex-col">
-                            <h3 class="capitalize font-bold">Ahmed Adel</h3>
-                            <p class=" font-hairline">Professional company, such an awesome service</p>
-                            <span class="self-end text-gray-500 text-sm">5 minutes ago</span>
+                            <span class="self-end text-gray-500 text-sm">There is no reviews for now</span>
                         </div>
                     </div>
+
                     <div class="flex flex-1 py-4 items-center">
                         <img class="rounded shadow-sm w-12 h-12 mr-4" src="https://i.pravatar.cc/300" alt="avatar">
                         <div class="border border-gray-100 border-solid flex-1 flex-col p-2 rounded">

@@ -27,7 +27,7 @@
                             :auth="{{auth()->check()}}" :user="{{auth()->user()}}"></avatar>
                     @endauth
                     @guest()
-                    <avatar img="{{"https://www.gravatar.com/avatar/"  . "?s=120"}}"
+                    <avatar img="https://www.gravatar.com/avatar/?s=120"
                             auth="{{auth()->check()}}"></avatar>
                     @endguest
                 </div>

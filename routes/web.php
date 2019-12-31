@@ -17,8 +17,8 @@ Route::get('/', function () {
 });
 
 
-Route::get('/@{name}', function ($name) {
-    return view('profile')->withName($name);
+Route::get('/@{entity}', function (\App\Entity $entity) {
+    return view('profile', compact('entity'));
 })->middleware('auth');
 
 Route::namespace('Admin')

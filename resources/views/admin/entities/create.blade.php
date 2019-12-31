@@ -18,6 +18,7 @@
 
             <form method="POST"
                   class="w-3/4"
+                  enctype="multipart/form-data"
                   action="{{ route('entities.store')  }}">
 
                 @csrf
@@ -43,6 +44,16 @@
                 <label class="input-label" for="name">Entity Name</label>
                 <div class="input">
                     <input type="text" id="name" name="name">
+                </div>
+
+                <label class="input-label" for="name">Logo|Avatar</label>
+                <div class="input">
+                    <input type="file" id="avatar" name="avatar">
+                </div>
+
+                <label class="input-label" for="name">Cover</label>
+                <div class="input">
+                    <input type="file" id="cover" name="cover">
                 </div>
 
                 <label class="input-label" for="description">Entity Description</label>

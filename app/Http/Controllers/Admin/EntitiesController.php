@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Category;
 use App\Entity;
 use App\Http\Controllers\Controller;
+use App\Profile;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -59,6 +60,8 @@ class EntitiesController extends Controller
             'user_id' => 'required',
             'category_id' => 'required',
             'name' => 'required',
+            'avatar' => 'required',
+            'cover' => 'required',
             'description' => 'required',
             'latitude' => 'required',
             'longitude' => 'required'
@@ -66,7 +69,11 @@ class EntitiesController extends Controller
 
 
         $entity = Entity::create($attributes);
-        $entity->profile->create();
+
+        $entity->profile
+            ->setAvatar($attributes['avatar'])
+            ->setCover($attributes['cover']);
+
         return redirect('/admin/entities')
             ->with('success', 'Data added successfully.');
 

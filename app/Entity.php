@@ -48,6 +48,16 @@ class Entity extends Model
      */
     protected $appends = ['cover', 'avatar'];
 
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($modal) {
+            Profile::create(['entity_id' => $modal->id]);
+        });
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -75,12 +85,12 @@ class Entity extends Model
 
     public function getAvatarAttribute()
     {
-        return $this->profile->Logo ?? '';
+        return $this->profile->avatar;
     }
 
     public function getCoverAttribute()
     {
-        return $this->profile->cover ?? '';
+        return $this->profile->cover;
     }
 
     /**
