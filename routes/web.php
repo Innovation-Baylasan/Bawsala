@@ -36,6 +36,7 @@ Route::namespace('Admin')
         Route::resource('categories', 'CategoriesController');
         Route::resource('profiles', 'ProfilesController');
         Route::resource('entity_tags', 'EntityTagsController');
+        Route::resource('events', 'EventsController');
 
     }, []);
 

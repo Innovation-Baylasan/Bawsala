@@ -24,5 +24,8 @@
     <a href="{{ route('profiles.index')  }}">Profiles</a>
     <br>
     <br>
+    <a href="{{ route('events.index')  }}">Events</a>
+    <br>
+    <br>
     <a href="{{ route('entity_tags.index')  }}">Entity Tags</a>
 @endsection

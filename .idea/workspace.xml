@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="">
+    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="Created Entity Event Model and Migration">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/EventsController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/events/create.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/events/edit.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/events/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/events/show.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/all.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/all.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,57 +25,6 @@
   </component>
   <component name="FavoritesManager">
     <favorites_list name="Mustakshif" />
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>br</find>
-      <find>get</find>
-      <find>error</find>
-      <find>left-position-centered</find>
-      <find>@if($errors-&gt;any())            &lt;hr&gt;            &lt;ul&gt;                @foreach($errors-&gt;all() as $error)                    &lt;li&gt; {{ $error  }} &lt;/li&gt;                @endforeach            &lt;/ul&gt;            &lt;hr&gt;        @endif</find>
-      <find>@if($errors-&gt;any())li&gt; {{ $error  }} &lt;/li&gt;                @endforeach            &lt;/ul&gt;            &lt;hr&gt;        @endif</find>
-      <find>@if($errors-&gt;any())</find>
-      <find>Ent</find>
-      <find>Scou</find>
-      <find>search</find>
-      <find>from</find>
-      <find>set</find>
-      <find>r</find>
-      <find>is</find>
-      <find>akas</find>
-      <find>places</find>
-      <find>this.places</find>
-      <find>ipLookUp</find>
-      <find>mount</find>
-      <find>header</find>
-      <find>google</find>
-      <find>center</find>
-      <find>profile</find>
-      <find>d=</find>
-      <find>APP_u</find>
-      <find>map</find>
-      <find>store</find>
-      <find>query</find>
-      <find>qu</find>
-      <find>conv</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>$categories</replace>
-      <replace>$category</replace>
-      <replace>&lt;table class=&quot;table-auto&quot;</replace>
-      <replace>&lt;table class=&quot;table-auto table&quot;</replace>
-      <replace>table table-striped</replace>
-      <replace>div class=&quot;input&quot;</replace>
-      <replace>centeringMap</replace>
-    </replaceStrings>
-    <dirStrings>
-      <dir>$PROJECT_DIR$</dir>
-      <dir>$PROJECT_DIR$/public</dir>
-      <dir>$PROJECT_DIR$/public/svg</dir>
-      <dir>$PROJECT_DIR$/public/images</dir>
-      <dir>$PROJECT_DIR$/resources/views/admin</dir>
-      <dir>$PROJECT_DIR$/resources</dir>
-    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -209,21 +163,22 @@
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="welco&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/welcome.blade.php&#10;app.j&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/app.js&#10;ProfileC&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/components/PlaceProfileCard.vue&#10;Pro.&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/profile.blade.php&#10;Prof&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Profile.php&#10;web&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/routes/web.php&#10;Ent&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Entity.php&#10;ent&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Entity.php&#10;Pr&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Profile.php&#10;Pro&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/components/PlaceProfileCard.vue&#10;Profile&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Profile.php&#10;pr&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Profile.php&#10;profile&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/database/migrations/2019_12_01_151412_create_profiles_table.php&#10;Enti&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Entity.php&#10;Prof_&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/database/migrations/2019_12_01_151412_create_profiles_table.php&#10;enti/c&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/admin/entities/create.blade.php&#10;Ad/Ent&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Http/Controllers/Admin/EntitiesController.php&#10;we&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/welcome.blade.php&#10;adm.&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/layouts/admin.blade.php&#10;wel&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/welcome.blade.php&#10;index&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/admin/entities/index.blade.php&#10;admin&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/layouts/admin.blade.php&#10;app.js&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/app.js&#10;ent/cre&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/admin/entities/create.blade.php&#10;Google&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/components/GoogleMap.vue&#10;userss&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/database/seeds/UsersTableSeeder.php&#10;usersed&#9;null&#9;null&#10;map&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/components/GoogleMap.vue&#10;categ&#9;null&#9;null&#10;MapC&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/components/MapCategories.vue&#10;MapV&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/pages/MapView.vue&#10;Goo&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/components/GoogleMap.vue&#10;Sear&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/components/SearchInput.vue&#10;Map&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/pages/MapView.vue&#10;goog&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/components/GoogleMap.vue&#10;profi.&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/profile.blade.php&#10;Mapca&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/components/MapCategories.vue&#10;cont&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Http/Controllers/Api/EntitiesController.php&#10;User&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/User.php&#10;register&#9;null&#9;null&#10;avat.vu&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/components/Avatar.vue&#10;admi.&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/layouts/admin.blade.php&#10;ent/in&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/admin/entities/index.blade.php&#10;/create&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/admin/entities/create.blade.php&#10;cate/ind&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/admin/categories/index.blade.php&#10;Categor.v&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/components/MapCategories.vue&#10;ent_tab&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/database/migrations/2019_11_24_131324_create_entities_table.php&#10;.vue&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/components/GoogleMap.vue&#10;fact&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/database/factories/EntityFactory.php" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/admin" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="settings.editor.selected.configurable" value="fileTemplates" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\10-PROJECTS\Baylasan\sudan-map-back-end\resources\views\admin" />
+      <recent name="D:\10-PROJECTS\Baylasan\sudan-map-back-end\app\Http\Controllers\Admin" />
+      <recent name="$PROJECT_DIR$/public/img" />
+      <recent name="$PROJECT_DIR$/public/svg/markers" />
+      <recent name="$PROJECT_DIR$/public/fonts" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/js/components" />
       <recent name="$PROJECT_DIR$/public/svg" />
       <recent name="$PROJECT_DIR$/app" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/public/img" />
-      <recent name="$PROJECT_DIR$/public/svg/markers" />
-      <recent name="$PROJECT_DIR$/public/fonts" />
-      <recent name="$PROJECT_DIR$/public/svg" />
-      <recent name="$PROJECT_DIR$/public/images" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -289,7 +244,7 @@
       <workItem from="1577708098349" duration="15068000" />
       <workItem from="1577786282661" duration="13551000" />
       <workItem from="1577806143035" duration="397000" />
-      <workItem from="1577953122686" duration="1299000" />
+      <workItem from="1577953122686" duration="8105000" />
     </task>
     <task id="LOCAL-00001" summary="schema for activities,companies and categories">
       <created>1574766304196</created>
@@ -627,7 +582,14 @@
       <option name="project" value="LOCAL" />
       <updated>1577806374132</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="Created Entity Event Model and Migration">
+      <created>1577954627209</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1577954627210</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -647,7 +609,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="passport:wip" />
     <MESSAGE value="API enhancements , add laravel passport as a main api authentication driver, add doc blocks to controllers" />
     <MESSAGE value="categories component" />
     <MESSAGE value="register page" />
@@ -672,6 +633,7 @@
     <MESSAGE value="reactive map" />
     <MESSAGE value="wip" />
     <MESSAGE value="demo" />
-    <option name="LAST_COMMIT_MESSAGE" value="demo" />
+    <MESSAGE value="Created Entity Event Model and Migration" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created Entity Event Model and Migration" />
   </component>
 </project>
