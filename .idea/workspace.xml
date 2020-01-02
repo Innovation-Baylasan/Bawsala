@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="Created Entity Event Model and Migration">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/EventsController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/events/create.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/events/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/events/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/events/show.blade.php" afterDir="false" />
+    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="Finished Event admin CRUD">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/all.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/all.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -244,14 +237,7 @@
       <workItem from="1577708098349" duration="15068000" />
       <workItem from="1577786282661" duration="13551000" />
       <workItem from="1577806143035" duration="397000" />
-      <workItem from="1577953122686" duration="8105000" />
-    </task>
-    <task id="LOCAL-00001" summary="schema for activities,companies and categories">
-      <created>1574766304196</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1574766304196</updated>
+      <workItem from="1577953122686" duration="8762000" />
     </task>
     <task id="LOCAL-00002" summary="starting to add tests">
       <created>1574771996571</created>
@@ -589,7 +575,14 @@
       <option name="project" value="LOCAL" />
       <updated>1577954627210</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="Finished Event admin CRUD">
+      <created>1577963818584</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1577963818586</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -609,7 +602,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="API enhancements , add laravel passport as a main api authentication driver, add doc blocks to controllers" />
     <MESSAGE value="categories component" />
     <MESSAGE value="register page" />
     <MESSAGE value="Merge branch 'development' of https://gitlab.com/baylasan-back-end/sudan-map-back-end into Ui/Feature&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
@@ -634,6 +626,7 @@
     <MESSAGE value="wip" />
     <MESSAGE value="demo" />
     <MESSAGE value="Created Entity Event Model and Migration" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created Entity Event Model and Migration" />
+    <MESSAGE value="Finished Event admin CRUD" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished Event admin CRUD" />
   </component>
 </project>
