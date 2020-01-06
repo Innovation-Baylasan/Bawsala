@@ -82,12 +82,31 @@ class Entity extends Model
         return $this->hasOne(Profile::class);
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 
+    public function review($review, $user = null)
+    {
+        $this->reviews()->create([
+            'user_id' => $user ? $user->id : auth()->id(),
+            'review' => $review,
+        ]);
+    }
+
+    /**
+     * @return mixed
+     *
+     */
     public function getAvatarAttribute()
     {
         return $this->profile->avatar;
     }
 
+    /**
+     * @return mixed
+     */
     public function getCoverAttribute()
     {
         return $this->profile->cover;

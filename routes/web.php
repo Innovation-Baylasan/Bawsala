@@ -21,6 +21,8 @@ Route::get('/@{entity}', function (\App\Entity $entity) {
     return view('profile', compact('entity'));
 })->middleware('auth');
 
+Route::post('/entities/{entity}/reviews', 'EntityReviewsController@store')->middleware('auth');
+
 Route::namespace('Admin')
     ->prefix('admin')
     ->middleware(['admin'])

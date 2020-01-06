@@ -42,25 +42,36 @@
             </div>
             <div class="bg-white p-8 mb-4 rounded">
                 <div class="flex flex-col justify-between">
-                    {{--<div class="flex flex-1 py-4 items-start border-b border-solid border-gray-100">--}}
-                    {{--<img class="rounded shadow-sm w-12 h-12 mr-4" src="https://i.pravatar.cc/300" alt="avatar">--}}
-                    {{--<div class="flex-col">--}}
-                    {{--<h3 class="capitalize font-bold">Ahmed Adel</h3>--}}
-                    {{--<p class=" font-hairline">Professional company, such an awesome service</p>--}}
-                    {{--<span class="self-end text-gray-500 text-sm">5 minutes ago</span>--}}
-                    {{--</div>--}}
-                    {{--</div>--}}
-                    <div class="flex flex-1 py-4 items-start border-b border-solid border-gray-100">
-                        <div class="flex-col">
-                            <span class="self-end text-gray-500 text-sm">There is no reviews for now</span>
+                    @forelse($entity->reviews as $review)
+                        <div class="flex flex-1 py-4 items-start border-b border-solid border-gray-100">
+                            <img class="rounded shadow-sm w-12 h-12 mr-4" src="https://i.pravatar.cc/300" alt="avatar">
+                            <div class="flex-col">
+                                <h3 class="capitalize font-bold">{{$review->writer->name}}</h3>
+                                <p class=" font-hairline">{{$review->review}}</p>
+                                <span class="self-end text-gray-500 text-sm">{{$review->created_at->diffForHumans()}}</span>
+                            </div>
                         </div>
-                    </div>
+                    @empty
+                        <div class="flex flex-1 py-4 items-start border-b border-solid border-gray-100">
+                            <div class="flex-col">
+                                <span class="self-end text-gray-500 text-sm">There is no reviews for now</span>
+                            </div>
+                        </div>
+                    @endforelse
 
                     <div class="flex flex-1 py-4 items-center">
                         <img class="rounded shadow-sm w-12 h-12 mr-4" src="https://i.pravatar.cc/300" alt="avatar">
                         <div class="border border-gray-100 border-solid flex-1 flex-col p-2 rounded">
-                            <textarea class="w-full outline-none" type="text"
-                                      placeholder="Leave Comment Or Review Here"></textarea>
+                            <form action="/entities/{{$entity->id}}/reviews"
+                                  method="post"
+                            >
+                                @csrf
+                                <textarea class="w-full outline-none"
+                                          type="text"
+                                          name="review"
+                                          placeholder="Leave Comment Or Review Here"></textarea>
+                                <button class="button" type="submit">review</button>
+                            </form>
                         </div>
                     </div>
                 </div>
