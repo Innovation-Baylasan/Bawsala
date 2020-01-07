@@ -1,20 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="Finalizing Event CRUD">
-      <change afterPath="$PROJECT_DIR$/public/mobilePng/markers/accelerators-marker-icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/mobilePng/markers/co-workspaces-marker-icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/mobilePng/markers/investors-marker-icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/mobilePng/markers/labs-marker-icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/mobilePng/markers/research-centers-marker-icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/mobilePng/markers/startups-marker-icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/mobilePng/markers/users-icon.png" afterDir="false" />
+    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="Mobile issue:&#10;they want the categories icons to be in a PNG format.&#10;but the categories returns svg.&#10;There fore i have added a new database field 'icon_png' to support android platform.&#10;I have edited the : &#10;- CategoriesController&#10;- Category Model&#10;- migration&#10;- seeds&#10;- categories index.blade">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Category.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/CategoriesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/CategoriesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_11_24_131407_create_categories_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_11_24_131407_create_categories_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/CategoriesSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/CategoriesSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/categories/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/categories/index.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -270,13 +259,7 @@
       <workItem from="1578398257611" duration="1786000" />
       <workItem from="1578400111654" duration="1838000" />
       <workItem from="1578401996832" duration="1523000" />
-    </task>
-    <task id="LOCAL-00002" summary="starting to add tests">
-      <created>1574771996571</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1574771996571</updated>
+      <workItem from="1578404415746" duration="1402000" />
     </task>
     <task id="LOCAL-00003" summary="categories and activities api">
       <created>1574941535204</created>
@@ -614,7 +597,14 @@
       <option name="project" value="LOCAL" />
       <updated>1577963818586</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="Mobile issue:&#10;they want the categories icons to be in a PNG format.&#10;but the categories returns svg.&#10;There fore i have added a new database field 'icon_png' to support android platform.&#10;I have edited the : &#10;- CategoriesController&#10;- Category Model&#10;- migration&#10;- seeds&#10;- categories index.blade">
+      <created>1578404633684</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1578404633685</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -636,7 +626,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="categories component" />
     <MESSAGE value="register page" />
     <MESSAGE value="Merge branch 'development' of https://gitlab.com/baylasan-back-end/sudan-map-back-end into Ui/Feature&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
     <MESSAGE value="refactoring and change api responses" />
@@ -661,6 +650,7 @@
     <MESSAGE value="demo" />
     <MESSAGE value="Created Entity Event Model and Migration" />
     <MESSAGE value="Finished Event admin CRUD" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished Event admin CRUD" />
+    <MESSAGE value="Mobile issue:&#10;they want the categories icons to be in a PNG format.&#10;but the categories returns svg.&#10;There fore i have added a new database field 'icon_png' to support android platform.&#10;I have edited the : &#10;- CategoriesController&#10;- Category Model&#10;- migration&#10;- seeds&#10;- categories index.blade" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mobile issue:&#10;they want the categories icons to be in a PNG format.&#10;but the categories returns svg.&#10;There fore i have added a new database field 'icon_png' to support android platform.&#10;I have edited the : &#10;- CategoriesController&#10;- Category Model&#10;- migration&#10;- seeds&#10;- categories index.blade" />
   </component>
 </project>
