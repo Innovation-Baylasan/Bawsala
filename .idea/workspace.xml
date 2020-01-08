@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="Added running unit testing shortcut for windows.">
+    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="Added running unit testing shortcut for windows.&#10;$ composer win-test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/CategoryFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/CategoryFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/UserFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/UserFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Unit/EntityTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/EntityTest_Errors.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,7 +184,7 @@
   </component>
   <component name="RunManager" selected="PHPUnit.EntityTest">
     <configuration name="EntityTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Unit\EntityTest" file="$PROJECT_DIR$/tests/Unit/EntityTest.php" scope="Class" />
+      <TestRunner class="Tests\Unit\EntityTest" file="$PROJECT_DIR$/tests/Unit/EntityTest_Errors.php" scope="Class" />
       <method v="2" />
     </configuration>
     <configuration name="ExampleTest.testBasicTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
@@ -268,14 +270,7 @@
       <workItem from="1578482964037" duration="138000" />
       <workItem from="1578483341524" duration="436000" />
       <workItem from="1578483811154" duration="444000" />
-      <workItem from="1578484288981" duration="2985000" />
-    </task>
-    <task id="LOCAL-00005" summary="categories admin view and controllers">
-      <created>1574947728191</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1574947728191</updated>
+      <workItem from="1578484288981" duration="4879000" />
     </task>
     <task id="LOCAL-00006" summary="edit database schema.">
       <created>1575213502277</created>
@@ -613,7 +608,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578488018861</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="Added running unit testing shortcut for windows.&#10;$ composer win-test">
+      <created>1578488343205</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1578488343205</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -635,7 +637,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="refactoring and change api responses" />
     <MESSAGE value="add location to the response" />
     <MESSAGE value="profile view" />
     <MESSAGE value="fix active link border issue" />
@@ -660,13 +661,22 @@
     <MESSAGE value="Mobile issue:&#10;they want the categories icons to be in a PNG format.&#10;but the categories returns svg.&#10;There fore i have added a new database field 'icon_png' to support android platform.&#10;I have edited the : &#10;- CategoriesController&#10;- Category Model&#10;- migration&#10;- seeds&#10;- categories index.blade" />
     <MESSAGE value="I have added toArray to Category because the mobile phone said that they need full path for images, because it could cause them some problems." />
     <MESSAGE value="Added Rating Functionality:&#10;- Created Rating Model&#10;- Rating Migration&#10;- CanBeRated" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Rating Functionality:&#10;- Created Rating Model&#10;- Rating Migration&#10;- CanBeRated" />
+    <MESSAGE value="Added running unit testing shortcut for windows.&#10;$ composer win-test" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added running unit testing shortcut for windows.&#10;$ composer win-test" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="0" y="0" key="CommitChangelistDialog2" timestamp="1578488250558">
+    <state x="350" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1578489778958">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1578488250558" />
+    <state x="350" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1366.728@0.0.1366.728" timestamp="1578489778958" />
+    <state x="413" y="118" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1578489886796">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="413" y="118" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1578489886796" />
+    <state x="0" y="0" key="CommitChangelistDialog2" timestamp="1578488342595">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1578488342595" />
     <state x="378" y="186" key="com.intellij.ide.util.TipDialog" timestamp="1578484901337">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
