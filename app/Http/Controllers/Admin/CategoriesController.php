@@ -43,16 +43,22 @@ class CategoriesController extends Controller
 
         $request->validate([
             'name' => 'required',
-            'icon' => 'required|image|max:2048'
+            'icon' => 'required|image|max:2048',
+            'icon_png' => 'required|image|max:2048'
         ]);
 
+        // Category SVG Icon
         $icon = $request->file('icon');
-
         $icon->move(public_path('images') . '/categoryIcon', $iconPath = rand() . '.' . $icon->getClientOriginalExtension());
+        // Category PNG Icon for mobile phone
+        $iconPng = $request->file('icon_png');
+        $iconPng->move(public_path('images') . '/categoryIcon', $iconPngPath = rand() . '.' . $iconPng->getClientOriginalExtension());
+
 
         Category::create([
             'name' => $request->name,
-            'icon' => $iconPath
+            'icon' => $iconPath,
+            'icon_png' => $iconPngPath
         ]);
 
         return redirect('/admin/categories')
@@ -93,22 +99,35 @@ class CategoriesController extends Controller
      */
     public function update(Category $category, Request $request)
     {
-        $icon_name = $request->old_icon;
+        $iconPath = $request->old_icon;
         $icon = $request->file('icon');
+        // PNG icon for mobile phone
+        $iconPngPath = $request->oldIconPngName;
+        $iconPng = $request->file('icon_png');
 
         $request->validate([
             'name' => 'required',
-            'icon' => 'sometimes|image|max:2048'
+            'icon' => 'sometimes|image|max:2048',
+            'icon_png' => 'sometimes|image|max:2048',
         ]);
 
+        // SVG Icon for web
         if ($icon) {
-            $icon_name = rand() . '.' . $icon->getClientOriginalExtension();
-            $icon->move(public_path('images') . '/categoryIcon', $icon_name);
+            $iconPath = rand() . '.' . $icon->getClientOriginalExtension();
+            $icon->move(public_path('images') . '/categoryIcon', $iconPath);
         }
+        // PNG icon for mobile
+        // Category PNG Icon for mobile phone
+        if ($iconPng) {
+            $iconPngPath = rand() . '.' . $iconPng->getClientOriginalExtension();
+            $iconPng->move(public_path('images') . '/categoryIcon', $iconPngPath);
+        }
+
 
         $category->update([
             'name' => $request->name,
-            'icon' => $icon_name
+            'icon' => $iconPath,
+            'icon_png' => $iconPngPath
         ]);
 
         return redirect('/admin/categories')

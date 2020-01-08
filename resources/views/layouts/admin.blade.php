@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    {{--<meta charset="UTF-8">--}}
     <title>Baylasan Innovation | Eco Map Dashboard</title>
     <link rel="shortcut icon" type="image/jpg" href="/img/logo.png"/>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
@@ -13,13 +13,13 @@
             <header class="flex flex-col justify-center items-center mb-12 h-full">
                 <div class="rounded-full mb-4 w-20 h-20 overflow-hidden shadow-sm bg-white">
                     <img src="{{"https://www.gravatar.com/avatar/" . md5( strtolower( trim( auth()->user()->email ) ) ) . "?s=100&d"}}"
-                         alt="">
+                         alt=""/>
                 </div>
                 <div class="text-center text-sm">
                     <h3 class="font-bold uppercase">Baylassan Inevation</h3>
                     <p class="text-sm text-gray-500">Mangers/Directors</p>
                 </div>
-                <div class="flex flex-col justify-between flex-1">
+                <div class="flex flex-col flex-1">
                     <a href="{{route('users.index')}}" class="flex  items-center p-1 text-sm px-3  fade">
                         <div class="w-10 h-10 flex items-center justify-center  mr-4">
                             <img src="{{asset('svg/users-icon.svg')}}" alt="">
@@ -48,12 +48,6 @@
                         <span class="text-gray-500">Tags</span>
                     </a>
 
-                    <a href="{{route('tags.index')}}" class="flex  mt-auto items-center p-1 text-sm px-3  fade">
-                        <div class="w-10 h-10 flex items-center justify-center  mr-4">
-                            <img src="{{asset('svg/tags-icon.svg')}}" alt="">
-                        </div>
-                        <span class="text-gray-500">Tags</span>
-                    </a>
                 </div>
             </header>
         </nav>
@@ -62,7 +56,7 @@
             <main class="bg-white shadow-sm flex-1 mr-2">
                 @yield('content')
             </main>
-            <aside class="w-64 flex-col">
+            <div class="w-64 flex-col">
                 <div class="bg-white shadow-sm mb-2 p-4 flex justify-end">
 
                     <div class="flex flex-col items-center mr-4">
@@ -89,7 +83,7 @@
                     <img class="mb-4" src="{{asset('/svg/notifications-illustration.svg')}}" alt="">
                     <p class="text-center text-gray-700">Recent notifications will be here</p>
                 </div>
-            </aside>
+            </div>
         </div>
     </div>
 </div>

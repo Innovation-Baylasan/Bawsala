@@ -19,11 +19,13 @@
                     <img src="{{$entity->avatar}}" alt="">
                 </div>
             </header>
-            <div class="px-10 flex flex-col">
-                <h3 class="uppercase text-xl font-bold text-center mb-4">{{$entity->name }}</h3>
-                <address-text api-key="{{config('app.google_map_key')}}"
-                              :place="{{$entity}}"></address-text>
-                <div class="flex justify-between mb-4">
+            <div class="px-10 flex flex-col items-center">
+                <h3 class="uppercase text-xl font-bold text-center mb-2">{{$entity->name }}</h3>
+                <star-rating class="mb-2"
+                             :initial="{{ $entity->ratingFor(auth()->user()) ?: 0 }}"
+                             action="/entities/{{$entity->id}}/rate"></star-rating>
+                <p class="text-gray-300 mb-2"><span class="font-bold text-gray-500">Rating: </span>{{$entity->rating()}}</p>
+                <div class="w-full flex justify-between mb-4">
                     <div class="text-gray-500 flex flex-col text-center">
                         <span class="font-bold text-black">{{$entity->followers(App\User::class)->count()}}</span>
                         <span>Followers</span>
