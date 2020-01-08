@@ -13,6 +13,13 @@ use Laravel\Scout\Searchable;
 class Entity extends Model
 {
     /**
+     * Make the model Ratable using CanBeRated
+     *
+     * \App\CanBeRated
+     * */
+    use CanBeRated;
+
+    /**
      * Make the model searchable using Laravel Scout
      *
      * @Laravel\Scout\Searchable
