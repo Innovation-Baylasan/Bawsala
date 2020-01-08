@@ -5594,10 +5594,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['type', 'perView', 'autoplay'],
   mounted: function mounted() {
     new _glidejs_glide__WEBPACK_IMPORTED_MODULE_0__["default"]('.glide', {
-      autoplay: 8500,
-      animationDuration: 1500
+      autoplay: this.autoplay || 8500,
+      animationDuration: 1500,
+      type: this.type,
+      perView: this.perView,
+      gap: '10'
     }).mount();
   }
 });
@@ -26039,13 +26043,13 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "flex flex-col justify-between" },
+    { staticClass: "flex md:flex-col justify-between" },
     [
       _c(
         "a",
         {
           staticClass: "flex  items-center justify-center p-2  fade",
-          class: [_vm.selectedCategory == "" ? "active" : ""],
+          class: [_vm.selectedCategory == "" ? "active-bottom md:active" : ""],
           attrs: { href: "#" },
           on: {
             click: function($event) {
@@ -26063,7 +26067,11 @@ var render = function() {
           {
             key: index,
             staticClass: "flex items-center justify-center p-2 fade",
-            class: [_vm.selectedCategory == category.name ? "active" : ""],
+            class: [
+              _vm.selectedCategory == category.name
+                ? "active-bottom md:active"
+                : ""
+            ],
             attrs: { href: "#" },
             on: {
               click: function($event) {

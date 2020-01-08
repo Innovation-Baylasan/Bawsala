@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <title></title>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body class="bg-gray-200 min-h-screen min-w-screen">
 <div id="app">
-    <div class="flex w-full p-4 -mx-4 relative">
-        <aside class="w-1/4 bg-white flex flex-col mx-4 self-start rounded overflow-hidden sticky top-0">
+    <div class="flex flex-col md:flex-row w-full p-4 md:-mx-4 relative">
+        <aside class="md:w-1/4 bg-white flex flex-col mx-4 self-start rounded overflow-hidden md:sticky top-0">
             <header class="flex flex-col justify-center items-center">
                 <div class="relative">
                     <img src="https://placeimg.com/640/360/tech" alt="">
@@ -23,17 +24,47 @@
                 <address-text api-key="{{config('app.google_map_key')}}"
                               :place="{{$entity}}"></address-text>
                 <div class="flex justify-between mb-4">
-                    <span class="text-gray-500">Followers</span>
-                    <span class="text-gray-500">Events</span>
-                    <span class="text-gray-500">Review</span>
+                    <div class="text-gray-500 flex flex-col text-center">
+                        <span class="font-bold text-black">{{$entity->followers(App\User::class)->count()}}</span>
+                        <span>Followers</span>
+                    </div>
+                    <div class="text-gray-500 flex flex-col text-center">
+                        <span class="font-bold text-black">0</span>
+                        <span>Events</span>
+                    </div>
+                    <div class="text-gray-500 flex flex-col text-center">
+                        <span class="font-bold text-black">{{$entity->reviews->count()}}</span>
+                        <span>Review</span>
+                    </div>
                 </div>
-                <button class="bg-blue-100 focus:outline-none text-blue-700 py-2 rounded capitalize font-bold mb-8">
-                    FOLLOW
-                </button>
+                <form action="/entities/{{$entity->id}}/follow"
+                      method="post"
+                      class="w-full flex"
+                      id="follow-form">
+                    @csrf
+                    @method("put")
+                    <a class="@if(auth()->user()->isFollowing($entity))bg-blue-100 @endif border-blue border text-center w-full focus:outline-none text-blue-700 py-2 rounded capitalize font-bold mb-8"
+                       href="#"
+                       onclick="document.getElementById('follow-form').submit()"
+                    >
+                        {{auth()->user()->isFollowing($entity) ? 'following':'follow'}}
+                    </a>
+                </form>
             </div>
         </aside>
 
-        <div class="w-3/4 flex flex-col mx-4">
+        <div class="md:w-3/4 flex flex-col mx-4 mt-4 md:mt-0">
+            <header class="flex justify-between mb-4">
+                <a href="/" class="button">back</a>
+                <div class="flex -mx-2">
+                    <a href="" class="mx-2">
+                        <img src="/svg/edit-profile-icon.svg" alt="">
+                    </a>
+                    <a href="" class="mx-2">
+                        <img src="/svg/options-icon.svg" alt="">
+                    </a>
+                </div>
+            </header>
             <div class="bg-white p-8 mb-4 rounded">
                 <h3 class="uppercase border-b mb-4 border-solid border-gray-100 text-2xl font-bold">
                     Info
@@ -82,10 +113,9 @@
                     Places
                 </h3>
                 <div class="text-gray-500 flex -mx-2">
-                    <div class="w-1/4 mx-2 bg-gray-500 rounded h-48"></div>
-                    <div class="w-1/4 mx-2 bg-gray-500 rounded h-48"></div>
-                    <div class="w-1/4 mx-2 bg-gray-500 rounded h-48"></div>
-                    <div class="w-1/4 mx-2 bg-gray-500 rounded h-48"></div>
+                    <div class="w-1/4 mx-2 bg-gray-200 rounded h-48 flex items-center justify-center">
+                        <button class="button">add new place</button>
+                    </div>
                 </div>
             </div>
         </div>

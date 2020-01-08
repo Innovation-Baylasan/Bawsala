@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Campos | Map Eco system</title>
     <link rel="shortcut icon" type="image/jpg" href="/img/logo.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
 <body>
@@ -17,8 +18,8 @@
                 :place="selectedPlace"></place-profile-card>
             </header>
 
-            <nav class="fixed w-24 z-10 bg-white shadow top-0 left-0 h-screen flex flex-col pt-6">
-                <div class="px-4 mb-6">
+            <nav class="bg-white bottom-0 fixed flex flex-col overflow-scroll md:overflow-hidden md:h-screen left-0 md:top-0 md:w-24 pt-4 shadow w-full z-10">
+                <div class="px-4 mb-6 hidden md:block">
                     <form action="/logout" method="post" id="logout-form">
                         @csrf
                     </form>
@@ -32,7 +33,7 @@
                     @endguest
                 </div>
                 <map-categories :categories="{{$categories}}" @category-change="getPlaces"></map-categories>
-                <div class="flex items-center justify-center mt-auto mb-2">
+                <div class="flex items-center justify-center px-4 mt-auto mb-2 hidden md:block">
                     <div class="rounded  w-12 h-12 w-16 h-16 bg-red-500 flex items-center justify-center">
                         <img class="" src="{{asset('svg/notify-icon.svg')}}" alt="">
                     </div>

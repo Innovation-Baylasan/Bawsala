@@ -7,13 +7,15 @@ use Laravel\Passport\HasApiTokens;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Rennokki\Befriended\Contracts\Follower;
+use Rennokki\Befriended\Traits\CanFollow;
 
 /**
  * @property mixed $role
  */
-class User extends Authenticatable
+class User extends Authenticatable implements Follower
 {
-    use HasApiTokens, Notifiable;
+    use HasApiTokens, Notifiable,CanFollow;
 
     /**
      * The attributes that are mass assignable.

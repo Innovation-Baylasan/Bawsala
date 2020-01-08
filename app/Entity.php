@@ -2,16 +2,20 @@
 
 namespace App;
 
+use App\Traits\Reviewable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Laravel\Scout\Searchable;
+use Rennokki\Befriended\Contracts\Followable;
+use Rennokki\Befriended\Traits\CanBeFollowed;
 
 /**
  * @property mixed $profile
  * @property mixed $cover
  */
-class Entity extends Model
+class Entity extends Model implements Followable
 {
+    use Reviewable, CanBeFollowed;
     /**
      * Make the model searchable using Laravel Scout
      *
@@ -80,19 +84,6 @@ class Entity extends Model
     public function profile()
     {
         return $this->hasOne(Profile::class);
-    }
-
-    public function reviews()
-    {
-        return $this->hasMany(Review::class);
-    }
-
-    public function review($review, $user = null)
-    {
-        $this->reviews()->create([
-            'user_id' => $user ? $user->id : auth()->id(),
-            'review' => $review,
-        ]);
     }
 
     /**
