@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="I have added toArray to Category because the mobile phone said that they need full path for images, because it could cause them some problems.">
-      <change afterPath="$PROJECT_DIR$/app/CanBeRated.php" afterDir="false" />
+    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="Added running unit testing shortcut for windows.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Entity.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Entity.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -269,14 +268,7 @@
       <workItem from="1578482964037" duration="138000" />
       <workItem from="1578483341524" duration="436000" />
       <workItem from="1578483811154" duration="444000" />
-      <workItem from="1578484288981" duration="2534000" />
-    </task>
-    <task id="LOCAL-00004" summary="categories admin view and controllers">
-      <created>1574947717700</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1574947717700</updated>
+      <workItem from="1578484288981" duration="2985000" />
     </task>
     <task id="LOCAL-00005" summary="categories admin view and controllers">
       <created>1574947728191</created>
@@ -614,7 +606,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578406490660</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Added Rating Functionality:&#10;- Created Rating Model&#10;- Rating Migration&#10;- CanBeRated">
+      <created>1578488018860</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1578488018861</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -636,7 +635,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Merge branch 'development' of https://gitlab.com/baylasan-back-end/sudan-map-back-end into Ui/Feature&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
     <MESSAGE value="refactoring and change api responses" />
     <MESSAGE value="add location to the response" />
     <MESSAGE value="profile view" />
@@ -661,9 +659,14 @@
     <MESSAGE value="Finished Event admin CRUD" />
     <MESSAGE value="Mobile issue:&#10;they want the categories icons to be in a PNG format.&#10;but the categories returns svg.&#10;There fore i have added a new database field 'icon_png' to support android platform.&#10;I have edited the : &#10;- CategoriesController&#10;- Category Model&#10;- migration&#10;- seeds&#10;- categories index.blade" />
     <MESSAGE value="I have added toArray to Category because the mobile phone said that they need full path for images, because it could cause them some problems." />
-    <option name="LAST_COMMIT_MESSAGE" value="I have added toArray to Category because the mobile phone said that they need full path for images, because it could cause them some problems." />
+    <MESSAGE value="Added Rating Functionality:&#10;- Created Rating Model&#10;- Rating Migration&#10;- CanBeRated" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Rating Functionality:&#10;- Created Rating Model&#10;- Rating Migration&#10;- CanBeRated" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="0" y="0" key="CommitChangelistDialog2" timestamp="1578488250558">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1578488250558" />
     <state x="378" y="186" key="com.intellij.ide.util.TipDialog" timestamp="1578484901337">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
