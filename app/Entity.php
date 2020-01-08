@@ -2,29 +2,17 @@
 
 namespace App;
 
+use App\Traits\CanBeRated;
+use App\Traits\Reviewable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Laravel\Scout\Searchable;
+use Rennokki\Befriended\Contracts\Followable;
+use Rennokki\Befriended\Traits\CanBeFollowed;
 
-/**
- * @property mixed $profile
- * @property mixed $cover
- */
-class Entity extends Model
+class Entity extends Model implements Followable
 {
-    /**
-     * Make the model Ratable using CanBeRated
-     *
-     * \App\CanBeRated
-     * */
-    use CanBeRated;
-
-    /**
-     * Make the model searchable using Laravel Scout
-     *
-     * @Laravel\Scout\Searchable
-     * */
-    use Searchable;
+    use Reviewable, CanBeFollowed, CanBeRated, Searchable;
 
     public $asYouType = true;
 
@@ -33,14 +21,7 @@ class Entity extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'user_id',
-        'category_id',
-        'name',
-        'description',
-        'latitude',
-        'longitude',
-    ];
+    protected $guarded = [];
     /**
      * Determine what to eager load when retrieving activity
      *
@@ -89,12 +70,18 @@ class Entity extends Model
         return $this->hasOne(Profile::class);
     }
 
-
+    /**
+     * @return mixed
+     *
+     */
     public function getAvatarAttribute()
     {
         return $this->profile->avatar;
     }
 
+    /**
+     * @return mixed
+     */
     public function getCoverAttribute()
     {
         return $this->profile->cover;
@@ -125,7 +112,7 @@ class Entity extends Model
      * @param  integer $radius Optional distance
      * @param  string $unit Optional unit
      *
-     * @return Illuminate\Database\Query\Builder          Modified query builder
+     *
      */
     public function scopeNearby($query, $lat, $lng, $radius = 100, $unit = "km")
     {

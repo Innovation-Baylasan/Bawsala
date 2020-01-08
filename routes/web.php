@@ -15,11 +15,15 @@ Route::get('/', function () {
     $categories = \App\Category::all();
     return view('welcome', compact('categories'));
 });
+Route::put('/entities/{entity}/follow', 'EntityFollowersController@update')->middleware('auth');
+Route::post('/entities/{entity}/rate', 'EntityRatingController@store')->middleware('auth');
 
+Route::post('/entities/{entity}/reviews', 'EntityReviewsController@store')->middleware('auth');
 
 Route::get('/@{entity}', function (\App\Entity $entity) {
     return view('profile', compact('entity'));
 })->middleware('auth');
+
 
 Route::namespace('Admin')
     ->prefix('admin')
@@ -28,7 +32,6 @@ Route::namespace('Admin')
         Route::get('', function () {
             return view('admin.all');
         });
-
         Route::resource('roles', 'RolesController');
         Route::resource('tags', 'TagsController');
         Route::resource('users', 'UsersController');
@@ -37,8 +40,7 @@ Route::namespace('Admin')
         Route::resource('profiles', 'ProfilesController');
         Route::resource('entity_tags', 'EntityTagsController');
         Route::resource('events', 'EventsController');
-
-    }, []);
+    });
 
 Auth::routes();
 

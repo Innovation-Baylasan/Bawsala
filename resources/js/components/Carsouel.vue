@@ -12,10 +12,14 @@
     import Glide from '@glidejs/glide'
 
     export default{
+        props: ['type','perView','autoplay'],
         mounted(){
             new Glide('.glide', {
-                autoplay: 8500,
+                autoplay: this.autoplay||8500,
                 animationDuration: 1500,
+                type: this.type,
+                perView: this.perView,
+                gap:'10',
             }).mount();
         }
     }

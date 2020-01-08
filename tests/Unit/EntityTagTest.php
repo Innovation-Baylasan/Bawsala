@@ -22,16 +22,11 @@ class EntityTagTest extends TestCase
     {
         $entity = factory(Entity::class)->create();
         $tag = factory(Tag::class)->create();
-//
+
         $entityTag = factory(EntityTag::class)->create([
             'entity_id' => $entity->id,
             'tag_id' => $tag->id
         ]);
-//
-//        // Test that it belongs to a tag
-//        $this->assertEquals($tag->fresh()->toArray(), $entityTag->tag->toArray());
-//
-//        // Test that it belongs to an entity
-//        $this->assertEquals($entity->fresh()->toArray(), $entityTag->entity->toArray());
+
     }
 }

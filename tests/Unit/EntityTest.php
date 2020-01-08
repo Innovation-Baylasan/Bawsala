@@ -6,7 +6,6 @@ use App\Entity;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use InvalidArgumentException;
-//use PHPUnit\Framework\TestCase;
 use Tests\TestCase;
 
 class EntityTest extends TestCase
@@ -30,9 +29,6 @@ class EntityTest extends TestCase
     function it_can_be_rated()
     {
         $this->entity->rate(5, $this->user);
-
-//        echo($this->entity);
-//        echo($this->entity->ratings);
 
         $this->assertCount(1, $this->entity->ratings);
     }

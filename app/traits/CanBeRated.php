@@ -1,7 +1,9 @@
 <?php
 
-namespace App;
+namespace App\Traits;
 
+use App\Rating;
+use App\User;
 use InvalidArgumentException;
 
 trait CanBeRated
@@ -9,7 +11,7 @@ trait CanBeRated
     /**
      * Rate the article.
      *
-     * @param int       $rating
+     * @param int $rating
      * @param User|null $user
      */
     public function rate($rating, $user = null)
@@ -30,7 +32,7 @@ trait CanBeRated
      */
     public function rating()
     {
-        return $this->ratings()->avg('rating');
+        return number_format((float)$this->ratings()->avg('rating'), 2, '.', '');;
     }
 
     /**
