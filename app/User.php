@@ -3,19 +3,21 @@
 namespace App;
 
 use Illuminate\Support\Str;
-use Laravel\Passport\HasApiTokens;
+//use Laravel\Passport\HasApiTokens;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Rennokki\Befriended\Contracts\Follower;
 use Rennokki\Befriended\Traits\CanFollow;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
 /**
  * @property mixed $role
  */
-class User extends Authenticatable implements Follower
+class User extends Authenticatable implements JWTSubject, Follower
 {
-    use HasApiTokens, Notifiable,CanFollow;
+//    use HasApiTokens, Notifiable,CanFollow;
+    use Notifiable,CanFollow;
 
     /**
      * The attributes that are mass assignable.
@@ -78,5 +80,25 @@ class User extends Authenticatable implements Follower
     public function isAdmin()
     {
         return !!$this->role == 'admin';
+    }
+
+    /**
+     * Get the identifier that will be stored in the subject claim of the JWT.
+     *
+     * @return mixed
+     */
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 }
