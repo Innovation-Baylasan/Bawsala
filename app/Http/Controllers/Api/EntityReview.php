@@ -10,6 +10,16 @@ class EntityReview extends Controller
 {
 
     /**
+     * Create a new AuthController instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
+
+    /**
      * return a single entity
      *
      * @param \App\Entity $entity
@@ -18,7 +28,7 @@ class EntityReview extends Controller
      */
     public function store(Request $request, Entity $entity)
     {
-        $entity->review($request->review);
+        $entity->review($request->review, $this->guard()->user());
         return response($entity, 200);
     }
 }

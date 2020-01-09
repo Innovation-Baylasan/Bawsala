@@ -10,6 +10,16 @@ class EntityRate extends Controller
 {
 
     /**
+     * Create a new AuthController instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
+
+    /**
      * return a single entity
      *
      * @param \App\Entity $entity
@@ -18,7 +28,8 @@ class EntityRate extends Controller
      */
     public function store(Request $request, Entity $entity)
     {
-        $entity->rate($request->rating);
+        $entity->rate($request->rating, $this->guard()->user());
+        dd($entity);
         return response($entity, 200);
     }
 }

@@ -54,7 +54,7 @@ class AuthenticationTest extends TestCase
             'role_id' => 1
         ];
         $response = $this->post('/api/register', $user);
-        dd($response);
+//        dd($response);
         $response->assertStatus(201);
     }
 }

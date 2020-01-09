@@ -36,9 +36,9 @@ Route::namespace('Api')->group(function () {
 
     Route::get('/entities/{entity}', 'EntitiesController@show');
 
-    Route::get('/entities/{entity}/rate', 'EntityRate@store');
+    Route::post('/entities/{entity}/rate', 'EntityRate@store');
 
-    Route::get('/entities/{entity}/review', 'EntityReview@store');
+    Route::post('/entities/{entity}/review', 'EntityReview@store');
 
     Route::post('/entities/find', 'EntitiesController@find');
 
