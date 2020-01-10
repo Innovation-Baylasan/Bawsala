@@ -4,14 +4,8 @@
     <bookmark url="file://$PROJECT_DIR$/resources/views/layouts/admin.blade.php" line="10" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="rateable entities">
+    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Exceptions/Handler.php" afterPath="$PROJECT_DIR$/app/Exceptions/Handler.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/User.php" afterPath="$PROJECT_DIR$/app/User.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/factories/UserFactory.php" afterPath="$PROJECT_DIR$/database/factories/UserFactory.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/api.php" afterPath="$PROJECT_DIR$/routes/api.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -488,14 +482,7 @@
       <workItem from="1578509123019" duration="322000" />
       <workItem from="1578595186482" duration="1008000" />
       <workItem from="1578655183381" duration="1791000" />
-      <workItem from="1578675270027" duration="3325000" />
-    </task>
-    <task id="LOCAL-00008" summary="edit database schema.">
-      <created>1575213646949</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1575213646949</updated>
+      <workItem from="1578675270027" duration="3359000" />
     </task>
     <task id="LOCAL-00009" summary="passport:wip">
       <created>1575219754966</created>
@@ -833,11 +820,18 @@
       <option name="project" value="LOCAL" />
       <updated>1578655940865</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="api auth">
+      <created>1578678613562</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1578678613562</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="192377000" />
+    <option name="totallyTimeSpent" value="192411000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="723" extended-state="6" />
@@ -897,7 +891,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="register page" />
     <MESSAGE value="Merge branch 'development' of https://gitlab.com/baylasan-back-end/sudan-map-back-end into Ui/Feature&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
     <MESSAGE value="refactoring and change api responses" />
     <MESSAGE value="add location to the response" />
@@ -922,7 +915,8 @@
     <MESSAGE value="reviewable entities" />
     <MESSAGE value="followable entities" />
     <MESSAGE value="rateable entities" />
-    <option name="LAST_COMMIT_MESSAGE" value="rateable entities" />
+    <MESSAGE value="api auth" />
+    <option name="LAST_COMMIT_MESSAGE" value="api auth" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
