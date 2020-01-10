@@ -5986,6 +5986,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _StarRating_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./StarRating.vue */ "./resources/js/components/StarRating.vue");
 //
 //
 //
@@ -6024,8 +6025,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['category'],
+  components: {},
   data: function data() {
     return {
       query: '',
@@ -26328,24 +26333,25 @@ var render = function() {
                   }
                 },
                 [
-                  _c("div", { staticClass: "flex items-center" }, [
+                  _c("div", { staticClass: "flex items-start" }, [
                     _c("img", {
-                      staticClass: "w-8 h-8 rounded mr-2",
+                      staticClass: "w-8 h-8 rounded-full mr-2",
                       attrs: { src: "https://i.pravatar.cc/300", alt: "" }
                     }),
                     _vm._v(" "),
-                    _c("h3", {
-                      staticClass: "text-gray-500",
-                      domProps: { textContent: _vm._s(place.name) }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("img", {
-                    attrs: {
-                      src: "/svg/" + place.category.name + "-icon.svg",
-                      alt: ""
-                    }
-                  })
+                    _c(
+                      "div",
+                      [
+                        _c("h3", {
+                          staticClass: "text-black font-semibold text-sm",
+                          domProps: { textContent: _vm._s(place.name) }
+                        }),
+                        _vm._v(" "),
+                        _c("start-rating")
+                      ],
+                      1
+                    )
+                  ])
                 ]
               )
             }),
