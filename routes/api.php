@@ -15,6 +15,10 @@ use Illuminate\Http\Request;
 
 Route::namespace('Api')->group(function () {
 
+    Route::post('/register', 'RegisterController@store');
+
+    Route::post('/login', 'LoginController@store');
+
     Route::get('/categories', 'CategoriesController@index');
 
     Route::get('/categories/{category}', 'CategoriesController@show');
