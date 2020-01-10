@@ -29,7 +29,13 @@ Route::namespace('Api')->group(function () {
 
     Route::get('/entities/{entity}', 'EntitiesController@show');
 
-    Route::post('/entities/find', 'EntitiesController@find');
+    Route::put('/entities/{entity}/rating', 'EntitiesRatingController@update');
+
+    Route::post('/entities/{entity}/review', 'EntitiesReviewsController@store');
+
+    Route::post('/entities/{entity}/follow', 'EntitiesFollowingController@store');
+
+    Route::delete('/entities/{entity}/follow', 'EntitiesFollowingController@destroy');
 
 });
 
