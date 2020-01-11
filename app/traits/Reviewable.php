@@ -19,11 +19,11 @@ trait Reviewable
         return $this->hasMany(Review::class);
     }
 
-    public function review($review, $user = null)
+    public function review($body, $user = null)
     {
         $this->reviews()->create([
             'user_id' => $user ? $user->id : auth()->id(),
-            'review' => $review,
+            'review' => $body,
         ]);
     }
 }

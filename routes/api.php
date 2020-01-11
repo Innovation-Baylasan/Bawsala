@@ -15,16 +15,9 @@ use Illuminate\Http\Request;
 
 Route::namespace('Api')->group(function () {
 
-    // Authentication Routes
-//    Route::post('/login', 'UserController@authenticate');
-//    Route::post('/register', 'UserController@register');
+    Route::post('/register', 'RegisterController@store');
 
-    Route::post('/login', 'AuthController@login');
-    Route::post('/register', 'AuthController@register');
-    Route::post('/logout', 'AuthController@logout');
-    Route::post('/refresh', 'AuthController@refresh');
-    Route::get('/me', 'AuthController@me');
-
+    Route::post('/login', 'LoginController@store');
 
     Route::get('/categories', 'CategoriesController@index');
 
@@ -36,11 +29,13 @@ Route::namespace('Api')->group(function () {
 
     Route::get('/entities/{entity}', 'EntitiesController@show');
 
-    Route::post('/entities/{entity}/rate', 'EntityRate@store');
+    Route::put('/entities/{entity}/rating', 'EntitiesRatingController@update');
 
-    Route::post('/entities/{entity}/review', 'EntityReview@store');
+    Route::post('/entities/{entity}/review', 'EntitiesReviewsController@store');
 
-    Route::post('/entities/find', 'EntitiesController@find');
+    Route::post('/entities/{entity}/follow', 'EntitiesFollowingController@store');
+
+    Route::delete('/entities/{entity}/follow', 'EntitiesFollowingController@destroy');
 
 });
 
