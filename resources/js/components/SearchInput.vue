@@ -19,11 +19,13 @@
             <ul>
                 <li @click="selectResult(place)" v-for="place in results"
                     class="flex border-t cursor-pointer border-gray-300 items-center p-3 justify-between">
-                    <div class="flex items-center">
-                        <img class="w-8 h-8 rounded mr-2" src="https://i.pravatar.cc/300" alt="">
-                        <h3 class="text-gray-500" v-text="place.name"></h3>
+                    <div class="flex items-start">
+                        <img class="w-8 h-8 rounded-full mr-2" src="https://i.pravatar.cc/300" alt="">
+                        <div>
+                            <h3 class="text-black font-semibold text-sm" v-text="place.name"></h3>
+                            <start-rating></start-rating>
+                        </div>
                     </div>
-                    <img :src="'/svg/'+ place.category.name + '-icon.svg'" alt="">
                 </li>
             </ul>
         </div>
@@ -37,8 +39,10 @@
     </div>
 </template>
 <script>
+    import StarRating from './StarRating.vue'
     export default{
         props: ['category'],
+        components:{},
         data(){
             return {
                 query: '',

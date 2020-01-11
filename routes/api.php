@@ -15,6 +15,10 @@ use Illuminate\Http\Request;
 
 Route::namespace('Api')->group(function () {
 
+    Route::post('/register', 'RegisterController@store');
+
+    Route::post('/login', 'LoginController@store');
+
     Route::get('/categories', 'CategoriesController@index');
 
     Route::get('/categories/{category}', 'CategoriesController@show');
@@ -25,7 +29,13 @@ Route::namespace('Api')->group(function () {
 
     Route::get('/entities/{entity}', 'EntitiesController@show');
 
-    Route::post('/entities/find', 'EntitiesController@find');
+    Route::put('/entities/{entity}/rating', 'EntitiesRatingController@update');
+
+    Route::post('/entities/{entity}/review', 'EntitiesReviewsController@store');
+
+    Route::post('/entities/{entity}/follow', 'EntitiesFollowingController@store');
+
+    Route::delete('/entities/{entity}/follow', 'EntitiesFollowingController@destroy');
 
 });
 

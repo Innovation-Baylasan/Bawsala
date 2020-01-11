@@ -15,7 +15,7 @@ use Rennokki\Befriended\Traits\CanFollow;
  */
 class User extends Authenticatable implements Follower
 {
-    use HasApiTokens, Notifiable,CanFollow;
+    use HasApiTokens, Notifiable, CanFollow;
 
     /**
      * The attributes that are mass assignable.
@@ -23,7 +23,7 @@ class User extends Authenticatable implements Follower
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role_id', 'username'
+        'name', 'email', 'password', 'role_id', 'username', 'api_token'
     ];
     /**
      * The relations to append when return this user

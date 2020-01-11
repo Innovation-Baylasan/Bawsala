@@ -2,6 +2,7 @@
 
 use App\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class UsersTableSeeder extends Seeder
 {
@@ -17,6 +18,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'admin@baylsaan.com',
             'username' => User::generateUsername('Baylsaan Admin'),
             'password' => bcrypt('admin12345678'),
+            'api_token' => Str::random(80),
             'role_id' => '1',
         ]);
     }
