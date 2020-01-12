@@ -7,119 +7,152 @@
 </head>
 <body>
 <div id="app">
-    <div class="flex">
-        <div class="flex-1 w-1/2 px-16 py-4">
-            <Carousel>
-                <slide classes="search-interaction w-3/4 h-3/4 mb-auto">
-                    <template v-slot:footer>
-                        <h3 class="uppercase text-2xl font-bold mb-4">find out</h3>
-                        <p class="text-gray-500 font-hairline capitalize">rambled it to make a type specimen book. It
-                            has survived not
-                            only five centuries, but also the leap into electronic
-                            typesetting, remaining essentially unchanged.</p>
-                    </template>
-                </slide>
-                <slide classes="map-interaction w-3/4 h-3/4 mb-auto">
-                    <template v-slot:footer>
-                        <h3 class="uppercase text-2xl font-bold mb-4">Communicate</h3>
-                        <p class="text-gray-500 font-hairline capitalize">rambled it to make a type specimen book. It
-                            has survived not
-                            only five centuries, but also the leap into electronic
-                            typesetting, remaining essentially unchanged.</p>
-                    </template>
-                </slide>
-                <slide classes="editor-interaction w-3/4 h-3/4 mb-auto">
-                    <template v-slot:footer>
-                        <h3 class="uppercase text-2xl font-bold mb-4">Explore</h3>
-                        <p class="text-gray-500 font-hairline capitalize">rambled it to make a type specimen book. It
-                            has survived not
-                            only five centuries, but also the leap into electronic
-                            typesetting, remaining essentially unchanged.</p>
-                    </template>
-                </slide>
-            </Carousel>
-        </div>
+    <register-view inline-template>
+        <div class="flex">
+            <div class="flex-1 w-1/2 px-16 py-4">
+                <Carousel>
+                    <slide classes="search-interaction w-3/4 h-3/4 mb-auto">
+                        <template v-slot:footer>
+                            <h3 class="uppercase text-2xl font-bold mb-4">find out</h3>
+                            <p class="text-gray-500 font-hairline capitalize">rambled it to make a type specimen book.
+                                It
+                                has survived not
+                                only five centuries, but also the leap into electronic
+                                typesetting, remaining essentially unchanged.</p>
+                        </template>
+                    </slide>
+                    <slide classes="map-interaction w-3/4 h-3/4 mb-auto">
+                        <template v-slot:footer>
+                            <h3 class="uppercase text-2xl font-bold mb-4">Communicate</h3>
+                            <p class="text-gray-500 font-hairline capitalize">rambled it to make a type specimen book.
+                                It
+                                has survived not
+                                only five centuries, but also the leap into electronic
+                                typesetting, remaining essentially unchanged.</p>
+                        </template>
+                    </slide>
+                    <slide classes="editor-interaction w-3/4 h-3/4 mb-auto">
+                        <template v-slot:footer>
+                            <h3 class="uppercase text-2xl font-bold mb-4">Explore</h3>
+                            <p class="text-gray-500 font-hairline capitalize">rambled it to make a type specimen book.
+                                It
+                                has survived not
+                                only five centuries, but also the leap into electronic
+                                typesetting, remaining essentially unchanged.</p>
+                        </template>
+                    </slide>
+                </Carousel>
+            </div>
 
-        <div class="flex-1 px-16 py-4 border-l border-gray-100 border-solid">
-            <header class="mb-8">
-                <h3 class="text-4xl font-bold">Sign up</h3>
-                <p class="leading-normal font-hairline text-gray-500 pr-10">Here is placed a text the user wants to
-                    register to log in to obtain additional features</p>
-            </header>
-            <main>
-                @if($errors->any())
-                    @foreach($errors->all() as $error)
-                        <p>{{$error}}</p>
-                    @endforeach
-                @endif
-                <form action="{{route('register')}}"
-                      method="post">
+            <div class="flex-1 px-16 py-4 border-l border-gray-100 border-solid">
+                <header class="mb-8">
+                    <h3 class="text-4xl font-bold">Sign up</h3>
+                    <p class="leading-normal font-hairline text-gray-500 pr-10">Here is placed a text the user wants to
+                        register to log in to obtain additional features</p>
+                </header>
+                <main>
+                    @if($errors->any())
+                        @foreach($errors->all() as $error)
+                            <p>{{$error}}</p>
+                        @endforeach
+                    @endif
+                    <form action="{{route('register')}}"
+                          method="post">
 
-                    @csrf
-                    <label class="input-label" for="">User name</label>
-                    <div class="input">
-                        <input type="text" required name="name">
-                    </div>
-                    @error('name')
-                    <p class="text-sm text-red-500 -mt-2 mb-2">{{$message}}</p>
-                    @enderror
-
-                    <label class="input-label" for="">email</label>
-                    <div class="input">
-                        <input type="text" required name="email">
-                    </div>
-                    @error('email')
-                    <p class="text-sm text-red-500 -mt-2 mb-2">{{$message}}</p>
-                    @enderror
-
-                    <label class="input-label" for="">password</label>
-                    <div class="input">
-                        <input type="password" name="password">
-                    </div>
-                    @error('password')
-                    <p class="text-sm text-red-500 -mt-2 mb-2">{{$message}}</p>
-                    @enderror
-
-                    <label class="input-label" for="">password confirmation</label>
-                    <div class="input">
-                        <input type="password" name="password_confirmation">
-                    </div>
-                    @error('password')
-                    <p class="text-sm text-red-500 -mt-2 mb-2">{{$message}}</p>
-                    @enderror
-
-                    <label class="text-gray-700 capitalize block mb-2" for="">Register as</label>
-                    <div class="flex items-center -mx-2 mb-4">
-                        <div class="flex mx-2">
-                            <input class="appearance-none" name="type" type="radio" id="company">
-                            <label class="select-label" for="company">company</label>
+                        @csrf
+                        <label class="input-label" for="">name</label>
+                        <div class="input">
+                            <input type="text" required name="name" value="{{old('name')}}">
                         </div>
-                        <div class="flex">
-                            <input class="appearance-none" name="type" checked type="radio" id="user">
-                            <label class="select-label" for="user">user</label>
+                        @error('name')
+                        <p class="text-sm text-red-500 -mt-2 mb-2">{{$message}}</p>
+                        @enderror
+
+                        <label class="input-label" for="">email</label>
+                        <div class="input">
+                            <input type="text" required name="email" value="{{old('email')}}">
                         </div>
-                    </div>
+                        @error('email')
+                        <p class="text-sm text-red-500 -mt-2 mb-2">{{$message}}</p>
+                        @enderror
+
+                        <label class="input-label" for="">password</label>
+                        <div class="input">
+                            <input type="password" name="password">
+                        </div>
+                        @error('password')
+                        <p class="text-sm text-red-500 -mt-2 mb-2">{{$message}}</p>
+                        @enderror
+
+                        <label class="input-label" for="">password confirmation</label>
+                        <div class="input">
+                            <input type="password" name="password_confirmation">
+                        </div>
+                        @error('password')
+                        <p class="text-sm text-red-500 -mt-2 mb-2">{{$message}}</p>
+                        @enderror
+
+                        <label class="text-gray-700 capitalize block mb-2" for="">Register as</label>
+                        <div class="flex items-center -mx-2 mb-4">
+                            <div class="flex mx-2">
+                                <input class="appearance-none" name="registerAs" v-model="registerAs" value="company"
+                                       type="radio" id="company">
+                                <label class="select-label" for="company">company</label>
+                            </div>
+                            <div class="flex">
+                                <input class="appearance-none" name="registerAs" v-model="registerAs" value="user"
+                                       checked type="radio" id="user">
+                                <label class="select-label" for="user">user</label>
+                            </div>
+                        </div>
+
+                        <div v-if="registerAs == 'company'" class="mb-2">
+                            <label class="text-gray-700 capitalize block mb-2" for="">Location</label>
+
+                            <location-picker api-key="{{config('app.mapKey')}}"
+                                             v-model="location"
+                                             class="rounded mb-2 h-32 w-full"></location-picker>
+
+                            <input type="hidden" name="location" :value="location.latitude + ',' + location.longitude">
+
+                            <label class="input-label" for="">Category</label>
+                            <div class="input">
+                                <select name="category">
+                                    @foreach($categories as $category)
+                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <label class="input-label" for="">Description</label>
+                            <div class="input">
+                                <textarea name="description">{{old('description')}}</textarea>
+                            </div>
+                            @error('description')
+                            <p class="text-sm text-red-500 -mt-2 mb-2">{{$message}}</p>
+                            @enderror
+
+                        </div>
 
 
-                    <p class="text-gray-500">
-                        Here a text is placed explaining to the user that upon registration, the <a href="#"
-                                                                                                    class="text-red-500 font-bold">agreement
-                            policy</a> and
-                        <a href="#"
-                           class="text-red-500 font-bold">privacy policy</a>
-                        will be approved and their consequences bear
-                    </p>
-
-                    <div class="flex items-center justify-center mt-8">
-                        <button class="bg-red-500 rounded px-20 py-3 outline-none uppercase text-white font-bold">
-                            register
-                            now
-                        </button>
-                    </div>
-                </form>
-            </main>
+                        <p class="text-gray-500">
+                            Here a text is placed explaining to the user that upon registration, the <a href="#"
+                                                                                                        class="text-red-500 font-bold">agreement
+                                policy</a> and
+                            <a href="#"
+                               class="text-red-500 font-bold">privacy policy</a>
+                            will be approved and their consequences bear
+                        </p>
+                        <div class="flex items-center justify-center mt-8">
+                            <button class="bg-red-500 rounded px-20 py-3 outline-none uppercase text-white font-bold">
+                                register
+                                now
+                            </button>
+                        </div>
+                    </form>
+                </main>
+            </div>
         </div>
-    </div>
+    </register-view>
 </div>
 <script src="{{asset('js/app.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.5.9/lottie_light.min.js"></script>

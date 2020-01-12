@@ -229,14 +229,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        /*
-         * JWT Aliases
-         * */
-        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
-        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
-
     ],
 
-    'google_map_key' => 'AIzaSyB__zInSzV-ggI9nyQjxK09oPEBNN5Qf6k',
+    'mapKey' => env('GOOGLE_MAP_KEY', 'AIzaSyB__zInSzV-ggI9nyQjxK09oPEBNN5Qf6k'),
 
 ];

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Category;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -23,6 +24,17 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
+
+    /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showRegistrationForm()
+    {
+        $categories = Category::all();
+        return view('auth.register', compact('categories'));
+    }
 
     /**
      * Where to redirect users after registration.
@@ -53,6 +65,9 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'location' => ['sometimes', 'required', 'string', 'min:8', 'max:36'],
+            'category' => ['sometimes', 'required', 'numeric', 'min:1'],
+            'description' => ['sometimes', 'required', 'string', 'min:8', 'max:500'],
         ]);
     }
 
@@ -64,12 +79,26 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'username' => User::generateUsername($data['name']),
             'password' => Hash::make($data['password']),
             'api_token' => Str::random(80),
         ]);
+
+        if (request('registerAs') == 'company') {
+            $location = $data['location'];
+            list($latitude, $longitude) = explode(',', $location);
+            $user->entities()->create([
+                'name' => $user->name,
+                'category_id' => $data['category'],
+                'description' => $data['description'],
+                'latitude' => $latitude,
+                'longitude' => $longitude,
+            ]);
+        }
+
+        return $user;
     }
 }

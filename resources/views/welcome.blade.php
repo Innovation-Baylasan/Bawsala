@@ -45,7 +45,7 @@
                 <google-map :places="places"
                             :center="mapCenter"
                 @marker-clicked="selectPlace($event.place)"
-                api-key="{{config('app.google_map_key')}}"
+                api-key="{{config('app.mapKey')}}"
                 ></google-map>
             </main>
             @include('partials.modals.filteringModal')

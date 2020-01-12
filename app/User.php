@@ -69,6 +69,15 @@ class User extends Authenticatable implements Follower
         return $this->belongsTo(Role::class);
     }
 
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function entities()
+    {
+        return $this->hasMany(Entity::class);
+    }
+
     /**
      * check whether this user is admin or not
      *
