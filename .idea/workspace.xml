@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="token issue">
+    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="configuration missmatch">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/auth.php" afterPath="$PROJECT_DIR$/config/auth.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -83,7 +81,7 @@
         <entry file="file://$PROJECT_DIR$/config/auth.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="390">
-              <caret line="46" column="27" lean-forward="false" selection-start-line="46" selection-start-column="27" selection-end-line="46" selection-end-column="27" />
+              <caret line="46" column="28" lean-forward="true" selection-start-line="46" selection-start-column="28" selection-end-line="46" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -426,14 +424,7 @@
       <workItem from="1578675270027" duration="3359000" />
       <workItem from="1578685010239" duration="5393000" />
       <workItem from="1578826803207" duration="237000" />
-      <workItem from="1578847426199" duration="1250000" />
-    </task>
-    <task id="LOCAL-00012" summary="API enhancements , add laravel passport as a main api authentication driver, add doc blocks to controllers">
-      <created>1575397653140</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1575397653140</updated>
+      <workItem from="1578847426199" duration="1571000" />
     </task>
     <task id="LOCAL-00013" summary="start to setup the gui">
       <created>1575822211737</created>
@@ -771,11 +762,18 @@
       <option name="project" value="LOCAL" />
       <updated>1578845460522</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="configuration missmatch">
+      <created>1578848934122</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1578848934123</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="202307000" />
+    <option name="totallyTimeSpent" value="202628000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="723" extended-state="6" />
@@ -835,7 +833,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="profile view" />
     <MESSAGE value="fix active link border issue" />
     <MESSAGE value="change from full rounded avatar to corners rounded one" />
     <MESSAGE value="starting admin panel layout styling" />
@@ -860,7 +857,8 @@
     <MESSAGE value="api for following, rating and review entities" />
     <MESSAGE value="fixing test" />
     <MESSAGE value="token issue" />
-    <option name="LAST_COMMIT_MESSAGE" value="token issue" />
+    <MESSAGE value="configuration missmatch" />
+    <option name="LAST_COMMIT_MESSAGE" value="configuration missmatch" />
   </component>
   <component name="WindowStateProjectService">
     <state x="348" y="154" key="git4idea.merge.GitPullDialog" timestamp="1578821940264">
@@ -1241,7 +1239,7 @@
     <entry file="file://$PROJECT_DIR$/config/auth.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
-          <caret line="46" column="27" lean-forward="false" selection-start-line="46" selection-start-column="27" selection-end-line="46" selection-end-column="27" />
+          <caret line="46" column="28" lean-forward="true" selection-start-line="46" selection-start-column="28" selection-end-line="46" selection-end-column="28" />
           <folding />
         </state>
       </provider>
