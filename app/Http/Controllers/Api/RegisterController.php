@@ -21,15 +21,14 @@ class RegisterController extends Controller
         $user = User::create([
             'name' => $attributes['name'],
             'email' => $attributes['email'],
-            'username' => $attributes['username'] ?: User::generateUsername($attributes['name']),
+            'username' => $attributes['username'] ?? User::generateUsername($attributes['name']),
             'password' => Hash::make($attributes['password']),
-            'api_token' => Str::random(80),
         ]);
 
         return response([
             'data' => [
                 'user' => $user,
-                'token' => $user->api_token
+                'token' => $user->token
             ],
             'message' => 'user registered successfully'
         ], 200);

@@ -84,10 +84,13 @@ class User extends Authenticatable implements Follower
      *
      * @return String
      */
-    public function createApiToken() {
-        $token = Str::random(60);
-        $this->api_token = $token;
-        $this->save();
-        return $token;
+    public function getTokenAttribute()
+    {
+        if (!$this->api_token) {
+            $this->api_token = Str::random(60);
+            $this->save();
+            return $this->api_token;
+        }
+        return $this->api_token;
     }
 }
