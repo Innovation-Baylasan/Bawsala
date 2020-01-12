@@ -52,7 +52,7 @@ class Handler extends ExceptionHandler
             return response()->json(['status' => 'object requested not found'], 404);
         }
         if ($request->wantsJson() && $exception instanceof ValidationException && $exception->getResponse()) {
-            return $e->getResponse();
+            return $exception->getResponse();
         }
 
         if ($request->wantsJson()) {
