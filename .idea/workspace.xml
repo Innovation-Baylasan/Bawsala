@@ -3,9 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="I have added the following routes:&#10;&#10;/api/register&#10;/api/login&#10;/api/refresh&#10;/api/me">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/EntityRate.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/EntityRate.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/EntityReview.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/EntityReview.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/LoginController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/RegisterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/UserFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/UserFactory.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Feature/AuthenticationTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/AuthenticationTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -167,18 +168,18 @@
     <property name="settings.editor.selected.configurable" value="fileTemplates" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\10-PROJECTS\Baylasan\sudan-map-back-end\public\mobilePng" />
-      <recent name="$PROJECT_DIR$/resources/js/components" />
-      <recent name="$PROJECT_DIR$/public/svg" />
-      <recent name="$PROJECT_DIR$/app" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\10-PROJECTS\Baylasan\sudan-map-back-end\app\Http\Controllers\Api" />
       <recent name="D:\10-PROJECTS\Baylasan\sudan-map-back-end\app" />
       <recent name="D:\10-PROJECTS\Baylasan\sudan-map-back-end\public\svg\markersPNG" />
       <recent name="D:\10-PROJECTS\Baylasan\sudan-map-back-end\resources\views\admin" />
       <recent name="D:\10-PROJECTS\Baylasan\sudan-map-back-end\app\Http\Controllers\Admin" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\10-PROJECTS\Baylasan\sudan-map-back-end\public\mobilePng" />
+      <recent name="$PROJECT_DIR$/resources/js/components" />
+      <recent name="$PROJECT_DIR$/public/svg" />
+      <recent name="$PROJECT_DIR$/app" />
     </key>
   </component>
   <component name="RunManager">
@@ -256,13 +257,6 @@
       <workItem from="1578483341524" duration="436000" />
       <workItem from="1578483811154" duration="444000" />
       <workItem from="1578484288981" duration="4879000" />
-    </task>
-    <task id="LOCAL-00007" summary="edit database schema.">
-      <created>1575213514596</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1575213514596</updated>
     </task>
     <task id="LOCAL-00008" summary="edit database schema.">
       <created>1575213646949</created>
@@ -600,7 +594,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578585434039</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="I have added the following routes:&#10;&#10;/api/entities/{entity}/rate&#10;/api/entities/{entity}/review">
+      <created>1578750357858</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1578750357859</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -608,7 +609,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -617,7 +620,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="refactoring and change api responses" />
     <MESSAGE value="add location to the response" />
     <MESSAGE value="profile view" />
     <MESSAGE value="fix active link border issue" />
@@ -641,6 +643,7 @@
     <MESSAGE value="followable entities" />
     <MESSAGE value="rateable entities" />
     <MESSAGE value="Adding Review And Rate API end points&#10;&#10;-- EntityRate.php&#10;-- EntityReview.php&#10;&#10;added routes to api.php" />
+    <MESSAGE value="I have added the following routes:&#10;&#10;/api/entities/{entity}/rate&#10;/api/entities/{entity}/review" />
     <MESSAGE value="I have added the following routes:&#10;&#10;/api/register&#10;/api/login&#10;/api/refresh&#10;/api/me" />
     <option name="LAST_COMMIT_MESSAGE" value="I have added the following routes:&#10;&#10;/api/register&#10;/api/login&#10;/api/refresh&#10;/api/me" />
   </component>
@@ -653,14 +656,26 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="413" y="118" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1578585996357" />
-    <state x="83" y="35" width="1150" height="675" key="CommitChangelistDialog2" timestamp="1578585432805">
+    <state x="83" y="35" width="1150" height="675" key="CommitChangelistDialog2" timestamp="1578750387133">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="83" y="35" width="1150" height="675" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1578585432805" />
-    <state x="92" y="92" width="1182" height="544" key="DiffContextDialog" timestamp="1578511000617">
+    <state x="83" y="35" width="1150" height="675" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1578750387133" />
+    <state x="92" y="92" width="1182" height="544" key="DiffContextDialog" timestamp="1578750372327">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="92" y="92" width="1182" height="544" key="DiffContextDialog/0.0.1366.728@0.0.1366.728" timestamp="1578511000617" />
+    <state x="92" y="92" width="1182" height="544" key="DiffContextDialog/0.0.1366.728@0.0.1366.728" timestamp="1578750372327" />
+    <state x="129" y="54" key="MergeDialog" timestamp="1578750486305">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="129" y="54" key="MergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1578750486305" />
+    <state x="395" y="79" key="MultipleFileMergeDialog" timestamp="1578750489965">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="395" y="79" key="MultipleFileMergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1578750489965" />
+    <state x="475" y="85" key="RollbackChangesDialog" timestamp="1578751573151">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="475" y="85" key="RollbackChangesDialog/0.0.1366.728@0.0.1366.728" timestamp="1578751573151" />
     <state x="92" y="92" width="1182" height="544" key="ShowDiffWithBranchDialog" timestamp="1578511000617">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -677,17 +692,17 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="378" y="186" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1578484901337" />
-    <state x="348" y="154" key="git4idea.merge.GitPullDialog" timestamp="1578485369696">
+    <state x="348" y="154" key="git4idea.merge.GitPullDialog" timestamp="1578815736821">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="348" y="154" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1578485369696" />
-    <state x="339" y="157" key="run.anything.popup" timestamp="1578579632968">
+    <state x="348" y="154" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1578815736821" />
+    <state x="339" y="157" key="run.anything.popup" timestamp="1578751489184">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="339" y="157" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1578579632968" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1578586338730">
+    <state x="339" y="157" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1578751489184" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1578755045005">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1578586338730" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1578755045005" />
   </component>
 </project>

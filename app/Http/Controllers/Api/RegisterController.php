@@ -13,6 +13,7 @@ class RegisterController extends Controller
     {
         $attributes = request()->validate([
             'name' => ['required', 'string', 'max:255'],
+            'username' => ['sometimes', 'string', 'min:8', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -20,7 +21,7 @@ class RegisterController extends Controller
         $user = User::create([
             'name' => $attributes['name'],
             'email' => $attributes['email'],
-            'username' => User::generateUsername($attributes['name']),
+            'username' => $attributes['username'] ?: User::generateUsername($attributes['name']),
             'password' => Hash::make($attributes['password']),
             'api_token' => Str::random(80),
         ]);
