@@ -21,19 +21,18 @@ class EntityRatingTest extends TestCase
      *
      * @return void
      */
-    protected function setUp(): void
-    {
-        parent::setUp();
-        $this->entity = factory(Entity::class)->create();
-        $this->user = factory(User::class)->create();
-    }
 
     /** @test */
     function it_can_be_rated_by_logged_in_user()
     {
-        $response = $this->post('/entities/' . $this->entity->id . '/rating', [
+        $this->signIn();
+
+
+        $entity = factory(Entity::class)->create();
+        $response = $this->post('/entities/' . $entity->id . '/rate', [
             "rating" => 3
         ]);
+
         $response->assertStatus(200);
     }
 }

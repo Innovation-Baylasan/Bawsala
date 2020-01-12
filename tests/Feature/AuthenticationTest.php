@@ -25,9 +25,9 @@ class AuthenticationTest extends TestCase
             "password" => "12345678"
         ]);
 
-//        dd($response);
-
-        $response->assertStatus(200);
+        $response->assertStatus(200)->assertJsonFragment([
+            'token' => $user->api_token
+        ]);
     }
 
     /** @test */

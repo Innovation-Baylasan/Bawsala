@@ -16,6 +16,7 @@ Route::get('/', function () {
     return view('welcome', compact('categories'));
 });
 Route::put('/entities/{entity}/follow', 'EntityFollowersController@update')->middleware('auth');
+
 Route::post('/entities/{entity}/rate', 'EntityRatingController@store')->middleware('auth');
 
 Route::post('/entities/{entity}/reviews', 'EntityReviewsController@store')->middleware('auth');
