@@ -49,9 +49,10 @@
                         will be approved and their consequences bear
                     </p>
 
-                    <div class="flex items-center justify-center mt-8">
+                    <div class="flex items-center justify-between mt-8">
+                        <a class="text-red-500 text-sm" href="/password/reset">Forget password ?</a>
                         <button type="submit"
-                                class="bg-red-500 rounded px-24 py-3 outline-none uppercase text-white font-bold">
+                                class="button is-wide">
                             Sing
                             In
                         </button>
