@@ -27,7 +27,10 @@ class RegisterController extends Controller
         ]);
 
         return response([
-            'data' => $user,
+            'data' => [
+                'user' => $user,
+                'token' => $user->api_token
+            ],
             'message' => 'user registered successfully'
         ], 200);
     }

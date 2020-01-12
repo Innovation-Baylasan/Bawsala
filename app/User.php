@@ -23,7 +23,7 @@ class User extends Authenticatable implements Follower
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role_id', 'username', 'api_token'
+        'name', 'email', 'password', 'role_id', 'username'
     ];
     /**
      * The relations to append when return this user
@@ -37,7 +37,7 @@ class User extends Authenticatable implements Follower
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'api_token'
     ];
 
     /**
@@ -77,5 +77,17 @@ class User extends Authenticatable implements Follower
     public function isAdmin()
     {
         return !!$this->role == 'admin';
+    }
+
+    /**
+     * Generate Api Token For User When Login For The First Time
+     *
+     * @return String
+     */
+    public function createApiToken() {
+        $token = Str::random(60);
+        $this->api_token = $token;
+        $this->save();
+        return $token;
     }
 }

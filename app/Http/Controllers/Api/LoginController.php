@@ -18,7 +18,7 @@ class LoginController extends Controller
             return response([
                 'data' => [
                     'user' => $user = auth()->user(),
-                    'token' => $user->api_token
+                    'token' => $user->createApiToken()
                 ],
                 'message' => 'login successfully'
             ], 200);
