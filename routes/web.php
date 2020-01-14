@@ -26,9 +26,10 @@ Route::namespace('Admin')
     ->prefix('admin')
     ->middleware(['admin'])
     ->group(function () {
-        Route::get('', function () {
+        Route::get('/', function () {
             return view('admin.all');
         });
+
         Route::resource('roles', 'RolesController');
         Route::resource('tags', 'TagsController');
         Route::resource('users', 'UsersController');

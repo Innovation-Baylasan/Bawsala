@@ -9679,7 +9679,7 @@ video {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  padding: 0.5rem;
+  padding: 0.25rem;
   background-color: #fff;
   display: block;
   -webkit-box-flex: 1;

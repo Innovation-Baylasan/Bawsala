@@ -51,23 +51,35 @@ class EntitiesController extends Controller
     public function store()
     {
         $attributes = request()->validate([
-            'user_id' => 'required',
             'category_id' => 'required',
             'name' => 'required',
-            'avatar' => 'required',
-            'cover' => 'required',
+            'avatar' => 'sometimes|required',
+            'cover' => 'sometimes|required',
             'description' => 'required',
             'latitude' => 'required',
             'longitude' => 'required'
         ]);
 
+        $entity = auth()->user()
+            ->entities()
+            ->create([
+                'category_id' => $attributes['category_id'],
+                'name' => $attributes['name'],
+                'description' => $attributes['description'],
+                'latitude' => $attributes['latitude'],
+                'longitude' => $attributes['longitude'],
+            ]);
 
-        $entity = Entity::create($attributes);
+        if (isset($attributes['avatar'])) {
+            $entity->profile->setAvatar($attributes['avatar']);
+        };
 
-        $entity->profile
-            ->setAvatar($attributes['avatar'])
-            ->setCover($attributes['cover']);
-
+        if (isset($attributes['cover'])) {
+            $entity->profile->setCover($attributes['cover']);
+        }
+        if (request()->wantsJson()) {
+            return response('uploaded successfully', 200);
+        }
         return redirect('/admin/entities')
             ->with('success', 'Data added successfully.');
 

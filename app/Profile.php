@@ -37,13 +37,13 @@ class Profile extends Model implements HasMedia
     public function registerMediaConversions(Media $media = null)
     {
         $this->addMediaConversion('avatar')
-            ->fit(Manipulations::FIT_FILL, 640, 460)
+            ->crop(Manipulations::CROP_CENTER, 120, 120)
             ->background('#c43b68')
             ->nonQueued()
             ->performOnCollections('avatars');
 
         $this->addMediaConversion('cover')
-            ->fit(Manipulations::FIT_FILL, 120, 120)
+            ->crop(Manipulations::CROP_CENTER, 840, 360)
             ->background('#c43b68')
             ->nonQueued()
             ->performOnCollections('covers');
@@ -55,7 +55,7 @@ class Profile extends Model implements HasMedia
      */
     public function setCover($cover)
     {
-        $this->addMedia($cover)->toMediaCollection('covers');
+        $this->addMediaFromUrl($cover)->toMediaCollection('covers');
         return $this;
     }
 
@@ -65,7 +65,7 @@ class Profile extends Model implements HasMedia
      */
     public function setAvatar($avatar)
     {
-        $this->addMedia($avatar)->toMediaCollection('avatars');
+        $this->addMediaFromUrl($avatar)->toMediaCollection('avatars');
         return $this;
     }
 
@@ -75,7 +75,7 @@ class Profile extends Model implements HasMedia
     public function getCoverAttribute()
     {
         $cover = $this->getMedia('covers')->first();
-        return $cover ? $cover->getUrl('cover') : 'https://placeimg.com/640/460/tech';
+        return $cover ? $cover->getUrl('cover') : 'https://placeimg.com/640/360/tech';
     }
 
     /**

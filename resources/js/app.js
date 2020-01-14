@@ -13,6 +13,7 @@ Vue.component('LocationPicker', require('./components/LocationPicker.vue').defau
 Vue.component('AddressText', require('./components/AddressText.vue').default)
 Vue.component('ImagePicker', require('./components/ImagePicker.vue').default)
 Vue.component('StarRating', require('./components/StarRating.vue').default)
+Vue.component('ImageCropper', require('./components/ImageCropper.vue').default)
 Vue.component('MapView', require('./pages/MapView.vue').default)
 Vue.component('CreateEntityView', require('./pages/CreateEntityView.vue').default)
 Vue.component('RegisterView', require('./pages/RegisterView.vue').default)
