@@ -5983,6 +5983,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['place']
 });
@@ -26254,26 +26259,44 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "px-10 flex flex-col" }, [
-        _c("h3", {
-          staticClass: "uppercase text-xl font-bold text-center mb-4",
-          domProps: { textContent: _vm._s(_vm.place.name) }
-        }),
-        _vm._v(" "),
-        _c("p", {
-          staticClass: "text-sm text-gray-500 capitalize",
-          domProps: { textContent: _vm._s(_vm.place.description) }
-        }),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            staticClass: "text-red-500 p-4 text-xl block text-center font-bold",
-            attrs: { href: "/@" + _vm.place.id }
-          },
-          [_vm._v("Visit Profile")]
-        )
-      ])
+      _c(
+        "div",
+        { staticClass: "px-10 flex flex-col" },
+        [
+          _c("h3", {
+            staticClass: "uppercase text-xl font-bold text-center mb-4",
+            domProps: { textContent: _vm._s(_vm.place.name) }
+          }),
+          _vm._v(" "),
+          _vm._l(_vm.place.tags, function(tag) {
+            return _vm.place.tags
+              ? _c("div", { staticClass: "-mx-1 flex py-2" }, [
+                  _c("span", {
+                    staticClass:
+                      "rounded mx-1 px-5 bg-gray-200 text-sm shadow-sm text-gray-500",
+                    domProps: { textContent: _vm._s(tag.name) }
+                  })
+                ])
+              : _vm._e()
+          }),
+          _vm._v(" "),
+          _c("p", {
+            staticClass: "text-sm text-gray-500 capitalize",
+            domProps: { textContent: _vm._s(_vm.place.description) }
+          }),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass:
+                "text-red-500 p-4 text-xl block text-center font-bold",
+              attrs: { href: "/@" + _vm.place.id }
+            },
+            [_vm._v("Visit Profile")]
+          )
+        ],
+        2
+      )
     ]
   )
 }

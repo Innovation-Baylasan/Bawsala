@@ -3,6 +3,12 @@
   > input, > textarea {
     @apply flex-1 outline-none leading-loose;
   }
+  > select {
+    @apply appearance-none p-2 bg-white block flex-1 ;
+    &:active,&:focus{
+      @apply outline-none;
+    }
+  }
 }
 
 .input-label {

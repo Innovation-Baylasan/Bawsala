@@ -65,6 +65,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'registerAs' => ['required', 'string'],
             'location' => ['sometimes', 'required', 'string', 'min:8', 'max:36'],
             'category' => ['sometimes', 'required', 'numeric', 'min:1'],
             'description' => ['sometimes', 'required', 'string', 'min:8', 'max:500'],
@@ -82,22 +83,11 @@ class RegisterController extends Controller
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'email' => $data['registerAs'],
             'username' => User::generateUsername($data['name']),
             'password' => Hash::make($data['password']),
             'api_token' => Str::random(80),
         ]);
-
-        if (request('registerAs') == 'company') {
-            $location = $data['location'];
-            list($latitude, $longitude) = explode(',', $location);
-            $user->entities()->create([
-                'name' => $user->name,
-                'category_id' => $data['category'],
-                'description' => $data['description'],
-                'latitude' => $latitude,
-                'longitude' => $longitude,
-            ]);
-        }
 
         return $user;
     }

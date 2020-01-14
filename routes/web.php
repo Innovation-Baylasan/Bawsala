@@ -11,19 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    $categories = \App\Category::all();
-    return view('welcome', compact('categories'));
-});
+Route::get('/', 'HomeController@index');
+
 Route::put('/entities/{entity}/follow', 'EntityFollowersController@update')->middleware('auth');
 
 Route::post('/entities/{entity}/rate', 'EntityRatingController@store')->middleware('auth');
 
 Route::post('/entities/{entity}/reviews', 'EntityReviewsController@store')->middleware('auth');
 
-Route::get('/@{entity}', function (\App\Entity $entity) {
-    return view('profile', compact('entity'));
-})->middleware('auth');
+Route::get('/@{entity}', 'ProfilesController@index')->middleware('auth');
 
 
 Route::namespace('Admin')

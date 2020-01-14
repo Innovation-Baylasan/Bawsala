@@ -9675,6 +9675,21 @@ video {
   line-height: 2;
 }
 
+.input > select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  padding: 0.5rem;
+  background-color: #fff;
+  display: block;
+  -webkit-box-flex: 1;
+          flex: 1 1 0%;
+}
+
+.input > select:active, .input > select:focus {
+  outline: 0;
+}
+
 .input-label {
   color: #818181;
   text-transform: capitalize;
@@ -9791,6 +9806,14 @@ video {
 
 .alert.is-danger {
   background-color: #f04238;
+}
+
+.alert.is-success {
+  background-color: #4aab50;
+}
+
+.alert.is-green {
+  background-color: #4aab50;
 }
 
 .rating {

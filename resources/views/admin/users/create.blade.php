@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="p-4">
-        <h1> Create User </h1>
+        <h1 class="mb-4">Create User </h1>
 
         @if($errors->any())
             <div class="alert is-danger">
@@ -33,9 +33,9 @@
             <label class="input-label" for="role">Select user role</label>
             <div class="input">
                 <select id="role" name="role_id">
-                    @foreach($roles as $role)
-                        <option value="{{ $role->id  }}">{{ $role->role }}</option>
-                    @endforeach
+                    <option value="user">User</option>
+                    <option value="company">Company</option>
+                    <option value="admin">Admin</option>
                 </select>
             </div>
 

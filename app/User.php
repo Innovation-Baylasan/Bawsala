@@ -23,14 +23,8 @@ class User extends Authenticatable implements Follower
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role_id', 'username'
+        'name', 'email', 'password', 'username'
     ];
-    /**
-     * The relations to append when return this user
-     *
-     * @var array
-     */
-    protected $with = ['role'];
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -62,15 +56,6 @@ class User extends Authenticatable implements Follower
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function role()
-    {
-        return $this->belongsTo(Role::class);
-    }
-
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function entities()
@@ -85,7 +70,7 @@ class User extends Authenticatable implements Follower
      */
     public function isAdmin()
     {
-        return !!$this->role == 'admin';
+        return !! $this->role == 'admin';
     }
 
     /**

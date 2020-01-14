@@ -3,4 +3,10 @@
   &.is-danger {
     @apply bg-red-500;
   }
+  &.is-success {
+    @apply bg-green-600;
+  }
+  &.is-green {
+    @apply bg-green-600;
+  }
 }

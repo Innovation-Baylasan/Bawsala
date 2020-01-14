@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Entity;
 
-class EntityFollowersController extends Controller
+class EntitiesFollowersController extends Controller
 {
     public function update(Entity $entity)
     {

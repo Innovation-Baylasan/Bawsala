@@ -78,6 +78,15 @@ class Entity extends Model implements Followable
         return $this->belongsTo(static::class, 'parent_id');
     }
 
+
+    /**
+     *
+     */
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
     /**
      * @return mixed
      *

@@ -36,7 +36,7 @@ class CategoriesController extends Controller
      * Store a newly created category.
      *
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -95,13 +95,12 @@ class CategoriesController extends Controller
      *
      * @param  \Illuminate\Http\Request $request
      * @param  Category $category
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Category $category, Request $request)
     {
         $iconPath = $request->old_icon;
         $icon = $request->file('icon');
-        // PNG icon for mobile phone
         $iconPngPath = $request->oldIconPngName;
         $iconPng = $request->file('icon_png');
 
@@ -111,13 +110,11 @@ class CategoriesController extends Controller
             'icon_png' => 'sometimes|image|max:2048',
         ]);
 
-        // SVG Icon for web
         if ($icon) {
             $iconPath = rand() . '.' . $icon->getClientOriginalExtension();
             $icon->move(public_path('images') . '/categoryIcon', $iconPath);
         }
-        // PNG icon for mobile
-        // Category PNG Icon for mobile phone
+
         if ($iconPng) {
             $iconPngPath = rand() . '.' . $iconPng->getClientOriginalExtension();
             $iconPng->move(public_path('images') . '/categoryIcon', $iconPngPath);
@@ -138,7 +135,7 @@ class CategoriesController extends Controller
      * Remove the specified category from database.
      *
      * @param Category $category
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
     public function destroy(Category $category)

@@ -16,14 +16,9 @@ class UsersController extends Controller
      */
     public function index()
     {
-
         $user = User::latest()->paginate(5);
 
-        // dd($user);
-
-        return view('admin.users.index', compact('user'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
-
+        return view('admin.users.index', compact('user'));
     }
 
     /**
@@ -33,33 +28,25 @@ class UsersController extends Controller
      */
     public function create()
     {
-        $roles = Role::all();
-        return view('admin.users.create', compact('roles'));
+        return view('admin.users.create');
     }
 
     /**
      * Store a newly created user in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $attributes = $request->validate([
             'name' => 'required',
-            'role_id' => 'required',
+            'role' => 'required',
             'email' => 'email|required',
             'password' => 'required'
         ]);
 
-        $form_data = array(
-            'name' => $request->name,
-            'role_id' => $request->role_id,
-            'email' => $request->email,
-            'password' => bcrypt($request->password)
-        );
-
-        User::create($form_data);
+        User::create($attributes);
 
         return redirect('/admin/users')
             ->with('success', 'Data added successfully.');
@@ -87,41 +74,25 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-
-        $roles = Role::all();
-
-        return view('admin.users.edit', compact('user','roles'));
-
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
      * Update the specified user in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @param  User $user
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, User $user)
     {
-        $request->validate([
-            'name' => 'required',
-            'role_id' => 'required'
+        $attributes = $request->validate([
+            'name' => 'required|string',
+            'role' => 'required|string',
+            'email' => 'required|email|unique:users'
         ]);
 
-        // check if email changed on update opreation and make sure the email is not taken by validation rules
-        if ($request->email != $user->email) {
-            $request->validate([
-                'email' => 'required|email|unique:users'
-            ]);
-        }
-
-        $form_data = array(
-            'name' => $request->name,
-            'role_id' => $request->role_id,
-            'email' => $request->email
-        );
-
-        $user->update($form_data);
+        $user->update($attributes);
 
         return redirect('/admin/users')
             ->with('success', 'Data updated successfully.');
@@ -131,7 +102,7 @@ class UsersController extends Controller
      * Remove the specified user from storage.
      *
      * @param User $user
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Exception
      */
