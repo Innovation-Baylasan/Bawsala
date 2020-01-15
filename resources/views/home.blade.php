@@ -12,10 +12,19 @@
     <map-view inline-template>
         <div>
             <header class="fixed w-full z-10 flex items-center inline-block justify-center">
-                <search-input :category="selectedCategory" @result-clicked="selectPlace"></search-input>
-                <place-profile-card @close="selectedPlace =null"
-                v-if="selectedPlace"
-                :place="selectedPlace"></place-profile-card>
+                <div>
+                    <search-input :category="selectedCategory" @result-clicked="selectPlace"></search-input>
+                    <place-profile-card @close="selectedPlace =null"
+                    v-if="selectedPlace"
+                    :place="selectedPlace"></place-profile-card>
+                </div>
+                @guest
+                <div class="bg-white rounded overflow-hidden shadow m-4">
+                    <a class="p-2 px-4 inline-block text-gray-500 border-r border-gray-200"
+                       href="/register">Regsiter</a>
+                    <a class="p-2 px-4 inline-block text-gray-500" href="/login">Login</a>
+                </div>
+                @endguest
             </header>
 
             <nav class="bg-white bottom-0 fixed flex flex-col overflow-scroll md:overflow-hidden md:h-screen left-0 md:top-0 md:w-24 pt-4 shadow w-full z-10">

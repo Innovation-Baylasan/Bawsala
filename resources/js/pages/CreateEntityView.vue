@@ -14,7 +14,7 @@
                 },
                 imageToCrop: null,
                 cropping: '',
-
+                loading: false,
             }
         },
         watch: {
@@ -40,6 +40,7 @@
                 this.$modal.hide('cropImageModal')
             },
             save(){
+                this.loading = true;
                 let data = new FormData();
 
                 for (let key in this.entity) {
@@ -47,11 +48,17 @@
                         data.append(key, this.entity[key]);
                     }
                 }
-                console.log(data.attrs);
                 axios.post('/admin/entities', data, {
                     headers: {'content-type': 'multipart/form-data'}
-                }).then(res => console.log(res))
-                    .catch(err => console.log(err))
+                }).then(res => {
+                    console.log(res)
+                    this.loading = false
+                    location.replace('/admin/entities')
+                })
+                    .catch(err => {
+                        this.loading = false
+                        console.log(err)
+                    })
             }
         },
     }

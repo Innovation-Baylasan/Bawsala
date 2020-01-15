@@ -77,11 +77,11 @@ class EntitiesController extends Controller
         if (isset($attributes['cover'])) {
             $entity->profile->setCover($attributes['cover']);
         }
-        if (request()->wantsJson()) {
-            return response('uploaded successfully', 200);
-        }
-        return redirect('/admin/entities')
-            ->with('success', 'Data added successfully.');
+
+
+        session()->flash('message', 'Entity created successfully');
+
+        return response('', 200);
 
     }
 

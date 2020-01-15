@@ -6203,7 +6203,8 @@ __webpack_require__.r(__webpack_exports__);
         longitude: ''
       },
       imageToCrop: null,
-      cropping: ''
+      cropping: '',
+      loading: false
     };
   },
   watch: {
@@ -6235,6 +6236,9 @@ __webpack_require__.r(__webpack_exports__);
       this.$modal.hide('cropImageModal');
     },
     save: function save() {
+      var _this2 = this;
+
+      this.loading = true;
       var data = new FormData();
 
       for (var key in this.entity) {
@@ -6243,15 +6247,17 @@ __webpack_require__.r(__webpack_exports__);
         }
       }
 
-      console.log(data.attrs);
       axios.post('/admin/entities', data, {
         headers: {
           'content-type': 'multipart/form-data'
         }
       }).then(function (res) {
-        return console.log(res);
+        console.log(res);
+        _this2.loading = false;
+        location.replace('/admin/entities');
       })["catch"](function (err) {
-        return console.log(err);
+        _this2.loading = false;
+        console.log(err);
       });
     }
   }
@@ -30046,7 +30052,7 @@ var render = function() {
           "div",
           {
             staticClass:
-              "rounded-full w-24 h-24 overflow-hidden shadow-sm p-2 bg-white -translate-y-50 -mb-5"
+              "rounded-full w-24 h-24 overflow-hidden shadow-sm bg-white -translate-y-50 -mb-5"
           },
           [_c("img", { attrs: { src: _vm.place.avatar, alt: "" } })]
         )

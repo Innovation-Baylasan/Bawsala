@@ -9,7 +9,7 @@
                 <img :src="place.cover" alt="">
                 <div class="bg-white absolute w-full h-12 cover-skewer"></div>
             </div>
-            <div class="rounded-full w-24 h-24 overflow-hidden shadow-sm p-2 bg-white -translate-y-50 -mb-5">
+            <div class="rounded-full w-24 h-24 overflow-hidden shadow-sm bg-white -translate-y-50 -mb-5">
                 <img :src="place.avatar" alt="">
             </div>
         </div>
