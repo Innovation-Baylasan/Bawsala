@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
@@ -12,7 +13,7 @@ use Spatie\MediaLibrary\Models\Media;
 class Event extends Model implements HasMedia
 {
 
-    use HasMediaTrait;
+    use HasMediaTrait, Searchable;
 
     /**
      * Determine fillable fields
@@ -20,7 +21,16 @@ class Event extends Model implements HasMedia
      * @var array
      */
     protected $fillable = [
-        'entity_id', 'title', 'description', 'due_date', 'cover'
+        'creator_id',
+        'entity_id',
+        'event_name',
+        'event_picture',
+        'registration_link',
+        'description',
+        'application_start_date',
+        'application_end_date',
+        'latitude',
+        'longitude'
     ];
 
     /**
@@ -43,6 +53,31 @@ class Event extends Model implements HasMedia
     {
         return $this->belongsTo(Entity::class);
     }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'creator_id');
+    }
+
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        return [
+            'id' => $this->id,
+            'event_name' => $this->event_name,
+            'description' => $this->description,
+            'location' => json_encode($this->location),
+        ];
+    }
+
 
     /**
      * @param $cover

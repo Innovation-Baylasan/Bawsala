@@ -21,23 +21,29 @@
 <table class="table-auto table" border="1">
     <tr>
         <th> id </th>
-        <th> cover </th>
-        <th> entity_id </th>
-        <th> Event Title </th>
+        <th> Creator </th>
+        <th> Entity </th>
+        <th> Event Name </th>
+        <th> Event Picture </th>
         <th> Description </th>
-        <th> Due Date </th>
+        <th> Application Start </th>
+        <th> Application End </th>
+        <th> Longitude </th>
+        <th> Latitude </th>
     </tr>
 
     @foreach($event as $row)
         <tr>
             <td> {{ $row->id  }} </td>
-            <td>
-                <img src="{{ $row->cover  }}" alt="">
-            </td>
+            <td> {{ $row->user->name  }} </td>
             <td> {{ $row->entity->name  }} </td>
-            <td> {{ $row->title  }} </td>
+            <td> {{ $row->event_name  }} </td>
+            <td> {{ $row->event_picture  }} </td>
             <td> {{ Str::limit($row->description,50)}} </td>
-            <td> {{ $row->due_date  }} </td>
+            <td> {{ $row->application_start_datetime  }} </td>
+            <td> {{ $row->application_end_datetime  }} </td>
+            <td> {{ $row->latitude  }} </td>
+            <td> {{ $row->longitude  }} </td>
             <td>
                 <a href="{{ route('events.show', $row->id)  }}">show</a> |
                 <a href="{{ route('events.edit', $row->id)  }}">edit</a> |

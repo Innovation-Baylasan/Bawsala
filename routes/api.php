@@ -37,6 +37,8 @@ Route::namespace('Api')->group(function () {
 
     Route::delete('/entities/{entity}/follow', 'EntitiesFollowingController@destroy');
 
+    Route::get('/events', 'EntitiesEventsController@index');
+
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
