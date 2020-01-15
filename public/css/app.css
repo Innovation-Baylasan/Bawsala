@@ -10012,6 +10012,13 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
           transform: translateX(-50%);
 }
 
+.error {
+  font-size: 0.875rem;
+  color: #f04238;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
 @media (min-width: 640px){
   .sm\:sr-only{
     position: absolute;

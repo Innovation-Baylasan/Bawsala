@@ -48,6 +48,7 @@
                             <div class="input">
                                 <input v-model="entity.name" type="text" id="name" name="name">
                             </div>
+                            <p class="error" v-if="entity.errors.name" v-text="entity.errors.name[0]"></p>
                         </div>
                         <div>
                             <label class="input-label" for="category">Select entity category</label>
@@ -59,6 +60,7 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <p class="error" v-if="entity.errors.category_id" v-text="entity.errors.category_id[0]"></p>
                         </div>
                     </div>
 
@@ -71,10 +73,17 @@
                               name="description"
                               rows="7"></textarea>
                     </div>
+                    <p class="error" v-if="entity.errors.description" v-text="entity.errors.description[0]"></p>
+
+                    <v-select multiple push-tags taggable :options="tags"
+                              v-model="entity.tags"
+                              :reduce="reduceTags"
+                              @search="getTags"></v-select>
 
                     <label class="input-label" for="location">Entity Location</label>
                     <location-picker class="w-full h-56 rounded mb-4" api-key="{{config('app.mapKey')}}"
                     @marker-placed="setLocation"></location-picker>
+                    <p class="error" v-if="entity.errors.longitude" v-text="entity.errors.longitude[0]"></p>
                     <input type="hidden" name="latitude" :value="entity.latitude">
                     <input type="hidden" name="longitude" :value="entity.longitude">
                     <button class="button is-green" type="submit">Create</button>

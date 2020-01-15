@@ -57,3 +57,7 @@ input[type='checkbox']:checked, input[type='radio']:checked + .select-label {
   left: 50%;
   transform: translateX(-50%);
 }
+
+.error{
+  @apply text-sm text-red-500 my-2;
+}

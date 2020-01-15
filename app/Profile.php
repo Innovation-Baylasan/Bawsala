@@ -74,7 +74,7 @@ class Profile extends Model implements HasMedia
      */
     public function getCoverAttribute()
     {
-        $cover = $this->getMedia('covers')->first();
+        $cover = $this->getMedia('covers')->last();
         return $cover ? $cover->getUrl('cover') : 'https://placeimg.com/640/360/tech';
     }
 
@@ -83,7 +83,7 @@ class Profile extends Model implements HasMedia
      */
     public function getAvatarAttribute()
     {
-        $avatar = $this->getMedia('avatars')->first();
+        $avatar = $this->getMedia('avatars')->last();
         return $avatar ? $avatar->getUrl('avatar') : 'https://www.gravatar.com/avatar/?s=200';
     }
 }

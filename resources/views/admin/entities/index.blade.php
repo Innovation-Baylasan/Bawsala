@@ -2,12 +2,6 @@
 
 @section('content')
     <div class="p-4">
-
-        @if($message = Session::get('success'))
-            <div class="alert is-green">
-                {{ $message  }}
-            </div>
-        @endif
         <a class="button text-center" href="{{ route('entities.create')  }}">Create Entity</a>
     </div>
     <table class="table-striped table">

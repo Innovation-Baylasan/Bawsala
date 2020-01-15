@@ -13,11 +13,11 @@
 
 Route::get('/', 'HomeController@index');
 
-Route::put('/entities/{entity}/follow', 'EntityFollowersController@update')->middleware('auth');
+Route::put('/entities/{entity}/follow', 'EntitiesFollowersController@update')->middleware('auth');
 
-Route::post('/entities/{entity}/rate', 'EntityRatingController@store')->middleware('auth');
+Route::post('/entities/{entity}/rate', 'EntitiesRatingController@store')->middleware('auth');
 
-Route::post('/entities/{entity}/reviews', 'EntityReviewsController@store')->middleware('auth');
+Route::post('/entities/{entity}/reviews', 'EntitiesReviewsController@store')->middleware('auth');
 
 Route::get('/@{entity}', 'ProfilesController@index')->middleware('auth');
 
@@ -30,13 +30,11 @@ Route::namespace('Admin')
             return view('admin.all');
         });
 
-        Route::resource('roles', 'RolesController');
         Route::resource('tags', 'TagsController');
         Route::resource('users', 'UsersController');
         Route::resource('entities', 'EntitiesController');
         Route::resource('categories', 'CategoriesController');
         Route::resource('profiles', 'ProfilesController');
-        Route::resource('entity_tags', 'EntityTagsController');
         Route::resource('events', 'EventsController');
     });
 

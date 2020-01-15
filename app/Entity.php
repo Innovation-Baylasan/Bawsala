@@ -27,7 +27,7 @@ class Entity extends Model implements Followable
      *
      * @var array
      */
-    protected $with = ['category'];
+    protected $with = ['category', 'tags'];
 
     /**
      * Determine what to eager load when retrieving activity
@@ -85,6 +85,28 @@ class Entity extends Model implements Followable
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
+    }
+
+    /**
+     * associate entity with a tag
+     *
+     */
+    public function tag($tag)
+    {
+        $tag = Tag::firstOrCreate(['name' => $tag]);
+        return $this->tags()->attach($tag);
+    }
+
+    /**
+     * associate entity with many tags
+     *
+     */
+    public function tagMany($tags)
+    {
+        foreach ($tags as $tag) {
+            $this->tag($tag);
+        }
+        return true;
     }
 
     /**

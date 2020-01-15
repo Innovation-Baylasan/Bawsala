@@ -1,6 +1,14 @@
 require('./bootstrap');
 import Vue from 'vue';
 import VModal from 'vue-js-modal'
+import 'vue-select/dist/vue-select.css';
+
+
+window.events = new Vue();
+
+window.flash = function (message, level = 'success') {
+    window.events.$emit('flash', {message, level});
+};
 
 Vue.use(VModal)
 
@@ -16,7 +24,10 @@ Vue.component('StarRating', require('./components/StarRating.vue').default)
 Vue.component('ImageCropper', require('./components/ImageCropper.vue').default)
 Vue.component('MapView', require('./pages/MapView.vue').default)
 Vue.component('CreateEntityView', require('./pages/CreateEntityView.vue').default)
+Vue.component('EditEntityView', require('./pages/EditEntityView.vue').default)
 Vue.component('RegisterView', require('./pages/RegisterView.vue').default)
+Vue.component("flash", require("./components/Flash.vue").default);
+Vue.component('v-select', require('vue-select').default)
 
 
 const app = new Vue({

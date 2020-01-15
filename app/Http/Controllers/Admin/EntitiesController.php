@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Category;
 use App\Entity;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EntityRequest;
 use App\Profile;
 use App\User;
 use Illuminate\Http\Request;
@@ -34,9 +35,8 @@ class EntitiesController extends Controller
     public function create()
     {
         $categories = Category::all();
-        $users = User::all();
 
-        return view('admin.entities.create', compact('categories', 'users'));
+        return view('admin.entities.create', compact('categories'));
 
     }
 
@@ -48,17 +48,9 @@ class EntitiesController extends Controller
      *
      *
      */
-    public function store()
+    public function store(EntityRequest $entityRequest)
     {
-        $attributes = request()->validate([
-            'category_id' => 'required',
-            'name' => 'required',
-            'avatar' => 'sometimes|required',
-            'cover' => 'sometimes|required',
-            'description' => 'required',
-            'latitude' => 'required',
-            'longitude' => 'required'
-        ]);
+        $attributes = $entityRequest->validated();
 
         $entity = auth()->user()
             ->entities()
@@ -70,6 +62,10 @@ class EntitiesController extends Controller
                 'longitude' => $attributes['longitude'],
             ]);
 
+
+        if ($entityRequest->has('tags')) {
+            $entity->tagMany($entityRequest->tags);
+        }
         if (isset($attributes['avatar'])) {
             $entity->profile->setAvatar($attributes['avatar']);
         };
@@ -79,9 +75,9 @@ class EntitiesController extends Controller
         }
 
 
-        session()->flash('message', 'Entity created successfully');
+        session()->flash('success', 'Entity created successfully');
 
-        return response('', 200);
+        return response(null, 200);
 
     }
 
@@ -124,23 +120,34 @@ class EntitiesController extends Controller
      * @param  Entity $entity
      *
      */
-    public function update(Request $request, Entity $entity)
+    public function update(EntityRequest $request, Entity $entity)
     {
-        $entity->update(
-            request()->validate([
-                'user_id' => 'required',
-                'category_id' => 'required',
-                'name' => 'required',
-                'avatar' => 'required',
-                'cover' => 'required',
-                'description' => 'required',
-                'latitude' => 'required',
-                'longitude' => 'required'
-            ])
-        );
+        $attributes = $request->validated();
 
-        return redirect('/admin/entities')
-            ->with('success', 'Data updated successfully.');
+        $entity->update([
+            'category_id' => $attributes['category_id'],
+            'name' => $attributes['name'],
+            'description' => $attributes['description'],
+            'latitude' => $attributes['latitude'],
+            'longitude' => $attributes['longitude'],
+        ]);
+        $entity->tags()->detach();
+
+        if ($request->has('tags')) {
+            $entity->tagMany($request->tags);
+        }
+
+        if (isset($attributes['avatar']) && ($entity->avatar != $attributes['avatar'])) {
+            $entity->profile->setAvatar($attributes['avatar']);
+        };
+
+        if (isset($attributes['cover']) && ($entity->cover != $attributes['cover'])) {
+            $entity->profile->setCover($attributes['cover']);
+        }
+
+        session()->flash('message', 'Entity updated successfully');
+
+        return response(null, 200);
     }
 
     /**
@@ -154,6 +161,6 @@ class EntitiesController extends Controller
     {
         $entity->delete();
 
-        return redirect('/admin/entities')->with('success', 'Data deleted successfully');
+        return redirect('/admin/entities')->with('message', 'Data deleted successfully');
     }
 }

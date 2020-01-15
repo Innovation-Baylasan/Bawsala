@@ -23,7 +23,7 @@
                         <img class="w-8 h-8 rounded-full mr-2" src="https://i.pravatar.cc/300" alt="">
                         <div>
                             <h3 class="text-black font-semibold text-sm" v-text="place.name"></h3>
-                            <start-rating></start-rating>
+                            <star-rating class="-mx-3"></star-rating>
                         </div>
                     </div>
                 </li>
