@@ -45,6 +45,9 @@
             <td> {{ $row->latitude  }} </td>
             <td> {{ $row->longitude  }} </td>
             <td>
+                <input type="checkbox" @if($row->confirm) checked @endif>
+            </td>
+            <td>
                 <a href="{{ route('events.show', $row->id)  }}">show</a> |
                 <a href="{{ route('events.edit', $row->id)  }}">edit</a> |
                 <form method="POST" action="{{ route('events.destroy', $row->id)  }}">

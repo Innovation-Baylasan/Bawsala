@@ -45,24 +45,29 @@ class EventsController extends Controller
     public function store(Request $request)
     {
 
-        $request->validate([
+        $attributes = $request->validate([
             'entity_id' => 'required',
-            'cover' => 'image|max:2048',
+            'event_picture' => 'required',
+            'event_name' => 'required',
+            'registration_link' => 'required',
+            'application_start_datetime'  => 'required|date',
+            'application_end_datetime'  => 'required|date',
             'title'  => 'required',
-            'description'  => 'required',
-            'due_date'  => 'required'
+            'latitude'  => 'required|number',
+            'longitude'  => 'required|number',
         ]);
 
-        $cover = $request->file('cover');
-        $new_cover_name = rand() . '.' . $cover->getClientOriginalExtension();
-        $cover->move(public_path('images').'/events/covers', $new_cover_name);
-
         $form_data = array(
-            'entity_id' => $request->entity_id,
-            'cover' => $new_cover_name,
-            'title' => $request->title,
-            'description' => $request->description,
-            'due_date' => $request->due_date
+            'creator_id' => auth()->user()->id,
+            'entity_id' => $attributes['entity_id'],
+            'event_picture' => $attributes['event_picture'],
+            'event_name' => $attributes['event_name'],
+            'registration_link' => $attributes['registration_link'],
+            'description' => $attributes['description'],
+            'application_start_datetime' => $attributes['application_start_datetime'],
+            'application_end_datetime' => $attributes['application_end_datetime'],
+            'latitude' => $attributes['latitude'],
+            'longitude' => $attributes['longitude'],
         );
 
         Event::create($form_data);
@@ -112,31 +117,29 @@ class EventsController extends Controller
      */
     public function update(Request $request, Event $event)
     {
-        $cover_name = $request->old_cover;
-        $cover = $request->file('cover');
-        if ($cover != '')
-        {
-            $request->validate([
-                'cover' => 'image|max:2048'
-            ]);
-            $cover_name = rand().'.'.$cover->getClientOriginalExtension();
-            $cover->move(public_path('images').'/events/covers', $cover_name);
-        }
-
-        $request->validate([
+        $attributes = $request->validate([
             'entity_id' => 'required',
-            'cover' => 'image|max:2048',
+            'event_picture' => 'required',
+            'event_name' => 'required',
+            'registration_link' => 'required',
+            'application_start_datetime'  => 'required|date',
+            'application_end_datetime'  => 'required|date',
             'title'  => 'required',
-            'description'  => 'required',
-            'due_date'  => 'required'
+            'latitude'  => 'required|number',
+            'longitude'  => 'required|number',
         ]);
 
         $form_data = array(
-            'entity_id' => $request->entity_id,
-            'cover' => $cover_name,
-            'title' => $request->title,
-            'description' => $request->description,
-            'due_date' => $request->due_date
+            'creator_id' => auth()->user()->id,
+            'entity_id' => $attributes['entity_id'],
+            'event_picture' => $attributes['event_picture'],
+            'event_name' => $attributes['event_name'],
+            'registration_link' => $attributes['registration_link'],
+            'description' => $attributes['description'],
+            'application_start_datetime' => $attributes['application_start_datetime'],
+            'application_end_datetime' => $attributes['application_end_datetime'],
+            'latitude' => $attributes['latitude'],
+            'longitude' => $attributes['longitude'],
         );
 
         $event->update($form_data);

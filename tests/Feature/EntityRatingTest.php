@@ -16,12 +16,6 @@ class EntityRatingTest extends TestCase
 
     use RefreshDatabase;
 
-    /**
-     * Setup function.
-     *
-     * @return void
-     */
-
     /** @test */
     function it_can_be_rated_by_logged_in_user()
     {

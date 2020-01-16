@@ -25,6 +25,7 @@ class CreateEventsTable extends Migration
             $table->timestamp('application_end_datetime')->nullable();
             $table->float('latitude', 10, 8);
             $table->float('longitude', 10, 8);
+            $table->boolean('confirm')->default(false);
             $table->timestamps();
         });
     }

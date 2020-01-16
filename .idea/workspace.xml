@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="I have added the following routes:&#10;&#10;/api/register&#10;/api/login&#10;/api/refresh&#10;/api/me">
+    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="-">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Event.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Event.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/EventsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/EventsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/EntityResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/EntityResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/EntitiesEventsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/EventsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_02_084210_create_events_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_02_084210_create_events_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/events/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/events/edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/events/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/events/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/events/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/events/show.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/AuthenticationTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/AuthenticationTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/EntityRatingTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/EntityRatingTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -269,14 +270,9 @@
       <workItem from="1578826803207" duration="237000" />
       <workItem from="1578847426199" duration="1571000" />
       <workItem from="1579076479861" duration="36000" />
-      <workItem from="1579076545433" duration="9244000" />
-    </task>
-    <task id="LOCAL-00013" summary="start to setup the gui">
-      <created>1575822211737</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1575822211737</updated>
+      <workItem from="1579076545433" duration="10834000" />
+      <workItem from="1579101013157" duration="62000" />
+      <workItem from="1579110029464" duration="11520000" />
     </task>
     <task id="LOCAL-00014" summary="categories component">
       <created>1575900505187</created>
@@ -614,7 +610,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578848934123</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="Event:&#10;- Added new fields to event migration&#10;- Adjusted Event Model to be searchable&#10;- Added Event Factory&#10;- Added Event Seeder&#10;- Added EntitiesEventsController&#10;- Added Event Resource&#10;- Added Event Api Routes">
+      <created>1579096429516</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1579096429517</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -636,7 +639,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="fix active link border issue" />
     <MESSAGE value="change from full rounded avatar to corners rounded one" />
     <MESSAGE value="starting admin panel layout styling" />
     <MESSAGE value="finishing layout" />
@@ -661,28 +663,49 @@
     <MESSAGE value="fixing test" />
     <MESSAGE value="token issue" />
     <MESSAGE value="configuration missmatch" />
-    <option name="LAST_COMMIT_MESSAGE" value="configuration missmatch" />
+    <MESSAGE value="Event:&#10;- Added new fields to event migration&#10;- Adjusted Event Model to be searchable&#10;- Added Event Factory&#10;- Added Event Seeder&#10;- Added EntitiesEventsController&#10;- Added Event Resource&#10;- Added Event Api Routes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Event:&#10;- Added new fields to event migration&#10;- Adjusted Event Model to be searchable&#10;- Added Event Factory&#10;- Added Event Seeder&#10;- Added EntitiesEventsController&#10;- Added Event Resource&#10;- Added Event Api Routes" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="413" y="118" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1579090879416">
+    <state x="305" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1579110619072">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="413" y="118" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1579090879416" />
-    <state x="378" y="186" key="com.intellij.ide.util.TipDialog" timestamp="1579076551094">
+    <state x="305" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1366.728@0.0.1366.728" timestamp="1579110619072" />
+    <state x="413" y="118" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1579110603591">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="378" y="186" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1579076551094" />
+    <state x="413" y="118" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1579110603591" />
+    <state x="338" y="0" key="CommitChangelistDialog2" timestamp="1579203797103">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="338" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1579203797103" />
+    <state x="129" y="54" key="DiffContextDialog" timestamp="1579203792315">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="129" y="54" key="DiffContextDialog/0.0.1366.728@0.0.1366.728" timestamp="1579203792315" />
+    <state x="474" y="74" key="RollbackChangesDialog" timestamp="1579096384478">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="474" y="74" key="RollbackChangesDialog/0.0.1366.728@0.0.1366.728" timestamp="1579096384478" />
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1579203756378">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1579203756378" />
+    <state x="378" y="186" key="com.intellij.ide.util.TipDialog" timestamp="1579110030347">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="378" y="186" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1579110030347" />
     <state x="348" y="154" key="git4idea.merge.GitPullDialog" timestamp="1579082872043">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="348" y="154" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1579082872043" />
-    <state x="339" y="157" key="run.anything.popup" timestamp="1579091714166">
+    <state x="339" y="157" width="672" height="677" key="run.anything.popup" timestamp="1579203566427">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="339" y="157" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1579091714166" />
-    <state x="339" y="6" width="672" height="676" key="search.everywhere.popup" timestamp="1579091340127">
+    <state x="339" y="157" width="672" height="677" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1579203566427" />
+    <state x="339" y="6" width="672" height="676" key="search.everywhere.popup" timestamp="1579203804041">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="339" y="6" width="672" height="676" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1579091340127" />
+    <state x="339" y="6" width="672" height="676" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1579203804041" />
   </component>
 </project>
