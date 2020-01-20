@@ -27,7 +27,8 @@
                 @endguest
             </header>
 
-            <nav class="bg-white bottom-0 fixed flex flex-col overflow-scroll md:overflow-hidden md:h-screen left-0 md:top-0 md:w-24 pt-4 shadow w-full z-10">
+            <nav v-if="showing == 'places'"
+                 class="bg-white bottom-0 fixed flex flex-col overflow-scroll md:overflow-hidden md:h-screen left-0 md:top-0 md:w-24 pt-4 shadow w-full z-10">
                 <div class="px-4 mb-6 hidden md:block">
                     <form action="/logout" method="post" id="logout-form">
                         @csrf
@@ -57,6 +58,18 @@
                 api-key="{{config('app.mapKey')}}"
                 ></google-map>
             </main>
+            <footer class="fixed bottom-0 w-full z-10 flex p-2 justify-center ">
+                <div class="bg-white shadow-sm rounded">
+                    <a href="#" @click.prevent="showing = 'places'"
+                       class="px-4 py-2 inline-block border-r"
+                       :class="[showing == 'places' ? 'text-black' : 'text-gray-500']"
+                    >Places</a>
+                    <a href="#" @click.prevent="showing = 'events'"
+                       class="px-4 py-2 inline-block"
+                       :class="[showing == 'events' ? 'text-black' : 'text-gray-500']"
+                    >Events</a>
+                </div>
+            </footer>
             @include('partials.modals.filteringModal')
         </div>
     </map-view>

@@ -64,6 +64,9 @@ class User extends Authenticatable implements Follower
     }
 
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function events()
     {
         return $this->hasMany(Event::class, 'creator_id');

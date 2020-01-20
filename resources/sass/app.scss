@@ -58,6 +58,37 @@ input[type='checkbox']:checked, input[type='radio']:checked + .select-label {
   transform: translateX(-50%);
 }
 
-.error{
+.error {
   @apply text-sm text-red-500 my-2;
+}
+
+.custom-pin {
+  height: 10px;
+  line-height: 1;
+  width: 22px;
+  padding: 6px 2px;
+  margin: 10px;
+  text-align: center;
+  cursor: pointer;
+  color: white;
+  background: black;
+  position: absolute;
+  border-radius: .5em;
+  font-size: 1em;
+  font-weight: bold;
+  transition: all 500ms;
+}
+
+.custom-pin::after {
+  content: '';
+  border-width: 1em .5em;
+  border-color: black transparent transparent transparent;
+  border-style: solid;
+  position: absolute;
+  top: 99%;
+  left: calc(50% - .5em);
+}
+
+.custom-pin:hover {
+  transform: scale(1.15);
 }

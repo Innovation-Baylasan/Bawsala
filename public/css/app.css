@@ -10066,6 +10066,39 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   margin-bottom: 0.5rem;
 }
 
+.custom-pin {
+  height: 10px;
+  line-height: 1;
+  width: 22px;
+  padding: 6px 2px;
+  margin: 10px;
+  text-align: center;
+  cursor: pointer;
+  color: white;
+  background: black;
+  position: absolute;
+  border-radius: 0.5em;
+  font-size: 1em;
+  font-weight: bold;
+  -webkit-transition: all 500ms;
+  transition: all 500ms;
+}
+
+.custom-pin::after {
+  content: "";
+  border-width: 1em 0.5em;
+  border-color: black transparent transparent transparent;
+  border-style: solid;
+  position: absolute;
+  top: 99%;
+  left: calc(50% - .5em);
+}
+
+.custom-pin:hover {
+  -webkit-transform: scale(1.15);
+          transform: scale(1.15);
+}
+
 @media (min-width: 640px){
   .sm\:sr-only{
     position: absolute;
