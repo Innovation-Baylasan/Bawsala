@@ -38,6 +38,10 @@ Route::namespace('Api')->group(function () {
     Route::delete('/entities/{entity}/follow', 'EntitiesFollowingController@destroy');
 
     Route::get('/tags', 'TagsController@index');
+    Route::get('/events', 'EventsController@index');
+
+    Route::middleware('auth:api')->post('/events/store', 'EventsController@store');
+
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

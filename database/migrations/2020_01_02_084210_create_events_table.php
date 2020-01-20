@@ -15,11 +15,17 @@ class CreateEventsTable extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('creator_id');
             $table->unsignedBigInteger('entity_id');
-            $table->string('title');
+            $table->string('event_picture');
+            $table->string('event_name');
+            $table->string('registration_link');
             $table->text('description');
-            $table->date('due_date');
-            $table->string('cover');
+            $table->timestamp('application_start_datetime')->nullable();
+            $table->timestamp('application_end_datetime')->nullable();
+            $table->float('latitude', 10, 8);
+            $table->float('longitude', 10, 8);
+            $table->boolean('confirm')->default(false);
             $table->timestamps();
         });
     }

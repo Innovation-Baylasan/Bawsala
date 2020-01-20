@@ -12,7 +12,7 @@
 <br>
 <br>
 
-<table class="table-auto table">
+<table class="table-auto table" border="1">
     <tr>
         <th>Field</th>
         <th>Value</th>
@@ -23,9 +23,9 @@
         <td>{{ $event->id  }}</td>
     </tr>
     <tr>
-        <td>Cover</td>
+        <td>Creator Name</td>
         <td>
-            <img src="{{ $event->cover  }}" alt="">
+            {{ $event->user->name  }}
         </td>
     </tr>
     <tr>
@@ -33,13 +33,45 @@
         <td>{{ $event->entity->name }}</td>
     </tr>
     <tr>
-        <td>Description</td>
-        <td> {{ $event->description,50 }} </td>
+        <td>Event Name</td>
+        <td> {{ $event->event_name }} </td>
     </tr>
     <tr>
-        <td>Due Date</td>
+        <td>Event Picture</td>
+        <td> {{ $event->event_picture }} </td>
+    </tr>
+    <tr>
+        <td>Description</td>
+        <td> {{ $event->description }} </td>
+    </tr>
+    <tr>
+        <td>Start Date Time</td>
         <td>
-            {{ $event->due_date  }}
+            {{ $event->application_start_datetime  }}
+        </td>
+    </tr>
+    <tr>
+        <td>End Date Time</td>
+        <td>
+            {{ $event->application_end_datetime  }}
+        </td>
+    </tr>
+    <tr>
+        <td>Latitude</td>
+        <td>
+            {{ $event->latitude  }}
+        </td>
+    </tr>
+    <tr>
+        <td>Longitude</td>
+        <td>
+            {{ $event->longitude  }}
+        </td>
+    </tr>
+    <tr>
+        <td>Confirm</td>
+        <td>
+            <input type="checkbox" @if($event->confirm) checked @endif>
         </td>
     </tr>
 
