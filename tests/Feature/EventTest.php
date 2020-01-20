@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Entity;
 use App\Event;
+use Carbon\Carbon;
 use Faker\Provider\DateTime;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -27,8 +28,8 @@ class EventTest extends TestCase
 
 //        $this->signIn();
         $event = factory(Event::class)->create();
-        $respose = $this->get('/api/events/');
-        $respose
+        $response = $this->get('/api/events/');
+        $response
             ->assertOk();
 
     }
@@ -40,22 +41,25 @@ class EventTest extends TestCase
 
         $this->withoutExceptionHandling();
 
-        $this->signIn();
+        $this->signIn(factory(User::class)->create(), 'api');
+
         $entity = factory(Entity::class)->create();
+
         $event = [
             'entity_id' => $entity->id,
             'event_picture' => "picture",
             'event_name' => "Event Name",
             'registration_link' => "my link",
             'description' => "This is a very great description",
-            'application_start_datetime' => DateTime::dateTime(),
-            'application_end_datetime' => DateTime::dateTime(),
+            'application_start_datetime' => Carbon::now(),
+            'application_end_datetime' => Carbon::now(),
             'latitude' => 3.5,
             'longitude' => 9.6
         ];
-        $respose = $this->post('/api/events/store/', $event);
-        $respose
-            ->assertStatus(201);
+
+        $response = $this->json('post', '/api/events/store/', $event);
+
+        $response->assertStatus(201);
 
     }
 

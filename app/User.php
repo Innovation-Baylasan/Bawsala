@@ -63,6 +63,12 @@ class User extends Authenticatable implements Follower
         return $this->hasMany(Entity::class);
     }
 
+
+    public function events()
+    {
+        return $this->hasMany(Event::class, 'creator_id');
+    }
+
     /**
      * check whether this user is admin or not
      *
@@ -70,7 +76,7 @@ class User extends Authenticatable implements Follower
      */
     public function isAdmin()
     {
-        return !! $this->role == 'admin';
+        return !!$this->role == 'admin';
     }
 
     /**

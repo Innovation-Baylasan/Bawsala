@@ -43,29 +43,18 @@ class EventsController extends Controller
     public function store(Request $request)
     {
         $attributes = $request->validate([
-            'entity_id' => ['required', 'string', 'max:255'],
-            'event_picture' => ['required', 'string', 'max:255'],
-            'event_name' => ['required', 'string', 'max:255'],
-            'registration_link' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string', 'max:255'],
-            'application_start_datetime' => ['required', 'string', 'max:255'],
-            'application_end_datetime' => ['required', 'string', 'max:255'],
-            'latitude' => ['required', 'string', 'max:255'],
-            'longitude' => ['required', 'string', 'max:255'],
+            'entity_id' => "required|max:255",
+            'event_picture' => "required|max:255",
+            'event_name' => "required|max:255",
+            'registration_link' => "required|max:255",
+            'description' => "required|max:255",
+            'application_start_datetime' => "required|max:255",
+            'application_end_datetime' => "required|max:255",
+            'latitude' => "required|max:255",
+            'longitude' => "required|max:255",
         ]);
 
-        $event = Event::create([
-            'creator_id' => auth()->user()->id,
-            'entity_id' => $attributes['entity_id'],
-            'event_picture' => $attributes['event_picture'],
-            'event_name' => $attributes['event_name'],
-            'registration_link' => $attributes['registration_link'],
-            'description' => $attributes['description'],
-            'application_start_datetime' => $attributes['application_start_datetime'],
-            'application_end_datetime' => $attributes['application_end_datetime'],
-            'latitude' => $attributes['latitude'],
-            'longitude' => $attributes['longitude'],
-        ]);
+        $event = auth()->user()->events()->create($attributes);
 
         return response([
             'message' => 'Event created successfully',
