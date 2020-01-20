@@ -53,8 +53,9 @@ class EventsController extends Controller
             'application_start_datetime'  => 'required|date',
             'application_end_datetime'  => 'required|date',
             'title'  => 'required',
-            'latitude'  => 'required|number',
-            'longitude'  => 'required|number',
+            'latitude'  => 'required|numeric',
+            'longitude'  => 'required|numeric',
+            'confirm'  => 'required|numeric',
         ]);
 
         $form_data = array(
@@ -68,6 +69,7 @@ class EventsController extends Controller
             'application_end_datetime' => $attributes['application_end_datetime'],
             'latitude' => $attributes['latitude'],
             'longitude' => $attributes['longitude'],
+            'confirm'  => $attributes['confirm'],
         );
 
         Event::create($form_data);
@@ -125,8 +127,9 @@ class EventsController extends Controller
             'application_start_datetime'  => 'required|date',
             'application_end_datetime'  => 'required|date',
             'title'  => 'required',
-            'latitude'  => 'required|number',
-            'longitude'  => 'required|number',
+            'latitude'  => 'required|numeric',
+            'longitude'  => 'required|numeric',
+            'confirm'  => 'required|numeric',
         ]);
 
         $form_data = array(
@@ -140,6 +143,7 @@ class EventsController extends Controller
             'application_end_datetime' => $attributes['application_end_datetime'],
             'latitude' => $attributes['latitude'],
             'longitude' => $attributes['longitude'],
+            'confirm'  => $attributes['confirm'],
         );
 
         $event->update($form_data);

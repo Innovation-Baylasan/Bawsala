@@ -36,7 +36,7 @@
         <tr>
             <td> {{ $row->id  }} </td>
             <td> {{ $row->user->name  }} </td>
-            <td> {{ $row->entity->name  }} </td>
+            <td> {{ $row->entity->name  }} </td>edit
             <td> {{ $row->event_name  }} </td>
             <td> {{ $row->event_picture  }} </td>
             <td> {{ Str::limit($row->description,50)}} </td>
