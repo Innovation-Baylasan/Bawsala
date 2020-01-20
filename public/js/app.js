@@ -5823,24 +5823,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['src', 'cropRatio'],
   data: function data() {
     return {
+      loading: false,
       cropper: null
     };
   },
   methods: {
     crop: function crop() {
-      this.$emit('cropped', {
+      this.loading = true;
+      console.log(this.loading);
+      this.$emit('cropped', this.setData());
+    },
+    setData: function setData() {
+      return {
         cropper: this.cropper,
         croppedCanvas: this.cropper.getCroppedCanvas({
           maxWidth: 4096,
           maxHeight: 4096
         })
-      });
+      };
     }
   },
   mounted: function mounted() {
@@ -5862,6 +5871,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -6281,11 +6292,6 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
       loading: false
     };
   },
-  watch: {
-    imageToCrop: function imageToCrop() {
-      this.$modal.show('cropImageModal');
-    }
-  },
   methods: {
     getTags: function getTags() {
       var _this = this;
@@ -6315,13 +6321,15 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
       var reader = new FileReader();
 
       reader.onload = function (e) {
-        return _this2.imageToCrop = e.target.result;
+        _this2.imageToCrop = e.target.result;
+
+        _this2.$modal.show('cropImageModal');
       };
 
       reader.readAsDataURL(event.target.files[0]);
     },
     setImage: function setImage(event) {
-      this.entity[this.cropping] = event.croppedCanvas.toDataURL();
+      this.entity[this.cropping] = event.croppedCanvas.toDataURL('image/jpeg', 0.5);
       this.$modal.hide('cropImageModal');
     },
     reduceTags: function reduceTags(option) {
@@ -6335,7 +6343,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
       var endpoint = '/admin/entities';
       this.loading = true;
       this.entity.post(endpoint).then(function (res) {
-        return location.replace(endpoint);
+        location.replace(endpoint);
       });
     }
   },
@@ -10244,7 +10252,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".fade {\n  -webkit-transition: all .3s ease-in;\n  transition: all .3s ease-in;\n}\n.svg-red path {\n  fill: #f04238;\n}\n", ""]);
+exports.push([module.i, ".fade {\n  -webkit-transition: all .1s ease-in;\n  transition: all .1s ease-in;\n}\n.svg-red path {\n  fill: #f04238;\n}\n", ""]);
 
 // exports
 
@@ -30064,9 +30072,15 @@ var render = function() {
     _c("img", { ref: "image", attrs: { src: _vm.src, alt: "" } }),
     _vm._v(" "),
     _c("div", { staticClass: "flex justify-end p-2" }, [
-      _c("button", { staticClass: "button", on: { click: _vm.crop } }, [
-        _vm._v("Apply")
-      ])
+      _c(
+        "button",
+        {
+          staticClass: "button",
+          class: { "is-loading": _vm.loading },
+          on: { click: _vm.crop }
+        },
+        [_vm._v("Apply\n        ")]
+      )
     ])
   ])
 }
@@ -30093,15 +30107,19 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", {}, [
-    _c("div", {
-      staticClass:
-        "h-full w-full absolute cursor-pointer opacity-0 bg-black hover:opacity-50",
-      on: {
-        click: function($event) {
-          return _vm.$refs.file.click()
+    _c(
+      "div",
+      {
+        staticClass:
+          "h-full w-full absolute fade cursor-pointer opacity-0 bg-black hover:opacity-50 flex items-center justify-center",
+        on: {
+          click: function($event) {
+            return _vm.$refs.file.click()
+          }
         }
-      }
-    }),
+      },
+      [_c("img", { attrs: { src: "/svg/cam-icon.svg", alt: "" } })]
+    ),
     _vm._v(" "),
     _c("img", {
       staticClass: "h-full w-full inline-block",

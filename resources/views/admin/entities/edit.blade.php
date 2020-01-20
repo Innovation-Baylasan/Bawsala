@@ -86,7 +86,7 @@
                     <p class="error" v-if="entity.errors.longitude" v-text="entity.errors.longitude[0]"></p>
                     <input type="hidden" name="latitude" :value="entity.latitude">
                     <input type="hidden" name="longitude" :value="entity.longitude">
-                    <button class="button is-green" type="submit">Create</button>
+                    <button class="button is-green" :class="{'is-loading' : loading}"  type="submit">update</button>
 
                 </div>
             </form>

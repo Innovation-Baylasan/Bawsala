@@ -20,11 +20,6 @@
                 loading: false,
             }
         },
-        watch: {
-            imageToCrop(){
-                this.$modal.show('cropImageModal')
-            }
-        },
 
         methods: {
             getTags(query = null){
@@ -45,11 +40,14 @@
                 this.cropRatio = cropRatio
                 this.cropping = cropping
                 let reader = new FileReader();
-                reader.onload = (e) => this.imageToCrop = e.target.result
+                reader.onload = (e) => {
+                    this.imageToCrop = e.target.result
+                    this.$modal.show('cropImageModal')
+                }
                 reader.readAsDataURL(event.target.files[0])
             },
             setImage(event){
-                this.entity[this.cropping] = event.croppedCanvas.toDataURL();
+                this.entity[this.cropping] = event.croppedCanvas.toDataURL('image/jpeg', 0.5);
                 this.$modal.hide('cropImageModal')
             },
             reduceTags(option){
@@ -61,7 +59,9 @@
             save(){
                 let endpoint = '/admin/entities'
                 this.loading = true;
-                this.entity.post(endpoint).then(res => location.replace(endpoint))
+                this.entity.post(endpoint).then(res => {
+                    location.replace(endpoint)
+                })
             }
         },
 

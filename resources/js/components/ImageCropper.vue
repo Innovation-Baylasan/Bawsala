@@ -2,7 +2,10 @@
     <div>
         <img ref="image" :src="src" alt="">
         <div class="flex justify-end p-2">
-            <button @click="crop" class="button">Apply</button>
+            <button :class="{'is-loading' : loading}"
+                    @click="crop"
+                    class="button">Apply
+            </button>
         </div>
     </div>
 </template>
@@ -13,15 +16,21 @@
         props: ['src', 'cropRatio'],
         data(){
             return {
+                loading: false,
                 cropper: null,
             }
         },
         methods: {
             crop(){
-                this.$emit('cropped', {
+                this.loading = true
+                console.log(this.loading)
+                this.$emit('cropped', this.setData())
+            },
+            setData(){
+                return {
                     cropper: this.cropper,
                     croppedCanvas: this.cropper.getCroppedCanvas({maxWidth: 4096, maxHeight: 4096})
-                })
+                }
             }
         },
         mounted(){

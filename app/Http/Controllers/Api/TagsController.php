@@ -17,7 +17,7 @@ class TagsController extends Controller
         }
 
         return response([
-            'data' => $tags->take(5)->get()
+            'data' => $tags->take(request()->take ?: 5)->get()
         ], 200);
     }
 }

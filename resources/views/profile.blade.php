@@ -16,7 +16,7 @@
                     <div class="bg-white absolute w-full h-12 cover-skewer"></div>
                 </div>
                 <div class="rounded-full w-40 h-40 overflow-hidden shadow-sm bg-white -translate-y-50 -mb-16">
-                    <img src="{{$entity->avatar}}" alt="">
+                    <img class="w-full h-full" src="{{$entity->avatar}}" alt="">
                 </div>
             </header>
             <div class="px-10 flex flex-col items-center">
