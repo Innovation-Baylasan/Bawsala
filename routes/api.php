@@ -31,6 +31,8 @@ Route::namespace('Api')->group(function () {
 
     Route::put('/entities/{entity}/rating', 'EntitiesRatingController@update');
 
+    Route::get('/entities/{entity}/reviews', 'EntitiesReviewsController@index');
+
     Route::post('/entities/{entity}/review', 'EntitiesReviewsController@store');
 
     Route::post('/entities/{entity}/follow', 'EntitiesFollowingController@store');

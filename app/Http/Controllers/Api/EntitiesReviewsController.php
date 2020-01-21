@@ -16,7 +16,7 @@ class EntitiesReviewsController extends Controller
 
     public function index(Entity $entity)
     {
-        return response($entity->reviews, 200);
+        return response($entity->reviews()->lateast()->get(), 200);
     }
 
     /**
@@ -26,9 +26,9 @@ class EntitiesReviewsController extends Controller
      */
     public function store(Request $request, Entity $entity)
     {
-        $entity->review($request->review);
+        $review = $entity->review($request->review);
 
-        return response($entity, 200);
+        return response($review, 200);
     }
 
     /**
