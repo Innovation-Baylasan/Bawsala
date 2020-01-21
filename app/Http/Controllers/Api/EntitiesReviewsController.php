@@ -26,9 +26,9 @@ class EntitiesReviewsController extends Controller
      */
     public function store(Request $request, Entity $entity)
     {
-        $entity->review($request->review);
+        $review = $entity->review($request->review);
 
-        return response($entity, 200);
+        return response($review, 200);
     }
 
     /**

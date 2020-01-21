@@ -21,7 +21,7 @@ trait Reviewable
 
     public function review($body, $user = null)
     {
-        $this->reviews()->create([
+        return $this->reviews()->create([
             'user_id' => $user ? $user->id : auth()->id(),
             'review' => $body,
         ]);
