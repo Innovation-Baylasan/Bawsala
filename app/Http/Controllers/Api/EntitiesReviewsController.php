@@ -16,7 +16,7 @@ class EntitiesReviewsController extends Controller
 
     public function index(Entity $entity)
     {
-        return response($entity->reviews, 200);
+        return response($entity->reviews()->lateast()->get(), 200);
     }
 
     /**

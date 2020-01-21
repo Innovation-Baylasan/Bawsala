@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="map clustering">
+    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/EntitiesReviewsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/EntitiesReviewsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/traits/Reviewable.php" afterPath="$PROJECT_DIR$/app/traits/Reviewable.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -87,8 +86,8 @@
       <file leaf-file-name="EntitiesReviewsController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/EntitiesReviewsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="30" column="31" lean-forward="true" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
+            <state relative-caret-position="260">
+              <caret line="22" column="30" lean-forward="true" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -566,14 +565,7 @@
       <workItem from="1579129751818" duration="134000" />
       <workItem from="1579450835930" duration="7726000" />
       <workItem from="1579533550732" duration="1582000" />
-      <workItem from="1579612080100" duration="1230000" />
-    </task>
-    <task id="LOCAL-00025" summary="change from full rounded avatar to corners rounded one">
-      <created>1576529075096</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1576529075096</updated>
+      <workItem from="1579612080100" duration="1276000" />
     </task>
     <task id="LOCAL-00026" summary="starting admin panel layout styling">
       <created>1576761375140</created>
@@ -911,11 +903,18 @@
       <option name="project" value="LOCAL" />
       <updated>1579613245018</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="reviews api cleaning">
+      <created>1579613319364</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1579613319365</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="268421000" />
+    <option name="totallyTimeSpent" value="268467000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="723" extended-state="6" />
@@ -977,7 +976,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="login, registration , api fix , entities are now from sudan only" />
     <MESSAGE value="load map using vue , adding alert component , better error validation" />
     <MESSAGE value="searchable entities." />
     <MESSAGE value="api" />
@@ -1002,7 +1000,8 @@
     <MESSAGE value="merge" />
     <MESSAGE value="edit testing" />
     <MESSAGE value="map clustering" />
-    <option name="LAST_COMMIT_MESSAGE" value="map clustering" />
+    <MESSAGE value="reviews api cleaning" />
+    <option name="LAST_COMMIT_MESSAGE" value="reviews api cleaning" />
   </component>
   <component name="WindowStateProjectService">
     <state x="348" y="154" key="git4idea.merge.GitPullDialog" />
@@ -1397,8 +1396,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/EntitiesReviewsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="30" column="31" lean-forward="true" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
+        <state relative-caret-position="260">
+          <caret line="22" column="30" lean-forward="true" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
           <folding />
         </state>
       </provider>
