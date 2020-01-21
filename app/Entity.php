@@ -27,14 +27,15 @@ class Entity extends Model implements Followable
      *
      * @var array
      */
-    protected $with = ['category'];
+    protected $with = ['category', 'tags', 'reviews'];
 
     /**
      * Determine what to eager load when retrieving activity
      *
      * @var array
      */
-    protected $appends = ['cover', 'avatar'];
+    protected $appends = ['cover', 'avatar', 'followers_count'];
+    protected $hidden = ['profile', 'profile_id', 'followers'];
 
 
     protected static function boot()
@@ -71,12 +72,60 @@ class Entity extends Model implements Followable
     }
 
     /**
+     *
+     */
+    public function parent()
+    {
+        return $this->belongsTo(static::class, 'parent_id');
+    }
+
+
+    /**
+     *
+     */
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
+    /**
+     * associate entity with a tag
+     *
+     */
+    public function tag($tag)
+    {
+        $tag = Tag::firstOrCreate(['name' => $tag]);
+        return $this->tags()->attach($tag);
+    }
+
+    /**
+     * associate entity with many tags
+     *
+     */
+    public function tagMany($tags)
+    {
+        foreach ($tags as $tag) {
+            $this->tag($tag);
+        }
+        return true;
+    }
+
+    /**
      * @return mixed
      *
      */
     public function getAvatarAttribute()
     {
         return $this->profile->avatar;
+    }
+
+    /**
+     * @return mixed
+     *
+     */
+    public function getFollowersCountAttribute()
+    {
+        return $this->followers(User::class)->count();
     }
 
     /**

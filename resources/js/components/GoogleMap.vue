@@ -4,6 +4,7 @@
 
 <script>
     import GoogleMapsApiLoader from 'google-maps-api-loader'
+    import MapClusterer from '@google/markerclusterer'
 
     export default {
         props: {
@@ -13,6 +14,7 @@
                     return {};
                 }
             },
+
             places: Array,
             apiKey: String,
             center: Object,
@@ -22,24 +24,16 @@
             return {
                 google: null,
                 map: null,
+                clusterer: null,
                 markers: [],
             }
         },
-
-        mounted() {
-            GoogleMapsApiLoader({
-                apiKey: this.apiKey
-            }).then((response) => {
-                this.google = response
-                this.initializeMap()
-                this.centeringMap()
-                this.setMarkers()
-            })
-        },
         watch: {
             places(){
-                this.removeMarkers()
-                this.setMarkers()
+                if (this.google) {
+                    this.removeMarkers()
+                    this.setMarkers()
+                }
             },
             center(newCenter){
                 this.centeringMap()
@@ -56,6 +50,8 @@
                     }
                 )
                 this.map.addListener('center_changed', () => this.$emit('centerChanged', this.map.center))
+                this.clusterer = new MapClusterer(this.map, this.markers)
+
             },
             addMarker(place) {
                 if (this.google) {
@@ -63,8 +59,8 @@
                         position: new this.google.maps.LatLng(place.location.lat, place.location.long),
                         map: this.map,
                         icon: {
-                            url: `/svg/markers/${place.category.name}-marker-icon.svg`,
-                            scaledSize: new google.maps.Size(50, 50),
+                            url: (place.category ? `/svg/markers/${place.category.name}-marker-icon.svg` : 'https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi.png '),
+                            scaledSize: new google.maps.Size(35, 35),
                             origin: new google.maps.Point(0, 0),
                             anchor: new google.maps.Point(0, 0)
                         }
@@ -72,6 +68,7 @@
                     this.google.maps.event.addListener(marker, 'click', () => {
                         this.$emit('marker-clicked', {place, marker})
                     });
+                    this.clusterer.addMarker(marker)
                     this.markers.push(marker)
                 }
             },
@@ -83,6 +80,7 @@
             removeMarkers(){
                 this.markers.forEach(marker => {
                     marker.setMap(null)
+                    this.clusterer.removeMarker(marker)
                     this.markers.slice(this.markers.indexOf(marker), 1);
                 })
             },
@@ -91,6 +89,17 @@
                     this.map.panTo(new this.google.maps.LatLng(this.center.latitude, this.center.longitude));
                 }
             },
-        }
+        },
+        created() {
+            GoogleMapsApiLoader({
+                apiKey: this.apiKey
+            }).then((response) => {
+                window.google = response
+                this.google = response
+                this.initializeMap()
+                this.centeringMap()
+                this.setMarkers()
+            })
+        },
     }
 </script>

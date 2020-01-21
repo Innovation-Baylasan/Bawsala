@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Category;
 use App\Entity;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EntityRequest;
 use App\Profile;
 use App\User;
 use Illuminate\Http\Request;
@@ -20,14 +21,9 @@ class EntitiesController extends Controller
      */
     public function index()
     {
-
         $entity = Entity::latest()->paginate(10);
 
-        // dd($data);
-
-        return view('admin.entities.index', compact('entity'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
-
+        return view('admin.entities.index', compact('entity'));
     }
 
     /**
@@ -38,11 +34,9 @@ class EntitiesController extends Controller
      */
     public function create()
     {
-
         $categories = Category::all();
-        $users = User::all();
 
-        return view('admin.entities.create', compact('categories', 'users'));
+        return view('admin.entities.create', compact('categories'));
 
     }
 
@@ -50,32 +44,40 @@ class EntitiesController extends Controller
      * Store a newly created entity in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      *
      *
      */
-    public function store()
+    public function store(EntityRequest $entityRequest)
     {
-        $attributes = request()->validate([
-            'user_id' => 'required',
-            'category_id' => 'required',
-            'name' => 'required',
-            'avatar' => 'required',
-            'cover' => 'required',
-            'description' => 'required',
-            'latitude' => 'required',
-            'longitude' => 'required'
-        ]);
+        $attributes = $entityRequest->validated();
+
+        $entity = auth()->user()
+            ->entities()
+            ->create([
+                'category_id' => $attributes['category_id'],
+                'name' => $attributes['name'],
+                'description' => $attributes['description'],
+                'latitude' => $attributes['latitude'],
+                'longitude' => $attributes['longitude'],
+            ]);
 
 
-        $entity = Entity::create($attributes);
+        if ($entityRequest->has('tags')) {
+            $entity->tagMany($entityRequest->tags);
+        }
+        if (isset($attributes['avatar'])) {
+            $entity->profile->setAvatar($attributes['avatar']);
+        };
 
-        $entity->profile
-            ->setAvatar($attributes['avatar'])
-            ->setCover($attributes['cover']);
+        if (isset($attributes['cover'])) {
+            $entity->profile->setCover($attributes['cover']);
+        }
 
-        return redirect('/admin/entities')
-            ->with('success', 'Data added successfully.');
+
+        session()->flash('success', 'Entity created successfully');
+
+        return response(null, 200);
 
     }
 
@@ -114,48 +116,51 @@ class EntitiesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      * @param  Entity $entity
      *
      */
-    public function update(Request $request, Entity $entity)
+    public function update(EntityRequest $request, Entity $entity)
     {
-        $request->validate([
-            'user_id' => 'required',
-            'category_id' => 'required',
-            'name' => 'required',
-            'description' => 'required',
-            'location' => 'required'
+        $attributes = $request->validated();
+
+        $entity->update([
+            'category_id' => $attributes['category_id'],
+            'name' => $attributes['name'],
+            'description' => $attributes['description'],
+            'latitude' => $attributes['latitude'],
+            'longitude' => $attributes['longitude'],
         ]);
+        $entity->tags()->detach();
 
-        $form_data = array(
-            'user_id' => $request->user_id,
-            'category_id' => $request->category_id,
-            'name' => $request->name,
-            'description' => $request->description,
-            'location' => $request->location
-        );
+        if ($request->has('tags')) {
+            $entity->tagMany($request->tags);
+        }
 
-        $entity->update($form_data);
+        if (isset($attributes['avatar']) && ($entity->avatar != $attributes['avatar'])) {
+            $entity->profile->setAvatar($attributes['avatar']);
+        };
 
-        return redirect('/admin/entities')
-            ->with('success', 'Data updated successfully.');
+        if (isset($attributes['cover']) && ($entity->cover != $attributes['cover'])) {
+            $entity->profile->setCover($attributes['cover']);
+        }
+
+        session()->flash('message', 'Entity updated successfully');
+
+        return response(null, 200);
     }
 
     /**
      * Remove the specified entity from storage.
      *
      * @param Entity $entity
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      *
-     * @throws \Exception
      */
     public function destroy(Entity $entity)
     {
-
         $entity->delete();
 
-        return redirect('/admin/entities')
-            ->with('success', 'Data deleted successfully');
+        return redirect('/admin/entities')->with('message', 'Data deleted successfully');
     }
 }

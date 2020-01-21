@@ -1,5 +1,7 @@
 <template>
-    <div class="w-full h-screen"></div>
+    <div class="overflow-hidden">
+        <div class="h-full w-full" ref="map"></div>
+    </div>
 </template>
 
 <script>
@@ -44,7 +46,7 @@
 
         methods: {
             initializeMap() {
-                this.map = new this.google.maps.Map(this.$el,
+                this.map = new this.google.maps.Map(this.$refs.map,
                     {
                         center: {lat: 15.5007, lng: 32.5599},
                         zoom: 12,
@@ -54,6 +56,15 @@
                 )
                 this.map.addListener('click', (event) => {
                     this.placeMarker(event.latLng);
+                    let inputEvent = new Event('change', {
+                        bubbles: true,
+                        cancelable: true,
+                    });
+
+                    this.$emit('input', {
+                        latitude: event.latLng.lat(),
+                        longitude: event.latLng.lng()
+                    })
                 });
                 this.map.addListener('center_changed', () => this.$emit('centerChanged', this.map.center))
             },

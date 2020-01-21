@@ -1,23 +1,31 @@
 <script>
     import Form from '../Form'
     export default{
+        props: ['initialEntity'],
         data(){
             return {
                 cropRatio: 1,
-                entity: new Form({
-                    cover: '',
-                    avatar: '',
-                    description: '',
-                    name: '',
-                    category_id: '',
-                    latitude: '',
-                    longitude: '',
-                    tags: [],
-                }),
+                entity: new Form(
+                    {
+                        cover: '',
+                        avatar: '',
+                        description: '',
+                        name: '',
+                        category_id: '',
+                        latitude: '',
+                        longitude: '',
+                        tags: [],
+                    }
+                ),
                 tags: [],
                 imageToCrop: null,
                 cropping: '',
                 loading: false,
+            }
+        },
+        watch: {
+            imageToCrop(){
+                this.$modal.show('cropImageModal')
             }
         },
 
@@ -40,14 +48,11 @@
                 this.cropRatio = cropRatio
                 this.cropping = cropping
                 let reader = new FileReader();
-                reader.onload = (e) => {
-                    this.imageToCrop = e.target.result
-                    this.$modal.show('cropImageModal')
-                }
+                reader.onload = (e) => this.imageToCrop = e.target.result
                 reader.readAsDataURL(event.target.files[0])
             },
             setImage(event){
-                this.entity[this.cropping] = event.croppedCanvas.toDataURL('image/jpeg', 0.5);
+                this.entity[this.cropping] = event.croppedCanvas.toDataURL();
                 this.$modal.hide('cropImageModal')
             },
             reduceTags(option){
@@ -57,16 +62,21 @@
                 return option
             },
             save(){
-                let endpoint = '/admin/entities'
                 this.loading = true;
-                this.entity.post(endpoint).then(res => {
-                    location.replace(endpoint)
-                })
+                let endpoint = '/admin/entities';
+                this.entity.put(endpoint + '/' + this.entity.id).then(res => location.replace(endpoint))
             }
         },
 
         mounted(){
+            this.entity = new Form(this.initialEntity)
             this.getTags()
+            this.entity.tags.map((tag) => {
+                if (typeof tag == 'object') {
+                    this.entity.tags[this.entity.tags.indexOf(tag)] = tag.label
+                }
+                return tag
+            })
         }
     }
 </script>

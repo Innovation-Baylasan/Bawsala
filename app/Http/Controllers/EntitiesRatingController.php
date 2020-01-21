@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Entity;
 use Illuminate\Http\Request;
 
-class EntityRatingController extends Controller
+class EntitiesRatingController extends Controller
 {
     public function store(Entity $entity)
     {

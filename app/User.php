@@ -23,14 +23,8 @@ class User extends Authenticatable implements Follower
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role_id', 'username'
+        'name', 'email', 'password', 'username'
     ];
-    /**
-     * The relations to append when return this user
-     *
-     * @var array
-     */
-    protected $with = ['role'];
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -62,11 +56,20 @@ class User extends Authenticatable implements Follower
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function role()
+    public function entities()
     {
-        return $this->belongsTo(Role::class);
+        return $this->hasMany(Entity::class);
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function events()
+    {
+        return $this->hasMany(Event::class, 'creator_id');
     }
 
     /**

@@ -3767,6 +3767,1290 @@ var Glide$1 = function (_Core) {
 
 /***/ }),
 
+/***/ "./node_modules/@google/markerclusterer/dist/markerclusterer.esm.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/@google/markerclusterer/dist/markerclusterer.esm.js ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/**
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/**
+ * @name MarkerClusterer for Google Maps v3
+ * @author Luke Mahe
+ * @fileoverview
+ * The library creates and manages per-zoom-level clusters for large amounts of
+ * markers.
+ */
+
+/**
+ * A Marker Clusterer that clusters markers.
+ *
+ * @param {google.maps.Map} map The Google map to attach to.
+ * @param {Array.<google.maps.Marker>=} opt_markers Optional markers to add to
+ *   the cluster.
+ * @param {Object=} opt_options support the following options:
+ *     'gridSize': (number) The grid size of a cluster in pixels.
+ *     'maxZoom': (number) The maximum zoom level that a marker can be part of a
+ *                cluster.
+ *     'zoomOnClick': (boolean) Whether the default behaviour of clicking on a
+ *                    cluster is to zoom into it.
+ *     'imagePath': (string) The base URL where the images representing
+ *                  clusters will be found. The full URL will be:
+ *                  {imagePath}[1-5].{imageExtension}
+ *                  Default: '../images/m'.
+ *     'imageExtension': (string) The suffix for images URL representing
+ *                       clusters will be found. See _imagePath_ for details.
+ *                       Default: 'png'.
+ *     'averageCenter': (boolean) Whether the center of each cluster should be
+ *                      the average of all markers in the cluster.
+ *     'minimumClusterSize': (number) The minimum number of markers to be in a
+ *                           cluster before the markers are hidden and a count
+ *                           is shown.
+ *     'zIndex': (number) the z-index of a cluster.
+ *               Default: google.maps.Marker.MAX_ZINDEX + 1
+ *     'styles': (Array.<Object>) An Array of single object that has style properties for all cluster:
+ *       'url': (string) The image url.
+ *       'height': (number) The image height.
+ *       'width': (number) The image width.
+ *       'anchor': (Array) The anchor position of the label text.
+ *       'textColor': (string) The text color.
+ *       'textSize': (number) The text size.
+ *       'backgroundPosition': (string) The position of the backgound x, y.
+ * @constructor
+ * @extends google.maps.OverlayView
+ */
+
+class MarkerClusterer {
+  constructor(map, opt_markers, opt_options) {
+    this.extend(MarkerClusterer, google.maps.OverlayView);
+    this.map_ = map;
+
+    /**
+     * The marker cluster image path.
+     *
+     * @type {string}
+     * @private
+     */
+    this.MARKER_CLUSTER_IMAGE_PATH_ = "../images/m";
+
+    /**
+     * The marker cluster image path.
+     *
+     * @type {string}
+     * @private
+     */
+    this.MARKER_CLUSTER_IMAGE_EXTENSION_ = "png";
+    /**
+     * @type {Array.<google.maps.Marker>}
+     * @private
+     */
+    this.markers_ = [];
+
+    /**
+     *  @type {Array.<Cluster>}
+     */
+    this.clusters_ = [];
+
+    this.sizes = [53, 56, 66, 78, 90];
+
+    /**
+     * @type {Array.<Object>}
+     * @private
+     */
+    this.styles_ = [];
+
+    /**
+     * @type {boolean}
+     * @private
+     */
+    this.ready_ = false;
+
+    var options = opt_options || {};
+
+    /**
+     * @type {number}
+     */
+    this.zIndex_ = options["zIndex"] || google.maps.Marker.MAX_ZINDEX + 1;
+
+    /**
+     * @type {number}
+     * @private
+     */
+    this.gridSize_ = options["gridSize"] || 60;
+
+    /**
+     * @private
+     */
+    this.minClusterSize_ = options["minimumClusterSize"] || 2;
+
+    /**
+     * @type {?number}
+     * @private
+     */
+    this.maxZoom_ = options["maxZoom"] || null;
+
+    this.styles_ = options["styles"] || [];
+
+    /**
+     * @type {string}
+     * @private
+     */
+    this.imagePath_ = options["imagePath"] || this.MARKER_CLUSTER_IMAGE_PATH_;
+
+    /**
+     * @type {string}
+     * @private
+     */
+    this.imageExtension_ =
+      options["imageExtension"] || this.MARKER_CLUSTER_IMAGE_EXTENSION_;
+
+    /**
+     * @type {boolean}
+     * @private
+     */
+    this.zoomOnClick_ = true;
+
+    if (options["zoomOnClick"] != undefined) {
+      this.zoomOnClick_ = options["zoomOnClick"];
+    }
+
+    /**
+     * @type {boolean}
+     * @private
+     */
+    this.averageCenter_ = false;
+
+    if (options["averageCenter"] != undefined) {
+      this.averageCenter_ = options["averageCenter"];
+    }
+
+    this.setupStyles_();
+
+    this.setMap(map);
+
+    /**
+     * @type {number}
+     * @private
+     */
+    this.prevZoom_ = this.map_.getZoom();
+
+    // Add the map event listeners
+    var that = this;
+    google.maps.event.addListener(this.map_, "zoom_changed", function() {
+      // Determines map type and prevent illegal zoom levels
+      var zoom = that.map_.getZoom();
+      var minZoom = that.map_.minZoom || 0;
+      var maxZoom = Math.min(
+        that.map_.maxZoom || 100,
+        that.map_.mapTypes[that.map_.getMapTypeId()].maxZoom
+      );
+      zoom = Math.min(Math.max(zoom, minZoom), maxZoom);
+
+      if (that.prevZoom_ != zoom) {
+        that.prevZoom_ = zoom;
+        that.resetViewport();
+      }
+    });
+
+    google.maps.event.addListener(this.map_, "idle", function() {
+      that.redraw();
+    });
+
+    // Finally, add the markers
+    if (
+      opt_markers &&
+      (opt_markers.length || Object.keys(opt_markers).length)
+    ) {
+      this.addMarkers(opt_markers, false);
+    }
+  }
+
+  /**
+   * Extends a objects prototype by anothers.
+   *
+   * @param {Object} obj1 The object to be extended.
+   * @param {Object} obj2 The object to extend with.
+   * @return {Object} The new extended object.
+   * @ignore
+   */
+  extend(obj1, obj2) {
+    return function(object) {
+      for (var property in object.prototype) {
+        this.prototype[property] = object.prototype[property];
+      }
+      return this;
+    }.apply(obj1, [obj2]);
+  }
+
+  /**
+   * Implementaion of the interface method.
+   * @ignore
+   */
+  onAdd() {
+    this.setReady_(true);
+  }
+
+  /**
+   * Implementaion of the interface method.
+   * @ignore
+   */
+  draw() {}
+
+  /**
+   * Sets up the styles object.
+   *
+   * @private
+   */
+  setupStyles_() {
+    if (this.styles_.length) {
+      return;
+    }
+
+    for (var i = 0, size; (size = this.sizes[i]); i++) {
+      this.styles_.push({
+        url: this.imagePath_ + (i + 1) + "." + this.imageExtension_,
+        height: size,
+        width: size
+      });
+    }
+  }
+
+  /**
+   *  Fit the map to the bounds of the markers in the clusterer.
+   */
+  fitMapToMarkers() {
+    var markers = this.getMarkers();
+    var bounds = new google.maps.LatLngBounds();
+    for (var i = 0, marker; (marker = markers[i]); i++) {
+      bounds.extend(marker.getPosition());
+    }
+
+    this.map_.fitBounds(bounds);
+  }
+
+  /**
+   * @param {number} zIndex
+   */
+  setZIndex(zIndex) {
+    this.zIndex_ = zIndex;
+  }
+
+  /**
+   * @return {number}
+   */
+  getZIndex() {
+    return this.zIndex_;
+  }
+
+  /**
+   *  Sets the styles.
+   *
+   *  @param {Object} styles The style to set.
+   */
+  setStyles(styles) {
+    this.styles_ = styles;
+  }
+
+  /**
+   *  Gets the styles.
+   *
+   *  @return {Object} The styles object.
+   */
+  getStyles() {
+    return this.styles_;
+  }
+
+  /**
+   * Whether zoom on click is set.
+   *
+   * @return {boolean} True if zoomOnClick_ is set.
+   */
+  isZoomOnClick() {
+    return this.zoomOnClick_;
+  }
+
+  /**
+   * Whether average center is set.
+   *
+   * @return {boolean} True if averageCenter_ is set.
+   */
+  isAverageCenter() {
+    return this.averageCenter_;
+  }
+
+  /**
+   *  Returns the array of markers in the clusterer.
+   *
+   *  @return {Array.<google.maps.Marker>} The markers.
+   */
+  getMarkers() {
+    return this.markers_;
+  }
+
+  /**
+   *  Returns the number of markers in the clusterer
+   *
+   *  @return {Number} The number of markers.
+   */
+  getTotalMarkers() {
+    return this.markers_.length;
+  }
+
+  /**
+   *  Sets the max zoom for the clusterer.
+   *
+   *  @param {number} maxZoom The max zoom level.
+   */
+  setMaxZoom(maxZoom) {
+    this.maxZoom_ = maxZoom;
+  }
+
+  /**
+   *  Gets the max zoom for the clusterer.
+   *
+   *  @return {number} The max zoom level.
+   */
+  getMaxZoom() {
+    return this.maxZoom_;
+  }
+
+  /**
+   *  The function for calculating the cluster icon image.
+   *
+   *  @param {Array.<google.maps.Marker>} markers The markers in the clusterer.
+   *  @param {number} numStyles The number of styles available.
+   *  @return {Object} A object properties: 'text' (string) and 'index' (number).
+   *  @private
+   */
+  calculator_(markers, numStyles) {
+    var index = 0;
+    var count = markers.length;
+    var dv = count;
+    while (dv !== 0) {
+      dv = parseInt(dv / 10, 10);
+      index++;
+    }
+
+    index = Math.min(index, numStyles);
+    return {
+      text: count,
+      index: index
+    };
+  }
+
+  /**
+   * Set the calculator function.
+   *
+   * @param {function(Array, number)} calculator The function to set as the
+   *     calculator. The function should return a object properties:
+   *     'text' (string) and 'index' (number).
+   *
+   */
+  setCalculator(calculator) {
+    this.calculator_ = calculator;
+  }
+
+  /**
+   * Get the calculator function.
+   *
+   * @return {function(Array, number)} the calculator function.
+   */
+  getCalculator() {
+    return this.calculator_;
+  }
+
+  /**
+   * Add an array of markers to the clusterer.
+   *
+   * @param {Array.<google.maps.Marker>} markers The markers to add.
+   * @param {boolean=} opt_nodraw Whether to redraw the clusters.
+   */
+  addMarkers(markers, opt_nodraw) {
+    if (markers.length) {
+      for (let i = 0, marker; (marker = markers[i]); i++) {
+        this.pushMarkerTo_(marker);
+      }
+    } else if (Object.keys(markers).length) {
+      for (let marker in markers) {
+        this.pushMarkerTo_(markers[marker]);
+      }
+    }
+    if (!opt_nodraw) {
+      this.redraw();
+    }
+  }
+
+  /**
+   * Pushes a marker to the clusterer.
+   *
+   * @param {google.maps.Marker} marker The marker to add.
+   * @private
+   */
+  pushMarkerTo_(marker) {
+    marker.isAdded = false;
+    if (marker["draggable"]) {
+      // If the marker is draggable add a listener so we update the clusters on
+      // the drag end.
+      var that = this;
+      google.maps.event.addListener(marker, "dragend", function() {
+        marker.isAdded = false;
+        that.repaint();
+      });
+    }
+    this.markers_.push(marker);
+  }
+
+  /**
+   * Adds a marker to the clusterer and redraws if needed.
+   *
+   * @param {google.maps.Marker} marker The marker to add.
+   * @param {boolean=} opt_nodraw Whether to redraw the clusters.
+   */
+  addMarker(marker, opt_nodraw) {
+    this.pushMarkerTo_(marker);
+    if (!opt_nodraw) {
+      this.redraw();
+    }
+  }
+
+  /**
+   * Removes a marker and returns true if removed, false if not
+   *
+   * @param {google.maps.Marker} marker The marker to remove
+   * @return {boolean} Whether the marker was removed or not
+   * @private
+   */
+  removeMarker_(marker) {
+    var index = -1;
+    if (this.markers_.indexOf) {
+      index = this.markers_.indexOf(marker);
+    } else {
+      for (var i = 0, m; (m = this.markers_[i]); i++) {
+        if (m == marker) {
+          index = i;
+          break;
+        }
+      }
+    }
+
+    if (index == -1) {
+      // Marker is not in our list of markers.
+      return false;
+    }
+
+    marker.setMap(null);
+
+    this.markers_.splice(index, 1);
+
+    return true;
+  }
+
+  /**
+   * Remove a marker from the cluster.
+   *
+   * @param {google.maps.Marker} marker The marker to remove.
+   * @param {boolean=} opt_nodraw Optional boolean to force no redraw.
+   * @return {boolean} True if the marker was removed.
+   */
+  removeMarker(marker, opt_nodraw) {
+    var removed = this.removeMarker_(marker);
+
+    if (!opt_nodraw && removed) {
+      this.resetViewport();
+      this.redraw();
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  /**
+   * Removes an array of markers from the cluster.
+   *
+   * @param {Array.<google.maps.Marker>} markers The markers to remove.
+   * @param {boolean=} opt_nodraw Optional boolean to force no redraw.
+   */
+  removeMarkers(markers, opt_nodraw) {
+    // create a local copy of markers if required
+    // (removeMarker_ modifies the getMarkers() array in place)
+    var markersCopy = markers === this.getMarkers() ? markers.slice() : markers;
+    var removed = false;
+
+    for (var i = 0, marker; (marker = markersCopy[i]); i++) {
+      var r = this.removeMarker_(marker);
+      removed = removed || r;
+    }
+
+    if (!opt_nodraw && removed) {
+      this.resetViewport();
+      this.redraw();
+      return true;
+    }
+  }
+
+  /**
+   * Sets the clusterer's ready state.
+   *
+   * @param {boolean} ready The state.
+   * @private
+   */
+  setReady_(ready) {
+    if (!this.ready_) {
+      this.ready_ = ready;
+      this.createClusters_();
+    }
+  }
+
+  /**
+   * Returns the number of clusters in the clusterer.
+   *
+   * @return {number} The number of clusters.
+   */
+  getTotalClusters() {
+    return this.clusters_.length;
+  }
+
+  /**
+   * Returns the google map that the clusterer is associated with.
+   *
+   * @return {google.maps.Map} The map.
+   */
+  getMap() {
+    return this.map_;
+  }
+
+  /**
+   * Sets the google map that the clusterer is associated with.
+   *
+   * @param {google.maps.Map} map The map.
+   */
+  setMap(map) {
+    this.map_ = map;
+  }
+
+  /**
+   * Returns the size of the grid.
+   *
+   * @return {number} The grid size.
+   */
+  getGridSize() {
+    return this.gridSize_;
+  }
+
+  /**
+   * Sets the size of the grid.
+   *
+   * @param {number} size The grid size.
+   */
+  setGridSize(size) {
+    this.gridSize_ = size;
+  }
+
+  /**
+   * Returns the min cluster size.
+   *
+   * @return {number} The grid size.
+   */
+  getMinClusterSize() {
+    return this.minClusterSize_;
+  }
+
+  /**
+   * Sets the min cluster size.
+   *
+   * @param {number} size The grid size.
+   */
+  setMinClusterSize(size) {
+    this.minClusterSize_ = size;
+  }
+
+  /**
+   * Extends a bounds object by the grid size.
+   *
+   * @param {google.maps.LatLngBounds} bounds The bounds to extend.
+   * @return {google.maps.LatLngBounds} The extended bounds.
+   */
+  getExtendedBounds(bounds) {
+    var projection = this.getProjection();
+
+    // Turn the bounds into latlng.
+    var tr = new google.maps.LatLng(
+      bounds.getNorthEast().lat(),
+      bounds.getNorthEast().lng()
+    );
+    var bl = new google.maps.LatLng(
+      bounds.getSouthWest().lat(),
+      bounds.getSouthWest().lng()
+    );
+
+    // Convert the points to pixels and the extend out by the grid size.
+    var trPix = projection.fromLatLngToDivPixel(tr);
+    trPix.x += this.gridSize_;
+    trPix.y -= this.gridSize_;
+
+    var blPix = projection.fromLatLngToDivPixel(bl);
+    blPix.x -= this.gridSize_;
+    blPix.y += this.gridSize_;
+
+    // Convert the pixel points back to LatLng
+    var ne = projection.fromDivPixelToLatLng(trPix);
+    var sw = projection.fromDivPixelToLatLng(blPix);
+
+    // Extend the bounds to contain the new bounds.
+    bounds.extend(ne);
+    bounds.extend(sw);
+
+    return bounds;
+  }
+
+  /**
+   * Determins if a marker is contained in a bounds.
+   *
+   * @param {google.maps.Marker} marker The marker to check.
+   * @param {google.maps.LatLngBounds} bounds The bounds to check against.
+   * @return {boolean} True if the marker is in the bounds.
+   * @private
+   */
+  isMarkerInBounds_(marker, bounds) {
+    return bounds.contains(marker.getPosition());
+  }
+
+  /**
+   * Clears all clusters and markers from the clusterer.
+   */
+  clearMarkers() {
+    this.resetViewport(true);
+
+    // Set the markers a empty array.
+    this.markers_ = [];
+  }
+
+  /**
+   * Clears all existing clusters and recreates them.
+   * @param {boolean} opt_hide To also hide the marker.
+   */
+  resetViewport(opt_hide) {
+    // Remove all the clusters
+    for (let i = 0, cluster; (cluster = this.clusters_[i]); i++) {
+      cluster.remove();
+    }
+
+    // Reset the markers to not be added and to be invisible.
+    for (let i = 0, marker; (marker = this.markers_[i]); i++) {
+      marker.isAdded = false;
+      if (opt_hide) {
+        marker.setMap(null);
+      }
+    }
+
+    this.clusters_ = [];
+  }
+
+  /**
+   *
+   */
+  repaint() {
+    var oldClusters = this.clusters_.slice();
+    this.clusters_.length = 0;
+    this.resetViewport();
+    this.redraw();
+
+    // Remove the old clusters.
+    // Do it in a timeout so the other clusters have been drawn first.
+    setTimeout(function() {
+      for (var i = 0, cluster; (cluster = oldClusters[i]); i++) {
+        cluster.remove();
+      }
+    }, 0);
+  }
+
+  /**
+   * Redraws the clusters.
+   */
+  redraw() {
+    this.createClusters_();
+  }
+
+  /**
+   * Calculates the distance between two latlng locations in km.
+   * @see http://www.movable-type.co.uk/scripts/latlong.html
+   *
+   * @param {google.maps.LatLng} p1 The first lat lng point.
+   * @param {google.maps.LatLng} p2 The second lat lng point.
+   * @return {number} The distance between the two points in km.
+   * @private
+   */
+  distanceBetweenPoints_(p1, p2) {
+    if (!p1 || !p2) {
+      return 0;
+    }
+
+    var R = 6371; // Radius of the Earth in km
+    var dLat = ((p2.lat() - p1.lat()) * Math.PI) / 180;
+    var dLon = ((p2.lng() - p1.lng()) * Math.PI) / 180;
+    var a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos((p1.lat() * Math.PI) / 180) *
+        Math.cos((p2.lat() * Math.PI) / 180) *
+        Math.sin(dLon / 2) *
+        Math.sin(dLon / 2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    var d = R * c;
+    return d;
+  }
+
+  /**
+   * Add a marker to a cluster, or creates a new cluster.
+   *
+   * @param {google.maps.Marker} marker The marker to add.
+   * @private
+   */
+  addToClosestCluster_(marker) {
+    var distance = 40000; // Some large number
+    var clusterToAddTo = null;
+    for (var i = 0, cluster; (cluster = this.clusters_[i]); i++) {
+      var center = cluster.getCenter();
+      if (center) {
+        var d = this.distanceBetweenPoints_(center, marker.getPosition());
+        if (d < distance) {
+          distance = d;
+          clusterToAddTo = cluster;
+        }
+      }
+    }
+
+    if (clusterToAddTo && clusterToAddTo.isMarkerInClusterBounds(marker)) {
+      clusterToAddTo.addMarker(marker);
+    } else {
+      var newCluster = new Cluster(this);
+      newCluster.addMarker(marker);
+      this.clusters_.push(newCluster);
+    }
+  }
+
+  /**
+   * Creates the clusters.
+   *
+   * @private
+   */
+  createClusters_() {
+    if (!this.ready_) {
+      return;
+    }
+
+    // Get our current map view bounds.
+    // Create a new bounds object so we don't affect the map.
+    var mapBounds = new google.maps.LatLngBounds(
+      this.map_.getBounds().getSouthWest(),
+      this.map_.getBounds().getNorthEast()
+    );
+    var bounds = this.getExtendedBounds(mapBounds);
+
+    for (var i = 0, marker; (marker = this.markers_[i]); i++) {
+      if (!marker.isAdded && this.isMarkerInBounds_(marker, bounds)) {
+        this.addToClosestCluster_(marker);
+      }
+    }
+  }
+}
+
+/**
+ * A cluster that contains markers.
+ *
+ * @param {MarkerClusterer} markerClusterer The markerclusterer that this
+ *     cluster is associated with.
+ * @constructor
+ * @ignore
+ */
+class Cluster {
+  constructor(markerClusterer) {
+    this.markerClusterer_ = markerClusterer;
+    this.map_ = markerClusterer.getMap();
+    this.gridSize_ = markerClusterer.getGridSize();
+    this.minClusterSize_ = markerClusterer.getMinClusterSize();
+    this.averageCenter_ = markerClusterer.isAverageCenter();
+    this.center_ = null;
+    this.markers_ = [];
+    this.bounds_ = null;
+    this.clusterIcon_ = new ClusterIcon(
+      this,
+      markerClusterer.getStyles(),
+      markerClusterer.getGridSize()
+    );
+  }
+
+  /**
+   * Determins if a marker is already added to the cluster.
+   *
+   * @param {google.maps.Marker} marker The marker to check.
+   * @return {boolean} True if the marker is already added.
+   */
+  isMarkerAlreadyAdded(marker) {
+    if (this.markers_.indexOf) {
+      return this.markers_.indexOf(marker) != -1;
+    } else {
+      for (var i = 0, m; (m = this.markers_[i]); i++) {
+        if (m == marker) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  /**
+   * Add a marker the cluster.
+   *
+   * @param {google.maps.Marker} marker The marker to add.
+   * @return {boolean} True if the marker was added.
+   */
+  addMarker(marker) {
+    if (this.isMarkerAlreadyAdded(marker)) {
+      return false;
+    }
+
+    if (!this.center_) {
+      this.center_ = marker.getPosition();
+      this.calculateBounds_();
+    } else {
+      if (this.averageCenter_) {
+        var l = this.markers_.length + 1;
+        var lat =
+          (this.center_.lat() * (l - 1) + marker.getPosition().lat()) / l;
+        var lng =
+          (this.center_.lng() * (l - 1) + marker.getPosition().lng()) / l;
+        this.center_ = new google.maps.LatLng(lat, lng);
+        this.calculateBounds_();
+      }
+    }
+
+    marker.isAdded = true;
+    this.markers_.push(marker);
+
+    var len = this.markers_.length;
+    if (len < this.minClusterSize_ && marker.getMap() != this.map_) {
+      // Min cluster size not reached so show the marker.
+      marker.setMap(this.map_);
+    }
+
+    if (len == this.minClusterSize_) {
+      // Hide the markers that were showing.
+      for (var i = 0; i < len; i++) {
+        this.markers_[i].setMap(null);
+      }
+    }
+
+    if (len >= this.minClusterSize_) {
+      marker.setMap(null);
+    }
+
+    this.updateIcon();
+    return true;
+  }
+
+  /**
+   * Returns the marker clusterer that the cluster is associated with.
+   *
+   * @return {MarkerClusterer} The associated marker clusterer.
+   */
+  getMarkerClusterer() {
+    return this.markerClusterer_;
+  }
+
+  /**
+   * Returns the bounds of the cluster.
+   *
+   * @return {google.maps.LatLngBounds} the cluster bounds.
+   */
+  getBounds() {
+    var bounds = new google.maps.LatLngBounds(this.center_, this.center_);
+    var markers = this.getMarkers();
+    for (var i = 0, marker; (marker = markers[i]); i++) {
+      bounds.extend(marker.getPosition());
+    }
+    return bounds;
+  }
+
+  /**
+   * Removes the cluster
+   */
+  remove() {
+    this.clusterIcon_.remove();
+    this.markers_.length = 0;
+    delete this.markers_;
+  }
+
+  /**
+   * Returns the number of markers in the cluster.
+   *
+   * @return {number} The number of markers in the cluster.
+   */
+  getSize() {
+    return this.markers_.length;
+  }
+
+  /**
+   * Returns a list of the markers in the cluster.
+   *
+   * @return {Array.<google.maps.Marker>} The markers in the cluster.
+   */
+  getMarkers() {
+    return this.markers_;
+  }
+
+  /**
+   * Returns the center of the cluster.
+   *
+   * @return {google.maps.LatLng} The cluster center.
+   */
+  getCenter() {
+    return this.center_;
+  }
+
+  /**
+   * Calculated the extended bounds of the cluster with the grid.
+   *
+   * @private
+   */
+  calculateBounds_() {
+    var bounds = new google.maps.LatLngBounds(this.center_, this.center_);
+    this.bounds_ = this.markerClusterer_.getExtendedBounds(bounds);
+  }
+
+  /**
+   * Determines if a marker lies in the clusters bounds.
+   *
+   * @param {google.maps.Marker} marker The marker to check.
+   * @return {boolean} True if the marker lies in the bounds.
+   */
+  isMarkerInClusterBounds(marker) {
+    return this.bounds_.contains(marker.getPosition());
+  }
+
+  /**
+   * Returns the map that the cluster is associated with.
+   *
+   * @return {google.maps.Map} The map.
+   */
+  getMap() {
+    return this.map_;
+  }
+
+  /**
+   * Updates the cluster icon
+   */
+  updateIcon() {
+    var zoom = this.map_.getZoom();
+    var mz = this.markerClusterer_.getMaxZoom();
+
+    if (mz && zoom > mz) {
+      // The zoom is greater than our max zoom so show all the markers in cluster.
+      for (var i = 0, marker; (marker = this.markers_[i]); i++) {
+        marker.setMap(this.map_);
+      }
+      return;
+    }
+
+    if (this.markers_.length < this.minClusterSize_) {
+      // Min cluster size not yet reached.
+      this.clusterIcon_.hide();
+      return;
+    }
+
+    var numStyles = this.markerClusterer_.getStyles().length;
+    var sums = this.markerClusterer_.getCalculator()(this.markers_, numStyles);
+    this.clusterIcon_.setCenter(this.center_);
+    this.clusterIcon_.setSums(sums);
+    this.clusterIcon_.show();
+  }
+}
+
+/**
+ * A cluster icon
+ *
+ * @param {Cluster} cluster The cluster to be associated with.
+ * @param {Object} styles An object that has style properties:
+ *     'url': (string) The image url.
+ *     'height': (number) The image height.
+ *     'width': (number) The image width.
+ *     'anchor': (Array) The anchor position of the label text.
+ *     'textColor': (string) The text color.
+ *     'textSize': (number) The text size.
+ *     'backgroundPosition: (string) The background postition x, y.
+ * @param {number=} opt_padding Optional padding to apply to the cluster icon.
+ * @constructor
+ * @extends google.maps.OverlayView
+ * @ignore
+ */
+class ClusterIcon {
+  constructor(cluster, styles, opt_padding) {
+    cluster.getMarkerClusterer().extend(ClusterIcon, google.maps.OverlayView);
+
+    this.styles_ = styles;
+    this.padding_ = opt_padding || 0;
+    this.cluster_ = cluster;
+    this.center_ = null;
+    this.map_ = cluster.getMap();
+    this.div_ = null;
+    this.sums_ = null;
+    this.visible_ = false;
+
+    this.setMap(this.map_);
+  }
+
+  /**
+   * Triggers the clusterclick event and zoom's if the option is set.
+   */
+  triggerClusterClick() {
+    var clusterBounds = this.cluster_.getBounds();
+    var markerClusterer = this.cluster_.getMarkerClusterer();
+
+    // Trigger the clusterclick event.
+    google.maps.event.trigger(
+      markerClusterer.map_,
+      "clusterclick",
+      this.cluster_
+    );
+
+    if (markerClusterer.isZoomOnClick()) {
+      // Zoom into the cluster.
+      this.map_.fitBounds(clusterBounds);
+      this.map_.setCenter(clusterBounds.getCenter());
+    }
+  }
+
+  /**
+   * Adding the cluster icon to the dom.
+   * @ignore
+   */
+  onAdd() {
+    this.div_ = document.createElement("DIV");
+    if (this.visible_) {
+      var pos = this.getPosFromLatLng_(this.center_);
+      this.div_.style.cssText = this.createCss(pos);
+      this.div_.innerHTML = this.sums_.text;
+    }
+
+    var panes = this.getPanes();
+    panes.overlayMouseTarget.appendChild(this.div_);
+
+    var that = this;
+    google.maps.event.addDomListener(this.div_, "click", function() {
+      that.triggerClusterClick();
+    });
+  }
+
+  /**
+   * Returns the position to place the div dending on the latlng.
+   *
+   * @param {google.maps.LatLng} latlng The position in latlng.
+   * @return {google.maps.Point} The position in pixels.
+   * @private
+   */
+  getPosFromLatLng_(latlng) {
+    var pos = this.getProjection().fromLatLngToDivPixel(latlng);
+    pos.x -= parseInt(this.width_ / 2, 10);
+    pos.y -= parseInt(this.height_ / 2, 10);
+    return pos;
+  }
+
+  /**
+   * Draw the icon.
+   * @ignore
+   */
+  draw() {
+    if (this.visible_) {
+      var pos = this.getPosFromLatLng_(this.center_);
+      this.div_.style.top = pos.y + "px";
+      this.div_.style.left = pos.x + "px";
+    }
+  }
+
+  /**
+   * Hide the icon.
+   */
+  hide() {
+    if (this.div_) {
+      this.div_.style.display = "none";
+    }
+    this.visible_ = false;
+  }
+
+  /**
+   * Position and show the icon.
+   */
+  show() {
+    if (this.div_) {
+      var pos = this.getPosFromLatLng_(this.center_);
+      this.div_.style.cssText = this.createCss(pos);
+      this.div_.style.display = "";
+    }
+    this.visible_ = true;
+  }
+
+  /**
+   * Remove the icon from the map
+   */
+  remove() {
+    this.setMap(null);
+  }
+
+  /**
+   * Implementation of the onRemove interface.
+   * @ignore
+   */
+  onRemove() {
+    if (this.div_ && this.div_.parentNode) {
+      this.hide();
+      this.div_.parentNode.removeChild(this.div_);
+      this.div_ = null;
+    }
+  }
+
+  /**
+   * Set the sums of the icon.
+   *
+   * @param {Object} sums The sums containing:
+   *   'text': (string) The text to display in the icon.
+   *   'index': (number) The style index of the icon.
+   */
+  setSums(sums) {
+    this.sums_ = sums;
+    this.text_ = sums.text;
+    this.index_ = sums.index;
+    if (this.div_) {
+      this.div_.innerHTML = sums.text;
+    }
+
+    this.useStyle();
+  }
+
+  /**
+   * Sets the icon to the the styles.
+   */
+  useStyle() {
+    var index = Math.max(0, this.sums_.index - 1);
+    index = Math.min(this.styles_.length - 1, index);
+    var style = this.styles_[index];
+    this.url_ = style["url"];
+    this.height_ = style["height"];
+    this.width_ = style["width"];
+    this.textColor_ = style["textColor"];
+    this.anchor_ = style["anchor"];
+    this.textSize_ = style["textSize"];
+    this.backgroundPosition_ = style["backgroundPosition"];
+  }
+
+  /**
+   * Sets the center of the icon.
+   *
+   * @param {google.maps.LatLng} center The latlng to set as the center.
+   */
+  setCenter(center) {
+    this.center_ = center;
+  }
+
+  /**
+   * Create the css text based on the position of the icon.
+   *
+   * @param {google.maps.Point} pos The position.
+   * @return {string} The css style text.
+   */
+  createCss(pos) {
+    var style = [];
+    style.push("z-index:" + this.cluster_.markerClusterer_.getZIndex() + ";");
+    style.push("background-image:url(" + this.url_ + ");");
+    var backgroundPosition = this.backgroundPosition_
+      ? this.backgroundPosition_
+      : "0 0";
+    style.push("background-position:" + backgroundPosition + ";");
+
+    if (typeof this.anchor_ === "object") {
+      if (
+        typeof this.anchor_[0] === "number" &&
+        this.anchor_[0] > 0 &&
+        this.anchor_[0] < this.height_
+      ) {
+        style.push(
+          "height:" +
+            (this.height_ - this.anchor_[0]) +
+            "px; padding-top:" +
+            this.anchor_[0] +
+            "px;"
+        );
+      } else {
+        style.push(
+          "height:" + this.height_ + "px; line-height:" + this.height_ + "px;"
+        );
+      }
+      if (
+        typeof this.anchor_[1] === "number" &&
+        this.anchor_[1] > 0 &&
+        this.anchor_[1] < this.width_
+      ) {
+        style.push(
+          "width:" +
+            (this.width_ - this.anchor_[1]) +
+            "px; padding-left:" +
+            this.anchor_[1] +
+            "px;"
+        );
+      } else {
+        style.push("width:" + this.width_ + "px; text-align:center;");
+      }
+    } else {
+      style.push(
+        "height:" +
+          this.height_ +
+          "px; line-height:" +
+          this.height_ +
+          "px; width:" +
+          this.width_ +
+          "px; text-align:center;"
+      );
+    }
+
+    var txtColor = this.textColor_ ? this.textColor_ : "black";
+    var txtSize = this.textSize_ ? this.textSize_ : 11;
+
+    style.push(
+      "cursor:pointer; top:" +
+        pos.y +
+        "px; left:" +
+        pos.x +
+        "px; color:" +
+        txtColor +
+        "; position:absolute; font-size:" +
+        txtSize +
+        "px; font-family:Arial,sans-serif; font-weight:bold"
+    );
+    return style.join("");
+  }
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (MarkerClusterer);
+
+
+/***/ }),
+
 /***/ "./node_modules/axios/index.js":
 /*!*************************************!*\
   !*** ./node_modules/axios/index.js ***!
@@ -5608,6 +6892,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Flash.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Flash.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['message'],
+  data: function data() {
+    return {
+      body: this.message,
+      level: 'success',
+      show: false
+    };
+  },
+  computed: {
+    classes: function classes() {
+      var defaults = ['fixed', 'p-4', 'border', 'text-white', 'shadow-sm', 'rounded'];
+      if (this.level === 'success') defaults.push('bg-green-600', 'border-green-600');
+      if (this.level === 'warning') defaults.push('bg-yellow', 'border-yellow-800');
+      if (this.level === 'danger') defaults.push('bg-red-500', 'border-red-dark');
+      return defaults;
+    }
+  },
+  created: function created() {
+    var _this = this;
+
+    if (this.message) {
+      this.flash();
+    }
+
+    window.events.$on('flash', function (data) {
+      return _this.flash(data);
+    });
+  },
+  methods: {
+    flash: function flash(data) {
+      if (data) {
+        this.body = data.message;
+        this.level = data.level;
+      }
+
+      this.show = true;
+      this.hide();
+    },
+    hide: function hide() {
+      var _this2 = this;
+
+      setTimeout(function () {
+        _this2.show = false;
+      }, 3000);
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/GoogleMap.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/GoogleMap.vue?vue&type=script&lang=js& ***!
@@ -5619,10 +6972,12 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var google_maps_api_loader__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! google-maps-api-loader */ "./node_modules/google-maps-api-loader/index.js");
 /* harmony import */ var google_maps_api_loader__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(google_maps_api_loader__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _google_markerclusterer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @google/markerclusterer */ "./node_modules/@google/markerclusterer/dist/markerclusterer.esm.js");
 //
 //
 //
 //
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -5640,28 +6995,16 @@ __webpack_require__.r(__webpack_exports__);
     return {
       google: null,
       map: null,
+      clusterer: null,
       markers: []
     };
   },
-  mounted: function mounted() {
-    var _this = this;
-
-    google_maps_api_loader__WEBPACK_IMPORTED_MODULE_0___default()({
-      apiKey: this.apiKey
-    }).then(function (response) {
-      _this.google = response;
-
-      _this.initializeMap();
-
-      _this.centeringMap();
-
-      _this.setMarkers();
-    });
-  },
   watch: {
     places: function places() {
-      this.removeMarkers();
-      this.setMarkers();
+      if (this.google) {
+        this.removeMarkers();
+        this.setMarkers();
+      }
     },
     center: function center(newCenter) {
       this.centeringMap();
@@ -5669,7 +7012,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     initializeMap: function initializeMap() {
-      var _this2 = this;
+      var _this = this;
 
       this.map = new this.google.maps.Map(this.$el, {
         center: {
@@ -5681,46 +7024,50 @@ __webpack_require__.r(__webpack_exports__);
         disableDefaultUI: true
       });
       this.map.addListener('center_changed', function () {
-        return _this2.$emit('centerChanged', _this2.map.center);
+        return _this.$emit('centerChanged', _this.map.center);
       });
+      this.clusterer = new _google_markerclusterer__WEBPACK_IMPORTED_MODULE_1__["default"](this.map, this.markers);
     },
     addMarker: function addMarker(place) {
-      var _this3 = this;
+      var _this2 = this;
 
       if (this.google) {
         var marker = new this.google.maps.Marker({
           position: new this.google.maps.LatLng(place.location.lat, place.location["long"]),
           map: this.map,
           icon: {
-            url: "/svg/markers/".concat(place.category.name, "-marker-icon.svg"),
-            scaledSize: new google.maps.Size(50, 50),
+            url: place.category ? "/svg/markers/".concat(place.category.name, "-marker-icon.svg") : 'https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi.png ',
+            scaledSize: new google.maps.Size(35, 35),
             origin: new google.maps.Point(0, 0),
             anchor: new google.maps.Point(0, 0)
           }
         });
         this.google.maps.event.addListener(marker, 'click', function () {
-          _this3.$emit('marker-clicked', {
+          _this2.$emit('marker-clicked', {
             place: place,
             marker: marker
           });
         });
+        this.clusterer.addMarker(marker);
         this.markers.push(marker);
       }
     },
     setMarkers: function setMarkers() {
-      var _this4 = this;
+      var _this3 = this;
 
       this.places.forEach(function (place) {
-        _this4.addMarker(place);
+        _this3.addMarker(place);
       });
     },
     removeMarkers: function removeMarkers() {
-      var _this5 = this;
+      var _this4 = this;
 
       this.markers.forEach(function (marker) {
         marker.setMap(null);
 
-        _this5.markers.slice(_this5.markers.indexOf(marker), 1);
+        _this4.clusterer.removeMarker(marker);
+
+        _this4.markers.slice(_this4.markers.indexOf(marker), 1);
       });
     },
     centeringMap: function centeringMap() {
@@ -5728,6 +7075,82 @@ __webpack_require__.r(__webpack_exports__);
         this.map.panTo(new this.google.maps.LatLng(this.center.latitude, this.center.longitude));
       }
     }
+  },
+  created: function created() {
+    var _this5 = this;
+
+    google_maps_api_loader__WEBPACK_IMPORTED_MODULE_0___default()({
+      apiKey: this.apiKey
+    }).then(function (response) {
+      window.google = response;
+      _this5.google = response;
+
+      _this5.initializeMap();
+
+      _this5.centeringMap();
+
+      _this5.setMarkers();
+    });
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ImageCropper.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ImageCropper.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var cropperjs_dist_cropper_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! cropperjs/dist/cropper.css */ "./node_modules/cropperjs/dist/cropper.css");
+/* harmony import */ var cropperjs_dist_cropper_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(cropperjs_dist_cropper_css__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var cropperjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! cropperjs */ "./node_modules/cropperjs/dist/cropper.js");
+/* harmony import */ var cropperjs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(cropperjs__WEBPACK_IMPORTED_MODULE_1__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['src', 'cropRatio'],
+  data: function data() {
+    return {
+      loading: false,
+      cropper: null
+    };
+  },
+  methods: {
+    crop: function crop() {
+      this.loading = true;
+      console.log(this.loading);
+      this.$emit('cropped', this.setData());
+    },
+    setData: function setData() {
+      return {
+        cropper: this.cropper,
+        croppedCanvas: this.cropper.getCroppedCanvas({
+          maxWidth: 4096,
+          maxHeight: 4096
+        })
+      };
+    }
+  },
+  mounted: function mounted() {
+    this.cropper = new cropperjs__WEBPACK_IMPORTED_MODULE_1___default.a(this.$refs.image, {
+      aspectRatio: this.cropRatio || 16 / 9,
+      viewMode: 3
+    });
   }
 });
 
@@ -5750,27 +7173,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['defaultImage', 'name'],
-  data: function data() {
-    return {
-      image: null
-    };
-  },
+  props: ['src', 'name'],
   methods: {
-    getImage: function getImage() {
-      return this.image ? this.image : this.defaultImage;
-    },
     setImage: function setImage(event) {
-      var _this = this;
-
-      var reader = new FileReader();
-
-      reader.onload = function (e) {
-        return _this.image = e.target.result;
-      };
-
-      reader.readAsDataURL(event.target.files[0]);
+      this.$emit('image-changed', event);
     }
   }
 });
@@ -5788,6 +7197,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var google_maps_api_loader__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! google-maps-api-loader */ "./node_modules/google-maps-api-loader/index.js");
 /* harmony import */ var google_maps_api_loader__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(google_maps_api_loader__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
 //
 //
 //
@@ -5834,7 +7245,7 @@ __webpack_require__.r(__webpack_exports__);
     initializeMap: function initializeMap() {
       var _this2 = this;
 
-      this.map = new this.google.maps.Map(this.$el, {
+      this.map = new this.google.maps.Map(this.$refs.map, {
         center: {
           lat: 15.5007,
           lng: 32.5599
@@ -5845,6 +7256,16 @@ __webpack_require__.r(__webpack_exports__);
       });
       this.map.addListener('click', function (event) {
         _this2.placeMarker(event.latLng);
+
+        var inputEvent = new Event('change', {
+          bubbles: true,
+          cancelable: true
+        });
+
+        _this2.$emit('input', {
+          latitude: event.latLng.lat(),
+          longitude: event.latLng.lng()
+        });
       });
       this.map.addListener('center_changed', function () {
         return _this2.$emit('centerChanged', _this2.map.center);
@@ -5949,6 +7370,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
 //
 //
 //
@@ -6137,20 +7562,196 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Form__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Form */ "./resources/js/Form.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      location: {
+      cropRatio: 1,
+      entity: new _Form__WEBPACK_IMPORTED_MODULE_0__["default"]({
+        cover: '',
+        avatar: '',
+        description: '',
+        name: '',
+        category_id: '',
         latitude: '',
-        longitude: ''
-      }
+        longitude: '',
+        tags: []
+      }),
+      tags: [],
+      imageToCrop: null,
+      cropping: '',
+      loading: false
     };
   },
   methods: {
+    getTags: function getTags() {
+      var _this = this;
+
+      var query = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+      var endpoint = '/api/tags';
+
+      if (query) {
+        endpoint = endpoint + '?q= ' + query;
+      }
+
+      axios.get(endpoint).then(function (_ref) {
+        var data = _ref.data;
+        _this.tags = data.data;
+      });
+    },
     setLocation: function setLocation(event) {
-      this.location.latitude = event.location.latitude;
-      this.location.longitude = event.location.longitude;
+      this.entity.latitude = event.location.latitude;
+      this.entity.longitude = event.location.longitude;
+    },
+    setImageToCrop: function setImageToCrop(cropping, event) {
+      var _this2 = this;
+
+      var cropRatio = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 2.39;
+      this.cropRatio = cropRatio;
+      this.cropping = cropping;
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        _this2.imageToCrop = e.target.result;
+
+        _this2.$modal.show('cropImageModal');
+      };
+
+      reader.readAsDataURL(event.target.files[0]);
+    },
+    setImage: function setImage(event) {
+      this.entity[this.cropping] = event.croppedCanvas.toDataURL('image/jpeg', 0.5);
+      this.$modal.hide('cropImageModal');
+    },
+    reduceTags: function reduceTags(option) {
+      if (_typeof(option) == 'object') {
+        return option.label;
+      }
+
+      return option;
+    },
+    save: function save() {
+      var endpoint = '/admin/entities';
+      this.loading = true;
+      this.entity.post(endpoint).then(function (res) {
+        location.replace(endpoint);
+      });
     }
+  },
+  mounted: function mounted() {
+    this.getTags();
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/EditEntityView.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/EditEntityView.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Form__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Form */ "./resources/js/Form.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['initialEntity'],
+  data: function data() {
+    return {
+      cropRatio: 1,
+      entity: new _Form__WEBPACK_IMPORTED_MODULE_0__["default"]({
+        cover: '',
+        avatar: '',
+        description: '',
+        name: '',
+        category_id: '',
+        latitude: '',
+        longitude: '',
+        tags: []
+      }),
+      tags: [],
+      imageToCrop: null,
+      cropping: '',
+      loading: false
+    };
+  },
+  watch: {
+    imageToCrop: function imageToCrop() {
+      this.$modal.show('cropImageModal');
+    }
+  },
+  methods: {
+    getTags: function getTags() {
+      var _this = this;
+
+      var query = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+      var endpoint = '/api/tags';
+
+      if (query) {
+        endpoint = endpoint + '?q= ' + query;
+      }
+
+      axios.get(endpoint).then(function (_ref) {
+        var data = _ref.data;
+        _this.tags = data.data;
+      });
+    },
+    setLocation: function setLocation(event) {
+      this.entity.latitude = event.location.latitude;
+      this.entity.longitude = event.location.longitude;
+    },
+    setImageToCrop: function setImageToCrop(cropping, event) {
+      var _this2 = this;
+
+      var cropRatio = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 2.39;
+      this.cropRatio = cropRatio;
+      this.cropping = cropping;
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        return _this2.imageToCrop = e.target.result;
+      };
+
+      reader.readAsDataURL(event.target.files[0]);
+    },
+    setImage: function setImage(event) {
+      this.entity[this.cropping] = event.croppedCanvas.toDataURL();
+      this.$modal.hide('cropImageModal');
+    },
+    reduceTags: function reduceTags(option) {
+      if (_typeof(option) == 'object') {
+        return option.label;
+      }
+
+      return option;
+    },
+    save: function save() {
+      this.loading = true;
+      var endpoint = '/admin/entities';
+      this.entity.put(endpoint + '/' + this.entity.id).then(function (res) {
+        return location.replace(endpoint);
+      });
+    }
+  },
+  mounted: function mounted() {
+    var _this3 = this;
+
+    this.entity = new _Form__WEBPACK_IMPORTED_MODULE_0__["default"](this.initialEntity);
+    this.getTags();
+    this.entity.tags.map(function (tag) {
+      if (_typeof(tag) == 'object') {
+        _this3.entity.tags[_this3.entity.tags.indexOf(tag)] = tag.label;
+      }
+
+      return tag;
+    });
   }
 });
 
@@ -6179,8 +7780,23 @@ __webpack_require__.r(__webpack_exports__);
       places: [],
       selectedPlace: null,
       selectedCategory: null,
-      mapCenter: {}
+      mapCenter: {},
+      showing: 'places',
+      endpoints: {
+        places: '/api/entities',
+        events: '/api/events'
+      }
     };
+  },
+  watch: {
+    showing: function showing() {
+      this.getPlaces();
+    }
+  },
+  computed: {
+    endpoint: function endpoint() {
+      return this.endpoints[this.showing];
+    }
   },
   methods: {
     getPlaces: function getPlaces() {
@@ -6188,7 +7804,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var category = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
       this.selectedCategory = category;
-      axios.get("/api/entities".concat(category ? '?category=' + category : '')).then(function (_ref) {
+      axios.get(this.endpoint + (category ? '?category=' + category : '')).then(function (_ref) {
         var data = _ref.data;
         return _this.places = data.data;
       });
@@ -6219,6 +7835,3720 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/RegisterView.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/RegisterView.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      registerAs: 'user',
+      location: ''
+    };
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/cropperjs/dist/cropper.css":
+/*!*************************************************!*\
+  !*** ./node_modules/cropperjs/dist/cropper.css ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../css-loader??ref--6-1!../../postcss-loader/src??ref--6-2!./cropper.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/cropperjs/dist/cropper.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/cropperjs/dist/cropper.js":
+/*!************************************************!*\
+  !*** ./node_modules/cropperjs/dist/cropper.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*!
+ * Cropper.js v1.5.6
+ * https://fengyuanchen.github.io/cropperjs
+ *
+ * Copyright 2015-present Chen Fengyuan
+ * Released under the MIT license
+ *
+ * Date: 2019-10-04T04:33:48.372Z
+ */
+
+(function (global, factory) {
+   true ? module.exports = factory() :
+  undefined;
+}(this, function () { 'use strict';
+
+  function _typeof(obj) {
+    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+      _typeof = function (obj) {
+        return typeof obj;
+      };
+    } else {
+      _typeof = function (obj) {
+        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+      };
+    }
+
+    return _typeof(obj);
+  }
+
+  function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+    }
+  }
+
+  function _defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ("value" in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+
+  function _createClass(Constructor, protoProps, staticProps) {
+    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) _defineProperties(Constructor, staticProps);
+    return Constructor;
+  }
+
+  function _defineProperty(obj, key, value) {
+    if (key in obj) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+
+    return obj;
+  }
+
+  function ownKeys(object, enumerableOnly) {
+    var keys = Object.keys(object);
+
+    if (Object.getOwnPropertySymbols) {
+      var symbols = Object.getOwnPropertySymbols(object);
+      if (enumerableOnly) symbols = symbols.filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+      });
+      keys.push.apply(keys, symbols);
+    }
+
+    return keys;
+  }
+
+  function _objectSpread2(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i] != null ? arguments[i] : {};
+
+      if (i % 2) {
+        ownKeys(source, true).forEach(function (key) {
+          _defineProperty(target, key, source[key]);
+        });
+      } else if (Object.getOwnPropertyDescriptors) {
+        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+      } else {
+        ownKeys(source).forEach(function (key) {
+          Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+        });
+      }
+    }
+
+    return target;
+  }
+
+  function _toConsumableArray(arr) {
+    return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();
+  }
+
+  function _arrayWithoutHoles(arr) {
+    if (Array.isArray(arr)) {
+      for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
+
+      return arr2;
+    }
+  }
+
+  function _iterableToArray(iter) {
+    if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
+  }
+
+  function _nonIterableSpread() {
+    throw new TypeError("Invalid attempt to spread non-iterable instance");
+  }
+
+  var IS_BROWSER = typeof window !== 'undefined' && typeof window.document !== 'undefined';
+  var WINDOW = IS_BROWSER ? window : {};
+  var IS_TOUCH_DEVICE = IS_BROWSER ? 'ontouchstart' in WINDOW.document.documentElement : false;
+  var HAS_POINTER_EVENT = IS_BROWSER ? 'PointerEvent' in WINDOW : false;
+  var NAMESPACE = 'cropper'; // Actions
+
+  var ACTION_ALL = 'all';
+  var ACTION_CROP = 'crop';
+  var ACTION_MOVE = 'move';
+  var ACTION_ZOOM = 'zoom';
+  var ACTION_EAST = 'e';
+  var ACTION_WEST = 'w';
+  var ACTION_SOUTH = 's';
+  var ACTION_NORTH = 'n';
+  var ACTION_NORTH_EAST = 'ne';
+  var ACTION_NORTH_WEST = 'nw';
+  var ACTION_SOUTH_EAST = 'se';
+  var ACTION_SOUTH_WEST = 'sw'; // Classes
+
+  var CLASS_CROP = "".concat(NAMESPACE, "-crop");
+  var CLASS_DISABLED = "".concat(NAMESPACE, "-disabled");
+  var CLASS_HIDDEN = "".concat(NAMESPACE, "-hidden");
+  var CLASS_HIDE = "".concat(NAMESPACE, "-hide");
+  var CLASS_INVISIBLE = "".concat(NAMESPACE, "-invisible");
+  var CLASS_MODAL = "".concat(NAMESPACE, "-modal");
+  var CLASS_MOVE = "".concat(NAMESPACE, "-move"); // Data keys
+
+  var DATA_ACTION = "".concat(NAMESPACE, "Action");
+  var DATA_PREVIEW = "".concat(NAMESPACE, "Preview"); // Drag modes
+
+  var DRAG_MODE_CROP = 'crop';
+  var DRAG_MODE_MOVE = 'move';
+  var DRAG_MODE_NONE = 'none'; // Events
+
+  var EVENT_CROP = 'crop';
+  var EVENT_CROP_END = 'cropend';
+  var EVENT_CROP_MOVE = 'cropmove';
+  var EVENT_CROP_START = 'cropstart';
+  var EVENT_DBLCLICK = 'dblclick';
+  var EVENT_TOUCH_START = IS_TOUCH_DEVICE ? 'touchstart' : 'mousedown';
+  var EVENT_TOUCH_MOVE = IS_TOUCH_DEVICE ? 'touchmove' : 'mousemove';
+  var EVENT_TOUCH_END = IS_TOUCH_DEVICE ? 'touchend touchcancel' : 'mouseup';
+  var EVENT_POINTER_DOWN = HAS_POINTER_EVENT ? 'pointerdown' : EVENT_TOUCH_START;
+  var EVENT_POINTER_MOVE = HAS_POINTER_EVENT ? 'pointermove' : EVENT_TOUCH_MOVE;
+  var EVENT_POINTER_UP = HAS_POINTER_EVENT ? 'pointerup pointercancel' : EVENT_TOUCH_END;
+  var EVENT_READY = 'ready';
+  var EVENT_RESIZE = 'resize';
+  var EVENT_WHEEL = 'wheel';
+  var EVENT_ZOOM = 'zoom'; // Mime types
+
+  var MIME_TYPE_JPEG = 'image/jpeg'; // RegExps
+
+  var REGEXP_ACTIONS = /^e|w|s|n|se|sw|ne|nw|all|crop|move|zoom$/;
+  var REGEXP_DATA_URL = /^data:/;
+  var REGEXP_DATA_URL_JPEG = /^data:image\/jpeg;base64,/;
+  var REGEXP_TAG_NAME = /^img|canvas$/i; // Misc
+  // Inspired by the default width and height of a canvas element.
+
+  var MIN_CONTAINER_WIDTH = 200;
+  var MIN_CONTAINER_HEIGHT = 100;
+
+  var DEFAULTS = {
+    // Define the view mode of the cropper
+    viewMode: 0,
+    // 0, 1, 2, 3
+    // Define the dragging mode of the cropper
+    dragMode: DRAG_MODE_CROP,
+    // 'crop', 'move' or 'none'
+    // Define the initial aspect ratio of the crop box
+    initialAspectRatio: NaN,
+    // Define the aspect ratio of the crop box
+    aspectRatio: NaN,
+    // An object with the previous cropping result data
+    data: null,
+    // A selector for adding extra containers to preview
+    preview: '',
+    // Re-render the cropper when resize the window
+    responsive: true,
+    // Restore the cropped area after resize the window
+    restore: true,
+    // Check if the current image is a cross-origin image
+    checkCrossOrigin: true,
+    // Check the current image's Exif Orientation information
+    checkOrientation: true,
+    // Show the black modal
+    modal: true,
+    // Show the dashed lines for guiding
+    guides: true,
+    // Show the center indicator for guiding
+    center: true,
+    // Show the white modal to highlight the crop box
+    highlight: true,
+    // Show the grid background
+    background: true,
+    // Enable to crop the image automatically when initialize
+    autoCrop: true,
+    // Define the percentage of automatic cropping area when initializes
+    autoCropArea: 0.8,
+    // Enable to move the image
+    movable: true,
+    // Enable to rotate the image
+    rotatable: true,
+    // Enable to scale the image
+    scalable: true,
+    // Enable to zoom the image
+    zoomable: true,
+    // Enable to zoom the image by dragging touch
+    zoomOnTouch: true,
+    // Enable to zoom the image by wheeling mouse
+    zoomOnWheel: true,
+    // Define zoom ratio when zoom the image by wheeling mouse
+    wheelZoomRatio: 0.1,
+    // Enable to move the crop box
+    cropBoxMovable: true,
+    // Enable to resize the crop box
+    cropBoxResizable: true,
+    // Toggle drag mode between "crop" and "move" when click twice on the cropper
+    toggleDragModeOnDblclick: true,
+    // Size limitation
+    minCanvasWidth: 0,
+    minCanvasHeight: 0,
+    minCropBoxWidth: 0,
+    minCropBoxHeight: 0,
+    minContainerWidth: 200,
+    minContainerHeight: 100,
+    // Shortcuts of events
+    ready: null,
+    cropstart: null,
+    cropmove: null,
+    cropend: null,
+    crop: null,
+    zoom: null
+  };
+
+  var TEMPLATE = '<div class="cropper-container" touch-action="none">' + '<div class="cropper-wrap-box">' + '<div class="cropper-canvas"></div>' + '</div>' + '<div class="cropper-drag-box"></div>' + '<div class="cropper-crop-box">' + '<span class="cropper-view-box"></span>' + '<span class="cropper-dashed dashed-h"></span>' + '<span class="cropper-dashed dashed-v"></span>' + '<span class="cropper-center"></span>' + '<span class="cropper-face"></span>' + '<span class="cropper-line line-e" data-cropper-action="e"></span>' + '<span class="cropper-line line-n" data-cropper-action="n"></span>' + '<span class="cropper-line line-w" data-cropper-action="w"></span>' + '<span class="cropper-line line-s" data-cropper-action="s"></span>' + '<span class="cropper-point point-e" data-cropper-action="e"></span>' + '<span class="cropper-point point-n" data-cropper-action="n"></span>' + '<span class="cropper-point point-w" data-cropper-action="w"></span>' + '<span class="cropper-point point-s" data-cropper-action="s"></span>' + '<span class="cropper-point point-ne" data-cropper-action="ne"></span>' + '<span class="cropper-point point-nw" data-cropper-action="nw"></span>' + '<span class="cropper-point point-sw" data-cropper-action="sw"></span>' + '<span class="cropper-point point-se" data-cropper-action="se"></span>' + '</div>' + '</div>';
+
+  /**
+   * Check if the given value is not a number.
+   */
+
+  var isNaN = Number.isNaN || WINDOW.isNaN;
+  /**
+   * Check if the given value is a number.
+   * @param {*} value - The value to check.
+   * @returns {boolean} Returns `true` if the given value is a number, else `false`.
+   */
+
+  function isNumber(value) {
+    return typeof value === 'number' && !isNaN(value);
+  }
+  /**
+   * Check if the given value is a positive number.
+   * @param {*} value - The value to check.
+   * @returns {boolean} Returns `true` if the given value is a positive number, else `false`.
+   */
+
+  var isPositiveNumber = function isPositiveNumber(value) {
+    return value > 0 && value < Infinity;
+  };
+  /**
+   * Check if the given value is undefined.
+   * @param {*} value - The value to check.
+   * @returns {boolean} Returns `true` if the given value is undefined, else `false`.
+   */
+
+  function isUndefined(value) {
+    return typeof value === 'undefined';
+  }
+  /**
+   * Check if the given value is an object.
+   * @param {*} value - The value to check.
+   * @returns {boolean} Returns `true` if the given value is an object, else `false`.
+   */
+
+  function isObject(value) {
+    return _typeof(value) === 'object' && value !== null;
+  }
+  var hasOwnProperty = Object.prototype.hasOwnProperty;
+  /**
+   * Check if the given value is a plain object.
+   * @param {*} value - The value to check.
+   * @returns {boolean} Returns `true` if the given value is a plain object, else `false`.
+   */
+
+  function isPlainObject(value) {
+    if (!isObject(value)) {
+      return false;
+    }
+
+    try {
+      var _constructor = value.constructor;
+      var prototype = _constructor.prototype;
+      return _constructor && prototype && hasOwnProperty.call(prototype, 'isPrototypeOf');
+    } catch (error) {
+      return false;
+    }
+  }
+  /**
+   * Check if the given value is a function.
+   * @param {*} value - The value to check.
+   * @returns {boolean} Returns `true` if the given value is a function, else `false`.
+   */
+
+  function isFunction(value) {
+    return typeof value === 'function';
+  }
+  var slice = Array.prototype.slice;
+  /**
+   * Convert array-like or iterable object to an array.
+   * @param {*} value - The value to convert.
+   * @returns {Array} Returns a new array.
+   */
+
+  function toArray(value) {
+    return Array.from ? Array.from(value) : slice.call(value);
+  }
+  /**
+   * Iterate the given data.
+   * @param {*} data - The data to iterate.
+   * @param {Function} callback - The process function for each element.
+   * @returns {*} The original data.
+   */
+
+  function forEach(data, callback) {
+    if (data && isFunction(callback)) {
+      if (Array.isArray(data) || isNumber(data.length)
+      /* array-like */
+      ) {
+          toArray(data).forEach(function (value, key) {
+            callback.call(data, value, key, data);
+          });
+        } else if (isObject(data)) {
+        Object.keys(data).forEach(function (key) {
+          callback.call(data, data[key], key, data);
+        });
+      }
+    }
+
+    return data;
+  }
+  /**
+   * Extend the given object.
+   * @param {*} target - The target object to extend.
+   * @param {*} args - The rest objects for merging to the target object.
+   * @returns {Object} The extended object.
+   */
+
+  var assign = Object.assign || function assign(target) {
+    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      args[_key - 1] = arguments[_key];
+    }
+
+    if (isObject(target) && args.length > 0) {
+      args.forEach(function (arg) {
+        if (isObject(arg)) {
+          Object.keys(arg).forEach(function (key) {
+            target[key] = arg[key];
+          });
+        }
+      });
+    }
+
+    return target;
+  };
+  var REGEXP_DECIMALS = /\.\d*(?:0|9){12}\d*$/;
+  /**
+   * Normalize decimal number.
+   * Check out {@link http://0.30000000000000004.com/}
+   * @param {number} value - The value to normalize.
+   * @param {number} [times=100000000000] - The times for normalizing.
+   * @returns {number} Returns the normalized number.
+   */
+
+  function normalizeDecimalNumber(value) {
+    var times = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 100000000000;
+    return REGEXP_DECIMALS.test(value) ? Math.round(value * times) / times : value;
+  }
+  var REGEXP_SUFFIX = /^width|height|left|top|marginLeft|marginTop$/;
+  /**
+   * Apply styles to the given element.
+   * @param {Element} element - The target element.
+   * @param {Object} styles - The styles for applying.
+   */
+
+  function setStyle(element, styles) {
+    var style = element.style;
+    forEach(styles, function (value, property) {
+      if (REGEXP_SUFFIX.test(property) && isNumber(value)) {
+        value = "".concat(value, "px");
+      }
+
+      style[property] = value;
+    });
+  }
+  /**
+   * Check if the given element has a special class.
+   * @param {Element} element - The element to check.
+   * @param {string} value - The class to search.
+   * @returns {boolean} Returns `true` if the special class was found.
+   */
+
+  function hasClass(element, value) {
+    return element.classList ? element.classList.contains(value) : element.className.indexOf(value) > -1;
+  }
+  /**
+   * Add classes to the given element.
+   * @param {Element} element - The target element.
+   * @param {string} value - The classes to be added.
+   */
+
+  function addClass(element, value) {
+    if (!value) {
+      return;
+    }
+
+    if (isNumber(element.length)) {
+      forEach(element, function (elem) {
+        addClass(elem, value);
+      });
+      return;
+    }
+
+    if (element.classList) {
+      element.classList.add(value);
+      return;
+    }
+
+    var className = element.className.trim();
+
+    if (!className) {
+      element.className = value;
+    } else if (className.indexOf(value) < 0) {
+      element.className = "".concat(className, " ").concat(value);
+    }
+  }
+  /**
+   * Remove classes from the given element.
+   * @param {Element} element - The target element.
+   * @param {string} value - The classes to be removed.
+   */
+
+  function removeClass(element, value) {
+    if (!value) {
+      return;
+    }
+
+    if (isNumber(element.length)) {
+      forEach(element, function (elem) {
+        removeClass(elem, value);
+      });
+      return;
+    }
+
+    if (element.classList) {
+      element.classList.remove(value);
+      return;
+    }
+
+    if (element.className.indexOf(value) >= 0) {
+      element.className = element.className.replace(value, '');
+    }
+  }
+  /**
+   * Add or remove classes from the given element.
+   * @param {Element} element - The target element.
+   * @param {string} value - The classes to be toggled.
+   * @param {boolean} added - Add only.
+   */
+
+  function toggleClass(element, value, added) {
+    if (!value) {
+      return;
+    }
+
+    if (isNumber(element.length)) {
+      forEach(element, function (elem) {
+        toggleClass(elem, value, added);
+      });
+      return;
+    } // IE10-11 doesn't support the second parameter of `classList.toggle`
+
+
+    if (added) {
+      addClass(element, value);
+    } else {
+      removeClass(element, value);
+    }
+  }
+  var REGEXP_CAMEL_CASE = /([a-z\d])([A-Z])/g;
+  /**
+   * Transform the given string from camelCase to kebab-case
+   * @param {string} value - The value to transform.
+   * @returns {string} The transformed value.
+   */
+
+  function toParamCase(value) {
+    return value.replace(REGEXP_CAMEL_CASE, '$1-$2').toLowerCase();
+  }
+  /**
+   * Get data from the given element.
+   * @param {Element} element - The target element.
+   * @param {string} name - The data key to get.
+   * @returns {string} The data value.
+   */
+
+  function getData(element, name) {
+    if (isObject(element[name])) {
+      return element[name];
+    }
+
+    if (element.dataset) {
+      return element.dataset[name];
+    }
+
+    return element.getAttribute("data-".concat(toParamCase(name)));
+  }
+  /**
+   * Set data to the given element.
+   * @param {Element} element - The target element.
+   * @param {string} name - The data key to set.
+   * @param {string} data - The data value.
+   */
+
+  function setData(element, name, data) {
+    if (isObject(data)) {
+      element[name] = data;
+    } else if (element.dataset) {
+      element.dataset[name] = data;
+    } else {
+      element.setAttribute("data-".concat(toParamCase(name)), data);
+    }
+  }
+  /**
+   * Remove data from the given element.
+   * @param {Element} element - The target element.
+   * @param {string} name - The data key to remove.
+   */
+
+  function removeData(element, name) {
+    if (isObject(element[name])) {
+      try {
+        delete element[name];
+      } catch (error) {
+        element[name] = undefined;
+      }
+    } else if (element.dataset) {
+      // #128 Safari not allows to delete dataset property
+      try {
+        delete element.dataset[name];
+      } catch (error) {
+        element.dataset[name] = undefined;
+      }
+    } else {
+      element.removeAttribute("data-".concat(toParamCase(name)));
+    }
+  }
+  var REGEXP_SPACES = /\s\s*/;
+
+  var onceSupported = function () {
+    var supported = false;
+
+    if (IS_BROWSER) {
+      var once = false;
+
+      var listener = function listener() {};
+
+      var options = Object.defineProperty({}, 'once', {
+        get: function get() {
+          supported = true;
+          return once;
+        },
+
+        /**
+         * This setter can fix a `TypeError` in strict mode
+         * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Getter_only}
+         * @param {boolean} value - The value to set
+         */
+        set: function set(value) {
+          once = value;
+        }
+      });
+      WINDOW.addEventListener('test', listener, options);
+      WINDOW.removeEventListener('test', listener, options);
+    }
+
+    return supported;
+  }();
+  /**
+   * Remove event listener from the target element.
+   * @param {Element} element - The event target.
+   * @param {string} type - The event type(s).
+   * @param {Function} listener - The event listener.
+   * @param {Object} options - The event options.
+   */
+
+
+  function removeListener(element, type, listener) {
+    var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+    var handler = listener;
+    type.trim().split(REGEXP_SPACES).forEach(function (event) {
+      if (!onceSupported) {
+        var listeners = element.listeners;
+
+        if (listeners && listeners[event] && listeners[event][listener]) {
+          handler = listeners[event][listener];
+          delete listeners[event][listener];
+
+          if (Object.keys(listeners[event]).length === 0) {
+            delete listeners[event];
+          }
+
+          if (Object.keys(listeners).length === 0) {
+            delete element.listeners;
+          }
+        }
+      }
+
+      element.removeEventListener(event, handler, options);
+    });
+  }
+  /**
+   * Add event listener to the target element.
+   * @param {Element} element - The event target.
+   * @param {string} type - The event type(s).
+   * @param {Function} listener - The event listener.
+   * @param {Object} options - The event options.
+   */
+
+  function addListener(element, type, listener) {
+    var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+    var _handler = listener;
+    type.trim().split(REGEXP_SPACES).forEach(function (event) {
+      if (options.once && !onceSupported) {
+        var _element$listeners = element.listeners,
+            listeners = _element$listeners === void 0 ? {} : _element$listeners;
+
+        _handler = function handler() {
+          delete listeners[event][listener];
+          element.removeEventListener(event, _handler, options);
+
+          for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+            args[_key2] = arguments[_key2];
+          }
+
+          listener.apply(element, args);
+        };
+
+        if (!listeners[event]) {
+          listeners[event] = {};
+        }
+
+        if (listeners[event][listener]) {
+          element.removeEventListener(event, listeners[event][listener], options);
+        }
+
+        listeners[event][listener] = _handler;
+        element.listeners = listeners;
+      }
+
+      element.addEventListener(event, _handler, options);
+    });
+  }
+  /**
+   * Dispatch event on the target element.
+   * @param {Element} element - The event target.
+   * @param {string} type - The event type(s).
+   * @param {Object} data - The additional event data.
+   * @returns {boolean} Indicate if the event is default prevented or not.
+   */
+
+  function dispatchEvent(element, type, data) {
+    var event; // Event and CustomEvent on IE9-11 are global objects, not constructors
+
+    if (isFunction(Event) && isFunction(CustomEvent)) {
+      event = new CustomEvent(type, {
+        detail: data,
+        bubbles: true,
+        cancelable: true
+      });
+    } else {
+      event = document.createEvent('CustomEvent');
+      event.initCustomEvent(type, true, true, data);
+    }
+
+    return element.dispatchEvent(event);
+  }
+  /**
+   * Get the offset base on the document.
+   * @param {Element} element - The target element.
+   * @returns {Object} The offset data.
+   */
+
+  function getOffset(element) {
+    var box = element.getBoundingClientRect();
+    return {
+      left: box.left + (window.pageXOffset - document.documentElement.clientLeft),
+      top: box.top + (window.pageYOffset - document.documentElement.clientTop)
+    };
+  }
+  var location = WINDOW.location;
+  var REGEXP_ORIGINS = /^(\w+:)\/\/([^:/?#]*):?(\d*)/i;
+  /**
+   * Check if the given URL is a cross origin URL.
+   * @param {string} url - The target URL.
+   * @returns {boolean} Returns `true` if the given URL is a cross origin URL, else `false`.
+   */
+
+  function isCrossOriginURL(url) {
+    var parts = url.match(REGEXP_ORIGINS);
+    return parts !== null && (parts[1] !== location.protocol || parts[2] !== location.hostname || parts[3] !== location.port);
+  }
+  /**
+   * Add timestamp to the given URL.
+   * @param {string} url - The target URL.
+   * @returns {string} The result URL.
+   */
+
+  function addTimestamp(url) {
+    var timestamp = "timestamp=".concat(new Date().getTime());
+    return url + (url.indexOf('?') === -1 ? '?' : '&') + timestamp;
+  }
+  /**
+   * Get transforms base on the given object.
+   * @param {Object} obj - The target object.
+   * @returns {string} A string contains transform values.
+   */
+
+  function getTransforms(_ref) {
+    var rotate = _ref.rotate,
+        scaleX = _ref.scaleX,
+        scaleY = _ref.scaleY,
+        translateX = _ref.translateX,
+        translateY = _ref.translateY;
+    var values = [];
+
+    if (isNumber(translateX) && translateX !== 0) {
+      values.push("translateX(".concat(translateX, "px)"));
+    }
+
+    if (isNumber(translateY) && translateY !== 0) {
+      values.push("translateY(".concat(translateY, "px)"));
+    } // Rotate should come first before scale to match orientation transform
+
+
+    if (isNumber(rotate) && rotate !== 0) {
+      values.push("rotate(".concat(rotate, "deg)"));
+    }
+
+    if (isNumber(scaleX) && scaleX !== 1) {
+      values.push("scaleX(".concat(scaleX, ")"));
+    }
+
+    if (isNumber(scaleY) && scaleY !== 1) {
+      values.push("scaleY(".concat(scaleY, ")"));
+    }
+
+    var transform = values.length ? values.join(' ') : 'none';
+    return {
+      WebkitTransform: transform,
+      msTransform: transform,
+      transform: transform
+    };
+  }
+  /**
+   * Get the max ratio of a group of pointers.
+   * @param {string} pointers - The target pointers.
+   * @returns {number} The result ratio.
+   */
+
+  function getMaxZoomRatio(pointers) {
+    var pointers2 = _objectSpread2({}, pointers);
+
+    var ratios = [];
+    forEach(pointers, function (pointer, pointerId) {
+      delete pointers2[pointerId];
+      forEach(pointers2, function (pointer2) {
+        var x1 = Math.abs(pointer.startX - pointer2.startX);
+        var y1 = Math.abs(pointer.startY - pointer2.startY);
+        var x2 = Math.abs(pointer.endX - pointer2.endX);
+        var y2 = Math.abs(pointer.endY - pointer2.endY);
+        var z1 = Math.sqrt(x1 * x1 + y1 * y1);
+        var z2 = Math.sqrt(x2 * x2 + y2 * y2);
+        var ratio = (z2 - z1) / z1;
+        ratios.push(ratio);
+      });
+    });
+    ratios.sort(function (a, b) {
+      return Math.abs(a) < Math.abs(b);
+    });
+    return ratios[0];
+  }
+  /**
+   * Get a pointer from an event object.
+   * @param {Object} event - The target event object.
+   * @param {boolean} endOnly - Indicates if only returns the end point coordinate or not.
+   * @returns {Object} The result pointer contains start and/or end point coordinates.
+   */
+
+  function getPointer(_ref2, endOnly) {
+    var pageX = _ref2.pageX,
+        pageY = _ref2.pageY;
+    var end = {
+      endX: pageX,
+      endY: pageY
+    };
+    return endOnly ? end : _objectSpread2({
+      startX: pageX,
+      startY: pageY
+    }, end);
+  }
+  /**
+   * Get the center point coordinate of a group of pointers.
+   * @param {Object} pointers - The target pointers.
+   * @returns {Object} The center point coordinate.
+   */
+
+  function getPointersCenter(pointers) {
+    var pageX = 0;
+    var pageY = 0;
+    var count = 0;
+    forEach(pointers, function (_ref3) {
+      var startX = _ref3.startX,
+          startY = _ref3.startY;
+      pageX += startX;
+      pageY += startY;
+      count += 1;
+    });
+    pageX /= count;
+    pageY /= count;
+    return {
+      pageX: pageX,
+      pageY: pageY
+    };
+  }
+  /**
+   * Get the max sizes in a rectangle under the given aspect ratio.
+   * @param {Object} data - The original sizes.
+   * @param {string} [type='contain'] - The adjust type.
+   * @returns {Object} The result sizes.
+   */
+
+  function getAdjustedSizes(_ref4) // or 'cover'
+  {
+    var aspectRatio = _ref4.aspectRatio,
+        height = _ref4.height,
+        width = _ref4.width;
+    var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'contain';
+    var isValidWidth = isPositiveNumber(width);
+    var isValidHeight = isPositiveNumber(height);
+
+    if (isValidWidth && isValidHeight) {
+      var adjustedWidth = height * aspectRatio;
+
+      if (type === 'contain' && adjustedWidth > width || type === 'cover' && adjustedWidth < width) {
+        height = width / aspectRatio;
+      } else {
+        width = height * aspectRatio;
+      }
+    } else if (isValidWidth) {
+      height = width / aspectRatio;
+    } else if (isValidHeight) {
+      width = height * aspectRatio;
+    }
+
+    return {
+      width: width,
+      height: height
+    };
+  }
+  /**
+   * Get the new sizes of a rectangle after rotated.
+   * @param {Object} data - The original sizes.
+   * @returns {Object} The result sizes.
+   */
+
+  function getRotatedSizes(_ref5) {
+    var width = _ref5.width,
+        height = _ref5.height,
+        degree = _ref5.degree;
+    degree = Math.abs(degree) % 180;
+
+    if (degree === 90) {
+      return {
+        width: height,
+        height: width
+      };
+    }
+
+    var arc = degree % 90 * Math.PI / 180;
+    var sinArc = Math.sin(arc);
+    var cosArc = Math.cos(arc);
+    var newWidth = width * cosArc + height * sinArc;
+    var newHeight = width * sinArc + height * cosArc;
+    return degree > 90 ? {
+      width: newHeight,
+      height: newWidth
+    } : {
+      width: newWidth,
+      height: newHeight
+    };
+  }
+  /**
+   * Get a canvas which drew the given image.
+   * @param {HTMLImageElement} image - The image for drawing.
+   * @param {Object} imageData - The image data.
+   * @param {Object} canvasData - The canvas data.
+   * @param {Object} options - The options.
+   * @returns {HTMLCanvasElement} The result canvas.
+   */
+
+  function getSourceCanvas(image, _ref6, _ref7, _ref8) {
+    var imageAspectRatio = _ref6.aspectRatio,
+        imageNaturalWidth = _ref6.naturalWidth,
+        imageNaturalHeight = _ref6.naturalHeight,
+        _ref6$rotate = _ref6.rotate,
+        rotate = _ref6$rotate === void 0 ? 0 : _ref6$rotate,
+        _ref6$scaleX = _ref6.scaleX,
+        scaleX = _ref6$scaleX === void 0 ? 1 : _ref6$scaleX,
+        _ref6$scaleY = _ref6.scaleY,
+        scaleY = _ref6$scaleY === void 0 ? 1 : _ref6$scaleY;
+    var aspectRatio = _ref7.aspectRatio,
+        naturalWidth = _ref7.naturalWidth,
+        naturalHeight = _ref7.naturalHeight;
+    var _ref8$fillColor = _ref8.fillColor,
+        fillColor = _ref8$fillColor === void 0 ? 'transparent' : _ref8$fillColor,
+        _ref8$imageSmoothingE = _ref8.imageSmoothingEnabled,
+        imageSmoothingEnabled = _ref8$imageSmoothingE === void 0 ? true : _ref8$imageSmoothingE,
+        _ref8$imageSmoothingQ = _ref8.imageSmoothingQuality,
+        imageSmoothingQuality = _ref8$imageSmoothingQ === void 0 ? 'low' : _ref8$imageSmoothingQ,
+        _ref8$maxWidth = _ref8.maxWidth,
+        maxWidth = _ref8$maxWidth === void 0 ? Infinity : _ref8$maxWidth,
+        _ref8$maxHeight = _ref8.maxHeight,
+        maxHeight = _ref8$maxHeight === void 0 ? Infinity : _ref8$maxHeight,
+        _ref8$minWidth = _ref8.minWidth,
+        minWidth = _ref8$minWidth === void 0 ? 0 : _ref8$minWidth,
+        _ref8$minHeight = _ref8.minHeight,
+        minHeight = _ref8$minHeight === void 0 ? 0 : _ref8$minHeight;
+    var canvas = document.createElement('canvas');
+    var context = canvas.getContext('2d');
+    var maxSizes = getAdjustedSizes({
+      aspectRatio: aspectRatio,
+      width: maxWidth,
+      height: maxHeight
+    });
+    var minSizes = getAdjustedSizes({
+      aspectRatio: aspectRatio,
+      width: minWidth,
+      height: minHeight
+    }, 'cover');
+    var width = Math.min(maxSizes.width, Math.max(minSizes.width, naturalWidth));
+    var height = Math.min(maxSizes.height, Math.max(minSizes.height, naturalHeight)); // Note: should always use image's natural sizes for drawing as
+    // imageData.naturalWidth === canvasData.naturalHeight when rotate % 180 === 90
+
+    var destMaxSizes = getAdjustedSizes({
+      aspectRatio: imageAspectRatio,
+      width: maxWidth,
+      height: maxHeight
+    });
+    var destMinSizes = getAdjustedSizes({
+      aspectRatio: imageAspectRatio,
+      width: minWidth,
+      height: minHeight
+    }, 'cover');
+    var destWidth = Math.min(destMaxSizes.width, Math.max(destMinSizes.width, imageNaturalWidth));
+    var destHeight = Math.min(destMaxSizes.height, Math.max(destMinSizes.height, imageNaturalHeight));
+    var params = [-destWidth / 2, -destHeight / 2, destWidth, destHeight];
+    canvas.width = normalizeDecimalNumber(width);
+    canvas.height = normalizeDecimalNumber(height);
+    context.fillStyle = fillColor;
+    context.fillRect(0, 0, width, height);
+    context.save();
+    context.translate(width / 2, height / 2);
+    context.rotate(rotate * Math.PI / 180);
+    context.scale(scaleX, scaleY);
+    context.imageSmoothingEnabled = imageSmoothingEnabled;
+    context.imageSmoothingQuality = imageSmoothingQuality;
+    context.drawImage.apply(context, [image].concat(_toConsumableArray(params.map(function (param) {
+      return Math.floor(normalizeDecimalNumber(param));
+    }))));
+    context.restore();
+    return canvas;
+  }
+  var fromCharCode = String.fromCharCode;
+  /**
+   * Get string from char code in data view.
+   * @param {DataView} dataView - The data view for read.
+   * @param {number} start - The start index.
+   * @param {number} length - The read length.
+   * @returns {string} The read result.
+   */
+
+  function getStringFromCharCode(dataView, start, length) {
+    var str = '';
+    length += start;
+
+    for (var i = start; i < length; i += 1) {
+      str += fromCharCode(dataView.getUint8(i));
+    }
+
+    return str;
+  }
+  var REGEXP_DATA_URL_HEAD = /^data:.*,/;
+  /**
+   * Transform Data URL to array buffer.
+   * @param {string} dataURL - The Data URL to transform.
+   * @returns {ArrayBuffer} The result array buffer.
+   */
+
+  function dataURLToArrayBuffer(dataURL) {
+    var base64 = dataURL.replace(REGEXP_DATA_URL_HEAD, '');
+    var binary = atob(base64);
+    var arrayBuffer = new ArrayBuffer(binary.length);
+    var uint8 = new Uint8Array(arrayBuffer);
+    forEach(uint8, function (value, i) {
+      uint8[i] = binary.charCodeAt(i);
+    });
+    return arrayBuffer;
+  }
+  /**
+   * Transform array buffer to Data URL.
+   * @param {ArrayBuffer} arrayBuffer - The array buffer to transform.
+   * @param {string} mimeType - The mime type of the Data URL.
+   * @returns {string} The result Data URL.
+   */
+
+  function arrayBufferToDataURL(arrayBuffer, mimeType) {
+    var chunks = []; // Chunk Typed Array for better performance (#435)
+
+    var chunkSize = 8192;
+    var uint8 = new Uint8Array(arrayBuffer);
+
+    while (uint8.length > 0) {
+      // XXX: Babel's `toConsumableArray` helper will throw error in IE or Safari 9
+      // eslint-disable-next-line prefer-spread
+      chunks.push(fromCharCode.apply(null, toArray(uint8.subarray(0, chunkSize))));
+      uint8 = uint8.subarray(chunkSize);
+    }
+
+    return "data:".concat(mimeType, ";base64,").concat(btoa(chunks.join('')));
+  }
+  /**
+   * Get orientation value from given array buffer.
+   * @param {ArrayBuffer} arrayBuffer - The array buffer to read.
+   * @returns {number} The read orientation value.
+   */
+
+  function resetAndGetOrientation(arrayBuffer) {
+    var dataView = new DataView(arrayBuffer);
+    var orientation; // Ignores range error when the image does not have correct Exif information
+
+    try {
+      var littleEndian;
+      var app1Start;
+      var ifdStart; // Only handle JPEG image (start by 0xFFD8)
+
+      if (dataView.getUint8(0) === 0xFF && dataView.getUint8(1) === 0xD8) {
+        var length = dataView.byteLength;
+        var offset = 2;
+
+        while (offset + 1 < length) {
+          if (dataView.getUint8(offset) === 0xFF && dataView.getUint8(offset + 1) === 0xE1) {
+            app1Start = offset;
+            break;
+          }
+
+          offset += 1;
+        }
+      }
+
+      if (app1Start) {
+        var exifIDCode = app1Start + 4;
+        var tiffOffset = app1Start + 10;
+
+        if (getStringFromCharCode(dataView, exifIDCode, 4) === 'Exif') {
+          var endianness = dataView.getUint16(tiffOffset);
+          littleEndian = endianness === 0x4949;
+
+          if (littleEndian || endianness === 0x4D4D
+          /* bigEndian */
+          ) {
+              if (dataView.getUint16(tiffOffset + 2, littleEndian) === 0x002A) {
+                var firstIFDOffset = dataView.getUint32(tiffOffset + 4, littleEndian);
+
+                if (firstIFDOffset >= 0x00000008) {
+                  ifdStart = tiffOffset + firstIFDOffset;
+                }
+              }
+            }
+        }
+      }
+
+      if (ifdStart) {
+        var _length = dataView.getUint16(ifdStart, littleEndian);
+
+        var _offset;
+
+        var i;
+
+        for (i = 0; i < _length; i += 1) {
+          _offset = ifdStart + i * 12 + 2;
+
+          if (dataView.getUint16(_offset, littleEndian) === 0x0112
+          /* Orientation */
+          ) {
+              // 8 is the offset of the current tag's value
+              _offset += 8; // Get the original orientation value
+
+              orientation = dataView.getUint16(_offset, littleEndian); // Override the orientation with its default value
+
+              dataView.setUint16(_offset, 1, littleEndian);
+              break;
+            }
+        }
+      }
+    } catch (error) {
+      orientation = 1;
+    }
+
+    return orientation;
+  }
+  /**
+   * Parse Exif Orientation value.
+   * @param {number} orientation - The orientation to parse.
+   * @returns {Object} The parsed result.
+   */
+
+  function parseOrientation(orientation) {
+    var rotate = 0;
+    var scaleX = 1;
+    var scaleY = 1;
+
+    switch (orientation) {
+      // Flip horizontal
+      case 2:
+        scaleX = -1;
+        break;
+      // Rotate left 180°
+
+      case 3:
+        rotate = -180;
+        break;
+      // Flip vertical
+
+      case 4:
+        scaleY = -1;
+        break;
+      // Flip vertical and rotate right 90°
+
+      case 5:
+        rotate = 90;
+        scaleY = -1;
+        break;
+      // Rotate right 90°
+
+      case 6:
+        rotate = 90;
+        break;
+      // Flip horizontal and rotate right 90°
+
+      case 7:
+        rotate = 90;
+        scaleX = -1;
+        break;
+      // Rotate left 90°
+
+      case 8:
+        rotate = -90;
+        break;
+
+      default:
+    }
+
+    return {
+      rotate: rotate,
+      scaleX: scaleX,
+      scaleY: scaleY
+    };
+  }
+
+  var render = {
+    render: function render() {
+      this.initContainer();
+      this.initCanvas();
+      this.initCropBox();
+      this.renderCanvas();
+
+      if (this.cropped) {
+        this.renderCropBox();
+      }
+    },
+    initContainer: function initContainer() {
+      var element = this.element,
+          options = this.options,
+          container = this.container,
+          cropper = this.cropper;
+      addClass(cropper, CLASS_HIDDEN);
+      removeClass(element, CLASS_HIDDEN);
+      var containerData = {
+        width: Math.max(container.offsetWidth, Number(options.minContainerWidth) || 200),
+        height: Math.max(container.offsetHeight, Number(options.minContainerHeight) || 100)
+      };
+      this.containerData = containerData;
+      setStyle(cropper, {
+        width: containerData.width,
+        height: containerData.height
+      });
+      addClass(element, CLASS_HIDDEN);
+      removeClass(cropper, CLASS_HIDDEN);
+    },
+    // Canvas (image wrapper)
+    initCanvas: function initCanvas() {
+      var containerData = this.containerData,
+          imageData = this.imageData;
+      var viewMode = this.options.viewMode;
+      var rotated = Math.abs(imageData.rotate) % 180 === 90;
+      var naturalWidth = rotated ? imageData.naturalHeight : imageData.naturalWidth;
+      var naturalHeight = rotated ? imageData.naturalWidth : imageData.naturalHeight;
+      var aspectRatio = naturalWidth / naturalHeight;
+      var canvasWidth = containerData.width;
+      var canvasHeight = containerData.height;
+
+      if (containerData.height * aspectRatio > containerData.width) {
+        if (viewMode === 3) {
+          canvasWidth = containerData.height * aspectRatio;
+        } else {
+          canvasHeight = containerData.width / aspectRatio;
+        }
+      } else if (viewMode === 3) {
+        canvasHeight = containerData.width / aspectRatio;
+      } else {
+        canvasWidth = containerData.height * aspectRatio;
+      }
+
+      var canvasData = {
+        aspectRatio: aspectRatio,
+        naturalWidth: naturalWidth,
+        naturalHeight: naturalHeight,
+        width: canvasWidth,
+        height: canvasHeight
+      };
+      canvasData.left = (containerData.width - canvasWidth) / 2;
+      canvasData.top = (containerData.height - canvasHeight) / 2;
+      canvasData.oldLeft = canvasData.left;
+      canvasData.oldTop = canvasData.top;
+      this.canvasData = canvasData;
+      this.limited = viewMode === 1 || viewMode === 2;
+      this.limitCanvas(true, true);
+      this.initialImageData = assign({}, imageData);
+      this.initialCanvasData = assign({}, canvasData);
+    },
+    limitCanvas: function limitCanvas(sizeLimited, positionLimited) {
+      var options = this.options,
+          containerData = this.containerData,
+          canvasData = this.canvasData,
+          cropBoxData = this.cropBoxData;
+      var viewMode = options.viewMode;
+      var aspectRatio = canvasData.aspectRatio;
+      var cropped = this.cropped && cropBoxData;
+
+      if (sizeLimited) {
+        var minCanvasWidth = Number(options.minCanvasWidth) || 0;
+        var minCanvasHeight = Number(options.minCanvasHeight) || 0;
+
+        if (viewMode > 1) {
+          minCanvasWidth = Math.max(minCanvasWidth, containerData.width);
+          minCanvasHeight = Math.max(minCanvasHeight, containerData.height);
+
+          if (viewMode === 3) {
+            if (minCanvasHeight * aspectRatio > minCanvasWidth) {
+              minCanvasWidth = minCanvasHeight * aspectRatio;
+            } else {
+              minCanvasHeight = minCanvasWidth / aspectRatio;
+            }
+          }
+        } else if (viewMode > 0) {
+          if (minCanvasWidth) {
+            minCanvasWidth = Math.max(minCanvasWidth, cropped ? cropBoxData.width : 0);
+          } else if (minCanvasHeight) {
+            minCanvasHeight = Math.max(minCanvasHeight, cropped ? cropBoxData.height : 0);
+          } else if (cropped) {
+            minCanvasWidth = cropBoxData.width;
+            minCanvasHeight = cropBoxData.height;
+
+            if (minCanvasHeight * aspectRatio > minCanvasWidth) {
+              minCanvasWidth = minCanvasHeight * aspectRatio;
+            } else {
+              minCanvasHeight = minCanvasWidth / aspectRatio;
+            }
+          }
+        }
+
+        var _getAdjustedSizes = getAdjustedSizes({
+          aspectRatio: aspectRatio,
+          width: minCanvasWidth,
+          height: minCanvasHeight
+        });
+
+        minCanvasWidth = _getAdjustedSizes.width;
+        minCanvasHeight = _getAdjustedSizes.height;
+        canvasData.minWidth = minCanvasWidth;
+        canvasData.minHeight = minCanvasHeight;
+        canvasData.maxWidth = Infinity;
+        canvasData.maxHeight = Infinity;
+      }
+
+      if (positionLimited) {
+        if (viewMode > (cropped ? 0 : 1)) {
+          var newCanvasLeft = containerData.width - canvasData.width;
+          var newCanvasTop = containerData.height - canvasData.height;
+          canvasData.minLeft = Math.min(0, newCanvasLeft);
+          canvasData.minTop = Math.min(0, newCanvasTop);
+          canvasData.maxLeft = Math.max(0, newCanvasLeft);
+          canvasData.maxTop = Math.max(0, newCanvasTop);
+
+          if (cropped && this.limited) {
+            canvasData.minLeft = Math.min(cropBoxData.left, cropBoxData.left + (cropBoxData.width - canvasData.width));
+            canvasData.minTop = Math.min(cropBoxData.top, cropBoxData.top + (cropBoxData.height - canvasData.height));
+            canvasData.maxLeft = cropBoxData.left;
+            canvasData.maxTop = cropBoxData.top;
+
+            if (viewMode === 2) {
+              if (canvasData.width >= containerData.width) {
+                canvasData.minLeft = Math.min(0, newCanvasLeft);
+                canvasData.maxLeft = Math.max(0, newCanvasLeft);
+              }
+
+              if (canvasData.height >= containerData.height) {
+                canvasData.minTop = Math.min(0, newCanvasTop);
+                canvasData.maxTop = Math.max(0, newCanvasTop);
+              }
+            }
+          }
+        } else {
+          canvasData.minLeft = -canvasData.width;
+          canvasData.minTop = -canvasData.height;
+          canvasData.maxLeft = containerData.width;
+          canvasData.maxTop = containerData.height;
+        }
+      }
+    },
+    renderCanvas: function renderCanvas(changed, transformed) {
+      var canvasData = this.canvasData,
+          imageData = this.imageData;
+
+      if (transformed) {
+        var _getRotatedSizes = getRotatedSizes({
+          width: imageData.naturalWidth * Math.abs(imageData.scaleX || 1),
+          height: imageData.naturalHeight * Math.abs(imageData.scaleY || 1),
+          degree: imageData.rotate || 0
+        }),
+            naturalWidth = _getRotatedSizes.width,
+            naturalHeight = _getRotatedSizes.height;
+
+        var width = canvasData.width * (naturalWidth / canvasData.naturalWidth);
+        var height = canvasData.height * (naturalHeight / canvasData.naturalHeight);
+        canvasData.left -= (width - canvasData.width) / 2;
+        canvasData.top -= (height - canvasData.height) / 2;
+        canvasData.width = width;
+        canvasData.height = height;
+        canvasData.aspectRatio = naturalWidth / naturalHeight;
+        canvasData.naturalWidth = naturalWidth;
+        canvasData.naturalHeight = naturalHeight;
+        this.limitCanvas(true, false);
+      }
+
+      if (canvasData.width > canvasData.maxWidth || canvasData.width < canvasData.minWidth) {
+        canvasData.left = canvasData.oldLeft;
+      }
+
+      if (canvasData.height > canvasData.maxHeight || canvasData.height < canvasData.minHeight) {
+        canvasData.top = canvasData.oldTop;
+      }
+
+      canvasData.width = Math.min(Math.max(canvasData.width, canvasData.minWidth), canvasData.maxWidth);
+      canvasData.height = Math.min(Math.max(canvasData.height, canvasData.minHeight), canvasData.maxHeight);
+      this.limitCanvas(false, true);
+      canvasData.left = Math.min(Math.max(canvasData.left, canvasData.minLeft), canvasData.maxLeft);
+      canvasData.top = Math.min(Math.max(canvasData.top, canvasData.minTop), canvasData.maxTop);
+      canvasData.oldLeft = canvasData.left;
+      canvasData.oldTop = canvasData.top;
+      setStyle(this.canvas, assign({
+        width: canvasData.width,
+        height: canvasData.height
+      }, getTransforms({
+        translateX: canvasData.left,
+        translateY: canvasData.top
+      })));
+      this.renderImage(changed);
+
+      if (this.cropped && this.limited) {
+        this.limitCropBox(true, true);
+      }
+    },
+    renderImage: function renderImage(changed) {
+      var canvasData = this.canvasData,
+          imageData = this.imageData;
+      var width = imageData.naturalWidth * (canvasData.width / canvasData.naturalWidth);
+      var height = imageData.naturalHeight * (canvasData.height / canvasData.naturalHeight);
+      assign(imageData, {
+        width: width,
+        height: height,
+        left: (canvasData.width - width) / 2,
+        top: (canvasData.height - height) / 2
+      });
+      setStyle(this.image, assign({
+        width: imageData.width,
+        height: imageData.height
+      }, getTransforms(assign({
+        translateX: imageData.left,
+        translateY: imageData.top
+      }, imageData))));
+
+      if (changed) {
+        this.output();
+      }
+    },
+    initCropBox: function initCropBox() {
+      var options = this.options,
+          canvasData = this.canvasData;
+      var aspectRatio = options.aspectRatio || options.initialAspectRatio;
+      var autoCropArea = Number(options.autoCropArea) || 0.8;
+      var cropBoxData = {
+        width: canvasData.width,
+        height: canvasData.height
+      };
+
+      if (aspectRatio) {
+        if (canvasData.height * aspectRatio > canvasData.width) {
+          cropBoxData.height = cropBoxData.width / aspectRatio;
+        } else {
+          cropBoxData.width = cropBoxData.height * aspectRatio;
+        }
+      }
+
+      this.cropBoxData = cropBoxData;
+      this.limitCropBox(true, true); // Initialize auto crop area
+
+      cropBoxData.width = Math.min(Math.max(cropBoxData.width, cropBoxData.minWidth), cropBoxData.maxWidth);
+      cropBoxData.height = Math.min(Math.max(cropBoxData.height, cropBoxData.minHeight), cropBoxData.maxHeight); // The width/height of auto crop area must large than "minWidth/Height"
+
+      cropBoxData.width = Math.max(cropBoxData.minWidth, cropBoxData.width * autoCropArea);
+      cropBoxData.height = Math.max(cropBoxData.minHeight, cropBoxData.height * autoCropArea);
+      cropBoxData.left = canvasData.left + (canvasData.width - cropBoxData.width) / 2;
+      cropBoxData.top = canvasData.top + (canvasData.height - cropBoxData.height) / 2;
+      cropBoxData.oldLeft = cropBoxData.left;
+      cropBoxData.oldTop = cropBoxData.top;
+      this.initialCropBoxData = assign({}, cropBoxData);
+    },
+    limitCropBox: function limitCropBox(sizeLimited, positionLimited) {
+      var options = this.options,
+          containerData = this.containerData,
+          canvasData = this.canvasData,
+          cropBoxData = this.cropBoxData,
+          limited = this.limited;
+      var aspectRatio = options.aspectRatio;
+
+      if (sizeLimited) {
+        var minCropBoxWidth = Number(options.minCropBoxWidth) || 0;
+        var minCropBoxHeight = Number(options.minCropBoxHeight) || 0;
+        var maxCropBoxWidth = limited ? Math.min(containerData.width, canvasData.width, canvasData.width + canvasData.left, containerData.width - canvasData.left) : containerData.width;
+        var maxCropBoxHeight = limited ? Math.min(containerData.height, canvasData.height, canvasData.height + canvasData.top, containerData.height - canvasData.top) : containerData.height; // The min/maxCropBoxWidth/Height must be less than container's width/height
+
+        minCropBoxWidth = Math.min(minCropBoxWidth, containerData.width);
+        minCropBoxHeight = Math.min(minCropBoxHeight, containerData.height);
+
+        if (aspectRatio) {
+          if (minCropBoxWidth && minCropBoxHeight) {
+            if (minCropBoxHeight * aspectRatio > minCropBoxWidth) {
+              minCropBoxHeight = minCropBoxWidth / aspectRatio;
+            } else {
+              minCropBoxWidth = minCropBoxHeight * aspectRatio;
+            }
+          } else if (minCropBoxWidth) {
+            minCropBoxHeight = minCropBoxWidth / aspectRatio;
+          } else if (minCropBoxHeight) {
+            minCropBoxWidth = minCropBoxHeight * aspectRatio;
+          }
+
+          if (maxCropBoxHeight * aspectRatio > maxCropBoxWidth) {
+            maxCropBoxHeight = maxCropBoxWidth / aspectRatio;
+          } else {
+            maxCropBoxWidth = maxCropBoxHeight * aspectRatio;
+          }
+        } // The minWidth/Height must be less than maxWidth/Height
+
+
+        cropBoxData.minWidth = Math.min(minCropBoxWidth, maxCropBoxWidth);
+        cropBoxData.minHeight = Math.min(minCropBoxHeight, maxCropBoxHeight);
+        cropBoxData.maxWidth = maxCropBoxWidth;
+        cropBoxData.maxHeight = maxCropBoxHeight;
+      }
+
+      if (positionLimited) {
+        if (limited) {
+          cropBoxData.minLeft = Math.max(0, canvasData.left);
+          cropBoxData.minTop = Math.max(0, canvasData.top);
+          cropBoxData.maxLeft = Math.min(containerData.width, canvasData.left + canvasData.width) - cropBoxData.width;
+          cropBoxData.maxTop = Math.min(containerData.height, canvasData.top + canvasData.height) - cropBoxData.height;
+        } else {
+          cropBoxData.minLeft = 0;
+          cropBoxData.minTop = 0;
+          cropBoxData.maxLeft = containerData.width - cropBoxData.width;
+          cropBoxData.maxTop = containerData.height - cropBoxData.height;
+        }
+      }
+    },
+    renderCropBox: function renderCropBox() {
+      var options = this.options,
+          containerData = this.containerData,
+          cropBoxData = this.cropBoxData;
+
+      if (cropBoxData.width > cropBoxData.maxWidth || cropBoxData.width < cropBoxData.minWidth) {
+        cropBoxData.left = cropBoxData.oldLeft;
+      }
+
+      if (cropBoxData.height > cropBoxData.maxHeight || cropBoxData.height < cropBoxData.minHeight) {
+        cropBoxData.top = cropBoxData.oldTop;
+      }
+
+      cropBoxData.width = Math.min(Math.max(cropBoxData.width, cropBoxData.minWidth), cropBoxData.maxWidth);
+      cropBoxData.height = Math.min(Math.max(cropBoxData.height, cropBoxData.minHeight), cropBoxData.maxHeight);
+      this.limitCropBox(false, true);
+      cropBoxData.left = Math.min(Math.max(cropBoxData.left, cropBoxData.minLeft), cropBoxData.maxLeft);
+      cropBoxData.top = Math.min(Math.max(cropBoxData.top, cropBoxData.minTop), cropBoxData.maxTop);
+      cropBoxData.oldLeft = cropBoxData.left;
+      cropBoxData.oldTop = cropBoxData.top;
+
+      if (options.movable && options.cropBoxMovable) {
+        // Turn to move the canvas when the crop box is equal to the container
+        setData(this.face, DATA_ACTION, cropBoxData.width >= containerData.width && cropBoxData.height >= containerData.height ? ACTION_MOVE : ACTION_ALL);
+      }
+
+      setStyle(this.cropBox, assign({
+        width: cropBoxData.width,
+        height: cropBoxData.height
+      }, getTransforms({
+        translateX: cropBoxData.left,
+        translateY: cropBoxData.top
+      })));
+
+      if (this.cropped && this.limited) {
+        this.limitCanvas(true, true);
+      }
+
+      if (!this.disabled) {
+        this.output();
+      }
+    },
+    output: function output() {
+      this.preview();
+      dispatchEvent(this.element, EVENT_CROP, this.getData());
+    }
+  };
+
+  var preview = {
+    initPreview: function initPreview() {
+      var element = this.element,
+          crossOrigin = this.crossOrigin;
+      var preview = this.options.preview;
+      var url = crossOrigin ? this.crossOriginUrl : this.url;
+      var alt = element.alt || 'The image to preview';
+      var image = document.createElement('img');
+
+      if (crossOrigin) {
+        image.crossOrigin = crossOrigin;
+      }
+
+      image.src = url;
+      image.alt = alt;
+      this.viewBox.appendChild(image);
+      this.viewBoxImage = image;
+
+      if (!preview) {
+        return;
+      }
+
+      var previews = preview;
+
+      if (typeof preview === 'string') {
+        previews = element.ownerDocument.querySelectorAll(preview);
+      } else if (preview.querySelector) {
+        previews = [preview];
+      }
+
+      this.previews = previews;
+      forEach(previews, function (el) {
+        var img = document.createElement('img'); // Save the original size for recover
+
+        setData(el, DATA_PREVIEW, {
+          width: el.offsetWidth,
+          height: el.offsetHeight,
+          html: el.innerHTML
+        });
+
+        if (crossOrigin) {
+          img.crossOrigin = crossOrigin;
+        }
+
+        img.src = url;
+        img.alt = alt;
+        /**
+         * Override img element styles
+         * Add `display:block` to avoid margin top issue
+         * Add `height:auto` to override `height` attribute on IE8
+         * (Occur only when margin-top <= -height)
+         */
+
+        img.style.cssText = 'display:block;' + 'width:100%;' + 'height:auto;' + 'min-width:0!important;' + 'min-height:0!important;' + 'max-width:none!important;' + 'max-height:none!important;' + 'image-orientation:0deg!important;"';
+        el.innerHTML = '';
+        el.appendChild(img);
+      });
+    },
+    resetPreview: function resetPreview() {
+      forEach(this.previews, function (element) {
+        var data = getData(element, DATA_PREVIEW);
+        setStyle(element, {
+          width: data.width,
+          height: data.height
+        });
+        element.innerHTML = data.html;
+        removeData(element, DATA_PREVIEW);
+      });
+    },
+    preview: function preview() {
+      var imageData = this.imageData,
+          canvasData = this.canvasData,
+          cropBoxData = this.cropBoxData;
+      var cropBoxWidth = cropBoxData.width,
+          cropBoxHeight = cropBoxData.height;
+      var width = imageData.width,
+          height = imageData.height;
+      var left = cropBoxData.left - canvasData.left - imageData.left;
+      var top = cropBoxData.top - canvasData.top - imageData.top;
+
+      if (!this.cropped || this.disabled) {
+        return;
+      }
+
+      setStyle(this.viewBoxImage, assign({
+        width: width,
+        height: height
+      }, getTransforms(assign({
+        translateX: -left,
+        translateY: -top
+      }, imageData))));
+      forEach(this.previews, function (element) {
+        var data = getData(element, DATA_PREVIEW);
+        var originalWidth = data.width;
+        var originalHeight = data.height;
+        var newWidth = originalWidth;
+        var newHeight = originalHeight;
+        var ratio = 1;
+
+        if (cropBoxWidth) {
+          ratio = originalWidth / cropBoxWidth;
+          newHeight = cropBoxHeight * ratio;
+        }
+
+        if (cropBoxHeight && newHeight > originalHeight) {
+          ratio = originalHeight / cropBoxHeight;
+          newWidth = cropBoxWidth * ratio;
+          newHeight = originalHeight;
+        }
+
+        setStyle(element, {
+          width: newWidth,
+          height: newHeight
+        });
+        setStyle(element.getElementsByTagName('img')[0], assign({
+          width: width * ratio,
+          height: height * ratio
+        }, getTransforms(assign({
+          translateX: -left * ratio,
+          translateY: -top * ratio
+        }, imageData))));
+      });
+    }
+  };
+
+  var events = {
+    bind: function bind() {
+      var element = this.element,
+          options = this.options,
+          cropper = this.cropper;
+
+      if (isFunction(options.cropstart)) {
+        addListener(element, EVENT_CROP_START, options.cropstart);
+      }
+
+      if (isFunction(options.cropmove)) {
+        addListener(element, EVENT_CROP_MOVE, options.cropmove);
+      }
+
+      if (isFunction(options.cropend)) {
+        addListener(element, EVENT_CROP_END, options.cropend);
+      }
+
+      if (isFunction(options.crop)) {
+        addListener(element, EVENT_CROP, options.crop);
+      }
+
+      if (isFunction(options.zoom)) {
+        addListener(element, EVENT_ZOOM, options.zoom);
+      }
+
+      addListener(cropper, EVENT_POINTER_DOWN, this.onCropStart = this.cropStart.bind(this));
+
+      if (options.zoomable && options.zoomOnWheel) {
+        addListener(cropper, EVENT_WHEEL, this.onWheel = this.wheel.bind(this), {
+          passive: false,
+          capture: true
+        });
+      }
+
+      if (options.toggleDragModeOnDblclick) {
+        addListener(cropper, EVENT_DBLCLICK, this.onDblclick = this.dblclick.bind(this));
+      }
+
+      addListener(element.ownerDocument, EVENT_POINTER_MOVE, this.onCropMove = this.cropMove.bind(this));
+      addListener(element.ownerDocument, EVENT_POINTER_UP, this.onCropEnd = this.cropEnd.bind(this));
+
+      if (options.responsive) {
+        addListener(window, EVENT_RESIZE, this.onResize = this.resize.bind(this));
+      }
+    },
+    unbind: function unbind() {
+      var element = this.element,
+          options = this.options,
+          cropper = this.cropper;
+
+      if (isFunction(options.cropstart)) {
+        removeListener(element, EVENT_CROP_START, options.cropstart);
+      }
+
+      if (isFunction(options.cropmove)) {
+        removeListener(element, EVENT_CROP_MOVE, options.cropmove);
+      }
+
+      if (isFunction(options.cropend)) {
+        removeListener(element, EVENT_CROP_END, options.cropend);
+      }
+
+      if (isFunction(options.crop)) {
+        removeListener(element, EVENT_CROP, options.crop);
+      }
+
+      if (isFunction(options.zoom)) {
+        removeListener(element, EVENT_ZOOM, options.zoom);
+      }
+
+      removeListener(cropper, EVENT_POINTER_DOWN, this.onCropStart);
+
+      if (options.zoomable && options.zoomOnWheel) {
+        removeListener(cropper, EVENT_WHEEL, this.onWheel, {
+          passive: false,
+          capture: true
+        });
+      }
+
+      if (options.toggleDragModeOnDblclick) {
+        removeListener(cropper, EVENT_DBLCLICK, this.onDblclick);
+      }
+
+      removeListener(element.ownerDocument, EVENT_POINTER_MOVE, this.onCropMove);
+      removeListener(element.ownerDocument, EVENT_POINTER_UP, this.onCropEnd);
+
+      if (options.responsive) {
+        removeListener(window, EVENT_RESIZE, this.onResize);
+      }
+    }
+  };
+
+  var handlers = {
+    resize: function resize() {
+      var options = this.options,
+          container = this.container,
+          containerData = this.containerData;
+      var minContainerWidth = Number(options.minContainerWidth) || MIN_CONTAINER_WIDTH;
+      var minContainerHeight = Number(options.minContainerHeight) || MIN_CONTAINER_HEIGHT;
+
+      if (this.disabled || containerData.width <= minContainerWidth || containerData.height <= minContainerHeight) {
+        return;
+      }
+
+      var ratio = container.offsetWidth / containerData.width; // Resize when width changed or height changed
+
+      if (ratio !== 1 || container.offsetHeight !== containerData.height) {
+        var canvasData;
+        var cropBoxData;
+
+        if (options.restore) {
+          canvasData = this.getCanvasData();
+          cropBoxData = this.getCropBoxData();
+        }
+
+        this.render();
+
+        if (options.restore) {
+          this.setCanvasData(forEach(canvasData, function (n, i) {
+            canvasData[i] = n * ratio;
+          }));
+          this.setCropBoxData(forEach(cropBoxData, function (n, i) {
+            cropBoxData[i] = n * ratio;
+          }));
+        }
+      }
+    },
+    dblclick: function dblclick() {
+      if (this.disabled || this.options.dragMode === DRAG_MODE_NONE) {
+        return;
+      }
+
+      this.setDragMode(hasClass(this.dragBox, CLASS_CROP) ? DRAG_MODE_MOVE : DRAG_MODE_CROP);
+    },
+    wheel: function wheel(event) {
+      var _this = this;
+
+      var ratio = Number(this.options.wheelZoomRatio) || 0.1;
+      var delta = 1;
+
+      if (this.disabled) {
+        return;
+      }
+
+      event.preventDefault(); // Limit wheel speed to prevent zoom too fast (#21)
+
+      if (this.wheeling) {
+        return;
+      }
+
+      this.wheeling = true;
+      setTimeout(function () {
+        _this.wheeling = false;
+      }, 50);
+
+      if (event.deltaY) {
+        delta = event.deltaY > 0 ? 1 : -1;
+      } else if (event.wheelDelta) {
+        delta = -event.wheelDelta / 120;
+      } else if (event.detail) {
+        delta = event.detail > 0 ? 1 : -1;
+      }
+
+      this.zoom(-delta * ratio, event);
+    },
+    cropStart: function cropStart(event) {
+      var buttons = event.buttons,
+          button = event.button;
+
+      if (this.disabled // Handle mouse event and pointer event and ignore touch event
+      || (event.type === 'mousedown' || event.type === 'pointerdown' && event.pointerType === 'mouse') && ( // No primary button (Usually the left button)
+      isNumber(buttons) && buttons !== 1 || isNumber(button) && button !== 0 // Open context menu
+      || event.ctrlKey)) {
+        return;
+      }
+
+      var options = this.options,
+          pointers = this.pointers;
+      var action;
+
+      if (event.changedTouches) {
+        // Handle touch event
+        forEach(event.changedTouches, function (touch) {
+          pointers[touch.identifier] = getPointer(touch);
+        });
+      } else {
+        // Handle mouse event and pointer event
+        pointers[event.pointerId || 0] = getPointer(event);
+      }
+
+      if (Object.keys(pointers).length > 1 && options.zoomable && options.zoomOnTouch) {
+        action = ACTION_ZOOM;
+      } else {
+        action = getData(event.target, DATA_ACTION);
+      }
+
+      if (!REGEXP_ACTIONS.test(action)) {
+        return;
+      }
+
+      if (dispatchEvent(this.element, EVENT_CROP_START, {
+        originalEvent: event,
+        action: action
+      }) === false) {
+        return;
+      } // This line is required for preventing page zooming in iOS browsers
+
+
+      event.preventDefault();
+      this.action = action;
+      this.cropping = false;
+
+      if (action === ACTION_CROP) {
+        this.cropping = true;
+        addClass(this.dragBox, CLASS_MODAL);
+      }
+    },
+    cropMove: function cropMove(event) {
+      var action = this.action;
+
+      if (this.disabled || !action) {
+        return;
+      }
+
+      var pointers = this.pointers;
+      event.preventDefault();
+
+      if (dispatchEvent(this.element, EVENT_CROP_MOVE, {
+        originalEvent: event,
+        action: action
+      }) === false) {
+        return;
+      }
+
+      if (event.changedTouches) {
+        forEach(event.changedTouches, function (touch) {
+          // The first parameter should not be undefined (#432)
+          assign(pointers[touch.identifier] || {}, getPointer(touch, true));
+        });
+      } else {
+        assign(pointers[event.pointerId || 0] || {}, getPointer(event, true));
+      }
+
+      this.change(event);
+    },
+    cropEnd: function cropEnd(event) {
+      if (this.disabled) {
+        return;
+      }
+
+      var action = this.action,
+          pointers = this.pointers;
+
+      if (event.changedTouches) {
+        forEach(event.changedTouches, function (touch) {
+          delete pointers[touch.identifier];
+        });
+      } else {
+        delete pointers[event.pointerId || 0];
+      }
+
+      if (!action) {
+        return;
+      }
+
+      event.preventDefault();
+
+      if (!Object.keys(pointers).length) {
+        this.action = '';
+      }
+
+      if (this.cropping) {
+        this.cropping = false;
+        toggleClass(this.dragBox, CLASS_MODAL, this.cropped && this.options.modal);
+      }
+
+      dispatchEvent(this.element, EVENT_CROP_END, {
+        originalEvent: event,
+        action: action
+      });
+    }
+  };
+
+  var change = {
+    change: function change(event) {
+      var options = this.options,
+          canvasData = this.canvasData,
+          containerData = this.containerData,
+          cropBoxData = this.cropBoxData,
+          pointers = this.pointers;
+      var action = this.action;
+      var aspectRatio = options.aspectRatio;
+      var left = cropBoxData.left,
+          top = cropBoxData.top,
+          width = cropBoxData.width,
+          height = cropBoxData.height;
+      var right = left + width;
+      var bottom = top + height;
+      var minLeft = 0;
+      var minTop = 0;
+      var maxWidth = containerData.width;
+      var maxHeight = containerData.height;
+      var renderable = true;
+      var offset; // Locking aspect ratio in "free mode" by holding shift key
+
+      if (!aspectRatio && event.shiftKey) {
+        aspectRatio = width && height ? width / height : 1;
+      }
+
+      if (this.limited) {
+        minLeft = cropBoxData.minLeft;
+        minTop = cropBoxData.minTop;
+        maxWidth = minLeft + Math.min(containerData.width, canvasData.width, canvasData.left + canvasData.width);
+        maxHeight = minTop + Math.min(containerData.height, canvasData.height, canvasData.top + canvasData.height);
+      }
+
+      var pointer = pointers[Object.keys(pointers)[0]];
+      var range = {
+        x: pointer.endX - pointer.startX,
+        y: pointer.endY - pointer.startY
+      };
+
+      var check = function check(side) {
+        switch (side) {
+          case ACTION_EAST:
+            if (right + range.x > maxWidth) {
+              range.x = maxWidth - right;
+            }
+
+            break;
+
+          case ACTION_WEST:
+            if (left + range.x < minLeft) {
+              range.x = minLeft - left;
+            }
+
+            break;
+
+          case ACTION_NORTH:
+            if (top + range.y < minTop) {
+              range.y = minTop - top;
+            }
+
+            break;
+
+          case ACTION_SOUTH:
+            if (bottom + range.y > maxHeight) {
+              range.y = maxHeight - bottom;
+            }
+
+            break;
+
+          default:
+        }
+      };
+
+      switch (action) {
+        // Move crop box
+        case ACTION_ALL:
+          left += range.x;
+          top += range.y;
+          break;
+        // Resize crop box
+
+        case ACTION_EAST:
+          if (range.x >= 0 && (right >= maxWidth || aspectRatio && (top <= minTop || bottom >= maxHeight))) {
+            renderable = false;
+            break;
+          }
+
+          check(ACTION_EAST);
+          width += range.x;
+
+          if (width < 0) {
+            action = ACTION_WEST;
+            width = -width;
+            left -= width;
+          }
+
+          if (aspectRatio) {
+            height = width / aspectRatio;
+            top += (cropBoxData.height - height) / 2;
+          }
+
+          break;
+
+        case ACTION_NORTH:
+          if (range.y <= 0 && (top <= minTop || aspectRatio && (left <= minLeft || right >= maxWidth))) {
+            renderable = false;
+            break;
+          }
+
+          check(ACTION_NORTH);
+          height -= range.y;
+          top += range.y;
+
+          if (height < 0) {
+            action = ACTION_SOUTH;
+            height = -height;
+            top -= height;
+          }
+
+          if (aspectRatio) {
+            width = height * aspectRatio;
+            left += (cropBoxData.width - width) / 2;
+          }
+
+          break;
+
+        case ACTION_WEST:
+          if (range.x <= 0 && (left <= minLeft || aspectRatio && (top <= minTop || bottom >= maxHeight))) {
+            renderable = false;
+            break;
+          }
+
+          check(ACTION_WEST);
+          width -= range.x;
+          left += range.x;
+
+          if (width < 0) {
+            action = ACTION_EAST;
+            width = -width;
+            left -= width;
+          }
+
+          if (aspectRatio) {
+            height = width / aspectRatio;
+            top += (cropBoxData.height - height) / 2;
+          }
+
+          break;
+
+        case ACTION_SOUTH:
+          if (range.y >= 0 && (bottom >= maxHeight || aspectRatio && (left <= minLeft || right >= maxWidth))) {
+            renderable = false;
+            break;
+          }
+
+          check(ACTION_SOUTH);
+          height += range.y;
+
+          if (height < 0) {
+            action = ACTION_NORTH;
+            height = -height;
+            top -= height;
+          }
+
+          if (aspectRatio) {
+            width = height * aspectRatio;
+            left += (cropBoxData.width - width) / 2;
+          }
+
+          break;
+
+        case ACTION_NORTH_EAST:
+          if (aspectRatio) {
+            if (range.y <= 0 && (top <= minTop || right >= maxWidth)) {
+              renderable = false;
+              break;
+            }
+
+            check(ACTION_NORTH);
+            height -= range.y;
+            top += range.y;
+            width = height * aspectRatio;
+          } else {
+            check(ACTION_NORTH);
+            check(ACTION_EAST);
+
+            if (range.x >= 0) {
+              if (right < maxWidth) {
+                width += range.x;
+              } else if (range.y <= 0 && top <= minTop) {
+                renderable = false;
+              }
+            } else {
+              width += range.x;
+            }
+
+            if (range.y <= 0) {
+              if (top > minTop) {
+                height -= range.y;
+                top += range.y;
+              }
+            } else {
+              height -= range.y;
+              top += range.y;
+            }
+          }
+
+          if (width < 0 && height < 0) {
+            action = ACTION_SOUTH_WEST;
+            height = -height;
+            width = -width;
+            top -= height;
+            left -= width;
+          } else if (width < 0) {
+            action = ACTION_NORTH_WEST;
+            width = -width;
+            left -= width;
+          } else if (height < 0) {
+            action = ACTION_SOUTH_EAST;
+            height = -height;
+            top -= height;
+          }
+
+          break;
+
+        case ACTION_NORTH_WEST:
+          if (aspectRatio) {
+            if (range.y <= 0 && (top <= minTop || left <= minLeft)) {
+              renderable = false;
+              break;
+            }
+
+            check(ACTION_NORTH);
+            height -= range.y;
+            top += range.y;
+            width = height * aspectRatio;
+            left += cropBoxData.width - width;
+          } else {
+            check(ACTION_NORTH);
+            check(ACTION_WEST);
+
+            if (range.x <= 0) {
+              if (left > minLeft) {
+                width -= range.x;
+                left += range.x;
+              } else if (range.y <= 0 && top <= minTop) {
+                renderable = false;
+              }
+            } else {
+              width -= range.x;
+              left += range.x;
+            }
+
+            if (range.y <= 0) {
+              if (top > minTop) {
+                height -= range.y;
+                top += range.y;
+              }
+            } else {
+              height -= range.y;
+              top += range.y;
+            }
+          }
+
+          if (width < 0 && height < 0) {
+            action = ACTION_SOUTH_EAST;
+            height = -height;
+            width = -width;
+            top -= height;
+            left -= width;
+          } else if (width < 0) {
+            action = ACTION_NORTH_EAST;
+            width = -width;
+            left -= width;
+          } else if (height < 0) {
+            action = ACTION_SOUTH_WEST;
+            height = -height;
+            top -= height;
+          }
+
+          break;
+
+        case ACTION_SOUTH_WEST:
+          if (aspectRatio) {
+            if (range.x <= 0 && (left <= minLeft || bottom >= maxHeight)) {
+              renderable = false;
+              break;
+            }
+
+            check(ACTION_WEST);
+            width -= range.x;
+            left += range.x;
+            height = width / aspectRatio;
+          } else {
+            check(ACTION_SOUTH);
+            check(ACTION_WEST);
+
+            if (range.x <= 0) {
+              if (left > minLeft) {
+                width -= range.x;
+                left += range.x;
+              } else if (range.y >= 0 && bottom >= maxHeight) {
+                renderable = false;
+              }
+            } else {
+              width -= range.x;
+              left += range.x;
+            }
+
+            if (range.y >= 0) {
+              if (bottom < maxHeight) {
+                height += range.y;
+              }
+            } else {
+              height += range.y;
+            }
+          }
+
+          if (width < 0 && height < 0) {
+            action = ACTION_NORTH_EAST;
+            height = -height;
+            width = -width;
+            top -= height;
+            left -= width;
+          } else if (width < 0) {
+            action = ACTION_SOUTH_EAST;
+            width = -width;
+            left -= width;
+          } else if (height < 0) {
+            action = ACTION_NORTH_WEST;
+            height = -height;
+            top -= height;
+          }
+
+          break;
+
+        case ACTION_SOUTH_EAST:
+          if (aspectRatio) {
+            if (range.x >= 0 && (right >= maxWidth || bottom >= maxHeight)) {
+              renderable = false;
+              break;
+            }
+
+            check(ACTION_EAST);
+            width += range.x;
+            height = width / aspectRatio;
+          } else {
+            check(ACTION_SOUTH);
+            check(ACTION_EAST);
+
+            if (range.x >= 0) {
+              if (right < maxWidth) {
+                width += range.x;
+              } else if (range.y >= 0 && bottom >= maxHeight) {
+                renderable = false;
+              }
+            } else {
+              width += range.x;
+            }
+
+            if (range.y >= 0) {
+              if (bottom < maxHeight) {
+                height += range.y;
+              }
+            } else {
+              height += range.y;
+            }
+          }
+
+          if (width < 0 && height < 0) {
+            action = ACTION_NORTH_WEST;
+            height = -height;
+            width = -width;
+            top -= height;
+            left -= width;
+          } else if (width < 0) {
+            action = ACTION_SOUTH_WEST;
+            width = -width;
+            left -= width;
+          } else if (height < 0) {
+            action = ACTION_NORTH_EAST;
+            height = -height;
+            top -= height;
+          }
+
+          break;
+        // Move canvas
+
+        case ACTION_MOVE:
+          this.move(range.x, range.y);
+          renderable = false;
+          break;
+        // Zoom canvas
+
+        case ACTION_ZOOM:
+          this.zoom(getMaxZoomRatio(pointers), event);
+          renderable = false;
+          break;
+        // Create crop box
+
+        case ACTION_CROP:
+          if (!range.x || !range.y) {
+            renderable = false;
+            break;
+          }
+
+          offset = getOffset(this.cropper);
+          left = pointer.startX - offset.left;
+          top = pointer.startY - offset.top;
+          width = cropBoxData.minWidth;
+          height = cropBoxData.minHeight;
+
+          if (range.x > 0) {
+            action = range.y > 0 ? ACTION_SOUTH_EAST : ACTION_NORTH_EAST;
+          } else if (range.x < 0) {
+            left -= width;
+            action = range.y > 0 ? ACTION_SOUTH_WEST : ACTION_NORTH_WEST;
+          }
+
+          if (range.y < 0) {
+            top -= height;
+          } // Show the crop box if is hidden
+
+
+          if (!this.cropped) {
+            removeClass(this.cropBox, CLASS_HIDDEN);
+            this.cropped = true;
+
+            if (this.limited) {
+              this.limitCropBox(true, true);
+            }
+          }
+
+          break;
+
+        default:
+      }
+
+      if (renderable) {
+        cropBoxData.width = width;
+        cropBoxData.height = height;
+        cropBoxData.left = left;
+        cropBoxData.top = top;
+        this.action = action;
+        this.renderCropBox();
+      } // Override
+
+
+      forEach(pointers, function (p) {
+        p.startX = p.endX;
+        p.startY = p.endY;
+      });
+    }
+  };
+
+  var methods = {
+    // Show the crop box manually
+    crop: function crop() {
+      if (this.ready && !this.cropped && !this.disabled) {
+        this.cropped = true;
+        this.limitCropBox(true, true);
+
+        if (this.options.modal) {
+          addClass(this.dragBox, CLASS_MODAL);
+        }
+
+        removeClass(this.cropBox, CLASS_HIDDEN);
+        this.setCropBoxData(this.initialCropBoxData);
+      }
+
+      return this;
+    },
+    // Reset the image and crop box to their initial states
+    reset: function reset() {
+      if (this.ready && !this.disabled) {
+        this.imageData = assign({}, this.initialImageData);
+        this.canvasData = assign({}, this.initialCanvasData);
+        this.cropBoxData = assign({}, this.initialCropBoxData);
+        this.renderCanvas();
+
+        if (this.cropped) {
+          this.renderCropBox();
+        }
+      }
+
+      return this;
+    },
+    // Clear the crop box
+    clear: function clear() {
+      if (this.cropped && !this.disabled) {
+        assign(this.cropBoxData, {
+          left: 0,
+          top: 0,
+          width: 0,
+          height: 0
+        });
+        this.cropped = false;
+        this.renderCropBox();
+        this.limitCanvas(true, true); // Render canvas after crop box rendered
+
+        this.renderCanvas();
+        removeClass(this.dragBox, CLASS_MODAL);
+        addClass(this.cropBox, CLASS_HIDDEN);
+      }
+
+      return this;
+    },
+
+    /**
+     * Replace the image's src and rebuild the cropper
+     * @param {string} url - The new URL.
+     * @param {boolean} [hasSameSize] - Indicate if the new image has the same size as the old one.
+     * @returns {Cropper} this
+     */
+    replace: function replace(url) {
+      var hasSameSize = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+      if (!this.disabled && url) {
+        if (this.isImg) {
+          this.element.src = url;
+        }
+
+        if (hasSameSize) {
+          this.url = url;
+          this.image.src = url;
+
+          if (this.ready) {
+            this.viewBoxImage.src = url;
+            forEach(this.previews, function (element) {
+              element.getElementsByTagName('img')[0].src = url;
+            });
+          }
+        } else {
+          if (this.isImg) {
+            this.replaced = true;
+          }
+
+          this.options.data = null;
+          this.uncreate();
+          this.load(url);
+        }
+      }
+
+      return this;
+    },
+    // Enable (unfreeze) the cropper
+    enable: function enable() {
+      if (this.ready && this.disabled) {
+        this.disabled = false;
+        removeClass(this.cropper, CLASS_DISABLED);
+      }
+
+      return this;
+    },
+    // Disable (freeze) the cropper
+    disable: function disable() {
+      if (this.ready && !this.disabled) {
+        this.disabled = true;
+        addClass(this.cropper, CLASS_DISABLED);
+      }
+
+      return this;
+    },
+
+    /**
+     * Destroy the cropper and remove the instance from the image
+     * @returns {Cropper} this
+     */
+    destroy: function destroy() {
+      var element = this.element;
+
+      if (!element[NAMESPACE]) {
+        return this;
+      }
+
+      element[NAMESPACE] = undefined;
+
+      if (this.isImg && this.replaced) {
+        element.src = this.originalUrl;
+      }
+
+      this.uncreate();
+      return this;
+    },
+
+    /**
+     * Move the canvas with relative offsets
+     * @param {number} offsetX - The relative offset distance on the x-axis.
+     * @param {number} [offsetY=offsetX] - The relative offset distance on the y-axis.
+     * @returns {Cropper} this
+     */
+    move: function move(offsetX) {
+      var offsetY = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : offsetX;
+      var _this$canvasData = this.canvasData,
+          left = _this$canvasData.left,
+          top = _this$canvasData.top;
+      return this.moveTo(isUndefined(offsetX) ? offsetX : left + Number(offsetX), isUndefined(offsetY) ? offsetY : top + Number(offsetY));
+    },
+
+    /**
+     * Move the canvas to an absolute point
+     * @param {number} x - The x-axis coordinate.
+     * @param {number} [y=x] - The y-axis coordinate.
+     * @returns {Cropper} this
+     */
+    moveTo: function moveTo(x) {
+      var y = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : x;
+      var canvasData = this.canvasData;
+      var changed = false;
+      x = Number(x);
+      y = Number(y);
+
+      if (this.ready && !this.disabled && this.options.movable) {
+        if (isNumber(x)) {
+          canvasData.left = x;
+          changed = true;
+        }
+
+        if (isNumber(y)) {
+          canvasData.top = y;
+          changed = true;
+        }
+
+        if (changed) {
+          this.renderCanvas(true);
+        }
+      }
+
+      return this;
+    },
+
+    /**
+     * Zoom the canvas with a relative ratio
+     * @param {number} ratio - The target ratio.
+     * @param {Event} _originalEvent - The original event if any.
+     * @returns {Cropper} this
+     */
+    zoom: function zoom(ratio, _originalEvent) {
+      var canvasData = this.canvasData;
+      ratio = Number(ratio);
+
+      if (ratio < 0) {
+        ratio = 1 / (1 - ratio);
+      } else {
+        ratio = 1 + ratio;
+      }
+
+      return this.zoomTo(canvasData.width * ratio / canvasData.naturalWidth, null, _originalEvent);
+    },
+
+    /**
+     * Zoom the canvas to an absolute ratio
+     * @param {number} ratio - The target ratio.
+     * @param {Object} pivot - The zoom pivot point coordinate.
+     * @param {Event} _originalEvent - The original event if any.
+     * @returns {Cropper} this
+     */
+    zoomTo: function zoomTo(ratio, pivot, _originalEvent) {
+      var options = this.options,
+          canvasData = this.canvasData;
+      var width = canvasData.width,
+          height = canvasData.height,
+          naturalWidth = canvasData.naturalWidth,
+          naturalHeight = canvasData.naturalHeight;
+      ratio = Number(ratio);
+
+      if (ratio >= 0 && this.ready && !this.disabled && options.zoomable) {
+        var newWidth = naturalWidth * ratio;
+        var newHeight = naturalHeight * ratio;
+
+        if (dispatchEvent(this.element, EVENT_ZOOM, {
+          ratio: ratio,
+          oldRatio: width / naturalWidth,
+          originalEvent: _originalEvent
+        }) === false) {
+          return this;
+        }
+
+        if (_originalEvent) {
+          var pointers = this.pointers;
+          var offset = getOffset(this.cropper);
+          var center = pointers && Object.keys(pointers).length ? getPointersCenter(pointers) : {
+            pageX: _originalEvent.pageX,
+            pageY: _originalEvent.pageY
+          }; // Zoom from the triggering point of the event
+
+          canvasData.left -= (newWidth - width) * ((center.pageX - offset.left - canvasData.left) / width);
+          canvasData.top -= (newHeight - height) * ((center.pageY - offset.top - canvasData.top) / height);
+        } else if (isPlainObject(pivot) && isNumber(pivot.x) && isNumber(pivot.y)) {
+          canvasData.left -= (newWidth - width) * ((pivot.x - canvasData.left) / width);
+          canvasData.top -= (newHeight - height) * ((pivot.y - canvasData.top) / height);
+        } else {
+          // Zoom from the center of the canvas
+          canvasData.left -= (newWidth - width) / 2;
+          canvasData.top -= (newHeight - height) / 2;
+        }
+
+        canvasData.width = newWidth;
+        canvasData.height = newHeight;
+        this.renderCanvas(true);
+      }
+
+      return this;
+    },
+
+    /**
+     * Rotate the canvas with a relative degree
+     * @param {number} degree - The rotate degree.
+     * @returns {Cropper} this
+     */
+    rotate: function rotate(degree) {
+      return this.rotateTo((this.imageData.rotate || 0) + Number(degree));
+    },
+
+    /**
+     * Rotate the canvas to an absolute degree
+     * @param {number} degree - The rotate degree.
+     * @returns {Cropper} this
+     */
+    rotateTo: function rotateTo(degree) {
+      degree = Number(degree);
+
+      if (isNumber(degree) && this.ready && !this.disabled && this.options.rotatable) {
+        this.imageData.rotate = degree % 360;
+        this.renderCanvas(true, true);
+      }
+
+      return this;
+    },
+
+    /**
+     * Scale the image on the x-axis.
+     * @param {number} scaleX - The scale ratio on the x-axis.
+     * @returns {Cropper} this
+     */
+    scaleX: function scaleX(_scaleX) {
+      var scaleY = this.imageData.scaleY;
+      return this.scale(_scaleX, isNumber(scaleY) ? scaleY : 1);
+    },
+
+    /**
+     * Scale the image on the y-axis.
+     * @param {number} scaleY - The scale ratio on the y-axis.
+     * @returns {Cropper} this
+     */
+    scaleY: function scaleY(_scaleY) {
+      var scaleX = this.imageData.scaleX;
+      return this.scale(isNumber(scaleX) ? scaleX : 1, _scaleY);
+    },
+
+    /**
+     * Scale the image
+     * @param {number} scaleX - The scale ratio on the x-axis.
+     * @param {number} [scaleY=scaleX] - The scale ratio on the y-axis.
+     * @returns {Cropper} this
+     */
+    scale: function scale(scaleX) {
+      var scaleY = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : scaleX;
+      var imageData = this.imageData;
+      var transformed = false;
+      scaleX = Number(scaleX);
+      scaleY = Number(scaleY);
+
+      if (this.ready && !this.disabled && this.options.scalable) {
+        if (isNumber(scaleX)) {
+          imageData.scaleX = scaleX;
+          transformed = true;
+        }
+
+        if (isNumber(scaleY)) {
+          imageData.scaleY = scaleY;
+          transformed = true;
+        }
+
+        if (transformed) {
+          this.renderCanvas(true, true);
+        }
+      }
+
+      return this;
+    },
+
+    /**
+     * Get the cropped area position and size data (base on the original image)
+     * @param {boolean} [rounded=false] - Indicate if round the data values or not.
+     * @returns {Object} The result cropped data.
+     */
+    getData: function getData() {
+      var rounded = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+      var options = this.options,
+          imageData = this.imageData,
+          canvasData = this.canvasData,
+          cropBoxData = this.cropBoxData;
+      var data;
+
+      if (this.ready && this.cropped) {
+        data = {
+          x: cropBoxData.left - canvasData.left,
+          y: cropBoxData.top - canvasData.top,
+          width: cropBoxData.width,
+          height: cropBoxData.height
+        };
+        var ratio = imageData.width / imageData.naturalWidth;
+        forEach(data, function (n, i) {
+          data[i] = n / ratio;
+        });
+
+        if (rounded) {
+          // In case rounding off leads to extra 1px in right or bottom border
+          // we should round the top-left corner and the dimension (#343).
+          var bottom = Math.round(data.y + data.height);
+          var right = Math.round(data.x + data.width);
+          data.x = Math.round(data.x);
+          data.y = Math.round(data.y);
+          data.width = right - data.x;
+          data.height = bottom - data.y;
+        }
+      } else {
+        data = {
+          x: 0,
+          y: 0,
+          width: 0,
+          height: 0
+        };
+      }
+
+      if (options.rotatable) {
+        data.rotate = imageData.rotate || 0;
+      }
+
+      if (options.scalable) {
+        data.scaleX = imageData.scaleX || 1;
+        data.scaleY = imageData.scaleY || 1;
+      }
+
+      return data;
+    },
+
+    /**
+     * Set the cropped area position and size with new data
+     * @param {Object} data - The new data.
+     * @returns {Cropper} this
+     */
+    setData: function setData(data) {
+      var options = this.options,
+          imageData = this.imageData,
+          canvasData = this.canvasData;
+      var cropBoxData = {};
+
+      if (this.ready && !this.disabled && isPlainObject(data)) {
+        var transformed = false;
+
+        if (options.rotatable) {
+          if (isNumber(data.rotate) && data.rotate !== imageData.rotate) {
+            imageData.rotate = data.rotate;
+            transformed = true;
+          }
+        }
+
+        if (options.scalable) {
+          if (isNumber(data.scaleX) && data.scaleX !== imageData.scaleX) {
+            imageData.scaleX = data.scaleX;
+            transformed = true;
+          }
+
+          if (isNumber(data.scaleY) && data.scaleY !== imageData.scaleY) {
+            imageData.scaleY = data.scaleY;
+            transformed = true;
+          }
+        }
+
+        if (transformed) {
+          this.renderCanvas(true, true);
+        }
+
+        var ratio = imageData.width / imageData.naturalWidth;
+
+        if (isNumber(data.x)) {
+          cropBoxData.left = data.x * ratio + canvasData.left;
+        }
+
+        if (isNumber(data.y)) {
+          cropBoxData.top = data.y * ratio + canvasData.top;
+        }
+
+        if (isNumber(data.width)) {
+          cropBoxData.width = data.width * ratio;
+        }
+
+        if (isNumber(data.height)) {
+          cropBoxData.height = data.height * ratio;
+        }
+
+        this.setCropBoxData(cropBoxData);
+      }
+
+      return this;
+    },
+
+    /**
+     * Get the container size data.
+     * @returns {Object} The result container data.
+     */
+    getContainerData: function getContainerData() {
+      return this.ready ? assign({}, this.containerData) : {};
+    },
+
+    /**
+     * Get the image position and size data.
+     * @returns {Object} The result image data.
+     */
+    getImageData: function getImageData() {
+      return this.sized ? assign({}, this.imageData) : {};
+    },
+
+    /**
+     * Get the canvas position and size data.
+     * @returns {Object} The result canvas data.
+     */
+    getCanvasData: function getCanvasData() {
+      var canvasData = this.canvasData;
+      var data = {};
+
+      if (this.ready) {
+        forEach(['left', 'top', 'width', 'height', 'naturalWidth', 'naturalHeight'], function (n) {
+          data[n] = canvasData[n];
+        });
+      }
+
+      return data;
+    },
+
+    /**
+     * Set the canvas position and size with new data.
+     * @param {Object} data - The new canvas data.
+     * @returns {Cropper} this
+     */
+    setCanvasData: function setCanvasData(data) {
+      var canvasData = this.canvasData;
+      var aspectRatio = canvasData.aspectRatio;
+
+      if (this.ready && !this.disabled && isPlainObject(data)) {
+        if (isNumber(data.left)) {
+          canvasData.left = data.left;
+        }
+
+        if (isNumber(data.top)) {
+          canvasData.top = data.top;
+        }
+
+        if (isNumber(data.width)) {
+          canvasData.width = data.width;
+          canvasData.height = data.width / aspectRatio;
+        } else if (isNumber(data.height)) {
+          canvasData.height = data.height;
+          canvasData.width = data.height * aspectRatio;
+        }
+
+        this.renderCanvas(true);
+      }
+
+      return this;
+    },
+
+    /**
+     * Get the crop box position and size data.
+     * @returns {Object} The result crop box data.
+     */
+    getCropBoxData: function getCropBoxData() {
+      var cropBoxData = this.cropBoxData;
+      var data;
+
+      if (this.ready && this.cropped) {
+        data = {
+          left: cropBoxData.left,
+          top: cropBoxData.top,
+          width: cropBoxData.width,
+          height: cropBoxData.height
+        };
+      }
+
+      return data || {};
+    },
+
+    /**
+     * Set the crop box position and size with new data.
+     * @param {Object} data - The new crop box data.
+     * @returns {Cropper} this
+     */
+    setCropBoxData: function setCropBoxData(data) {
+      var cropBoxData = this.cropBoxData;
+      var aspectRatio = this.options.aspectRatio;
+      var widthChanged;
+      var heightChanged;
+
+      if (this.ready && this.cropped && !this.disabled && isPlainObject(data)) {
+        if (isNumber(data.left)) {
+          cropBoxData.left = data.left;
+        }
+
+        if (isNumber(data.top)) {
+          cropBoxData.top = data.top;
+        }
+
+        if (isNumber(data.width) && data.width !== cropBoxData.width) {
+          widthChanged = true;
+          cropBoxData.width = data.width;
+        }
+
+        if (isNumber(data.height) && data.height !== cropBoxData.height) {
+          heightChanged = true;
+          cropBoxData.height = data.height;
+        }
+
+        if (aspectRatio) {
+          if (widthChanged) {
+            cropBoxData.height = cropBoxData.width / aspectRatio;
+          } else if (heightChanged) {
+            cropBoxData.width = cropBoxData.height * aspectRatio;
+          }
+        }
+
+        this.renderCropBox();
+      }
+
+      return this;
+    },
+
+    /**
+     * Get a canvas drawn the cropped image.
+     * @param {Object} [options={}] - The config options.
+     * @returns {HTMLCanvasElement} - The result canvas.
+     */
+    getCroppedCanvas: function getCroppedCanvas() {
+      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+      if (!this.ready || !window.HTMLCanvasElement) {
+        return null;
+      }
+
+      var canvasData = this.canvasData;
+      var source = getSourceCanvas(this.image, this.imageData, canvasData, options); // Returns the source canvas if it is not cropped.
+
+      if (!this.cropped) {
+        return source;
+      }
+
+      var _this$getData = this.getData(),
+          initialX = _this$getData.x,
+          initialY = _this$getData.y,
+          initialWidth = _this$getData.width,
+          initialHeight = _this$getData.height;
+
+      var ratio = source.width / Math.floor(canvasData.naturalWidth);
+
+      if (ratio !== 1) {
+        initialX *= ratio;
+        initialY *= ratio;
+        initialWidth *= ratio;
+        initialHeight *= ratio;
+      }
+
+      var aspectRatio = initialWidth / initialHeight;
+      var maxSizes = getAdjustedSizes({
+        aspectRatio: aspectRatio,
+        width: options.maxWidth || Infinity,
+        height: options.maxHeight || Infinity
+      });
+      var minSizes = getAdjustedSizes({
+        aspectRatio: aspectRatio,
+        width: options.minWidth || 0,
+        height: options.minHeight || 0
+      }, 'cover');
+
+      var _getAdjustedSizes = getAdjustedSizes({
+        aspectRatio: aspectRatio,
+        width: options.width || (ratio !== 1 ? source.width : initialWidth),
+        height: options.height || (ratio !== 1 ? source.height : initialHeight)
+      }),
+          width = _getAdjustedSizes.width,
+          height = _getAdjustedSizes.height;
+
+      width = Math.min(maxSizes.width, Math.max(minSizes.width, width));
+      height = Math.min(maxSizes.height, Math.max(minSizes.height, height));
+      var canvas = document.createElement('canvas');
+      var context = canvas.getContext('2d');
+      canvas.width = normalizeDecimalNumber(width);
+      canvas.height = normalizeDecimalNumber(height);
+      context.fillStyle = options.fillColor || 'transparent';
+      context.fillRect(0, 0, width, height);
+      var _options$imageSmoothi = options.imageSmoothingEnabled,
+          imageSmoothingEnabled = _options$imageSmoothi === void 0 ? true : _options$imageSmoothi,
+          imageSmoothingQuality = options.imageSmoothingQuality;
+      context.imageSmoothingEnabled = imageSmoothingEnabled;
+
+      if (imageSmoothingQuality) {
+        context.imageSmoothingQuality = imageSmoothingQuality;
+      } // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.drawImage
+
+
+      var sourceWidth = source.width;
+      var sourceHeight = source.height; // Source canvas parameters
+
+      var srcX = initialX;
+      var srcY = initialY;
+      var srcWidth;
+      var srcHeight; // Destination canvas parameters
+
+      var dstX;
+      var dstY;
+      var dstWidth;
+      var dstHeight;
+
+      if (srcX <= -initialWidth || srcX > sourceWidth) {
+        srcX = 0;
+        srcWidth = 0;
+        dstX = 0;
+        dstWidth = 0;
+      } else if (srcX <= 0) {
+        dstX = -srcX;
+        srcX = 0;
+        srcWidth = Math.min(sourceWidth, initialWidth + srcX);
+        dstWidth = srcWidth;
+      } else if (srcX <= sourceWidth) {
+        dstX = 0;
+        srcWidth = Math.min(initialWidth, sourceWidth - srcX);
+        dstWidth = srcWidth;
+      }
+
+      if (srcWidth <= 0 || srcY <= -initialHeight || srcY > sourceHeight) {
+        srcY = 0;
+        srcHeight = 0;
+        dstY = 0;
+        dstHeight = 0;
+      } else if (srcY <= 0) {
+        dstY = -srcY;
+        srcY = 0;
+        srcHeight = Math.min(sourceHeight, initialHeight + srcY);
+        dstHeight = srcHeight;
+      } else if (srcY <= sourceHeight) {
+        dstY = 0;
+        srcHeight = Math.min(initialHeight, sourceHeight - srcY);
+        dstHeight = srcHeight;
+      }
+
+      var params = [srcX, srcY, srcWidth, srcHeight]; // Avoid "IndexSizeError"
+
+      if (dstWidth > 0 && dstHeight > 0) {
+        var scale = width / initialWidth;
+        params.push(dstX * scale, dstY * scale, dstWidth * scale, dstHeight * scale);
+      } // All the numerical parameters should be integer for `drawImage`
+      // https://github.com/fengyuanchen/cropper/issues/476
+
+
+      context.drawImage.apply(context, [source].concat(_toConsumableArray(params.map(function (param) {
+        return Math.floor(normalizeDecimalNumber(param));
+      }))));
+      return canvas;
+    },
+
+    /**
+     * Change the aspect ratio of the crop box.
+     * @param {number} aspectRatio - The new aspect ratio.
+     * @returns {Cropper} this
+     */
+    setAspectRatio: function setAspectRatio(aspectRatio) {
+      var options = this.options;
+
+      if (!this.disabled && !isUndefined(aspectRatio)) {
+        // 0 -> NaN
+        options.aspectRatio = Math.max(0, aspectRatio) || NaN;
+
+        if (this.ready) {
+          this.initCropBox();
+
+          if (this.cropped) {
+            this.renderCropBox();
+          }
+        }
+      }
+
+      return this;
+    },
+
+    /**
+     * Change the drag mode.
+     * @param {string} mode - The new drag mode.
+     * @returns {Cropper} this
+     */
+    setDragMode: function setDragMode(mode) {
+      var options = this.options,
+          dragBox = this.dragBox,
+          face = this.face;
+
+      if (this.ready && !this.disabled) {
+        var croppable = mode === DRAG_MODE_CROP;
+        var movable = options.movable && mode === DRAG_MODE_MOVE;
+        mode = croppable || movable ? mode : DRAG_MODE_NONE;
+        options.dragMode = mode;
+        setData(dragBox, DATA_ACTION, mode);
+        toggleClass(dragBox, CLASS_CROP, croppable);
+        toggleClass(dragBox, CLASS_MOVE, movable);
+
+        if (!options.cropBoxMovable) {
+          // Sync drag mode to crop box when it is not movable
+          setData(face, DATA_ACTION, mode);
+          toggleClass(face, CLASS_CROP, croppable);
+          toggleClass(face, CLASS_MOVE, movable);
+        }
+      }
+
+      return this;
+    }
+  };
+
+  var AnotherCropper = WINDOW.Cropper;
+
+  var Cropper =
+  /*#__PURE__*/
+  function () {
+    /**
+     * Create a new Cropper.
+     * @param {Element} element - The target element for cropping.
+     * @param {Object} [options={}] - The configuration options.
+     */
+    function Cropper(element) {
+      var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+      _classCallCheck(this, Cropper);
+
+      if (!element || !REGEXP_TAG_NAME.test(element.tagName)) {
+        throw new Error('The first argument is required and must be an <img> or <canvas> element.');
+      }
+
+      this.element = element;
+      this.options = assign({}, DEFAULTS, isPlainObject(options) && options);
+      this.cropped = false;
+      this.disabled = false;
+      this.pointers = {};
+      this.ready = false;
+      this.reloading = false;
+      this.replaced = false;
+      this.sized = false;
+      this.sizing = false;
+      this.init();
+    }
+
+    _createClass(Cropper, [{
+      key: "init",
+      value: function init() {
+        var element = this.element;
+        var tagName = element.tagName.toLowerCase();
+        var url;
+
+        if (element[NAMESPACE]) {
+          return;
+        }
+
+        element[NAMESPACE] = this;
+
+        if (tagName === 'img') {
+          this.isImg = true; // e.g.: "img/picture.jpg"
+
+          url = element.getAttribute('src') || '';
+          this.originalUrl = url; // Stop when it's a blank image
+
+          if (!url) {
+            return;
+          } // e.g.: "http://example.com/img/picture.jpg"
+
+
+          url = element.src;
+        } else if (tagName === 'canvas' && window.HTMLCanvasElement) {
+          url = element.toDataURL();
+        }
+
+        this.load(url);
+      }
+    }, {
+      key: "load",
+      value: function load(url) {
+        var _this = this;
+
+        if (!url) {
+          return;
+        }
+
+        this.url = url;
+        this.imageData = {};
+        var element = this.element,
+            options = this.options;
+
+        if (!options.rotatable && !options.scalable) {
+          options.checkOrientation = false;
+        } // Only IE10+ supports Typed Arrays
+
+
+        if (!options.checkOrientation || !window.ArrayBuffer) {
+          this.clone();
+          return;
+        } // Detect the mime type of the image directly if it is a Data URL
+
+
+        if (REGEXP_DATA_URL.test(url)) {
+          // Read ArrayBuffer from Data URL of JPEG images directly for better performance
+          if (REGEXP_DATA_URL_JPEG.test(url)) {
+            this.read(dataURLToArrayBuffer(url));
+          } else {
+            // Only a JPEG image may contains Exif Orientation information,
+            // the rest types of Data URLs are not necessary to check orientation at all.
+            this.clone();
+          }
+
+          return;
+        } // 1. Detect the mime type of the image by a XMLHttpRequest.
+        // 2. Load the image as ArrayBuffer for reading orientation if its a JPEG image.
+
+
+        var xhr = new XMLHttpRequest();
+        var clone = this.clone.bind(this);
+        this.reloading = true;
+        this.xhr = xhr; // 1. Cross origin requests are only supported for protocol schemes:
+        // http, https, data, chrome, chrome-extension.
+        // 2. Access to XMLHttpRequest from a Data URL will be blocked by CORS policy
+        // in some browsers as IE11 and Safari.
+
+        xhr.onabort = clone;
+        xhr.onerror = clone;
+        xhr.ontimeout = clone;
+
+        xhr.onprogress = function () {
+          // Abort the request directly if it not a JPEG image for better performance
+          if (xhr.getResponseHeader('content-type') !== MIME_TYPE_JPEG) {
+            xhr.abort();
+          }
+        };
+
+        xhr.onload = function () {
+          _this.read(xhr.response);
+        };
+
+        xhr.onloadend = function () {
+          _this.reloading = false;
+          _this.xhr = null;
+        }; // Bust cache when there is a "crossOrigin" property to avoid browser cache error
+
+
+        if (options.checkCrossOrigin && isCrossOriginURL(url) && element.crossOrigin) {
+          url = addTimestamp(url);
+        }
+
+        xhr.open('GET', url);
+        xhr.responseType = 'arraybuffer';
+        xhr.withCredentials = element.crossOrigin === 'use-credentials';
+        xhr.send();
+      }
+    }, {
+      key: "read",
+      value: function read(arrayBuffer) {
+        var options = this.options,
+            imageData = this.imageData; // Reset the orientation value to its default value 1
+        // as some iOS browsers will render image with its orientation
+
+        var orientation = resetAndGetOrientation(arrayBuffer);
+        var rotate = 0;
+        var scaleX = 1;
+        var scaleY = 1;
+
+        if (orientation > 1) {
+          // Generate a new URL which has the default orientation value
+          this.url = arrayBufferToDataURL(arrayBuffer, MIME_TYPE_JPEG);
+
+          var _parseOrientation = parseOrientation(orientation);
+
+          rotate = _parseOrientation.rotate;
+          scaleX = _parseOrientation.scaleX;
+          scaleY = _parseOrientation.scaleY;
+        }
+
+        if (options.rotatable) {
+          imageData.rotate = rotate;
+        }
+
+        if (options.scalable) {
+          imageData.scaleX = scaleX;
+          imageData.scaleY = scaleY;
+        }
+
+        this.clone();
+      }
+    }, {
+      key: "clone",
+      value: function clone() {
+        var element = this.element,
+            url = this.url;
+        var crossOrigin = element.crossOrigin;
+        var crossOriginUrl = url;
+
+        if (this.options.checkCrossOrigin && isCrossOriginURL(url)) {
+          if (!crossOrigin) {
+            crossOrigin = 'anonymous';
+          } // Bust cache when there is not a "crossOrigin" property (#519)
+
+
+          crossOriginUrl = addTimestamp(url);
+        }
+
+        this.crossOrigin = crossOrigin;
+        this.crossOriginUrl = crossOriginUrl;
+        var image = document.createElement('img');
+
+        if (crossOrigin) {
+          image.crossOrigin = crossOrigin;
+        }
+
+        image.src = crossOriginUrl || url;
+        image.alt = element.alt || 'The image to crop';
+        this.image = image;
+        image.onload = this.start.bind(this);
+        image.onerror = this.stop.bind(this);
+        addClass(image, CLASS_HIDE);
+        element.parentNode.insertBefore(image, element.nextSibling);
+      }
+    }, {
+      key: "start",
+      value: function start() {
+        var _this2 = this;
+
+        var image = this.image;
+        image.onload = null;
+        image.onerror = null;
+        this.sizing = true; // Match all browsers that use WebKit as the layout engine in iOS devices,
+        // such as Safari for iOS, Chrome for iOS, and in-app browsers.
+
+        var isIOSWebKit = WINDOW.navigator && /(?:iPad|iPhone|iPod).*?AppleWebKit/i.test(WINDOW.navigator.userAgent);
+
+        var done = function done(naturalWidth, naturalHeight) {
+          assign(_this2.imageData, {
+            naturalWidth: naturalWidth,
+            naturalHeight: naturalHeight,
+            aspectRatio: naturalWidth / naturalHeight
+          });
+          _this2.sizing = false;
+          _this2.sized = true;
+
+          _this2.build();
+        }; // Most modern browsers (excepts iOS WebKit)
+
+
+        if (image.naturalWidth && !isIOSWebKit) {
+          done(image.naturalWidth, image.naturalHeight);
+          return;
+        }
+
+        var sizingImage = document.createElement('img');
+        var body = document.body || document.documentElement;
+        this.sizingImage = sizingImage;
+
+        sizingImage.onload = function () {
+          done(sizingImage.width, sizingImage.height);
+
+          if (!isIOSWebKit) {
+            body.removeChild(sizingImage);
+          }
+        };
+
+        sizingImage.src = image.src; // iOS WebKit will convert the image automatically
+        // with its orientation once append it into DOM (#279)
+
+        if (!isIOSWebKit) {
+          sizingImage.style.cssText = 'left:0;' + 'max-height:none!important;' + 'max-width:none!important;' + 'min-height:0!important;' + 'min-width:0!important;' + 'opacity:0;' + 'position:absolute;' + 'top:0;' + 'z-index:-1;';
+          body.appendChild(sizingImage);
+        }
+      }
+    }, {
+      key: "stop",
+      value: function stop() {
+        var image = this.image;
+        image.onload = null;
+        image.onerror = null;
+        image.parentNode.removeChild(image);
+        this.image = null;
+      }
+    }, {
+      key: "build",
+      value: function build() {
+        if (!this.sized || this.ready) {
+          return;
+        }
+
+        var element = this.element,
+            options = this.options,
+            image = this.image; // Create cropper elements
+
+        var container = element.parentNode;
+        var template = document.createElement('div');
+        template.innerHTML = TEMPLATE;
+        var cropper = template.querySelector(".".concat(NAMESPACE, "-container"));
+        var canvas = cropper.querySelector(".".concat(NAMESPACE, "-canvas"));
+        var dragBox = cropper.querySelector(".".concat(NAMESPACE, "-drag-box"));
+        var cropBox = cropper.querySelector(".".concat(NAMESPACE, "-crop-box"));
+        var face = cropBox.querySelector(".".concat(NAMESPACE, "-face"));
+        this.container = container;
+        this.cropper = cropper;
+        this.canvas = canvas;
+        this.dragBox = dragBox;
+        this.cropBox = cropBox;
+        this.viewBox = cropper.querySelector(".".concat(NAMESPACE, "-view-box"));
+        this.face = face;
+        canvas.appendChild(image); // Hide the original image
+
+        addClass(element, CLASS_HIDDEN); // Inserts the cropper after to the current image
+
+        container.insertBefore(cropper, element.nextSibling); // Show the image if is hidden
+
+        if (!this.isImg) {
+          removeClass(image, CLASS_HIDE);
+        }
+
+        this.initPreview();
+        this.bind();
+        options.initialAspectRatio = Math.max(0, options.initialAspectRatio) || NaN;
+        options.aspectRatio = Math.max(0, options.aspectRatio) || NaN;
+        options.viewMode = Math.max(0, Math.min(3, Math.round(options.viewMode))) || 0;
+        addClass(cropBox, CLASS_HIDDEN);
+
+        if (!options.guides) {
+          addClass(cropBox.getElementsByClassName("".concat(NAMESPACE, "-dashed")), CLASS_HIDDEN);
+        }
+
+        if (!options.center) {
+          addClass(cropBox.getElementsByClassName("".concat(NAMESPACE, "-center")), CLASS_HIDDEN);
+        }
+
+        if (options.background) {
+          addClass(cropper, "".concat(NAMESPACE, "-bg"));
+        }
+
+        if (!options.highlight) {
+          addClass(face, CLASS_INVISIBLE);
+        }
+
+        if (options.cropBoxMovable) {
+          addClass(face, CLASS_MOVE);
+          setData(face, DATA_ACTION, ACTION_ALL);
+        }
+
+        if (!options.cropBoxResizable) {
+          addClass(cropBox.getElementsByClassName("".concat(NAMESPACE, "-line")), CLASS_HIDDEN);
+          addClass(cropBox.getElementsByClassName("".concat(NAMESPACE, "-point")), CLASS_HIDDEN);
+        }
+
+        this.render();
+        this.ready = true;
+        this.setDragMode(options.dragMode);
+
+        if (options.autoCrop) {
+          this.crop();
+        }
+
+        this.setData(options.data);
+
+        if (isFunction(options.ready)) {
+          addListener(element, EVENT_READY, options.ready, {
+            once: true
+          });
+        }
+
+        dispatchEvent(element, EVENT_READY);
+      }
+    }, {
+      key: "unbuild",
+      value: function unbuild() {
+        if (!this.ready) {
+          return;
+        }
+
+        this.ready = false;
+        this.unbind();
+        this.resetPreview();
+        this.cropper.parentNode.removeChild(this.cropper);
+        removeClass(this.element, CLASS_HIDDEN);
+      }
+    }, {
+      key: "uncreate",
+      value: function uncreate() {
+        if (this.ready) {
+          this.unbuild();
+          this.ready = false;
+          this.cropped = false;
+        } else if (this.sizing) {
+          this.sizingImage.onload = null;
+          this.sizing = false;
+          this.sized = false;
+        } else if (this.reloading) {
+          this.xhr.onabort = null;
+          this.xhr.abort();
+        } else if (this.image) {
+          this.stop();
+        }
+      }
+      /**
+       * Get the no conflict cropper class.
+       * @returns {Cropper} The cropper class.
+       */
+
+    }], [{
+      key: "noConflict",
+      value: function noConflict() {
+        window.Cropper = AnotherCropper;
+        return Cropper;
+      }
+      /**
+       * Change the default options.
+       * @param {Object} options - The new default options.
+       */
+
+    }, {
+      key: "setDefaults",
+      value: function setDefaults(options) {
+        assign(DEFAULTS, isPlainObject(options) && options);
+      }
+    }]);
+
+    return Cropper;
+  }();
+
+  assign(Cropper.prototype, render, preview, events, handlers, change, methods);
+
+  return Cropper;
+
+}));
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/cropperjs/dist/cropper.css":
+/*!*********************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./node_modules/cropperjs/dist/cropper.css ***!
+  \*********************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "/*!\n * Cropper.js v1.5.6\n * https://fengyuanchen.github.io/cropperjs\n *\n * Copyright 2015-present Chen Fengyuan\n * Released under the MIT license\n *\n * Date: 2019-10-04T04:33:44.164Z\n */\n\n.cropper-container {\n  direction: ltr;\n  font-size: 0;\n  line-height: 0;\n  position: relative;\n  -ms-touch-action: none;\n  touch-action: none;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n}\n\n.cropper-container img {\n  display: block;\n  height: 100%;\n  image-orientation: 0deg;\n  max-height: none !important;\n  max-width: none !important;\n  min-height: 0 !important;\n  min-width: 0 !important;\n  width: 100%;\n}\n\n.cropper-wrap-box,\n.cropper-canvas,\n.cropper-drag-box,\n.cropper-crop-box,\n.cropper-modal {\n  bottom: 0;\n  left: 0;\n  position: absolute;\n  right: 0;\n  top: 0;\n}\n\n.cropper-wrap-box,\n.cropper-canvas {\n  overflow: hidden;\n}\n\n.cropper-drag-box {\n  background-color: #fff;\n  opacity: 0;\n}\n\n.cropper-modal {\n  background-color: #000;\n  opacity: 0.5;\n}\n\n.cropper-view-box {\n  display: block;\n  height: 100%;\n  outline: 1px solid #39f;\n  outline-color: rgba(51, 153, 255, 0.75);\n  overflow: hidden;\n  width: 100%;\n}\n\n.cropper-dashed {\n  border: 0 dashed #eee;\n  display: block;\n  opacity: 0.5;\n  position: absolute;\n}\n\n.cropper-dashed.dashed-h {\n  border-bottom-width: 1px;\n  border-top-width: 1px;\n  height: calc(100% / 3);\n  left: 0;\n  top: calc(100% / 3);\n  width: 100%;\n}\n\n.cropper-dashed.dashed-v {\n  border-left-width: 1px;\n  border-right-width: 1px;\n  height: 100%;\n  left: calc(100% / 3);\n  top: 0;\n  width: calc(100% / 3);\n}\n\n.cropper-center {\n  display: block;\n  height: 0;\n  left: 50%;\n  opacity: 0.75;\n  position: absolute;\n  top: 50%;\n  width: 0;\n}\n\n.cropper-center::before,\n.cropper-center::after {\n  background-color: #eee;\n  content: ' ';\n  display: block;\n  position: absolute;\n}\n\n.cropper-center::before {\n  height: 1px;\n  left: -3px;\n  top: 0;\n  width: 7px;\n}\n\n.cropper-center::after {\n  height: 7px;\n  left: 0;\n  top: -3px;\n  width: 1px;\n}\n\n.cropper-face,\n.cropper-line,\n.cropper-point {\n  display: block;\n  height: 100%;\n  opacity: 0.1;\n  position: absolute;\n  width: 100%;\n}\n\n.cropper-face {\n  background-color: #fff;\n  left: 0;\n  top: 0;\n}\n\n.cropper-line {\n  background-color: #39f;\n}\n\n.cropper-line.line-e {\n  cursor: ew-resize;\n  right: -3px;\n  top: 0;\n  width: 5px;\n}\n\n.cropper-line.line-n {\n  cursor: ns-resize;\n  height: 5px;\n  left: 0;\n  top: -3px;\n}\n\n.cropper-line.line-w {\n  cursor: ew-resize;\n  left: -3px;\n  top: 0;\n  width: 5px;\n}\n\n.cropper-line.line-s {\n  bottom: -3px;\n  cursor: ns-resize;\n  height: 5px;\n  left: 0;\n}\n\n.cropper-point {\n  background-color: #39f;\n  height: 5px;\n  opacity: 0.75;\n  width: 5px;\n}\n\n.cropper-point.point-e {\n  cursor: ew-resize;\n  margin-top: -3px;\n  right: -3px;\n  top: 50%;\n}\n\n.cropper-point.point-n {\n  cursor: ns-resize;\n  left: 50%;\n  margin-left: -3px;\n  top: -3px;\n}\n\n.cropper-point.point-w {\n  cursor: ew-resize;\n  left: -3px;\n  margin-top: -3px;\n  top: 50%;\n}\n\n.cropper-point.point-s {\n  bottom: -3px;\n  cursor: s-resize;\n  left: 50%;\n  margin-left: -3px;\n}\n\n.cropper-point.point-ne {\n  cursor: nesw-resize;\n  right: -3px;\n  top: -3px;\n}\n\n.cropper-point.point-nw {\n  cursor: nwse-resize;\n  left: -3px;\n  top: -3px;\n}\n\n.cropper-point.point-sw {\n  bottom: -3px;\n  cursor: nesw-resize;\n  left: -3px;\n}\n\n.cropper-point.point-se {\n  bottom: -3px;\n  cursor: nwse-resize;\n  height: 20px;\n  opacity: 1;\n  right: -3px;\n  width: 20px;\n}\n\n@media (min-width: 768px) {\n  .cropper-point.point-se {\n    height: 15px;\n    width: 15px;\n  }\n}\n\n@media (min-width: 992px) {\n  .cropper-point.point-se {\n    height: 10px;\n    width: 10px;\n  }\n}\n\n@media (min-width: 1200px) {\n  .cropper-point.point-se {\n    height: 5px;\n    opacity: 0.75;\n    width: 5px;\n  }\n}\n\n.cropper-point.point-se::before {\n  background-color: #39f;\n  bottom: -50%;\n  content: ' ';\n  display: block;\n  height: 200%;\n  opacity: 0;\n  position: absolute;\n  right: -50%;\n  width: 200%;\n}\n\n.cropper-invisible {\n  opacity: 0;\n}\n\n.cropper-bg {\n  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAQMAAAAlPW0iAAAAA3NCSVQICAjb4U/gAAAABlBMVEXMzMz////TjRV2AAAACXBIWXMAAArrAAAK6wGCiw1aAAAAHHRFWHRTb2Z0d2FyZQBBZG9iZSBGaXJld29ya3MgQ1M26LyyjAAAABFJREFUCJlj+M/AgBVhF/0PAH6/D/HkDxOGAAAAAElFTkSuQmCC');\n}\n\n.cropper-hide {\n  display: block;\n  height: 0;\n  position: absolute;\n  width: 0;\n}\n\n.cropper-hidden {\n  display: none !important;\n}\n\n.cropper-move {\n  cursor: move;\n}\n\n.cropper-crop {\n  cursor: crosshair;\n}\n\n.cropper-disabled .cropper-drag-box,\n.cropper-disabled .cropper-face,\n.cropper-disabled .cropper-line,\n.cropper-disabled .cropper-point {\n  cursor: not-allowed;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-select/dist/vue-select.css":
+/*!*************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-select/dist/vue-select.css ***!
+  \*************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".v-select{\n  position:relative;\n  font-family:inherit\n}\n\n.v-select,.v-select *{\n  box-sizing:border-box\n}\n\n@-webkit-keyframes vSelectSpinner{\n  0%{\n    -webkit-transform:rotate(0deg);\n            transform:rotate(0deg)\n  }\n\n  to{\n    -webkit-transform:rotate(1turn);\n            transform:rotate(1turn)\n  }\n}\n\n@keyframes vSelectSpinner{\n  0%{\n    -webkit-transform:rotate(0deg);\n            transform:rotate(0deg)\n  }\n\n  to{\n    -webkit-transform:rotate(1turn);\n            transform:rotate(1turn)\n  }\n}\n\n.vs__fade-enter-active,.vs__fade-leave-active{\n  -webkit-transition:opacity .15s cubic-bezier(1,.5,.8,1);\n  transition:opacity .15s cubic-bezier(1,.5,.8,1)\n}\n\n.vs__fade-enter,.vs__fade-leave-to{\n  opacity:0\n}\n\n.vs--disabled .vs__clear,.vs--disabled .vs__dropdown-toggle,.vs--disabled .vs__open-indicator,.vs--disabled .vs__search,.vs--disabled .vs__selected{\n  cursor:not-allowed;\n  background-color:#f8f8f8\n}\n\n.v-select[dir=rtl] .vs__actions{\n  padding:0 3px 0 6px\n}\n\n.v-select[dir=rtl] .vs__clear{\n  margin-left:6px;\n  margin-right:0\n}\n\n.v-select[dir=rtl] .vs__deselect{\n  margin-left:0;\n  margin-right:2px\n}\n\n.v-select[dir=rtl] .vs__dropdown-menu{\n  text-align:right\n}\n\n.vs__dropdown-toggle{\n  -webkit-appearance:none;\n  -moz-appearance:none;\n  appearance:none;\n  display:-webkit-box;\n  display:flex;\n  padding:0 0 4px;\n  background:none;\n  border:1px solid rgba(60,60,60,.26);\n  border-radius:4px;\n  white-space:normal\n}\n\n.vs__selected-options{\n  display:-webkit-box;\n  display:flex;\n  flex-basis:100%;\n  -webkit-box-flex:1;\n          flex-grow:1;\n  flex-wrap:wrap;\n  padding:0 2px;\n  position:relative\n}\n\n.vs__actions{\n  display:-webkit-box;\n  display:flex;\n  -webkit-box-align:center;\n          align-items:center;\n  padding:4px 6px 0 3px\n}\n\n.vs--searchable .vs__dropdown-toggle{\n  cursor:text\n}\n\n.vs--unsearchable .vs__dropdown-toggle{\n  cursor:pointer\n}\n\n.vs--open .vs__dropdown-toggle{\n  border-bottom-color:transparent;\n  border-bottom-left-radius:0;\n  border-bottom-right-radius:0\n}\n\n.vs__open-indicator{\n  fill:rgba(60,60,60,.5);\n  -webkit-transform:scale(1);\n          transform:scale(1);\n  -webkit-transition:-webkit-transform .15s cubic-bezier(1,-.115,.975,.855);\n  transition:-webkit-transform .15s cubic-bezier(1,-.115,.975,.855);\n  transition:transform .15s cubic-bezier(1,-.115,.975,.855);\n  transition:transform .15s cubic-bezier(1,-.115,.975,.855), -webkit-transform .15s cubic-bezier(1,-.115,.975,.855);\n  -webkit-transition-timing-function:cubic-bezier(1,-.115,.975,.855);\n          transition-timing-function:cubic-bezier(1,-.115,.975,.855)\n}\n\n.vs--open .vs__open-indicator{\n  -webkit-transform:rotate(180deg) scale(1);\n          transform:rotate(180deg) scale(1)\n}\n\n.vs--loading .vs__open-indicator{\n  opacity:0\n}\n\n.vs__clear{\n  fill:rgba(60,60,60,.5);\n  padding:0;\n  border:0;\n  background-color:transparent;\n  cursor:pointer;\n  margin-right:8px\n}\n\n.vs__dropdown-menu{\n  display:block;\n  position:absolute;\n  top:calc(100% - 1px);\n  left:0;\n  z-index:1000;\n  padding:5px 0;\n  margin:0;\n  width:100%;\n  max-height:350px;\n  min-width:160px;\n  overflow-y:auto;\n  box-shadow:0 3px 6px 0 rgba(0,0,0,.15);\n  border:1px solid rgba(60,60,60,.26);\n  border-top-style:none;\n  border-radius:0 0 4px 4px;\n  text-align:left;\n  list-style:none;\n  background:#fff\n}\n\n.vs__no-options{\n  text-align:center\n}\n\n.vs__dropdown-option{\n  line-height:1.42857143;\n  display:block;\n  padding:3px 20px;\n  clear:both;\n  color:#333;\n  white-space:nowrap\n}\n\n.vs__dropdown-option:hover{\n  cursor:pointer\n}\n\n.vs__dropdown-option--highlight{\n  background:#5897fb;\n  color:#fff\n}\n\n.vs__dropdown-option--disabled{\n  background:inherit;\n  color:rgba(60,60,60,.5)\n}\n\n.vs__dropdown-option--disabled:hover{\n  cursor:inherit\n}\n\n.vs__selected{\n  display:-webkit-box;\n  display:flex;\n  -webkit-box-align:center;\n          align-items:center;\n  background-color:#f0f0f0;\n  border:1px solid rgba(60,60,60,.26);\n  border-radius:4px;\n  color:#333;\n  line-height:1.4;\n  margin:4px 2px 0;\n  padding:0 .25em\n}\n\n.vs__deselect{\n  display:-webkit-inline-box;\n  display:inline-flex;\n  -webkit-appearance:none;\n  -moz-appearance:none;\n  appearance:none;\n  margin-left:4px;\n  padding:0;\n  border:0;\n  cursor:pointer;\n  background:none;\n  fill:rgba(60,60,60,.5);\n  text-shadow:0 1px 0 #fff\n}\n\n.vs--single .vs__selected{\n  background-color:transparent;\n  border-color:transparent\n}\n\n.vs--single.vs--open .vs__selected{\n  position:absolute;\n  opacity:.4\n}\n\n.vs--single.vs--searching .vs__selected{\n  display:none\n}\n\n.vs__search::-webkit-search-cancel-button{\n  display:none\n}\n\n.vs__search::-ms-clear,.vs__search::-webkit-search-decoration,.vs__search::-webkit-search-results-button,.vs__search::-webkit-search-results-decoration{\n  display:none\n}\n\n.vs__search,.vs__search:focus{\n  -webkit-appearance:none;\n  -moz-appearance:none;\n  appearance:none;\n  line-height:1.4;\n  font-size:1em;\n  border:1px solid transparent;\n  border-left:none;\n  outline:none;\n  margin:4px 0 0;\n  padding:0 7px;\n  background:none;\n  box-shadow:none;\n  width:0;\n  max-width:100%;\n  -webkit-box-flex:1;\n          flex-grow:1\n}\n\n.vs__search::-webkit-input-placeholder{\n  color:inherit\n}\n\n.vs__search::-moz-placeholder{\n  color:inherit\n}\n\n.vs__search:-ms-input-placeholder{\n  color:inherit\n}\n\n.vs__search::-ms-input-placeholder{\n  color:inherit\n}\n\n.vs__search::placeholder{\n  color:inherit\n}\n\n.vs--unsearchable .vs__search{\n  opacity:1\n}\n\n.vs--unsearchable .vs__search:hover{\n  cursor:pointer\n}\n\n.vs--single.vs--searching:not(.vs--open):not(.vs--loading) .vs__search{\n  opacity:.2\n}\n\n.vs__spinner{\n  align-self:center;\n  opacity:0;\n  font-size:5px;\n  text-indent:-9999em;\n  overflow:hidden;\n  border:.9em solid hsla(0,0%,39.2%,.1);\n  border-left-color:rgba(60,60,60,.45);\n  -webkit-transform:translateZ(0);\n          transform:translateZ(0);\n  -webkit-animation:vSelectSpinner 1.1s linear infinite;\n  animation:vSelectSpinner 1.1s linear infinite;\n  -webkit-transition:opacity .1s;\n  transition:opacity .1s\n}\n\n.vs__spinner,.vs__spinner:after{\n  border-radius:50%;\n  width:5em;\n  height:5em\n}\n\n.vs--loading .vs__spinner{\n  opacity:1\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MapCategories.vue?vue&type=style&index=0&lang=css&":
 /*!*******************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MapCategories.vue?vue&type=style&index=0&lang=css& ***!
@@ -6231,7 +11561,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".fade {\n  -webkit-transition: all .3s ease-in;\n  transition: all .3s ease-in;\n}\n.svg-red path {\n  fill: #f04238;\n}\n", ""]);
+exports.push([module.i, ".fade {\n  -webkit-transition: all .1s ease-in;\n  transition: all .1s ease-in;\n}\n.svg-red path {\n  fill: #f04238;\n}\n", ""]);
 
 // exports
 
@@ -25976,6 +31306,38 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Flash.vue?vue&type=template&id=e4161ed6&":
+/*!********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Flash.vue?vue&type=template&id=e4161ed6& ***!
+  \********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", {
+    directives: [
+      { name: "show", rawName: "v-show", value: _vm.show, expression: "show" }
+    ],
+    class: _vm.classes,
+    staticStyle: { right: "25px", bottom: "25px" },
+    attrs: { role: "alert" },
+    domProps: { textContent: _vm._s(_vm.body) }
+  })
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/GoogleMap.vue?vue&type=template&id=70fcb908&":
 /*!************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/GoogleMap.vue?vue&type=template&id=70fcb908& ***!
@@ -26000,6 +31362,44 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ImageCropper.vue?vue&type=template&id=1b23b99d&":
+/*!***************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ImageCropper.vue?vue&type=template&id=1b23b99d& ***!
+  \***************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("img", { ref: "image", attrs: { src: _vm.src, alt: "" } }),
+    _vm._v(" "),
+    _c("div", { staticClass: "flex justify-end p-2" }, [
+      _c(
+        "button",
+        {
+          staticClass: "button",
+          class: { "is-loading": _vm.loading },
+          on: { click: _vm.crop }
+        },
+        [_vm._v("Apply\n        ")]
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ImagePicker.vue?vue&type=template&id=497ddc2e&":
 /*!**************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ImagePicker.vue?vue&type=template&id=497ddc2e& ***!
@@ -26016,25 +31416,29 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", {}, [
-    _c("div", {
-      staticClass:
-        "h-full w-full absolute cursor-pointer opacity-0 bg-black hover:opacity-50",
-      on: {
-        click: function($event) {
-          return _vm.$refs.file.click()
+    _c(
+      "div",
+      {
+        staticClass:
+          "h-full w-full absolute fade cursor-pointer opacity-0 bg-black hover:opacity-50 flex items-center justify-center",
+        on: {
+          click: function($event) {
+            return _vm.$refs.file.click()
+          }
         }
-      }
-    }),
+      },
+      [_c("img", { attrs: { src: "/svg/cam-icon.svg", alt: "" } })]
+    ),
     _vm._v(" "),
     _c("img", {
-      staticClass: "h-full",
-      attrs: { src: _vm.getImage(), alt: "" }
+      staticClass: "h-full w-full inline-block",
+      attrs: { src: this.src, alt: "" }
     }),
     _vm._v(" "),
     _c("input", {
       ref: "file",
       staticClass: "invisible absolute",
-      attrs: { accept: "image/*", type: "file", name: "name" },
+      attrs: { accept: "image/*", type: "file", name: _vm.name },
       on: { change: _vm.setImage }
     })
   ])
@@ -26061,7 +31465,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "w-full h-screen" })
+  return _c("div", { staticClass: "overflow-hidden" }, [
+    _c("div", { ref: "map", staticClass: "h-full w-full" })
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -26214,7 +31620,7 @@ var render = function() {
           "div",
           {
             staticClass:
-              "rounded-full w-24 h-24 overflow-hidden shadow-sm p-2 bg-white -translate-y-50 -mb-5"
+              "rounded-full w-24 h-24 overflow-hidden shadow-sm bg-white -translate-y-50 -mb-5"
           },
           [_c("img", { attrs: { src: _vm.place.avatar, alt: "" } })]
         )
@@ -26225,6 +31631,21 @@ var render = function() {
           staticClass: "uppercase text-xl font-bold text-center mb-4",
           domProps: { textContent: _vm._s(_vm.place.name) }
         }),
+        _vm._v(" "),
+        _vm.place.tags
+          ? _c(
+              "div",
+              { staticClass: "-mx-1 flex py-2" },
+              _vm._l(_vm.place.tags, function(tag) {
+                return _c("span", {
+                  staticClass:
+                    "rounded mx-1 px-5 bg-gray-200 text-sm shadow-sm text-gray-500",
+                  domProps: { textContent: _vm._s(tag.label) }
+                })
+              }),
+              0
+            )
+          : _vm._e(),
         _vm._v(" "),
         _c("p", {
           staticClass: "text-sm text-gray-500 capitalize",
@@ -26347,7 +31768,7 @@ var render = function() {
                           domProps: { textContent: _vm._s(place.name) }
                         }),
                         _vm._v(" "),
-                        _c("start-rating")
+                        _c("star-rating", { staticClass: "-mx-3" })
                       ],
                       1
                     )
@@ -26679,6 +32100,48 @@ function normalizeComponent (
   }
 }
 
+
+/***/ }),
+
+/***/ "./node_modules/vue-select/dist/vue-select.css":
+/*!*****************************************************!*\
+  !*** ./node_modules/vue-select/dist/vue-select.css ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../css-loader??ref--6-1!../../postcss-loader/src??ref--6-2!./vue-select.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-select/dist/vue-select.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/vue-select/dist/vue-select.js":
+/*!****************************************************!*\
+  !*** ./node_modules/vue-select/dist/vue-select.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+!function(t,e){ true?module.exports=e():undefined}("undefined"!=typeof self?self:this,function(){return function(t){var e={};function n(o){if(e[o])return e[o].exports;var i=e[o]={i:o,l:!1,exports:{}};return t[o].call(i.exports,i,i.exports,n),i.l=!0,i.exports}return n.m=t,n.c=e,n.d=function(t,e,o){n.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:o})},n.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},n.t=function(t,e){if(1&e&&(t=n(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var o=Object.create(null);if(n.r(o),Object.defineProperty(o,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var i in t)n.d(o,i,function(e){return t[e]}.bind(null,i));return o},n.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return n.d(e,"a",e),e},n.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},n.p="/",n(n.s=8)}([function(t,e){function n(t){return(n="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(t)}function o(e){return"function"==typeof Symbol&&"symbol"===n(Symbol.iterator)?t.exports=o=function(t){return n(t)}:t.exports=o=function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":n(t)},o(e)}t.exports=o},function(t,e,n){},function(t,e,n){var o=n(4),i=n(5),r=n(6);t.exports=function(t){return o(t)||i(t)||r()}},function(t,e){t.exports=function(t,e,n){return e in t?Object.defineProperty(t,e,{value:n,enumerable:!0,configurable:!0,writable:!0}):t[e]=n,t}},function(t,e){t.exports=function(t){if(Array.isArray(t)){for(var e=0,n=new Array(t.length);e<t.length;e++)n[e]=t[e];return n}}},function(t,e){t.exports=function(t){if(Symbol.iterator in Object(t)||"[object Arguments]"===Object.prototype.toString.call(t))return Array.from(t)}},function(t,e){t.exports=function(){throw new TypeError("Invalid attempt to spread non-iterable instance")}},function(t,e,n){"use strict";var o=n(1);n.n(o).a},function(t,e,n){"use strict";n.r(e);var o=n(2),i=n.n(o),r=n(0),s=n.n(r),a=n(3),l=n.n(a),u={watch:{typeAheadPointer:function(){this.maybeAdjustScroll()}},methods:{maybeAdjustScroll:function(){var t=this.pixelsToPointerTop(),e=this.pixelsToPointerBottom();return t<=this.viewport().top?this.scrollTo(t):e>=this.viewport().bottom?this.scrollTo(this.viewport().top+this.pointerHeight()):void 0},pixelsToPointerTop:function(){var t=0;if(this.$refs.dropdownMenu)for(var e=0;e<this.typeAheadPointer;e++)t+=this.$refs.dropdownMenu.children[e].offsetHeight;return t},pixelsToPointerBottom:function(){return this.pixelsToPointerTop()+this.pointerHeight()},pointerHeight:function(){var t=!!this.$refs.dropdownMenu&&this.$refs.dropdownMenu.children[this.typeAheadPointer];return t?t.offsetHeight:0},viewport:function(){return{top:this.$refs.dropdownMenu?this.$refs.dropdownMenu.scrollTop:0,bottom:this.$refs.dropdownMenu?this.$refs.dropdownMenu.offsetHeight+this.$refs.dropdownMenu.scrollTop:0}},scrollTo:function(t){return this.$refs.dropdownMenu?this.$refs.dropdownMenu.scrollTop=t:null}}},c={data:function(){return{typeAheadPointer:-1}},watch:{filteredOptions:function(){for(var t=0;t<this.filteredOptions.length;t++)if(this.selectable(this.filteredOptions[t])){this.typeAheadPointer=t;break}}},methods:{typeAheadUp:function(){for(var t=this.typeAheadPointer-1;t>=0;t--)if(this.selectable(this.filteredOptions[t])){this.typeAheadPointer=t,this.maybeAdjustScroll&&this.maybeAdjustScroll();break}},typeAheadDown:function(){for(var t=this.typeAheadPointer+1;t<this.filteredOptions.length;t++)if(this.selectable(this.filteredOptions[t])){this.typeAheadPointer=t,this.maybeAdjustScroll&&this.maybeAdjustScroll();break}},typeAheadSelect:function(){this.filteredOptions[this.typeAheadPointer]?this.select(this.filteredOptions[this.typeAheadPointer]):this.taggable&&this.search.length&&this.select(this.search),this.clearSearchOnSelect&&(this.search="")}}},p={props:{loading:{type:Boolean,default:!1}},data:function(){return{mutableLoading:!1}},watch:{search:function(){this.$emit("search",this.search,this.toggleLoading)},loading:function(t){this.mutableLoading=t}},methods:{toggleLoading:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:null;return this.mutableLoading=null==t?!this.mutableLoading:t}}};function h(t,e,n,o,i,r,s,a){var l,u="function"==typeof t?t.options:t;if(e&&(u.render=e,u.staticRenderFns=n,u._compiled=!0),o&&(u.functional=!0),r&&(u._scopeId="data-v-"+r),s?(l=function(t){(t=t||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext)||"undefined"==typeof __VUE_SSR_CONTEXT__||(t=__VUE_SSR_CONTEXT__),i&&i.call(this,t),t&&t._registeredComponents&&t._registeredComponents.add(s)},u._ssrRegister=l):i&&(l=a?function(){i.call(this,this.$root.$options.shadowRoot)}:i),l)if(u.functional){u._injectStyles=l;var c=u.render;u.render=function(t,e){return l.call(e),c(t,e)}}else{var p=u.beforeCreate;u.beforeCreate=p?[].concat(p,l):[l]}return{exports:t,options:u}}var d={Deselect:h({},function(){var t=this.$createElement,e=this._self._c||t;return e("svg",{attrs:{xmlns:"http://www.w3.org/2000/svg",width:"10",height:"10"}},[e("path",{attrs:{d:"M6.895455 5l2.842897-2.842898c.348864-.348863.348864-.914488 0-1.263636L9.106534.261648c-.348864-.348864-.914489-.348864-1.263636 0L5 3.104545 2.157102.261648c-.348863-.348864-.914488-.348864-1.263636 0L.261648.893466c-.348864.348864-.348864.914489 0 1.263636L3.104545 5 .261648 7.842898c-.348864.348863-.348864.914488 0 1.263636l.631818.631818c.348864.348864.914773.348864 1.263636 0L5 6.895455l2.842898 2.842897c.348863.348864.914772.348864 1.263636 0l.631818-.631818c.348864-.348864.348864-.914489 0-1.263636L6.895455 5z"}})])},[],!1,null,null,null).exports,OpenIndicator:h({},function(){var t=this.$createElement,e=this._self._c||t;return e("svg",{attrs:{xmlns:"http://www.w3.org/2000/svg",width:"14",height:"10"}},[e("path",{attrs:{d:"M9.211364 7.59931l4.48338-4.867229c.407008-.441854.407008-1.158247 0-1.60046l-.73712-.80023c-.407008-.441854-1.066904-.441854-1.474243 0L7 5.198617 2.51662.33139c-.407008-.441853-1.066904-.441853-1.474243 0l-.737121.80023c-.407008.441854-.407008 1.158248 0 1.600461l4.48338 4.867228L7 10l2.211364-2.40069z"}})])},[],!1,null,null,null).exports};function f(t,e){var n=Object.keys(t);if(Object.getOwnPropertySymbols){var o=Object.getOwnPropertySymbols(t);e&&(o=o.filter(function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable})),n.push.apply(n,o)}return n}function y(t){for(var e=1;e<arguments.length;e++){var n=null!=arguments[e]?arguments[e]:{};e%2?f(n,!0).forEach(function(e){l()(t,e,n[e])}):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(n)):f(n).forEach(function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(n,e))})}return t}var b={components:y({},d),mixins:[u,c,p],props:{value:{},components:{type:Object,default:function(){return{}}},options:{type:Array,default:function(){return[]}},disabled:{type:Boolean,default:!1},clearable:{type:Boolean,default:!0},searchable:{type:Boolean,default:!0},multiple:{type:Boolean,default:!1},placeholder:{type:String,default:""},transition:{type:String,default:"vs__fade"},clearSearchOnSelect:{type:Boolean,default:!0},closeOnSelect:{type:Boolean,default:!0},label:{type:String,default:"label"},autocomplete:{type:String,default:"off"},reduce:{type:Function,default:function(t){return t}},selectable:{type:Function,default:function(t){return!0}},getOptionLabel:{type:Function,default:function(t){return"object"===s()(t)?t.hasOwnProperty(this.label)?t[this.label]:console.warn('[vue-select warn]: Label key "option.'.concat(this.label,'" does not')+" exist in options object ".concat(JSON.stringify(t),".\n")+"https://vue-select.org/api/props.html#getoptionlabel"):t}},getOptionKey:{type:Function,default:function(t){if("object"===s()(t)&&t.id)return t.id;try{return JSON.stringify(t)}catch(t){return console.warn("[vue-select warn]: Could not stringify option to generate unique key. Please provide'getOptionKey' prop to return a unique key for each option.\nhttps://vue-select.org/api/props.html#getoptionkey")}}},onTab:{type:Function,default:function(){this.selectOnTab&&!this.isComposing&&this.typeAheadSelect()}},taggable:{type:Boolean,default:!1},tabindex:{type:Number,default:null},pushTags:{type:Boolean,default:!1},filterable:{type:Boolean,default:!0},filterBy:{type:Function,default:function(t,e,n){return(e||"").toLowerCase().indexOf(n.toLowerCase())>-1}},filter:{type:Function,default:function(t,e){var n=this;return t.filter(function(t){var o=n.getOptionLabel(t);return"number"==typeof o&&(o=o.toString()),n.filterBy(t,o,e)})}},createOption:{type:Function,default:function(t){return"object"===s()(this.optionList[0])?l()({},this.label,t):t}},resetOnOptionsChange:{default:!1,validator:function(t){return["function","boolean"].includes(s()(t))}},noDrop:{type:Boolean,default:!1},inputId:{type:String},dir:{type:String,default:"auto"},selectOnTab:{type:Boolean,default:!1},selectOnKeyCodes:{type:Array,default:function(){return[13]}},searchInputQuerySelector:{type:String,default:"[type=search]"},mapKeydown:{type:Function,default:function(t,e){return t}}},data:function(){return{search:"",open:!1,isComposing:!1,pushedTags:[],_value:[]}},watch:{options:function(t,e){var n=this;!this.taggable&&("function"==typeof n.resetOnOptionsChange?n.resetOnOptionsChange(t,e,n.selectedValue):n.resetOnOptionsChange)&&this.clearSelection(),this.value&&this.isTrackingValues&&this.setInternalValueFromOptions(this.value)},value:function(t){this.isTrackingValues&&this.setInternalValueFromOptions(t)},multiple:function(){this.clearSelection()}},created:function(){this.mutableLoading=this.loading,void 0!==this.value&&this.isTrackingValues&&this.setInternalValueFromOptions(this.value),this.$on("option:created",this.maybePushTag)},methods:{setInternalValueFromOptions:function(t){var e=this;Array.isArray(t)?this.$data._value=t.map(function(t){return e.findOptionFromReducedValue(t)}):this.$data._value=this.findOptionFromReducedValue(t)},select:function(t){this.isOptionSelected(t)||(this.taggable&&!this.optionExists(t)&&(t=this.createOption(t),this.$emit("option:created",t)),this.multiple&&(t=this.selectedValue.concat(t)),this.updateValue(t)),this.onAfterSelect(t)},deselect:function(t){var e=this;this.updateValue(this.selectedValue.filter(function(n){return!e.optionComparator(n,t)}))},clearSelection:function(){this.updateValue(this.multiple?[]:null)},onAfterSelect:function(t){this.closeOnSelect&&(this.open=!this.open,this.searchEl.blur()),this.clearSearchOnSelect&&(this.search="")},updateValue:function(t){var e=this;this.isTrackingValues&&(this.$data._value=t),null!==t&&(t=Array.isArray(t)?t.map(function(t){return e.reduce(t)}):this.reduce(t)),this.$emit("input",t)},toggleDropdown:function(t){var e=t.target;[].concat(i()(this.$refs.deselectButtons||[]),i()([this.$refs.clearButton]||false)).some(function(t){return t.contains(e)||t===e})||(this.open?this.searchEl.blur():this.disabled||(this.open=!0,this.searchEl.focus()))},isOptionSelected:function(t){var e=this;return this.selectedValue.some(function(n){return e.optionComparator(n,t)})},optionComparator:function(t,e){if("object"!==s()(t)&&"object"!==s()(e)){if(t===e)return!0}else{if(t===this.reduce(e))return!0;if(this.getOptionLabel(t)===this.getOptionLabel(e)||this.getOptionLabel(t)===e)return!0;if(this.reduce(t)===this.reduce(e))return!0}return!1},findOptionFromReducedValue:function(t){var e=this;return this.options.find(function(n){return JSON.stringify(e.reduce(n))===JSON.stringify(t)})||t},closeSearchOptions:function(){this.open=!1,this.$emit("search:blur")},maybeDeleteValue:function(){if(!this.searchEl.value.length&&this.selectedValue&&this.clearable){var t=null;this.multiple&&(t=i()(this.selectedValue.slice(0,this.selectedValue.length-1))),this.updateValue(t)}},optionExists:function(t){var e=this;return this.optionList.some(function(n){return"object"===s()(n)&&e.getOptionLabel(n)===t||n===t})},normalizeOptionForSlot:function(t){return"object"===s()(t)?t:l()({},this.label,t)},maybePushTag:function(t){this.pushTags&&this.pushedTags.push(t)},onEscape:function(){this.search.length?this.search="":this.searchEl.blur()},onSearchBlur:function(){if(!this.mousedown||this.searching)return this.clearSearchOnBlur&&(this.search=""),void this.closeSearchOptions();this.mousedown=!1,0!==this.search.length||0!==this.options.length||this.closeSearchOptions()},onSearchFocus:function(){this.open=!0,this.$emit("search:focus")},onMousedown:function(){this.mousedown=!0},onMouseUp:function(){this.mousedown=!1},onSearchKeyDown:function(t){var e=this,n=function(t){return t.preventDefault(),!e.isComposing&&e.typeAheadSelect()},o={8:function(t){return e.maybeDeleteValue()},9:function(t){return e.onTab()},27:function(t){return e.onEscape()},38:function(t){return t.preventDefault(),e.typeAheadUp()},40:function(t){return t.preventDefault(),e.typeAheadDown()}};this.selectOnKeyCodes.forEach(function(t){return o[t]=n});var i=this.mapKeydown(o,this);if("function"==typeof i[t.keyCode])return i[t.keyCode](t)}},computed:{isTrackingValues:function(){return void 0===this.value||this.$options.propsData.hasOwnProperty("reduce")},selectedValue:function(){var t=this.value;return this.isTrackingValues&&(t=this.$data._value),t?[].concat(t):[]},optionList:function(){return this.options.concat(this.pushedTags)},searchEl:function(){return this.$scopedSlots.search?this.$refs.selectedOptions.querySelector(this.searchInputQuerySelector):this.$refs.search},scope:function(){var t=this;return{search:{attributes:{disabled:this.disabled,placeholder:this.searchPlaceholder,tabindex:this.tabindex,readonly:!this.searchable,id:this.inputId,"aria-expanded":this.dropdownOpen,"aria-label":"Search for option",ref:"search",role:"combobox",type:"search",autocomplete:"off",value:this.search},events:{compositionstart:function(){return t.isComposing=!0},compositionend:function(){return t.isComposing=!1},keydown:this.onSearchKeyDown,blur:this.onSearchBlur,focus:this.onSearchFocus,input:function(e){return t.search=e.target.value}}},spinner:{loading:this.mutableLoading},openIndicator:{attributes:{ref:"openIndicator",role:"presentation",class:"vs__open-indicator"}}}},childComponents:function(){return y({},d,{},this.components)},stateClasses:function(){return{"vs--open":this.dropdownOpen,"vs--single":!this.multiple,"vs--searching":this.searching&&!this.noDrop,"vs--searchable":this.searchable&&!this.noDrop,"vs--unsearchable":!this.searchable,"vs--loading":this.mutableLoading,"vs--disabled":this.disabled}},clearSearchOnBlur:function(){return this.clearSearchOnSelect&&!this.multiple},searching:function(){return!!this.search},dropdownOpen:function(){return!this.noDrop&&(this.open&&!this.mutableLoading)},searchPlaceholder:function(){if(this.isValueEmpty&&this.placeholder)return this.placeholder},filteredOptions:function(){var t=[].concat(this.optionList);if(!this.filterable&&!this.taggable)return t;var e=this.search.length?this.filter(t,this.search,this):t;return this.taggable&&this.search.length&&!this.optionExists(this.search)&&e.unshift(this.search),e},isValueEmpty:function(){return 0===this.selectedValue.length},showClearButton:function(){return!this.multiple&&this.clearable&&!this.open&&!this.isValueEmpty}}},g=(n(7),h(b,function(){var t=this,e=t.$createElement,n=t._self._c||e;return n("div",{staticClass:"v-select",class:t.stateClasses,attrs:{dir:t.dir}},[n("div",{ref:"toggle",staticClass:"vs__dropdown-toggle",on:{mousedown:function(e){return e.preventDefault(),t.toggleDropdown(e)}}},[n("div",{ref:"selectedOptions",staticClass:"vs__selected-options"},[t._l(t.selectedValue,function(e){return t._t("selected-option-container",[n("span",{key:t.getOptionKey(e),staticClass:"vs__selected"},[t._t("selected-option",[t._v("\n            "+t._s(t.getOptionLabel(e))+"\n          ")],null,t.normalizeOptionForSlot(e)),t._v(" "),t.multiple?n("button",{ref:"deselectButtons",refInFor:!0,staticClass:"vs__deselect",attrs:{disabled:t.disabled,type:"button","aria-label":"Deselect option"},on:{click:function(n){return t.deselect(e)}}},[n(t.childComponents.Deselect,{tag:"component"})],1):t._e()],2)],{option:t.normalizeOptionForSlot(e),deselect:t.deselect,multiple:t.multiple,disabled:t.disabled})}),t._v(" "),t._t("search",[n("input",t._g(t._b({staticClass:"vs__search"},"input",t.scope.search.attributes,!1),t.scope.search.events))],null,t.scope.search)],2),t._v(" "),n("div",{ref:"actions",staticClass:"vs__actions"},[n("button",{directives:[{name:"show",rawName:"v-show",value:t.showClearButton,expression:"showClearButton"}],ref:"clearButton",staticClass:"vs__clear",attrs:{disabled:t.disabled,type:"button",title:"Clear selection"},on:{click:t.clearSelection}},[n(t.childComponents.Deselect,{tag:"component"})],1),t._v(" "),t._t("open-indicator",[t.noDrop?t._e():n(t.childComponents.OpenIndicator,t._b({tag:"component"},"component",t.scope.openIndicator.attributes,!1))],null,t.scope.openIndicator),t._v(" "),t._t("spinner",[n("div",{directives:[{name:"show",rawName:"v-show",value:t.mutableLoading,expression:"mutableLoading"}],staticClass:"vs__spinner"},[t._v("Loading...")])],null,t.scope.spinner)],2)]),t._v(" "),n("transition",{attrs:{name:t.transition}},[t.dropdownOpen?n("ul",{ref:"dropdownMenu",staticClass:"vs__dropdown-menu",attrs:{role:"listbox"},on:{mousedown:function(e){return e.preventDefault(),t.onMousedown(e)},mouseup:t.onMouseUp}},[t._l(t.filteredOptions,function(e,o){return n("li",{key:t.getOptionKey(e),staticClass:"vs__dropdown-option",class:{"vs__dropdown-option--selected":t.isOptionSelected(e),"vs__dropdown-option--highlight":o===t.typeAheadPointer,"vs__dropdown-option--disabled":!t.selectable(e)},attrs:{role:"option"},on:{mouseover:function(n){t.selectable(e)&&(t.typeAheadPointer=o)},mousedown:function(n){n.preventDefault(),n.stopPropagation(),t.selectable(e)&&t.select(e)}}},[t._t("option",[t._v("\n          "+t._s(t.getOptionLabel(e))+"\n        ")],null,t.normalizeOptionForSlot(e))],2)}),t._v(" "),t.filteredOptions.length?t._e():n("li",{staticClass:"vs__no-options",on:{mousedown:function(t){t.stopPropagation()}}},[t._t("no-options",[t._v("Sorry, no matching options.")])],2)],2):t._e()])],1)},[],!1,null,null,null).exports),m={ajax:p,pointer:c,pointerScroll:u};n.d(e,"VueSelect",function(){return g}),n.d(e,"mixins",function(){return m});e.default=g}])});
+//# sourceMappingURL=vue-select.js.map
 
 /***/ }),
 
@@ -38711,6 +44174,101 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./resources/js/Form.js":
+/*!******************************!*\
+  !*** ./resources/js/Form.js ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Form =
+/*#__PURE__*/
+function () {
+  function Form(data) {
+    _classCallCheck(this, Form);
+
+    this.originalData = JSON.parse(JSON.stringify(data));
+    Object.assign(this, data);
+    this.errors = {};
+    this.submitted = false;
+  }
+
+  _createClass(Form, [{
+    key: "data",
+    value: function data() {
+      var _this = this;
+
+      return Object.keys(this.originalData).reduce(function (data, attribute) {
+        if (_this[attribute]) {
+          data[attribute] = _this[attribute];
+        }
+
+        return data;
+      }, {});
+    }
+  }, {
+    key: "post",
+    value: function post(endpoint, headers) {
+      return this.submit(endpoint, 'post', headers);
+    }
+  }, {
+    key: "patch",
+    value: function patch(endpoint) {
+      return this.submit(endpoint, 'patch');
+    }
+  }, {
+    key: "put",
+    value: function put(endpoint) {
+      return this.submit(endpoint, 'put');
+    }
+  }, {
+    key: "delete",
+    value: function _delete(endpoint) {
+      return this.submit(endpoint, 'delete');
+    }
+  }, {
+    key: "submit",
+    value: function submit(endpoint) {
+      var requestType = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'post';
+      var headers = arguments.length > 2 ? arguments[2] : undefined;
+      return axios[requestType](endpoint, this.data(), headers)["catch"](this.onFail.bind(this)).then(this.onSuccess.bind(this));
+    }
+  }, {
+    key: "onSuccess",
+    value: function onSuccess(response) {
+      this.submitted = true;
+      this.errors = {};
+      return response;
+    }
+  }, {
+    key: "onFail",
+    value: function onFail(error) {
+      this.errors = error.response.data.errors;
+      this.submitted = false;
+      throw error;
+    }
+  }, {
+    key: "reset",
+    value: function reset() {
+      Object.assign(this, this.originalData);
+    }
+  }]);
+
+  return Form;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (Form);
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -38724,9 +44282,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_js_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-js-modal */ "./node_modules/vue-js-modal/dist/index.js");
 /* harmony import */ var vue_js_modal__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_js_modal__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue_select_dist_vue_select_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-select/dist/vue-select.css */ "./node_modules/vue-select/dist/vue-select.css");
+/* harmony import */ var vue_select_dist_vue_select_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_select_dist_vue_select_css__WEBPACK_IMPORTED_MODULE_2__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
+
+
+window.events = new vue__WEBPACK_IMPORTED_MODULE_0___default.a();
+
+window.flash = function (message) {
+  var level = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'success';
+  window.events.$emit('flash', {
+    message: message,
+    level: level
+  });
+};
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_js_modal__WEBPACK_IMPORTED_MODULE_1___default.a);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('MapCategories', __webpack_require__(/*! ./components/MapCategories.vue */ "./resources/js/components/MapCategories.vue")["default"]);
@@ -38738,8 +44309,13 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('LocationPicker', __webpack
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('AddressText', __webpack_require__(/*! ./components/AddressText.vue */ "./resources/js/components/AddressText.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('ImagePicker', __webpack_require__(/*! ./components/ImagePicker.vue */ "./resources/js/components/ImagePicker.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('StarRating', __webpack_require__(/*! ./components/StarRating.vue */ "./resources/js/components/StarRating.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('ImageCropper', __webpack_require__(/*! ./components/ImageCropper.vue */ "./resources/js/components/ImageCropper.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('MapView', __webpack_require__(/*! ./pages/MapView.vue */ "./resources/js/pages/MapView.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('CreateEntityView', __webpack_require__(/*! ./pages/CreateEntityView.vue */ "./resources/js/pages/CreateEntityView.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('EditEntityView', __webpack_require__(/*! ./pages/EditEntityView.vue */ "./resources/js/pages/EditEntityView.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('RegisterView', __webpack_require__(/*! ./pages/RegisterView.vue */ "./resources/js/pages/RegisterView.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("flash", __webpack_require__(/*! ./components/Flash.vue */ "./resources/js/components/Flash.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('v-select', __webpack_require__(/*! vue-select */ "./node_modules/vue-select/dist/vue-select.js")["default"]);
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app'
 });
@@ -38985,6 +44561,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Flash.vue":
+/*!*******************************************!*\
+  !*** ./resources/js/components/Flash.vue ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Flash_vue_vue_type_template_id_e4161ed6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Flash.vue?vue&type=template&id=e4161ed6& */ "./resources/js/components/Flash.vue?vue&type=template&id=e4161ed6&");
+/* harmony import */ var _Flash_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Flash.vue?vue&type=script&lang=js& */ "./resources/js/components/Flash.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Flash_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Flash_vue_vue_type_template_id_e4161ed6___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Flash_vue_vue_type_template_id_e4161ed6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Flash.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Flash.vue?vue&type=script&lang=js&":
+/*!********************************************************************!*\
+  !*** ./resources/js/components/Flash.vue?vue&type=script&lang=js& ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Flash_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Flash.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Flash.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Flash_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Flash.vue?vue&type=template&id=e4161ed6&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/Flash.vue?vue&type=template&id=e4161ed6& ***!
+  \**************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Flash_vue_vue_type_template_id_e4161ed6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Flash.vue?vue&type=template&id=e4161ed6& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Flash.vue?vue&type=template&id=e4161ed6&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Flash_vue_vue_type_template_id_e4161ed6___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Flash_vue_vue_type_template_id_e4161ed6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/GoogleMap.vue":
 /*!***********************************************!*\
   !*** ./resources/js/components/GoogleMap.vue ***!
@@ -39049,6 +44694,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GoogleMap_vue_vue_type_template_id_70fcb908___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GoogleMap_vue_vue_type_template_id_70fcb908___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/ImageCropper.vue":
+/*!**************************************************!*\
+  !*** ./resources/js/components/ImageCropper.vue ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ImageCropper_vue_vue_type_template_id_1b23b99d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ImageCropper.vue?vue&type=template&id=1b23b99d& */ "./resources/js/components/ImageCropper.vue?vue&type=template&id=1b23b99d&");
+/* harmony import */ var _ImageCropper_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ImageCropper.vue?vue&type=script&lang=js& */ "./resources/js/components/ImageCropper.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ImageCropper_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ImageCropper_vue_vue_type_template_id_1b23b99d___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ImageCropper_vue_vue_type_template_id_1b23b99d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/ImageCropper.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/ImageCropper.vue?vue&type=script&lang=js&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/ImageCropper.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ImageCropper_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ImageCropper.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ImageCropper.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ImageCropper_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/ImageCropper.vue?vue&type=template&id=1b23b99d&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/ImageCropper.vue?vue&type=template&id=1b23b99d& ***!
+  \*********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ImageCropper_vue_vue_type_template_id_1b23b99d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ImageCropper.vue?vue&type=template&id=1b23b99d& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ImageCropper.vue?vue&type=template&id=1b23b99d&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ImageCropper_vue_vue_type_template_id_1b23b99d___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ImageCropper_vue_vue_type_template_id_1b23b99d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -39605,6 +45319,56 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/pages/EditEntityView.vue":
+/*!***********************************************!*\
+  !*** ./resources/js/pages/EditEntityView.vue ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _EditEntityView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EditEntityView.vue?vue&type=script&lang=js& */ "./resources/js/pages/EditEntityView.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  _EditEntityView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"],
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/pages/EditEntityView.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/pages/EditEntityView.vue?vue&type=script&lang=js&":
+/*!************************************************************************!*\
+  !*** ./resources/js/pages/EditEntityView.vue?vue&type=script&lang=js& ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditEntityView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./EditEntityView.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/EditEntityView.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditEntityView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/pages/MapView.vue":
 /*!****************************************!*\
   !*** ./resources/js/pages/MapView.vue ***!
@@ -39652,6 +45416,56 @@ component.options.__file = "resources/js/pages/MapView.vue"
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MapView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./MapView.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/MapView.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MapView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/pages/RegisterView.vue":
+/*!*********************************************!*\
+  !*** ./resources/js/pages/RegisterView.vue ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _RegisterView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RegisterView.vue?vue&type=script&lang=js& */ "./resources/js/pages/RegisterView.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  _RegisterView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"],
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/pages/RegisterView.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/pages/RegisterView.vue?vue&type=script&lang=js&":
+/*!**********************************************************************!*\
+  !*** ./resources/js/pages/RegisterView.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RegisterView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./RegisterView.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/RegisterView.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RegisterView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 

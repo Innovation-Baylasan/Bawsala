@@ -44,7 +44,7 @@
 </script>
 <style>
     .fade {
-        transition: all .3s ease-in;
+        transition: all .1s ease-in;
     }
 
     .svg-red path {

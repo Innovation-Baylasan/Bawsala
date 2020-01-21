@@ -14,6 +14,11 @@ class EntitiesReviewsController extends Controller
         $this->middleware('auth:api');
     }
 
+    public function index(Entity $entity)
+    {
+        return response($entity->reviews, 200);
+    }
+
     /**
      * @param Request $request
      * @param Entity $entity

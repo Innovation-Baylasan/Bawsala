@@ -12,11 +12,11 @@
         <aside class="md:w-1/4 bg-white flex flex-col mx-4 self-start rounded overflow-hidden md:sticky top-0">
             <header class="flex flex-col justify-center items-center">
                 <div class="relative">
-                    <img src="https://placeimg.com/640/360/tech" alt="">
+                    <img src="{{$entity->cover}}" alt="">
                     <div class="bg-white absolute w-full h-12 cover-skewer"></div>
                 </div>
-                <div class="rounded-full w-40 h-40 overflow-hidden shadow-sm p-2 bg-white -translate-y-50 -mb-16">
-                    <img src="{{$entity->avatar}}" alt="">
+                <div class="rounded-full w-40 h-40 overflow-hidden shadow-sm bg-white -translate-y-50 -mb-16">
+                    <img class="w-full h-full" src="{{$entity->avatar}}" alt="">
                 </div>
             </header>
             <div class="px-10 flex flex-col items-center">
@@ -24,7 +24,8 @@
                 <star-rating class="mb-2"
                              :initial="{{ $entity->ratingFor(auth()->user()) ?: 0 }}"
                              action="/entities/{{$entity->id}}/rate"></star-rating>
-                <p class="text-gray-300 mb-2"><span class="font-bold text-gray-500">Rating: </span>{{$entity->rating()}}</p>
+                <p class="text-gray-300 mb-2"><span class="font-bold text-gray-500">Rating: </span>{{$entity->rating()}}
+                </p>
                 <div class="w-full flex justify-between mb-4">
                     <div class="text-gray-500 flex flex-col text-center">
                         <span class="font-bold text-black">{{$entity->followers(App\User::class)->count()}}</span>

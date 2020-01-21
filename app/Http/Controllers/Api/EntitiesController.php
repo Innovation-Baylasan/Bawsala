@@ -45,6 +45,8 @@ class EntitiesController extends Controller
      */
     public function show(Entity $entity)
     {
-        return response($entity, 200);
+        return response([
+            'data' => $entity
+        ], 200);
     }
 }

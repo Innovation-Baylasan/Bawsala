@@ -85,6 +85,8 @@
                 </div>
             </div>
         </div>
+
+        <flash message="{{session('message')}}"></flash>
     </div>
 </div>
 <script src="{{asset('js/app.js')}}"></script>

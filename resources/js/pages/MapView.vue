@@ -9,12 +9,27 @@
                 selectedPlace: null,
                 selectedCategory: null,
                 mapCenter: {},
+                showing: 'places',
+                endpoints: {
+                    places: '/api/entities',
+                    events: '/api/events',
+                },
+            }
+        },
+        watch: {
+            showing(){
+                this.getPlaces()
+            }
+        },
+        computed: {
+            endpoint(){
+                return this.endpoints[this.showing]
             }
         },
         methods: {
             getPlaces(category = null){
                 this.selectedCategory = category
-                axios.get(`/api/entities${category ? '?category=' + category : '' }`)
+                axios.get(this.endpoint + (category ? '?category=' + category : '' ))
                     .then(({data}) => this.places = data.data)
             },
             getCenter(){

@@ -9675,6 +9675,21 @@ video {
   line-height: 2;
 }
 
+.input > select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  padding: 0.25rem;
+  background-color: #fff;
+  display: block;
+  -webkit-box-flex: 1;
+          flex: 1 1 0%;
+}
+
+.input > select:active, .input > select:focus {
+  outline: 0;
+}
+
 .input-label {
   color: #818181;
   text-transform: capitalize;
@@ -9750,6 +9765,53 @@ video {
   padding-right: 6rem;
 }
 
+.button.is-loading {
+  color: transparent !important;
+  pointer-events: none;
+  position: relative;
+}
+
+.button.is-loading:after {
+  left: calc(50% - (1em / 2));
+  top: calc(50% - (1em / 2));
+  position: absolute !important;
+  webkit-animation: spinAround 0.5s infinite linear;
+  -webkit-animation: spinAround 0.5s infinite linear;
+          animation: spinAround 0.5s infinite linear;
+  border: 2px solid #dbdbdb;
+  border-radius: 290486px;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  content: "";
+  display: block;
+  height: 1em;
+  width: 1em;
+}
+
+@-webkit-keyframes spinAround {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
+@keyframes spinAround {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
 .tag label {
   display: inline-block;
   text-align: center;
@@ -9791,6 +9853,14 @@ video {
 
 .alert.is-danger {
   background-color: #f04238;
+}
+
+.alert.is-success {
+  background-color: #4aab50;
+}
+
+.alert.is-green {
+  background-color: #4aab50;
 }
 
 .rating {
@@ -9987,6 +10057,46 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
+}
+
+.error {
+  font-size: 0.875rem;
+  color: #f04238;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.custom-pin {
+  height: 10px;
+  line-height: 1;
+  width: 22px;
+  padding: 6px 2px;
+  margin: 10px;
+  text-align: center;
+  cursor: pointer;
+  color: white;
+  background: black;
+  position: absolute;
+  border-radius: 0.5em;
+  font-size: 1em;
+  font-weight: bold;
+  -webkit-transition: all 500ms;
+  transition: all 500ms;
+}
+
+.custom-pin::after {
+  content: "";
+  border-width: 1em 0.5em;
+  border-color: black transparent transparent transparent;
+  border-style: solid;
+  position: absolute;
+  top: 99%;
+  left: calc(50% - .5em);
+}
+
+.custom-pin:hover {
+  -webkit-transform: scale(1.15);
+          transform: scale(1.15);
 }
 
 @media (min-width: 640px){
