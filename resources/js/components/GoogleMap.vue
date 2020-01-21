@@ -78,7 +78,6 @@
                 })
             },
             removeMarkers(){
-                console.log(this.clusterer)
                 this.markers.forEach(marker => {
                     marker.setMap(null)
                     this.clusterer.removeMarker(marker)

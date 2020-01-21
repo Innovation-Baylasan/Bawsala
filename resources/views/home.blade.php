@@ -15,7 +15,7 @@
                 <div>
                     <search-input :category="selectedCategory" @result-clicked="selectPlace"></search-input>
                     <place-profile-card @close="selectedPlace =null"
-                    v-if="selectedPlace"
+                    v-if="selectedPlace && (showing == 'places')"
                     :place="selectedPlace"></place-profile-card>
                 </div>
                 @guest

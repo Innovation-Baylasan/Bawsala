@@ -7062,7 +7062,6 @@ __webpack_require__.r(__webpack_exports__);
     removeMarkers: function removeMarkers() {
       var _this4 = this;
 
-      console.log(this.clusterer);
       this.markers.forEach(function (marker) {
         marker.setMap(null);
 
