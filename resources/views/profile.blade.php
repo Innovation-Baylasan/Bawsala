@@ -124,13 +124,16 @@
                 <h3 class="uppercase border-b mb-4 border-solid border-gray-100 text-2xl font-bold">
                     Places
                 </h3>
-                @can('update',$entity)
-                    <div class="flex -mx-2">
+
+                <div class="flex -mx-2">
+                    @if(auth()->user()->mainEntity()->is($entity))
                         <div class="bg-gray-200 rounded overflow-hidden text-gray-500 w-48 h-48 mx-2">
                             <div class="flex h-full items-center justify-center">
                                 <a href="/entities/create" class="button">add new place</a>
                             </div>
                         </div>
+                    @endif
+                    @if(auth()->user()->mainEntity()->is($entity))
                         @foreach($entity->subEntities as $subEntity)
                             <div class="bg-gray-200 rounded overflow-hidden  text-gray-500 h-48 w-48 mx-2">
                                 <div>
@@ -141,8 +144,19 @@
                                 </div>
                             </div>
                         @endforeach
-                    </div>
-                @endcan
+                    @else
+                        @foreach($entity->siblings() as $sibling)
+                            <div class="bg-gray-200 rounded overflow-hidden  text-gray-500 h-48 w-48 mx-2">
+                                <div>
+                                    <img src="{{ $sibling->cover}}" alt="">
+                                </div>
+                                <div class="flex items-center justify-center">
+                                    {{ $sibling->name}}
+                                </div>
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
             </div>
         </div>
     </div>

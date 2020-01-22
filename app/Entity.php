@@ -47,6 +47,7 @@ class Entity extends Model implements Followable
         });
     }
 
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -79,6 +80,14 @@ class Entity extends Model implements Followable
         return $this->belongsTo(static::class, 'parent_id');
     }
 
+    public function siblings()
+    {
+        return $this->where('parent_id', $this->parent_id)->where('parent_id', '!=', null)->get();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function subEntities()
     {
         return $this->hasMany(static::class, 'parent_id');
