@@ -13,6 +13,14 @@
 
 Route::get('/', 'HomeController@index');
 
+Route::get('/account', 'UsersProfilesController@index')->middleware('auth');
+
+Route::get('/account/{user}', 'UsersProfilesController@show')->middleware('auth');
+
+Route::get('/entities/create', 'EntitiesController@create')->middleware('auth');
+
+Route::post('/entities', 'EntitiesController@store')->middleware(['auth', 'company']);
+
 Route::put('/entities/{entity}/follow', 'EntitiesFollowersController@update')->middleware('auth');
 
 Route::post('/entities/{entity}/rate', 'EntitiesRatingController@store')->middleware('auth');

@@ -21,10 +21,13 @@
             </header>
             <div class="px-10 flex flex-col items-center">
                 <h3 class="uppercase text-xl font-bold text-center mb-2">{{$entity->name }}</h3>
-                <star-rating class="mb-2"
-                             :initial="{{ $entity->ratingFor(auth()->user()) ?: 0 }}"
-                             action="/entities/{{$entity->id}}/rate"></star-rating>
-                <p class="text-gray-300 mb-2"><span class="font-bold text-gray-500">Rating: </span>{{$entity->rating()}}
+                @if(auth()->user()->isNot($entity->owner))
+                    <star-rating class="mb-2"
+                                 :initial="{{ $entity->ratingFor(auth()->user()) ?: 0 }}"
+                                 action="/entities/{{$entity->id}}/rate"></star-rating>
+                @endif
+                <p class="text-gray-300 mb-2"><span
+                            class="font-bold text-gray-500">Rating: </span>{{$entity->rating()}}
                 </p>
                 <div class="w-full flex justify-between mb-4">
                     <div class="text-gray-500 flex flex-col text-center">
@@ -40,33 +43,37 @@
                         <span>Review</span>
                     </div>
                 </div>
-                <form action="/entities/{{$entity->id}}/follow"
-                      method="post"
-                      class="w-full flex"
-                      id="follow-form">
-                    @csrf
-                    @method("put")
-                    <a class="@if(auth()->user()->isFollowing($entity))bg-blue-100 @endif border-blue border text-center w-full focus:outline-none text-blue-700 py-2 rounded capitalize font-bold mb-8"
-                       href="#"
-                       onclick="document.getElementById('follow-form').submit()"
-                    >
-                        {{auth()->user()->isFollowing($entity) ? 'following':'follow'}}
-                    </a>
-                </form>
+                @if(auth()->user()->isNot($entity->owner))
+                    <form action="/entities/{{$entity->id}}/follow"
+                          method="post"
+                          class="w-full flex"
+                          id="follow-form">
+                        @csrf
+                        @method("put")
+                        <a class="@if(auth()->user()->isFollowing($entity))bg-blue-100 @endif border-blue border text-center w-full focus:outline-none text-blue-700 py-2 rounded capitalize font-bold mb-8"
+                           href="#"
+                           onclick="document.getElementById('follow-form').submit()"
+                        >
+                            {{auth()->user()->isFollowing($entity) ? 'following':'follow'}}
+                        </a>
+                    </form>
+                @endif
             </div>
         </aside>
 
         <div class="md:w-3/4 flex flex-col mx-4 mt-4 md:mt-0">
             <header class="flex justify-between mb-4">
                 <a href="/" class="button">back</a>
-                <div class="flex -mx-2">
-                    <a href="" class="mx-2">
-                        <img src="/svg/edit-profile-icon.svg" alt="">
-                    </a>
-                    <a href="" class="mx-2">
-                        <img src="/svg/options-icon.svg" alt="">
-                    </a>
-                </div>
+                @can('update',$entity)
+                    <div class="flex -mx-2">
+                        <a href="" class="mx-2">
+                            <img src="/svg/edit-profile-icon.svg" alt="">
+                        </a>
+                        <a href="" class="mx-2">
+                            <img src="/svg/options-icon.svg" alt="">
+                        </a>
+                    </div>
+                @endcan
             </header>
             <div class="bg-white p-8 mb-4 rounded">
                 <h3 class="uppercase border-b mb-4 border-solid border-gray-100 text-2xl font-bold">
@@ -93,21 +100,23 @@
                         </div>
                     @endforelse
 
-                    <div class="flex flex-1 py-4 items-center">
-                        <img class="rounded shadow-sm w-12 h-12 mr-4" src="https://i.pravatar.cc/300" alt="avatar">
-                        <div class="border border-gray-100 border-solid flex-1 flex-col p-2 rounded">
-                            <form action="/entities/{{$entity->id}}/reviews"
-                                  method="post"
-                            >
-                                @csrf
-                                <textarea class="w-full outline-none"
-                                          type="text"
-                                          name="review"
-                                          placeholder="Leave Comment Or Review Here"></textarea>
-                                <button class="button" type="submit">review</button>
-                            </form>
+                    @if(auth()->user()->isNot($entity->owner))
+                        <div class="flex flex-1 py-4 items-center">
+                            <img class="rounded shadow-sm w-12 h-12 mr-4" src="https://i.pravatar.cc/300" alt="avatar">
+                            <div class="border border-gray-100 border-solid flex-1 flex-col p-2 rounded">
+                                <form action="/entities/{{$entity->id}}/reviews"
+                                      method="post"
+                                >
+                                    @csrf
+                                    <textarea class="w-full outline-none"
+                                              type="text"
+                                              name="review"
+                                              placeholder="Leave Comment Or Review Here"></textarea>
+                                    <button class="button" type="submit">review</button>
+                                </form>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
                 <div></div>
             </div>
@@ -115,11 +124,25 @@
                 <h3 class="uppercase border-b mb-4 border-solid border-gray-100 text-2xl font-bold">
                     Places
                 </h3>
-                <div class="text-gray-500 flex -mx-2">
-                    <div class="w-1/4 mx-2 bg-gray-200 rounded h-48 flex items-center justify-center">
-                        <button class="button">add new place</button>
+                @can('update',$entity)
+                    <div class="flex -mx-2">
+                        <div class="bg-gray-200 rounded overflow-hidden text-gray-500 w-48 h-48 mx-2">
+                            <div class="flex h-full items-center justify-center">
+                                <a href="/entities/create" class="button">add new place</a>
+                            </div>
+                        </div>
+                        @foreach($entity->subEntities as $subEntity)
+                            <div class="bg-gray-200 rounded overflow-hidden  text-gray-500 h-48 w-48 mx-2">
+                                <div>
+                                    <img src="{{ $subEntity->cover}}" alt="">
+                                </div>
+                                <div class="flex items-center justify-center">
+                                    {{ $subEntity->name}}
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
-                </div>
+                @endcan
             </div>
         </div>
     </div>

@@ -19,20 +19,34 @@
                     :place="selectedPlace"></place-profile-card>
                 </div>
                 @guest
-                <div class="bg-white rounded overflow-hidden shadow m-4">
+                <div class="bg-white rounded overflow-hidden shadow mt-4 mx-2">
                     <a class="p-2 px-4 inline-block text-gray-500 border-r border-gray-200"
                        href="/register">Regsiter</a>
                     <a class="p-2 px-4 inline-block text-gray-500" href="/login">Login</a>
                 </div>
                 @endguest
+                @auth()
+                <form action="/logout" method="post" id="logout-form">
+                    @csrf
+                </form>
+                <div class="bg-white rounded overflow-hidden shadow mt-4 mx-2">
+
+                    @if(auth()->user()->isAdmin())
+                        <a class="p-2 px-4 inline-block text-gray-500" href="/admin">dashboard</a>
+                    @endif
+                    <a class="p-2 px-4 inline-block text-gray-500" href="/account">profile</a>
+
+                    <a class="p-2 px-4 inline-block text-gray-500 border-r border-gray-200"
+                       href="#"
+                       onclick="document.getElementById('logout-form').submit()"
+                    >Logout</a>
+                </div>
+                @endauth()
             </header>
 
             <nav v-if="showing == 'places'"
                  class="bg-white bottom-0 fixed flex flex-col overflow-scroll md:overflow-hidden md:h-screen left-0 md:top-0 md:w-24 pt-4 shadow w-full z-10">
                 <div class="px-4 mb-6 hidden md:block">
-                    <form action="/logout" method="post" id="logout-form">
-                        @csrf
-                    </form>
                     @auth()
                     <avatar img="{{"https://www.gravatar.com/avatar/" . md5( strtolower( trim( auth()->user()->email ) ) ) . "?s=100&d"}}"
                             :auth="{{auth()->check()}}" :user="{{auth()->user()}}"></avatar>
@@ -50,7 +64,7 @@
                 </div>
 
             </nav>
-
+            <flash message="{{session('message')}}"></flash>
             <main>
                 <google-map :places="places"
                             :center="mapCenter"

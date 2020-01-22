@@ -21,7 +21,7 @@ class Entity extends Model implements Followable
      *
      * @var array
      */
-    protected $guarded = [];
+    protected $fillable = ['user_id', 'category_id', 'name', 'description', 'latitude', 'longitude'];
     /**
      * Determine what to eager load when retrieving activity
      *
@@ -50,9 +50,9 @@ class Entity extends Model implements Followable
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user()
+    public function owner()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     /**
@@ -79,6 +79,10 @@ class Entity extends Model implements Followable
         return $this->belongsTo(static::class, 'parent_id');
     }
 
+    public function subEntities()
+    {
+        return $this->hasMany(static::class, 'parent_id');
+    }
 
     /**
      *

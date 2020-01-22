@@ -54,13 +54,7 @@ class EntitiesController extends Controller
 
         $entity = auth()->user()
             ->entities()
-            ->create([
-                'category_id' => $attributes['category_id'],
-                'name' => $attributes['name'],
-                'description' => $attributes['description'],
-                'latitude' => $attributes['latitude'],
-                'longitude' => $attributes['longitude'],
-            ]);
+            ->create($attributes);
 
 
         if ($entityRequest->has('tags')) {

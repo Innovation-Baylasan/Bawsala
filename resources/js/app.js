@@ -24,6 +24,7 @@ Vue.component('StarRating', require('./components/StarRating.vue').default)
 Vue.component('ImageCropper', require('./components/ImageCropper.vue').default)
 Vue.component('MapView', require('./pages/MapView.vue').default)
 Vue.component('CreateEntityView', require('./pages/CreateEntityView.vue').default)
+Vue.component('CreateSubEntityView', require('./pages/CreateSubEntityView.vue').default)
 Vue.component('EditEntityView', require('./pages/EditEntityView.vue').default)
 Vue.component('RegisterView', require('./pages/RegisterView.vue').default)
 Vue.component("flash", require("./components/Flash.vue").default);
