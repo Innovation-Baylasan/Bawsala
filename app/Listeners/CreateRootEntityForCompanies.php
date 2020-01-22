@@ -2,9 +2,6 @@
 
 namespace App\Listeners;
 
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
-
 class CreateRootEntityForCompanies
 {
     /**
@@ -23,13 +20,13 @@ class CreateRootEntityForCompanies
      * @param  object $event
      * @return void
      */
-    public function handle($user)
+    public function handle($event)
     {
-        if ($user->role->role = 'company') {
+        if ($event->user->role = 'company') {
             $location = request('location');
             list($latitude, $longitude) = explode(',', $location);
-            $user->entities()->create([
-                'name' => $user->name,
+            $event->user->entities()->create([
+                'name' => $event->user->name,
                 'category_id' => request('category'),
                 'description' => request('description'),
                 'latitude' => $latitude,

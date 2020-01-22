@@ -19,7 +19,7 @@ class UsersTableSeeder extends Seeder
             'username' => User::generateUsername('Baylsaan Admin'),
             'password' => bcrypt('admin12345678'),
             'api_token' => Str::random(80),
-            'role_id' => '1',
+            'role' => 'admin',
         ]);
     }
 }

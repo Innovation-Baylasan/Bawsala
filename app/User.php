@@ -17,13 +17,18 @@ class User extends Authenticatable implements Follower
 {
     use HasApiTokens, Notifiable, CanFollow;
 
+    public function getRouteKeyName()
+    {
+        return 'username';
+    }
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'username'
+        'name', 'email', 'password', 'username', 'role'
     ];
     /**
      * The attributes that should be hidden for arrays.
@@ -72,6 +77,20 @@ class User extends Authenticatable implements Follower
         return $this->hasMany(Event::class, 'creator_id');
     }
 
+
+    public function mainEntity()
+    {
+        return $this->entities()->oldest()->first();
+    }
+
+    /**
+     * @return bool
+     */
+    public function isCompany()
+    {
+        return !!($this->role == 'company');
+    }
+
     /**
      * check whether this user is admin or not
      *
@@ -79,7 +98,7 @@ class User extends Authenticatable implements Follower
      */
     public function isAdmin()
     {
-        return !!$this->role == 'admin';
+        return !!($this->role == 'admin');
     }
 
     /**

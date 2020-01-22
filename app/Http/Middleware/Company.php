@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class IsAdmin
+class Company
 {
     /**
      * Handle an incoming request.
@@ -13,11 +13,10 @@ class IsAdmin
      * @param  \Closure $next
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = null)
+    public function handle($request, Closure $next)
     {
-        if (auth()->check() && auth()->user()->isAdmin()) {
-            return $next($request);
-        }
-        return abort(403);
+        if (!(auth()->check() && auth()->user()->isCompany())) return abort(403);
+
+        return $next($request);
     }
 }
