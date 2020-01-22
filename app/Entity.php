@@ -176,7 +176,7 @@ class Entity extends Model implements Followable
      *
      *
      */
-    public function scopeNearby($query, $lat, $lng, $radius = 100, $unit = "km")
+    public function scopeNearby($query, $lat, $lng, $radius = 1.5, $unit = "km")
     {
         $unit = ($unit === "km") ? 6378.10 : 3963.17;
         $lat = (float)$lat;

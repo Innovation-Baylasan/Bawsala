@@ -15,7 +15,7 @@ class Company
      */
     public function handle($request, Closure $next)
     {
-        if (!(auth()->check() && auth()->user()->isCompany())) return back();
+        if (!(auth()->check() && auth()->user()->isCompany())) return abort(403);
 
         return $next($request);
     }

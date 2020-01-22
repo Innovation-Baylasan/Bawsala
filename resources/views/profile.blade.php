@@ -21,6 +21,8 @@
             </header>
             <div class="px-10 flex flex-col items-center">
                 <h3 class="uppercase text-xl font-bold text-center mb-2">{{$entity->name }}</h3>
+                @if($entity->parent)<h6>By: <a href="{{'@'.$entity->parent->id}}">{{$entity->parent->name}}</a>
+                </h6>@endif
                 @if(auth()->user()->isNot($entity->owner))
                     <star-rating class="mb-2"
                                  :initial="{{ $entity->ratingFor(auth()->user()) ?: 0 }}"
@@ -135,25 +137,11 @@
                     @endif
                     @if(auth()->user()->mainEntity()->is($entity))
                         @foreach($entity->subEntities as $subEntity)
-                            <div class="bg-gray-200 rounded overflow-hidden  text-gray-500 h-48 w-48 mx-2">
-                                <div>
-                                    <img src="{{ $subEntity->cover}}" alt="">
-                                </div>
-                                <div class="flex items-center justify-center">
-                                    {{ $subEntity->name}}
-                                </div>
-                            </div>
+                            @include('partials.profile-min-card',['entity' => $subEntity])
                         @endforeach
                     @else
                         @foreach($entity->siblings() as $sibling)
-                            <div class="bg-gray-200 rounded overflow-hidden  text-gray-500 h-48 w-48 mx-2">
-                                <div>
-                                    <img src="{{ $sibling->cover}}" alt="">
-                                </div>
-                                <div class="flex items-center justify-center">
-                                    {{ $sibling->name}}
-                                </div>
-                            </div>
+                            @include('partials.profile-min-card',['entity' => $sibling])
                         @endforeach
                     @endif
                 </div>
