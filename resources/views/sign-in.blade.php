@@ -38,15 +38,15 @@
 
                 <p class="text-gray-500">
                     Here a text is placed explaining to the user that upon registration, the <a href="#"
-                                                                                                class="text-red-500 font-bold">agreement
+                                                                                                class="text-accent font-bold">agreement
                         policy</a> and
                     <a href="#"
-                       class="text-red-500 font-bold">privacy policy</a>
+                       class="text-accent font-bold">privacy policy</a>
                     will be approved and their consequences bear
                 </p>
 
                 <div class="flex items-center justify-center mt-8">
-                    <button class="bg-red-500 rounded px-24 py-3 outline-none uppercase text-white font-bold">Sing In
+                    <button class="bg-accent rounded px-24 py-3 outline-none uppercase text-default font-bold">Sing In
                     </button>
                 </div>
 

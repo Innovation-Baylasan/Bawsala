@@ -9,13 +9,13 @@
 <body class="bg-gray-200 min-h-screen min-w-screen">
 <div id="app">
     <div class="flex flex-col md:flex-row w-full p-4 md:-mx-4 relative">
-        <aside class="md:w-1/4 bg-white flex flex-col mx-4 self-start rounded overflow-hidden md:sticky top-0">
+        <aside class="md:w-1/4 bg-default flex flex-col mx-4 self-start rounded overflow-hidden md:sticky top-0">
             <header class="flex flex-col justify-center items-center">
                 <div class="relative">
                     <img src="{{$entity->cover}}" alt="">
-                    <div class="bg-white absolute w-full h-12 cover-skewer"></div>
+                    <div class="bg-default absolute w-full h-12 cover-skewer"></div>
                 </div>
-                <div class="rounded-full w-40 h-40 overflow-hidden shadow-sm bg-white -translate-y-50 -mb-16">
+                <div class="rounded-full w-40 h-40 overflow-hidden shadow-sm bg-default -translate-y-50 -mb-16">
                     <img class="w-full h-full" src="{{$entity->avatar}}" alt="">
                 </div>
             </header>
@@ -80,13 +80,13 @@
                     </div>
                 @endcan
             </header>
-            <div class="bg-white p-8 mb-4 rounded">
+            <div class="bg-default p-8 mb-4 rounded">
                 <h3 class="uppercase border-b mb-4 border-solid border-gray-100 text-2xl font-bold">
                     Info
                 </h3>
                 <p class="text-gray-500 mr-8 ">{{$entity->description}}</p>
             </div>
-            <div class="bg-white p-8 mb-4 rounded">
+            <div class="bg-default p-8 mb-4 rounded">
                 <div class="flex flex-col justify-between">
                     @forelse($entity->reviews as $review)
                         <div class="flex flex-1 py-4 items-start border-b border-solid border-gray-100">
@@ -125,7 +125,7 @@
                 </div>
                 <div></div>
             </div>
-            <div class="bg-white p-8 rounded">
+            <div class="bg-default p-8 rounded">
                 <h3 class="uppercase border-b mb-4 border-solid border-gray-100 text-2xl font-bold">
                     Places
                 </h3>

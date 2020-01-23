@@ -20,7 +20,7 @@
                 <span v-for="tag in place.tags" class="rounded mx-1 px-5 bg-gray-200 text-sm shadow-sm text-gray-500" v-text="tag.label"></span>
             </div>
             <p class="text-sm text-gray-500 capitalize" v-text="place.description"></p>
-            <a :href="'/@'+place.id" class="text-red-500 p-4 text-xl block text-center font-bold">Visit Profile</a>
+            <a :href="'/@'+place.id" class="text-accent p-4 text-xl block text-center font-bold">Visit Profile</a>
         </div>
     </div>
 </template>

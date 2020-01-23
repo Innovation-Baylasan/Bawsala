@@ -1,10 +1,10 @@
 <modal name="filteringModal"
        width="66.6%"
        :height="'auto'"
-       classes="bg-white rounded">
+       classes="bg-default rounded">
     <div class="p-8">
         <div class="border-b-2 border-gray-500">
-            <h3 class="text-xl font-bold text-gray-500 inline-block border-b-4 border-red-500">Search Filtering</h3>
+            <h3 class="text-xl font-bold text-gray-500 inline-block border-b-4 border-accent">Search Filtering</h3>
         </div>
         <div class="flex p-4">
             <div class="w-1/2">

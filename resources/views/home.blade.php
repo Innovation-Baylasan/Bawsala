@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
-<body>
+<body class="theme-light">
 <div id="app">
     <map-view inline-template>
         <div>
@@ -19,7 +19,7 @@
                     :place="selectedPlace"></place-profile-card>
                 </div>
                 @guest
-                <div class="bg-white rounded overflow-hidden shadow mt-4 mx-2">
+                <div class="bg-default rounded overflow-hidden shadow mt-4 mx-2">
                     <a class="p-2 px-4 inline-block text-gray-500 border-r border-gray-200"
                        href="/register">Regsiter</a>
                     <a class="p-2 px-4 inline-block text-gray-500" href="/login">Login</a>
@@ -29,7 +29,7 @@
                 <form action="/logout" method="post" id="logout-form">
                     @csrf
                 </form>
-                <div class="bg-white rounded overflow-hidden shadow mt-4 mx-2">
+                <div class="bg-default rounded overflow-hidden shadow mt-4 mx-2">
 
                     @if($authUser->isAdmin())
                         <a class="p-2 px-4 inline-block text-gray-500" href="/admin">dashboard</a>
@@ -45,13 +45,13 @@
             </header>
 
             <nav v-if="showing == 'places'"
-                 class="bg-white bottom-0 fixed flex flex-col overflow-scroll md:overflow-hidden md:h-screen left-0 md:top-0 md:w-24 pt-4 shadow w-full z-10">
+                 class="bg-default bottom-0 fixed flex flex-col overflow-scroll md:overflow-hidden md:h-screen left-0 md:top-0 md:w-24 pt-4 shadow w-full z-10">
                 <div class="px-4 mb-6 hidden md:block">
                     <avatar img="{{"https://www.gravatar.com/avatar/" . md5( strtolower( trim( $authUser->email ) ) ) . "?s=100&d"}}"></avatar>
                 </div>
                 <map-categories :categories="{{$categories}}" @category-change="getPlaces"></map-categories>
                 <div class="flex items-center justify-center px-4 mt-auto mb-2 hidden md:block">
-                    <div class="rounded  w-12 h-12 w-16 h-16 bg-red-500 flex items-center justify-center">
+                    <div class="rounded  w-12 h-12 w-16 h-16 bg-accent flex items-center justify-center">
                         <img class="" src="{{asset('svg/notify-icon.svg')}}" alt="">
                     </div>
                 </div>
@@ -66,7 +66,7 @@
                 ></google-map>
             </main>
             <footer class="fixed bottom-0 w-full z-10 flex p-2 justify-center ">
-                <div class="bg-white shadow-sm rounded">
+                <div class="bg-default shadow-sm rounded">
                     <a href="#" @click.prevent="showing = 'places'"
                        class="px-4 py-2 inline-block border-r"
                        :class="[showing == 'places' ? 'text-black' : 'text-gray-500']"

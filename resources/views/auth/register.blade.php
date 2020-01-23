@@ -65,7 +65,7 @@
                             <input type="text" required name="name" value="{{old('name')}}">
                         </div>
                         @error('name')
-                        <p class="text-sm text-red-500 -mt-2 mb-2">{{$message}}</p>
+                        <p class="text-sm text-accent -mt-2 mb-2">{{$message}}</p>
                         @enderror
 
                         <label class="input-label" for="">email</label>
@@ -73,7 +73,7 @@
                             <input type="text" required name="email" value="{{old('email')}}">
                         </div>
                         @error('email')
-                        <p class="text-sm text-red-500 -mt-2 mb-2">{{$message}}</p>
+                        <p class="text-sm text-accent -mt-2 mb-2">{{$message}}</p>
                         @enderror
 
                         <label class="input-label" for="">password</label>
@@ -81,7 +81,7 @@
                             <input type="password" name="password">
                         </div>
                         @error('password')
-                        <p class="text-sm text-red-500 -mt-2 mb-2">{{$message}}</p>
+                        <p class="text-sm text-accent -mt-2 mb-2">{{$message}}</p>
                         @enderror
 
                         <label class="input-label" for="">password confirmation</label>
@@ -89,7 +89,7 @@
                             <input type="password" name="password_confirmation">
                         </div>
                         @error('password')
-                        <p class="text-sm text-red-500 -mt-2 mb-2">{{$message}}</p>
+                        <p class="text-sm text-accent -mt-2 mb-2">{{$message}}</p>
                         @enderror
 
                         <label class="text-gray-700 capitalize block mb-2" for="">Register as</label>
@@ -128,7 +128,7 @@
                                 <textarea name="description">{{old('description')}}</textarea>
                             </div>
                             @error('description')
-                            <p class="text-sm text-red-500 -mt-2 mb-2">{{$message}}</p>
+                            <p class="text-sm text-accent -mt-2 mb-2">{{$message}}</p>
                             @enderror
 
                         </div>
@@ -136,14 +136,14 @@
 
                         <p class="text-gray-500">
                             Here a text is placed explaining to the user that upon registration, the <a href="#"
-                                                                                                        class="text-red-500 font-bold">agreement
+                                                                                                        class="text-accent font-bold">agreement
                                 policy</a> and
                             <a href="#"
-                               class="text-red-500 font-bold">privacy policy</a>
+                               class="text-accent font-bold">privacy policy</a>
                             will be approved and their consequences bear
                         </p>
                         <div class="flex items-center justify-center mt-8">
-                            <button class="bg-red-500 rounded px-20 py-3 outline-none uppercase text-white font-bold">
+                            <button class="bg-accent rounded px-20 py-3 outline-none uppercase text-default font-bold">
                                 register
                                 now
                             </button>
