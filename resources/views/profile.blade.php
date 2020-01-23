@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body class="bg-gray-200 min-h-screen min-w-screen">
-<div id="app">
+<div id="app" class="theme-light">
     <div class="flex flex-col md:flex-row w-full p-4 md:-mx-4 relative">
         <aside class="md:w-1/4 bg-default flex flex-col mx-4 self-start rounded overflow-hidden md:sticky top-0">
             <header class="flex flex-col justify-center items-center">

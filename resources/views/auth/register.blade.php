@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
 <body>
-<div id="app">
+<div id="app" class="theme-light">
     <register-view inline-template>
         <div class="flex">
             <div class="flex-1 w-1/2 px-16 py-4">

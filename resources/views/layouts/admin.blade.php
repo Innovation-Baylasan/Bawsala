@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
 <body>
-<div id="app">
+<div id="app" class="theme-light">
     <div class="flex flex-1 h-full bg-gray-200">
         <nav class="bg-default shadow-sm w-56 pt-16 pb-2">
             <header class="flex flex-col justify-center items-center mb-12 h-full">

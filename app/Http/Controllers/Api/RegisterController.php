@@ -16,14 +16,21 @@ class RegisterController extends Controller
             'username' => ['sometimes', 'string', 'min:8', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'register_as' => ['sometimes', 'string'],
+            'location' => ['sometimes', 'required', 'string', 'min:8'],
+            'category' => ['sometimes', 'required', 'numeric', 'min:1'],
+            'avatar' => ['sometimes'],
+            'cover' => ['sometimes'],
+            'description' => ['sometimes', 'required', 'string', 'min:8', 'max:500'],
         ]);
 
-        $user = User::create([
+
+        $user = User::register([
             'name' => $attributes['name'],
             'email' => $attributes['email'],
             'username' => $attributes['username'] ?? User::generateUsername($attributes['name']),
             'password' => Hash::make($attributes['password']),
-            'role' => $attributes['registerAs'] ?? 'user',
+            'role' => $attributes['register_as'] ?? 'user',
         ]);
 
         return response([

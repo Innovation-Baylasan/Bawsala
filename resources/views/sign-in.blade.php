@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
 <body>
-<div id="app">
+<div id="app" class="theme-light">
     <div class="flex">
         <div class="flex-1 w-1/2  py-4">
             <div class="relative">
@@ -32,8 +32,6 @@
                 <div class="border border-gray-300 border-solid rounded flex px-1 flex mb-4">
                     <input class="flex-1 outline-none leading-loose" type="text">
                 </div>
-
-
 
 
                 <p class="text-gray-500">

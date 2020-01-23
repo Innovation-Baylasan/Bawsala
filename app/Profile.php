@@ -53,9 +53,13 @@ class Profile extends Model implements HasMedia
      * @param $cover
      * @return $this
      */
-    public function setCover($cover)
+    public function setCover($cover, $from = 'url')
     {
-        $this->addMediaFromUrl($cover)->toMediaCollection('covers');
+
+        $method = $from == 'url' ? 'addMediaFromUrl' : 'addMedia';
+
+        $this->{$method}($cover)->toMediaCollection('covers');
+
         return $this;
     }
 
@@ -63,9 +67,12 @@ class Profile extends Model implements HasMedia
      * @param $avatar
      * @return $this
      */
-    public function setAvatar($avatar)
+    public function setAvatar($avatar, $from = 'url')
     {
-        $this->addMediaFromUrl($avatar)->toMediaCollection('avatars');
+        $method = $from == 'url' ? 'addMediaFromUrl' : 'addMedia';
+
+        $this->{$method}($avatar)->toMediaCollection('avatars');
+
         return $this;
     }
 

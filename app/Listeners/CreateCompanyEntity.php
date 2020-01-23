@@ -19,12 +19,21 @@ class CreateCompanyEntity
         $user = $event->user;
 
         list($latitude, $longitude) = explode(',', request('location'));
-        $user->entities()->create([
+
+        $entity = $user->entities()->create([
             'name' => $user->name,
             'category_id' => request('category'),
             'description' => request('description'),
             'latitude' => $latitude,
             'longitude' => $longitude,
         ]);
+
+        if ((request()->has('avatar'))) {
+            $entity->profile->setAvatar(request('avatar'), 'image');
+        };
+
+        if ((request()->has('cover'))) {
+            $entity->profile->setCover(request('cover'), 'image');
+        }
     }
 }

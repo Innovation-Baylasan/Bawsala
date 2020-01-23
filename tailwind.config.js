@@ -36,13 +36,20 @@ module.exports = {
                     '700': '#818181',
                     '900': '#1c1a1a',
                 },
-                blue:{
-                    '100':'#e3f0ff',
-                    '700':'#0e5ab0'
+                blue: {
+                    '100': '#e3f0ff',
+                    '700': '#0e5ab0'
                 },
-                green:{
-                    '600':'#4aab50',
-                }
+                green: {
+                    '600': '#4aab50',
+                },
+                default: 'var(--text-default-color)',
+                accent: 'var(--text-accent-color)',
+                'accent-light': 'var(--text-accent-light-color)',
+                muted: 'var(--text-muted-color)',
+                'muted-light': 'var(--text-muted-light-color)',
+                'error': 'var(--text-error-color)'
+
             }
         }
     },
