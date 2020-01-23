@@ -6832,12 +6832,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['img', 'auth', 'user'],
-  data: function data() {
-    return {
-      showDropdown: false
-    };
-  }
+  props: ['img']
 });
 
 /***/ }),
@@ -7532,6 +7527,12 @@ __webpack_require__.r(__webpack_exports__);
     recordRating: function recordRating() {
       axios.post(this.$refs.form.action, {
         rating: this.rating
+      })["catch"](function (_ref) {
+        var response = _ref.response;
+
+        if (response.data.message == "Unauthenticated.") {
+          location.replace('/login');
+        }
       });
     }
   }

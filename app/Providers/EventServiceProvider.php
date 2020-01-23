@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Events\CompanyRegistered;
+use App\Listeners\CreateCompanyEntity;
 use App\Listeners\CreateRootEntityForCompanies;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -18,8 +20,10 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
-            CreateRootEntityForCompanies::class
         ],
+        CompanyRegistered::class => [
+            CreateCompanyEntity::class,
+        ]
     ];
 
     /**
@@ -31,6 +35,5 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        //
     }
 }

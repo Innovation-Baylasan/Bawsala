@@ -23,6 +23,7 @@ class RegisterController extends Controller
             'email' => $attributes['email'],
             'username' => $attributes['username'] ?? User::generateUsername($attributes['name']),
             'password' => Hash::make($attributes['password']),
+            'role' => $attributes['registerAs'] ?? 'user',
         ]);
 
         return response([

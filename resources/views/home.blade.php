@@ -31,7 +31,7 @@
                 </form>
                 <div class="bg-white rounded overflow-hidden shadow mt-4 mx-2">
 
-                    @if(auth()->user()->isAdmin())
+                    @if($authUser->isAdmin())
                         <a class="p-2 px-4 inline-block text-gray-500" href="/admin">dashboard</a>
                     @endif
                     <a class="p-2 px-4 inline-block text-gray-500" href="/account">profile</a>
@@ -47,14 +47,7 @@
             <nav v-if="showing == 'places'"
                  class="bg-white bottom-0 fixed flex flex-col overflow-scroll md:overflow-hidden md:h-screen left-0 md:top-0 md:w-24 pt-4 shadow w-full z-10">
                 <div class="px-4 mb-6 hidden md:block">
-                    @auth()
-                    <avatar img="{{"https://www.gravatar.com/avatar/" . md5( strtolower( trim( auth()->user()->email ) ) ) . "?s=100&d"}}"
-                            :auth="{{auth()->check()}}" :user="{{auth()->user()}}"></avatar>
-                    @endauth
-                    @guest()
-                    <avatar img="https://www.gravatar.com/avatar/?s=120"
-                            auth="{{auth()->check()}}"></avatar>
-                    @endguest
+                    <avatar img="{{"https://www.gravatar.com/avatar/" . md5( strtolower( trim( $authUser->email ) ) ) . "?s=100&d"}}"></avatar>
                 </div>
                 <map-categories :categories="{{$categories}}" @category-change="getPlaces"></map-categories>
                 <div class="flex items-center justify-center px-4 mt-auto mb-2 hidden md:block">

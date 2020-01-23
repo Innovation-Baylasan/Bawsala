@@ -5,12 +5,6 @@
 </template>
 <script>
     export default{
-        props: ['img', 'auth', 'user'],
-
-        data(){
-            return {
-                showDropdown: false,
-            }
-        }
+        props: ['img'],
     }
 </script>
