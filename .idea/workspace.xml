@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,37 +22,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="home.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="488">
-              <caret line="36" column="90" lean-forward="false" selection-start-line="36" selection-start-column="83" selection-end-line="36" selection-end-column="90" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Auth.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Support/Facades/Auth.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="9" column="15" lean-forward="true" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Authenticatable.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Contracts/Auth/Authenticatable.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-766">
-              <caret line="4" column="10" lean-forward="false" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="profile.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="profile.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/profile.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-30">
@@ -60,11 +32,81 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GuestUser.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Middleware/GuestUser.php">
+      <file leaf-file-name="ImageCropper.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/js/components/ImageCropper.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="52">
-              <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+            <state relative-caret-position="326">
+              <caret line="33" column="13" lean-forward="true" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CreateEntityView.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/js/pages/CreateEntityView.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="378">
+              <caret line="62" column="46" lean-forward="true" selection-start-line="62" selection-start-column="46" selection-end-line="62" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Entity.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Entity.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-4380">
+              <caret line="4" column="3" lean-forward="false" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Profile.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/symfony/http-kernel/Profiler/Profile.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="20" column="6" lean-forward="false" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Profile.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Profile.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="286">
+              <caret line="39" column="28" lean-forward="false" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Manipulations.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/vendor/spatie/image/src/Manipulations.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="286">
+              <caret line="133" column="0" lean-forward="true" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HasMedia.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/spatie/laravel-medialibrary/src/HasMedia/HasMedia.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-858">
+              <caret line="7" column="10" lean-forward="false" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HasMediaTrait.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/spatie/laravel-medialibrary/src/HasMedia/HasMediaTrait.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-4114">
+              <caret line="74" column="47" lean-forward="false" selection-start-line="74" selection-start-column="47" selection-end-line="74" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -74,30 +116,10 @@
         <entry file="file://$PROJECT_DIR$/app/Http/Kernel.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="182">
-              <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+              <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
               <folding>
                 <element signature="e#28#66#0#PHP" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GuestUser.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/GuestUser.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="104">
-              <caret line="4" column="6" lean-forward="false" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="web.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/web.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -106,8 +128,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>name</find>
-      <find>whereOr</find>
       <find>rat</find>
       <find>$with</find>
       <find>tags</find>
@@ -136,6 +156,8 @@
       <find>prov</find>
       <find>profile</find>
       <find>$user</find>
+      <find>setA</find>
+      <find>crop</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -152,7 +174,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Http/Resources/EntityResource.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/EntitiesController.php" />
         <option value="$PROJECT_DIR$/tests/TestCase.php" />
         <option value="$PROJECT_DIR$/tests/Feature/EventTest.php" />
@@ -203,6 +224,7 @@
         <option value="$PROJECT_DIR$/app/Providers/ViewServiceProvider.php" />
         <option value="$PROJECT_DIR$/app/Http/Kernel.php" />
         <option value="$PROJECT_DIR$/resources/views/profile.blade.php" />
+        <option value="$PROJECT_DIR$/app/Profile.php" />
       </list>
     </option>
   </component>
@@ -317,7 +339,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="Prof&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/profile.blade.php&#10;\Illuminate\Contracts\Auth\Authenticatable&#9;null&#9;null&#10;web&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/routes/web.php&#10;home&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/home.blade.php&#10;pro&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/profile.blade.php&#10;app&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Providers/AppServiceProvider.php&#10;StarRa.vu&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/components/StarRating.vue&#10;Ava.vue&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/components/Avatar.vue&#10;Null&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/NullUser.php&#10;AppP&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Providers/AppServiceProvider.php&#10;profi&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/profile.blade.php&#10;Us&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/User.php&#10;appPr&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Providers/AppServiceProvider.php&#10;profile.&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/profile.blade.php&#10;web.ph&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/routes/web.php&#10;registe&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Http/Controllers/Auth/RegisterController.php&#10;EntiC&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Http/Controllers/EntitiesController.php&#10;register&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Http/Controllers/Auth/RegisterController.php&#10;Register&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/vendor/laravel/framework/src/Illuminate/Auth/Events/Registered.php&#10;User&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/User.php&#10;Entit&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Entity.php&#10;Compan&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Http/Middleware/Company.php&#10;isA&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Http/Middleware/IsAdmin.php&#10;Profile&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/profile.blade.php&#10;Enti&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Entity.php&#10;cropModa&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/partials/modals/CropImageModal.blade.php&#10;Pro&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/profile.blade.php&#10;admin.&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/layouts/admin.blade.php&#10;admin/ent&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Http/Controllers/Admin/EntitiesController.php&#10;Create&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/pages/CreateSubEntityView.vue&#10;ad/Enti&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Http/Controllers/Admin/EntitiesController.php&#10;Profi&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/profile.blade.php&#10;EnReq&#9;null&#9;null&#10;crea_en&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/database/migrations/2019_11_24_131324_create_entities_table.php&#10;user&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/User.php&#10;Entity&#9;null&#9;null&#10;creatVie.v&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/pages/CreateEntityView.vue&#10;ad/e/c&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/admin/entities/create.blade.php&#10;app.scs&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/sass/app.scss&#10;create&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/entities/create.blade.php&#10;Gate&#9;null&#9;null&#10;eventCo&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Http/Controllers/Api/EventsController.php&#10;pro.blade&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/profile.blade.php&#10;web.&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/routes/web.php&#10;UserPro&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Http/Controllers/UsersProfilesController.php&#10;User_ta&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/database/migrations/2014_10_12_000000_create_users_table.php&#10;home.b&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/home.blade.php&#10;web.php&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/routes/web.php&#10;home.&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/home.blade.php&#10;authPro&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="Profile&#9;null&#9;null&#10;Profi&#9;null&#9;null&#10;Enti&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Entity.php&#10;CreateEn.vu&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/pages/CreateEntityView.vue&#10;imageCro.vu&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/components/ImageCropper.vue&#10;Prof&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/profile.blade.php&#10;\Illuminate\Contracts\Auth\Authenticatable&#9;null&#9;null&#10;web&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/routes/web.php&#10;home&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/home.blade.php&#10;pro&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/profile.blade.php&#10;app&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Providers/AppServiceProvider.php&#10;StarRa.vu&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/components/StarRating.vue&#10;Ava.vue&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/components/Avatar.vue&#10;Null&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/NullUser.php&#10;AppP&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Providers/AppServiceProvider.php&#10;profi&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/profile.blade.php&#10;Us&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/User.php&#10;appPr&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Providers/AppServiceProvider.php&#10;profile.&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/profile.blade.php&#10;web.ph&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/routes/web.php&#10;registe&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Http/Controllers/Auth/RegisterController.php&#10;EntiC&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Http/Controllers/EntitiesController.php&#10;register&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Http/Controllers/Auth/RegisterController.php&#10;Register&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/vendor/laravel/framework/src/Illuminate/Auth/Events/Registered.php&#10;User&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/User.php&#10;Entit&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Entity.php&#10;Compan&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Http/Middleware/Company.php&#10;isA&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Http/Middleware/IsAdmin.php&#10;cropModa&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/partials/modals/CropImageModal.blade.php&#10;Pro&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/profile.blade.php&#10;admin.&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/layouts/admin.blade.php&#10;admin/ent&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Http/Controllers/Admin/EntitiesController.php&#10;Create&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/pages/CreateSubEntityView.vue&#10;ad/Enti&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Http/Controllers/Admin/EntitiesController.php&#10;EnReq&#9;null&#9;null&#10;crea_en&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/database/migrations/2019_11_24_131324_create_entities_table.php&#10;user&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/User.php&#10;Entity&#9;null&#9;null&#10;creatVie.v&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/pages/CreateEntityView.vue&#10;ad/e/c&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/admin/entities/create.blade.php&#10;app.scs&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/sass/app.scss&#10;create&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/entities/create.blade.php&#10;Gate&#9;null&#9;null&#10;eventCo&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Http/Controllers/Api/EventsController.php&#10;pro.blade&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/profile.blade.php&#10;web.&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/routes/web.php&#10;UserPro&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Http/Controllers/UsersProfilesController.php&#10;User_ta&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/database/migrations/2014_10_12_000000_create_users_table.php&#10;home.b&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/home.blade.php&#10;web.php&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/routes/web.php" />
     <property name="nodejs_interpreter_path" value="$USER_HOME$/.nvm/versions/node/v12.6.0/bin/node" />
     <property name="settings.editor.selected.configurable" value="editing.templates" />
   </component>
@@ -501,14 +523,7 @@
       <workItem from="1579640699817" duration="3570000" />
       <workItem from="1579690804046" duration="10795000" />
       <workItem from="1579714524154" duration="8131000" />
-      <workItem from="1579772170615" duration="4929000" />
-    </task>
-    <task id="LOCAL-00033" summary="screens tweaking">
-      <created>1577084431134</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1577084431134</updated>
+      <workItem from="1579772170615" duration="7233000" />
     </task>
     <task id="LOCAL-00034" summary="screens tweaking">
       <created>1577084819404</created>
@@ -846,11 +861,18 @@
       <option name="project" value="LOCAL" />
       <updated>1579780709022</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="use Guest middleware to solve authUser problem">
+      <created>1579780715192</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1579780715192</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="298136000" />
+    <option name="totallyTimeSpent" value="300440000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="723" extended-state="6" />
@@ -963,55 +985,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/js/components/GoogleMap.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2080">
-          <caret line="80" column="0" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/pages/MapView.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="20" column="31" lean-forward="false" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/factories/EventsFactory.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2020_01_02_084210_create_events_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="18" column="62" lean-forward="false" selection-start-line="18" selection-start-column="62" selection-end-line="18" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/DatabaseSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="15" column="32" lean-forward="false" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/traits/Reviewable.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="24" column="14" lean-forward="false" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/api.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1040">
-          <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/sass/app.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="479">
@@ -1065,6 +1038,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1218,7 +1192,7 @@
         <state relative-caret-position="1040">
           <caret line="42" column="33" lean-forward="false" selection-start-line="42" selection-start-column="33" selection-end-line="42" selection-end-column="33" />
           <folding>
-            <element signature="e#40#57#0#PHP" expanded="true" />
+            <element signature="e#40#57#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1227,14 +1201,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1664">
           <caret line="70" column="0" lean-forward="true" selection-start-line="70" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Entity.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="482">
-          <caret line="193" column="0" lean-forward="true" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1290,7 +1256,7 @@
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="130">
-          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1306,7 +1272,7 @@
     <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Support/Facades/Auth.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="186">
-          <caret line="9" column="15" lean-forward="true" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
+          <caret line="9" column="15" lean-forward="false" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
           <folding />
         </state>
       </provider>
@@ -1332,7 +1298,7 @@
         <state relative-caret-position="338">
           <caret line="15" column="7" lean-forward="true" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
           <folding>
-            <element signature="e#33#51#0#PHP" expanded="true" />
+            <element signature="e#33#51#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1348,7 +1314,7 @@
     <entry file="file://$PROJECT_DIR$/app/Http/Kernel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="182">
-          <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding>
             <element signature="e#28#66#0#PHP" expanded="true" />
           </folding>
@@ -1359,6 +1325,70 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-30">
           <caret line="30" column="46" lean-forward="false" selection-start-line="30" selection-start-column="46" selection-end-line="30" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/components/ImageCropper.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="33" column="13" lean-forward="true" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/pages/CreateEntityView.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="62" column="46" lean-forward="true" selection-start-line="62" selection-start-column="46" selection-end-line="62" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Entity.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4380">
+          <caret line="4" column="3" lean-forward="false" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/symfony/http-kernel/Profiler/Profile.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="20" column="6" lean-forward="false" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/spatie/laravel-medialibrary/src/HasMedia/HasMedia.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-858">
+          <caret line="7" column="10" lean-forward="false" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/spatie/laravel-medialibrary/src/HasMedia/HasMediaTrait.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4114">
+          <caret line="74" column="47" lean-forward="false" selection-start-line="74" selection-start-column="47" selection-end-line="74" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Profile.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="39" column="28" lean-forward="false" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/spatie/image/src/Manipulations.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="133" column="0" lean-forward="true" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
           <folding />
         </state>
       </provider>
