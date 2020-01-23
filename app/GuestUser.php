@@ -2,7 +2,7 @@
 
 namespace App;
 
-class NullUser extends User
+class GuestUser extends User
 {
     public $email = '';
 

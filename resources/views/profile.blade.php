@@ -28,7 +28,7 @@
 
                 @if($authUser->isNot($entity->owner))
                     <star-rating class="mb-2"
-                                 :initial="{{ (int) $entity->ratingFor($authUser) ?: 0 }}"
+                                 :initial="{{$entity->ratingFor($authUser) ?: 0 }}"
                                  action="/entities/{{$entity->id}}/rate"></star-rating>
                 @endif
                 <p class="text-gray-300 mb-2"><span
