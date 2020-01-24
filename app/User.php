@@ -2,9 +2,9 @@
 
 namespace App;
 
+use App\Events\CompanyRegistered;
 use Illuminate\Support\Str;
 use Laravel\Passport\HasApiTokens;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Rennokki\Befriended\Contracts\Follower;
@@ -48,6 +48,20 @@ class User extends Authenticatable implements Follower
         'email_verified_at' => 'datetime',
     ];
 
+
+    /**
+     * @param $attributes
+     */
+    public static function register($attributes)
+    {
+        $user = static::create($attributes);
+        if ($attributes['role'] == 'company') {
+            event(new CompanyRegistered($user));
+        }
+
+        return $user;
+    }
+
     /**
      * @param $name
      * @return string
@@ -80,7 +94,7 @@ class User extends Authenticatable implements Follower
 
     public function mainEntity()
     {
-        return $this->entities()->oldest()->first();
+        return $this->entities()->oldest()->first() ?: new Entity();
     }
 
     /**

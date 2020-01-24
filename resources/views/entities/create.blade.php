@@ -6,11 +6,11 @@
 <body class="bg-gray-200 h-full">
 <div id="app">
     <div class="container mx-auto">
-        <div class="bg-white p-4 shadow-sm rounded">
+        <div class="bg-default p-4 shadow-sm rounded">
 
         </div>
 
-        <div class="bg-white mt-4 shadow-sm rounded">
+        <div class="bg-default mt-4 shadow-sm rounded">
             <create-sub-entity-view inline-template>
                 <div>
                     @if($errors->any())
@@ -42,7 +42,7 @@
                             :src="entity.cover || 'https://placeimg.com/940/360/tech'"
                             ></image-picker>
                             <image-picker
-                                    class="rounded-full relative border border-white self-start m-4 w-40 h-40 overflow-hidden shadow-sm bg-white -translate-y-50 -mb-16"
+                                    class="rounded-full relative border border-default self-start m-4 w-40 h-40 overflow-hidden shadow-sm bg-default -translate-y-50 -mb-16"
                                     name="avatar"
                             @image-changed="setImageToCrop('avatar',$event,1)"
                             :src="entity.avatar || 'https://www.gravatar.com/avatar/?s=200'"

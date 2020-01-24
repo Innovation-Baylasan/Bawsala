@@ -6,14 +6,15 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
 <body>
-<div id="app">
+<div id="app" class="theme-light">
     <div class="flex">
         <div class="flex-1 w-1/2 px-16 py-4">
             <Carousel>
                 <slide classes="search-interaction w-3/4 h-3/4 mb-auto">
                     <template v-slot:footer>
                         <h3 class="uppercase text-2xl font-bold mb-4">find out</h3>
-                        <p class="text-gray-500 font-hairline capitalize">rambled it to make a type specimen book. It has survived not
+                        <p class="text-gray-500 font-hairline capitalize">rambled it to make a type specimen book. It
+                            has survived not
                             only five centuries, but also the leap into electronic
                             typesetting, remaining essentially unchanged.</p>
                     </template>
@@ -21,7 +22,8 @@
                 <slide classes="map-interaction w-3/4 h-3/4 mb-auto">
                     <template v-slot:footer>
                         <h3 class="uppercase text-2xl font-bold mb-4">Communicate</h3>
-                        <p class="text-gray-500 font-hairline capitalize">rambled it to make a type specimen book. It has survived not
+                        <p class="text-gray-500 font-hairline capitalize">rambled it to make a type specimen book. It
+                            has survived not
                             only five centuries, but also the leap into electronic
                             typesetting, remaining essentially unchanged.</p>
                     </template>
@@ -29,7 +31,8 @@
                 <slide classes="editor-interaction w-3/4 h-3/4 mb-auto">
                     <template v-slot:footer>
                         <h3 class="uppercase text-2xl font-bold mb-4">Explore</h3>
-                        <p class="text-gray-500 font-hairline capitalize">rambled it to make a type specimen book. It has survived not
+                        <p class="text-gray-500 font-hairline capitalize">rambled it to make a type specimen book. It
+                            has survived not
                             only five centuries, but also the leap into electronic
                             typesetting, remaining essentially unchanged.</p>
                     </template>
@@ -80,15 +83,15 @@
 
                 <p class="text-gray-500">
                     Here a text is placed explaining to the user that upon registration, the <a href="#"
-                                                                                                class="text-red-500 font-bold">agreement
+                                                                                                class="text-accent font-bold">agreement
                         policy</a> and
                     <a href="#"
-                       class="text-red-500 font-bold">privacy policy</a>
+                       class="text-accent font-bold">privacy policy</a>
                     will be approved and their consequences bear
                 </p>
 
                 <div class="flex items-center justify-center mt-8">
-                    <button class="bg-red-500 rounded px-20 py-3 outline-none uppercase text-white font-bold">register
+                    <button class="bg-accent rounded px-20 py-3 outline-none uppercase text-default font-bold">register
                         now
                     </button>
                 </div>

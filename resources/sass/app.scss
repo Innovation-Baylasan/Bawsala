@@ -1,3 +1,6 @@
+@import 'themes/light';
+@import 'themes/dark';
+
 @tailwind base;
 
 @tailwind components;
@@ -13,6 +16,7 @@
 @import "./components/star-rating";
 @import "~@glidejs/glide/src/assets/sass/glide.core";
 
+
 .cover-skewer {
   transform: skewY(-5deg);
   top: 90%;
@@ -23,7 +27,7 @@
 }
 
 input[type='checkbox']:checked, input[type='radio']:checked + .select-label {
-  @apply border-red-500 text-red-500;
+  @apply border-accent text-accent;
 }
 
 .select-label {
@@ -36,7 +40,7 @@ input[type='checkbox']:checked, input[type='radio']:checked + .select-label {
     @apply relative;
     transition: all .3s;
     &:after {
-      @apply block absolute top-0 left-0 w-1 bg-red-500 h-full rounded rounded-l-none;
+      @apply block absolute top-0 left-0 w-1 bg-accent h-full rounded rounded-l-none;
       transition: all .3s;
       content: "";
     }
@@ -46,7 +50,7 @@ input[type='checkbox']:checked, input[type='radio']:checked + .select-label {
     @apply relative;
     transition: all .3s;
     &:after {
-      @apply block absolute bottom-0 left-0 w-full bg-red-500 h-1 rounded rounded-b-none;
+      @apply block absolute bottom-0 left-0 w-full bg-accent h-1 rounded rounded-b-none;
       transition: all .3s;
       content: "";
     }
@@ -59,7 +63,7 @@ input[type='checkbox']:checked, input[type='radio']:checked + .select-label {
 }
 
 .error {
-  @apply text-sm text-red-500 my-2;
+  @apply text-sm text-accent my-2;
 }
 
 .custom-pin {

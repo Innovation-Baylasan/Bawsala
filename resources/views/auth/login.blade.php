@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
 <body>
-<div id="app">
+<div id="app" class="theme-light">
     <div class="flex">
         <div class="flex-1 w-1/2  py-4">
             <div class="relative">
@@ -36,21 +36,21 @@
 
                     @if($errors->any())
                         @foreach($errors->all() as $error)
-                            <p class="text-sm text-red-500 -mt-2 mb-2">{{$error}}</p>
+                            <p class="text-sm text-accent -mt-2 mb-2">{{$error}}</p>
                         @endforeach
                     @endif
 
                     <p class="text-gray-500">
                         Here a text is placed explaining to the user that upon registration, the <a href="#"
-                                                                                                    class="text-red-500 font-bold">agreement
+                                                                                                    class="text-accent font-bold">agreement
                             policy</a> and
                         <a href="#"
-                           class="text-red-500 font-bold">privacy policy</a>
+                           class="text-accent font-bold">privacy policy</a>
                         will be approved and their consequences bear
                     </p>
 
                     <div class="flex items-center justify-between mt-8">
-                        <a class="text-red-500 text-sm" href="/password/reset">Forget password ?</a>
+                        <a class="text-accent text-sm" href="/password/reset">Forget password ?</a>
                         <button type="submit"
                                 class="button is-wide">
                             Sing

@@ -6832,12 +6832,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['img', 'auth', 'user'],
-  data: function data() {
-    return {
-      showDropdown: false
-    };
-  }
+  props: ['img']
 });
 
 /***/ }),
@@ -6910,7 +6905,7 @@ __webpack_require__.r(__webpack_exports__);
       var defaults = ['fixed', 'p-4', 'border', 'text-white', 'shadow-sm', 'rounded'];
       if (this.level === 'success') defaults.push('bg-green-600', 'border-green-600');
       if (this.level === 'warning') defaults.push('bg-yellow', 'border-yellow-800');
-      if (this.level === 'danger') defaults.push('bg-red-500', 'border-red-dark');
+      if (this.level === 'danger') defaults.push('bg-accent', 'border-red-dark');
       return defaults;
     }
   },
@@ -7532,6 +7527,12 @@ __webpack_require__.r(__webpack_exports__);
     recordRating: function recordRating() {
       axios.post(this.$refs.form.action, {
         rating: this.rating
+      })["catch"](function (_ref) {
+        var response = _ref.response;
+
+        if (response.data.message == "Unauthenticated.") {
+          location.replace('/login');
+        }
       });
     }
   }
@@ -31654,7 +31655,7 @@ var render = function() {
         _c(
           "a",
           {
-            staticClass: "text-red-500 p-4 text-xl block text-center font-bold",
+            staticClass: "text-accent p-4 text-xl block text-center font-bold",
             attrs: { href: "/@" + _vm.place.id }
           },
           [_vm._v("Visit Profile")]

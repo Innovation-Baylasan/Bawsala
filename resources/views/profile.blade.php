@@ -7,25 +7,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body class="bg-gray-200 min-h-screen min-w-screen">
-<div id="app">
+<div id="app" class="theme-light">
     <div class="flex flex-col md:flex-row w-full p-4 md:-mx-4 relative">
-        <aside class="md:w-1/4 bg-white flex flex-col mx-4 self-start rounded overflow-hidden md:sticky top-0">
+        <aside class="md:w-1/4 bg-default flex flex-col mx-4 self-start rounded overflow-hidden md:sticky top-0">
             <header class="flex flex-col justify-center items-center">
                 <div class="relative">
                     <img src="{{$entity->cover}}" alt="">
-                    <div class="bg-white absolute w-full h-12 cover-skewer"></div>
+                    <div class="bg-default absolute w-full h-12 cover-skewer"></div>
                 </div>
-                <div class="rounded-full w-40 h-40 overflow-hidden shadow-sm bg-white -translate-y-50 -mb-16">
+                <div class="rounded-full w-40 h-40 overflow-hidden shadow-sm bg-default -translate-y-50 -mb-16">
                     <img class="w-full h-full" src="{{$entity->avatar}}" alt="">
                 </div>
             </header>
             <div class="px-10 flex flex-col items-center">
                 <h3 class="uppercase text-xl font-bold text-center mb-2">{{$entity->name }}</h3>
-                @if($entity->parent)<h6>By: <a href="{{'@'.$entity->parent->id}}">{{$entity->parent->name}}</a>
-                </h6>@endif
-                @if(auth()->user()->isNot($entity->owner))
+
+                @if($entity->parent)
+                    <h6>By: <a href="{{'@'.$entity->parent->id}}">{{$entity->parent->name}}</a></h6>
+                @endif
+
+                @if($authUser->isNot($entity->owner))
                     <star-rating class="mb-2"
-                                 :initial="{{ $entity->ratingFor(auth()->user()) ?: 0 }}"
+                                 :initial="{{$entity->ratingFor($authUser) ?: 0 }}"
                                  action="/entities/{{$entity->id}}/rate"></star-rating>
                 @endif
                 <p class="text-gray-300 mb-2"><span
@@ -45,18 +48,18 @@
                         <span>Review</span>
                     </div>
                 </div>
-                @if(auth()->user()->isNot($entity->owner))
+                @if($authUser->isNot($entity->owner))
                     <form action="/entities/{{$entity->id}}/follow"
                           method="post"
                           class="w-full flex"
                           id="follow-form">
                         @csrf
                         @method("put")
-                        <a class="@if(auth()->user()->isFollowing($entity))bg-blue-100 @endif border-blue border text-center w-full focus:outline-none text-blue-700 py-2 rounded capitalize font-bold mb-8"
+                        <a class="@if($authUser->isFollowing($entity))bg-blue-100 @endif border-blue border text-center w-full focus:outline-none text-blue-700 py-2 rounded capitalize font-bold mb-8"
                            href="#"
                            onclick="document.getElementById('follow-form').submit()"
                         >
-                            {{auth()->user()->isFollowing($entity) ? 'following':'follow'}}
+                            {{$authUser->isFollowing($entity) ? 'following':'follow'}}
                         </a>
                     </form>
                 @endif
@@ -77,13 +80,13 @@
                     </div>
                 @endcan
             </header>
-            <div class="bg-white p-8 mb-4 rounded">
+            <div class="bg-default p-8 mb-4 rounded">
                 <h3 class="uppercase border-b mb-4 border-solid border-gray-100 text-2xl font-bold">
                     Info
                 </h3>
                 <p class="text-gray-500 mr-8 ">{{$entity->description}}</p>
             </div>
-            <div class="bg-white p-8 mb-4 rounded">
+            <div class="bg-default p-8 mb-4 rounded">
                 <div class="flex flex-col justify-between">
                     @forelse($entity->reviews as $review)
                         <div class="flex flex-1 py-4 items-start border-b border-solid border-gray-100">
@@ -102,7 +105,7 @@
                         </div>
                     @endforelse
 
-                    @if(auth()->user()->isNot($entity->owner))
+                    @if($authUser->isNot($entity->owner))
                         <div class="flex flex-1 py-4 items-center">
                             <img class="rounded shadow-sm w-12 h-12 mr-4" src="https://i.pravatar.cc/300" alt="avatar">
                             <div class="border border-gray-100 border-solid flex-1 flex-col p-2 rounded">
@@ -122,20 +125,20 @@
                 </div>
                 <div></div>
             </div>
-            <div class="bg-white p-8 rounded">
+            <div class="bg-default p-8 rounded">
                 <h3 class="uppercase border-b mb-4 border-solid border-gray-100 text-2xl font-bold">
                     Places
                 </h3>
 
                 <div class="flex -mx-2">
-                    @if(auth()->user()->mainEntity()->is($entity))
+                    @if($authUser->mainEntity()->is($entity))
                         <div class="bg-gray-200 rounded overflow-hidden text-gray-500 w-48 h-48 mx-2">
                             <div class="flex h-full items-center justify-center">
                                 <a href="/entities/create" class="button">add new place</a>
                             </div>
                         </div>
                     @endif
-                    @if(auth()->user()->mainEntity()->is($entity))
+                    @if($authUser->mainEntity()->is($entity))
                         @foreach($entity->subEntities as $subEntity)
                             @include('partials.profile-min-card',['entity' => $subEntity])
                         @endforeach

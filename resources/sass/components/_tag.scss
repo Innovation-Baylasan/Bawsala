@@ -7,6 +7,6 @@
   }
 
   input[type='checkbox']:checked + label {
-    @apply bg-red-500 border-0 text-white;
+    @apply bg-accent border-0 text-white;
   }
 }

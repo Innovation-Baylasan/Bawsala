@@ -27,7 +27,7 @@ Route::post('/entities/{entity}/rate', 'EntitiesRatingController@store')->middle
 
 Route::post('/entities/{entity}/reviews', 'EntitiesReviewsController@store')->middleware('auth');
 
-Route::get('/@{entity}', 'ProfilesController@index')->middleware('auth');
+Route::get('/@{entity}', 'ProfilesController@index');
 
 
 Route::namespace('Admin')
