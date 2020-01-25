@@ -28,7 +28,7 @@ class EntitiesFilter
     public function apply($builder) {
 
         if ($this->request['q']) {
-            $builder->search($this->request['q'])->take(7);
+            $builder->searchEntities($this->request['q'])->take(7);
         }
 
         if ($this->request['category']) {

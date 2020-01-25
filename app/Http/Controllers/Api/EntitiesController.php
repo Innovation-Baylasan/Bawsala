@@ -19,6 +19,7 @@ class EntitiesController extends Controller
      */
     public function index(EntitiesFilter $filters)
     {
+
         $entities = Entity::filter($filters)->get();
 
         return EntityResource::collection($entities);
