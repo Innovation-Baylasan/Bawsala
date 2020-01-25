@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Category;
 use App\Entity;
+use App\Filters\EntitiesFilter;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\EntityResource;
 
@@ -13,27 +14,14 @@ class EntitiesController extends Controller
      * return all entities of different categories paginated in 15
      * per page
      *
+     * @param EntitiesFilter $filters
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function index()
+    public function index(EntitiesFilter $filters)
     {
-        $entities = new Entity();
+        $entities = Entity::filter($filters)->get();
 
-        if (request('q')) {
-            $entities = $entities->search(request('q'))->take(7);
-        }
-
-        if (\request('category')) {
-            $category = Category::where('name', \request('category'))->first();
-            $entities = $entities->where('category_id', $category ? $category->id : 0);
-        }
-        if (($latitude = request('@lat')) && ($longitude = request('@long'))) {
-            $entities = $entities->nearby($latitude, $longitude,
-                request('radios') ?: '100', request('unit') ?: 'km'
-            );
-        }
-
-        return EntityResource::collection($entities->get());
+        return EntityResource::collection($entities);
     }
 
     /**
