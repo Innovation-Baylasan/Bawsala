@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="- Added EntitiesFollowingApiTest.php">
+    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="- Added EntitiesRatingApiTest.php">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/EntitiesReviewsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/EntitiesReviewsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/traits/Reviewable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/traits/Reviewable.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/EntitiesRatingApiTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/EntitiesRatingApiTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/EntitiesReviewApiTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/EntitiesReviewApiTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,13 +154,6 @@
       <workItem from="1579690804046" duration="10795000" />
       <workItem from="1579714524154" duration="8131000" />
       <workItem from="1579772170615" duration="14002000" />
-    </task>
-    <task id="LOCAL-00040" summary="searchable entities.">
-      <created>1577304730238</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1577304730238</updated>
     </task>
     <task id="LOCAL-00041" summary="api">
       <created>1577623037858</created>
@@ -495,7 +491,14 @@
       <option name="project" value="LOCAL" />
       <updated>1579990587194</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="- Added EntitiesRatingApiTest.php">
+      <created>1579991509934</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1579991509935</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -524,7 +527,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="rateable entities" />
     <MESSAGE value="api auth" />
     <MESSAGE value="api for following, rating and review entities" />
     <MESSAGE value="fixing test" />
@@ -549,17 +551,18 @@
     <MESSAGE value="- applied the query builder and added Filters to the EntitiesController.php in the API side.&#10;&#10;- only one test is failing" />
     <MESSAGE value="- Added Categories API Tests" />
     <MESSAGE value="- Added EntitiesFollowingApiTest.php" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Added EntitiesFollowingApiTest.php" />
+    <MESSAGE value="- Added EntitiesRatingApiTest.php" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Added EntitiesRatingApiTest.php" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="883" y="171" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1579990638547">
+    <state x="883" y="171" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1579991529694">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="883" y="171" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1579990638547" />
-    <state x="418" y="0" key="CommitChangelistDialog2" timestamp="1579990585834">
+    <state x="883" y="171" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1579991529694" />
+    <state x="418" y="0" key="CommitChangelistDialog2" timestamp="1579991508397">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="418" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1579990585834" />
+    <state x="418" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1579991508397" />
     <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1579976240328">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

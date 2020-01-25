@@ -26,4 +26,17 @@ trait Reviewable
             'review' => $body,
         ]);
     }
+
+    public function unreview(Review $review) {
+
+        $review = Review::findAll();
+
+        if ($review->user_id == auth()->id()) {
+            $review->delete();
+            return 'review deleted';
+        } else {
+            return 'unable to delete review';
+        }
+
+    }
 }

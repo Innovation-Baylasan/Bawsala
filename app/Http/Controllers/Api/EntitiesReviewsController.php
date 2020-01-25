@@ -35,12 +35,14 @@ class EntitiesReviewsController extends Controller
      * @param Review $review
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
-    public function destroy(Review $review)
+    public function destroy(Request $request, Entity $entity)
     {
-        $review->delete();
+        $message = $entity->unreview($request->review);
+//        $review->delete();
 
         return response([
-            'message' => 'review deleted'
+            'message' => $message
         ], 200);
+
     }
 }

@@ -35,6 +35,8 @@ Route::namespace('Api')->group(function () {
 
     Route::post('/entities/{entity}/review', 'EntitiesReviewsController@store')->name('api.entitiesReviews.store');
 
+    Route::delete('/entities/{entity}/review', 'EntitiesReviewsController@destory')->name('api.entitiesReviews.destroy');
+
     Route::post('/entities/{entity}/follow', 'EntitiesFollowingController@store')->name('api.entitiesFollowing.store');
 
     Route::delete('/entities/{entity}/follow', 'EntitiesFollowingController@destroy')->name('api.entitiesFollowing.destroy');
