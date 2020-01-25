@@ -19,9 +19,9 @@ Route::namespace('Api')->group(function () {
 
     Route::post('/login', 'LoginController@store');
 
-    Route::get('/categories', 'CategoriesController@index');
+    Route::get('/categories', 'CategoriesController@index')->name('api.categories.index');
 
-    Route::get('/categories/{category}', 'CategoriesController@show');
+    Route::get('/categories/{category}', 'CategoriesController@show')->name('api.categories.show');
 
     Route::get('/categories/{category}/entities', 'CategoryEntitiesController@index');
 
