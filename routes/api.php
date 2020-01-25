@@ -25,9 +25,9 @@ Route::namespace('Api')->group(function () {
 
     Route::get('/categories/{category}/entities', 'CategoryEntitiesController@index');
 
-    Route::get('/entities', 'EntitiesController@index');
+    Route::get('/entities', 'EntitiesController@index')->name('api.entities.index');
 
-    Route::get('/entities/{entity}', 'EntitiesController@show');
+    Route::get('/entities/{entity}', 'EntitiesController@show')->name('api.entities.show');
 
     Route::put('/entities/{entity}/rating', 'EntitiesRatingController@update');
 
