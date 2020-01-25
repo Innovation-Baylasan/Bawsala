@@ -59,7 +59,7 @@ class EntitiesFollowingApiTest extends TestCase
         ]));
 
         $response
-            ->assertStatus(302);
+            ->assertRedirect();
 
     }
 

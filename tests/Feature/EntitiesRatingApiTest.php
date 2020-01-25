@@ -83,7 +83,7 @@ class EntitiesRatingApiTest extends TestCase
         ]);
 
         $response
-            ->assertStatus(302);
+            ->assertRedirect();
 
     }
 
