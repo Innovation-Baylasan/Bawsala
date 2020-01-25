@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="- testing are passing&#10;- but the $builder can't reach the search functionality on the Entity model">
+    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="- Added Categories API Tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/CategoryEntitiesApiTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/CategoryEntitiesApiTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/EntitiesFollowingApiTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/EntitiesFollowingApiTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,48 +19,6 @@
   </component>
   <component name="FavoritesManager">
     <favorites_list name="Mustakshif" />
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>follow</find>
-      <find>except</find>
-      <find>exception</find>
-      <find>auth()-&gt;check()}}</find>
-      <find>rating</find>
-      <find>prov</find>
-      <find>profile</find>
-      <find>setA</find>
-      <find>crop</find>
-      <find>entity</find>
-      <find>name</find>
-      <find>$user</find>
-      <find>re</find>
-      <find>red-</find>
-      <find>red-5</find>
-      <find>red-50</find>
-      <find>red-500</find>
-      <find>w</find>
-      <find>accent</find>
-      <find>white</find>
-      <find>b</find>
-      <find>bg</find>
-      <find>bg-</find>
-      <find>bg-d</find>
-      <find>bg-de</find>
-      <find>bg-def</find>
-      <find>bg-defa</find>
-      <find>bg-defau</find>
-      <find>bg-defaul</find>
-      <find>bg-default</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>accent</replace>
-      <replace>default</replace>
-    </replaceStrings>
-    <dirStrings>
-      <dir>$PROJECT_DIR$/resources/js</dir>
-      <dir>$PROJECT_DIR$/resources/views</dir>
-    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -194,13 +153,6 @@
       <workItem from="1579690804046" duration="10795000" />
       <workItem from="1579714524154" duration="8131000" />
       <workItem from="1579772170615" duration="14002000" />
-    </task>
-    <task id="LOCAL-00038" summary="wip">
-      <created>1577266192050</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1577266192050</updated>
     </task>
     <task id="LOCAL-00039" summary="searchable entities.">
       <created>1577304653147</created>
@@ -538,7 +490,14 @@
       <option name="project" value="LOCAL" />
       <updated>1579955322850</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary="- Added Categories API Tests">
+      <created>1579987374034</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1579987374034</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -567,7 +526,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="reviewable entities" />
     <MESSAGE value="followable entities" />
     <MESSAGE value="rateable entities" />
     <MESSAGE value="api auth" />
@@ -592,17 +550,18 @@
     <MESSAGE value="change theme colors" />
     <MESSAGE value="- Added Named APIS&#10;- Wrote Entities Api Test Cases" />
     <MESSAGE value="- applied the query builder and added Filters to the EntitiesController.php in the API side.&#10;&#10;- only one test is failing" />
-    <option name="LAST_COMMIT_MESSAGE" value="- applied the query builder and added Filters to the EntitiesController.php in the API side.&#10;&#10;- only one test is failing" />
+    <MESSAGE value="- Added Categories API Tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Added Categories API Tests" />
   </component>
   <component name="WindowStateProjectService">
     <state x="883" y="171" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1579986738962">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="883" y="171" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1579986738962" />
-    <state x="418" y="0" key="CommitChangelistDialog2" timestamp="1579955322307">
+    <state x="418" y="0" key="CommitChangelistDialog2" timestamp="1579987372094">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="418" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1579955322307" />
+    <state x="418" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1579987372094" />
     <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1579976240328">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -621,10 +580,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1579986959132" />
-    <state x="339" y="6" width="672" height="676" key="search.everywhere.popup" timestamp="1579986798647">
+    <state x="339" y="6" width="672" height="676" key="search.everywhere.popup" timestamp="1579989903612">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="339" y="6" width="672" height="676" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1579940003073" />
-    <state x="339" y="6" width="672" height="676" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1579986798647" />
+    <state x="339" y="6" width="672" height="676" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1579989903612" />
   </component>
 </project>

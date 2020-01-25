@@ -23,7 +23,7 @@ Route::namespace('Api')->group(function () {
 
     Route::get('/categories/{category}', 'CategoriesController@show')->name('api.categories.show');
 
-    Route::get('/categories/{category}/entities', 'CategoryEntitiesController@index');
+    Route::get('/categories/{category}/entities', 'CategoryEntitiesController@index')->name('api.categoryEntities.index');
 
     Route::get('/entities', 'EntitiesController@index')->name('api.entities.index');
 
@@ -35,9 +35,9 @@ Route::namespace('Api')->group(function () {
 
     Route::post('/entities/{entity}/review', 'EntitiesReviewsController@store');
 
-    Route::post('/entities/{entity}/follow', 'EntitiesFollowingController@store');
+    Route::post('/entities/{entity}/follow', 'EntitiesFollowingController@store')->name('api.entitiesFollowing.store');
 
-    Route::delete('/entities/{entity}/follow', 'EntitiesFollowingController@destroy');
+    Route::delete('/entities/{entity}/follow', 'EntitiesFollowingController@destroy')->name('api.entitiesFollowing.destroy');
 
     Route::get('/tags', 'TagsController@index');
     Route::get('/events', 'EventsController@index');
