@@ -29,17 +29,18 @@ Route::namespace('Api')->group(function () {
 
     Route::get('/entities/{entity}', 'EntitiesController@show')->name('api.entities.show');
 
-    Route::put('/entities/{entity}/rating', 'EntitiesRatingController@update');
+    Route::put('/entities/{entity}/rating', 'EntitiesRatingController@update')->name('api.entitiesRating.update');
 
-    Route::get('/entities/{entity}/reviews', 'EntitiesReviewsController@index');
+    Route::get('/entities/{entity}/reviews', 'EntitiesReviewsController@index')->name('api.entitiesReviews.index');
 
-    Route::post('/entities/{entity}/review', 'EntitiesReviewsController@store');
+    Route::post('/entities/{entity}/review', 'EntitiesReviewsController@store')->name('api.entitiesReviews.store');
 
     Route::post('/entities/{entity}/follow', 'EntitiesFollowingController@store')->name('api.entitiesFollowing.store');
 
     Route::delete('/entities/{entity}/follow', 'EntitiesFollowingController@destroy')->name('api.entitiesFollowing.destroy');
 
     Route::get('/tags', 'TagsController@index');
+
     Route::get('/events', 'EventsController@index');
 
     Route::middleware('auth:api')->post('/events/store', 'EventsController@store');
