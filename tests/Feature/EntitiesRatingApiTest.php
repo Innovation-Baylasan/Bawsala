@@ -39,7 +39,7 @@ class EntitiesRatingApiTest extends TestCase
         $response = $this->put(route('api.entitiesRating.update', [
             'entity' => $this->entity->id
         ]), [
-            'rating' => 4
+            'rating' => 5
         ]);
 
         $response

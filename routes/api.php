@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::namespace('Api')->group(function () {
+Route::middleware('apilogger')->namespace('Api')->group(function () {
 
     Route::post('/register', 'RegisterController@store');
 
