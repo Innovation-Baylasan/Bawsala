@@ -32,6 +32,8 @@ class EventsController extends Controller
             $events = $events->where('entity_id', $entity ? $entity->id : 0);
         }
 
+        // TODO: Event API, User Can Filter And Get His Own Events Via His Auth Token
+
         return EventResource::collection($events->get());
     }
 
