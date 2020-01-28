@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="Added TagsTesting End Point">
+    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="Added TagsTesting End Point,&#10;Cleaning and refining tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/AuthenticationTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/AuthenticationTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/EventApiTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/EventApiTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Feature/TagsApiTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/TagsApiTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -291,13 +288,6 @@
       <workItem from="1579772170615" duration="14002000" />
       <workItem from="1580120658541" duration="8211000" />
       <workItem from="1580202053332" duration="7261000" />
-    </task>
-    <task id="LOCAL-00045" summary="reactive map">
-      <created>1577728851580</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1577728851580</updated>
     </task>
     <task id="LOCAL-00046" summary="wip">
       <created>1577794884547</created>
@@ -635,7 +625,14 @@
       <option name="project" value="LOCAL" />
       <updated>1580211497120</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL-00094" summary="Added TagsTesting End Point,&#10;Cleaning and refining tests">
+      <created>1580224695737</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1580224695737</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -667,7 +664,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="configuration missmatch" />
     <MESSAGE value="registration as a company" />
     <MESSAGE value="images have been cropped as i want it" />
     <MESSAGE value="refine images" />
@@ -692,7 +688,8 @@
     <MESSAGE value="- Added Telescope" />
     <MESSAGE value="User can view the entities he has created.&#10;User can view the events he have added." />
     <MESSAGE value="User can create entity" />
-    <option name="LAST_COMMIT_MESSAGE" value="User can create entity" />
+    <MESSAGE value="Added TagsTesting End Point,&#10;Cleaning and refining tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added TagsTesting End Point,&#10;Cleaning and refining tests" />
   </component>
   <component name="WindowStateProjectService">
     <state x="476" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1580209021980">
@@ -703,10 +700,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="883" y="171" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1580211541492" />
-    <state x="418" y="0" key="CommitChangelistDialog2" timestamp="1580224025138">
+    <state x="418" y="0" key="CommitChangelistDialog2" timestamp="1580224694541">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="418" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580224025138" />
+    <state x="418" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580224694541" />
     <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1579976240328">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -719,10 +716,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="56" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1579986684465" />
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1580212657201">
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1580224698800">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1580212657201" />
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1580224698800" />
     <state x="465" y="238" key="com.intellij.ide.util.TipDialog" timestamp="1580202065007">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
