@@ -15,9 +15,9 @@ use Illuminate\Http\Request;
 
 Route::middleware('apilogger')->namespace('Api')->group(function () {
 
-    Route::post('/register', 'RegisterController@store');
+    Route::post('/register', 'RegisterController@store')->name('api.register.store');
 
-    Route::post('/login', 'LoginController@store');
+    Route::post('/login', 'LoginController@store')->name('api.login.store');
 
     Route::get('/categories', 'CategoriesController@index')->name('api.categories.index');
 
@@ -45,13 +45,13 @@ Route::middleware('apilogger')->namespace('Api')->group(function () {
 
     Route::delete('/entities/{entity}/follow', 'EntitiesFollowingController@destroy')->name('api.entitiesFollowing.destroy');
 
-    Route::get('/tags', 'TagsController@index');
+    Route::get('/tags', 'TagsController@index')->name('api.tags.index');
 
-    Route::get('/events', 'EventsController@index');
+    Route::get('/events', 'EventsController@index')->name('api.events.index');
 
     Route::middleware('auth:api')->get('/events/my', 'EventsController@myEvents')->name('api.events.myEvents');
 
-    Route::middleware('auth:api')->post('/events/store', 'EventsController@store');
+    Route::middleware('auth:api')->post('/events/store', 'EventsController@store')->name('api.events.store');
 
 });
 

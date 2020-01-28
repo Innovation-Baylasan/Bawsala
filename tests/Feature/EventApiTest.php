@@ -46,9 +46,10 @@ class EventApiTest extends TestCase
 
         $event = factory(Event::class)->create();
 
-        $response = $this->get('/api/events/');
+        $response = $this->get(route('api.events.index'));
 
         $response
+            ->assertJsonCount(Event::count(), 'data')
             ->assertOk();
 
     }
@@ -76,7 +77,7 @@ class EventApiTest extends TestCase
             'longitude' => 9.6
         ];
 
-        $response = $this->json('post', '/api/events/store/', $event);
+        $response = $this->json('post', route('api.events.store'), $event);
 
         $response->assertStatus(201);
 

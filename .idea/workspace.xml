@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="User can create entity">
+    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="Added TagsTesting End Point">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/EntitiesApiTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/EntitiesApiTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/AuthenticationTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/AuthenticationTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/EventApiTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/EventApiTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/TagsApiTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/TagsApiTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +30,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="development" />
+        <entry key="$PROJECT_DIR$" value="UserMyEvent" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -700,10 +703,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="883" y="171" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1580211541492" />
-    <state x="418" y="0" key="CommitChangelistDialog2" timestamp="1580211496586">
+    <state x="418" y="0" key="CommitChangelistDialog2" timestamp="1580224025138">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="418" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580211496586" />
+    <state x="418" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580224025138" />
     <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1579976240328">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -716,20 +719,20 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="56" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1579986684465" />
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1580210848474">
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1580212657201">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1580210848474" />
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1580212657201" />
     <state x="465" y="238" key="com.intellij.ide.util.TipDialog" timestamp="1580202065007">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="465" y="238" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1580202065007" />
     <state x="348" y="154" key="git4idea.merge.GitPullDialog" timestamp="1579940003073" />
     <state x="348" y="154" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1579940003073" />
-    <state x="425" y="187" key="run.anything.popup" timestamp="1579986959132">
+    <state x="425" y="187" key="run.anything.popup" timestamp="1580221496917">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1579986959132" />
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1580221496917" />
     <state x="339" y="6" width="672" height="676" key="search.everywhere.popup" timestamp="1580207728146">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

@@ -20,7 +20,7 @@ class AuthenticationTest extends TestCase
         $this->withoutExceptionHandling();
 
         $user = factory(User::class)->create();
-        $response = $this->post('/api/login', [
+        $response = $this->post(route('api.login.store'), [
             "email" => $user->email,
             "password" => "12345678"
         ]);
@@ -42,7 +42,7 @@ class AuthenticationTest extends TestCase
             'password' => 'register@12345678',
             'password_confirmation' => 'register@12345678',
         ];
-        $response = $this->post('/api/register', $user);
+        $response = $this->post(route('api.register.store'), $user);
 
         $response->assertOk();
     }
