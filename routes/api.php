@@ -27,6 +27,8 @@ Route::middleware('apilogger')->namespace('Api')->group(function () {
 
     Route::get('/entities', 'EntitiesController@index')->name('api.entities.index');
 
+    Route::middleware('auth:api')->get('/entities/my', 'EntitiesController@myEntities')->name('api.entities.myEntities');
+
     Route::get('/entities/{entity}', 'EntitiesController@show')->name('api.entities.show');
 
     Route::put('/entities/{entity}/rating', 'EntitiesRatingController@update')->name('api.entitiesRating.update');
@@ -44,6 +46,8 @@ Route::middleware('apilogger')->namespace('Api')->group(function () {
     Route::get('/tags', 'TagsController@index');
 
     Route::get('/events', 'EventsController@index');
+
+    Route::middleware('auth:api')->get('/events/my', 'EventsController@myEvents')->name('api.events.myEvents');
 
     Route::middleware('auth:api')->post('/events/store', 'EventsController@store');
 

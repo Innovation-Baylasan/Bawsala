@@ -16,11 +16,20 @@ class EntitiesApiTest extends TestCase
 
     use RefreshDatabase;
 
+    private $user;
+    private $entities;
+
     public function setUp(): void {
 
         parent::setUp();
 
-        $this->entities = factory(Entity::class, 2)->create();
+        $this->user = factory(User::class)->create();
+
+        $this->entities = factory(Entity::class, 2)->create([
+            'user_id' => $this->user->id
+        ]);
+
+        factory(Entity::class, 2)->create();
 
     }
 
@@ -92,4 +101,21 @@ class EntitiesApiTest extends TestCase
             ]);
 
     }
+
+
+    /** @test */
+    public function it_should_return_user_entities () {
+
+        $this->withoutExceptionHandling();
+
+        $this->signIn($this->user, 'api');
+
+        $response = $this->get(route('api.entities.myEntities'));
+
+        $response
+            ->assertJsonCount(2, 'data')
+            ->assertOk();
+
+    }
+
 }

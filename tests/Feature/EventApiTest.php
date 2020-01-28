@@ -13,9 +13,27 @@ use App\User;
 use Illuminate\Support\Facades\Hash;
 use InvalidArgumentException;
 
-class EventTest extends TestCase
+class EventApiTest extends TestCase
 {
     use RefreshDatabase;
+
+    private $user;
+    private $events;
+
+    public function setUp(): void {
+
+        parent::setUp();
+
+        $this->user = factory(User::class)->create();
+
+        $this->events = factory(Event::class, 2)->create([
+            'creator_id' => $this->user->id
+        ]);
+
+        factory(Event::class, 2)->create();
+
+    }
+
 
     /**
      * A basic feature test example.
@@ -26,9 +44,10 @@ class EventTest extends TestCase
     function it_should_return_stored_entities()
     {
 
-//        $this->signIn();
         $event = factory(Event::class)->create();
+
         $response = $this->get('/api/events/');
+
         $response
             ->assertOk();
 
@@ -60,6 +79,21 @@ class EventTest extends TestCase
         $response = $this->json('post', '/api/events/store/', $event);
 
         $response->assertStatus(201);
+
+    }
+
+    /** @test */
+    public function it_should_return_user_entities () {
+
+        $this->withoutExceptionHandling();
+
+        $this->signIn($this->user, 'api');
+
+        $response = $this->get(route('api.events.myEvents'));
+
+        $response
+            ->assertJsonCount(2, 'data')
+            ->assertOk();
 
     }
 

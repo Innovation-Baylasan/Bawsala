@@ -25,6 +25,7 @@ class EntitiesController extends Controller
         return EntityResource::collection($entities);
     }
 
+
     /**
      * return a single entity
      *
@@ -38,4 +39,15 @@ class EntitiesController extends Controller
             'data' => $entity
         ], 200);
     }
+
+
+    public function myEntities() {
+
+        $entities = auth()->user()->entities();
+
+        return EntityResource::collection($entities->get());
+
+    }
+
+
 }

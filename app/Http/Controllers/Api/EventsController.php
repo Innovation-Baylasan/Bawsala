@@ -28,13 +28,20 @@ class EventsController extends Controller
         }
 
         if (request('entity')) {
-            $entity = Entity::where('name', request('entity'))->first();
+            $entity = Entity::where('id', request('entity'))->first();
             $events = $events->where('entity_id', $entity ? $entity->id : 0);
         }
 
-        // TODO: Event API, User Can Filter And Get His Own Events Via His Auth Token
+        return EventResource::collection($events->get());
+
+    }
+
+    public function myEvents() {
+
+        $events = auth()->user()->events();
 
         return EventResource::collection($events->get());
+
     }
 
     /**
