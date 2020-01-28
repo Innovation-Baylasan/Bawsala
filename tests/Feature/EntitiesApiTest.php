@@ -2,7 +2,9 @@
 
 namespace Tests\Feature;
 
+use App\Category;
 use App\Entity;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -101,6 +103,36 @@ class EntitiesApiTest extends TestCase
             ]);
 
     }
+
+    /** @test */
+    function it_should_allow_authenticated_user_to_create_entity()
+    {
+
+        $this->withoutExceptionHandling();
+
+        $this->signIn(factory(User::class)->create(), 'api');
+
+        $entity = [
+            'category_id' => factory(Category::class)->create()->id,
+            'name' => "My Entity",
+            'cover' => "https://placeimg.com/640/360/tech",
+            'avatar' => "https://www.gravatar.com/avatar/?s=200",
+            'description' => "This is a very great description",
+            'latitude' => 3.5,
+            'longitude' => 9.6
+        ];
+
+        $response = $this->json('post', route('api.entities.store'), $entity);
+
+        $response
+            ->assertJsonFragment($entity)
+            ->assertJsonFragment([
+                'message' => 'Entity created successfully'
+            ])
+            ->assertStatus(201);
+
+    }
+
 
 
     /** @test */
