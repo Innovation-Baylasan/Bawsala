@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="- TODO -&gt; Users can get events through my events route">
+    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="User can view the entities he has created.&#10;User can view the events he have added.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/EntitiesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/EntitiesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/EventsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/EventsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/EntitiesApiTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/EntitiesApiTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/EventTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/EventApiTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -291,14 +288,7 @@
       <workItem from="1579714524154" duration="8131000" />
       <workItem from="1579772170615" duration="14002000" />
       <workItem from="1580120658541" duration="8211000" />
-      <workItem from="1580202053332" duration="5582000" />
-    </task>
-    <task id="LOCAL-00043" summary="enhancements">
-      <created>1577629203496</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1577629203496</updated>
+      <workItem from="1580202053332" duration="6615000" />
     </task>
     <task id="LOCAL-00044" summary="enhancements">
       <created>1577629254143</created>
@@ -636,7 +626,14 @@
       <option name="project" value="LOCAL" />
       <updated>1580129596875</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="User can view the entities he has created.&#10;User can view the events he have added.">
+      <created>1580210641486</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1580210641486</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -668,7 +665,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="fixing test" />
     <MESSAGE value="token issue" />
     <MESSAGE value="configuration missmatch" />
     <MESSAGE value="registration as a company" />
@@ -693,21 +689,22 @@
     <MESSAGE value="- Added EntitiesRatingApiTest.php" />
     <MESSAGE value="- I was trying to add entitites review testing api, the ability for the user to review is working well but when it comes to user ability to delete a review there is an error in this case.&#10;&#10;- Added EntitiesReviewApiTest.php" />
     <MESSAGE value="- Added Telescope" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Added Telescope" />
+    <MESSAGE value="User can view the entities he has created.&#10;User can view the events he have added." />
+    <option name="LAST_COMMIT_MESSAGE" value="User can view the entities he has created.&#10;User can view the events he have added." />
   </component>
   <component name="WindowStateProjectService">
     <state x="476" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1580209021980">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="476" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1580209021980" />
-    <state x="883" y="171" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1580208844978">
+    <state x="883" y="171" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1580211010730">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="883" y="171" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1580208844978" />
-    <state x="418" y="0" key="CommitChangelistDialog2" timestamp="1580129595743">
+    <state x="883" y="171" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1580211010730" />
+    <state x="418" y="0" key="CommitChangelistDialog2" timestamp="1580210840075">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="418" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580129595743" />
+    <state x="418" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580210840075" />
     <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1579976240328">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -720,10 +717,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="56" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1579986684465" />
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1580142149207">
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1580210848474">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1580142149207" />
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1580210848474" />
     <state x="465" y="238" key="com.intellij.ide.util.TipDialog" timestamp="1580202065007">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

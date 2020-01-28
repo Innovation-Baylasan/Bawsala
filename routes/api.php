@@ -27,6 +27,8 @@ Route::middleware('apilogger')->namespace('Api')->group(function () {
 
     Route::get('/entities', 'EntitiesController@index')->name('api.entities.index');
 
+    Route::middleware('auth:api')->post('/entities/store', 'EntitiesController@store')->name('api.entities.store');
+
     Route::middleware('auth:api')->get('/entities/my', 'EntitiesController@myEntities')->name('api.entities.myEntities');
 
     Route::get('/entities/{entity}', 'EntitiesController@show')->name('api.entities.show');
