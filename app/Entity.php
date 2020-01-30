@@ -21,7 +21,7 @@ class Entity extends Model implements Followable
      *
      * @var array
      */
-    protected $fillable = ['user_id', 'category_id', 'name', 'description', 'latitude', 'longitude'];
+    protected $fillable = ['user_id', 'category_id', 'name', 'description', 'latitude', 'longitude', 'details'];
     /**
      * Determine what to eager load when retrieving activity
      *

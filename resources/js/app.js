@@ -4,6 +4,9 @@ import VModal from 'vue-js-modal'
 import 'vue-select/dist/vue-select.css';
 
 
+import wysiwyg from "vue-wysiwyg";
+Vue.use(wysiwyg); // config is optional. more below
+
 window.events = new Vue();
 
 window.flash = function (message, level = 'success') {

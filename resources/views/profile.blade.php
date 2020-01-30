@@ -87,10 +87,18 @@
                 <p class="text-gray-500 mr-8 ">{{$entity->description}}</p>
             </div>
             <div class="bg-default p-8 mb-4 rounded">
+                <h3 class="uppercase border-b mb-4 border-solid border-gray-100 text-2xl font-bold">
+                    Details
+                </h3>
+                <p class="text-gray-500 mr-8 ">{!! $entity->details !!}</p>
+            </div>
+            <div class="bg-default p-8 mb-4 rounded">
                 <div class="flex flex-col justify-between">
                     @forelse($entity->reviews as $review)
                         <div class="flex flex-1 py-4 items-start border-b border-solid border-gray-100">
-                            <img class="rounded shadow-sm w-12 h-12 mr-4" src="https://i.pravatar.cc/300" alt="avatar">
+                            <img class="rounded shadow-sm w-12 h-12 mr-4"
+                                 src="https://www.gravatar.com/avatar/{{md5( strtolower(trim( $review->writer->email)) )}}?s=200"
+                                 alt="avatar">
                             <div class="flex-col">
                                 <h3 class="capitalize font-bold">{{$review->writer->name}}</h3>
                                 <p class=" font-hairline">{{$review->review}}</p>
@@ -107,19 +115,26 @@
 
                     @if($authUser->isNot($entity->owner))
                         <div class="flex flex-1 py-4 items-center">
-                            <img class="rounded shadow-sm w-12 h-12 mr-4" src="https://i.pravatar.cc/300" alt="avatar">
-                            <div class="border border-gray-100 border-solid flex-1 flex-col p-2 rounded">
-                                <form action="/entities/{{$entity->id}}/reviews"
-                                      method="post"
-                                >
-                                    @csrf
+
+                            <form action="/entities/{{$entity->id}}/reviews"
+                                  method="post"
+                                  class="w-full flex flex-col"
+                            >
+                                @csrf
+                                <div class="flex items-center">
+                                    <img class="rounded shadow-sm w-12 h-12 mr-4"
+                                         src="https://www.gravatar.com/avatar/{{md5( strtolower(trim( $authUser->email)) )}}?s=200"
+                                         alt="avatar">
+                                    <div class="input  w-full">
                                     <textarea class="w-full outline-none"
                                               type="text"
                                               name="review"
                                               placeholder="Leave Comment Or Review Here"></textarea>
-                                    <button class="button" type="submit">review</button>
-                                </form>
-                            </div>
+                                    </div>
+
+                                </div>
+                                <button class="button self-end" type="submit">review</button>
+                            </form>
                         </div>
                     @endif
                 </div>
