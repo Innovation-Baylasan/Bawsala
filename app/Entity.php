@@ -191,4 +191,12 @@ class Entity extends Model implements Followable
                                 * SIN(RADIANS(latitude)))) AS distance")
             )->orderBy('distance', 'asc');
     }
+
+    public function scopeSearchEntities($searchTerm) {
+        return Entity::search($searchTerm);
+    }
+
+    public function scopeFilter($query, $filters) {
+        return $filters->apply($query);
+    }
 }

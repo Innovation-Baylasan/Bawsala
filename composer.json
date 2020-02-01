@@ -10,11 +10,13 @@
   "require": {
     "php": "^7.2",
     "algolia/algoliasearch-client-php": "^2.5",
+    "awt/apilogger": "@dev",
     "fideloper/proxy": "^4.0",
     "intervention/image": "^2.5",
     "laravel/framework": "^6.2",
     "laravel/passport": "^8.0",
     "laravel/scout": "^7.2",
+    "laravel/telescope": "^2.1",
     "laravel/tinker": "^1.0",
     "laravel/ui": "^1.1",
     "rennokki/befriended": "^2.0",

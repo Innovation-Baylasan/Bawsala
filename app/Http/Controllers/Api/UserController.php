@@ -63,7 +63,9 @@ class UserController extends Controller
         try {
 
             if (! $user = JWTAuth::parseToken()->authenticate()) {
+
                 return response()->json(['user_not_found'], 404);
+
             }
 
         } catch (TokenExpiredException $e) {
