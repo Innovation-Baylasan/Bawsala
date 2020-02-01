@@ -73,12 +73,19 @@
                               name="description"
                               rows="7"></textarea>
                     </div>
+
                     <p class="error" v-if="entity.errors.description" v-text="entity.errors.description[0]"></p>
 
                     <v-select multiple push-tags taggable :options="tags"
                               v-model="entity.tags"
                               :reduce="reduceTags"
                               @search="getTags"></v-select>
+
+                    <label class="input-label" for="location">Entity Details</label>
+                    <div class="max-w-full h-56">
+                        <wysiwyg placeholder="Enter entity details"
+                                 v-model="entity.details"/>
+                    </div>
 
                     <label class="input-label" for="location">Entity Location</label>
                     <location-picker class="w-full h-56 rounded mb-4" api-key="{{config('app.mapKey')}}"
