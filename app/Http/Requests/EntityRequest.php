@@ -43,6 +43,7 @@ class EntityRequest extends FormRequest
             'avatar' => 'sometimes|required',
             'cover' => 'sometimes|required',
             'description' => 'required',
+            'details' => 'sometimes|required',
             'latitude' => 'required',
             'longitude' => 'required'
         ];
