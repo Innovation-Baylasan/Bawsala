@@ -7,6 +7,7 @@ use App\Traits\Reviewable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Laravel\Scout\Searchable;
+use Mockery\Exception;
 use Rennokki\Befriended\Contracts\Followable;
 use Rennokki\Befriended\Traits\CanBeFollowed;
 
@@ -27,14 +28,15 @@ class Entity extends Model implements Followable
      *
      * @var array
      */
-    protected $with = ['category', 'tags', 'reviews'];
+    protected $with = ['category', 'tags'];
 
     /**
      * Determine what to eager load when retrieving activity
      *
      * @var array
      */
-    protected $appends = ['cover', 'avatar', 'followers_count'];
+    protected $appends = ['cover', 'avatar', 'followers_count', 'reviews', 'reviews_count',
+        'average_rating', 'current_following_status', 'my_rating'];
     protected $hidden = ['profile', 'profile_id', 'followers'];
 
 
@@ -132,6 +134,7 @@ class Entity extends Model implements Followable
         return $this->profile->avatar;
     }
 
+
     /**
      * @return mixed
      *
@@ -140,6 +143,72 @@ class Entity extends Model implements Followable
     {
         return $this->followers(User::class)->count();
     }
+
+
+
+    /**
+     * @return mixed
+     *
+     */
+    public function getCurrentFollowingStatusAttribute()
+    {
+        try {
+            return $this->followers(User::class)->where('follower_id', '=', auth('api')->user()->id)->exists();
+        } catch (\Exception $e) {
+            return false;
+        }
+
+    }
+
+
+
+
+    /**
+     * @return mixed
+     *
+     */
+    public function getMyRatingAttribute()
+    {
+
+        try {
+            return $this->ratings()->where('user_id', auth('api')->user()->id)->value('rating') ?: 0;
+        } catch (\Exception $e) {
+            return "0";
+        }
+
+    }
+
+
+    /**
+     * @return mixed
+     *
+     */
+    public function getReviewsAttribute()
+    {
+        return $this->reviews()->take(4)->get();
+    }
+
+
+    /**
+     * @return mixed
+     *
+     */
+    public function getReviewsCountAttribute()
+    {
+        return $this->reviews()->count();
+    }
+
+
+
+    /**
+     * @return mixed
+     *
+     */
+    public function getAverageRatingAttribute()
+    {
+        return $this->rating();
+    }
+
 
     /**
      * @return mixed
