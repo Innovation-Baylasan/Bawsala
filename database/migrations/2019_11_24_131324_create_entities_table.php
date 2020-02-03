@@ -21,7 +21,7 @@ class CreateEntitiesTable extends Migration
             $table->unsignedBigInteger('profile_id')->nullable();
             $table->string('name');
             $table->text('description');
-            $table->text('details');
+            $table->text('details')->nullable();
             $table->float('latitude', 10, 8);
             $table->float('longitude', 10, 8);
             $table->timestamps();

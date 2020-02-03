@@ -51,7 +51,7 @@
                 </div>
                 <map-categories :categories="{{$categories}}" @category-change="getPlaces"></map-categories>
                 <div class="flex items-center justify-center px-4 mt-auto mb-2 hidden md:block">
-                    <div class="rounded  w-12 h-12 w-16 h-16 bg-accent flex items-center justify-center">
+                    <div class="rounded  w-12 h-12 w-16 h-16 border-2 border-solid border-accent flex items-center justify-center">
                         <img class="" src="{{asset('svg/notify-icon.svg')}}" alt="">
                     </div>
                 </div>
