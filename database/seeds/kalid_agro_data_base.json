@@ -1,0 +1,27 @@
+{
+    "data": [
+        {
+            "category": {
+                "name": "",
+                "icon": "",
+                "icon_png": "",
+                "entities" : [
+                    {
+                        "category_id": "",
+                        "user_id": "",
+                        "name": "",
+                        "description": "",
+                        "details": "",
+                        "latitude": "",
+                        "longitude": "",
+                        "tags": [
+                            {
+                                "name": ""
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
