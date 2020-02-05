@@ -41,7 +41,7 @@ class EntitiesReviewApiTest extends TestCase
         ]);
 
         $response->assertStatus(200)->assertJsonFragment([
-            "user_id" => $this->user->id,
+            "writer" => $this->user->name,
             "review" => "This is a very nice entity",
             "entity_id" => $this->entity->id
         ]);

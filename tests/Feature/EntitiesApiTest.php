@@ -21,7 +21,8 @@ class EntitiesApiTest extends TestCase
     private $user;
     private $entities;
 
-    public function setUp(): void {
+    public function setUp(): void
+    {
 
         parent::setUp();
 
@@ -61,7 +62,8 @@ class EntitiesApiTest extends TestCase
     }
 
     /** @test */
-    public function it_should_return_all_entities () {
+    public function it_should_return_all_entities()
+    {
 
         $this->withoutExceptionHandling();
 
@@ -73,8 +75,8 @@ class EntitiesApiTest extends TestCase
     }
 
     /** @test */
-    public function it_should_filter_entities () {
-
+    public function it_should_filter_entities()
+    {
         $response = $this->get(route('api.entities.index', [
             'q' => $this->entities[0]->name
         ])); //->decodeResponseJson();
@@ -88,24 +90,8 @@ class EntitiesApiTest extends TestCase
     }
 
     /** @test */
-    public function it_should_get_entity_nearby_entities () {
-
-        $response = $this->get(route('api.entities.index', [
-            '@lat' => $this->entities[0]->latitude,
-            '@long' => $this->entities[0]->longitude,
-        ])); //->decodeResponseJson();
-
-        $response
-            ->assertOk()
-            ->assertJsonFragment([
-                'name' => $this->entities[0]->name
-            ]);
-
-    }
-
-
-    /** @test */
-    public function it_should_show_entity_by_passing_id () {
+    public function it_should_show_entity_by_passing_id()
+    {
 
         $this->signIn($this->user, 'api');
 
@@ -122,9 +108,9 @@ class EntitiesApiTest extends TestCase
     }
 
 
-
     /** @test */
-    public function it_should_show_specific_entity_reviews_not_more_than_4 () {
+    public function it_should_show_specific_entity_reviews_not_more_than_4()
+    {
 
         $this->signIn($this->user, 'api');
 
@@ -138,7 +124,8 @@ class EntitiesApiTest extends TestCase
     }
 
     /** @test */
-    public function it_should_show_specific_entity_total_reviews_count () {
+    public function it_should_show_specific_entity_total_reviews_count()
+    {
 
         $this->signIn($this->user, 'api');
 
@@ -155,7 +142,8 @@ class EntitiesApiTest extends TestCase
 
 
     /** @test */
-    public function it_should_show_specific_entity_logged_in_user_following_status_true_if_followed () {
+    public function it_should_show_specific_entity_logged_in_user_following_status_true_if_followed()
+    {
 
         $this->signIn($this->user, 'api');
 
@@ -171,7 +159,8 @@ class EntitiesApiTest extends TestCase
     }
 
     /** @test */
-    public function it_should_show_specific_entity_logged_in_user_following_status_false_if_not_followed () {
+    public function it_should_show_specific_entity_logged_in_user_following_status_false_if_not_followed()
+    {
 
         $this->signIn(factory(User::class)->create(), 'api');
 
@@ -187,7 +176,8 @@ class EntitiesApiTest extends TestCase
     }
 
     /** @test */
-    public function it_should_show_specific_entity_not_logged_in_user_following_status_false () {
+    public function it_should_show_specific_entity_not_logged_in_user_following_status_false()
+    {
 
         $response = $this->get(route('api.entities.show', [
             'entity' => $this->entities[0]->id
@@ -202,7 +192,8 @@ class EntitiesApiTest extends TestCase
 
 
     /** @test */
-    public function it_should_show_specific_entity_average_rating () {
+    public function it_should_show_specific_entity_average_rating()
+    {
 
         $response = $this->get(route('api.entities.show', [
             'entity' => $this->entities[0]->id
@@ -217,7 +208,8 @@ class EntitiesApiTest extends TestCase
 
 
     /** @test */
-    public function it_should_show_specific_entity_logged_in_user_rating () {
+    public function it_should_show_specific_entity_logged_in_user_rating()
+    {
 
         $this->signIn($this->user, 'api');
 
@@ -236,7 +228,8 @@ class EntitiesApiTest extends TestCase
 
 
     /** @test */
-    public function it_should_show_specific_entity_not_logged_in_user_rating_as_0 () {
+    public function it_should_show_specific_entity_not_logged_in_user_rating_as_0()
+    {
 
         $response = $this->get(route('api.entities.show', [
             'entity' => $this->entities[0]->id
@@ -280,9 +273,26 @@ class EntitiesApiTest extends TestCase
     }
 
 
+    /** @test */
+    public function it_should_return_user_entities()
+    {
+
+        $this->withoutExceptionHandling();
+
+        $this->signIn($this->user, 'api');
+
+        $response = $this->get(route('api.entities.myEntities'));
+
+        $response
+            ->assertJsonCount(2, 'data')
+            ->assertOk();
+
+    }
+
 
     /** @test */
-    public function it_should_return_user_entities () {
+    public function it_should_return_user_entities_user_following_status()
+    {
 
         $this->withoutExceptionHandling();
 
@@ -299,19 +309,49 @@ class EntitiesApiTest extends TestCase
 
 
     /** @test */
-    public function it_should_return_user_entities_user_following_status () {
+    public function it_should_get_entity_nearby_entities()
+    {
 
-        $this->withoutExceptionHandling();
+        // given we have many entities
+        $center = factory('App\Entity')->create(
+            [
+                'name' => 'center',
+                'longitude' => 15.6534368,
+                'latitude' => 32.5587282
+            ]
+        );
+        $inrange = factory('App\Entity')->create(
+            [
+                'name' => 'inrange',
+                'longitude' => 15.6534368,
+                'latitude' => 32.5587282
+            ]
+        );
 
-        $this->signIn($this->user, 'api');
+        // 13.2604378,36.4392833
+        $outrange = factory('App\Entity')->create(
+            [
+                'name' => 'outrange',
+                'longitude' => 13.2604378,
+                'latitude' => 36.4392833
+            ]
+        );
 
-        $response = $this->get(route('api.entities.myEntities'));
+        //when we ask one for it's neighbrougs
+        // then it should return only nearby 1 km
+        $response = $this->get(route('api.entities.index', [
+            '@lat' => $center->latitude,
+            '@long' => $center->longitude,
+        ]));
 
         $response
-            ->assertJsonCount(2, 'data')
-            ->assertOk();
+            ->assertOk()
+            ->assertJsonFragment([
+                'name' => $inrange->name
+            ]);
 
     }
+
 
 
 }
