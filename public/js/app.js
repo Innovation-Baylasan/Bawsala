@@ -6859,10 +6859,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['type', 'perView', 'autoplay'],
+  props: {
+    perView: {
+      type: Number,
+      "default": 1
+    },
+    autoplay: {
+      "default": 8500
+    },
+    type: {
+      type: String,
+      "default": 'slider'
+    }
+  },
   mounted: function mounted() {
     new _glidejs_glide__WEBPACK_IMPORTED_MODULE_0__["default"]('.glide', {
-      autoplay: this.autoplay || 8500,
+      autoplay: this.autoplay,
       animationDuration: 1500,
       type: this.type,
       perView: this.perView,

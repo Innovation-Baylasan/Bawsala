@@ -1,0 +1,14 @@
+<svg id="Component_4_12" data-name="Component 4 – 12" xmlns="http://www.w3.org/2000/svg" width="59" height="61" viewBox="0 0 59 61">
+  <ellipse id="Ellipse_35" data-name="Ellipse 35" cx="29.5" cy="30.5" rx="29.5" ry="30.5" fill="#ffb200"/>
+  <g id="Group_1606" data-name="Group 1606" transform="translate(15.019 16.358)">
+    <path id="Path_523" data-name="Path 523" d="M496.1,896.614v25.3c-.145-.011-.292-.028-.436-.028h-29.6V896.637h7.677v-2.612h1.773v2.6h11.211v-2.592h1.766v2.6c.1,0,.18.013.258.013h7.1A2.571,2.571,0,0,0,496.1,896.614ZM467.836,903.7V920.1h26.483V903.7Z" transform="translate(-466.064 -894.025)" fill="#fff"/>
+    <rect id="Rectangle_607" data-name="Rectangle 607" width="2.87" height="2.87" transform="translate(3.274 11.578)" fill="#fff"/>
+    <rect id="Rectangle_608" data-name="Rectangle 608" width="2.87" height="2.87" transform="translate(8.738 11.578)" fill="#fff"/>
+    <rect id="Rectangle_609" data-name="Rectangle 609" width="2.87" height="2.87" transform="translate(14.201 11.578)" fill="#fff"/>
+    <rect id="Rectangle_610" data-name="Rectangle 610" width="2.87" height="2.87" transform="translate(19.665 11.578)" fill="#fff"/>
+    <rect id="Rectangle_611" data-name="Rectangle 611" width="2.87" height="2.87" transform="translate(3.274 16.275)" fill="#fff"/>
+    <rect id="Rectangle_612" data-name="Rectangle 612" width="2.87" height="2.87" transform="translate(8.738 16.275)" fill="#fff"/>
+    <rect id="Rectangle_613" data-name="Rectangle 613" width="2.87" height="2.87" transform="translate(14.201 16.275)" fill="#fff"/>
+    <rect id="Rectangle_614" data-name="Rectangle 614" width="2.87" height="2.87" transform="translate(19.665 16.275)" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="0.5"/>
+  </g>
+</svg>

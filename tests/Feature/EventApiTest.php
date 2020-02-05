@@ -13,24 +13,6 @@ class EventApiTest extends TestCase
 {
     use DatabaseMigrations;
 
-    private $user;
-    private $events;
-
-    public function setUp(): void {
-
-        parent::setUp();
-
-        $this->user = factory(User::class)->create();
-
-        $this->events = factory(Event::class, 2)->create([
-            'creator_id' => $this->user->id
-        ]);
-
-        factory(Event::class, 2)->create();
-
-    }
-
-
     /**
      * A basic feature test example.
      *
@@ -63,12 +45,12 @@ class EventApiTest extends TestCase
 
         $event = [
             'entity_id' => $entity->id,
-            'event_picture' => "picture",
-            'event_name' => "Event Name",
-            'registration_link' => "my link",
+            'picture' => "picture",
+            'name' => "Event Name",
+            'link' => "my link",
             'description' => "This is a very great description",
-            'application_start_datetime' => Carbon::now(),
-            'application_end_datetime' => Carbon::now(),
+            'start_date' => Carbon::now(),
+            'end_date' => Carbon::now(),
             'latitude' => 3.5,
             'longitude' => 9.6
         ];
@@ -80,16 +62,19 @@ class EventApiTest extends TestCase
     }
 
     /** @test */
-    public function it_should_return_user_entities () {
+    public function it_should_return_user_events()
+    {
 
         $this->withoutExceptionHandling();
 
-        $this->signIn($this->user, 'api');
+        $event = factory(Event::class)->create();
+
+        $this->signIn($event->user, 'api');
+
 
         $response = $this->get(route('api.events.myEvents'));
 
-        $response
-            ->assertJsonCount(2, 'data')
+        $response->assertJsonCount(1, 'data')
             ->assertOk();
 
     }
