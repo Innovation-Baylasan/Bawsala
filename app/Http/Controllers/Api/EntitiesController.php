@@ -21,7 +21,7 @@ class EntitiesController extends Controller
     public function index(EntitiesFilter $filters)
     {
 
-        $entities = Entity::filter($filters)->get();
+        $entities = Entity::filter($filters)->take(request('take') ?: 5)->get();
 
         return EntityResource::collection($entities);
     }
@@ -42,7 +42,8 @@ class EntitiesController extends Controller
     }
 
 
-    public function myEntities() {
+    public function myEntities()
+    {
 
         $entities = auth()->user()->entities();
 

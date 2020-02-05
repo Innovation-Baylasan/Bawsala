@@ -115,6 +115,17 @@ class User extends Authenticatable implements Follower
         return !!($this->role == 'admin');
     }
 
+    public function profilePath()
+    {
+        $destinations = [
+            'company' => "/@" . $this->entities()->first() ?? $this->entities()->first()->id,
+            'user' => "/account/{$this->username}",
+            'admin' => "/account/{$this->username}",
+        ];
+
+        return $destinations[$this->role];
+    }
+
     /**
      * Generate Api Token For User When Login For The First Time
      *

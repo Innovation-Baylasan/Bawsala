@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Campos | Map Eco system</title>
-    <link rel="shortcut icon" type="image/jpg" href="/img/logo.png"/>
+    <link rel="shortcut icon" type="image/jpg" href="/images/fav-icon.png"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
@@ -11,7 +11,7 @@
 <div id="app">
     <map-view inline-template>
         <div>
-            <header class="fixed w-full z-10 flex items-center inline-block justify-center">
+            <header class="fixed w-full z-10 flex  inline-block justify-center">
                 <div>
                     <search-input :category="selectedCategory" @result-clicked="selectPlace"></search-input>
                     <place-profile-card @close="selectedPlace =null"
@@ -44,17 +44,23 @@
                 @endauth()
             </header>
 
+            <event-card @close="selectedEvent =null"
+            :event="selectedEvent"
+            v-if="selectedEvent && (showing == 'events')"
+            ></event-card>
+
             <nav v-if="showing == 'places'"
                  class="bg-default bottom-0 fixed flex flex-col overflow-scroll md:overflow-hidden md:h-screen left-0 md:top-0 md:w-24 pt-4 shadow w-full z-10">
                 <div class="px-4 mb-6 hidden md:block">
                     <avatar img="{{"https://www.gravatar.com/avatar/" . md5( strtolower( trim( $authUser->email ) ) ) . "?s=100&d"}}"></avatar>
                 </div>
                 <map-categories :categories="{{$categories}}" @category-change="getPlaces"></map-categories>
-                <div class="flex items-center justify-center px-4 mt-auto mb-2 hidden md:block">
-                    <div class="rounded  w-12 h-12 w-16 h-16 border-2 border-solid border-accent flex items-center justify-center">
-                        <img class="" src="{{asset('svg/notify-icon.svg')}}" alt="">
-                    </div>
-                </div>
+                {{--for future use --}}
+                {{--<div class="flex items-center justify-center px-4 mt-auto mb-2 hidden md:block">--}}
+                {{--<div class="rounded  w-12 h-12 w-16 h-16 border-2 border-solid border-accent flex items-center justify-center">--}}
+                {{--<img class="" src="{{asset('svg/notify-icon.svg')}}" alt="">--}}
+                {{--</div>--}}
+                {{--</div>--}}
 
             </nav>
             <flash message="{{session('message')}}"></flash>
@@ -65,7 +71,7 @@
                 api-key="{{config('app.mapKey')}}"
                 ></google-map>
             </main>
-            <footer class="fixed bottom-0 w-full z-10 flex p-2 justify-center ">
+            <footer class="fixed bottom-0 w-full z-1 flex p-2 justify-center ">
                 <div class="bg-default shadow-sm rounded">
                     <a href="#" @click.prevent="showing = 'places'"
                        class="px-4 py-2 inline-block border-r"

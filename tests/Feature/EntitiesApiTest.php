@@ -5,8 +5,10 @@ namespace Tests\Feature;
 use App\Category;
 use App\Entity;
 use Carbon\Carbon;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Config;
 use Tests\TestCase;
 use App\User;
 use Illuminate\Support\Facades\Hash;
@@ -16,12 +18,11 @@ use InvalidArgumentException;
 class EntitiesApiTest extends TestCase
 {
 
-    use RefreshDatabase;
+    use DatabaseMigrations;
 
-    private $user;
-    private $entities;
 
-    public function setUp(): void {
+    public function setUp(): void
+    {
 
         parent::setUp();
 
@@ -61,7 +62,8 @@ class EntitiesApiTest extends TestCase
     }
 
     /** @test */
-    public function it_should_return_all_entities () {
+    public function it_should_return_all_entities()
+    {
 
         $this->withoutExceptionHandling();
 
@@ -73,7 +75,8 @@ class EntitiesApiTest extends TestCase
     }
 
     /** @test */
-    public function it_should_filter_entities () {
+    public function it_should_filter_entities()
+    {
 
         $response = $this->get(route('api.entities.index', [
             'q' => $this->entities[0]->name
@@ -88,7 +91,8 @@ class EntitiesApiTest extends TestCase
     }
 
     /** @test */
-    public function it_should_get_entity_nearby_entities () {
+    public function it_should_get_entity_nearby_entities()
+    {
 
         $response = $this->get(route('api.entities.index', [
             '@lat' => $this->entities[0]->latitude,
@@ -105,7 +109,8 @@ class EntitiesApiTest extends TestCase
 
 
     /** @test */
-    public function it_should_show_entity_by_passing_id () {
+    public function it_should_show_entity_by_passing_id()
+    {
 
         $this->signIn($this->user, 'api');
 
@@ -122,9 +127,9 @@ class EntitiesApiTest extends TestCase
     }
 
 
-
     /** @test */
-    public function it_should_show_specific_entity_reviews_not_more_than_4 () {
+    public function it_should_show_specific_entity_reviews_not_more_than_4()
+    {
 
         $this->signIn($this->user, 'api');
 
@@ -138,7 +143,8 @@ class EntitiesApiTest extends TestCase
     }
 
     /** @test */
-    public function it_should_show_specific_entity_total_reviews_count () {
+    public function it_should_show_specific_entity_total_reviews_count()
+    {
 
         $this->signIn($this->user, 'api');
 
@@ -155,7 +161,8 @@ class EntitiesApiTest extends TestCase
 
 
     /** @test */
-    public function it_should_show_specific_entity_logged_in_user_following_status_true_if_followed () {
+    public function it_should_show_specific_entity_logged_in_user_following_status_true_if_followed()
+    {
 
         $this->signIn($this->user, 'api');
 
@@ -171,7 +178,8 @@ class EntitiesApiTest extends TestCase
     }
 
     /** @test */
-    public function it_should_show_specific_entity_logged_in_user_following_status_false_if_not_followed () {
+    public function it_should_show_specific_entity_logged_in_user_following_status_false_if_not_followed()
+    {
 
         $this->signIn(factory(User::class)->create(), 'api');
 
@@ -187,7 +195,8 @@ class EntitiesApiTest extends TestCase
     }
 
     /** @test */
-    public function it_should_show_specific_entity_not_logged_in_user_following_status_false () {
+    public function it_should_show_specific_entity_not_logged_in_user_following_status_false()
+    {
 
         $response = $this->get(route('api.entities.show', [
             'entity' => $this->entities[0]->id
@@ -202,7 +211,8 @@ class EntitiesApiTest extends TestCase
 
 
     /** @test */
-    public function it_should_show_specific_entity_average_rating () {
+    public function it_should_show_specific_entity_average_rating()
+    {
 
         $response = $this->get(route('api.entities.show', [
             'entity' => $this->entities[0]->id
@@ -217,7 +227,8 @@ class EntitiesApiTest extends TestCase
 
 
     /** @test */
-    public function it_should_show_specific_entity_logged_in_user_rating () {
+    public function it_should_show_specific_entity_logged_in_user_rating()
+    {
 
         $this->signIn($this->user, 'api');
 
@@ -236,7 +247,8 @@ class EntitiesApiTest extends TestCase
 
 
     /** @test */
-    public function it_should_show_specific_entity_not_logged_in_user_rating_as_0 () {
+    public function it_should_show_specific_entity_not_logged_in_user_rating_as_0()
+    {
 
         $response = $this->get(route('api.entities.show', [
             'entity' => $this->entities[0]->id
@@ -280,9 +292,9 @@ class EntitiesApiTest extends TestCase
     }
 
 
-
     /** @test */
-    public function it_should_return_user_entities () {
+    public function it_should_return_user_entities()
+    {
 
         $this->withoutExceptionHandling();
 
@@ -297,9 +309,9 @@ class EntitiesApiTest extends TestCase
     }
 
 
-
     /** @test */
-    public function it_should_return_user_entities_user_following_status () {
+    public function it_should_return_user_entities_user_following_status()
+    {
 
         $this->withoutExceptionHandling();
 

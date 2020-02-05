@@ -5,17 +5,13 @@ namespace Tests\Feature;
 use App\Entity;
 use App\Event;
 use Carbon\Carbon;
-use Faker\Provider\DateTime;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 use App\User;
-use Illuminate\Support\Facades\Hash;
-use InvalidArgumentException;
 
 class EventApiTest extends TestCase
 {
-    use RefreshDatabase;
+    use DatabaseMigrations;
 
     private $user;
     private $events;

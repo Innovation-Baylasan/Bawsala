@@ -36,7 +36,8 @@ class EventsController extends Controller
 
     }
 
-    public function myEvents() {
+    public function myEvents()
+    {
 
         $events = auth()->user()->events();
 
@@ -53,12 +54,12 @@ class EventsController extends Controller
     {
         $attributes = $request->validate([
             'entity_id' => "required|max:255",
-            'event_picture' => "required|max:255",
-            'event_name' => "required|max:255",
-            'registration_link' => "required|max:255",
+            'picture' => "required|max:255",
+            'name' => "required|max:255",
+            'link' => "required|max:255",
             'description' => "required|max:255",
-            'application_start_datetime' => "required|max:255",
-            'application_end_datetime' => "required|max:255",
+            'start_date' => "required|max:255",
+            'end_date' => "required|max:255",
             'latitude' => "required|max:255",
             'longitude' => "required|max:255",
         ]);

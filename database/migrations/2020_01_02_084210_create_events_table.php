@@ -17,12 +17,12 @@ class CreateEventsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('creator_id');
             $table->unsignedBigInteger('entity_id')->nullable();
-            $table->string('event_picture');
-            $table->string('event_name');
-            $table->string('registration_link');
+            $table->string('picture');
+            $table->string('name');
+            $table->string('link');
             $table->text('description');
-            $table->timestamp('application_start_datetime')->nullable();
-            $table->timestamp('application_end_datetime')->nullable();
+            $table->timestamp('start_date')->nullable();
+            $table->timestamp('end_date')->nullable();
             $table->float('latitude', 10, 8);
             $table->float('longitude', 10, 8);
             $table->boolean('confirm')->default(false);

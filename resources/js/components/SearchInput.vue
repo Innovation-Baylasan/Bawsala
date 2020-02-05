@@ -17,13 +17,15 @@
         </div>
         <div v-if="results && query" class="bg-gray-200">
             <ul>
-                <li @click="selectResult(place)" v-for="place in results"
+                <li v-for="place in results"
                     class="flex border-t cursor-pointer border-gray-300 items-center p-3 justify-between">
                     <div class="flex items-start">
-                        <img class="w-8 h-8 rounded-full mr-2" src="https://i.pravatar.cc/300" alt="">
+                        <img @click="selectResult(place)" class="w-8 h-8 rounded mr-2"
+                             :src="place.avatar" alt="">
                         <div>
-                            <h3 class="text-black font-semibold text-sm" v-text="place.name"></h3>
-                            <star-rating class="-mx-3"></star-rating>
+                            <h3 class="text-black font-semibold text-sm" @click="selectResult(place)"
+                                v-text="place.name"></h3>
+                            <span v-text="place.rating" class="text-gray-500"></span>
                         </div>
                     </div>
                 </li>
@@ -42,7 +44,7 @@
     import StarRating from './StarRating.vue'
     export default{
         props: ['category'],
-        components:{},
+        components: {},
         data(){
             return {
                 query: '',
@@ -54,7 +56,7 @@
         methods: {
             search(){
                 this.searching = true
-                axios.get(`/api/entities?q=${this.query}&&${this.category ? 'category=' + this.category : '' }`).then(({data}) => {
+                axios.get(`/api/entities?q=${this.query}&&take=5&&${this.category ? 'category=' + this.category : '' }`).then(({data}) => {
                     this.results = data.data
                 })
             },
