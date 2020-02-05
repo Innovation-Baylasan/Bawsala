@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="Refactoring nearby entities test&#10;Fixing EntitiesReviewApiTest.php replacing user id with writer">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="Added Deleting Entites Api">
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/EntitiesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/EntitiesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -331,14 +329,7 @@
       <workItem from="1580403148235" duration="182000" />
       <workItem from="1580551597248" duration="737000" />
       <workItem from="1580900968915" duration="354000" />
-      <workItem from="1580901336019" duration="6288000" />
-    </task>
-    <task id="LOCAL-00041" summary="api">
-      <created>1577623037858</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1577623037858</updated>
+      <workItem from="1580901336019" duration="6416000" />
     </task>
     <task id="LOCAL-00042" summary="add resources to version control">
       <created>1577624249095</created>
@@ -676,7 +667,14 @@
       <option name="project" value="LOCAL" />
       <updated>1580906578282</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="Added Deleting Entites Api">
+      <created>1580909277673</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1580909277673</updated>
+    </task>
+    <option name="localTasksCounter" value="91" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -708,7 +706,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="api auth" />
     <MESSAGE value="api for following, rating and review entities" />
     <MESSAGE value="fixing test" />
     <MESSAGE value="token issue" />
@@ -733,7 +730,8 @@
     <MESSAGE value="Merge branch 'development' of https://gitlab.com/baylasan-back-end/sudan-map-back-end into EntitiesRelations&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;composer.lock" />
     <MESSAGE value="Adding database seeder" />
     <MESSAGE value="Refactoring nearby entities test&#10;Fixing EntitiesReviewApiTest.php replacing user id with writer" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactoring nearby entities test&#10;Fixing EntitiesReviewApiTest.php replacing user id with writer" />
+    <MESSAGE value="Added Deleting Entites Api" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Deleting Entites Api" />
   </component>
   <component name="WindowStateProjectService">
     <state x="452" y="34" width="675" height="755" key="#AuthenticationTest" timestamp="1580902782628">

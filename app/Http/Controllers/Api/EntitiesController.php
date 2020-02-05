@@ -43,24 +43,6 @@ class EntitiesController extends Controller
     }
 
 
-    /**
-     * Remove the specified entity from storage.
-     *
-     * @param \App\Entity $entity
-     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
-     *
-     * @throws \Exception
-     */
-    public function destroy(Entity $entity)
-    {
-        $entity->delete();
-
-        return response([
-            'message' => 'Entity deleted successfully'
-        ], 200);
-    }
-
-
     public function myEntities() {
 
         $entities = auth()->user()->entities();
