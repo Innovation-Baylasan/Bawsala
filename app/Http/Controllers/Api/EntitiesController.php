@@ -8,6 +8,7 @@ use App\Filters\EntitiesFilter;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\EntityResource;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class EntitiesController extends Controller
 {
@@ -42,6 +43,24 @@ class EntitiesController extends Controller
     }
 
 
+    /**
+     * Remove the specified entity from storage.
+     *
+     * @param \App\Entity $entity
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     *
+     * @throws \Exception
+     */
+    public function destroy(Entity $entity)
+    {
+        $entity->delete();
+
+        return response([
+            'message' => 'Entity deleted successfully'
+        ], 200);
+    }
+
+
     public function myEntities() {
 
         $entities = auth()->user()->entities();
@@ -52,7 +71,6 @@ class EntitiesController extends Controller
 
     /**
      * @param Request $request
-     * @param Entity $entity
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
     public function store(Request $request)
