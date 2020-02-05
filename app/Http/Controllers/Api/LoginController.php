@@ -18,7 +18,8 @@ class LoginController extends Controller
             return response([
                 'data' => [
                     'user' => $user = auth()->user(),
-                    'token' => $user->token
+                    'token' => $user->token,
+                    'main_entity' => $user->isCompany() ? $user->mainEntity() : []
                 ],
                 'message' => 'login successfully'
             ], 200);
