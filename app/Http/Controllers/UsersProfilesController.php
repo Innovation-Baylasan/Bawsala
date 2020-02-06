@@ -11,13 +11,8 @@ class UsersProfilesController extends Controller
     {
         $user = auth()->user();
 
-        $destinations = [
-            'company' => "/@{$user->entities()->first()->id}",
-            'user' => "/account/{$user->username}",
-            'admin' => "/account/{$user->username}",
-        ];
 
-        return redirect($destinations[$user->role]);
+        return redirect($user->profilePath());
     }
 
     public function show(User $user)

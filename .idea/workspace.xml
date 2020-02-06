@@ -1,187 +1,351 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/app/User.php" description="public function is()" line="101" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="Adding database seeder">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/CategoriesSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/CategoriesSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/_CategoriesSeeder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/kalid_agro_data.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/kalid_agro_data_base.json" beforeDir="false" />
+    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/EntitiesController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/EntitiesController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/LoginController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/LoginController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/RegisterController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/RegisterController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/api.php" afterPath="$PROJECT_DIR$/routes/api.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/Feature/AuthenticationTest.php" afterPath="$PROJECT_DIR$/tests/Feature/AuthenticationTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/Feature/EntitiesApiTest.php" afterPath="$PROJECT_DIR$/tests/Feature/EntitiesApiTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/Feature/EntitiesReviewApiTest.php" afterPath="$PROJECT_DIR$/tests/Feature/EntitiesReviewApiTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/Feature/EventApiTest.php" afterPath="$PROJECT_DIR$/tests/Feature/EventApiTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/TestCase.php" afterPath="$PROJECT_DIR$/tests/TestCase.php" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
-    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution>
-      <executable />
-    </execution>
-  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="Mustakshif" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="EntitiesApiTest.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/Feature/EntitiesApiTest.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="156">
+              <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+              <folding>
+                <element signature="e#33#50#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EventApiTest.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tests/Feature/EventApiTest.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="36">
+              <caret line="117" column="56" lean-forward="false" selection-start-line="117" selection-start-column="56" selection-end-line="117" selection-end-column="56" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/User.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2848">
+              <caret line="127" column="0" lean-forward="true" selection-start-line="127" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Entity.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Entity.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="208">
+              <caret line="15" column="39" lean-forward="false" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EventsController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/EventsController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="260">
+              <caret line="58" column="13" lean-forward="false" selection-start-line="58" selection-start-column="13" selection-end-line="58" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EventsController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/EventsController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="312">
+              <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EditEntityView.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/js/pages/EditEntityView.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="118">
+              <caret line="67" column="103" lean-forward="false" selection-start-line="67" selection-start-column="78" selection-end-line="67" selection-end-column="103" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Event.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Event.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1274">
+              <caret line="60" column="24" lean-forward="false" selection-start-line="60" selection-start-column="20" selection-end-line="60" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EntitiesController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/EntitiesController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="128" column="4" lean-forward="false" selection-start-line="128" selection-start-column="4" selection-end-line="128" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EventResource.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Resources/EventResource.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="404">
+              <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>crop</find>
+      <find>name</find>
+      <find>$user</find>
+      <find>re</find>
+      <find>red-</find>
+      <find>red-5</find>
+      <find>red-50</find>
+      <find>red-500</find>
+      <find>w</find>
+      <find>accent</find>
+      <find>white</find>
+      <find>b</find>
+      <find>bg</find>
+      <find>bg-</find>
+      <find>bg-d</find>
+      <find>bg-de</find>
+      <find>bg-def</find>
+      <find>bg-defa</find>
+      <find>bg-defau</find>
+      <find>bg-defaul</find>
+      <find>bg-default</find>
+      <find>info</find>
+      <find>prava</find>
+      <find>tags</find>
+      <find>user_re</find>
+      <find>entity</find>
+      <find>it_should_return_user_events</find>
+      <find>it_should_create_event_for_a_registered_company_user</find>
+      <find>_should_create_event_for_a_registered_user</find>
+      <find>it_should_return_company_entities</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>accent</replace>
+      <replace>default</replace>
+    </replaceStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$/resources/js</dir>
+      <dir>$PROJECT_DIR$/resources/views</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="intervention" />
+        <entry key="$PROJECT_DIR$" value="EntitiesRelations" />
       </map>
     </option>
     <push-targets>
       <push-target-info target-remote="origin" target-branch="development" repo="$PROJECT_DIR$" source="Ui/Feature" />
     </push-targets>
   </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/resources/views/sign-in.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/signup.blade.php" />
+        <option value="$PROJECT_DIR$/resources/sass/themes/light.scss" />
+        <option value="$PROJECT_DIR$/resources/views/auth/login.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/auth/register.blade.php" />
+        <option value="$PROJECT_DIR$/resources/js/app.js" />
+        <option value="$PROJECT_DIR$/resources/sass/app.scss" />
+        <option value="$PROJECT_DIR$/resources/views/admin/entities/create.blade.php" />
+        <option value="$PROJECT_DIR$/resources/js/pages/CreateEntityView.vue" />
+        <option value="$PROJECT_DIR$/database/factories/EntityFactory.php" />
+        <option value="$PROJECT_DIR$/resources/views/profile.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Requests/EntityRequest.php" />
+        <option value="$PROJECT_DIR$/app/Entity.php" />
+        <option value="$PROJECT_DIR$/public/svg/notify-icon.svg" />
+        <option value="$PROJECT_DIR$/phpunit.xml" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_11_24_131324_create_entities_table.php" />
+        <option value="$PROJECT_DIR$/tests/Feature/EntitiesRatingApiTest.php" />
+        <option value="$PROJECT_DIR$/tests/Feature/CategoryEntitiesApiTest.php" />
+        <option value="$PROJECT_DIR$/tests/Feature/EntitiesReviewApiTest.php" />
+        <option value="$PROJECT_DIR$/tests/Feature/EntityRatingTest.php" />
+        <option value="$PROJECT_DIR$/tests/Feature/TagsApiTest.php" />
+        <option value="$PROJECT_DIR$/.env" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/UsersProfilesController.php" />
+        <option value="$PROJECT_DIR$/app/User.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/all.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Resources/EntityResource.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Api/EntitiesController.php" />
+        <option value="$PROJECT_DIR$/resources/js/components/StarRating.vue" />
+        <option value="$PROJECT_DIR$/resources/js/components/SearchInput.vue" />
+        <option value="$PROJECT_DIR$/resources/js/components/GoogleMap.vue" />
+        <option value="$PROJECT_DIR$/resources/js/components/PlaceProfileCard.vue" />
+        <option value="$PROJECT_DIR$/resources/js/pages/MapView.vue" />
+        <option value="$PROJECT_DIR$/database/migrations/2020_01_02_084210_create_events_table.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Api/EventsController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Resources/EventResource.php" />
+        <option value="$PROJECT_DIR$/database/factories/EventsFactory.php" />
+        <option value="$PROJECT_DIR$/resources/views/home.blade.php" />
+        <option value="$PROJECT_DIR$/resources/js/components/EventCard.vue" />
+        <option value="$PROJECT_DIR$/resources/js/components/Carsouel.vue" />
+        <option value="$PROJECT_DIR$/app/Event.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/EventsController.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/events/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/events/show.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/events/create.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/entities/edit.blade.php" />
+        <option value="$PROJECT_DIR$/resources/js/pages/EditEntityView.vue" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/EntitiesController.php" />
+        <option value="$PROJECT_DIR$/tests/Feature/EntitiesApiTest.php" />
+        <option value="$PROJECT_DIR$/tests/Feature/EventApiTest.php" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER">
+    <package-json value="$PROJECT_DIR$/package.json" />
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
   <component name="JsbtTreeLayoutManager">
     <layout place="tools.popupnpm">
       <scroll-view-position x="0" y="0" />
     </layout>
   </component>
-  <component name="PhpWorkspaceProjectConfiguration">
-    <include_path>
-      <path value="$PROJECT_DIR$/vendor/jakub-onderka/php-console-highlighter" />
-      <path value="$PROJECT_DIR$/vendor/psr/container" />
-      <path value="$PROJECT_DIR$/vendor/psr/log" />
-      <path value="$PROJECT_DIR$/vendor/psr/simple-cache" />
-      <path value="$PROJECT_DIR$/vendor/opis/closure" />
-      <path value="$PROJECT_DIR$/vendor/league/flysystem" />
-      <path value="$PROJECT_DIR$/vendor/nesbot/carbon" />
-      <path value="$PROJECT_DIR$/vendor/ramsey/uuid" />
-      <path value="$PROJECT_DIR$/vendor/vlucas/phpdotenv" />
-      <path value="$PROJECT_DIR$/vendor/egulias/email-validator" />
-      <path value="$PROJECT_DIR$/vendor/laravel/framework" />
-      <path value="$PROJECT_DIR$/vendor/monolog/monolog" />
-      <path value="$PROJECT_DIR$/vendor/symfony/console" />
-      <path value="$PROJECT_DIR$/vendor/symfony/css-selector" />
-      <path value="$PROJECT_DIR$/vendor/symfony/debug" />
-      <path value="$PROJECT_DIR$/vendor/symfony/error-handler" />
-      <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher" />
-      <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher-contracts" />
-      <path value="$PROJECT_DIR$/vendor/symfony/finder" />
-      <path value="$PROJECT_DIR$/vendor/symfony/http-foundation" />
-      <path value="$PROJECT_DIR$/vendor/symfony/http-kernel" />
-      <path value="$PROJECT_DIR$/vendor/symfony/mime" />
-      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
-      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-iconv" />
-      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn" />
-      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
-      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php72" />
-      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php73" />
-      <path value="$PROJECT_DIR$/vendor/symfony/process" />
-      <path value="$PROJECT_DIR$/vendor/symfony/routing" />
-      <path value="$PROJECT_DIR$/vendor/symfony/service-contracts" />
-      <path value="$PROJECT_DIR$/vendor/symfony/translation" />
-      <path value="$PROJECT_DIR$/vendor/symfony/translation-contracts" />
-      <path value="$PROJECT_DIR$/vendor/symfony/var-dumper" />
-      <path value="$PROJECT_DIR$/vendor/doctrine/inflector" />
-      <path value="$PROJECT_DIR$/vendor/doctrine/lexer" />
-      <path value="$PROJECT_DIR$/vendor/fideloper/proxy" />
-      <path value="$PROJECT_DIR$/vendor/paragonie/random_compat" />
-      <path value="$PROJECT_DIR$/vendor/phpoption/phpoption" />
-      <path value="$PROJECT_DIR$/vendor/composer" />
-      <path value="$PROJECT_DIR$/vendor/swiftmailer/swiftmailer" />
-      <path value="$PROJECT_DIR$/vendor/tijsverkoyen/css-to-inline-styles" />
-      <path value="$PROJECT_DIR$/vendor/dragonmantank/cron-expression" />
-      <path value="$PROJECT_DIR$/vendor/jakub-onderka/php-console-color" />
-      <path value="$PROJECT_DIR$/vendor/psy/psysh" />
-      <path value="$PROJECT_DIR$/vendor/dnoegel/php-xdg-base-dir" />
-      <path value="$PROJECT_DIR$/vendor/nikic/php-parser" />
-      <path value="$PROJECT_DIR$/vendor/facade/flare-client-php" />
-      <path value="$PROJECT_DIR$/vendor/facade/ignition" />
-      <path value="$PROJECT_DIR$/vendor/facade/ignition-contracts" />
-      <path value="$PROJECT_DIR$/vendor/laravel/tinker" />
-      <path value="$PROJECT_DIR$/vendor/filp/whoops" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/diff" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/recursion-context" />
-      <path value="$PROJECT_DIR$/vendor/fzaninotto/faker" />
-      <path value="$PROJECT_DIR$/vendor/scrivo/highlight.php" />
-      <path value="$PROJECT_DIR$/vendor/mockery/mockery" />
-      <path value="$PROJECT_DIR$/vendor/hamcrest/hamcrest-php" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/comparator" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/exporter" />
-      <path value="$PROJECT_DIR$/vendor/phar-io/manifest" />
-      <path value="$PROJECT_DIR$/vendor/phar-io/version" />
-      <path value="$PROJECT_DIR$/vendor/doctrine/instantiator" />
-      <path value="$PROJECT_DIR$/vendor/theseer/tokenizer" />
-      <path value="$PROJECT_DIR$/vendor/nunomaduro/collision" />
-      <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-common" />
-      <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock" />
-      <path value="$PROJECT_DIR$/vendor/phpdocumentor/type-resolver" />
-      <path value="$PROJECT_DIR$/vendor/webmozart/assert" />
-      <path value="$PROJECT_DIR$/vendor/myclabs/deep-copy" />
-      <path value="$PROJECT_DIR$/vendor/phpspec/prophecy" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/resource-operations" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/global-state" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/object-enumerator" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/environment" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/object-reflector" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/version" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/code-unit-reverse-lookup" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/type" />
-      <path value="$PROJECT_DIR$/vendor/phpunit/php-code-coverage" />
-      <path value="$PROJECT_DIR$/vendor/phpunit/php-file-iterator" />
-      <path value="$PROJECT_DIR$/vendor/phpunit/php-text-template" />
-      <path value="$PROJECT_DIR$/vendor/phpunit/php-timer" />
-      <path value="$PROJECT_DIR$/vendor/phpunit/php-token-stream" />
-      <path value="$PROJECT_DIR$/vendor/phpunit/phpunit" />
-      <path value="$PROJECT_DIR$/vendor/firebase/php-jwt" />
-      <path value="$PROJECT_DIR$/vendor/symfony/psr-http-message-bridge" />
-      <path value="$PROJECT_DIR$/vendor/phpseclib/phpseclib" />
-      <path value="$PROJECT_DIR$/vendor/laravel/passport" />
-      <path value="$PROJECT_DIR$/vendor/defuse/php-encryption" />
-      <path value="$PROJECT_DIR$/vendor/lcobucci/jwt" />
-      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
-      <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
-      <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
-      <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
-      <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
-      <path value="$PROJECT_DIR$/vendor/league/event" />
-      <path value="$PROJECT_DIR$/vendor/league/oauth2-server" />
-      <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
-      <path value="$PROJECT_DIR$/vendor/laravel/scout" />
-      <path value="$PROJECT_DIR$/vendor/algolia/algoliasearch-client-php" />
-      <path value="$PROJECT_DIR$/vendor/teamtnt/tntsearch" />
-      <path value="$PROJECT_DIR$/vendor/teamtnt/laravel-scout-tntsearch-driver" />
-      <path value="$PROJECT_DIR$/vendor/laravel/ui" />
-      <path value="$PROJECT_DIR$/vendor/maennchen/zipstream-php" />
-      <path value="$PROJECT_DIR$/vendor/spatie/image" />
-      <path value="$PROJECT_DIR$/vendor/spatie/image-optimizer" />
-      <path value="$PROJECT_DIR$/vendor/spatie/laravel-medialibrary" />
-      <path value="$PROJECT_DIR$/vendor/spatie/pdf-to-image" />
-      <path value="$PROJECT_DIR$/vendor/spatie/temporary-directory" />
-      <path value="$PROJECT_DIR$/vendor/intervention/image" />
-      <path value="$PROJECT_DIR$/vendor/league/glide" />
-      <path value="$PROJECT_DIR$/vendor/myclabs/php-enum" />
-      <path value="$PROJECT_DIR$/vendor/rennokki/befriended" />
-      <path value="$PROJECT_DIR$/vendor/awt/apilogger" />
-      <path value="$PROJECT_DIR$/vendor/moontoast/math" />
-      <path value="$PROJECT_DIR$/vendor/phpseclib/bcmath_compat" />
-      <path value="$PROJECT_DIR$/vendor/laravel/telescope" />
-      <path value="$PROJECT_DIR$/vendor/laminas/laminas-diactoros" />
-      <path value="$PROJECT_DIR$/vendor/laminas/laminas-zendframework-bridge" />
-      <path value="$PROJECT_DIR$/vendor/league/commonmark" />
-      <path value="$PROJECT_DIR$/vendor/league/commonmark-ext-table" />
-      <path value="$PROJECT_DIR$/vendor/org_heigl/ghostscript" />
-    </include_path>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
-  <component name="ProjectId" id="1XOGBN3P5M8m3D9ArdgyRBB7p8g" />
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds">
+    <option name="width" value="1366" />
+    <option name="height" value="723" />
+  </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
-    <option name="showLibraryContents" value="true" />
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Mustakshif" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Mustakshif" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Mustakshif" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Mustakshif" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Mustakshif" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Mustakshif" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Feature" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SearchEverywhereHistoryKey" value="Entity&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Entity.php&#10;EReques&#9;null&#9;null&#10;prof&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/profile.blade.php&#10;EFA&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/database/factories/EntityFactory.php&#10;Create&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/pages/CreateEntityView.vue&#10;EntiFac&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/database/factories/EntityFactory.php&#10;cateSe&#9;null&#9;null&#10;crea_en_t&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/database/migrations/2019_11_24_131324_create_entities_table.php&#10;profi.vue&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/components/PlaceProfileCard.vue&#10;app.scs&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/sass/app.scss&#10;app.js&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/app.js&#10;admi/e/c&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/admin/entities/create.blade.php&#10;app&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/sass/app.scss&#10;tail&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/tailwind.config.js&#10;lig&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/sass/themes/light.scss&#10;regi&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Http/Controllers/Auth/RegisterController.php&#10;Profi&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Profile.php&#10;ap/reg&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Http/Controllers/Api/RegisterController.php&#10;home&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/home.blade.php&#10;ho&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/home.blade.php&#10;cate.vue&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/components/MapCategories.vue&#10;tailwind&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/tailwind.config.js&#10;ad/crea&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/admin/entities/create.blade.php&#10;CreateEntityView.vue&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/pages/CreateEntityView.vue&#10;Profile&#9;null&#9;null&#10;Enti&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Entity.php&#10;CreateEn.vu&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/pages/CreateEntityView.vue&#10;imageCro.vu&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/components/ImageCropper.vue&#10;Prof&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/profile.blade.php&#10;\Illuminate\Contracts\Auth\Authenticatable&#9;null&#9;null&#10;web&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/routes/web.php&#10;pro&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/profile.blade.php&#10;StarRa.vu&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/components/StarRating.vue&#10;Ava.vue&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/components/Avatar.vue&#10;Null&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/NullUser.php&#10;AppP&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Providers/AppServiceProvider.php&#10;profi&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/profile.blade.php&#10;Us&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/User.php&#10;appPr&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Providers/AppServiceProvider.php&#10;profile.&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/profile.blade.php&#10;web.ph&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/routes/web.php&#10;registe&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Http/Controllers/Auth/RegisterController.php&#10;EntiC&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Http/Controllers/EntitiesController.php&#10;register&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Http/Controllers/Auth/RegisterController.php&#10;Register&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/vendor/laravel/framework/src/Illuminate/Auth/Events/Registered.php&#10;User&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/User.php&#10;Entit&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Entity.php&#10;Compan&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Http/Middleware/Company.php&#10;isA&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Http/Middleware/IsAdmin.php&#10;cropModa&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/partials/modals/CropImageModal.blade.php" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="nodejs_interpreter_path" value="node" />
-    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="SearchEverywhereHistoryKey" value="Event&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Event.php&#10;User&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/User.php&#10;Entity&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Entity.php&#10;EvenCon&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Http/Controllers/Api/EventsController.php&#10;EvCont&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Http/Controllers/Admin/EventsController.php&#10;Resou&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Http/Resources/EventResource.php&#10;EntReq&#9;null&#9;null&#10;enticont&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Http/Controllers/Admin/EntitiesController.php&#10;editV.vu&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/pages/EditEntityView.vue&#10;enti/crea&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/admin/entities/create.blade.php&#10;enti/c&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/entities/create.blade.php&#10;ent/edit&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/admin/entities/edit.blade.php&#10;eve/cre&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/admin/events/create.blade.php&#10;eve/sh&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/admin/events/show.blade.php&#10;eve/show&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/admin/events/show.blade.php&#10;admin&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/layouts/admin.blade.php&#10;eve_ta&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/database/migrations/2020_01_02_084210_create_events_table.php&#10;eventCon&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Http/Controllers/Admin/EventsController.php&#10;eve/inde&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/admin/events/index.blade.php&#10;event&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Event.php&#10;carsou&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/components/Carsouel.vue&#10;register.&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/auth/register.blade.php&#10;EVeFa&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/database/factories/EventsFactory.php&#10;ma&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/components/GoogleMap.vue&#10;home&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/home.blade.php&#10;fa&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/database/factories/EventsFactory.php&#10;Eve_tab&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/database/migrations/2020_01_02_084210_create_events_table.php&#10;EveCar&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/components/EventCard.vue&#10;MapV&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/pages/MapView.vue&#10;Google&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/components/GoogleMap.vue&#10;Events&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Http/Controllers/Api/EventsController.php&#10;EventsController&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Http/Controllers/Admin/EventsController.php&#10;EventsCon&#9;null&#9;null&#10;EventCon&#9;null&#9;null&#10;EventFac&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/database/factories/EventsFactory.php&#10;ProCa&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/components/PlaceProfileCard.vue&#10;map&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/pages/MapView.vue&#10;app.js&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/app.js&#10;ProCard&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/components/PlaceProfileCard.vue&#10;filterMO&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/partials/modals/filteringModal.blade.php&#10;Goo&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/components/GoogleMap.vue&#10;map.vue&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/components/GoogleMap.vue&#10;home.&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/home.blade.php&#10;web.&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/routes/web.php&#10;E&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Entity.php&#10;EntitCon&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/app/Http/Controllers/Admin/EntitiesController.php&#10;EntityRes&#9;null&#9;null&#10;star.vu&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/components/StarRating.vue&#10;search.vu&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/js/components/SearchInput.vue&#10;all.&#9;FILE&#9;file:///home/owiesnama/Projects/Mustakshif/resources/views/admin/all.blade.php" />
+    <property name="nodejs_interpreter_path" value="$USER_HOME$/.nvm/versions/node/v12.6.0/bin/node" />
     <property name="settings.editor.selected.configurable" value="editing.templates" />
+    <property name="ToolWindowTerminal.ShowToolbar" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/svg" />
+      <recent name="$PROJECT_DIR$/public/svg/markers" />
+      <recent name="$PROJECT_DIR$/public/img" />
+      <recent name="$PROJECT_DIR$/public/fonts" />
+      <recent name="$PROJECT_DIR$/public/images" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/public/images" />
       <recent name="$PROJECT_DIR$/app/traits" />
@@ -189,23 +353,86 @@
       <recent name="$PROJECT_DIR$/resources/js/components" />
       <recent name="$PROJECT_DIR$/app" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/public/svg/markers" />
-      <recent name="$PROJECT_DIR$/public/svg" />
-      <recent name="$PROJECT_DIR$/public/img" />
-      <recent name="$PROJECT_DIR$/public/fonts" />
-      <recent name="$PROJECT_DIR$/public/images" />
-    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="js.build_tools.gulp">
+    <configuration default="true" type="CodeceptionConfigurationType" factoryName="Codeception">
+      <PhpTestRunnerSettings />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerJest" factoryName="Jest">
+      <node-interpreter value="project" />
+      <working-dir value="" />
+      <envs />
+      <scope-kind value="ALL" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
+      <BehatRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpSpecConfigurationType" factoryName="PHPSpec">
+      <PhpTestRunnerSettings />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-interpreter>project</node-interpreter>
       <node-options />
       <gulpfile />
       <tasks />
       <arguments />
       <envs />
-      <method v="2" />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory />
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui />
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
+      <method />
     </configuration>
   </component>
   <component name="ServiceViewManager">
@@ -219,6 +446,9 @@
         </serviceView>
       </list>
     </option>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -294,50 +524,11 @@
       <workItem from="1580397302732" duration="1202000" />
       <workItem from="1580398835373" duration="2900000" />
       <workItem from="1580403148235" duration="182000" />
-      <workItem from="1580551597248" duration="737000" />
-      <workItem from="1580909592207" duration="67000" />
-    </task>
-    <task id="LOCAL-00040" summary="searchable entities.">
-      <created>1577304730238</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1577304730238</updated>
-    </task>
-    <task id="LOCAL-00041" summary="api">
-      <created>1577623037858</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1577623037858</updated>
-    </task>
-    <task id="LOCAL-00042" summary="add resources to version control">
-      <created>1577624249095</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1577624249095</updated>
-    </task>
-    <task id="LOCAL-00043" summary="enhancements">
-      <created>1577629203496</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1577629203496</updated>
-    </task>
-    <task id="LOCAL-00044" summary="enhancements">
-      <created>1577629254143</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1577629254143</updated>
-    </task>
-    <task id="LOCAL-00045" summary="reactive map">
-      <created>1577728851580</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1577728851580</updated>
+      <workItem from="1580551597248" duration="951000" />
+      <workItem from="1580730325375" duration="2107000" />
+      <workItem from="1580732454244" duration="10076000" />
+      <workItem from="1580909579370" duration="11896000" />
+      <workItem from="1580994002093" duration="1978000" />
     </task>
     <task id="LOCAL-00046" summary="wip">
       <created>1577794884547</created>
@@ -633,18 +824,117 @@
       <option name="project" value="LOCAL" />
       <updated>1580551659005</updated>
     </task>
-    <task id="LOCAL-00088" summary="Adding database seeder">
-      <created>1580649563421</created>
+    <task id="LOCAL-00088" summary="update depandancies">
+      <created>1580552366432</created>
       <option name="number" value="00088" />
       <option name="presentableId" value="LOCAL-00088" />
       <option name="project" value="LOCAL" />
-      <updated>1580649563421</updated>
+      <updated>1580552366432</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="make details nullable">
+      <created>1580732290134</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1580732290138</updated>
+    </task>
+    <task id="LOCAL-00090" summary="merge">
+      <created>1580732556801</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1580732556802</updated>
+    </task>
+    <task id="LOCAL-00091" summary="event card">
+      <created>1580937935771</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1580937935772</updated>
+    </task>
+    <task id="LOCAL-00092" summary="fixing carousel">
+      <created>1580938965767</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1580938965767</updated>
+    </task>
+    <task id="LOCAL-00093" summary="fixing carousel">
+      <created>1580938974508</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1580938974508</updated>
+    </task>
+    <task id="LOCAL-00094" summary="wysiwyg for edit entity page">
+      <created>1580996195661</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1580996195662</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="343128000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1366" height="723" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27013177" sideWeight="0.48095238" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295129" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32857144" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.54285717" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2489019" sideWeight="0.5190476" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Key Promoter X" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32902297" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="100" y="100" width="1166" height="523" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32857144" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32857144" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="Key Promoter X" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32902297" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295129" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" x="100" y="100" width="1166" height="523" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32857144" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32857144" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43650794" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27013177" sideWeight="0.48095238" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32857144" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2489019" sideWeight="0.5190476" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
+  </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="processedProjectFiles" value="true" />
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ORDER">
@@ -656,26 +946,12 @@
       </list>
     </option>
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="rateable entities" />
-    <MESSAGE value="api auth" />
-    <MESSAGE value="api for following, rating and review entities" />
-    <MESSAGE value="fixing test" />
     <MESSAGE value="token issue" />
     <MESSAGE value="configuration missmatch" />
     <MESSAGE value="registration as a company" />
@@ -683,7 +959,6 @@
     <MESSAGE value="refine images" />
     <MESSAGE value="taggable entities" />
     <MESSAGE value="cleaning up" />
-    <MESSAGE value="merge" />
     <MESSAGE value="edit testing" />
     <MESSAGE value="map clustering" />
     <MESSAGE value="reviews api cleaning" />
@@ -696,29 +971,412 @@
     <MESSAGE value="api for mobile" />
     <MESSAGE value="markdown details" />
     <MESSAGE value="Merge branch 'development' of https://gitlab.com/baylasan-back-end/sudan-map-back-end into EntitiesRelations&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;composer.lock" />
-    <MESSAGE value="Adding database seeder" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding database seeder" />
+    <MESSAGE value="update depandancies" />
+    <MESSAGE value="make details nullable" />
+    <MESSAGE value="merge" />
+    <MESSAGE value="event card" />
+    <MESSAGE value="fixing carousel" />
+    <MESSAGE value="wysiwyg for edit entity page" />
+    <option name="LAST_COMMIT_MESSAGE" value="wysiwyg for edit entity page" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="499" y="160" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1580909629643">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="499" y="160" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1580909629643" />
-    <state x="333" y="0" key="CommitChangelistDialog2" timestamp="1580649562753">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="333" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580649562753" />
-    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1580649872479">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1580649872479" />
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1580649566220">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1580649566220" />
-    <state x="348" y="154" key="git4idea.merge.GitPullDialog" timestamp="1580648860098" />
-    <state x="348" y="154" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1580648860098" />
-    <state x="339" y="6" width="672" height="676" key="search.everywhere.popup" timestamp="1580648860098" />
-    <state x="339" y="6" width="672" height="676" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1580648860098" />
+    <state x="348" y="154" key="git4idea.merge.GitPullDialog" />
+    <state x="348" y="154" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" />
+    <state x="339" y="6" width="672" height="676" key="search.everywhere.popup" />
+    <state x="339" y="6" width="672" height="676" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/tests/Feature/EntitiesRatingApiTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="19" column="4" lean-forward="false" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Feature/CategoryEntitiesApiTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="19" column="7" lean-forward="true" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Feature/EntitiesReviewApiTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-506">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Feature/EntityRatingTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="5" column="53" lean-forward="false" selection-start-line="5" selection-start-column="53" selection-end-line="5" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Feature/TagsApiTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="62" column="13" lean-forward="true" selection-start-line="62" selection-start-column="13" selection-end-line="62" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="272" column="13" lean-forward="false" selection-start-line="272" selection-start-column="13" selection-end-line="272" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/database.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1222">
+          <caret line="50" column="21" lean-forward="false" selection-start-line="50" selection-start-column="13" selection-end-line="50" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/app.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="11" column="22" lean-forward="false" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ProfilesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="7" column="6" lean-forward="false" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UsersProfilesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="14" column="44" lean-forward="false" selection-start-line="14" selection-start-column="44" selection-end-line="14" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/all.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="5" column="65" lean-forward="true" selection-start-line="5" selection-start-column="65" selection-end-line="5" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/traits/CanBeRated.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-884">
+          <caret line="8" column="6" lean-forward="false" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Resources/EntityResource.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="624">
+          <caret line="24" column="19" lean-forward="false" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/EntitiesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="23" column="79" lean-forward="false" selection-start-line="23" selection-start-column="79" selection-end-line="23" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/components/SearchInput.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="572">
+          <caret line="22" column="56" lean-forward="false" selection-start-line="22" selection-start-column="56" selection-end-line="22" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/partials/modals/filteringModal.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="27" column="47" lean-forward="true" selection-start-line="27" selection-start-column="47" selection-end-line="27" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/svg/event-endtime-icon.svg">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/components/PlaceProfileCard.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="7" column="19" lean-forward="true" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/components/StarRating.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/pages/MapView.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="46" column="63" lean-forward="false" selection-start-line="46" selection-start-column="63" selection-end-line="46" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Concerns/HasRelationships.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="169" column="20" lean-forward="false" selection-start-line="169" selection-start-column="20" selection-end-line="169" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2020_01_02_084210_create_events_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="21" column="28" lean-forward="false" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/events/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="18" column="27" lean-forward="false" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/admin.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="51" column="44" lean-forward="false" selection-start-line="51" selection-start-column="44" selection-end-line="51" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1898">
+          <caret line="73" column="52" lean-forward="false" selection-start-line="73" selection-start-column="52" selection-end-line="73" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/components/EventCard.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="858">
+          <caret line="46" column="14" lean-forward="true" selection-start-line="46" selection-start-column="14" selection-end-line="46" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/auth/register.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4056">
+          <caret line="156" column="9" lean-forward="false" selection-start-line="156" selection-start-column="8" selection-end-line="156" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/TestCase.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="20" column="20" lean-forward="false" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/components/GoogleMap.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2522">
+          <caret line="98" column="35" lean-forward="false" selection-start-line="98" selection-start-column="35" selection-end-line="98" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/factories/EventsFactory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="16" column="9" lean-forward="false" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/components/Carsouel.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="20" column="29" lean-forward="false" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/events/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-714">
+          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/events/show.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/entities/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2210">
+          <caret line="2" column="14" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/entities/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="82" column="0" lean-forward="false" selection-start-line="82" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/entities/edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="430">
+          <caret line="87" column="59" lean-forward="false" selection-start-line="87" selection-start-column="59" selection-end-line="87" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Requests/EntityRequest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="508">
+          <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/pages/EditEntityView.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="67" column="103" lean-forward="false" selection-start-line="67" selection-start-column="78" selection-end-line="67" selection-end-column="103" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/EntitiesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="128" column="4" lean-forward="false" selection-start-line="128" selection-start-column="4" selection-end-line="128" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Resources/EventResource.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Feature/EntitiesApiTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding>
+            <element signature="e#33#50#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/EventsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/EventsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="58" column="13" lean-forward="false" selection-start-line="58" selection-start-column="13" selection-end-line="58" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Entity.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="15" column="39" lean-forward="false" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2848">
+          <caret line="127" column="0" lean-forward="true" selection-start-line="127" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Event.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1274">
+          <caret line="60" column="24" lean-forward="false" selection-start-line="60" selection-start-column="20" selection-end-line="60" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Feature/EventApiTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="117" column="56" lean-forward="false" selection-start-line="117" selection-start-column="56" selection-end-line="117" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>

@@ -22,6 +22,7 @@ class EntityResource extends JsonResource
             'avatar' => $this->avatar,
             'cover' => $this->cover,
             'tags' => $this->tags,
+            'rating' => $this->rating(),
             'location' => [
                     'lat' => $this->latitude,
                     'long' => $this->longitude,

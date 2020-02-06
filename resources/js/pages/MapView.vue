@@ -1,12 +1,14 @@
 <script>
     import GoogleMap from '../components/GoogleMap.vue'
     import PlaceProfileCard from '../components/PlaceProfileCard.vue'
+    import EventCard from '../components/EventCard.vue'
     export default{
-        components: {GoogleMap, PlaceProfileCard},
+        components: {GoogleMap, PlaceProfileCard, EventCard},
         data(){
             return {
                 places: [],
                 selectedPlace: null,
+                selectedEvent: null,
                 selectedCategory: null,
                 mapCenter: {},
                 showing: 'places',
@@ -41,7 +43,8 @@
                 })
             },
             selectPlace(place){
-                this.selectedPlace = place
+                let lookup = {places: 'Place', events: 'Event'}
+                this['selected' + lookup[this.showing]] = place
                 this.mapCenter = {}
                 this.mapCenter.latitude = place.location.lat
                 this.mapCenter.longitude = place.location.long

@@ -10,6 +10,7 @@
                         cover: '',
                         avatar: '',
                         description: '',
+                        details: '',
                         name: '',
                         category_id: '',
                         latitude: '',

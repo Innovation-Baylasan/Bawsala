@@ -23,12 +23,12 @@ class Event extends Model implements HasMedia
     protected $fillable = [
         'creator_id',
         'entity_id',
-        'event_name',
-        'event_picture',
-        'registration_link',
+        'name',
+        'picture',
+        'link',
         'description',
-        'application_start_date',
-        'application_end_date',
+        'start_date',
+        'end_date',
         'latitude',
         'longitude'
     ];
@@ -72,7 +72,7 @@ class Event extends Model implements HasMedia
     {
         return [
             'id' => $this->id,
-            'event_name' => $this->event_name,
+            'name' => $this->name,
             'description' => $this->description,
             'location' => json_encode($this->location),
         ];

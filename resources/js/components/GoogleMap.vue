@@ -59,7 +59,7 @@
                         position: new this.google.maps.LatLng(place.location.lat, place.location.long),
                         map: this.map,
                         icon: {
-                            url: (place.category ? `/svg/markers/${place.category.name}-marker-icon.svg` : 'https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi.png '),
+                            url: (place.category ? `/svg/markers/${place.category.name}-marker-icon.svg` : '/svg/event-icon.svg'),
                             scaledSize: new google.maps.Size(35, 35),
                             origin: new google.maps.Point(0, 0),
                             anchor: new google.maps.Point(0, 0)

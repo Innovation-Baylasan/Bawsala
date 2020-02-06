@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Entity;
 use App\User;
 use http\Exception\InvalidArgumentException;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use SebastianBergmann\Diff\InvalidArgumentExceptionTest;
@@ -12,6 +13,8 @@ use Tests\TestCase;
 
 class EntitiesRatingApiTest extends TestCase
 {
+
+    use DatabaseMigrations;
 
     private $user;
     private $entity;

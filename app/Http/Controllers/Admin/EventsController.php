@@ -17,11 +17,9 @@ class EventsController extends Controller
     public function index()
     {
 
-        $event = Event::latest()->paginate(5);
+        $events = Event::latest()->paginate(5);
 
-        return view('admin.events.index', compact('event'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
-
+        return view('admin.events.index', compact('events'));
     }
 
     /**
@@ -38,7 +36,7 @@ class EventsController extends Controller
     /**
      * Store a newly created event in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      *
      */
@@ -47,29 +45,29 @@ class EventsController extends Controller
 
         $attributes = $request->validate([
             'entity_id' => 'required',
-            'event_picture' => 'required',
-            'event_name' => 'required',
-            'registration_link' => 'required',
-            'application_start_datetime'  => 'required|date',
-            'application_end_datetime'  => 'required|date',
-            'title'  => 'required',
-            'latitude'  => 'required|numeric',
-            'longitude'  => 'required|numeric',
-            'confirm'  => 'required|numeric',
+            'picture' => 'required',
+            'name' => 'required',
+            'link' => 'required',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date',
+            'title' => 'required',
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
+            'confirm' => 'required|numeric',
         ]);
 
         $form_data = array(
             'creator_id' => auth()->user()->id,
             'entity_id' => $attributes['entity_id'],
-            'event_picture' => $attributes['event_picture'],
-            'event_name' => $attributes['event_name'],
-            'registration_link' => $attributes['registration_link'],
+            'picture' => $attributes['picture'],
+            'name' => $attributes['name'],
+            'link' => $attributes['link'],
             'description' => $attributes['description'],
-            'application_start_datetime' => $attributes['application_start_datetime'],
-            'application_end_datetime' => $attributes['application_end_datetime'],
+            'start_date' => $attributes['start_date'],
+            'end_date' => $attributes['end_date'],
             'latitude' => $attributes['latitude'],
             'longitude' => $attributes['longitude'],
-            'confirm'  => $attributes['confirm'],
+            'confirm' => $attributes['confirm'],
         );
 
         Event::create($form_data);
@@ -112,7 +110,7 @@ class EventsController extends Controller
     /**
      * Update the specified event in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @param  Event  event
      * @return \Illuminate\Http\Response
      *
@@ -121,29 +119,29 @@ class EventsController extends Controller
     {
         $attributes = $request->validate([
             'entity_id' => 'required',
-            'event_picture' => 'required',
-            'event_name' => 'required',
-            'registration_link' => 'required',
-            'application_start_datetime'  => 'required|date',
-            'application_end_datetime'  => 'required|date',
-            'title'  => 'required',
-            'latitude'  => 'required|numeric',
-            'longitude'  => 'required|numeric',
-            'confirm'  => 'required|numeric',
+            'picture' => 'required',
+            'name' => 'required',
+            'link' => 'required',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date',
+            'title' => 'required',
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
+            'confirm' => 'required|numeric',
         ]);
 
         $form_data = array(
             'creator_id' => auth()->user()->id,
             'entity_id' => $attributes['entity_id'],
-            'event_picture' => $attributes['event_picture'],
-            'event_name' => $attributes['event_name'],
-            'registration_link' => $attributes['registration_link'],
+            'picture' => $attributes['picture'],
+            'name' => $attributes['name'],
+            'link' => $attributes['link'],
             'description' => $attributes['description'],
-            'application_start_datetime' => $attributes['application_start_datetime'],
-            'application_end_datetime' => $attributes['application_end_datetime'],
+            'start_date' => $attributes['start_date'],
+            'end_date' => $attributes['end_date'],
             'latitude' => $attributes['latitude'],
             'longitude' => $attributes['longitude'],
-            'confirm'  => $attributes['confirm'],
+            'confirm' => $attributes['confirm'],
         );
 
         $event->update($form_data);

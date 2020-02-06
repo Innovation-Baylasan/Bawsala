@@ -3,7 +3,7 @@
 <head>
     {{--<meta charset="UTF-8">--}}
     <title>Baylasan Innovation | Eco Map Dashboard</title>
-    <link rel="shortcut icon" type="image/jpg" href="/img/logo.png"/>
+    <link rel="shortcut icon" type="image/jpg" href="/images/fav-icon.png"/>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
 <body>
@@ -20,6 +20,14 @@
                     <p class="text-sm text-gray-500">Mangers/Directors</p>
                 </div>
                 <div class="flex flex-col flex-1">
+
+                    <a href="/admin" class="flex  items-center p-1 text-sm px-3  fade">
+                        <div class="w-10 h-10 flex items-center justify-center  mr-4">
+                            <img src="{{asset('svg/users-icon.svg')}}" alt="">
+                        </div>
+                        <span class="text-gray-500">Dashboard</span>
+                    </a>
+
                     <a href="{{route('users.index')}}" class="flex  items-center p-1 text-sm px-3  fade">
                         <div class="w-10 h-10 flex items-center justify-center  mr-4">
                             <img src="{{asset('svg/users-icon.svg')}}" alt="">
@@ -39,6 +47,13 @@
                             <img src="{{asset('svg/entities-icon.svg')}}" alt="">
                         </div>
                         <span class="text-gray-500">Entities</span>
+                    </a>
+
+                    <a href="{{route('events.index')}}" class="flex  items-center p-1 text-sm px-3  fade">
+                        <div class="w-10 h-10 flex items-center justify-center  mr-4">
+                            <img src="{{asset('svg/events-icon.svg')}}" alt="">
+                        </div>
+                        <span class="text-gray-500">Events</span>
                     </a>
 
                     <a href="{{route('tags.index')}}" class="flex  items-center p-1 text-sm px-3  fade">
