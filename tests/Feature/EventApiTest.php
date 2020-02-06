@@ -47,7 +47,6 @@ class EventApiTest extends TestCase
 
         $event = [
             'entity_id' => $entity->id,
-            'picture' => "picture",
             'name' => "Event Name",
             'link' => "my link",
             'description' => "This is a very great description",
@@ -78,10 +77,10 @@ class EventApiTest extends TestCase
         $event = [
             'entity_id' => $entity->id,
             'name' => "Event Name",
-            'registration_link' => "my link",
+            'link' => "my link",
             'description' => "This is a very great description",
-            'start_datetime' => Carbon::now(),
-            'end_datetime' => Carbon::now(),
+            'start_date' => Carbon::now(),
+            'end_date' => Carbon::now(),
             'latitude' => 3.5,
             'longitude' => 9.6,
             'cover' => UploadedFile::fake()->image('cover.jpg')
@@ -111,10 +110,10 @@ class EventApiTest extends TestCase
         $event = [
             'entity_id' => $entity->id,
             'name' => "Event Name",
-            'registration_link' => "my link",
+            'link' => "my link",
             'description' => "This is a very great description",
-            'start_datetime' => Carbon::now(),
-            'end_datetime' => Carbon::now(),
+            'start_date' => Carbon::now(),
+            'end_date' => Carbon::now(),
             'latitude' => 3.5,
             'longitude' => 9.6,
             'avatar' => UploadedFile::fake()->image('avatar.jpg'),

@@ -24,7 +24,6 @@ class Event extends Model implements HasMedia
         'creator_id',
         'entity_id',
         'name',
-        'picture',
         'link',
         'description',
         'start_date',
@@ -71,10 +70,8 @@ class Event extends Model implements HasMedia
     public function toSearchableArray()
     {
         return [
-            'id' => $this->id,
             'name' => $this->name,
             'description' => $this->description,
-            'location' => json_encode($this->location),
         ];
     }
 
@@ -95,6 +92,6 @@ class Event extends Model implements HasMedia
     public function getCoverAttribute()
     {
         $cover = $this->getMedia('covers')->first();
-        return $cover ? $cover->getUrl('cover') : 'https://placeimg.com/640/460/tech';
+        return $cover ? $cover->getUrl('cover') : 'https://media.sproutsocial.com/uploads/2018/04/Facebook-Cover-Photo-Size.png';
     }
 }

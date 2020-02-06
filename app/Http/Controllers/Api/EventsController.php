@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Event;
 use App\Entity;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EventRequest;
 use App\Http\Resources\EventResource;
 use App\User;
 use Illuminate\Http\Request;
@@ -36,6 +37,11 @@ class EventsController extends Controller
 
     }
 
+    /**
+     * index,store,show,destroy,create,update,edit
+     *
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
     public function myEvents()
     {
 
@@ -50,19 +56,9 @@ class EventsController extends Controller
      * @param Entity $entity
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EventRequest $request)
     {
-        $attributes = $request->validate([
-            'entity_id' => "required|max:255",
-            'picture' => "required|max:255",
-            'name' => "required|max:255",
-            'link' => "required|max:255",
-            'description' => "required|max:255",
-            'start_date' => "required|max:255",
-            'end_date' => "required|max:255",
-            'latitude' => "required|max:255",
-            'longitude' => "required|max:255",
-        ]);
+        $attributes = $request->validated();
 
         $event = auth()->user()->events()->create($attributes);
 

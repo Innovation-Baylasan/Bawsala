@@ -19,7 +19,7 @@ class EventResource extends JsonResource
             'entity' => $this->entity,
             'creator' => $this->user,
             'name' => $this->name,
-            'picture' => $this->picture,
+            'picture' => $this->cover,
             'link' => $this->link,
             'description' => $this->description,
             'start_date' => $this->start_date,

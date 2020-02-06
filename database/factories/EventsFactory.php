@@ -13,7 +13,6 @@ $factory->define(Event::class, function (Faker $faker) use ($places) {
     return [
         'creator_id' => factory('App\User'),
         'name' => $faker->name,
-        'picture' => 'https://media.sproutsocial.com/uploads/2018/04/Facebook-Cover-Photo-Size.png',
         'link' => 'https://laravel.com/docs/5.8/migrations#creating-tables',
         'description' => $faker->paragraph,
         'start_date' => $faker->dateTime,

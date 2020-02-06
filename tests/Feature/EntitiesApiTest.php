@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Category;
 use App\Entity;
 use Carbon\Carbon;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\UploadedFile;
@@ -317,7 +318,7 @@ class EntitiesApiTest extends TestCase
 
 
     /** @test */
-    public function it_should_get_entity_nearby_entities()
+    public function it_should_get_entity_nearby_entities_within_1km()
     {
 
         // given we have many entities

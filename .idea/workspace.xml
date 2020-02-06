@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="Adding Old Seed Files">
+    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="- Modified Login As Company&#10;- it_should_create_event_for_a_registered_user_with_cover&#10;- name, description, (end,start datetime)&#10;- Changed Event Factory.&#10;- Changed Event, Entity&#10;- EventResource.php&#10;- EventController">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Entity.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Entity.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Event.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Event.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/EventsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/EventsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/EventsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/EventsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Resources/EventResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/EventResource.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/factories/EventsFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/EventsFactory.php" afterDir="false" />
@@ -12,7 +12,6 @@
       <change beforePath="$PROJECT_DIR$/phpunit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/phpunit.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Feature/EntitiesApiTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/EntitiesApiTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Feature/EventApiTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/EventApiTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/TestCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/TestCase.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -216,7 +215,7 @@
       <recent name="$PROJECT_DIR$/public/images" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.Feature">
+  <component name="RunManager" selected="PHPUnit.EventApiTest">
     <configuration name="EntitiesApiTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="Tests\Feature\EntitiesApiTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/EntitiesApiTest.php" scope="Class" />
       <method v="2" />
@@ -225,12 +224,12 @@
       <TestRunner class="Tests\Feature\EntitiesApiTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/EntitiesApiTest.php" method="it_should_allow_authenticated_entity_user_to_create_entity" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="EntitiesApiTest.it_should_return_all_entities" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\EntitiesApiTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/EntitiesApiTest.php" method="it_should_return_all_entities" scope="Method" />
+    <configuration name="EventApiTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\EventApiTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/EventApiTest.php" scope="Class" />
       <method v="2" />
     </configuration>
-    <configuration name="EntitiesApiTest.it_should_show_entity_by_passing_id" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\EntitiesApiTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/EntitiesApiTest.php" method="it_should_show_entity_by_passing_id" scope="Method" />
+    <configuration name="EventApiTest.it_should_create_event_for_a_registered_user" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\EventApiTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/EventApiTest.php" method="it_should_create_event_for_a_registered_user" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="Feature" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
@@ -248,11 +247,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="PHPUnit.EventApiTest" />
+        <item itemvalue="PHPUnit.EventApiTest.it_should_create_event_for_a_registered_user" />
         <item itemvalue="PHPUnit.Feature" />
         <item itemvalue="PHPUnit.EntitiesApiTest.it_should_allow_authenticated_entity_user_to_create_entity" />
         <item itemvalue="PHPUnit.EntitiesApiTest" />
-        <item itemvalue="PHPUnit.EntitiesApiTest.it_should_show_entity_by_passing_id" />
-        <item itemvalue="PHPUnit.EntitiesApiTest.it_should_return_all_entities" />
       </list>
     </recent_temporary>
   </component>
@@ -769,30 +768,42 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="168" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1580981099993" />
-    <state x="333" y="0" key="CommitChangelistDialog2" timestamp="1580909677415">
+    <state x="333" y="0" key="CommitChangelistDialog2" timestamp="1580996881205">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="333" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580909677415" />
-    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1580649872479">
+    <state x="333" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580996881205" />
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1580996285213">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1580649872479" />
-    <state width="1493" height="509" key="GridCell.Tab.0.bottom" timestamp="1580990545047">
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1580996285213" />
+    <state width="1493" height="322" key="GridCell.Tab.0.bottom" timestamp="1580995464625">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="509" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580990545047" />
-    <state width="1493" height="509" key="GridCell.Tab.0.center" timestamp="1580990545046">
+    <state width="1493" height="322" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580995464625" />
+    <state width="1493" height="322" key="GridCell.Tab.0.center" timestamp="1580995464625">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="509" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1580990545046" />
-    <state width="1493" height="509" key="GridCell.Tab.0.left" timestamp="1580990545046">
+    <state width="1493" height="322" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1580995464625" />
+    <state width="1493" height="322" key="GridCell.Tab.0.left" timestamp="1580995464625">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="509" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1580990545046" />
-    <state width="1493" height="509" key="GridCell.Tab.0.right" timestamp="1580990545047">
+    <state width="1493" height="322" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1580995464625" />
+    <state width="1493" height="322" key="GridCell.Tab.0.right" timestamp="1580995464625">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="509" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1580990545047" />
+    <state width="1493" height="322" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1580995464625" />
+    <state x="40" y="46" width="1390" height="682" key="MergeDialog" timestamp="1580991796329">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="40" y="46" width="1390" height="682" key="MergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1580991796328" />
+    <state x="481" y="129" key="MultipleFileMergeDialog" timestamp="1580991800648">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="481" y="129" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1580991800648" />
+    <state x="564" y="118" key="VCS.ChangeListViewerDialog" timestamp="1580995810798">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="564" y="118" key="VCS.ChangeListViewerDialog/0.0.1536.824@0.0.1536.824" timestamp="1580995810798" />
     <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1580909681450">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -801,13 +812,16 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="465" y="238" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1580980881248" />
-    <state x="348" y="154" key="git4idea.merge.GitPullDialog" timestamp="1580648860098" />
+    <state x="348" y="154" key="git4idea.merge.GitPullDialog" timestamp="1580991226584">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
     <state x="348" y="154" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1580648860098" />
-    <state x="339" y="6" width="672" height="676" key="search.everywhere.popup" timestamp="1580990532086">
+    <state x="348" y="154" key="git4idea.merge.GitPullDialog/0.0.1536.824@0.0.1536.824" timestamp="1580991226584" />
+    <state x="339" y="6" width="672" height="676" key="search.everywhere.popup" timestamp="1580996681887">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="339" y="6" width="672" height="676" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1580648860098" />
-    <state x="339" y="6" width="672" height="676" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1580990532086" />
+    <state x="339" y="6" width="672" height="676" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1580996681887" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/sudan_map_back_end@EventApiTest_it_should_return_stored_events.xml" NAME="EventApiTest.it_should_return_stored_events Coverage Results" MODIFIED="1580915757700" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
