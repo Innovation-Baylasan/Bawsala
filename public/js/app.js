@@ -7831,6 +7831,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
         cover: '',
         avatar: '',
         description: '',
+        details: '',
         name: '',
         category_id: '',
         latitude: '',

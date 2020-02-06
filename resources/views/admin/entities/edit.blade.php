@@ -80,13 +80,22 @@
                               :reduce="reduceTags"
                               @search="getTags"></v-select>
 
+
+                    <label class="input-label" for="location">Entity Details</label>
+                    <div class="max-w-full h-56 overflow-hidden mb-2">
+                        <wysiwyg placeholder="Enter entity details"
+                                 class="overflow-hidden"
+                                 v-model="entity.details"/>
+                    </div>
+
+
                     <label class="input-label" for="location">Entity Location</label>
                     <location-picker class="w-full h-56 rounded mb-4" api-key="{{config('app.mapKey')}}"
                     @marker-placed="setLocation"></location-picker>
                     <p class="error" v-if="entity.errors.longitude" v-text="entity.errors.longitude[0]"></p>
                     <input type="hidden" name="latitude" :value="entity.latitude">
                     <input type="hidden" name="longitude" :value="entity.longitude">
-                    <button class="button is-green" :class="{'is-loading' : loading}"  type="submit">update</button>
+                    <button class="button is-green" :class="{'is-loading' : loading}" type="submit">update</button>
 
                 </div>
             </form>
