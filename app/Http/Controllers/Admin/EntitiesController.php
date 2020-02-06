@@ -118,13 +118,8 @@ class EntitiesController extends Controller
     {
         $attributes = $request->validated();
 
-        $entity->update([
-            'category_id' => $attributes['category_id'],
-            'name' => $attributes['name'],
-            'description' => $attributes['description'],
-            'latitude' => $attributes['latitude'],
-            'longitude' => $attributes['longitude'],
-        ]);
+        $entity->update($attributes);
+
         $entity->tags()->detach();
 
         if ($request->has('tags')) {

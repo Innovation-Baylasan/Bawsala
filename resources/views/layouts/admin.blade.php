@@ -49,6 +49,13 @@
                         <span class="text-gray-500">Entities</span>
                     </a>
 
+                    <a href="{{route('events.index')}}" class="flex  items-center p-1 text-sm px-3  fade">
+                        <div class="w-10 h-10 flex items-center justify-center  mr-4">
+                            <img src="{{asset('svg/events-icon.svg')}}" alt="">
+                        </div>
+                        <span class="text-gray-500">Events</span>
+                    </a>
+
                     <a href="{{route('tags.index')}}" class="flex  items-center p-1 text-sm px-3  fade">
                         <div class="w-10 h-10 flex items-center justify-center  mr-4">
                             <img src="{{asset('svg/tags-icon.svg')}}" alt="">
