@@ -6,9 +6,7 @@ use App\Category;
 use App\Entity;
 use App\Event;
 use Carbon\Carbon;
-use Faker\Provider\DateTime;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
 use App\User;
@@ -17,23 +15,7 @@ use InvalidArgumentException;
 
 class EventApiTest extends TestCase
 {
-    use RefreshDatabase;
-
-    private $user;
-    private $events;
-
-    public function setUp(): void {
-
-        parent::setUp();
-
-        $this->user = factory(User::class)->create();
-
-        $this->events = factory(Event::class, 2)->create([
-            'creator_id' => $this->user->id
-        ]);
-
-    }
-
+    use DatabaseMigrations;
 
     /**
      * A basic feature test example.
@@ -65,11 +47,12 @@ class EventApiTest extends TestCase
 
         $event = [
             'entity_id' => $entity->id,
+            'picture' => "picture",
             'name' => "Event Name",
-            'registration_link' => "my link",
+            'link' => "my link",
             'description' => "This is a very great description",
-            'start_datetime' => Carbon::now(),
-            'end_datetime' => Carbon::now(),
+            'start_date' => Carbon::now(),
+            'end_date' => Carbon::now(),
             'latitude' => 3.5,
             'longitude' => 9.6
         ];
@@ -146,11 +129,15 @@ class EventApiTest extends TestCase
 
 
     /** @test */
-    public function it_should_return_user_entities () {
+    public function it_should_return_user_events()
+    {
 
         $this->withoutExceptionHandling();
 
-        $this->signIn($this->user, 'api');
+        $event = factory(Event::class)->create();
+
+        $this->signIn($event->user, 'api');
+
 
         $response = $this->get(route('api.events.myEvents'));
 
@@ -170,8 +157,7 @@ class EventApiTest extends TestCase
 
         $response = $this->get(route('api.events.myEvents'));
 
-        $response
-            ->assertJsonCount(2, 'data')
+        $response->assertJsonCount(1, 'data')
             ->assertOk();
 
     }
