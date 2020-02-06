@@ -31,9 +31,7 @@ abstract class TestCase extends BaseTestCase
         return $this->actingAs($user ?: factory('App\User', [
             'register_as' => 'company',
             'category' => factory(Category::class)->create()->id,
-            'location' => '12.23778823,23.2312312',
-            'avatar' => UploadedFile::fake()->image('avatar.jpg'),
-            'cover' => UploadedFile::fake()->image('cover.jpg')
+            'location' => '12.23778823,23.2312312'
         ])->create(), $driver);
 
     }

@@ -23,15 +23,21 @@ class Event extends Model implements HasMedia
     protected $fillable = [
         'creator_id',
         'entity_id',
-        'event_name',
-        'event_picture',
+        'name',
         'registration_link',
         'description',
-        'application_start_date',
-        'application_end_date',
+        'start_date',
+        'end_date',
         'latitude',
         'longitude'
     ];
+
+    /**
+     * Determine what to eager load when retrieving activity
+     *
+     * @var array
+     */
+    protected $appends = ['cover'];
 
     /**
      * @param Media|null $media
@@ -83,9 +89,13 @@ class Event extends Model implements HasMedia
      * @param $cover
      * @return $this
      */
-    public function setCover($cover)
+    public function setCover($cover, $from = 'url')
     {
-        $this->addMedia($cover)->toMediaCollection('covers');
+
+        $method = $from == 'url' ? 'addMediaFromUrl' : 'addMedia';
+
+        $this->{$method}($cover)->toMediaCollection('covers');
+
         return $this;
     }
 
@@ -94,7 +104,8 @@ class Event extends Model implements HasMedia
      */
     public function getCoverAttribute()
     {
-        $cover = $this->getMedia('covers')->first();
-        return $cover ? $cover->getUrl('cover') : 'https://placeimg.com/640/460/tech';
+        $cover = $this->getMedia('covers')->last();
+        return $cover ? $cover->getUrl('cover') : 'https://placeimg.com/640/360/tech';
     }
+
 }

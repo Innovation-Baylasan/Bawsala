@@ -7,6 +7,7 @@ use App\Entity;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
 use App\User;
 use Illuminate\Support\Facades\Hash;
@@ -271,6 +272,45 @@ class EntitiesApiTest extends TestCase
             ->assertStatus(201);
 
     }
+
+
+    /** @test */
+//    function it_should_allow_authenticated_entity_user_to_create_entity()
+//    {
+//
+//        $this->withoutExceptionHandling();
+//
+//        $user = factory('App\User', [
+//            'register_as' => 'company',
+//            'category' => factory(Category::class)->create()->id,
+//            'longitude' => 12.23778823,
+//            'latitude' => 23.2312312
+//        ])->create();
+//
+//        $this->signIn($user, 'api');
+//
+//        $entity = [
+//            'category_id' => factory(Category::class)->create()->id,
+//            'name' => "My Entity",
+//            'cover' => "https://placeimg.com/640/360/tech",
+//            'avatar' => "https://www.gravatar.com/avatar/?s=200",
+//            'description' => "This is a very great description",
+//            'latitude' => 3.5,
+//            'longitude' => 9.6
+//        ];
+//
+//        $response = $this->json('post', route('api.entities.store'), $entity);
+//
+//        $response->dump();
+//
+//        $response
+//            ->assertJsonFragment($entity)
+//            ->assertJsonFragment([
+//                'message' => 'Entity created successfully'
+//            ])
+//            ->assertStatus(201);
+//
+//    }
 
 
     /** @test */
