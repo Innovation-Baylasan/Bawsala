@@ -12,7 +12,7 @@ class EntitiesReviewApiTest extends TestCase
 
 
     /**
-     * @test
+     @test
      */
     public function test_user_can_review_an_entity()
     {

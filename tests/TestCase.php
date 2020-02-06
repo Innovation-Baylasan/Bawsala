@@ -2,7 +2,9 @@
 
 namespace Tests;
 
+use App\Category;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Http\UploadedFile;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -21,5 +23,18 @@ abstract class TestCase extends BaseTestCase
     public function signIn($user = null, $driver = null)
     {
         return $this->actingAs($user ?: factory('App\User')->create(), $driver);
+    }
+
+    public function signInAsCompany($user = null, $driver = null)
+    {
+
+        return $this->actingAs($user ?: factory('App\User', [
+            'register_as' => 'company',
+            'category' => factory(Category::class)->create()->id,
+            'location' => '12.23778823,23.2312312',
+            'avatar' => UploadedFile::fake()->image('avatar.jpg'),
+            'cover' => UploadedFile::fake()->image('cover.jpg')
+        ])->create(), $driver);
+
     }
 }

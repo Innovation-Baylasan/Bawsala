@@ -24,7 +24,6 @@ class RegisterController extends Controller
             'description' => ['sometimes', 'required', 'string', 'min:8', 'max:500'],
         ]);
 
-
         $user = User::register([
             'name' => $attributes['name'],
             'email' => $attributes['email'],
@@ -36,7 +35,8 @@ class RegisterController extends Controller
         return response([
             'data' => [
                 'user' => $user,
-                'token' => $user->token
+                'token' => $user->token,
+                'main_entity' => $user->isCompany() ? $user->mainEntity() : []
             ],
             'message' => 'user registered successfully'
         ], 200);

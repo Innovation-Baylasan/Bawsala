@@ -8,6 +8,7 @@ use App\Filters\EntitiesFilter;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\EntityResource;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class EntitiesController extends Controller
 {
@@ -53,7 +54,6 @@ class EntitiesController extends Controller
 
     /**
      * @param Request $request
-     * @param Entity $entity
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
     public function store(Request $request)

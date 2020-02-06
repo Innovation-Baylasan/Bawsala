@@ -33,6 +33,8 @@ Route::middleware('apilogger')->namespace('Api')->group(function () {
 
     Route::get('/entities/{entity}', 'EntitiesController@show')->name('api.entities.show');
 
+    Route::middleware('auth:api')->delete('/entities/{entity}', 'EntitiesController@destroy')->name('api.entities.destroy');
+
     Route::put('/entities/{entity}/rating', 'EntitiesRatingController@update')->name('api.entitiesRating.update');
 
     Route::get('/entities/{entity}/reviews', 'EntitiesReviewsController@index')->name('api.entitiesReviews.index');
