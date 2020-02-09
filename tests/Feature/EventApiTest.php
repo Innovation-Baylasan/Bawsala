@@ -26,6 +26,8 @@ class EventApiTest extends TestCase
     function it_should_return_stored_events()
     {
 
+        factory(Event::class, 5)->create();
+
         $response = $this->get(route('api.events.index'));
 
         $response
@@ -41,12 +43,8 @@ class EventApiTest extends TestCase
 
         $this->withoutExceptionHandling();
 
-        $this->signIn(factory(User::class)->create(), 'api');
-
-        $entity = factory(Entity::class)->create();
-
         $event = [
-            'entity_id' => $entity->id,
+            'entity_id' => factory(Entity::class)->create()->id,
             'name' => "Event Name",
             'link' => "my link",
             'description' => "This is a very great description",
@@ -55,6 +53,8 @@ class EventApiTest extends TestCase
             'latitude' => 3.5,
             'longitude' => 9.6
         ];
+
+        $this->signIn(factory(User::class)->create(), 'api');
 
         $response = $this->json('post', route('api.events.store'), $event);
 
@@ -131,15 +131,19 @@ class EventApiTest extends TestCase
     public function it_should_return_user_events()
     {
 
-        $this->withoutExceptionHandling();
-
+        // Given a user with 2 events
         $event = factory(Event::class)->create();
 
-        $this->signIn($event->user, 'api');
+        factory(Event::class)->create([
+            'creator_id' => $event->user->id
+        ]);
 
+        // when this user logs in and call myEvents end point
+        $this->signIn($event->user, 'api');
 
         $response = $this->get(route('api.events.myEvents'));
 
+        // then the response only contains those 2 events he has created
         $response
             ->assertJsonCount(2, 'data')
             ->assertOk();
@@ -152,7 +156,22 @@ class EventApiTest extends TestCase
 
         $this->withoutExceptionHandling();
 
-        $this->signInAsCompany($this->user, 'api');
+        $user = $this->createCompanyUser();
+
+        $this->signIn($user, 'api');
+
+        $event = [
+            'entity_id' => factory(Entity::class)->create(),
+            'name' => "Event Name",
+            'link' => "my link",
+            'description' => "This is a very great description",
+            'start_date' => Carbon::now(),
+            'end_date' => Carbon::now(),
+            'latitude' => 3.5,
+            'longitude' => 9.6
+        ];
+
+        $this->post(route('api.events.store'), $event);
 
         $response = $this->get(route('api.events.myEvents'));
 

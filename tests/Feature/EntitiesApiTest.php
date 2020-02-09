@@ -85,23 +85,6 @@ class EntitiesApiTest extends TestCase
 
     }
 
-    /** @test */
-    public function it_should_get_entity_nearby_entities()
-    {
-
-        $response = $this->get(route('api.entities.index', [
-            '@lat' => $this->entities[0]->latitude,
-            '@long' => $this->entities[0]->longitude,
-        ])); //->decodeResponseJson();
-
-        $response
-            ->assertOk()
-            ->assertJsonFragment([
-                'name' => $this->entities[0]->name
-            ]);
-
-    }
-
 
     /** @test */
     public function it_should_show_entity_by_passing_id()

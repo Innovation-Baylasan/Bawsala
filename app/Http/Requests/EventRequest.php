@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class EventRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class EventRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Auth::check();
     }
 
     /**
@@ -24,13 +25,12 @@ class EventRequest extends FormRequest
     public function rules()
     {
         return [
-            'entity_id' => 'required',
-            'picture' => 'required',
+            'entity_id' => 'sometimes',
             'name' => 'required',
             'link' => 'required',
             'start_date' => 'required|date',
+            'description' => 'sometimes',
             'end_date' => 'required|date',
-            'title' => 'required',
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
             'confirm' => 'sometimes|numeric',
