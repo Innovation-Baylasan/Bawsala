@@ -33,6 +33,14 @@ class Event extends Model implements HasMedia
     ];
 
     /**
+     * Determine what to eager load when retrieving activity
+     *
+     * @var array
+     */
+    protected $appends = ['cover'];
+
+
+    /**
      * @param Media|null $media
      */
     public function registerMediaConversions(Media $media = null)
@@ -69,10 +77,14 @@ class Event extends Model implements HasMedia
      */
     public function toSearchableArray()
     {
-        return [
+        $search = [
             'name' => $this->name,
             'description' => $this->description,
         ];
+
+        $search[$this->getKeyName()] = $this->getKey();
+
+        return $search;
     }
 
 

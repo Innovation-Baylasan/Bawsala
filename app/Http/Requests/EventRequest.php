@@ -34,6 +34,7 @@ class EventRequest extends FormRequest
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
             'confirm' => 'sometimes|numeric',
+            'cover' => 'sometimes'
         ];
     }
 }

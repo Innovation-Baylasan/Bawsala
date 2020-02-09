@@ -62,8 +62,8 @@ class EventsController extends Controller
 
         $event = auth()->user()->events()->create($attributes);
 
-        if ((request()->has('cover'))) {
-            $event->setCover(request('cover'), 'image');
+        if (($request->has('cover'))) {
+            $event->setCover($request->cover, 'image');
         }
 
         return response([

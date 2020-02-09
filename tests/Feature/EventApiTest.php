@@ -70,14 +70,16 @@ class EventApiTest extends TestCase
 
         $this->withoutExceptionHandling();
 
-        $this->signIn(factory(User::class)->create(), 'api');
+        $this->signIn(($user = factory(User::class)->create()), 'api');
 
-        $entity = factory(Entity::class)->create();
+        $entity = factory(Entity::class)->create([
+            'user_id' => $user->id
+        ]);
 
         $event = [
             'entity_id' => $entity->id,
             'name' => "Event Name",
-            'link' => "my link",
+            'link' => "https://myevent_website.com",
             'description' => "This is a very great description",
             'start_date' => Carbon::now(),
             'end_date' => Carbon::now(),
@@ -86,7 +88,7 @@ class EventApiTest extends TestCase
             'cover' => UploadedFile::fake()->image('cover.jpg')
         ];
 
-        $response = $this->json('post', route('api.events.store'), $event);
+        $response = $this->post(route('api.events.store'), $event);
 
         $response
             ->assertJsonFragment([
