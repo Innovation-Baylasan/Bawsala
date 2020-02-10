@@ -19,7 +19,7 @@ class LoginController extends Controller
                 'data' => [
                     'user' => $user = auth()->user(),
                     'token' => $user->token,
-                    'main_entity' => $user->isCompany() ? $user->mainEntity() : []
+                    'main_entity' => $user->isCompany() ? $user->mainEntity() : null
                 ],
                 'message' => 'login successfully'
             ], 200);

@@ -7440,6 +7440,15 @@ __webpack_require__.r(__webpack_exports__);
 
       this.$emit('category-change', this.selectedCategories);
     }
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    document.body.addEventListener('click', function (event) {
+      if (!(_this.$el == event.target || _this.$el.contains(event.target))) {
+        _this.isOpen = false;
+      }
+    });
   }
 });
 
@@ -31478,7 +31487,7 @@ var render = function() {
     "div",
     {
       staticClass:
-        "fixed z-10 bottom-0 bg-white rounded overflow-hidden shadow m-4 right-0",
+        "fixed z-10 top-0 bg-white rounded overflow-hidden shadow m-4 left-0",
       staticStyle: { width: "393px" }
     },
     [
@@ -31847,7 +31856,7 @@ var render = function() {
               _c(
                 "a",
                 {
-                  staticClass: "flex   items-center p-2  fade",
+                  staticClass: "flex items-center p-2  fade",
                   attrs: { href: "#" },
                   on: {
                     click: function($event) {
@@ -31867,7 +31876,7 @@ var render = function() {
                   {
                     key: index,
                     staticClass:
-                      "flex items-center justify-between p-2 fade -mx-1",
+                      "flex items-center justify-between p-2 fade -mx-3",
                     attrs: { href: "#" },
                     on: {
                       click: function($event) {
@@ -31882,7 +31891,7 @@ var render = function() {
                         "div",
                         {
                           staticClass:
-                            "w-10 h-10 flex items-center mx-1 justify-center p-1 rounded bg-gray-100"
+                            "w-8 h-8 flex items-center mx-3 justify-center p-1 rounded bg-gray-100"
                         },
                         [_c("img", { attrs: { src: category.icon, alt: "" } })]
                       ),
@@ -31983,7 +31992,7 @@ var render = function() {
     "div",
     {
       staticClass:
-        "top-0 absolute bg-white rounded z-10 overflow-hidden shadow m-4 right-0",
+        "top-0 absolute bg-white rounded z-10 overflow-hidden shadow m-4 left-0",
       staticStyle: { width: "393px" }
     },
     [

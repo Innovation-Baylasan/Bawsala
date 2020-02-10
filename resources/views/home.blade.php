@@ -11,7 +11,7 @@
 <div id="app">
     <map-view inline-template>
         <div>
-            <header class="fixed py-4 w-full z-10 flex -mx-4 h-32 justify-center">
+            <header class="fixed py-4 w-full z-10 flex -mx-4 justify-end">
 
                 <div v-if="showing == 'places'"
                      class="relative mx-4">
@@ -21,6 +21,9 @@
                 <search-input class="self-start" :category="selectedCategories" @result-clicked="selectPlace"
                 ></search-input>
 
+                <div class="rounded-full  ml-16 w-16 h-16 overflow-hidden">
+                    <img src="https://www.gravatar.com/avatar/?s=200" alt="">
+                </div>
 
                 {{--@guest--}}
                 {{--<div class="bg-default rounded overflow-hidden shadow mt-4 mx-2">--}}

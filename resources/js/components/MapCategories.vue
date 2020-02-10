@@ -13,7 +13,7 @@
         <ul v-if="isOpen" class="flex overflow-y-scroll px-4 md:flex-col justify-between">
             <li class="py-2 border-b">
                 <a href="#"
-                   class="flex   items-center p-2  fade"
+                   class="flex items-center p-2  fade"
                    @click.prevent="selectCategory('')">
                     <div class="w-10 h-10 flex items-center justify-center p-1 rounded bg-gray-100bg-red-100 svg-red"
                     >
@@ -25,12 +25,12 @@
                 v-for="(category,index) in categories"
             >
                 <a href="#"
-                   class="flex items-center justify-between p-2 fade -mx-1"
+                   class="flex items-center justify-between p-2 fade -mx-3"
                    :key="index"
                    @click.prevent="selectCategory(category.name)"
                 >
                     <div class="flex items-center">
-                        <div class="w-10 h-10 flex items-center mx-1 justify-center p-1 rounded bg-gray-100"
+                        <div class="w-8 h-8 flex items-center mx-3 justify-center p-1 rounded bg-gray-100"
                         >
                             <img :src="category.icon" alt="">
                         </div>
@@ -65,6 +65,14 @@
                 }
                 this.$emit('category-change', this.selectedCategories)
             },
+        },
+
+        mounted(){
+            document.body.addEventListener('click', event => {
+                if (!(this.$el == event.target || this.$el.contains(event.target))) {
+                    this.isOpen = false
+                }
+            })
         }
     }
 </script>

@@ -1,5 +1,5 @@
 <template>
-    <div style="width:393px;" class="top-0 absolute bg-white rounded z-10 overflow-hidden shadow m-4 right-0">
+    <div style="width:393px;" class="top-0 absolute bg-white rounded z-10 overflow-hidden shadow m-4 left-0">
         <div class="flex flex-col justify-center items-center">
             <div class="relative">
                 <span class="block cursor-pointer w-8 h-8 flex items-center justify-center  p-4 rounded-full text-gray-500 absolute m-4 top-0 right-0 bg-white"
