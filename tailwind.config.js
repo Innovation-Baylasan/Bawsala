@@ -45,6 +45,7 @@ module.exports = {
                 },
                 default: 'var(--text-default-color)',
                 accent: 'var(--text-accent-color)',
+                secondary: 'var(--text-secondary-color)',
                 'accent-light': 'var(--text-accent-light-color)',
                 muted: 'var(--text-muted-color)',
                 'muted-light': 'var(--text-muted-light-color)',

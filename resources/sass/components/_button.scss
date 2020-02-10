@@ -3,6 +3,9 @@
   &.is-green {
     @apply bg-green-600;
   }
+  &.is-muted {
+    @apply bg-muted;
+  }
   &.is-wide {
     @apply px-24;
   }

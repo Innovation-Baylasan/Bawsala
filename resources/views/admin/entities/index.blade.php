@@ -15,13 +15,13 @@
         </thead>
 
         <tbody>
-        @foreach($entity as $row)
+        @foreach($entities as $entity)
             <tr>
-                <td> {{ $row->name  }} </td>
-                <td> {{ $row->category->name ?? ''}} </td>
-                <td> {{ Str::limit($row->description,50)}} </td>
+                <td> {{ $entity->name  }} </td>
+                <td> {{ $entity->category->name ?? ''}} </td>
+                <td> {{ Str::limit($entity->description,50)}} </td>
                 <td class="flex">
-                    <a href="{{route('entities.edit',$row)}}"
+                    <a href="{{route('entities.edit',$entity)}}"
                        class="flex  items-center justify-center p-2"
                     >
                         <div class="w-8 h-8 flex items-center justify-center p-1 rounded bg-gray-100">
@@ -29,7 +29,7 @@
                         </div>
                     </a>
                     <form method="POST"
-                          action="{{ route('entities.destroy', $row)  }}"
+                          action="{{ route('entities.destroy', $entity)  }}"
                           id="remove-category-form"
                     >
                         <a href="#"

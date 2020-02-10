@@ -21,9 +21,9 @@ class EntitiesController extends Controller
      */
     public function index()
     {
-        $entity = Entity::latest()->paginate(10);
+        $entities = Entity::latest()->paginate(10);
 
-        return view('admin.entities.index', compact('entity'));
+        return view('admin.entities.index', compact('entities'));
     }
 
     /**

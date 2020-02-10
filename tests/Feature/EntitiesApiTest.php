@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Category;
 use App\Entity;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 use App\User;
 

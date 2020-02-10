@@ -11,8 +11,10 @@ class Form {
     data() {
         return Object.keys(this.originalData).reduce((data, attribute) => {
             if (this[attribute]) {
+                console.log(this[attribute])
                 data[attribute] = this[attribute];
             }
+            console.log(data)
             return data;
         }, {});
     }

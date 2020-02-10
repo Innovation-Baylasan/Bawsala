@@ -639,11 +639,12 @@
   --header-background-color: white;
   --text-default-color: #fff;
   --text-accent-color: #003a7c;
-  --text-accent-light-color: #003a7c;
+  --text-accent-light-color: rgba(0, 28, 154, .1);
   --text-muted-color: rgba(0, 0, 0, 0.3);
   --text-muted-light-color: rgba(255, 255, 255, 0.1);
   --text-muted-light-color: #e1e6e8;
   --text-error-color: red;
+  --text-secondary-color: #ffcd58;
 }
 
 .theme-dark {
@@ -1637,6 +1638,10 @@ video {
   background-color: var(--text-accent-color);
 }
 
+.bg-secondary{
+  background-color: var(--text-secondary-color);
+}
+
 .bg-accent-light{
   background-color: var(--text-accent-light-color);
 }
@@ -1937,6 +1942,10 @@ video {
   background-color: var(--text-accent-color);
 }
 
+.hover\:bg-secondary:hover{
+  background-color: var(--text-secondary-color);
+}
+
 .hover\:bg-accent-light:hover{
   background-color: var(--text-accent-light-color);
 }
@@ -2235,6 +2244,10 @@ video {
 
 .focus\:bg-accent:focus{
   background-color: var(--text-accent-color);
+}
+
+.focus\:bg-secondary:focus{
+  background-color: var(--text-secondary-color);
 }
 
 .focus\:bg-accent-light:focus{
@@ -2613,6 +2626,10 @@ video {
   border-color: var(--text-accent-color);
 }
 
+.border-secondary{
+  border-color: var(--text-secondary-color);
+}
+
 .border-accent-light{
   border-color: var(--text-accent-light-color);
 }
@@ -2909,6 +2926,10 @@ video {
   border-color: var(--text-accent-color);
 }
 
+.hover\:border-secondary:hover{
+  border-color: var(--text-secondary-color);
+}
+
 .hover\:border-accent-light:hover{
   border-color: var(--text-accent-light-color);
 }
@@ -3203,6 +3224,10 @@ video {
 
 .focus\:border-accent:focus{
   border-color: var(--text-accent-color);
+}
+
+.focus\:border-secondary:focus{
+  border-color: var(--text-secondary-color);
 }
 
 .focus\:border-accent-light:focus{
@@ -7551,6 +7576,26 @@ video {
   color: var(--text-accent-color);
 }
 
+.placeholder-secondary::-webkit-input-placeholder{
+  color: var(--text-secondary-color);
+}
+
+.placeholder-secondary::-moz-placeholder{
+  color: var(--text-secondary-color);
+}
+
+.placeholder-secondary:-ms-input-placeholder{
+  color: var(--text-secondary-color);
+}
+
+.placeholder-secondary::-ms-input-placeholder{
+  color: var(--text-secondary-color);
+}
+
+.placeholder-secondary::placeholder{
+  color: var(--text-secondary-color);
+}
+
 .placeholder-accent-light::-webkit-input-placeholder{
   color: var(--text-accent-light-color);
 }
@@ -9051,6 +9096,26 @@ video {
   color: var(--text-accent-color);
 }
 
+.focus\:placeholder-secondary:focus::-webkit-input-placeholder{
+  color: var(--text-secondary-color);
+}
+
+.focus\:placeholder-secondary:focus::-moz-placeholder{
+  color: var(--text-secondary-color);
+}
+
+.focus\:placeholder-secondary:focus:-ms-input-placeholder{
+  color: var(--text-secondary-color);
+}
+
+.focus\:placeholder-secondary:focus::-ms-input-placeholder{
+  color: var(--text-secondary-color);
+}
+
+.focus\:placeholder-secondary:focus::placeholder{
+  color: var(--text-secondary-color);
+}
+
 .focus\:placeholder-accent-light:focus::-webkit-input-placeholder{
   color: var(--text-accent-light-color);
 }
@@ -9690,6 +9755,10 @@ video {
   color: var(--text-accent-color);
 }
 
+.text-secondary{
+  color: var(--text-secondary-color);
+}
+
 .text-accent-light{
   color: var(--text-accent-light-color);
 }
@@ -9990,6 +10059,10 @@ video {
   color: var(--text-accent-color);
 }
 
+.hover\:text-secondary:hover{
+  color: var(--text-secondary-color);
+}
+
 .hover\:text-accent-light:hover{
   color: var(--text-accent-light-color);
 }
@@ -10288,6 +10361,10 @@ video {
 
 .focus\:text-accent:focus{
   color: var(--text-accent-color);
+}
+
+.focus\:text-secondary:focus{
+  color: var(--text-secondary-color);
 }
 
 .focus\:text-accent-light:focus{
@@ -10864,6 +10941,10 @@ video {
   background-color: #4aab50;
 }
 
+.button.is-muted {
+  background-color: var(--text-muted-color);
+}
+
 .button.is-wide {
   padding-left: 6rem;
   padding-right: 6rem;
@@ -11165,7 +11246,7 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
 
 .error {
   font-size: 0.875rem;
-  color: var(--text-accent-color);
+  color: #f04238;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 }
@@ -11552,6 +11633,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     background-color: var(--text-accent-color);
   }
 
+  .sm\:bg-secondary{
+    background-color: var(--text-secondary-color);
+  }
+
   .sm\:bg-accent-light{
     background-color: var(--text-accent-light-color);
   }
@@ -11852,6 +11937,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     background-color: var(--text-accent-color);
   }
 
+  .sm\:hover\:bg-secondary:hover{
+    background-color: var(--text-secondary-color);
+  }
+
   .sm\:hover\:bg-accent-light:hover{
     background-color: var(--text-accent-light-color);
   }
@@ -12150,6 +12239,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
 
   .sm\:focus\:bg-accent:focus{
     background-color: var(--text-accent-color);
+  }
+
+  .sm\:focus\:bg-secondary:focus{
+    background-color: var(--text-secondary-color);
   }
 
   .sm\:focus\:bg-accent-light:focus{
@@ -12528,6 +12621,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     border-color: var(--text-accent-color);
   }
 
+  .sm\:border-secondary{
+    border-color: var(--text-secondary-color);
+  }
+
   .sm\:border-accent-light{
     border-color: var(--text-accent-light-color);
   }
@@ -12824,6 +12921,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     border-color: var(--text-accent-color);
   }
 
+  .sm\:hover\:border-secondary:hover{
+    border-color: var(--text-secondary-color);
+  }
+
   .sm\:hover\:border-accent-light:hover{
     border-color: var(--text-accent-light-color);
   }
@@ -13118,6 +13219,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
 
   .sm\:focus\:border-accent:focus{
     border-color: var(--text-accent-color);
+  }
+
+  .sm\:focus\:border-secondary:focus{
+    border-color: var(--text-secondary-color);
   }
 
   .sm\:focus\:border-accent-light:focus{
@@ -17466,6 +17571,26 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     color: var(--text-accent-color);
   }
 
+  .sm\:placeholder-secondary::-webkit-input-placeholder{
+    color: var(--text-secondary-color);
+  }
+
+  .sm\:placeholder-secondary::-moz-placeholder{
+    color: var(--text-secondary-color);
+  }
+
+  .sm\:placeholder-secondary:-ms-input-placeholder{
+    color: var(--text-secondary-color);
+  }
+
+  .sm\:placeholder-secondary::-ms-input-placeholder{
+    color: var(--text-secondary-color);
+  }
+
+  .sm\:placeholder-secondary::placeholder{
+    color: var(--text-secondary-color);
+  }
+
   .sm\:placeholder-accent-light::-webkit-input-placeholder{
     color: var(--text-accent-light-color);
   }
@@ -18966,6 +19091,26 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     color: var(--text-accent-color);
   }
 
+  .sm\:focus\:placeholder-secondary:focus::-webkit-input-placeholder{
+    color: var(--text-secondary-color);
+  }
+
+  .sm\:focus\:placeholder-secondary:focus::-moz-placeholder{
+    color: var(--text-secondary-color);
+  }
+
+  .sm\:focus\:placeholder-secondary:focus:-ms-input-placeholder{
+    color: var(--text-secondary-color);
+  }
+
+  .sm\:focus\:placeholder-secondary:focus::-ms-input-placeholder{
+    color: var(--text-secondary-color);
+  }
+
+  .sm\:focus\:placeholder-secondary:focus::placeholder{
+    color: var(--text-secondary-color);
+  }
+
   .sm\:focus\:placeholder-accent-light:focus::-webkit-input-placeholder{
     color: var(--text-accent-light-color);
   }
@@ -19605,6 +19750,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     color: var(--text-accent-color);
   }
 
+  .sm\:text-secondary{
+    color: var(--text-secondary-color);
+  }
+
   .sm\:text-accent-light{
     color: var(--text-accent-light-color);
   }
@@ -19905,6 +20054,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     color: var(--text-accent-color);
   }
 
+  .sm\:hover\:text-secondary:hover{
+    color: var(--text-secondary-color);
+  }
+
   .sm\:hover\:text-accent-light:hover{
     color: var(--text-accent-light-color);
   }
@@ -20203,6 +20356,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
 
   .sm\:focus\:text-accent:focus{
     color: var(--text-accent-color);
+  }
+
+  .sm\:focus\:text-secondary:focus{
+    color: var(--text-secondary-color);
   }
 
   .sm\:focus\:text-accent-light:focus{
@@ -21068,6 +21225,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     background-color: var(--text-accent-color);
   }
 
+  .md\:bg-secondary{
+    background-color: var(--text-secondary-color);
+  }
+
   .md\:bg-accent-light{
     background-color: var(--text-accent-light-color);
   }
@@ -21368,6 +21529,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     background-color: var(--text-accent-color);
   }
 
+  .md\:hover\:bg-secondary:hover{
+    background-color: var(--text-secondary-color);
+  }
+
   .md\:hover\:bg-accent-light:hover{
     background-color: var(--text-accent-light-color);
   }
@@ -21666,6 +21831,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
 
   .md\:focus\:bg-accent:focus{
     background-color: var(--text-accent-color);
+  }
+
+  .md\:focus\:bg-secondary:focus{
+    background-color: var(--text-secondary-color);
   }
 
   .md\:focus\:bg-accent-light:focus{
@@ -22044,6 +22213,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     border-color: var(--text-accent-color);
   }
 
+  .md\:border-secondary{
+    border-color: var(--text-secondary-color);
+  }
+
   .md\:border-accent-light{
     border-color: var(--text-accent-light-color);
   }
@@ -22340,6 +22513,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     border-color: var(--text-accent-color);
   }
 
+  .md\:hover\:border-secondary:hover{
+    border-color: var(--text-secondary-color);
+  }
+
   .md\:hover\:border-accent-light:hover{
     border-color: var(--text-accent-light-color);
   }
@@ -22634,6 +22811,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
 
   .md\:focus\:border-accent:focus{
     border-color: var(--text-accent-color);
+  }
+
+  .md\:focus\:border-secondary:focus{
+    border-color: var(--text-secondary-color);
   }
 
   .md\:focus\:border-accent-light:focus{
@@ -26982,6 +27163,26 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     color: var(--text-accent-color);
   }
 
+  .md\:placeholder-secondary::-webkit-input-placeholder{
+    color: var(--text-secondary-color);
+  }
+
+  .md\:placeholder-secondary::-moz-placeholder{
+    color: var(--text-secondary-color);
+  }
+
+  .md\:placeholder-secondary:-ms-input-placeholder{
+    color: var(--text-secondary-color);
+  }
+
+  .md\:placeholder-secondary::-ms-input-placeholder{
+    color: var(--text-secondary-color);
+  }
+
+  .md\:placeholder-secondary::placeholder{
+    color: var(--text-secondary-color);
+  }
+
   .md\:placeholder-accent-light::-webkit-input-placeholder{
     color: var(--text-accent-light-color);
   }
@@ -28482,6 +28683,26 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     color: var(--text-accent-color);
   }
 
+  .md\:focus\:placeholder-secondary:focus::-webkit-input-placeholder{
+    color: var(--text-secondary-color);
+  }
+
+  .md\:focus\:placeholder-secondary:focus::-moz-placeholder{
+    color: var(--text-secondary-color);
+  }
+
+  .md\:focus\:placeholder-secondary:focus:-ms-input-placeholder{
+    color: var(--text-secondary-color);
+  }
+
+  .md\:focus\:placeholder-secondary:focus::-ms-input-placeholder{
+    color: var(--text-secondary-color);
+  }
+
+  .md\:focus\:placeholder-secondary:focus::placeholder{
+    color: var(--text-secondary-color);
+  }
+
   .md\:focus\:placeholder-accent-light:focus::-webkit-input-placeholder{
     color: var(--text-accent-light-color);
   }
@@ -29121,6 +29342,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     color: var(--text-accent-color);
   }
 
+  .md\:text-secondary{
+    color: var(--text-secondary-color);
+  }
+
   .md\:text-accent-light{
     color: var(--text-accent-light-color);
   }
@@ -29421,6 +29646,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     color: var(--text-accent-color);
   }
 
+  .md\:hover\:text-secondary:hover{
+    color: var(--text-secondary-color);
+  }
+
   .md\:hover\:text-accent-light:hover{
     color: var(--text-accent-light-color);
   }
@@ -29719,6 +29948,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
 
   .md\:focus\:text-accent:focus{
     color: var(--text-accent-color);
+  }
+
+  .md\:focus\:text-secondary:focus{
+    color: var(--text-secondary-color);
   }
 
   .md\:focus\:text-accent-light:focus{
@@ -30584,6 +30817,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     background-color: var(--text-accent-color);
   }
 
+  .lg\:bg-secondary{
+    background-color: var(--text-secondary-color);
+  }
+
   .lg\:bg-accent-light{
     background-color: var(--text-accent-light-color);
   }
@@ -30884,6 +31121,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     background-color: var(--text-accent-color);
   }
 
+  .lg\:hover\:bg-secondary:hover{
+    background-color: var(--text-secondary-color);
+  }
+
   .lg\:hover\:bg-accent-light:hover{
     background-color: var(--text-accent-light-color);
   }
@@ -31182,6 +31423,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
 
   .lg\:focus\:bg-accent:focus{
     background-color: var(--text-accent-color);
+  }
+
+  .lg\:focus\:bg-secondary:focus{
+    background-color: var(--text-secondary-color);
   }
 
   .lg\:focus\:bg-accent-light:focus{
@@ -31560,6 +31805,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     border-color: var(--text-accent-color);
   }
 
+  .lg\:border-secondary{
+    border-color: var(--text-secondary-color);
+  }
+
   .lg\:border-accent-light{
     border-color: var(--text-accent-light-color);
   }
@@ -31856,6 +32105,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     border-color: var(--text-accent-color);
   }
 
+  .lg\:hover\:border-secondary:hover{
+    border-color: var(--text-secondary-color);
+  }
+
   .lg\:hover\:border-accent-light:hover{
     border-color: var(--text-accent-light-color);
   }
@@ -32150,6 +32403,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
 
   .lg\:focus\:border-accent:focus{
     border-color: var(--text-accent-color);
+  }
+
+  .lg\:focus\:border-secondary:focus{
+    border-color: var(--text-secondary-color);
   }
 
   .lg\:focus\:border-accent-light:focus{
@@ -36498,6 +36755,26 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     color: var(--text-accent-color);
   }
 
+  .lg\:placeholder-secondary::-webkit-input-placeholder{
+    color: var(--text-secondary-color);
+  }
+
+  .lg\:placeholder-secondary::-moz-placeholder{
+    color: var(--text-secondary-color);
+  }
+
+  .lg\:placeholder-secondary:-ms-input-placeholder{
+    color: var(--text-secondary-color);
+  }
+
+  .lg\:placeholder-secondary::-ms-input-placeholder{
+    color: var(--text-secondary-color);
+  }
+
+  .lg\:placeholder-secondary::placeholder{
+    color: var(--text-secondary-color);
+  }
+
   .lg\:placeholder-accent-light::-webkit-input-placeholder{
     color: var(--text-accent-light-color);
   }
@@ -37998,6 +38275,26 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     color: var(--text-accent-color);
   }
 
+  .lg\:focus\:placeholder-secondary:focus::-webkit-input-placeholder{
+    color: var(--text-secondary-color);
+  }
+
+  .lg\:focus\:placeholder-secondary:focus::-moz-placeholder{
+    color: var(--text-secondary-color);
+  }
+
+  .lg\:focus\:placeholder-secondary:focus:-ms-input-placeholder{
+    color: var(--text-secondary-color);
+  }
+
+  .lg\:focus\:placeholder-secondary:focus::-ms-input-placeholder{
+    color: var(--text-secondary-color);
+  }
+
+  .lg\:focus\:placeholder-secondary:focus::placeholder{
+    color: var(--text-secondary-color);
+  }
+
   .lg\:focus\:placeholder-accent-light:focus::-webkit-input-placeholder{
     color: var(--text-accent-light-color);
   }
@@ -38637,6 +38934,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     color: var(--text-accent-color);
   }
 
+  .lg\:text-secondary{
+    color: var(--text-secondary-color);
+  }
+
   .lg\:text-accent-light{
     color: var(--text-accent-light-color);
   }
@@ -38937,6 +39238,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     color: var(--text-accent-color);
   }
 
+  .lg\:hover\:text-secondary:hover{
+    color: var(--text-secondary-color);
+  }
+
   .lg\:hover\:text-accent-light:hover{
     color: var(--text-accent-light-color);
   }
@@ -39235,6 +39540,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
 
   .lg\:focus\:text-accent:focus{
     color: var(--text-accent-color);
+  }
+
+  .lg\:focus\:text-secondary:focus{
+    color: var(--text-secondary-color);
   }
 
   .lg\:focus\:text-accent-light:focus{
@@ -40100,6 +40409,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     background-color: var(--text-accent-color);
   }
 
+  .xl\:bg-secondary{
+    background-color: var(--text-secondary-color);
+  }
+
   .xl\:bg-accent-light{
     background-color: var(--text-accent-light-color);
   }
@@ -40400,6 +40713,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     background-color: var(--text-accent-color);
   }
 
+  .xl\:hover\:bg-secondary:hover{
+    background-color: var(--text-secondary-color);
+  }
+
   .xl\:hover\:bg-accent-light:hover{
     background-color: var(--text-accent-light-color);
   }
@@ -40698,6 +41015,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
 
   .xl\:focus\:bg-accent:focus{
     background-color: var(--text-accent-color);
+  }
+
+  .xl\:focus\:bg-secondary:focus{
+    background-color: var(--text-secondary-color);
   }
 
   .xl\:focus\:bg-accent-light:focus{
@@ -41076,6 +41397,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     border-color: var(--text-accent-color);
   }
 
+  .xl\:border-secondary{
+    border-color: var(--text-secondary-color);
+  }
+
   .xl\:border-accent-light{
     border-color: var(--text-accent-light-color);
   }
@@ -41372,6 +41697,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     border-color: var(--text-accent-color);
   }
 
+  .xl\:hover\:border-secondary:hover{
+    border-color: var(--text-secondary-color);
+  }
+
   .xl\:hover\:border-accent-light:hover{
     border-color: var(--text-accent-light-color);
   }
@@ -41666,6 +41995,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
 
   .xl\:focus\:border-accent:focus{
     border-color: var(--text-accent-color);
+  }
+
+  .xl\:focus\:border-secondary:focus{
+    border-color: var(--text-secondary-color);
   }
 
   .xl\:focus\:border-accent-light:focus{
@@ -46014,6 +46347,26 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     color: var(--text-accent-color);
   }
 
+  .xl\:placeholder-secondary::-webkit-input-placeholder{
+    color: var(--text-secondary-color);
+  }
+
+  .xl\:placeholder-secondary::-moz-placeholder{
+    color: var(--text-secondary-color);
+  }
+
+  .xl\:placeholder-secondary:-ms-input-placeholder{
+    color: var(--text-secondary-color);
+  }
+
+  .xl\:placeholder-secondary::-ms-input-placeholder{
+    color: var(--text-secondary-color);
+  }
+
+  .xl\:placeholder-secondary::placeholder{
+    color: var(--text-secondary-color);
+  }
+
   .xl\:placeholder-accent-light::-webkit-input-placeholder{
     color: var(--text-accent-light-color);
   }
@@ -47514,6 +47867,26 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     color: var(--text-accent-color);
   }
 
+  .xl\:focus\:placeholder-secondary:focus::-webkit-input-placeholder{
+    color: var(--text-secondary-color);
+  }
+
+  .xl\:focus\:placeholder-secondary:focus::-moz-placeholder{
+    color: var(--text-secondary-color);
+  }
+
+  .xl\:focus\:placeholder-secondary:focus:-ms-input-placeholder{
+    color: var(--text-secondary-color);
+  }
+
+  .xl\:focus\:placeholder-secondary:focus::-ms-input-placeholder{
+    color: var(--text-secondary-color);
+  }
+
+  .xl\:focus\:placeholder-secondary:focus::placeholder{
+    color: var(--text-secondary-color);
+  }
+
   .xl\:focus\:placeholder-accent-light:focus::-webkit-input-placeholder{
     color: var(--text-accent-light-color);
   }
@@ -48153,6 +48526,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     color: var(--text-accent-color);
   }
 
+  .xl\:text-secondary{
+    color: var(--text-secondary-color);
+  }
+
   .xl\:text-accent-light{
     color: var(--text-accent-light-color);
   }
@@ -48453,6 +48830,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     color: var(--text-accent-color);
   }
 
+  .xl\:hover\:text-secondary:hover{
+    color: var(--text-secondary-color);
+  }
+
   .xl\:hover\:text-accent-light:hover{
     color: var(--text-accent-light-color);
   }
@@ -48751,6 +49132,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
 
   .xl\:focus\:text-accent:focus{
     color: var(--text-accent-color);
+  }
+
+  .xl\:focus\:text-secondary:focus{
+    color: var(--text-secondary-color);
   }
 
   .xl\:focus\:text-accent-light:focus{

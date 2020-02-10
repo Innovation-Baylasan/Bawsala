@@ -65,7 +65,6 @@ class EventApiTest extends TestCase
     function it_should_create_event_for_a_registered_company_user()
     {
 
-
         $this->withoutExceptionHandling();
 
         $this->signInAsCompany(factory(User::class)->create(), 'api');
@@ -74,12 +73,12 @@ class EventApiTest extends TestCase
 
         $event = [
             'entity_id' => $entity->id,
-            'event_picture' => "picture",
-            'event_name' => "Event Name",
-            'registration_link' => "my link",
+            'picture' => "picture",
+            'name' => "Event Name",
+            'link' => "my link",
             'description' => "This is a very great description",
-            'application_start_datetime' => Carbon::now(),
-            'application_end_datetime' => Carbon::now(),
+            'start_date' => Carbon::now(),
+            'end_date' => Carbon::now(),
             'latitude' => 3.5,
             'longitude' => 9.6
         ];
@@ -105,23 +104,26 @@ class EventApiTest extends TestCase
         $response = $this->get(route('api.events.myEvents'));
 
         $response
-            ->assertJsonCount(2, 'data')
+            ->assertJsonCount(1, 'data')
             ->assertOk();
 
     }
 
 
     /** @test */
-    public function it_should_return_company_entities () {
+    public function it_should_return_company_events()
+    {
+        $user = factory(User::class)->create(['role' => 'company']);
+
+        $event = factory(Event::class)->create(['creator_id' => $user->id]);
 
         $this->withoutExceptionHandling();
 
-        $this->signInAsCompany($this->user, 'api');
+        $this->signInAsCompany($user, 'api');
 
         $response = $this->get(route('api.events.myEvents'));
 
-        $response->assertJsonCount(1, 'data')
-            ->assertOk();
+        $response->assertJsonCount(1, 'data')->assertOk();
 
     }
 

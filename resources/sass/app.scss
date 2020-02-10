@@ -17,7 +17,6 @@
 @import "./components/star-rating";
 @import "~@glidejs/glide/src/assets/sass/glide.core";
 
-
 .cover-skewer {
   transform: skewY(-5deg);
   top: 90%;
@@ -64,7 +63,7 @@ input[type='checkbox']:checked, input[type='radio']:checked + .select-label {
 }
 
 .error {
-  @apply text-sm text-accent my-2;
+  @apply text-sm text-red-500 my-2;
 }
 
 .custom-pin {

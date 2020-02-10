@@ -1,29 +1,35 @@
 <template>
-    <div class="flex md:flex-col justify-between">
-        <a href="#"
-           class="flex  items-center justify-center p-2  fade"
-           :class="[selectedCategory == '' ?  'active-bottom md:active':'']"
-           @click.prevent="selectCategory('')"
-        >
-            <div class="w-10 h-10 flex items-center justify-center p-1 rounded bg-gray-100bg-red-100 svg-red"
+    <ul class="flex md:flex-col justify-between">
+        <li>
+            <a href="#"
+               class="flex  items-center p-2  fade"
+               :class="[selectedCategory == '' ?  'active-bottom md:active':'']"
+               @click.prevent="selectCategory('')">
+                <div class="w-10 h-10 flex items-center justify-center p-1 rounded bg-gray-100bg-red-100 svg-red"
+                >
+                    <img src="/svg/map-icon.svg" alt="">
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="#"
+               class="flex items-center p-2 fade -mx-1"
+               v-for="(category,index) in categories"
+               :class="[selectedCategory == category.name ? 'active-bottom md:active':'']"
+               :key="index"
+               @click.prevent="selectCategory(category.name)"
             >
-                <img src="/svg/map-icon.svg" alt="">
-            </div>
-        </a>
-        <a href="#"
-           class="flex items-center justify-center p-2 fade"
-           v-for="(category,index) in categories"
-           :class="[selectedCategory == category.name ? 'active-bottom md:active':'']"
-           :key="index"
-           @click.prevent="selectCategory(category.name)"
-        >
-            <div class="w-10 h-10 flex items-center justify-center p-1 rounded bg-gray-100"
-                 :class="{'bg-red-100 svg-red' :  (selectedCategory == category)}"
-            >
-                <img :src="category.icon" alt="">
-            </div>
-        </a>
-    </div>
+                <div class="w-10 h-10 flex items-center mx-1 justify-center p-1 rounded bg-gray-100"
+                     :class="{'bg-red-100 svg-red' :  (selectedCategory == category)}"
+                >
+                    <img :src="category.icon" alt="">
+                </div>
+                <span class="capitalize" v-text="category.name ">
+
+                </span>
+            </a>
+        </li>
+    </ul>
 </template>
 
 <script>

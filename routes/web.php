@@ -29,6 +29,7 @@ Route::post('/entities/{entity}/reviews', 'EntitiesReviewsController@store')->mi
 
 Route::get('/@{entity}', 'ProfilesController@index');
 
+Route::put('/user-info/update', 'UserInfoController@update');
 
 Route::namespace('Admin')
     ->prefix('admin')
