@@ -51,6 +51,11 @@ module.exports = {
                 'muted-light': 'var(--text-muted-light-color)',
                 'error': 'var(--text-error-color)'
 
+            },
+            spacing: {
+                '72': '18rem',
+                '84': '21rem',
+                '96': '24rem',
             }
         }
     },

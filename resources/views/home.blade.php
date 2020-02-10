@@ -14,11 +14,12 @@
             <header class="fixed py-4 w-full z-10 flex -mx-4 h-32 justify-center">
 
                 <div v-if="showing == 'places'"
-                     class="bg-default p-1 rounded mx-4">
+                     class="relative mx-4">
                     <map-categories :categories="{{$categories}}" @category-change="getPlaces"></map-categories>
                 </div>
 
-                <search-input class="self-start" :category="selectedCategory" @result-clicked="selectPlace"></search-input>
+                <search-input class="self-start" :category="selectedCategories" @result-clicked="selectPlace"
+                ></search-input>
 
 
                 {{--@guest--}}

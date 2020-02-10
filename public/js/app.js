@@ -7407,17 +7407,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['categories'],
   data: function data() {
     return {
-      selectedCategory: ''
+      isOpen: false,
+      selectedCategories: []
     };
   },
   methods: {
     selectCategory: function selectCategory(category) {
-      this.selectedCategory = category;
-      this.$emit('category-change', category);
+      var exist = this.selectedCategories.find(function (item) {
+        return item == category;
+      });
+
+      if (exist) {
+        this.selectedCategories.splice(this.selectedCategories.indexOf(category), 1);
+      } else {
+        this.selectedCategories.push(category);
+      }
+
+      this.$emit('category-change', this.selectedCategories);
     }
   }
 });
@@ -7475,6 +7496,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _StarRating_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./StarRating.vue */ "./resources/js/components/StarRating.vue");
+//
 //
 //
 //
@@ -7947,11 +7969,11 @@ __webpack_require__.r(__webpack_exports__);
       places: [],
       selectedPlace: null,
       selectedEvent: null,
-      selectedCategory: null,
+      selectedCategories: null,
       mapCenter: {},
       showing: 'places',
       endpoints: {
-        places: '/api/entities',
+        places: '/entities',
         events: '/api/events'
       }
     };
@@ -7971,7 +7993,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var category = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-      this.selectedCategory = category;
+      this.selectedCategories = category;
       axios.get(this.endpoint + (category ? '?category=' + category : '')).then(function (_ref) {
         var data = _ref.data;
         return _this.places = data.data;
@@ -31767,68 +31789,158 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("ul", { staticClass: "flex md:flex-col justify-between" }, [
-    _c("li", [
-      _c(
-        "a",
-        {
-          staticClass: "flex  items-center p-2  fade",
-          class: [_vm.selectedCategory == "" ? "active-bottom md:active" : ""],
-          attrs: { href: "#" },
-          on: {
-            click: function($event) {
-              $event.preventDefault()
-              return _vm.selectCategory("")
-            }
-          }
-        },
-        [_vm._m(0)]
-      )
-    ]),
-    _vm._v(" "),
+  return _c("div", { staticClass: "bg-default rounded w-72 h-10/12" }, [
     _c(
-      "li",
-      _vm._l(_vm.categories, function(category, index) {
-        return _c(
-          "a",
+      "div",
+      {
+        staticClass:
+          "text-accent cursor-pointer px-8 font-bold text-center py-2"
+      },
+      [
+        _c(
+          "p",
           {
-            key: index,
-            staticClass: "flex items-center p-2 fade -mx-1",
-            class: [
-              _vm.selectedCategory == category.name
-                ? "active-bottom md:active"
-                : ""
-            ],
-            attrs: { href: "#" },
+            staticClass: "pb-2",
             on: {
               click: function($event) {
-                $event.preventDefault()
-                return _vm.selectCategory(category.name)
+                _vm.isOpen = !_vm.isOpen
               }
             }
           },
-          [
-            _c(
+          [_vm._v("Places & Categries")]
+        ),
+        _vm._v(" "),
+        _vm.isOpen
+          ? _c(
               "div",
               {
-                staticClass:
-                  "w-10 h-10 flex items-center mx-1 justify-center p-1 rounded bg-gray-100",
-                class: {
-                  "bg-red-100 svg-red": _vm.selectedCategory == category
-                }
+                staticClass: "flex bg-accent-light p-1 items-center rounded-sm"
               },
-              [_c("img", { attrs: { src: category.icon, alt: "" } })]
-            ),
+              [
+                _c("img", {
+                  staticClass: "w-4 h-4 mx-1",
+                  attrs: { src: "/svg/search-icon.svg", alt: "" }
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "bg-transparent focus:outline-none",
+                  attrs: {
+                    placeholder: "search here for categories",
+                    type: "text"
+                  }
+                })
+              ]
+            )
+          : _vm._e()
+      ]
+    ),
+    _vm._v(" "),
+    _vm.isOpen
+      ? _c(
+          "ul",
+          {
+            staticClass:
+              "flex overflow-y-scroll px-4 md:flex-col justify-between"
+          },
+          [
+            _c("li", { staticClass: "py-2 border-b" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "flex   items-center p-2  fade",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.selectCategory("")
+                    }
+                  }
+                },
+                [_vm._m(0)]
+              )
+            ]),
             _vm._v(" "),
-            _c("span", {
-              staticClass: "capitalize",
-              domProps: { textContent: _vm._s(category.name) }
+            _vm._l(_vm.categories, function(category, index) {
+              return _c("li", { staticClass: "py-2 border-b" }, [
+                _c(
+                  "a",
+                  {
+                    key: index,
+                    staticClass:
+                      "flex items-center justify-between p-2 fade -mx-1",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.selectCategory(category.name)
+                      }
+                    }
+                  },
+                  [
+                    _c("div", { staticClass: "flex items-center" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "w-10 h-10 flex items-center mx-1 justify-center p-1 rounded bg-gray-100"
+                        },
+                        [_c("img", { attrs: { src: category.icon, alt: "" } })]
+                      ),
+                      _vm._v(" "),
+                      _c("span", {
+                        staticClass: "capitalize",
+                        domProps: { textContent: _vm._s(category.name) }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.selectedCategories,
+                          expression: "selectedCategories"
+                        }
+                      ],
+                      staticClass: "border",
+                      attrs: { type: "checkbox" },
+                      domProps: {
+                        value: category.name,
+                        checked: Array.isArray(_vm.selectedCategories)
+                          ? _vm._i(_vm.selectedCategories, category.name) > -1
+                          : _vm.selectedCategories
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.selectedCategories,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = category.name,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                (_vm.selectedCategories = $$a.concat([$$v]))
+                            } else {
+                              $$i > -1 &&
+                                (_vm.selectedCategories = $$a
+                                  .slice(0, $$i)
+                                  .concat($$a.slice($$i + 1)))
+                            }
+                          } else {
+                            _vm.selectedCategories = $$c
+                          }
+                        }
+                      }
+                    })
+                  ]
+                )
+              ])
             })
-          ]
+          ],
+          2
         )
-      }),
-      0
-    )
+      : _vm._e()
   ])
 }
 var staticRenderFns = [
@@ -31968,8 +32080,10 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "shadow rounded bg-white" }, [
+  return _c("div", { staticClass: "shadow rounded bg-white w-96" }, [
     _c("div", { staticClass: "flex justify-between p-2" }, [
+      _vm._m(0),
+      _vm._v(" "),
       _c("input", {
         directives: [
           {
@@ -31993,9 +32107,7 @@ var render = function() {
             _vm.search
           ]
         }
-      }),
-      _vm._v(" "),
-      _vm._m(0)
+      })
     ]),
     _vm._v(" "),
     _vm.results && _vm.query

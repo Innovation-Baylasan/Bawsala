@@ -21,8 +21,13 @@ class EntitiesController extends Controller
      */
     public function index(EntitiesFilter $filters)
     {
-
-        $entities = Entity::filter($filters)->take(request('take') ?: 5)->get();
+        if (\request()->has('q')) {
+            $entities = Entity::search(request('q') ?: '')
+                ->query([$filters, 'apply'])
+                ->take(request('take') ?: 5)->get();
+        } else {
+            $entities = Entity::filter($filters)->get();
+        }
 
         return EntityResource::collection($entities);
     }

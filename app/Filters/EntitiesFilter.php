@@ -3,47 +3,42 @@
 namespace App\Filters;
 
 use App\Category;
-use Illuminate\Http\Request;
 
-class EntitiesFilter
+class EntitiesFilter extends Filters
 {
 
-    protected $request;
 
     /**
-     * EntitiesFilter constructor.
-     * @param Request $request
+     * Registered filters to operate upon.
+     *
+     * @var array
      */
-    public function __construct(Request $request)
+    protected $filters = ['category', '@lat', '@long'];
+
+    /**
+     * Filters to apply always
+     *
+     * @var array
+     */
+    protected $always = ['location'];
+
+    public function category($categories)
     {
+        $categories = explode(',', $categories);
 
-        $this->request = $request;
+        $categoriesIds = Category::whereIn('name', $categories)->pluck('id');
 
+        return $this->builder->whereIn('category_id', $categoriesIds);
     }
 
-    /**
-     * @param $builder
-     * @return mixed
-     */
-    public function apply($builder) {
-
-        if ($this->request['q']) {
-            $builder->searchEntities($this->request['q'])->take(7);
-        }
-
-        if ($this->request['category']) {
-            $category = Category::where('name', $this->request['category'])->first();
-            $builder->where('category_id', $category ? $category->id : 0);
-        }
-
+    public function location()
+    {
         if (($latitude = $this->request['@lat']) && ($longitude = $this->request['@long'])) {
-            $builder->nearby($latitude, $longitude,
+            return $this->builder->nearby($latitude, $longitude,
                 $this->request['radios'] ?: '100', $this->request['unit'] ?: 'km'
             );
         }
-
-        return $builder;
-
+        return $this->builder;
     }
 
 }

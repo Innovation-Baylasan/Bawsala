@@ -145,7 +145,6 @@ class Entity extends Model implements Followable
     }
 
 
-
     /**
      * @return mixed
      *
@@ -159,8 +158,6 @@ class Entity extends Model implements Followable
         }
 
     }
-
-
 
 
     /**
@@ -197,7 +194,6 @@ class Entity extends Model implements Followable
     {
         return $this->reviews()->count();
     }
-
 
 
     /**
@@ -261,11 +257,9 @@ class Entity extends Model implements Followable
             )->orderBy('distance', 'asc');
     }
 
-    public function scopeSearchEntities($searchTerm) {
-        return Entity::search($searchTerm);
-    }
 
-    public function scopeFilter($query, $filters) {
+    public function scopeFilter($query, $filters)
+    {
         return $filters->apply($query);
     }
 }

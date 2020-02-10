@@ -9,13 +9,13 @@ use Tests\TestCase;
 use App\User;
 
 
-
 class EntitiesApiTest extends TestCase
 {
 
     use DatabaseMigrations;
 
-    public function setUp(): void {
+    public function setUp(): void
+    {
 
         parent::setUp();
 
@@ -55,7 +55,8 @@ class EntitiesApiTest extends TestCase
     }
 
     /** @test */
-    public function it_should_return_all_entities () {
+    public function it_should_return_all_entities()
+    {
 
         $this->withoutExceptionHandling();
 
@@ -67,7 +68,10 @@ class EntitiesApiTest extends TestCase
     }
 
     /** @test */
-    public function it_should_filter_entities () {
+    public function it_should_filter_entities()
+    {
+
+        $this->withoutExceptionHandling();
 
         $response = $this->get(route('api.entities.index', [
             'q' => $this->entities[0]->name
@@ -88,10 +92,9 @@ class EntitiesApiTest extends TestCase
         $response = $this->get(route('api.entities.index', [
             '@lat' => $this->entities[0]->latitude,
             '@long' => $this->entities[0]->longitude,
-        ])); //->decodeResponseJson();
+        ]));
 
-        $response
-            ->assertOk()
+        $response->assertOk()
             ->assertJsonFragment([
                 'name' => $this->entities[0]->name
             ]);
@@ -118,9 +121,9 @@ class EntitiesApiTest extends TestCase
     }
 
 
-
     /** @test */
-    public function it_should_show_specific_entity_reviews_not_more_than_4 () {
+    public function it_should_show_specific_entity_reviews_not_more_than_4()
+    {
 
         $this->signIn($this->user, 'api');
 
@@ -134,7 +137,8 @@ class EntitiesApiTest extends TestCase
     }
 
     /** @test */
-    public function it_should_show_specific_entity_total_reviews_count () {
+    public function it_should_show_specific_entity_total_reviews_count()
+    {
 
         $this->signIn($this->user, 'api');
 
@@ -151,7 +155,8 @@ class EntitiesApiTest extends TestCase
 
 
     /** @test */
-    public function it_should_show_specific_entity_logged_in_user_following_status_true_if_followed () {
+    public function it_should_show_specific_entity_logged_in_user_following_status_true_if_followed()
+    {
 
         $this->signIn($this->user, 'api');
 
@@ -167,7 +172,8 @@ class EntitiesApiTest extends TestCase
     }
 
     /** @test */
-    public function it_should_show_specific_entity_logged_in_user_following_status_false_if_not_followed () {
+    public function it_should_show_specific_entity_logged_in_user_following_status_false_if_not_followed()
+    {
 
         $this->signIn(factory(User::class)->create(), 'api');
 
@@ -183,7 +189,8 @@ class EntitiesApiTest extends TestCase
     }
 
     /** @test */
-    public function it_should_show_specific_entity_not_logged_in_user_following_status_false () {
+    public function it_should_show_specific_entity_not_logged_in_user_following_status_false()
+    {
 
         $response = $this->get(route('api.entities.show', [
             'entity' => $this->entities[0]->id
@@ -198,7 +205,8 @@ class EntitiesApiTest extends TestCase
 
 
     /** @test */
-    public function it_should_show_specific_entity_average_rating () {
+    public function it_should_show_specific_entity_average_rating()
+    {
 
         $response = $this->get(route('api.entities.show', [
             'entity' => $this->entities[0]->id
@@ -233,7 +241,8 @@ class EntitiesApiTest extends TestCase
 
 
     /** @test */
-    public function it_should_show_specific_entity_not_logged_in_user_rating_as_0 () {
+    public function it_should_show_specific_entity_not_logged_in_user_rating_as_0()
+    {
 
         $response = $this->get(route('api.entities.show', [
             'entity' => $this->entities[0]->id
@@ -277,9 +286,9 @@ class EntitiesApiTest extends TestCase
     }
 
 
-
     /** @test */
-    public function it_should_return_user_entities () {
+    public function it_should_return_user_entities()
+    {
 
         $this->withoutExceptionHandling();
 
@@ -294,9 +303,9 @@ class EntitiesApiTest extends TestCase
     }
 
 
-
     /** @test */
-    public function it_should_return_user_entities_user_following_status () {
+    public function it_should_return_user_entities_user_following_status()
+    {
 
         $this->withoutExceptionHandling();
 
