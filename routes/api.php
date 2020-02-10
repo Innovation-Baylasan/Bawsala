@@ -55,6 +55,8 @@ Route::middleware('apilogger')->namespace('Api')->group(function () {
 
     Route::middleware('auth:api')->post('/events/store', 'EventsController@store')->name('api.events.store');
 
+    Route::middleware('auth:api')->delete('/events/destroy/{event}', 'EventsController@destroy')->name('api.events.destroy');
+
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

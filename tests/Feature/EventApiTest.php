@@ -118,7 +118,6 @@ class EventApiTest extends TestCase
             'end_date' => Carbon::now(),
             'latitude' => 3.5,
             'longitude' => 9.6,
-            'avatar' => UploadedFile::fake()->image('avatar.jpg'),
             'cover' => UploadedFile::fake()->image('cover.jpg')
         ];
 
@@ -154,7 +153,7 @@ class EventApiTest extends TestCase
 
 
     /** @test */
-    public function it_should_return_company_entities () {
+    public function it_should_return_company_events () {
 
         $this->withoutExceptionHandling();
 
@@ -179,6 +178,55 @@ class EventApiTest extends TestCase
 
         $response->assertJsonCount(1, 'data')
             ->assertOk();
+
+    }
+
+
+    /** @test */
+    public function it_should_delete_events_created_by_the_authenticated_user()
+    {
+
+        // Given a user with 2 events
+        $event = factory(Event::class)->create();
+
+        factory(Event::class)->create([
+            'creator_id' => $event->user->id
+        ]);
+
+        // when this user logs in and call myEvents end point
+        $this->signIn($event->user, 'api');
+
+        $response = $this->delete(route('api.events.destroy',[
+            'event' => $event->id
+        ]));
+
+        // then the response only contains those 2 events he has created
+        $response
+            ->assertOk();
+
+    }
+
+    /** @test */
+    public function it_should_deny_delete_events_not_created_by_original_user()
+    {
+
+        // Given a user with 2 events
+        $event = factory(Event::class)->create();
+
+        factory(Event::class)->create([
+            'creator_id' => ($forignUser = factory(User::class)->create())->id
+        ]);
+
+        // when this user logs in and call myEvents end point
+        $this->signIn($forignUser, 'api');
+
+        $response = $this->delete(route('api.events.destroy',[
+            'event' => $event->id
+        ]));
+
+        // then the response only contains those 2 events he has created
+        $response
+            ->assertStatus(403);
 
     }
 

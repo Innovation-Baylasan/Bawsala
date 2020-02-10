@@ -106,4 +106,12 @@ class Event extends Model implements HasMedia
         $cover = $this->getMedia('covers')->first();
         return $cover ? $cover->getUrl('cover') : 'https://media.sproutsocial.com/uploads/2018/04/Facebook-Cover-Photo-Size.png';
     }
+
+    public function deleteMyEvent()
+    {
+
+        echo("Delete my event: ");
+        echo($this->user->id);
+
+    }
 }

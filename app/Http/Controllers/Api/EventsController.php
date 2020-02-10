@@ -71,4 +71,24 @@ class EventsController extends Controller
             'event' => $event
         ], 201);
     }
+
+    /**
+     * Remove the specified event from storage.
+     *
+     * @param Event $event
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     */
+    public function destroy(Event $event)
+    {
+
+        $this->authorize('delete', $event);
+
+        $event->delete();
+
+        return response([
+            'message' => 'Event was deleted'
+        ], 200);
+
+    }
+
 }

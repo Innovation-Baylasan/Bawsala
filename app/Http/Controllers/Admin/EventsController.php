@@ -105,7 +105,7 @@ class EventsController extends Controller
     /**
      * Remove the specified event from storage.
      *
-     * @param Event  event
+     * @param Event $event
      * @return \Illuminate\Http\Response
      *
      * @throws \Exception
