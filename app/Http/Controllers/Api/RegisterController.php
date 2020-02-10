@@ -36,7 +36,7 @@ class RegisterController extends Controller
             'data' => [
                 'user' => $user,
                 'token' => $user->token,
-                'main_entity' => $user->isCompany() ? $user->mainEntity() : []
+                'main_entity' => $user->isCompany() ? $user->mainEntity() : null
             ],
             'message' => 'user registered successfully'
         ], 200);
