@@ -66,8 +66,6 @@ class EventPolicy
     public function delete(User $user, Event $event)
     {
 
-        echo("Authorize ".$user->id." to delete: ".$event->creator_id);
-
         return $user->id == $event->creator_id;
     }
 
