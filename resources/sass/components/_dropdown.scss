@@ -1,0 +1,25 @@
+.dropdown {
+  @apply bg-white w-32 rounded .shadow relative;
+  .dropdown-item {
+    @apply px-5 py-2;
+    &:not(:last-child) {
+      @apply border-b border-accent-light;
+    }
+    a {
+      @apply text-accent font-bold capitalize;
+    }
+  }
+
+  &:before {
+    content: "";
+    height: 0;
+    width: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-100%, -98%);
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #fff;
+  }
+}

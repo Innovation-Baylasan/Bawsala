@@ -6,12 +6,13 @@
                 <img class="w-4 h-4 mx-1" src="/svg/search-icon.svg" alt="">
                 <input class="bg-transparent focus:outline-none"
                        placeholder="search here for categories"
+                       v-model="q"
                        type="text">
             </div>
         </div>
 
         <ul v-if="isOpen" class="flex overflow-y-scroll px-4 md:flex-col justify-between">
-            <li class="py-2 border-b">
+            <li class="py-2 border-accent-light border-b">
                 <a href="#"
                    class="flex items-center p-2  fade"
                    @click.prevent="selectCategory('')">
@@ -21,22 +22,23 @@
                     </div>
                 </a>
             </li>
-            <li class="py-2 border-b"
-                v-for="(category,index) in categories"
+            <li class="py-2 border-accent-light border-b"
+                v-for="(category,index) in filteredCategories"
             >
                 <a href="#"
                    class="flex items-center justify-between p-2 fade -mx-3"
                    :key="index"
-                   @click.prevent="selectCategory(category.name)"
                 >
                     <div class="flex items-center">
                         <div class="w-8 h-8 flex items-center mx-3 justify-center p-1 rounded bg-gray-100"
                         >
                             <img :src="category.icon" alt="">
                         </div>
-                        <span class="capitalize" v-text="category.name"></span>
+                        <label :for="category.name" class="capitalize" v-text="category.name"></label>
                     </div>
-                    <input type="checkbox" v-model="selectedCategories" :value="category.name" class="border"/>
+                    <input :id="category.name" @change="$emit('category-change',selectedCategories)" type="checkbox"
+                           v-model="selectedCategories" :value="category.name"
+                           class="border"/>
                 </a>
             </li>
         </ul>
@@ -45,29 +47,27 @@
 
 <script>
     export default{
-        props: ['categories'],
+        props: ['initialCategories'],
         data(){
             return {
                 isOpen: false,
+                categories: [],
+                q: "",
                 selectedCategories: [],
             }
         },
-        methods: {
-            selectCategory(category){
-                let exist = this.selectedCategories.find(item => {
-                    return item == category
-                })
-
-                if (exist) {
-                    this.selectedCategories.splice(this.selectedCategories.indexOf(category), 1)
-                } else {
-                    this.selectedCategories.push(category)
-                }
-                this.$emit('category-change', this.selectedCategories)
-            },
+        computed: {
+            filteredCategories() {
+                if (!this.q) return this.categories;
+                if (!this.categories || this.categories.length === 0) return [];
+                const regexp = new RegExp(this.q);
+                return this.categories.filter(category => {
+                    return regexp.test(category.name);
+                });
+            }
         },
-
         mounted(){
+            this.categories = this.initialCategories
             document.body.addEventListener('click', event => {
                 if (!(this.$el == event.target || this.$el.contains(event.target))) {
                     this.isOpen = false

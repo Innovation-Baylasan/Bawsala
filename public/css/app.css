@@ -11342,6 +11342,46 @@ video {
   background-color: #4aab50;
 }
 
+.dropdown {
+  background-color: #fff;
+  width: 8rem;
+  border-radius: 8px;
+  box-shadow:  0 3px 42px 0 rgba(114, 114, 114, 0.42);
+  position: relative;
+}
+
+.dropdown .dropdown-item {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.dropdown .dropdown-item:not(:last-child) {
+  border-bottom-width: 1px;
+  border-color: var(--text-accent-light-color);
+}
+
+.dropdown .dropdown-item a {
+  color: var(--text-accent-color);
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.dropdown:before {
+  content: "";
+  height: 0;
+  width: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  -webkit-transform: translate(-100%, -98%);
+          transform: translate(-100%, -98%);
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid #fff;
+}
+
 .rating {
   width: 108px;
   height: 20px;

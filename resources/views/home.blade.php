@@ -15,16 +15,53 @@
 
                 <div v-if="showing == 'places'"
                      class="relative mx-4">
-                    <map-categories :categories="{{$categories}}" @category-change="getPlaces"></map-categories>
+                    <map-categories :initial-categories="{{$categories}}" @category-change="getPlaces"></map-categories>
                 </div>
 
                 <search-input class="self-start" :category="selectedCategories" @result-clicked="selectPlace"
                 ></search-input>
 
-                <div class="rounded-full  ml-16 w-16 h-16 overflow-hidden">
-                    <img src="https://www.gravatar.com/avatar/?s=200" alt="">
-                </div>
+                <dropdown>
+                    <template v-slot:trigger>
+                        <div class="rounded-full cursor-pointer mb-4 ml-20 w-12 h-12 overflow-hidden">
+                            <img src="https://www.gravatar.com/avatar/?s=200" alt="">
+                        </div>
+                    </template>
+                    <ul class="dropdown">
 
+                        @guest
+                        <li class="dropdown-item">
+                            <a href="/login">Login</a>
+                        </li>
+                        <li class="dropdown-item">
+                            <a href="/register">Regsiter</a>
+                        </li>
+                        @endguest
+                        @auth
+
+                        @if($authUser->isAdmin())
+                            <li class="dropdown-item">
+                                <a href="/admin">dashboard</a>
+                            </li>
+                        @endif
+                        <li class="dropdown-item">
+                            <a href="#" @click="$modal.show('settings-modal')">settings</a>
+                        </li>
+                        @if($authUser->isCompany())
+                            <li class="dropdown-item">
+                                <a href="/account">profile</a>
+                            </li>
+                        @endif
+                        <li class="dropdown-item">
+                            <form action="/logout" method="post" id="logout-form">
+                                @csrf
+                            </form>
+                            <a href="#" onclick="document.getElementById('logout-form').submit()"
+                            >Logout</a>
+                        </li>
+                        @endauth
+                    </ul>
+                </dropdown>
                 {{--@guest--}}
                 {{--<div class="bg-default rounded overflow-hidden shadow mt-4 mx-2">--}}
                 {{--<a class="p-2 px-4 inline-block text-gray-500 border-r border-gray-200"--}}
