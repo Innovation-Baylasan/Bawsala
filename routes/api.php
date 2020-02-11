@@ -51,7 +51,7 @@ Route::middleware('apilogger')->namespace('Api')->group(function () {
 
     Route::get('/events', 'EventsController@index')->name('api.events.index');
 
-    Route::middleware('auth:api')->get('/events/my', 'EventsController@myEvents')->name('api.events.myEvents');
+    Route::middleware('auth:api')->get('/events/my', 'UserEventsController@index')->name('api.userEventsController.myEvents');
 
     Route::middleware('auth:api')->post('/events/store', 'EventsController@store')->name('api.events.store');
 

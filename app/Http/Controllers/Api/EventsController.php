@@ -38,20 +38,6 @@ class EventsController extends Controller
     }
 
     /**
-     * index,store,show,destroy,create,update,edit
-     *
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
-     */
-    public function myEvents()
-    {
-
-        $events = auth()->user()->events();
-
-        return EventResource::collection($events->get());
-
-    }
-
-    /**
      * @param Request $request
      * @param Entity $entity
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
