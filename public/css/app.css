@@ -640,6 +640,7 @@
   --text-default-color: #fff;
   --text-accent-color: #003a7c;
   --text-accent-light-color: rgba(0, 28, 154, .08);
+  --text-accent-lighter-color: rgba(0, 28, 154, .02);
   --text-muted-color: rgba(0, 0, 0, 0.3);
   --text-muted-light-color: rgba(255, 255, 255, 0.1);
   --text-muted-light-color: #e1e6e8;
@@ -1646,6 +1647,10 @@ video {
   background-color: var(--text-accent-light-color);
 }
 
+.bg-accent-lighter{
+  background-color: var(--text-accent-lighter-color);
+}
+
 .bg-muted{
   background-color: var(--text-muted-color);
 }
@@ -1950,6 +1955,10 @@ video {
   background-color: var(--text-accent-light-color);
 }
 
+.hover\:bg-accent-lighter:hover{
+  background-color: var(--text-accent-lighter-color);
+}
+
 .hover\:bg-muted:hover{
   background-color: var(--text-muted-color);
 }
@@ -2252,6 +2261,10 @@ video {
 
 .focus\:bg-accent-light:focus{
   background-color: var(--text-accent-light-color);
+}
+
+.focus\:bg-accent-lighter:focus{
+  background-color: var(--text-accent-lighter-color);
 }
 
 .focus\:bg-muted:focus{
@@ -2634,6 +2647,10 @@ video {
   border-color: var(--text-accent-light-color);
 }
 
+.border-accent-lighter{
+  border-color: var(--text-accent-lighter-color);
+}
+
 .border-muted{
   border-color: var(--text-muted-color);
 }
@@ -2934,6 +2951,10 @@ video {
   border-color: var(--text-accent-light-color);
 }
 
+.hover\:border-accent-lighter:hover{
+  border-color: var(--text-accent-lighter-color);
+}
+
 .hover\:border-muted:hover{
   border-color: var(--text-muted-color);
 }
@@ -3232,6 +3253,10 @@ video {
 
 .focus\:border-accent-light:focus{
   border-color: var(--text-accent-light-color);
+}
+
+.focus\:border-accent-lighter:focus{
+  border-color: var(--text-accent-lighter-color);
 }
 
 .focus\:border-muted:focus{
@@ -7898,6 +7923,26 @@ video {
   color: var(--text-accent-light-color);
 }
 
+.placeholder-accent-lighter::-webkit-input-placeholder{
+  color: var(--text-accent-lighter-color);
+}
+
+.placeholder-accent-lighter::-moz-placeholder{
+  color: var(--text-accent-lighter-color);
+}
+
+.placeholder-accent-lighter:-ms-input-placeholder{
+  color: var(--text-accent-lighter-color);
+}
+
+.placeholder-accent-lighter::-ms-input-placeholder{
+  color: var(--text-accent-lighter-color);
+}
+
+.placeholder-accent-lighter::placeholder{
+  color: var(--text-accent-lighter-color);
+}
+
 .placeholder-muted::-webkit-input-placeholder{
   color: var(--text-muted-color);
 }
@@ -9418,6 +9463,26 @@ video {
   color: var(--text-accent-light-color);
 }
 
+.focus\:placeholder-accent-lighter:focus::-webkit-input-placeholder{
+  color: var(--text-accent-lighter-color);
+}
+
+.focus\:placeholder-accent-lighter:focus::-moz-placeholder{
+  color: var(--text-accent-lighter-color);
+}
+
+.focus\:placeholder-accent-lighter:focus:-ms-input-placeholder{
+  color: var(--text-accent-lighter-color);
+}
+
+.focus\:placeholder-accent-lighter:focus::-ms-input-placeholder{
+  color: var(--text-accent-lighter-color);
+}
+
+.focus\:placeholder-accent-lighter:focus::placeholder{
+  color: var(--text-accent-lighter-color);
+}
+
 .focus\:placeholder-muted:focus::-webkit-input-placeholder{
   color: var(--text-muted-color);
 }
@@ -10045,6 +10110,10 @@ video {
   color: var(--text-accent-light-color);
 }
 
+.text-accent-lighter{
+  color: var(--text-accent-lighter-color);
+}
+
 .text-muted{
   color: var(--text-muted-color);
 }
@@ -10349,6 +10418,10 @@ video {
   color: var(--text-accent-light-color);
 }
 
+.hover\:text-accent-lighter:hover{
+  color: var(--text-accent-lighter-color);
+}
+
 .hover\:text-muted:hover{
   color: var(--text-muted-color);
 }
@@ -10651,6 +10724,10 @@ video {
 
 .focus\:text-accent-light:focus{
   color: var(--text-accent-light-color);
+}
+
+.focus\:text-accent-lighter:focus{
+  color: var(--text-accent-lighter-color);
 }
 
 .focus\:text-muted:focus{
@@ -11512,6 +11589,20 @@ video {
   direction: rtl;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 8px;
+  background-color: var(--text-accent-light-color);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: var(--text-accent-color);
+}
+
 .cover-skewer {
   -webkit-transform: skewY(-5deg);
           transform: skewY(-5deg);
@@ -11993,6 +12084,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     background-color: var(--text-accent-light-color);
   }
 
+  .sm\:bg-accent-lighter{
+    background-color: var(--text-accent-lighter-color);
+  }
+
   .sm\:bg-muted{
     background-color: var(--text-muted-color);
   }
@@ -12297,6 +12392,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     background-color: var(--text-accent-light-color);
   }
 
+  .sm\:hover\:bg-accent-lighter:hover{
+    background-color: var(--text-accent-lighter-color);
+  }
+
   .sm\:hover\:bg-muted:hover{
     background-color: var(--text-muted-color);
   }
@@ -12599,6 +12698,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
 
   .sm\:focus\:bg-accent-light:focus{
     background-color: var(--text-accent-light-color);
+  }
+
+  .sm\:focus\:bg-accent-lighter:focus{
+    background-color: var(--text-accent-lighter-color);
   }
 
   .sm\:focus\:bg-muted:focus{
@@ -12981,6 +13084,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     border-color: var(--text-accent-light-color);
   }
 
+  .sm\:border-accent-lighter{
+    border-color: var(--text-accent-lighter-color);
+  }
+
   .sm\:border-muted{
     border-color: var(--text-muted-color);
   }
@@ -13281,6 +13388,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     border-color: var(--text-accent-light-color);
   }
 
+  .sm\:hover\:border-accent-lighter:hover{
+    border-color: var(--text-accent-lighter-color);
+  }
+
   .sm\:hover\:border-muted:hover{
     border-color: var(--text-muted-color);
   }
@@ -13579,6 +13690,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
 
   .sm\:focus\:border-accent-light:focus{
     border-color: var(--text-accent-light-color);
+  }
+
+  .sm\:focus\:border-accent-lighter:focus{
+    border-color: var(--text-accent-lighter-color);
   }
 
   .sm\:focus\:border-muted:focus{
@@ -18245,6 +18360,26 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     color: var(--text-accent-light-color);
   }
 
+  .sm\:placeholder-accent-lighter::-webkit-input-placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
+  .sm\:placeholder-accent-lighter::-moz-placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
+  .sm\:placeholder-accent-lighter:-ms-input-placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
+  .sm\:placeholder-accent-lighter::-ms-input-placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
+  .sm\:placeholder-accent-lighter::placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
   .sm\:placeholder-muted::-webkit-input-placeholder{
     color: var(--text-muted-color);
   }
@@ -19765,6 +19900,26 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     color: var(--text-accent-light-color);
   }
 
+  .sm\:focus\:placeholder-accent-lighter:focus::-webkit-input-placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
+  .sm\:focus\:placeholder-accent-lighter:focus::-moz-placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
+  .sm\:focus\:placeholder-accent-lighter:focus:-ms-input-placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
+  .sm\:focus\:placeholder-accent-lighter:focus::-ms-input-placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
+  .sm\:focus\:placeholder-accent-lighter:focus::placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
   .sm\:focus\:placeholder-muted:focus::-webkit-input-placeholder{
     color: var(--text-muted-color);
   }
@@ -20392,6 +20547,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     color: var(--text-accent-light-color);
   }
 
+  .sm\:text-accent-lighter{
+    color: var(--text-accent-lighter-color);
+  }
+
   .sm\:text-muted{
     color: var(--text-muted-color);
   }
@@ -20696,6 +20855,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     color: var(--text-accent-light-color);
   }
 
+  .sm\:hover\:text-accent-lighter:hover{
+    color: var(--text-accent-lighter-color);
+  }
+
   .sm\:hover\:text-muted:hover{
     color: var(--text-muted-color);
   }
@@ -20998,6 +21161,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
 
   .sm\:focus\:text-accent-light:focus{
     color: var(--text-accent-light-color);
+  }
+
+  .sm\:focus\:text-accent-lighter:focus{
+    color: var(--text-accent-lighter-color);
   }
 
   .sm\:focus\:text-muted:focus{
@@ -21879,6 +22046,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     background-color: var(--text-accent-light-color);
   }
 
+  .md\:bg-accent-lighter{
+    background-color: var(--text-accent-lighter-color);
+  }
+
   .md\:bg-muted{
     background-color: var(--text-muted-color);
   }
@@ -22183,6 +22354,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     background-color: var(--text-accent-light-color);
   }
 
+  .md\:hover\:bg-accent-lighter:hover{
+    background-color: var(--text-accent-lighter-color);
+  }
+
   .md\:hover\:bg-muted:hover{
     background-color: var(--text-muted-color);
   }
@@ -22485,6 +22660,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
 
   .md\:focus\:bg-accent-light:focus{
     background-color: var(--text-accent-light-color);
+  }
+
+  .md\:focus\:bg-accent-lighter:focus{
+    background-color: var(--text-accent-lighter-color);
   }
 
   .md\:focus\:bg-muted:focus{
@@ -22867,6 +23046,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     border-color: var(--text-accent-light-color);
   }
 
+  .md\:border-accent-lighter{
+    border-color: var(--text-accent-lighter-color);
+  }
+
   .md\:border-muted{
     border-color: var(--text-muted-color);
   }
@@ -23167,6 +23350,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     border-color: var(--text-accent-light-color);
   }
 
+  .md\:hover\:border-accent-lighter:hover{
+    border-color: var(--text-accent-lighter-color);
+  }
+
   .md\:hover\:border-muted:hover{
     border-color: var(--text-muted-color);
   }
@@ -23465,6 +23652,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
 
   .md\:focus\:border-accent-light:focus{
     border-color: var(--text-accent-light-color);
+  }
+
+  .md\:focus\:border-accent-lighter:focus{
+    border-color: var(--text-accent-lighter-color);
   }
 
   .md\:focus\:border-muted:focus{
@@ -28131,6 +28322,26 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     color: var(--text-accent-light-color);
   }
 
+  .md\:placeholder-accent-lighter::-webkit-input-placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
+  .md\:placeholder-accent-lighter::-moz-placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
+  .md\:placeholder-accent-lighter:-ms-input-placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
+  .md\:placeholder-accent-lighter::-ms-input-placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
+  .md\:placeholder-accent-lighter::placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
   .md\:placeholder-muted::-webkit-input-placeholder{
     color: var(--text-muted-color);
   }
@@ -29651,6 +29862,26 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     color: var(--text-accent-light-color);
   }
 
+  .md\:focus\:placeholder-accent-lighter:focus::-webkit-input-placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
+  .md\:focus\:placeholder-accent-lighter:focus::-moz-placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
+  .md\:focus\:placeholder-accent-lighter:focus:-ms-input-placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
+  .md\:focus\:placeholder-accent-lighter:focus::-ms-input-placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
+  .md\:focus\:placeholder-accent-lighter:focus::placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
   .md\:focus\:placeholder-muted:focus::-webkit-input-placeholder{
     color: var(--text-muted-color);
   }
@@ -30278,6 +30509,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     color: var(--text-accent-light-color);
   }
 
+  .md\:text-accent-lighter{
+    color: var(--text-accent-lighter-color);
+  }
+
   .md\:text-muted{
     color: var(--text-muted-color);
   }
@@ -30582,6 +30817,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     color: var(--text-accent-light-color);
   }
 
+  .md\:hover\:text-accent-lighter:hover{
+    color: var(--text-accent-lighter-color);
+  }
+
   .md\:hover\:text-muted:hover{
     color: var(--text-muted-color);
   }
@@ -30884,6 +31123,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
 
   .md\:focus\:text-accent-light:focus{
     color: var(--text-accent-light-color);
+  }
+
+  .md\:focus\:text-accent-lighter:focus{
+    color: var(--text-accent-lighter-color);
   }
 
   .md\:focus\:text-muted:focus{
@@ -31765,6 +32008,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     background-color: var(--text-accent-light-color);
   }
 
+  .lg\:bg-accent-lighter{
+    background-color: var(--text-accent-lighter-color);
+  }
+
   .lg\:bg-muted{
     background-color: var(--text-muted-color);
   }
@@ -32069,6 +32316,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     background-color: var(--text-accent-light-color);
   }
 
+  .lg\:hover\:bg-accent-lighter:hover{
+    background-color: var(--text-accent-lighter-color);
+  }
+
   .lg\:hover\:bg-muted:hover{
     background-color: var(--text-muted-color);
   }
@@ -32371,6 +32622,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
 
   .lg\:focus\:bg-accent-light:focus{
     background-color: var(--text-accent-light-color);
+  }
+
+  .lg\:focus\:bg-accent-lighter:focus{
+    background-color: var(--text-accent-lighter-color);
   }
 
   .lg\:focus\:bg-muted:focus{
@@ -32753,6 +33008,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     border-color: var(--text-accent-light-color);
   }
 
+  .lg\:border-accent-lighter{
+    border-color: var(--text-accent-lighter-color);
+  }
+
   .lg\:border-muted{
     border-color: var(--text-muted-color);
   }
@@ -33053,6 +33312,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     border-color: var(--text-accent-light-color);
   }
 
+  .lg\:hover\:border-accent-lighter:hover{
+    border-color: var(--text-accent-lighter-color);
+  }
+
   .lg\:hover\:border-muted:hover{
     border-color: var(--text-muted-color);
   }
@@ -33351,6 +33614,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
 
   .lg\:focus\:border-accent-light:focus{
     border-color: var(--text-accent-light-color);
+  }
+
+  .lg\:focus\:border-accent-lighter:focus{
+    border-color: var(--text-accent-lighter-color);
   }
 
   .lg\:focus\:border-muted:focus{
@@ -38017,6 +38284,26 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     color: var(--text-accent-light-color);
   }
 
+  .lg\:placeholder-accent-lighter::-webkit-input-placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
+  .lg\:placeholder-accent-lighter::-moz-placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
+  .lg\:placeholder-accent-lighter:-ms-input-placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
+  .lg\:placeholder-accent-lighter::-ms-input-placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
+  .lg\:placeholder-accent-lighter::placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
   .lg\:placeholder-muted::-webkit-input-placeholder{
     color: var(--text-muted-color);
   }
@@ -39537,6 +39824,26 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     color: var(--text-accent-light-color);
   }
 
+  .lg\:focus\:placeholder-accent-lighter:focus::-webkit-input-placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
+  .lg\:focus\:placeholder-accent-lighter:focus::-moz-placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
+  .lg\:focus\:placeholder-accent-lighter:focus:-ms-input-placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
+  .lg\:focus\:placeholder-accent-lighter:focus::-ms-input-placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
+  .lg\:focus\:placeholder-accent-lighter:focus::placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
   .lg\:focus\:placeholder-muted:focus::-webkit-input-placeholder{
     color: var(--text-muted-color);
   }
@@ -40164,6 +40471,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     color: var(--text-accent-light-color);
   }
 
+  .lg\:text-accent-lighter{
+    color: var(--text-accent-lighter-color);
+  }
+
   .lg\:text-muted{
     color: var(--text-muted-color);
   }
@@ -40468,6 +40779,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     color: var(--text-accent-light-color);
   }
 
+  .lg\:hover\:text-accent-lighter:hover{
+    color: var(--text-accent-lighter-color);
+  }
+
   .lg\:hover\:text-muted:hover{
     color: var(--text-muted-color);
   }
@@ -40770,6 +41085,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
 
   .lg\:focus\:text-accent-light:focus{
     color: var(--text-accent-light-color);
+  }
+
+  .lg\:focus\:text-accent-lighter:focus{
+    color: var(--text-accent-lighter-color);
   }
 
   .lg\:focus\:text-muted:focus{
@@ -41651,6 +41970,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     background-color: var(--text-accent-light-color);
   }
 
+  .xl\:bg-accent-lighter{
+    background-color: var(--text-accent-lighter-color);
+  }
+
   .xl\:bg-muted{
     background-color: var(--text-muted-color);
   }
@@ -41955,6 +42278,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     background-color: var(--text-accent-light-color);
   }
 
+  .xl\:hover\:bg-accent-lighter:hover{
+    background-color: var(--text-accent-lighter-color);
+  }
+
   .xl\:hover\:bg-muted:hover{
     background-color: var(--text-muted-color);
   }
@@ -42257,6 +42584,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
 
   .xl\:focus\:bg-accent-light:focus{
     background-color: var(--text-accent-light-color);
+  }
+
+  .xl\:focus\:bg-accent-lighter:focus{
+    background-color: var(--text-accent-lighter-color);
   }
 
   .xl\:focus\:bg-muted:focus{
@@ -42639,6 +42970,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     border-color: var(--text-accent-light-color);
   }
 
+  .xl\:border-accent-lighter{
+    border-color: var(--text-accent-lighter-color);
+  }
+
   .xl\:border-muted{
     border-color: var(--text-muted-color);
   }
@@ -42939,6 +43274,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     border-color: var(--text-accent-light-color);
   }
 
+  .xl\:hover\:border-accent-lighter:hover{
+    border-color: var(--text-accent-lighter-color);
+  }
+
   .xl\:hover\:border-muted:hover{
     border-color: var(--text-muted-color);
   }
@@ -43237,6 +43576,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
 
   .xl\:focus\:border-accent-light:focus{
     border-color: var(--text-accent-light-color);
+  }
+
+  .xl\:focus\:border-accent-lighter:focus{
+    border-color: var(--text-accent-lighter-color);
   }
 
   .xl\:focus\:border-muted:focus{
@@ -47903,6 +48246,26 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     color: var(--text-accent-light-color);
   }
 
+  .xl\:placeholder-accent-lighter::-webkit-input-placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
+  .xl\:placeholder-accent-lighter::-moz-placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
+  .xl\:placeholder-accent-lighter:-ms-input-placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
+  .xl\:placeholder-accent-lighter::-ms-input-placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
+  .xl\:placeholder-accent-lighter::placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
   .xl\:placeholder-muted::-webkit-input-placeholder{
     color: var(--text-muted-color);
   }
@@ -49423,6 +49786,26 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     color: var(--text-accent-light-color);
   }
 
+  .xl\:focus\:placeholder-accent-lighter:focus::-webkit-input-placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
+  .xl\:focus\:placeholder-accent-lighter:focus::-moz-placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
+  .xl\:focus\:placeholder-accent-lighter:focus:-ms-input-placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
+  .xl\:focus\:placeholder-accent-lighter:focus::-ms-input-placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
+  .xl\:focus\:placeholder-accent-lighter:focus::placeholder{
+    color: var(--text-accent-lighter-color);
+  }
+
   .xl\:focus\:placeholder-muted:focus::-webkit-input-placeholder{
     color: var(--text-muted-color);
   }
@@ -50050,6 +50433,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     color: var(--text-accent-light-color);
   }
 
+  .xl\:text-accent-lighter{
+    color: var(--text-accent-lighter-color);
+  }
+
   .xl\:text-muted{
     color: var(--text-muted-color);
   }
@@ -50354,6 +50741,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
     color: var(--text-accent-light-color);
   }
 
+  .xl\:hover\:text-accent-lighter:hover{
+    color: var(--text-accent-lighter-color);
+  }
+
   .xl\:hover\:text-muted:hover{
     color: var(--text-muted-color);
   }
@@ -50656,6 +51047,10 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
 
   .xl\:focus\:text-accent-light:focus{
     color: var(--text-accent-light-color);
+  }
+
+  .xl\:focus\:text-accent-lighter:focus{
+    color: var(--text-accent-lighter-color);
   }
 
   .xl\:focus\:text-muted:focus{

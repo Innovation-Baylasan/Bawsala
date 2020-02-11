@@ -7434,16 +7434,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['initialCategories'],
   data: function data() {
@@ -31832,18 +31822,17 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "bg-default rounded w-72 h-10/12" }, [
+  return _c("div", { staticClass: "bg-default shadow rounded w-72" }, [
     _c(
       "div",
       {
         staticClass:
-          "text-accent cursor-pointer px-8 font-bold text-center py-2"
+          "text-accent cursor-pointer px-8 font-bold text-center py-3"
       },
       [
         _c(
           "p",
           {
-            staticClass: "pb-2",
             on: {
               click: function($event) {
                 _vm.isOpen = !_vm.isOpen
@@ -31857,7 +31846,8 @@ var render = function() {
           ? _c(
               "div",
               {
-                staticClass: "flex bg-accent-light p-1 items-center rounded-sm"
+                staticClass:
+                  "flex bg-accent-lighter p-1 items-center rounded-sm"
               },
               [
                 _c("img", {
@@ -31898,137 +31888,97 @@ var render = function() {
     _vm.isOpen
       ? _c(
           "ul",
-          {
-            staticClass:
-              "flex overflow-y-scroll px-4 md:flex-col justify-between"
-          },
-          [
-            _c("li", { staticClass: "py-2 border-accent-light border-b" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "flex items-center p-2  fade",
-                  attrs: { href: "#" },
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.selectCategory("")
-                    }
-                  }
-                },
-                [_vm._m(0)]
-              )
-            ]),
-            _vm._v(" "),
-            _vm._l(_vm.filteredCategories, function(category, index) {
-              return _c(
-                "li",
-                { staticClass: "py-2 border-accent-light border-b" },
-                [
-                  _c(
-                    "a",
-                    {
-                      key: index,
-                      staticClass:
-                        "flex items-center justify-between p-2 fade -mx-3",
-                      attrs: { href: "#" }
-                    },
-                    [
-                      _c("div", { staticClass: "flex items-center" }, [
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "w-8 h-8 flex items-center mx-3 justify-center p-1"
-                          },
-                          [
-                            _c("img", {
-                              attrs: { src: category.icon, alt: "" }
-                            })
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("label", {
-                          staticClass: "capitalize",
-                          attrs: { for: category.name },
-                          domProps: { textContent: _vm._s(category.name) }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.selectedCategories,
-                            expression: "selectedCategories"
-                          }
-                        ],
-                        staticClass: "checkbox border",
-                        attrs: { id: category.name, type: "checkbox" },
-                        domProps: {
-                          value: category.name,
-                          checked: Array.isArray(_vm.selectedCategories)
-                            ? _vm._i(_vm.selectedCategories, category.name) > -1
-                            : _vm.selectedCategories
+          { staticClass: "flex overflow-auto max-h-72 px-4 flex-col" },
+          _vm._l(_vm.filteredCategories, function(category, index) {
+            return _c(
+              "li",
+              { staticClass: "py-2 border-accent-light border-b" },
+              [
+                _c(
+                  "a",
+                  {
+                    key: index,
+                    staticClass:
+                      "flex items-center justify-between p-2 fade -mx-3",
+                    attrs: { href: "#" }
+                  },
+                  [
+                    _c("div", { staticClass: "flex items-center" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "w-8 h-8 flex items-center mx-3 justify-center p-1"
                         },
-                        on: {
-                          change: [
-                            function($event) {
-                              var $$a = _vm.selectedCategories,
-                                $$el = $event.target,
-                                $$c = $$el.checked ? true : false
-                              if (Array.isArray($$a)) {
-                                var $$v = category.name,
-                                  $$i = _vm._i($$a, $$v)
-                                if ($$el.checked) {
-                                  $$i < 0 &&
-                                    (_vm.selectedCategories = $$a.concat([$$v]))
-                                } else {
-                                  $$i > -1 &&
-                                    (_vm.selectedCategories = $$a
-                                      .slice(0, $$i)
-                                      .concat($$a.slice($$i + 1)))
-                                }
-                              } else {
-                                _vm.selectedCategories = $$c
-                              }
-                            },
-                            function($event) {
-                              return _vm.$emit(
-                                "category-change",
-                                _vm.selectedCategories
-                              )
-                            }
-                          ]
-                        }
+                        [_c("img", { attrs: { src: category.icon, alt: "" } })]
+                      ),
+                      _vm._v(" "),
+                      _c("label", {
+                        staticClass: "capitalize",
+                        attrs: { for: category.name },
+                        domProps: { textContent: _vm._s(category.name) }
                       })
-                    ]
-                  )
-                ]
-              )
-            })
-          ],
-          2
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.selectedCategories,
+                          expression: "selectedCategories"
+                        }
+                      ],
+                      staticClass: "checkbox border",
+                      attrs: { id: category.name, type: "checkbox" },
+                      domProps: {
+                        value: category.name,
+                        checked: Array.isArray(_vm.selectedCategories)
+                          ? _vm._i(_vm.selectedCategories, category.name) > -1
+                          : _vm.selectedCategories
+                      },
+                      on: {
+                        change: [
+                          function($event) {
+                            var $$a = _vm.selectedCategories,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = category.name,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  (_vm.selectedCategories = $$a.concat([$$v]))
+                              } else {
+                                $$i > -1 &&
+                                  (_vm.selectedCategories = $$a
+                                    .slice(0, $$i)
+                                    .concat($$a.slice($$i + 1)))
+                              }
+                            } else {
+                              _vm.selectedCategories = $$c
+                            }
+                          },
+                          function($event) {
+                            return _vm.$emit(
+                              "category-change",
+                              _vm.selectedCategories
+                            )
+                          }
+                        ]
+                      }
+                    })
+                  ]
+                )
+              ]
+            )
+          }),
+          0
         )
       : _vm._e()
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass:
-          "w-10 h-10 flex items-center justify-center p-1 rounded bg-gray-100bg-red-100 svg-red"
-      },
-      [_c("img", { attrs: { src: "/svg/map-icon.svg", alt: "" } })]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

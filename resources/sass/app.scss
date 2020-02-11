@@ -19,6 +19,18 @@
 @import "./components/star-rating";
 @import "~@glidejs/glide/src/assets/sass/glide.core";
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply rounded bg-accent-light;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply rounded bg-accent;
+}
+
 .cover-skewer {
   transform: skewY(-5deg);
   top: 90%;
