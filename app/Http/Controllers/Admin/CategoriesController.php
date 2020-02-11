@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CategoriesController extends Controller
 {
@@ -41,24 +42,17 @@ class CategoriesController extends Controller
     public function store(Request $request)
     {
 
-        $request->validate([
-            'name' => 'required',
-            'icon' => 'required|image|max:2048',
-            'icon_png' => 'required|image|max:2048'
-        ]);
+        $this->validateRequest($request);
 
-        // Category SVG Icon
-        $icon = $request->file('icon');
-        $icon->move(public_path('images') . '/categoryIcon', $iconPath = rand() . '.' . $icon->getClientOriginalExtension());
-        // Category PNG Icon for mobile phone
-        $iconPng = $request->file('icon_png');
-        $iconPng->move(public_path('images') . '/categoryIcon', $iconPngPath = rand() . '.' . $iconPng->getClientOriginalExtension());
+        $iconPath = $request->file('icon')->store('public/icons');
+
+        $markerPath = $request->file('icon_png')->store('public/markers');
 
 
         Category::create([
             'name' => $request->name,
             'icon' => $iconPath,
-            'icon_png' => $iconPngPath
+            'icon_png' => $markerPath
         ]);
 
         return redirect('/admin/categories')
@@ -99,32 +93,20 @@ class CategoriesController extends Controller
      */
     public function update(Category $category, Request $request)
     {
-        $iconPath = $request->old_icon;
-        $icon = $request->file('icon');
-        $iconPngPath = $request->oldIconPngName;
-        $iconPng = $request->file('icon_png');
 
-        $request->validate([
-            'name' => 'required',
-            'icon' => 'sometimes|image|max:2048',
-            'icon_png' => 'sometimes|image|max:2048',
-        ]);
+        $this->validateRequest($request);
 
-        if ($icon) {
-            $iconPath = rand() . '.' . $icon->getClientOriginalExtension();
-            $icon->move(public_path('images') . '/categoryIcon', $iconPath);
-        }
+        Storage::delete([$category->icon, $category->icon_png]);
 
-        if ($iconPng) {
-            $iconPngPath = rand() . '.' . $iconPng->getClientOriginalExtension();
-            $iconPng->move(public_path('images') . '/categoryIcon', $iconPngPath);
-        }
+        $iconPath = $request->file('icon')->store('public/icons');
+
+        $markerPath = $request->file('icon_png')->store('public/markers');
 
 
         $category->update([
             'name' => $request->name,
             'icon' => $iconPath,
-            'icon_png' => $iconPngPath
+            'icon_png' => $markerPath
         ]);
 
         return redirect('/admin/categories')
@@ -143,5 +125,17 @@ class CategoriesController extends Controller
         $category->delete();
 
         return back()->with('success', 'Data deleted successfully');
+    }
+
+    /**
+     * @param Request $request
+     */
+    public function validateRequest(Request $request): void
+    {
+        $request->validate([
+            'name' => 'required',
+            'icon' => 'required|image|max:2048',
+            'icon_png' => 'required|image|max:2048'
+        ]);
     }
 }

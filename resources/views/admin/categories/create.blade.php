@@ -32,6 +32,11 @@
                 <input type="file" id="icon" name="icon">
             </div>
 
+            <label class="input-label" for="icon">Marker icon</label>
+            <div class="input">
+                <input type="file" id="icon" name="icon_png">
+            </div>
+
             <button class="button" type="submit">Create</button>
 
         </form>

@@ -7114,7 +7114,7 @@ __webpack_require__.r(__webpack_exports__);
           position: new this.google.maps.LatLng(place.location.lat, place.location["long"]),
           map: this.map,
           icon: {
-            url: place.category ? "/svg/markers/".concat(place.category.name, "-marker-icon.svg") : '/svg/event-icon.svg',
+            url: place.category ? place.category.icon_png : '/svg/event-icon.svg',
             scaledSize: new google.maps.Size(35, 35),
             origin: new google.maps.Point(0, 0),
             anchor: new google.maps.Point(0, 0)
@@ -7394,6 +7394,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -31936,7 +31939,7 @@ var render = function() {
                           "div",
                           {
                             staticClass:
-                              "w-8 h-8 flex items-center mx-3 justify-center p-1 rounded bg-gray-100"
+                              "w-8 h-8 flex items-center mx-3 justify-center p-1"
                           },
                           [
                             _c("img", {
@@ -31961,7 +31964,7 @@ var render = function() {
                             expression: "selectedCategories"
                           }
                         ],
-                        staticClass: "border",
+                        staticClass: "checkbox border",
                         attrs: { id: category.name, type: "checkbox" },
                         domProps: {
                           value: category.name,

@@ -50,5 +50,5 @@
         </tbody>
     </table>
 
-    {{$entity->links()}}
+    {{$entities->links()}}
 @endsection

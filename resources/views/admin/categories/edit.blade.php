@@ -2,9 +2,6 @@
 
 @section('content')
     <div class="p-4">
-
-        <h1> Create Category </h1>
-
         @if($errors->any())
             <div class="alert is-danger">
                 <ul>
@@ -28,14 +25,25 @@
 
 
             <label class="input-label" for="icon">Icon</label>
-            <div class="input">
-                <input type="file" id="icon" name="icon">
+            <div class="flex ">
+                <div class="input flex-1">
+                    <label class="text-center p-2 m-1 rounded bg-accent-light text-accent cursor-pointer" for="icon">Upload
+                        File</label>
+                    <input class="invisible" type="file" id="icon" name="icon">
+                </div>
+                <img class="mx-2 w-8 h-8" src="{{Storage::url($category->icon  )}}" alt="">
             </div>
 
-            <input type="hidden" name="old_icon" value="{{ $category->icon  }}">
+            <label class="input-label" for="icon">Marker</label>
+            <div class="flex ">
+                <div class="input flex-1">
+                    <label class="text-center p-2 m-1 rounded bg-accent-light text-accent cursor-pointer" for="icon">Upload
+                        File</label>
+                    <input class="invisible" type="file" id="icon" name="icon_png">
+                </div>
+                <img class="mx-2 w-8 h-8" src="{{Storage::url($category->icon  )}}" alt="">
+            </div>
 
-
-            <img src="/images/categoryIcon/{{ $category->icon  }}" alt="">
 
             <button class="button is-green" type="submit">Update</button>
 

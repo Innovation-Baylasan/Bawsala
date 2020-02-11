@@ -30,15 +30,18 @@
                    :key="index"
                 >
                     <div class="flex items-center">
-                        <div class="w-8 h-8 flex items-center mx-3 justify-center p-1 rounded bg-gray-100"
+                        <div class="w-8 h-8 flex items-center mx-3 justify-center p-1"
                         >
                             <img :src="category.icon" alt="">
                         </div>
                         <label :for="category.name" class="capitalize" v-text="category.name"></label>
                     </div>
-                    <input :id="category.name" @change="$emit('category-change',selectedCategories)" type="checkbox"
-                           v-model="selectedCategories" :value="category.name"
-                           class="border"/>
+                    <input :id="category.name"
+                           class="checkbox border"
+                           @change="$emit('category-change',selectedCategories)"
+                           type="checkbox"
+                           v-model="selectedCategories"
+                           :value="category.name"/>
                 </a>
             </li>
         </ul>
