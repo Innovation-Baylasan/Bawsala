@@ -22,7 +22,7 @@ trait CanBeRated
 
         $userId = $user ? $user->id : auth()->id();
 
-        $this->ratings()->updateOrCreate(['user_id' => $userId], compact('rating'));
+        return $this->ratings()->updateOrCreate(['user_id' => $userId], compact('rating'));
     }
 
     /**

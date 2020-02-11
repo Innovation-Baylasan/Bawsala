@@ -20,9 +20,9 @@ class EntitiesRatingController extends Controller
      */
     public function update(Request $request, Entity $entity)
     {
-        $entity->rate($request->rating);
-
         return response([
+            'rating' => $entity->rate($request->rating),
+            'avg_rate' => $entity->rating(),
             'message' => 'rated successfully'
         ], 200);
     }
