@@ -49,21 +49,13 @@ class EntitiesApiTest extends TestCase
     }
 
     /** @test */
-    public function it_passes_test()
-    {
-
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
-
-    }
-
-    /** @test */
     public function it_should_return_all_entities () {
 
         $this->withoutExceptionHandling();
 
         $response = $this->get(route('api.entities.index'));
+
+        $response->dump();
 
         $response
             ->assertOk();

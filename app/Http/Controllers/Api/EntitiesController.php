@@ -43,15 +43,6 @@ class EntitiesController extends Controller
     }
 
 
-    public function myEntities()
-    {
-
-        $entities = auth()->user()->entities();
-
-        return EntityResource::collection($entities->get());
-
-    }
-
     /**
      * @param Request $request
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
