@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Entity;
 use App\Event;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\EventRequest;
 
 class EventsController extends Controller
 {
@@ -40,37 +40,12 @@ class EventsController extends Controller
      * @return \Illuminate\Http\Response
      *
      */
-    public function store(Request $request)
+    public function store(EventRequest $request)
     {
 
-        $attributes = $request->validate([
-            'entity_id' => 'required',
-            'picture' => 'required',
-            'name' => 'required',
-            'link' => 'required',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date',
-            'title' => 'required',
-            'latitude' => 'required|numeric',
-            'longitude' => 'required|numeric',
-            'confirm' => 'required|numeric',
-        ]);
+        $attributes = $request->validated();
 
-        $form_data = array(
-            'creator_id' => auth()->user()->id,
-            'entity_id' => $attributes['entity_id'],
-            'picture' => $attributes['picture'],
-            'name' => $attributes['name'],
-            'link' => $attributes['link'],
-            'description' => $attributes['description'],
-            'start_date' => $attributes['start_date'],
-            'end_date' => $attributes['end_date'],
-            'latitude' => $attributes['latitude'],
-            'longitude' => $attributes['longitude'],
-            'confirm' => $attributes['confirm'],
-        );
-
-        Event::create($form_data);
+        auth()->events()->create($attributes);
 
         return redirect('/admin/events')
             ->with('success', 'Data added successfully.');
@@ -115,36 +90,12 @@ class EventsController extends Controller
      * @return \Illuminate\Http\Response
      *
      */
-    public function update(Request $request, Event $event)
+    public function update(EventRequest $request, Event $event)
     {
-        $attributes = $request->validate([
-            'entity_id' => 'required',
-            'picture' => 'required',
-            'name' => 'required',
-            'link' => 'required',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date',
-            'title' => 'required',
-            'latitude' => 'required|numeric',
-            'longitude' => 'required|numeric',
-            'confirm' => 'required|numeric',
-        ]);
+        $attributes = $request->validated();
 
-        $form_data = array(
-            'creator_id' => auth()->user()->id,
-            'entity_id' => $attributes['entity_id'],
-            'picture' => $attributes['picture'],
-            'name' => $attributes['name'],
-            'link' => $attributes['link'],
-            'description' => $attributes['description'],
-            'start_date' => $attributes['start_date'],
-            'end_date' => $attributes['end_date'],
-            'latitude' => $attributes['latitude'],
-            'longitude' => $attributes['longitude'],
-            'confirm' => $attributes['confirm'],
-        );
 
-        $event->update($form_data);
+        $event->update($attributes);
 
         return redirect('/admin/events')
             ->with('success', 'Data updated successfully.');
@@ -153,7 +104,7 @@ class EventsController extends Controller
     /**
      * Remove the specified event from storage.
      *
-     * @param Event  event
+     * @param Event $event
      * @return \Illuminate\Http\Response
      *
      * @throws \Exception

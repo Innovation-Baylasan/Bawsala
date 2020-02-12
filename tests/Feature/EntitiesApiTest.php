@@ -4,7 +4,9 @@ namespace Tests\Feature;
 
 use App\Category;
 use App\Entity;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 use App\User;
 
@@ -71,30 +73,12 @@ class EntitiesApiTest extends TestCase
     public function it_should_filter_entities()
     {
 
-        $this->withoutExceptionHandling();
-
         $response = $this->get(route('api.entities.index', [
             'q' => $this->entities[0]->name
         ])); //->decodeResponseJson();
 
         $response
             ->assertOk()
-            ->assertJsonFragment([
-                'name' => $this->entities[0]->name
-            ]);
-
-    }
-
-    /** @test */
-    public function it_should_get_entity_nearby_entities()
-    {
-
-        $response = $this->get(route('api.entities.index', [
-            '@lat' => $this->entities[0]->latitude,
-            '@long' => $this->entities[0]->longitude,
-        ]));
-
-        $response->assertOk()
             ->assertJsonFragment([
                 'name' => $this->entities[0]->name
             ]);
@@ -257,29 +241,28 @@ class EntitiesApiTest extends TestCase
 
 
     /** @test */
-    function it_should_allow_authenticated_user_to_create_entity()
+    function it_should_allow_only_company_user_to_create_entity()
     {
-
-        $this->withoutExceptionHandling();
-
-        $this->signIn(factory(User::class)->create(), 'api');
 
         $entity = [
             'category_id' => factory(Category::class)->create()->id,
             'name' => "My Entity",
-            'cover' => "https://placeimg.com/640/360/tech",
-            'avatar' => "https://www.gravatar.com/avatar/?s=200",
+            'cover' => UploadedFile::fake()->image('cover.jpg'),
+            'avatar' => UploadedFile::fake()->image('avatar.jpg'),
             'description' => "This is a very great description",
             'latitude' => 3.5,
             'longitude' => 9.6
         ];
 
-        $response = $this->json('post', route('api.entities.store'), $entity);
+        $this->signIn(factory(User::class)->create(), 'api');
 
-        $response
-            ->assertJsonFragment($entity)
+        $this->json('post', route('api.entities.store'), $entity)->assertStatus(403);
+
+        $this->signIn(factory(User::class)->create(['role' => 'company']), 'api');
+
+        $this->json('post', route('api.entities.store'), $entity)
             ->assertJsonFragment([
-                'message' => 'Entity created successfully'
+                'name' => 'My Entity'
             ])
             ->assertStatus(201);
 
@@ -316,6 +299,51 @@ class EntitiesApiTest extends TestCase
         $response
             ->assertJsonCount(2, 'data')
             ->assertOk();
+
+    }
+
+
+    /** @test */
+    public function it_should_get_entity_nearby_entities_within_1km()
+    {
+
+        // given we have many entities
+        $center = factory('App\Entity')->create(
+            [
+                'name' => 'center',
+                'longitude' => 15.6534368,
+                'latitude' => 32.5587282
+            ]
+        );
+        $inrange = factory('App\Entity')->create(
+            [
+                'name' => 'inrange',
+                'longitude' => 15.6534368,
+                'latitude' => 32.5587282
+            ]
+        );
+
+        // 13.2604378,36.4392833
+        $outrange = factory('App\Entity')->create(
+            [
+                'name' => 'outrange',
+                'longitude' => 13.2604378,
+                'latitude' => 36.4392833
+            ]
+        );
+
+        //when we ask one for it's neighbrougs
+        // then it should return only nearby 1 km
+        $response = $this->get(route('api.entities.index', [
+            '@lat' => $center->latitude,
+            '@long' => $center->longitude,
+        ]));
+
+        $response
+            ->assertOk()
+            ->assertJsonFragment([
+                'name' => $inrange->name
+            ]);
 
     }
 

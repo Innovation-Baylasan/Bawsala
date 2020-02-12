@@ -24,7 +24,6 @@ class Event extends Model implements HasMedia
         'creator_id',
         'entity_id',
         'name',
-        'picture',
         'link',
         'description',
         'start_date',
@@ -32,6 +31,14 @@ class Event extends Model implements HasMedia
         'latitude',
         'longitude'
     ];
+
+    /**
+     * Determine what to eager load when retrieving activity
+     *
+     * @var array
+     */
+    protected $appends = ['cover'];
+
 
     /**
      * @param Media|null $media
@@ -70,12 +77,14 @@ class Event extends Model implements HasMedia
      */
     public function toSearchableArray()
     {
-        return [
-            'id' => $this->id,
+        $search = [
             'name' => $this->name,
             'description' => $this->description,
-            'location' => json_encode($this->location),
         ];
+
+        $search[$this->getKeyName()] = $this->getKey();
+
+        return $search;
     }
 
 
@@ -95,6 +104,14 @@ class Event extends Model implements HasMedia
     public function getCoverAttribute()
     {
         $cover = $this->getMedia('covers')->first();
-        return $cover ? $cover->getUrl('cover') : 'https://placeimg.com/640/460/tech';
+        return $cover ? $cover->getUrl('cover') : 'https://media.sproutsocial.com/uploads/2018/04/Facebook-Cover-Photo-Size.png';
+    }
+
+    public function deleteMyEvent()
+    {
+
+        echo("Delete my event: ");
+        echo($this->user->id);
+
     }
 }

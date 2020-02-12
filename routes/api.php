@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('apilogger')->namespace('Api')->group(function () {
+Route::namespace('Api')->group(function () {
 
     Route::post('/register', 'RegisterController@store')->name('api.register.store');
 
@@ -27,13 +27,13 @@ Route::middleware('apilogger')->namespace('Api')->group(function () {
 
     Route::get('/entities', 'EntitiesController@index')->name('api.entities.index');
 
-    Route::middleware('auth:api')->post('/entities/store', 'EntitiesController@store')->name('api.entities.store');
+    Route::post('/entities', 'EntitiesController@store')->middleware(['auth:api', 'company'])->name('api.entities.store');
 
-    Route::middleware('auth:api')->get('/entities/my', 'EntitiesController@myEntities')->name('api.entities.myEntities');
+    Route::get('/entities/my', 'EntitiesController@myEntities')->middleware('auth:api')->name('api.entities.myEntities');
 
     Route::get('/entities/{entity}', 'EntitiesController@show')->name('api.entities.show');
 
-    Route::middleware('auth:api')->delete('/entities/{entity}', 'EntitiesController@destroy')->name('api.entities.destroy');
+    Route::delete('/entities/{entity}', 'EntitiesController@destroy')->middleware('auth:api')->name('api.entities.destroy');
 
     Route::put('/entities/{entity}/rating', 'EntitiesRatingController@update')->name('api.entitiesRating.update');
 
@@ -51,9 +51,11 @@ Route::middleware('apilogger')->namespace('Api')->group(function () {
 
     Route::get('/events', 'EventsController@index')->name('api.events.index');
 
-    Route::middleware('auth:api')->get('/events/my', 'EventsController@myEvents')->name('api.events.myEvents');
+    Route::get('/events/my', 'EventsController@myEvents')->middleware('auth:api')->name('api.events.myEvents');
 
-    Route::middleware('auth:api')->post('/events/store', 'EventsController@store')->name('api.events.store');
+    Route::post('/events', 'EventsController@store')->middleware('auth:api')->name('api.events.store');
+
+    Route::delete('/events/{event}', 'EventsController@destroy')->middleware('auth:api')->name('api.events.destroy');
 
 });
 

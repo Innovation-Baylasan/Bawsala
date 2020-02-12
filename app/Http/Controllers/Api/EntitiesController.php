@@ -6,9 +6,9 @@ use App\Category;
 use App\Entity;
 use App\Filters\EntitiesFilter;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EntityRequest;
 use App\Http\Resources\EntityResource;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 
 class EntitiesController extends Controller
 {
@@ -58,22 +58,32 @@ class EntitiesController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     *
+     * @return EntityResource
      */
-    public function store(Request $request)
+    public function store(EntityRequest $request)
     {
-        $attributes = $request->validate([
-            'category_id' => "required|max:255",
-            'name' => "required|max:255",
-            'description' => "required|max:255",
-            'latitude' => "required|max:255",
-            'longitude' => "required|max:255",
-        ]);
+        $attributes = $request->validated();
 
-        $entity = auth()->user()->entities()->create($attributes);
+        $attributes['user_id'] = auth()->id();
 
-        return EntityResource::collection($entity);
+        $entity = auth()->user()
+            ->mainEntity()
+            ->subEntities()
+            ->create($attributes);
+
+        if ($request->has('tags')) {
+            $entity->tagMany($request->tags);
+        }
+        if (isset($attributes['avatar'])) {
+            $entity->profile->setAvatar($attributes['avatar'],null);
+        };
+
+        if (isset($attributes['cover'])) {
+            $entity->profile->setCover($attributes['cover'],null);
+        }
+
+        return new EntityResource($entity);
     }
 
 }

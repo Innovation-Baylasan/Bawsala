@@ -31,10 +31,32 @@ abstract class TestCase extends BaseTestCase
         return $this->actingAs($user ?: factory('App\User', [
             'register_as' => 'company',
             'category' => factory(Category::class)->create()->id,
-            'location' => '12.23778823,23.2312312',
-            'avatar' => UploadedFile::fake()->image('avatar.jpg'),
-            'cover' => UploadedFile::fake()->image('cover.jpg')
+            'location' => '12.23778823,23.2312312'
         ])->create(), $driver);
 
     }
+
+    public function createCompanyUser() {
+
+        $company = [
+            'name' => 'User With Image',
+            'username' => 'userwithimage',
+            'email' => 'userwithimage@register.com',
+            'register_as' => 'company',
+            'category' => factory(Category::class)->create()->id,
+            'location' => '12.23778823,23.2312312',
+            'description' => 'This is a company',
+            'password' => 'register@12345678',
+            'password_confirmation' => 'register@12345678',
+            'avatar' => UploadedFile::fake()->image('avatar.jpg'),
+            'cover' => UploadedFile::fake()->image('cover.jpg')
+        ];
+
+        $response = $this->post(route('api.register.store'), $company)->decodeResponseJson();
+
+        $user = \App\User::find($response["data"]["user"]["id"]);
+
+        return $user;
+    }
+
 }
