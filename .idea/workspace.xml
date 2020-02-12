@@ -4,9 +4,8 @@
     <bookmark url="file://$PROJECT_DIR$/app/User.php" description="public function is()" line="101" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="``">
+    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/EntitiesController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/EntitiesController.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -78,8 +77,8 @@
       <file leaf-file-name="EntitiesController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/EntitiesController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="75" column="36" lean-forward="false" selection-start-line="75" selection-start-column="36" selection-end-line="75" selection-end-column="36" />
+            <state relative-caret-position="352">
+              <caret line="77" column="0" lean-forward="true" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -612,14 +611,7 @@
       <workItem from="1581257938990" duration="10139000" />
       <workItem from="1581342773622" duration="38000" />
       <workItem from="1581419943082" duration="18350000" />
-      <workItem from="1581502132652" duration="2536000" />
-    </task>
-    <task id="LOCAL-00054" summary="rateable entities">
-      <created>1578506694279</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1578506694279</updated>
+      <workItem from="1581502132652" duration="2683000" />
     </task>
     <task id="LOCAL-00055" summary="rateable entities">
       <created>1578655276967</created>
@@ -957,7 +949,14 @@
       <option name="project" value="LOCAL" />
       <updated>1581444248607</updated>
     </task>
-    <option name="localTasksCounter" value="103" />
+    <task id="LOCAL-00103" summary="return created entity as same as fetching it">
+      <created>1581517832463</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1581517832464</updated>
+    </task>
+    <option name="localTasksCounter" value="104" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -966,7 +965,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="387530000" />
+    <option name="totallyTimeSpent" value="387677000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="723" extended-state="6" />
@@ -1041,7 +1040,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="cleaning up" />
     <MESSAGE value="edit testing" />
     <MESSAGE value="map clustering" />
     <MESSAGE value="reviews api cleaning" />
@@ -1066,7 +1064,8 @@
     <MESSAGE value="filterable dropdown, dropdown component" />
     <MESSAGE value="fix categories crude bugs" />
     <MESSAGE value="enhance categories picker" />
-    <option name="LAST_COMMIT_MESSAGE" value="enhance categories picker" />
+    <MESSAGE value="return created entity as same as fetching it" />
+    <option name="LAST_COMMIT_MESSAGE" value="return created entity as same as fetching it" />
   </component>
   <component name="WindowStateProjectService">
     <state x="348" y="154" key="git4idea.merge.GitPullDialog" />
@@ -1473,8 +1472,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/EntitiesController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="75" column="36" lean-forward="false" selection-start-line="75" selection-start-column="36" selection-end-line="75" selection-end-column="36" />
+        <state relative-caret-position="352">
+          <caret line="77" column="0" lean-forward="true" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
           <folding />
         </state>
       </provider>
