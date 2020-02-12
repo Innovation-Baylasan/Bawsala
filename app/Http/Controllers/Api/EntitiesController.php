@@ -73,10 +73,7 @@ class EntitiesController extends Controller
 
         $entity = auth()->user()->entities()->create($attributes);
 
-        return response([
-            'message' => 'Entity created successfully',
-            'entity' => $entity
-        ], 201);
+        return EntityResource::collection($entity);
     }
 
 }
