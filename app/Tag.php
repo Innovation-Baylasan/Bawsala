@@ -22,4 +22,5 @@ class Tag extends Model
             'label' => $this->name,
         ];
     }
+
 }

@@ -35,6 +35,8 @@ Route::namespace('Api')->group(function () {
 
     Route::delete('/entities/{entity}', 'EntitiesController@destroy')->middleware('auth:api')->name('api.entities.destroy');
 
+    Route::get('/entities/{entity}/related/', 'RelatedPlacesController@index')->name('api.relatedPlacesController.index');
+
     Route::put('/entities/{entity}/rating', 'EntitiesRatingController@update')->name('api.entitiesRating.update');
 
     Route::get('/entities/{entity}/reviews', 'EntitiesReviewsController@index')->name('api.entitiesReviews.index');

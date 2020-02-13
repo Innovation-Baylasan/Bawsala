@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="- Create the End Point That Return the Related Entities">
+    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="- Creating Related Places Test Case And Scenario.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/EntitiesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/EntitiesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/EntitiesApiTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/EntitiesApiTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/RelatedPlacesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/RelatedPlacesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/RelatedPlacesApiTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/RelatedPlacesApiTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,25 +205,25 @@
       <recent name="$PROJECT_DIR$/resources/js/components" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.EntitiesApiTest">
+  <component name="RunManager" selected="PHPUnit.RelatedPlacesApiTest.it_return_related_places_to_the_given_entity_based_on_common_tags">
     <configuration name="EntitiesApiTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="Tests\Feature\EntitiesApiTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/EntitiesApiTest.php" scope="Class" />
-      <method v="2" />
-    </configuration>
-    <configuration name="EntitiesApiTest.it_should_add_entity_with_tags" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\EntitiesApiTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/EntitiesApiTest.php" method="it_should_add_entity_with_tags" scope="Method" />
-      <method v="2" />
-    </configuration>
-    <configuration name="EntitiesApiTest.it_should_return_all_entities" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\EntitiesApiTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/EntitiesApiTest.php" method="it_should_return_all_entities" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="Feature" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" directory="$PROJECT_DIR$/tests/Feature" />
       <method v="2" />
     </configuration>
-    <configuration name="RelatedPlaces" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\RelatedPlaces" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/RelatedPlaces.php" scope="Class" />
+    <configuration name="RelatedPlacesApiTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\RelatedPlacesApiTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/RelatedPlacesApiTest.php" scope="Class" />
+      <method v="2" />
+    </configuration>
+    <configuration name="RelatedPlacesApiTest.it_return_related_places_to_the_given_entity_based_on_common_tags" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\RelatedPlacesApiTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/RelatedPlacesApiTest.php" method="it_return_related_places_to_the_given_entity_based_on_common_tags" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="RelatedPlaces.it_return_related_places_to_the_given_entity_based_on_common_tags" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\RelatedPlaces" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/RelatedPlacesApiTest.php" method="it_return_related_places_to_the_given_entity_based_on_common_tags" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp">
@@ -238,11 +237,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="PHPUnit.EntitiesApiTest" />
-        <item itemvalue="PHPUnit.EntitiesApiTest.it_should_add_entity_with_tags" />
-        <item itemvalue="PHPUnit.EntitiesApiTest.it_should_return_all_entities" />
-        <item itemvalue="PHPUnit.RelatedPlaces" />
+        <item itemvalue="PHPUnit.RelatedPlacesApiTest.it_return_related_places_to_the_given_entity_based_on_common_tags" />
         <item itemvalue="PHPUnit.Feature" />
+        <item itemvalue="PHPUnit.RelatedPlacesApiTest" />
+        <item itemvalue="PHPUnit.RelatedPlaces.it_return_related_places_to_the_given_entity_based_on_common_tags" />
+        <item itemvalue="PHPUnit.EntitiesApiTest" />
       </list>
     </recent_temporary>
   </component>
@@ -338,28 +337,8 @@
       <workItem from="1581143378294" duration="3171000" />
       <workItem from="1581249893229" duration="16646000" />
       <workItem from="1581420086369" duration="1892000" />
-      <workItem from="1581582805301" duration="6886000" />
-    </task>
-    <task id="LOCAL-00051" summary="reviewable entities">
-      <created>1578494766066</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1578494766067</updated>
-    </task>
-    <task id="LOCAL-00052" summary="followable entities">
-      <created>1578501412843</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1578501412843</updated>
-    </task>
-    <task id="LOCAL-00053" summary="rateable entities">
-      <created>1578506682024</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1578506682025</updated>
+      <workItem from="1581582805301" duration="7994000" />
+      <workItem from="1581605738797" duration="4439000" />
     </task>
     <task id="LOCAL-00054" summary="rateable entities">
       <created>1578506694279</created>
@@ -683,7 +662,28 @@
       <option name="project" value="LOCAL" />
       <updated>1581597209605</updated>
     </task>
-    <option name="localTasksCounter" value="100" />
+    <task id="LOCAL-00100" summary="- Cleaning Entities Api Controller&#10;- Adding Entities Tags Unit Test">
+      <created>1581601348090</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1581601348090</updated>
+    </task>
+    <task id="LOCAL-00101" summary="- Creating Related Places Test Case And Scenario.">
+      <created>1581602239186</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1581602239186</updated>
+    </task>
+    <task id="LOCAL-00102" summary="- Creating Related Places Test Case And Scenario.">
+      <created>1581609550948</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1581609550952</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -715,8 +715,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="registration as a company" />
-    <MESSAGE value="images have been cropped as i want it" />
     <MESSAGE value="refine images" />
     <MESSAGE value="taggable entities" />
     <MESSAGE value="cleaning up" />
@@ -740,7 +738,9 @@
     <MESSAGE value="- Worked on entity addition.&#10;- Modified event request to adhare the cover.&#10;- Appened cover with the event response.&#10;- Event testing." />
     <MESSAGE value="- Refactoring Events myEvent Method" />
     <MESSAGE value="- Create the End Point That Return the Related Entities" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Create the End Point That Return the Related Entities" />
+    <MESSAGE value="- Cleaning Entities Api Controller&#10;- Adding Entities Tags Unit Test" />
+    <MESSAGE value="- Creating Related Places Test Case And Scenario." />
+    <option name="LAST_COMMIT_MESSAGE" value="- Creating Related Places Test Case And Scenario." />
   </component>
   <component name="WindowStateProjectService">
     <state x="452" y="25" width="645" height="774" key="#EntitiesApiTest.it_should_allow_authenticated_entity_user_to_create_entity" timestamp="1580989924835">
@@ -755,10 +755,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="482" y="4" key="#PHP/0.0.1536.824@0.0.1536.824" timestamp="1580912194166" />
-    <state x="461" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1581421517365">
+    <state x="461" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1581606061707">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="461" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1581421517365" />
+    <state x="461" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1581606061707" />
     <state x="499" y="160" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1580909629643">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -767,30 +767,30 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="168" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1581421927491" />
-    <state x="333" y="0" key="CommitChangelistDialog2" timestamp="1581422009150">
+    <state x="333" y="0" key="CommitChangelistDialog2" timestamp="1581611056421">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="333" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1581422009150" />
-    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1581598082841">
+    <state x="333" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1581611056421" />
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1581601330103">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1581598082841" />
-    <state width="1493" height="359" key="GridCell.Tab.0.bottom" timestamp="1581601153067">
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1581601330103" />
+    <state width="1493" height="324" key="GridCell.Tab.0.bottom" timestamp="1581610974017">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="359" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1581601153067" />
-    <state width="1493" height="359" key="GridCell.Tab.0.center" timestamp="1581601153067">
+    <state width="1493" height="324" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1581610974017" />
+    <state width="1493" height="324" key="GridCell.Tab.0.center" timestamp="1581610974016">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="359" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1581601153067" />
-    <state width="1493" height="359" key="GridCell.Tab.0.left" timestamp="1581601153067">
+    <state width="1493" height="324" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1581610974016" />
+    <state width="1493" height="324" key="GridCell.Tab.0.left" timestamp="1581610974016">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="359" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1581601153067" />
-    <state width="1493" height="359" key="GridCell.Tab.0.right" timestamp="1581601153067">
+    <state width="1493" height="324" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1581610974016" />
+    <state width="1493" height="324" key="GridCell.Tab.0.right" timestamp="1581610974017">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="359" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1581601153067" />
+    <state width="1493" height="324" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1581610974017" />
     <state x="40" y="46" width="1390" height="682" key="MergeDialog" timestamp="1581598394694">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -811,10 +811,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1581600838151" />
-    <state x="465" y="238" key="com.intellij.ide.util.TipDialog" timestamp="1581582805820">
+    <state x="465" y="238" key="com.intellij.ide.util.TipDialog" timestamp="1581605748537">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="465" y="238" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1581582805820" />
+    <state x="465" y="238" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1581605748537" />
     <state x="578" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1581598414947">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -832,11 +832,11 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1581600100534" />
-    <state x="339" y="6" width="672" height="676" key="search.everywhere.popup" timestamp="1581601106309">
+    <state x="339" y="6" width="672" height="676" key="search.everywhere.popup" timestamp="1581608838744">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="339" y="6" width="672" height="676" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1580648860098" />
-    <state x="339" y="6" width="672" height="676" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1581601106309" />
+    <state x="339" y="6" width="672" height="676" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1581608838744" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/sudan_map_back_end@EventApiTest_it_should_return_stored_events.xml" NAME="EventApiTest.it_should_return_stored_events Coverage Results" MODIFIED="1580915757700" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

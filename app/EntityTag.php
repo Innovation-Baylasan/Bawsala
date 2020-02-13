@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class EntityTag extends Model
 {
-    protected $table = 'entity_tags';
+    protected $table = 'entity_tag';
 
     protected $fillable = [
         'entity_id', 'tag_id'

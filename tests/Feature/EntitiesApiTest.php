@@ -55,8 +55,6 @@ class EntitiesApiTest extends TestCase
 
         $response = $this->get(route('api.entities.index'));
 
-        $response->dump();
-
         $response
             ->assertOk();
 
