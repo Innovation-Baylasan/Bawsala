@@ -17,12 +17,9 @@ class RelatedPlacesController extends Controller
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
     public function index(Entity $entity) {
-        $entities = Entity::whereHas('tags', function ($q) use ($entity) {
-            return $q->whereIn('tag_id', $entity->tags->pluck('id'));
-        })
-            ->where('id', '!=', $entity->id)
-            ->get();
-        return $entities;
+
+        return Entity::relatedPlaces($entity)->get();
+
     }
 
 }

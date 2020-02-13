@@ -257,9 +257,23 @@ class Entity extends Model implements Followable
             )->orderBy('distance', 'asc');
     }
 
-
+    /**
+     * @param $query
+     * @param $filters
+     * @return
+     */
     public function scopeFilter($query, $filters)
     {
         return $filters->apply($query);
     }
+
+
+    public function scopeRelatedPlaces($query, $entity)
+    {
+        return $query->whereHas('tags', function ($q) use ($entity) {
+            return $q->whereIn('tag_id', $entity->tags->pluck('id'));
+        })
+            ->where('id', '!=', $entity->id);
+    }
+
 }
