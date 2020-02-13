@@ -29,7 +29,7 @@ Route::namespace('Api')->group(function () {
 
     Route::post('/entities', 'EntitiesController@store')->middleware(['auth:api', 'company'])->name('api.entities.store');
 
-    Route::get('/entities/my', 'EntitiesController@myEntities')->middleware('auth:api')->name('api.entities.myEntities');
+    Route::get('/entities/my', 'UserEntitiesController@index')->middleware('auth:api')->name('api.entities.myEntities');
 
     Route::get('/entities/{entity}', 'EntitiesController@show')->name('api.entities.show');
 
