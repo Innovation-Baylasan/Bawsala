@@ -357,7 +357,6 @@ class EntitiesApiTest extends TestCase
 
         $response = $this->json('post', route('api.entities.store'), $entity);
 
-        $response->dump();
         $response
             ->assertJsonFragment([
                 Tag::all()
@@ -386,7 +385,6 @@ class EntitiesApiTest extends TestCase
 
         $response = $this->json('post', route('api.entities.store'), $entity);
 
-        $response->dump();
         $response
             ->assertJsonFragment([
                 Tag::all()

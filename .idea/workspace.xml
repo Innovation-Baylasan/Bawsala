@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="- Creating Related Places Test Case And Scenario.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/RelatedPlacesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/RelatedPlacesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/RelatedPlacesApiTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/RelatedPlacesApiTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/EntitiesApiTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/EntitiesApiTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,7 +203,7 @@
       <recent name="$PROJECT_DIR$/resources/js/components" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.RelatedPlacesApiTest.it_return_related_places_to_the_given_entity_based_on_common_tags">
+  <component name="RunManager" selected="PHPUnit.Feature">
     <configuration name="EntitiesApiTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="Tests\Feature\EntitiesApiTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/EntitiesApiTest.php" scope="Class" />
       <method v="2" />
@@ -237,8 +235,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="PHPUnit.RelatedPlacesApiTest.it_return_related_places_to_the_given_entity_based_on_common_tags" />
         <item itemvalue="PHPUnit.Feature" />
+        <item itemvalue="PHPUnit.RelatedPlacesApiTest.it_return_related_places_to_the_given_entity_based_on_common_tags" />
         <item itemvalue="PHPUnit.RelatedPlacesApiTest" />
         <item itemvalue="PHPUnit.RelatedPlaces.it_return_related_places_to_the_given_entity_based_on_common_tags" />
         <item itemvalue="PHPUnit.EntitiesApiTest" />
@@ -338,28 +336,7 @@
       <workItem from="1581249893229" duration="16646000" />
       <workItem from="1581420086369" duration="1892000" />
       <workItem from="1581582805301" duration="7994000" />
-      <workItem from="1581605738797" duration="4439000" />
-    </task>
-    <task id="LOCAL-00054" summary="rateable entities">
-      <created>1578506694279</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1578506694279</updated>
-    </task>
-    <task id="LOCAL-00055" summary="rateable entities">
-      <created>1578655276967</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1578655276968</updated>
-    </task>
-    <task id="LOCAL-00056" summary="rateable entities">
-      <created>1578655940865</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1578655940865</updated>
+      <workItem from="1581605738797" duration="4634000" />
     </task>
     <task id="LOCAL-00057" summary="api auth">
       <created>1578678613562</created>
@@ -683,7 +660,28 @@
       <option name="project" value="LOCAL" />
       <updated>1581609550952</updated>
     </task>
-    <option name="localTasksCounter" value="103" />
+    <task id="LOCAL-00103" summary="- Creating Related Places Test Case And Scenario.">
+      <created>1581610969196</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1581610969196</updated>
+    </task>
+    <task id="LOCAL-00104" summary="- Creating Related Places Test Case And Scenario.">
+      <created>1581611057555</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1581611057555</updated>
+    </task>
+    <task id="LOCAL-00105" summary="- Creating Related Places Test Case And Scenario.">
+      <created>1581611087183</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1581611087183</updated>
+    </task>
+    <option name="localTasksCounter" value="106" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -767,30 +765,30 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="168" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1581421927491" />
-    <state x="333" y="0" key="CommitChangelistDialog2" timestamp="1581611056421">
+    <state x="333" y="0" key="CommitChangelistDialog2" timestamp="1581611150721">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="333" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1581611056421" />
+    <state x="333" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1581611150721" />
     <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1581601330103">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1581601330103" />
-    <state width="1493" height="324" key="GridCell.Tab.0.bottom" timestamp="1581610974017">
+    <state width="1493" height="519" key="GridCell.Tab.0.bottom" timestamp="1581611179751">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="324" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1581610974017" />
-    <state width="1493" height="324" key="GridCell.Tab.0.center" timestamp="1581610974016">
+    <state width="1493" height="519" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1581611179751" />
+    <state width="1493" height="519" key="GridCell.Tab.0.center" timestamp="1581611179750">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="324" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1581610974016" />
-    <state width="1493" height="324" key="GridCell.Tab.0.left" timestamp="1581610974016">
+    <state width="1493" height="519" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1581611179750" />
+    <state width="1493" height="519" key="GridCell.Tab.0.left" timestamp="1581611179750">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="324" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1581610974016" />
-    <state width="1493" height="324" key="GridCell.Tab.0.right" timestamp="1581610974017">
+    <state width="1493" height="519" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1581611179750" />
+    <state width="1493" height="519" key="GridCell.Tab.0.right" timestamp="1581611179750">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="324" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1581610974017" />
+    <state width="1493" height="519" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1581611179750" />
     <state x="40" y="46" width="1390" height="682" key="MergeDialog" timestamp="1581598394694">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
