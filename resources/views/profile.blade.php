@@ -71,11 +71,8 @@
                 <a href="/" class="button">back</a>
                 @can('update',$entity)
                     <div class="flex -mx-2">
-                        <a href="" class="mx-2">
+                        <a href="#" @click="$modal.show('edit-entity')" class="mx-2">
                             <img src="/svg/edit-profile-icon.svg" alt="">
-                        </a>
-                        <a href="" class="mx-2">
-                            <img src="/svg/options-icon.svg" alt="">
                         </a>
                     </div>
                 @endcan
@@ -149,7 +146,8 @@
                     @if($authUser->mainEntity()->is($entity))
                         <div class="bg-gray-200 rounded overflow-hidden text-gray-500 w-48 h-48 mx-2">
                             <div class="flex h-full items-center justify-center">
-                                <a href="/entities/create" class="button">add new place</a>
+                                <a href="#" @click.prevent="$modal.show('add-entity')"
+                                   class="button">add new place</a>
                             </div>
                         </div>
                     @endif
@@ -166,6 +164,9 @@
             </div>
         </div>
     </div>
+
+    @include('partials.modals.add-entity')
+    @include('partials.modals.edit-entity')
 </div>
 <script src="{{asset('js/app.js')}}"></script>
 </body>

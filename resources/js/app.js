@@ -29,11 +29,15 @@ Vue.component('MapView', require('./pages/MapView.vue').default)
 Vue.component('UserInfoView', require('./pages/UserInfoView.vue').default)
 Vue.component('CreateEntityView', require('./pages/CreateEntityView.vue').default)
 Vue.component('CreateSubEntityView', require('./pages/CreateSubEntityView.vue').default)
+Vue.component('EditSubEntityView', require('./pages/EditSubEntityView.vue').default)
 Vue.component('EditEntityView', require('./pages/EditEntityView.vue').default)
+Vue.component('CreateEventView', require('./pages/CreateEventView.vue').default)
 Vue.component('RegisterView', require('./pages/RegisterView.vue').default)
 Vue.component("flash", require("./components/Flash.vue").default);
 Vue.component('v-select', require('vue-select').default)
 
+import VueFormWizard from 'vue-form-wizard'
+Vue.use(VueFormWizard)
 
 const app = new Vue({
     el: '#app',

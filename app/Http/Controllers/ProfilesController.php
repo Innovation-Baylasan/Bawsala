@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Entity;
 use Illuminate\Http\Request;
 
@@ -13,6 +14,8 @@ class ProfilesController extends Controller
      */
     public function index(Entity $entity)
     {
-        return view('profile', compact('entity'));
+        $categories = Category::all();
+
+        return view('profile', compact('entity', 'categories'));
     }
 }

@@ -17,10 +17,6 @@ class UsersProfilesController extends Controller
 
     public function show(User $user)
     {
-        if ($user->role == 'company') {
-            return redirect("/@{$user->entities()->first()->id}");
-        };
-
-        return view('user-profile');
+        return redirect("/@{$user->entities()->first()->id}");
     }
 }
