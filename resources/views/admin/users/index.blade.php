@@ -24,8 +24,8 @@
         @foreach($user as $row)
             <tr>
                 <td><a href="{{route('users.show',$row)}}">{{ $row->name  }}</a></td>
-                <td> {{ $row->role->role ?? ''  }} </td>
-                <td> {{ $row->email  }} </td>
+                <td class="capitalize"> {{ $row->role}} </td>
+                <td> {{ $row->email}} </td>
                 <td class="flex">
                     <a href="{{route('users.edit',$row)}}"
                        class="flex  items-center justify-center p-2"

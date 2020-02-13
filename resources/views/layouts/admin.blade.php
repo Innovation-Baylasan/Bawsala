@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {{--<meta charset="UTF-8">--}}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Baylasan Innovation | Eco Map Dashboard</title>
     <link rel="shortcut icon" type="image/jpg" href="/images/fav-icon.png"/>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
@@ -11,8 +13,8 @@
     <div class="flex flex-1 h-full bg-gray-200">
         <nav class="bg-default shadow-sm w-56 pt-16 pb-2">
             <header class="flex flex-col justify-center items-center mb-12 h-full">
-                <div class="rounded-full mb-4 w-20 h-20 overflow-hidden shadow-sm bg-default">
-                    <img src="{{"https://www.gravatar.com/avatar/" . md5( strtolower( trim( auth()->user()->email ) ) ) . "?s=100&d"}}"
+                <div class="rounded-full p-1 mb-4  shadow-sm bg-default">
+                    <img class="w-20 h-20" src="/svg/bawsla-icon.svg"
                          alt=""/>
                 </div>
                 <div class="text-center text-sm">

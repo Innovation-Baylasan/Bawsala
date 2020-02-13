@@ -45,11 +45,18 @@ module.exports = {
                 },
                 default: 'var(--text-default-color)',
                 accent: 'var(--text-accent-color)',
+                secondary: 'var(--text-secondary-color)',
                 'accent-light': 'var(--text-accent-light-color)',
+                'accent-lighter': 'var(--text-accent-lighter-color)',
                 muted: 'var(--text-muted-color)',
                 'muted-light': 'var(--text-muted-light-color)',
                 'error': 'var(--text-error-color)'
 
+            },
+            spacing: {
+                '72': '18rem',
+                '84': '21rem',
+                '96': '24rem',
             }
         }
     },

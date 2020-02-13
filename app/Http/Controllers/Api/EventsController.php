@@ -7,9 +7,7 @@ use App\Entity;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EventRequest;
 use App\Http\Resources\EventResource;
-use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class EventsController extends Controller
 {

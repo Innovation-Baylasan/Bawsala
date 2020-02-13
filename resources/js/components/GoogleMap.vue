@@ -59,7 +59,7 @@
                         position: new this.google.maps.LatLng(place.location.lat, place.location.long),
                         map: this.map,
                         icon: {
-                            url: (place.category ? `/svg/markers/${place.category.name}-marker-icon.svg` : '/svg/event-icon.svg'),
+                            url: (place.category ? place.category.icon_png : '/svg/event-icon.svg'),
                             scaledSize: new google.maps.Size(35, 35),
                             origin: new google.maps.Point(0, 0),
                             anchor: new google.maps.Point(0, 0)

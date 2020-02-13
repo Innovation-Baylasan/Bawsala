@@ -6,7 +6,6 @@ use App\Entity;
 use App\Event;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EventRequest;
-use Illuminate\Http\Request;
 
 class EventsController extends Controller
 {

@@ -31,11 +31,12 @@
                     </a>
                 </td>
                 <td class="text-center">
-                    <img class="inline-block" src=" {{$category->icon}}" alt="">
+                    <img class="inline-block" src="{{Storage::url($category->icon_png)}}" alt="">
                 </td>
 
                 <td class="text-center">
-                    <img class="inline-block w-8 h-8" src=" {{$category->icon_png}}" alt="">
+                    <img class="inline-block w-8 h-8"
+                         src="{{Storage::url($category->icon)}}" alt="">
                 </td>
                 <td class="flex justify-end">
                     <a href="{{route('categories.edit',$category)}}"
@@ -47,11 +48,11 @@
                     </a>
                     <form method="POST"
                           action="{{ route('categories.destroy', $category->id)  }}"
-                          id="remove-category-form"
+                          id="remove-category-{{$category->name}}"
                     >
                         <a href="#"
                            onclick="event.preventDefault();
-                                                     document.getElementById('remove-category-form').submit();"
+                                   document.getElementById('remove-category-{{$category->name}}').submit();"
                            class="flex items-center justify-center p-2"
                         >
                             <div class="w-8 h-8 flex items-center justify-center p-1 rounded bg-gray-100">

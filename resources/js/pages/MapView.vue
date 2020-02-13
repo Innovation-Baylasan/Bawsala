@@ -9,11 +9,11 @@
                 places: [],
                 selectedPlace: null,
                 selectedEvent: null,
-                selectedCategory: null,
+                selectedCategories: null,
                 mapCenter: {},
                 showing: 'places',
                 endpoints: {
-                    places: '/api/entities',
+                    places: '/entities',
                     events: '/api/events',
                 },
             }
@@ -30,7 +30,7 @@
         },
         methods: {
             getPlaces(category = null){
-                this.selectedCategory = category
+                this.selectedCategories = category
                 axios.get(this.endpoint + (category ? '?category=' + category : '' ))
                     .then(({data}) => this.places = data.data)
             },

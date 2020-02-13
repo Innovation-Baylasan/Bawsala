@@ -19,6 +19,8 @@ Route::get('/account/{user}', 'UsersProfilesController@show')->middleware('auth'
 
 Route::get('/entities/create', 'EntitiesController@create')->middleware('auth');
 
+Route::get('/entities', 'EntitiesController@index');
+
 Route::post('/entities', 'EntitiesController@store')->middleware(['auth', 'company']);
 
 Route::put('/entities/{entity}/follow', 'EntitiesFollowersController@update')->middleware('auth');
@@ -29,6 +31,7 @@ Route::post('/entities/{entity}/reviews', 'EntitiesReviewsController@store')->mi
 
 Route::get('/@{entity}', 'ProfilesController@index');
 
+Route::put('/user-info/update', 'UserInfoController@update');
 
 Route::namespace('Admin')
     ->prefix('admin')
