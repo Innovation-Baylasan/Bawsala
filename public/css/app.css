@@ -11477,6 +11477,35 @@ video {
   border-bottom: 8px solid #fff;
 }
 
+.vue-form-wizard .wizard-card-footer {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+}
+
+.vue-form-wizard .wizard-nav, .vue-form-wizard .clearfix:after {
+  display: none;
+}
+
+.vue-form-wizard .wizard-navigation, .vue-form-wizard .wizard-card-footer {
+  padding: 1rem;
+}
+
+.vue-form-wizard .wizard-btn {
+  background-color: var(--text-accent-color);
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  outline: 0;
+  font-size: 0.875rem;
+  text-transform: capitalize;
+  color: #fff;
+  border-radius: 8px;
+  text-align: center;
+}
+
 .rating {
   width: 108px;
   height: 20px;

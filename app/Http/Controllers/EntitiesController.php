@@ -59,4 +59,39 @@ class EntitiesController extends Controller
 
         return response(null, 200);
     }
+
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @param  Entity $entity
+     *
+     */
+    public function update(EntityRequest $request, Entity $entity)
+    {
+        $attributes = $request->validated();
+
+        $entity->update($attributes);
+
+        $entity->tags()->detach();
+
+        if ($request->has('tags')) {
+            $entity->tagMany($request->tags);
+        }
+
+        if (isset($attributes['avatar']) && ($entity->avatar != $attributes['avatar'])) {
+            $entity->profile->setAvatar($attributes['avatar']);
+        };
+
+        if (isset($attributes['cover']) && ($entity->cover != $attributes['cover'])) {
+            $entity->profile->setCover($attributes['cover']);
+        }
+
+        session()->flash('message', 'Entity updated successfully');
+
+        return response(null, 200);
+    }
+
 }

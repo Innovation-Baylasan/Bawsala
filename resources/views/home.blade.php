@@ -49,7 +49,7 @@
                         </li>
                         @if($authUser->isCompany())
                             <li class="dropdown-item">
-                                <a href="/account">profile</a>
+                                <a href="{{'@'.$authUser->mainEntity()->id}}">profile</a>
                             </li>
                         @endif
                         <li class="dropdown-item">
@@ -110,19 +110,33 @@
                 api-key="{{config('app.mapKey')}}"
                 ></google-map>
             </main>
-            <footer class="fixed bottom-0 w-full z-1 flex p-2 justify-center ">
-                <div class="bg-default shadow-sm rounded">
-                    <a href="#" @click.prevent="showing = 'places'"
-                       class="px-4 py-2 inline-block border-r"
-                       :class="[showing == 'places' ? 'text-black' : 'text-gray-500']"
-                    >Places</a>
-                    <a href="#" @click.prevent="showing = 'events'"
-                       class="px-4 py-2 inline-block"
-                       :class="[showing == 'events' ? 'text-black' : 'text-gray-500']"
-                    >Events</a>
+            <footer class="fixed bottom-0 w-full z-1p-2 flex flex-col">
+
+                <div v-if="showing == 'events'" class="flex justify-center mb-2">
+                    <button @click="$modal.show('add-event')" class="button -mx-2 flex items-center">
+                        <img class="mx-2" src="/svg/add-event-icon.svg" alt="add event">
+                        <span>
+                            Add Event
+                        </span>
+                    </button>
                 </div>
+
+                <div class=" flex justify-center">
+                    <div class="bg-default shadow-sm rounded">
+                        <a href="#" @click.prevent="showing = 'places'"
+                           class="px-4 py-2 inline-block border-r"
+                           :class="[showing == 'places' ? 'text-black' : 'text-gray-500']"
+                        >Places</a>
+                        <a href="#" @click.prevent="showing = 'events'"
+                           class="px-4 py-2 inline-block"
+                           :class="[showing == 'events' ? 'text-black' : 'text-gray-500']"
+                        >Events</a>
+                    </div>
+                </div>
+
             </footer>
             @include('partials.modals.settings')
+            @include('partials.modals.add-event')
         </div>
     </map-view>
 </div>

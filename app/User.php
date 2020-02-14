@@ -94,7 +94,7 @@ class User extends Authenticatable implements Follower
 
     public function mainEntity()
     {
-        return $this->entities()->oldest()->first() ?: new Entity();
+        return $this->entities()->oldest()->first();
     }
 
     /**

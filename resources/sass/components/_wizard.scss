@@ -1,0 +1,14 @@
+.vue-form-wizard {
+  .wizard-card-footer {
+    @apply flex justify-between;
+  }
+  .wizard-nav, .clearfix:after {
+    display: none;
+  }
+  .wizard-navigation, .wizard-card-footer {
+    @apply p-4;
+  }
+  .wizard-btn {
+    @apply button;
+  }
+}
