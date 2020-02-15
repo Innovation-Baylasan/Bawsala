@@ -1,5 +1,7 @@
 const mix = require('laravel-mix');
 require('mix-tailwindcss');
+require('laravel-mix-purgecss');
+
 
 /*
  |--------------------------------------------------------------------------
@@ -11,6 +13,7 @@ require('mix-tailwindcss');
  | file for the application as well as bundling up all the JS files.
  |
  */
+
 
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
@@ -24,4 +27,4 @@ mix.js('resources/js/app.js', 'public/js')
                 {loader: 'html-loader'}
             ]
         })
-    });
+    }).purgeCss()
