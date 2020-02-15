@@ -1,6 +1,7 @@
 <modal name="filteringModal"
        width="66.6%"
        :height="'auto'"
+       v-cloak
        classes="bg-default rounded">
     <div class="p-8">
         <div class="border-b-2 border-gray-500">

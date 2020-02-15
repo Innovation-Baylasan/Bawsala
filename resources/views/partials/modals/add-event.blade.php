@@ -1,6 +1,7 @@
 <modal name="add-event"
        classes="rounded bg-default overflow-hidden"
        scrollable
+       v-cloak
        height="auto" xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
     <create-event-view inline-template>
         <div>

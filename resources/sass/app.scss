@@ -1,13 +1,12 @@
-@import "~vue-wysiwyg/dist/vueWysiwyg.css";
-@import 'themes/light';
-@import 'themes/dark';
-
 @tailwind base;
 
 @tailwind components;
 
 @tailwind utilities;
 
+/*! purgecss start ignore */
+@import 'themes/light';
+@import 'themes/dark';
 @import "./components/input";
 @import "./components/checkbox";
 @import "./components/table";
@@ -19,6 +18,12 @@
 @import "./components/wizard";
 @import "./components/star-rating";
 @import "~@glidejs/glide/src/assets/sass/glide.core";
+@import "./components/editor";
+@import './components/vue-select';
+@import '~cropperjs/dist/cropper.css';
+modal, dropdown {
+  display: none;
+}
 
 ::-webkit-scrollbar {
   width: 10px;
@@ -111,3 +116,5 @@ input[type='checkbox']:checked, input[type='radio']:checked + .select-label {
 .custom-pin:hover {
   transform: scale(1.15);
 }
+
+/*! purgecss end ignore */
