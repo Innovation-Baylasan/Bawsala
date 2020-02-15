@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use App\Entity;
-use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
@@ -20,21 +19,24 @@ class CompanyManagingTest extends TestCase
      */
     public function its_create_entity_when_company_user_register()
     {
+
         $this->withoutExceptionHandling();
+
         $attributes = [
             'name' => 'amaze center',
             'email' => 'amaze-center@gmail.com',
             'password' => '12345678',
             'password_confirmation' => '12345678',
-            'registerAs' => 'company',
+            'register_as' => 'company',
             'description' => 'hi there am description',
             'location' => '12.356566,12.356566',
             'category' => 1,
             'username' => 'amaze_center'
         ];
 
-        $this->post('/register', $attributes)
-            ->assertRedirect('/');
+        $response = $this->json('POST', route('api.register.store'), $attributes)
+            ->assertOk();
+
 
         $entity = Entity::where('name', 'amaze center')->first();
 
@@ -44,6 +46,7 @@ class CompanyManagingTest extends TestCase
         ]);
 
         $this->assertDatabaseHas('users', ['email' => 'amaze-center@gmail.com']);
+
     }
 
     /**

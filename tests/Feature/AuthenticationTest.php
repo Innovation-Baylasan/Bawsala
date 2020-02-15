@@ -4,11 +4,8 @@ namespace Tests\Feature;
 
 use App\Category;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use App\User;
 use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Hash;
-use InvalidArgumentException;
 use Tests\TestCase;
 
 class AuthenticationTest extends TestCase
