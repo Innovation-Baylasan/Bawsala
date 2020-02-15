@@ -1,8 +1,6 @@
 require('./bootstrap');
 import Vue from 'vue';
 import VModal from 'vue-js-modal'
-import 'vue-select/dist/vue-select.css';
-
 
 import wysiwyg from "vue-wysiwyg";
 Vue.use(wysiwyg); // config is optional. more below

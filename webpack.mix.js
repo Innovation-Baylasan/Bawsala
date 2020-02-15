@@ -27,4 +27,8 @@ mix.js('resources/js/app.js', 'public/js')
                 {loader: 'html-loader'}
             ]
         })
-    }).purgeCss()
+    }).purgeCss({
+    globs: [
+        path.join(__dirname, 'node_modules/vue-wysiwyg/**/*.vue'),
+    ],
+})
