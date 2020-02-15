@@ -6,6 +6,7 @@
                 event: new Form({
                     name: '',
                     link: '',
+                    entity_id: '',
                     start_date: '',
                     end_date: '',
                     description: '',

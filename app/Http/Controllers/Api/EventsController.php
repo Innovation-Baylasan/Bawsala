@@ -50,9 +50,8 @@ class EventsController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param Entity $entity
-     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @param EventRequest $request
+     * @return EventResource
      */
     public function store(EventRequest $request)
     {
@@ -64,10 +63,7 @@ class EventsController extends Controller
             $event->setCover($request->cover, 'image');
         }
 
-        return response([
-            'message' => 'Event created successfully',
-            'event' => $event
-        ], 201);
+        return new EventResource($event);
     }
 
     /**

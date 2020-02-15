@@ -7002,7 +7002,7 @@ __webpack_require__.r(__webpack_exports__);
       var defaults = ['fixed', 'p-4', 'border', 'text-white', 'z-10', 'shadow-sm', 'rounded'];
       if (this.level === 'success') defaults.push('bg-green-600', 'border-green-600');
       if (this.level === 'warning') defaults.push('bg-yellow', 'border-yellow-800');
-      if (this.level === 'danger') defaults.push('bg-accent', 'border-red-dark');
+      if (this.level === 'danger') defaults.push('bg-red-500', 'border-red-dark');
       return defaults;
     }
   },
@@ -7778,6 +7778,7 @@ __webpack_require__.r(__webpack_exports__);
       event: new _Form__WEBPACK_IMPORTED_MODULE_0__["default"]({
         name: '',
         link: '',
+        entity_id: '',
         start_date: '',
         end_date: '',
         description: '',

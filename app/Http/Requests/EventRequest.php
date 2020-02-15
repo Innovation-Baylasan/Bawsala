@@ -27,14 +27,13 @@ class EventRequest extends FormRequest
         return [
             'entity_id' => 'sometimes',
             'name' => 'required',
-            'link' => 'required',
-            'start_date' => 'required|date',
+            'link' => 'required|url',
             'description' => 'sometimes',
-            'end_date' => 'required|date',
+            'start_date' => 'required|date|before:end_date',
+            'end_date' => 'required|date|after:start_date',
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
             'confirm' => 'sometimes|numeric',
-            'cover' => 'sometimes'
         ];
     }
 }

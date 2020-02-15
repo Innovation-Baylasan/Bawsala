@@ -16,24 +16,41 @@
                 @csrf
                 <label for="" class="input-label">name</label>
                 <div class="input"><input v-model="event.name" type="text"></div>
+                <p class="error" v-if="event.errors.name" v-text="event.errors.name[0]"></p>
+                @if($authUser->isCompany())
+                    <label for="" class="input-label">Organized by</label>
+                    <div class="input">
+                        <select v-model="event.entity_id" type="text">
+                            @foreach($authUser->entities as $entity)
+                                <option value="{{$entity->id}}">{{$entity->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                @endif
 
                 <label for="" class="input-label">Registration link</label>
                 <p class="text-xs text-accent">links should start with (http:// or https://)</p>
                 <div class="input"><input v-model="event.link" type="text"></div>
+                <p class="error" v-if="event.errors.link" v-text="event.errors.link[0]"></p>
 
                 <label for="" class="input-label">description</label>
                 <div class="input"><textarea v-model="event.description" type="text"></textarea></div>
+                <p class="error" v-if="event.errors.description" v-text="event.errors.description[0]"></p>
 
                 <label for="" class="input-label">start datetime</label>
                 <div class="input"><input v-model="event.start_date" type="datetime-local"></div>
+                <p class="error" v-if="event.errors.start_date" v-text="event.errors.start_date[0]"></p>
 
                 <label for="" class="input-label">end datetime</label>
                 <div class="input"><input v-model="event.end_date" type="datetime-local"></div>
+                <p class="error" v-if="event.errors.end_date" v-text="event.errors.end_date[0]"></p>
 
                 <label class="input-label" for="location">Location</label>
                 <location-picker class="w-full h-56 rounded mb-4" api-key="{{config('app.mapKey')}}"
                 @marker-placed="setLocation"></location-picker>
-                <p class="error" v-if="event.errors.longitude" v-text="event.errors.longitude[0]"></p>
+                <p class="error" v-if="event.errors.latitude" v-text="event.errors.latitude[0]"></p>
+
+                <p class="error" class="error" v-if="event.errors.longitude" v-text="event.errors.longitude[0]"></p>
                 <input type="hidden" name="latitude" :value="event.latitude">
                 <input type="hidden" name="longitude" :value="event.longitude">
 
