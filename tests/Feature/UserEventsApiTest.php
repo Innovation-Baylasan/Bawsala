@@ -50,7 +50,7 @@ class UserEventsApiTest extends TestCase
         $event = [
             'entity_id' => factory(Entity::class)->create(),
             'name' => "Event Name",
-            'link' => "my link",
+            'link' => "http://google.com",
             'description' => "http://google.com",
             'start_date' => Carbon::now()->subMonth(),
             'end_date' => Carbon::now(),
