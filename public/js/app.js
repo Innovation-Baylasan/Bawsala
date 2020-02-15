@@ -31641,7 +31641,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "relative" }, [
     _c(
       "div",
       {
@@ -31655,7 +31655,9 @@ var render = function() {
       2
     ),
     _vm._v(" "),
-    _vm.isOpen ? _c("div", [_vm._t("default")], 2) : _vm._e()
+    _vm.isOpen
+      ? _c("div", { staticClass: "absolute" }, [_vm._t("default")], 2)
+      : _vm._e()
   ])
 }
 var staticRenderFns = []

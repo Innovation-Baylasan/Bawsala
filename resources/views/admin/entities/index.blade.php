@@ -30,11 +30,11 @@
                     </a>
                     <form method="POST"
                           action="{{ route('entities.destroy', $entity)  }}"
-                          id="remove-category-form"
+                          id="remove-category-form-{{$entity->id}}"
                     >
                         <a href="#"
                            onclick="event.preventDefault();
-                                                     document.getElementById('remove-category-form').submit();"
+                                   document.getElementById('remove-category-form-{{$entity->id}}').submit();"
                            class="flex items-center justify-center p-2"
                         >
                             <div class="w-8 h-8 flex items-center justify-center p-1 rounded bg-gray-100">

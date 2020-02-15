@@ -22,8 +22,6 @@ class EntityTagsController extends Controller
 
         $entityTag = EntityTag::latest()->paginate(5);
 
-        // dd($entityTag);
-
         return view('admin.entity_tags.index', compact('entityTag'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
 
@@ -39,28 +37,23 @@ class EntityTagsController extends Controller
         $tags = Tag::all();
         $entities = Entity::all();
 
-        return view('admin.entity_tags.create', compact('tags','entities'));
+        return view('admin.entity_tags.create', compact('tags', 'entities'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'entity_id' =>'required',
-            'tag_id' =>'required'
-        ]);
 
-        $form_data = array(
-            'entity_id' => $request->entity_id,
-            'tag_id' => $request->tag_id
-        );
 
-        EntityTag::create($form_data);
+        EntityTag::create($request->validate([
+            'entity_id' => 'required',
+            'tag_id' => 'required'
+        ]));
 
         return redirect('/admin/entity_tags')
             ->with('success', 'Data added successfully.');
@@ -70,7 +63,7 @@ class EntityTagsController extends Controller
     /**
      * Display the specified entityTag.
      *
-     * @param  EntityTag  $entityTag
+     * @param  EntityTag $entityTag
      * @return \Illuminate\Http\Response
      */
     public function show(EntityTag $entityTag)
@@ -83,7 +76,7 @@ class EntityTagsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  EntityTag  $entityTag
+     * @param  EntityTag $entityTag
      * @return \Illuminate\Http\Response
      */
     public function edit(EntityTag $entityTag)
@@ -92,30 +85,24 @@ class EntityTagsController extends Controller
         $tags = Tag::all();
         $entities = Entity::all();
 
-        return view('admin.entity_tags.edit', compact('entityTag','tags', 'entities'));
+        return view('admin.entity_tags.edit', compact('entityTag', 'tags', 'entities'));
 
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  EntityTag   $entityTag
+     * @param  \Illuminate\Http\Request $request
+     * @param  EntityTag $entityTag
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, EntityTag $entityTag)
     {
-        $request->validate([
-            'entity_id' =>'required',
-            'tag_id' =>'required'
-        ]);
-
-        $form_data = array(
-            'entity_id' => $request->entity_id,
-            'tag_id' => $request->tag_id
-        );
-
-        $entityTag->update($form_data);
+        $entityTag->update(
+            $request->validate([
+                'entity_id' => 'required',
+                'tag_id' => 'required'
+            ]));
 
         return redirect('/admin/entity_tags')
             ->with('success', 'Data updated successfully.');
@@ -124,7 +111,7 @@ class EntityTagsController extends Controller
     /**
      * Remove the specified entity from storage.
      *
-     * @param  EntityTag  $entityTag
+     * @param  EntityTag $entityTag
      * @return \Illuminate\Http\Response
      */
     public function destroy(EntityTag $entityTag)

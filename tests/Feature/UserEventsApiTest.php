@@ -8,7 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
-class UserEventsApi extends TestCase
+class UserEventsApiTest extends TestCase
 {
 
     use DatabaseMigrations;
@@ -38,7 +38,8 @@ class UserEventsApi extends TestCase
 
 
     /** @test */
-    public function it_should_return_company_events () {
+    public function it_should_return_company_events()
+    {
 
         $this->withoutExceptionHandling();
 
@@ -50,8 +51,8 @@ class UserEventsApi extends TestCase
             'entity_id' => factory(Entity::class)->create(),
             'name' => "Event Name",
             'link' => "my link",
-            'description' => "This is a very great description",
-            'start_date' => Carbon::now(),
+            'description' => "http://google.com",
+            'start_date' => Carbon::now()->subMonth(),
             'end_date' => Carbon::now(),
             'latitude' => 3.5,
             'longitude' => 9.6

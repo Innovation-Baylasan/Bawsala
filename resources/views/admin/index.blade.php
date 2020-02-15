@@ -18,9 +18,6 @@
                href="{{ route('categories.index')  }}">Categories</a>
 
             <a class="w-1/4 py-6 text-center block rounded text-gray-500 mx-2 bg-gray-200"
-               href="{{ route('profiles.index')  }}">Profiles</a>
-
-            <a class="w-1/4 py-6 text-center block rounded text-gray-500 mx-2 bg-gray-200"
                href="{{ route('events.index')  }}">Events</a>
         </nav>
 

@@ -46,9 +46,9 @@ class EventApiTest extends TestCase
         $event = [
             'entity_id' => factory(Entity::class)->create()->id,
             'name' => "Event Name",
-            'link' => "my link",
+            'link' => "http://google.com",
             'description' => "This is a very great description",
-            'start_date' => Carbon::now(),
+            'start_date' => Carbon::now()->subMonth(),
             'end_date' => Carbon::now(),
             'latitude' => 3.5,
             'longitude' => 9.6
@@ -79,9 +79,9 @@ class EventApiTest extends TestCase
         $event = [
             'entity_id' => $entity->id,
             'name' => "Event Name",
-            'link' => "https://myevent_website.com",
+            'link' => "https://website.com",
             'description' => "This is a very great description",
-            'start_date' => Carbon::now(),
+            'start_date' => Carbon::now()->subMonth(),
             'end_date' => Carbon::now(),
             'latitude' => 3.5,
             'longitude' => 9.6,
@@ -92,7 +92,7 @@ class EventApiTest extends TestCase
 
         $response
             ->assertJsonFragment([
-                "cover" => "/storage/1/conversions/cover-cover.jpg"
+                "picture" => "/storage/1/conversions/cover-cover.jpg"
             ])
             ->assertStatus(201);
 
@@ -112,9 +112,9 @@ class EventApiTest extends TestCase
         $event = [
             'entity_id' => $entity->id,
             'name' => "Event Name",
-            'link' => "my link",
+            'link' => "http://google.com",
             'description' => "This is a very great description",
-            'start_date' => Carbon::now(),
+            'start_date' => Carbon::now()->subMonth(),
             'end_date' => Carbon::now(),
             'latitude' => 3.5,
             'longitude' => 9.6,
@@ -142,7 +142,7 @@ class EventApiTest extends TestCase
         // when this user logs in and call myEvents end point
         $this->signIn($event->user, 'api');
 
-        $response = $this->delete(route('api.events.destroy',[
+        $response = $this->delete(route('api.events.destroy', [
             'event' => $event->id
         ]));
 
@@ -166,7 +166,7 @@ class EventApiTest extends TestCase
         // when this user logs in and call myEvents end point
         $this->signIn($forignUser, 'api');
 
-        $response = $this->delete(route('api.events.destroy',[
+        $response = $this->delete(route('api.events.destroy', [
             'event' => $event->id
         ]));
 

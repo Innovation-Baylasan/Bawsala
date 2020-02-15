@@ -2,8 +2,6 @@
 
 @section('content')
     <div class="p-4">
-        <h1 class="mb-4">Edit Role </h1>
-
         @if($errors->any())
             <div class="alert is-danger">
                 <ul>

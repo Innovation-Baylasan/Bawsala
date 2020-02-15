@@ -1,9 +1,9 @@
 <template>
-    <div>
+    <div class="relative">
         <div @click="isOpen = !isOpen">
             <slot name="trigger"></slot>
         </div>
-        <div v-if="isOpen">
+        <div class="absolute" v-if="isOpen">
             <slot>
 
             </slot>
