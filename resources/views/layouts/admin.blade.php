@@ -53,7 +53,7 @@
 
                     <a href="{{route('events.index')}}" class="flex  items-center p-1 text-sm px-3  fade">
                         <div class="w-10 h-10 flex items-center justify-center  mr-4">
-                            <img src="{{asset('svg/events-icon.svg')}}" alt="">
+                            <img src="{{asset('svg/add-event-icon.svg')}}" alt="">
                         </div>
                         <span class="text-gray-500">Events</span>
                     </a>
@@ -75,21 +75,29 @@
             </main>
             <div class="w-64 flex-col">
                 <div class="bg-default shadow-sm mb-2 p-4 flex justify-end">
-
-                    <div class="flex flex-col items-center mr-4">
-                        <div class="rounded-full w-12 h-12  overflow-hidden p-2 bg-default">
-                            <img src="{{asset('/svg/notifications-icon.svg')}}" alt="">
-                        </div>
-                        <h3 class="text-accent capitalize font-bold text-xs leading-tight">Notification</h3>
-                    </div>
-
-                    <div class="flex flex-col items-center">
-                        <div class="rounded-full w-12 h-12  overflow-hidden p-2 bg-default">
-                            <img src="{{"https://www.gravatar.com/avatar/" . md5( strtolower( trim( auth()->user()->email ) ) ) . "?s=100&d=https%3A%2F%2Fs3.amazonaws.com%2Flaracasts%2Fimages%2Fforum%2Favatars%2Favatar-18.png"}}"
-                                 alt="">
-                        </div>
-                        <h3 class="text-accent capitalize font-bold text-xs leading-tight">{{auth()->user()->name}}</h3>
-                    </div>
+                    <dropdown>
+                        <template v-slot:trigger>
+                            <div class="flex flex-col items-center">
+                                <div class="rounded-full w-12 h-12  overflow-hidden p-2 bg-default">
+                                    <img src="{{"https://www.gravatar.com/avatar/" . md5( strtolower( trim( auth()->user()->email ) ) ) . "?s=100&d=https%3A%2F%2Fs3.amazonaws.com%2Flaracasts%2Fimages%2Fforum%2Favatars%2Favatar-18.png"}}"
+                                         alt="">
+                                </div>
+                                <h3 class="text-accent capitalize font-bold text-xs leading-tight">{{auth()->user()->name}}</h3>
+                            </div>
+                        </template>
+                        <ul class="dropdown">
+                            <li class="dropdown-item">
+                                <a href="/">home</a>
+                            </li>
+                            <li class="dropdown-item">
+                                <form action="/logout" method="post" id="logout-form">
+                                    @csrf
+                                </form>
+                                <a href="#" onclick="document.getElementById('logout-form').submit()"
+                                >Logout</a>
+                            </li>
+                        </ul>
+                    </dropdown>
                 </div>
                 <div class="bg-default mb-2  shadow-sm p-4 flex flex-col justify-center">
                     <img class="mb-4" src="{{asset('/images/categories-splash.jpg')}}" alt="">
@@ -107,5 +115,6 @@
     </div>
 </div>
 <script src="{{asset('js/app.js')}}"></script>
+@yield('javascript')
 </body>
 </html>

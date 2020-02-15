@@ -13,7 +13,6 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th> id</th>
             <th> tag</th>
             <th> options</th>
         </tr>
@@ -22,7 +21,6 @@
         <tbody>
         @foreach($tag as $row)
             <tr>
-                <td> {{ $row->id  }} </td>
                 <td> {{ $row->name  }} </td>
                 <td class="flex justify-center">
                     <a href="{{route('tags.edit',$row)}}"

@@ -7002,7 +7002,7 @@ __webpack_require__.r(__webpack_exports__);
       var defaults = ['fixed', 'p-4', 'border', 'text-white', 'z-10', 'shadow-sm', 'rounded'];
       if (this.level === 'success') defaults.push('bg-green-600', 'border-green-600');
       if (this.level === 'warning') defaults.push('bg-yellow', 'border-yellow-800');
-      if (this.level === 'danger') defaults.push('bg-accent', 'border-red-dark');
+      if (this.level === 'danger') defaults.push('bg-red-500', 'border-red-dark');
       return defaults;
     }
   },
@@ -7778,6 +7778,7 @@ __webpack_require__.r(__webpack_exports__);
       event: new _Form__WEBPACK_IMPORTED_MODULE_0__["default"]({
         name: '',
         link: '',
+        entity_id: '',
         start_date: '',
         end_date: '',
         description: '',
@@ -31640,7 +31641,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "relative" }, [
     _c(
       "div",
       {
@@ -31654,7 +31655,9 @@ var render = function() {
       2
     ),
     _vm._v(" "),
-    _vm.isOpen ? _c("div", [_vm._t("default")], 2) : _vm._e()
+    _vm.isOpen
+      ? _c("div", { staticClass: "absolute" }, [_vm._t("default")], 2)
+      : _vm._e()
   ])
 }
 var staticRenderFns = []

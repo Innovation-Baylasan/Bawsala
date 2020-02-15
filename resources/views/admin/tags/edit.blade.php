@@ -1,31 +1,31 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1> Create Tag </h1>
+    <div class="p-4">
 
-    @if($errors->any())
-        <div class="alert is-danger">
-            <ul>
-                @foreach($errors->all() as $error)
-                    <li> {{ $error  }} </li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+        @if($errors->any())
+            <div class="alert is-danger">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li> {{ $error  }} </li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
 
-    <form method="POST" action="{{ route('tags.update', $tag->id)  }}">
+        <form method="POST" action="{{ route('tags.update', $tag->id)  }}">
 
-        @csrf
-        @method('PATCH')
+            @csrf
+            @method('PATCH')
 
-        <label for="tag">Tag</label>
-        <input type="text" id="tag" name="name" value="{{ $tag->name  }}">
+            <label class="input-label" for="tag">Tag</label>
+            <div class="input">
+                <input type="text" id="tag" name="name" value="{{ $tag->name  }}">
+            </div>
 
-        <br>
-        <br>
+            <button class="button" type="submit">update</button>
 
-        <input type="submit" value="Update"/>
-
-    </form>
+        </form>
+    </div>
 @endsection

@@ -66,7 +66,7 @@ class EntitiesApiTest extends TestCase
 
         $response = $this->get(route('api.entities.index', [
             'q' => $this->entities[0]->name
-        ])); //->decodeResponseJson();
+        ]));
 
         $response
             ->assertOk()
@@ -249,7 +249,7 @@ class EntitiesApiTest extends TestCase
 
         $this->json('post', route('api.entities.store'), $entity)->assertStatus(403);
 
-        $this->signIn(factory(User::class)->create(['role' => 'company']), 'api');
+        $this->signIn($this->createCompanyUser(), 'api');
 
         $this->json('post', route('api.entities.store'), $entity)
             ->assertJsonFragment([
@@ -353,7 +353,7 @@ class EntitiesApiTest extends TestCase
             'longitude' => 9.6
         ];
 
-        $this->signIn(factory(User::class)->create(['role' => 'company']), 'api');
+        $this->signIn($this->createCompanyUser(), 'api');
 
         $response = $this->json('post', route('api.entities.store'), $entity);
 
@@ -367,13 +367,13 @@ class EntitiesApiTest extends TestCase
 
 
     /** @test */
-    public function it_should_add_entity_with_tags_2()
+    public function it_should_ignore_duplicated_tags()
     {
 
         $entity = [
             'category_id' => factory(Category::class)->create()->id,
             'name' => "My Entity",
-            'tags' => ['tag1', 'tag2', 'tag3'],
+            'tags' => ['tag1', 'tag1', 'tag3'],
             'cover' => UploadedFile::fake()->image('cover.jpg'),
             'avatar' => UploadedFile::fake()->image('avatar.jpg'),
             'description' => "This is a very great description",
@@ -381,14 +381,11 @@ class EntitiesApiTest extends TestCase
             'longitude' => 9.6
         ];
 
-        $this->signIn(factory(User::class)->create(['role' => 'company']), 'api');
+        $this->signIn($this->createCompanyUser(), 'api');
 
         $response = $this->json('post', route('api.entities.store'), $entity);
 
-        $response
-            ->assertJsonFragment([
-                Tag::all()
-            ])
+        $response->assertJsonCount(2, 'data.tags')
             ->assertStatus(201);
 
     }
