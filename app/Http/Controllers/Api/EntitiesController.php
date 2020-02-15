@@ -64,7 +64,7 @@ class EntitiesController extends Controller
             ->create($attributes);
 
         if ($request->has('tags')) {
-            $entity->tagMany($request->tags);
+            $entity->tagMany(array_unique ($request->tags));
         }
         if (isset($attributes['avatar'])) {
             $entity->profile->setAvatar($attributes['avatar'],null);

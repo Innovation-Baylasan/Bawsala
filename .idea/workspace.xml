@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="- Added Related Places API&#10;- Written Test For Related Places API">
+    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="- Bug fix tags when adding duplicate tags it causes unique constrain error.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/EntitiesApiTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/EntitiesApiTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -339,21 +338,7 @@
       <workItem from="1581582805301" duration="7994000" />
       <workItem from="1581605738797" duration="4780000" />
       <workItem from="1581620945282" duration="5874000" />
-      <workItem from="1581742540949" duration="1013000" />
-    </task>
-    <task id="LOCAL-00060" summary="token issue">
-      <created>1578845460521</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1578845460522</updated>
-    </task>
-    <task id="LOCAL-00061" summary="configuration missmatch">
-      <created>1578848934122</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1578848934123</updated>
+      <workItem from="1581742540949" duration="3901000" />
     </task>
     <task id="LOCAL-00062" summary="registration as a company">
       <created>1578855089617</created>
@@ -684,7 +669,21 @@
       <option name="project" value="LOCAL" />
       <updated>1581621335364</updated>
     </task>
-    <option name="localTasksCounter" value="109" />
+    <task id="LOCAL-00109" summary="- Fix delete event issue">
+      <created>1581743834210</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1581743834211</updated>
+    </task>
+    <task id="LOCAL-00110" summary="- Bug fix tags when adding duplicate tags it causes unique constrain error.">
+      <created>1581757143073</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1581757143073</updated>
+    </task>
+    <option name="localTasksCounter" value="111" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -716,8 +715,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="taggable entities" />
-    <MESSAGE value="cleaning up" />
     <MESSAGE value="merge" />
     <MESSAGE value="edit testing" />
     <MESSAGE value="map clustering" />
@@ -741,7 +738,9 @@
     <MESSAGE value="- Cleaning Entities Api Controller&#10;- Adding Entities Tags Unit Test" />
     <MESSAGE value="- Creating Related Places Test Case And Scenario." />
     <MESSAGE value="- Added Related Places API&#10;- Written Test For Related Places API" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Added Related Places API&#10;- Written Test For Related Places API" />
+    <MESSAGE value="- Fix delete event issue" />
+    <MESSAGE value="- Bug fix tags when adding duplicate tags it causes unique constrain error." />
+    <option name="LAST_COMMIT_MESSAGE" value="- Bug fix tags when adding duplicate tags it causes unique constrain error." />
   </component>
   <component name="WindowStateProjectService">
     <state x="452" y="25" width="645" height="774" key="#EntitiesApiTest.it_should_allow_authenticated_entity_user_to_create_entity" timestamp="1580989924835">
@@ -768,14 +767,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="168" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1581421927491" />
-    <state x="333" y="0" key="CommitChangelistDialog2" timestamp="1581663837095">
+    <state x="333" y="0" key="CommitChangelistDialog2" timestamp="1581757142555">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="333" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1581663837095" />
-    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1581601330103">
+    <state x="333" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1581757142555" />
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1581757102757">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1581601330103" />
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1581757102757" />
     <state width="1493" height="235" key="GridCell.Tab.0.bottom" timestamp="1581666051950">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -804,10 +803,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="564" y="118" key="VCS.ChangeListViewerDialog/0.0.1536.824@0.0.1536.824" timestamp="1580995810798" />
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1581743784017">
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1581757146517">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1581743784017" />
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1581757146517" />
     <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1581600838151">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -833,11 +832,11 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1581600100534" />
-    <state x="339" y="6" width="672" height="676" key="search.everywhere.popup" timestamp="1581666628215">
+    <state x="339" y="6" width="672" height="676" key="search.everywhere.popup" timestamp="1581756888701">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="339" y="6" width="672" height="676" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1580648860098" />
-    <state x="339" y="6" width="672" height="676" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1581666628215" />
+    <state x="339" y="6" width="672" height="676" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1581756888701" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/sudan_map_back_end@EventApiTest_it_should_return_stored_events.xml" NAME="EventApiTest.it_should_return_stored_events Coverage Results" MODIFIED="1580915757700" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
