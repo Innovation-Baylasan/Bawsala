@@ -1,19 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="users can add events">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/views/admin/all.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/index.blade.php" />
+    <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/EventsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/EventsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Requests/EventRequest.php" afterPath="$PROJECT_DIR$/app/Http/Requests/EventRequest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/app.js" afterPath="$PROJECT_DIR$/public/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/components/Flash.vue" afterPath="$PROJECT_DIR$/resources/js/components/Flash.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/pages/CreateEventView.vue" afterPath="$PROJECT_DIR$/resources/js/pages/CreateEventView.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/partials/modals/add-event.blade.php" afterPath="$PROJECT_DIR$/resources/views/partials/modals/add-event.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/web.php" afterPath="$PROJECT_DIR$/routes/web.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -600,14 +589,7 @@
       <workItem from="1581602313651" duration="4386000" />
       <workItem from="1581635200799" duration="2083000" />
       <workItem from="1581724060679" duration="1170000" />
-      <workItem from="1581725303012" duration="1154000" />
-    </task>
-    <task id="LOCAL-00058" summary="api for following, rating and review entities">
-      <created>1578688625434</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1578688625438</updated>
+      <workItem from="1581725303012" duration="1213000" />
     </task>
     <task id="LOCAL-00059" summary="fixing test">
       <created>1578828156751</created>
@@ -945,7 +927,14 @@
       <option name="project" value="LOCAL" />
       <updated>1581637219425</updated>
     </task>
-    <option name="localTasksCounter" value="107" />
+    <task id="LOCAL-00107" summary="add graphs to dashboard, return event from event resource, finishing event adding">
+      <created>1581726510554</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1581726510555</updated>
+    </task>
+    <option name="localTasksCounter" value="108" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -954,7 +943,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="401496000" />
+    <option name="totallyTimeSpent" value="401555000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="723" extended-state="6" />
@@ -1029,7 +1018,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="reviews api cleaning" />
     <MESSAGE value="company users can add sub entities" />
     <MESSAGE value="cleaning" />
     <MESSAGE value="fixing radians in nearby locations" />
@@ -1054,7 +1042,8 @@
     <MESSAGE value="return created entity as same as fetching it" />
     <MESSAGE value="fix categories seeder duplication" />
     <MESSAGE value="users can add events" />
-    <option name="LAST_COMMIT_MESSAGE" value="users can add events" />
+    <MESSAGE value="add graphs to dashboard, return event from event resource, finishing event adding" />
+    <option name="LAST_COMMIT_MESSAGE" value="add graphs to dashboard, return event from event resource, finishing event adding" />
   </component>
   <component name="WindowStateProjectService">
     <state x="348" y="154" key="git4idea.merge.GitPullDialog" />
