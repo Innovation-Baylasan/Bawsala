@@ -20,7 +20,7 @@
 @import "~@glidejs/glide/src/assets/sass/glide.core";
 @import "./components/editor";
 @import './components/vue-select';
-@import '~cropperjs/dist/cropper.css';
+@import './components/cropper';
 modal, dropdown {
   display: none;
 }
