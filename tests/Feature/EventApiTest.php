@@ -129,60 +129,6 @@ class EventApiTest extends TestCase
 
 
     /** @test */
-    public function it_should_return_user_events()
-    {
-
-        // Given a user with 2 events
-        $event = factory(Event::class)->create();
-
-        factory(Event::class)->create([
-            'creator_id' => $event->user->id
-        ]);
-
-        // when this user logs in and call myEvents end point
-        $this->signIn($event->user, 'api');
-
-        $response = $this->get(route('api.events.myEvents'));
-
-        // then the response only contains those 2 events he has created
-        $response
-            ->assertJsonCount(2, 'data')
-            ->assertOk();
-
-    }
-
-
-    /** @test */
-    public function it_should_return_company_events () {
-
-        $this->withoutExceptionHandling();
-
-        $user = $this->createCompanyUser();
-
-        $this->signIn($user, 'api');
-
-        $event = [
-            'entity_id' => factory(Entity::class)->create(),
-            'name' => "Event Name",
-            'link' => "my link",
-            'description' => "This is a very great description",
-            'start_date' => Carbon::now(),
-            'end_date' => Carbon::now(),
-            'latitude' => 3.5,
-            'longitude' => 9.6
-        ];
-
-        $this->post(route('api.events.store'), $event);
-
-        $response = $this->get(route('api.events.myEvents'));
-
-        $response->assertJsonCount(1, 'data')
-            ->assertOk();
-
-    }
-
-
-    /** @test */
     public function it_should_delete_events_created_by_the_authenticated_user()
     {
 

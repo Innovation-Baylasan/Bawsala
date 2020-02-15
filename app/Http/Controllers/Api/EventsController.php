@@ -7,7 +7,6 @@ use App\Entity;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EventRequest;
 use App\Http\Resources\EventResource;
-use Illuminate\Http\Request;
 
 class EventsController extends Controller
 {
@@ -30,20 +29,6 @@ class EventsController extends Controller
             $entity = Entity::where('id', request('entity'))->first();
             $events = $events->where('entity_id', $entity ? $entity->id : 0);
         }
-
-        return EventResource::collection($events->get());
-
-    }
-
-    /**
-     * index,store,show,destroy,create,update,edit
-     *
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
-     */
-    public function myEvents()
-    {
-
-        $events = auth()->user()->events();
 
         return EventResource::collection($events->get());
 

@@ -29,11 +29,13 @@ Route::namespace('Api')->group(function () {
 
     Route::post('/entities', 'EntitiesController@store')->middleware(['auth:api', 'company'])->name('api.entities.store');
 
-    Route::get('/entities/my', 'EntitiesController@myEntities')->middleware('auth:api')->name('api.entities.myEntities');
+    Route::get('/entities/my', 'UserEntitiesController@index')->middleware('auth:api')->name('api.entities.myEntities');
 
     Route::get('/entities/{entity}', 'EntitiesController@show')->name('api.entities.show');
 
     Route::delete('/entities/{entity}', 'EntitiesController@destroy')->middleware('auth:api')->name('api.entities.destroy');
+
+    Route::get('/entities/{entity}/related/', 'RelatedPlacesController@index')->name('api.relatedPlacesController.index');
 
     Route::put('/entities/{entity}/rating', 'EntitiesRatingController@update')->name('api.entitiesRating.update');
 
@@ -51,7 +53,7 @@ Route::namespace('Api')->group(function () {
 
     Route::get('/events', 'EventsController@index')->name('api.events.index');
 
-    Route::get('/events/my', 'EventsController@myEvents')->middleware('auth:api')->name('api.events.myEvents');
+    Route::middleware('auth:api')->get('/events/my', 'UserEventsController@index')->name('api.userEventsController.myEvents');
 
     Route::post('/events', 'EventsController@store')->middleware('auth:api')->name('api.events.store');
 

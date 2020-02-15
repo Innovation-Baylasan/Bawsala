@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Category;
 use App\Entity;
+use App\Tag;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Storage;
@@ -43,16 +44,6 @@ class EntitiesApiTest extends TestCase
         factory(User::class)->create()->follow($this->entities[0]);
 
         factory(Entity::class, 2)->create();
-
-    }
-
-    /** @test */
-    public function it_passes_test()
-    {
-
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
 
     }
 
@@ -344,6 +335,61 @@ class EntitiesApiTest extends TestCase
             ->assertJsonFragment([
                 'name' => $inrange->name
             ]);
+
+    }
+
+    /** @test */
+    public function it_should_add_entity_with_tags()
+    {
+
+        $entity = [
+            'category_id' => factory(Category::class)->create()->id,
+            'name' => "My Entity",
+            'tags' => ['tag1', 'tag2', 'tag3'],
+            'cover' => UploadedFile::fake()->image('cover.jpg'),
+            'avatar' => UploadedFile::fake()->image('avatar.jpg'),
+            'description' => "This is a very great description",
+            'latitude' => 3.5,
+            'longitude' => 9.6
+        ];
+
+        $this->signIn(factory(User::class)->create(['role' => 'company']), 'api');
+
+        $response = $this->json('post', route('api.entities.store'), $entity);
+
+        $response
+            ->assertJsonFragment([
+                Tag::all()
+            ])
+            ->assertStatus(201);
+
+    }
+
+
+    /** @test */
+    public function it_should_add_entity_with_tags_2()
+    {
+
+        $entity = [
+            'category_id' => factory(Category::class)->create()->id,
+            'name' => "My Entity",
+            'tags' => ['tag1', 'tag2', 'tag3'],
+            'cover' => UploadedFile::fake()->image('cover.jpg'),
+            'avatar' => UploadedFile::fake()->image('avatar.jpg'),
+            'description' => "This is a very great description",
+            'latitude' => 3.5,
+            'longitude' => 9.6
+        ];
+
+        $this->signIn(factory(User::class)->create(['role' => 'company']), 'api');
+
+        $response = $this->json('post', route('api.entities.store'), $entity);
+
+        $response
+            ->assertJsonFragment([
+                Tag::all()
+            ])
+            ->assertStatus(201);
 
     }
 
