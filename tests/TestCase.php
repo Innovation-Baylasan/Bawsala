@@ -16,6 +16,7 @@ abstract class TestCase extends BaseTestCase
 
         if (!defined('LARAVEL_START')) {
             define('LARAVEL_START', microtime(true));
+            define('TELESCOPE_ENABLED', false);
         }
 
     }

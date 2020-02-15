@@ -3,6 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="204c92d2-96ab-4366-8476-e88aedfdf4c7" name="Default" comment="- Bug fix tags when adding duplicate tags it causes unique constrain error.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phpunit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/phpunit.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/AuthenticationTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/AuthenticationTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/CategoriesApiTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/CategoriesApiTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/CategoryEntitiesApiTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/CategoryEntitiesApiTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/CompanyManagingTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/CompanyManagingTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/TestCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/TestCase.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,8 +175,8 @@
       <path value="$PROJECT_DIR$/vendor/laminas/laminas-diactoros" />
       <path value="$PROJECT_DIR$/vendor/laminas/laminas-zendframework-bridge" />
       <path value="$PROJECT_DIR$/vendor/league/commonmark" />
-      <path value="$PROJECT_DIR$/vendor/league/commonmark-ext-table" />
       <path value="$PROJECT_DIR$/vendor/org_heigl/ghostscript" />
+      <path value="$PROJECT_DIR$/vendor/waavi/sanitizer" />
     </include_path>
   </component>
   <component name="ProjectId" id="1XOGBN3P5M8m3D9ArdgyRBB7p8g" />
@@ -204,24 +211,24 @@
     </key>
   </component>
   <component name="RunManager" selected="PHPUnit.Feature">
-    <configuration name="EntitiesApiTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\EntitiesApiTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/EntitiesApiTest.php" scope="Class" />
+    <configuration name="CategoriesApiTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\CategoriesApiTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/CategoriesApiTest.php" scope="Class" />
+      <method v="2" />
+    </configuration>
+    <configuration name="CategoryEntitiesApiTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\CategoryEntitiesApiTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/CategoryEntitiesApiTest.php" scope="Class" />
+      <method v="2" />
+    </configuration>
+    <configuration name="CompanyManagingTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\CompanyManagingTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/CompanyManagingTest.php" scope="Class" />
+      <method v="2" />
+    </configuration>
+    <configuration name="CompanyManagingTest.its_create_entity_when_company_user_register" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\CompanyManagingTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/CompanyManagingTest.php" method="its_create_entity_when_company_user_register" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="Feature" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" directory="$PROJECT_DIR$/tests/Feature" />
-      <method v="2" />
-    </configuration>
-    <configuration name="RelatedPlacesApiTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\RelatedPlacesApiTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/RelatedPlacesApiTest.php" scope="Class" />
-      <method v="2" />
-    </configuration>
-    <configuration name="RelatedPlacesApiTest.it_return_related_places_to_the_given_entity_based_on_common_tags" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\RelatedPlacesApiTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/RelatedPlacesApiTest.php" method="it_return_related_places_to_the_given_entity_based_on_common_tags" scope="Method" />
-      <method v="2" />
-    </configuration>
-    <configuration name="RelatedPlaces.it_return_related_places_to_the_given_entity_based_on_common_tags" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\RelatedPlaces" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/RelatedPlacesApiTest.php" method="it_return_related_places_to_the_given_entity_based_on_common_tags" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp">
@@ -236,10 +243,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="PHPUnit.Feature" />
-        <item itemvalue="PHPUnit.RelatedPlacesApiTest" />
-        <item itemvalue="PHPUnit.Feature" />
-        <item itemvalue="PHPUnit.RelatedPlacesApiTest.it_return_related_places_to_the_given_entity_based_on_common_tags" />
-        <item itemvalue="PHPUnit.RelatedPlaces.it_return_related_places_to_the_given_entity_based_on_common_tags" />
+        <item itemvalue="PHPUnit.CompanyManagingTest.its_create_entity_when_company_user_register" />
+        <item itemvalue="PHPUnit.CompanyManagingTest" />
+        <item itemvalue="PHPUnit.CategoryEntitiesApiTest" />
+        <item itemvalue="PHPUnit.CategoriesApiTest" />
       </list>
     </recent_temporary>
   </component>
@@ -338,14 +345,8 @@
       <workItem from="1581582805301" duration="7994000" />
       <workItem from="1581605738797" duration="4780000" />
       <workItem from="1581620945282" duration="5874000" />
-      <workItem from="1581742540949" duration="3901000" />
-    </task>
-    <task id="LOCAL-00062" summary="registration as a company">
-      <created>1578855089617</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1578855089618</updated>
+      <workItem from="1581742540949" duration="9161000" />
+      <workItem from="1581767874926" duration="1401000" />
     </task>
     <task id="LOCAL-00063" summary="cleaning up">
       <created>1579027842617</created>
@@ -683,7 +684,14 @@
       <option name="project" value="LOCAL" />
       <updated>1581757143073</updated>
     </task>
-    <option name="localTasksCounter" value="111" />
+    <task id="LOCAL-00111" summary="- Bug fix tags when adding duplicate tags it causes unique constrain error.">
+      <created>1581760341085</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1581760341085</updated>
+    </task>
+    <option name="localTasksCounter" value="112" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -767,30 +775,46 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="168" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1581421927491" />
-    <state x="333" y="0" key="CommitChangelistDialog2" timestamp="1581757142555">
+    <state x="333" y="0" key="CommitChangelistDialog2" timestamp="1581760340412">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="333" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1581757142555" />
+    <state x="333" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1581760340412" />
     <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1581757102757">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1581757102757" />
-    <state width="1493" height="235" key="GridCell.Tab.0.bottom" timestamp="1581666051950">
+    <state width="1493" height="171" key="GridCell.Tab.0.bottom" timestamp="1581769265325">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="235" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1581666051950" />
-    <state width="1493" height="235" key="GridCell.Tab.0.center" timestamp="1581666051950">
+    <state width="1493" height="171" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1581769265325" />
+    <state width="1493" height="171" key="GridCell.Tab.0.center" timestamp="1581769265325">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="235" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1581666051950" />
-    <state width="1493" height="235" key="GridCell.Tab.0.left" timestamp="1581666051950">
+    <state width="1493" height="171" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1581769265325" />
+    <state width="1493" height="171" key="GridCell.Tab.0.left" timestamp="1581769265325">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="235" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1581666051950" />
-    <state width="1493" height="235" key="GridCell.Tab.0.right" timestamp="1581666051950">
+    <state width="1493" height="171" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1581769265325" />
+    <state width="1493" height="171" key="GridCell.Tab.0.right" timestamp="1581769265325">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="235" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1581666051950" />
+    <state width="1493" height="171" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1581769265325" />
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1581767731789">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1581767731789" />
+    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1581767731788">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1581767731788" />
+    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1581767731788">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1581767731788" />
+    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1581767731788">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1581767731788" />
     <state x="40" y="46" width="1390" height="682" key="MergeDialog" timestamp="1581598394694">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -803,18 +827,18 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="564" y="118" key="VCS.ChangeListViewerDialog/0.0.1536.824@0.0.1536.824" timestamp="1580995810798" />
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1581757146517">
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1581760344086">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1581757146517" />
-    <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1581600838151">
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1581760344086" />
+    <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1581766789367">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1581600838151" />
-    <state x="465" y="238" key="com.intellij.ide.util.TipDialog" timestamp="1581742541369">
+    <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1581766789367" />
+    <state x="465" y="238" key="com.intellij.ide.util.TipDialog" timestamp="1581767878131">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="465" y="238" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1581742541369" />
+    <state x="465" y="238" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1581767878131" />
     <state x="578" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1581598414947">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -828,15 +852,15 @@
     </state>
     <state x="348" y="154" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1580648860098" />
     <state x="348" y="154" key="git4idea.merge.GitPullDialog/0.0.1536.824@0.0.1536.824" timestamp="1581663824623" />
-    <state x="425" y="187" key="run.anything.popup" timestamp="1581600100534">
+    <state x="425" y="187" key="run.anything.popup" timestamp="1581765248360">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1581600100534" />
-    <state x="339" y="6" width="672" height="676" key="search.everywhere.popup" timestamp="1581756888701">
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1581765248360" />
+    <state x="339" y="6" width="672" height="676" key="search.everywhere.popup" timestamp="1581769145430">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="339" y="6" width="672" height="676" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1580648860098" />
-    <state x="339" y="6" width="672" height="676" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1581756888701" />
+    <state x="339" y="6" width="672" height="676" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1581769145430" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/sudan_map_back_end@EventApiTest_it_should_return_stored_events.xml" NAME="EventApiTest.it_should_return_stored_events Coverage Results" MODIFIED="1580915757700" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
