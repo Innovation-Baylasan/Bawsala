@@ -10,7 +10,6 @@
     </div>
 </template>
 <script>
-    import 'cropperjs/dist/cropper.css';
     import Cropper from 'cropperjs'
     export default{
         props: ['src', 'cropRatio'],

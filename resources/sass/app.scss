@@ -20,6 +20,10 @@
 @import "~@glidejs/glide/src/assets/sass/glide.core";
 @import "./components/editor";
 @import './components/vue-select';
+@import '~cropperjs/dist/cropper.css';
+modal, dropdown {
+  display: none;
+}
 
 ::-webkit-scrollbar {
   width: 10px;

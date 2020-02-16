@@ -1,6 +1,7 @@
 <modal name="settings-modal"
        height="auto"
        scrollable
+       v-cloak
        classes="rounded bg-white">
     <user-info-view inline-template>
         <div>

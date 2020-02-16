@@ -1,5 +1,5 @@
 <template>
-    <div class="shadow rounded bg-white w-96">
+    <div  class="shadow rounded bg-white w-96" v-cloak>
         <div class="flex justify-between p-2">
             <a href="#" class="p-2 w-8 h-8 bg-accent-light rounded flex items-center justify-center">
                 <img src="/svg/search-icon.svg" alt="search what you looking for">
