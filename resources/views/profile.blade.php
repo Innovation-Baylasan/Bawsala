@@ -87,11 +87,11 @@
                 <h3 class="uppercase border-b mb-4 border-solid border-gray-100 text-2xl font-bold">
                     Details
                 </h3>
-                <p class="text-gray-500 mr-8 ">{!! $entity->details !!}</p>
+                <p class="text-gray-500 mr-8 ">{!! $entity->details ?: 'there is no details for now' !!}</p>
             </div>
             <div class="bg-default p-8 mb-4 rounded">
                 <div class="flex flex-col justify-between">
-                    @forelse($entity->reviews as $review)
+                    @forelse($entity->reviews->take(5) as $review)
                         <div class="flex flex-1 py-4 items-start border-b border-solid border-gray-100">
                             <img class="rounded shadow-sm w-12 h-12 mr-4"
                                  src="https://www.gravatar.com/avatar/{{md5( strtolower(trim( $review->writer->email)) )}}?s=200"
@@ -152,13 +152,17 @@
                         </div>
                     @endif
                     @if($authUser->mainEntity()->is($entity))
-                        @foreach($entity->subEntities as $subEntity)
+                        @forelse($entity->subEntities as $subEntity)
                             @include('partials.profile-min-card',['entity' => $subEntity])
-                        @endforeach
+                        @empty
+                            <p class="text-sm text-gray-500">there no related places</p>
+                        @endforelse
                     @else
-                        @foreach($entity->siblings() as $sibling)
+                        @forelse($entity->siblings() as $sibling)
                             @include('partials.profile-min-card',['entity' => $sibling])
-                        @endforeach
+                        @empty
+                            <p class="text-sm text-gray-500">there no related places</p>
+                        @endforelse
                     @endif
                 </div>
             </div>
