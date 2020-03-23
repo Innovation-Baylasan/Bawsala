@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Login into Bawsala</title>
+    <link rel="shortcut icon" type="image/jpg" href="/images/fav-icon.png"/>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
 <body>

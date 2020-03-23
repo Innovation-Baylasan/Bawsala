@@ -34,7 +34,6 @@
             <div class="input">
                 <select id="role" name="role_id">
                     <option value="user">User</option>
-                    <option value="company">Company</option>
                     <option value="admin">Admin</option>
                 </select>
             </div>

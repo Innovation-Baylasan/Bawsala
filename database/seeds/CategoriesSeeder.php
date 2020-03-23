@@ -16,7 +16,7 @@ class CategoriesSeeder extends Seeder
             ->create([
                 'name' => 'startups',
                 'icon' => '/svg/startups-icon.svg',
-                'icon_png' => '/mobilePng/markers/startups-marker-icon.png'
+                'icon_png' => '/svg/startups-icon.svg'
             ])
              ->entities()->saveMany(factory(App\Entity::class, 5)->make(['category_id' => '']));
 
@@ -25,7 +25,7 @@ class CategoriesSeeder extends Seeder
             ->create([
                 'name' => 'investors',
                 'icon' => '/svg/investors-icon.svg',
-                'icon_png' => '/mobilePng/markers/investors-marker-icon.png'
+                'icon_png' => '/svg/investors-icon.svg'
             ])
              ->entities()->saveMany(factory(App\Entity::class, 5)->make(['category_id' => '']));
 
@@ -33,7 +33,7 @@ class CategoriesSeeder extends Seeder
             ->create([
                 'name' => 'accelerators',
                 'icon' => '/svg/accelerators-icon.svg',
-                'icon_png' => '/mobilePng/markers/accelerators-marker-icon.png'
+                'icon_png' => '/svg/accelerators-icon.svg'
             ])
              ->entities()->saveMany(factory(App\Entity::class, 5)->make(['category_id' => '']));
 
@@ -41,7 +41,7 @@ class CategoriesSeeder extends Seeder
             ->create([
                 'name' => 'co-workspaces',
                 'icon' => '/svg/co-workspaces-icon.svg',
-                'icon_png' => '/mobilePng/markers/co-workspaces-marker-icon.png'
+                'icon_png' => '/svg/co-workspaces-icon.svg'
             ])
              ->entities()->saveMany(factory(App\Entity::class, 5)->make(['category_id' => '']));
 
@@ -50,7 +50,7 @@ class CategoriesSeeder extends Seeder
             ->create([
                 'name' => 'labs',
                 'icon' => '/svg/labs-icon.svg',
-                'icon_png' => '/mobilePng/markers/labs-marker-icon.png'
+                'icon_png' => '/svg/labs-icon.svg'
             ])
              ->entities()->saveMany(factory(App\Entity::class, 5)->make(['category_id' => '']));
 
@@ -59,7 +59,7 @@ class CategoriesSeeder extends Seeder
             ->create([
                 'name' => 'research-centers',
                 'icon' => '/svg/research-centers-icon.svg',
-                'icon_png' => '/mobilePng/markers/research-centers-marker-icon.png'
+                'icon_png' => '/svg/research-centers-icon.svg'
             ])
              ->entities()->saveMany(factory(App\Entity::class, 5)->make(['category_id' => '']));
 

@@ -26,8 +26,8 @@ class Category extends Model
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'icon' => Storage::url($this->icon),
-            'icon_png' => Storage::url($this->icon_png),
+            'icon' => $this->icon,
+            'icon_png' => $this->icon_png,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at
         ];

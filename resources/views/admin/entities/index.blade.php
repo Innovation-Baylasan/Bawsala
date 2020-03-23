@@ -10,7 +10,8 @@
             <th> name</th>
             <th> category</th>
             <th> description</th>
-            <th></th>
+            <th>Verified</th>
+            <th>Actions</th>
         </tr>
         </thead>
 
@@ -20,7 +21,26 @@
                 <td> {{ $entity->name  }} </td>
                 <td> {{ $entity->category->name ?? ''}} </td>
                 <td> {{ Str::limit($entity->description,50)}} </td>
-                <td class="flex">
+                <td>
+                    <form action="/admin/entities/{{$entity->id}}/verify"
+                          method="POST">
+                        @csrf
+
+                        @if($entity->verified)
+                            @method('DELETE')
+                        @endif
+
+                        <input type="checkbox"
+                               class="checkbox border border-gray-500"
+                               value="{{$entity->verified ? '1' : '0'}}"
+                               @if($entity->verified)
+                               checked
+                               @endif
+                               onChange="this.form.submit()"
+                        >
+                    </form>
+                </td>
+                <td class="flex items-center">
                     <a href="{{route('entities.edit',$entity)}}"
                        class="flex  items-center justify-center p-2"
                     >

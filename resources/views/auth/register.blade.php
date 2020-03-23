@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Bawsala | Register now</title>
+    <link rel="shortcut icon" type="image/jpg" href="/images/fav-icon.png"/>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
 <body>
@@ -91,48 +92,6 @@
                         @error('password')
                         <p class="text-sm text-accent -mt-2 mb-2">{{$message}}</p>
                         @enderror
-
-                        <label class="text-gray-700 capitalize block mb-2" for="">Register as</label>
-                        <div class="flex items-center -mx-2 mb-4">
-                            <div class="flex mx-2">
-                                <input class="appearance-none" name="registerAs" v-model="registerAs" value="company"
-                                       type="radio" id="company">
-                                <label class="select-label" for="company">company</label>
-                            </div>
-                            <div class="flex">
-                                <input class="appearance-none" name="registerAs" v-model="registerAs" value="user"
-                                       checked type="radio" id="user">
-                                <label class="select-label" for="user">user</label>
-                            </div>
-                        </div>
-
-                        <div v-if="registerAs == 'company'" class="mb-2">
-                            <label class="text-gray-700 capitalize block mb-2" for="">Location</label>
-
-                            <location-picker api-key="{{config('app.mapKey')}}"
-                                             v-model="location"
-                                             class="rounded mb-2 h-32 w-full"></location-picker>
-
-                            <input type="hidden" name="location" :value="location.latitude + ',' + location.longitude">
-
-                            <label class="input-label" for="">Category</label>
-                            <div class="input">
-                                <select name="category">
-                                    @foreach($categories as $category)
-                                        <option value="{{$category->id}}">{{$category->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <label class="input-label" for="">Description</label>
-                            <div class="input">
-                                <textarea name="description">{{old('description')}}</textarea>
-                            </div>
-                            @error('description')
-                            <p class="text-sm text-accent -mt-2 mb-2">{{$message}}</p>
-                            @enderror
-
-                        </div>
-
 
                         <p class="text-gray-500">
                             Here a text is placed explaining to the user that upon registration, the <a href="#"

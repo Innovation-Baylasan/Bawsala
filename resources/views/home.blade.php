@@ -62,35 +62,6 @@
                         @endauth
                     </ul>
                 </dropdown>
-                {{--@guest--}}
-                {{--<div class="bg-default rounded overflow-hidden shadow mt-4 mx-2">--}}
-                {{--<a class="p-2 px-4 inline-block text-gray-500 border-r border-gray-200"--}}
-                {{--href="/register">Regsiter</a>--}}
-                {{--<a class="p-2 px-4 inline-block text-gray-500" href="/login">Login</a>--}}
-                {{--</div>--}}
-                {{--@endguest--}}
-                {{--@auth()--}}
-                {{--<form action="/logout" method="post" id="logout-form">--}}
-                {{--@csrf--}}
-                {{--</form>--}}
-                {{--<div class="bg-default rounded overflow-hidden shadow mt-4 mx-2">--}}
-
-                {{--@if($authUser->isAdmin())--}}
-                {{--<a class="p-2 px-4 inline-block text-gray-500" href="/admin">dashboard</a>--}}
-                {{--@endif--}}
-                {{--<a class="p-2 px-4 inline-block text-gray-500" href="/account">profile</a>--}}
-
-                {{--<a class="p-2 px-4 inline-block text-gray-500" @click="$modal.show('settings-modal')" href="#">settigs</a>--}}
-
-                {{--<a class="p-2 px-4 inline-block text-gray-500 border-r border-gray-200"--}}
-                {{--href="#"--}}
-                {{--onclick="document.getElementById('logout-form').submit()"--}}
-                {{-->Logout</a>--}}
-                {{--</div>--}}
-                {{--@endauth()--}}
-                {{----}}
-
-
             </header>
 
             <event-card @close="selectedEvent =null"
@@ -103,6 +74,7 @@
             :place="selectedPlace"></place-profile-card>
 
             <flash message="{{session('message')}}"></flash>
+
             <main>
                 <google-map :places="places"
                             :center="mapCenter"

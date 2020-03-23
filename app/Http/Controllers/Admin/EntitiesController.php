@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 class EntitiesController extends Controller
 {
     /**
-     * Display a listing of the entities.
+     * Display a listing of all entities paginated.
      *
      * @return \Illuminate\Http\Response
      *
@@ -21,7 +21,9 @@ class EntitiesController extends Controller
      */
     public function index()
     {
-        $entities = Entity::latest()->paginate(10);
+        $entities = Entity::withoutGlobalScope('verified')
+            ->latest()
+            ->paginate(10);
 
         return view('admin.entities.index', compact('entities'));
     }

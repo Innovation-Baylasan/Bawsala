@@ -17,13 +17,14 @@ class CreateEntitiesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('parent_id')->nullable();
             $table->unsignedBigInteger('profile_id')->nullable();
             $table->string('name');
             $table->text('description');
             $table->text('details')->nullable();
             $table->float('latitude', 10, 8);
             $table->float('longitude', 10, 8);
+            $table->boolean('verified')->default(false);
+            $table->timestamp('verified_at')->nullable();
             $table->timestamps();
         });
     }

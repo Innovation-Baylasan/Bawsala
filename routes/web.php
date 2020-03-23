@@ -42,13 +42,16 @@ Route::namespace('Admin')
     ->middleware(['admin'])
     ->group(function () {
         Route::get('/', 'DashboardController@index');
-
         Route::resource('tags', 'TagsController');
         Route::resource('users', 'UsersController');
         Route::resource('entities', 'EntitiesController');
         Route::resource('categories', 'CategoriesController');
         Route::resource('profiles', 'ProfilesController');
         Route::resource('events', 'EventsController');
+
+        Route::post('/entities/{id}/verify', 'EntityVerificationController@store');
+
+        Route::delete('/entities/{id}/verify', 'EntityVerificationController@destroy');
     });
 
 Auth::routes();
