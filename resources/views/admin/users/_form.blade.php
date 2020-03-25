@@ -1,5 +1,5 @@
-<form class="w-3/4" method="POST" action="{{ route('users.store')  }}">
-
+<form class="w-3/4" method="POST" action="{{ $endpoint ?? route('users.store')  }}">
+    {{$method ?? ''}}
     @csrf
 
     <label class="input-label" for="name">Name</label>
@@ -32,6 +32,6 @@
         <input type="password" id="password_confirmation" name="password_confirmation">
     </div>
 
-    <button class="button is-green" type="submit">Create</button>
+    <button class="button is-green" type="submit">{{$buttonText ?? 'Create'}}</button>
 
 </form>

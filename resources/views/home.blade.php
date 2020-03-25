@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Campos | Map Eco system</title>
+    <title>Bawsala</title>
     <link rel="shortcut icon" type="image/jpg" href="/images/fav-icon.png"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{asset('css/app.css')}}">

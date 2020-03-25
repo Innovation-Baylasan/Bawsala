@@ -13,31 +13,11 @@
         @endif
 
 
-        <form class="w-3/4" method="POST" action="{{ route('users.update', $user->id)  }}">
+        @include('admin.users._form',[
+        'endpoint' => route('users.update', $user),
+        'method' => method_field('PUT'),
+        'buttonText' => 'update user'
+        ])
 
-            @csrf
-            @method('PATCH')
-
-            <label class="input-label" for="name">Name</label>
-            <div class="input">
-                <input type="text" id="name" name="name" value="{{ $user->name  }}">
-            </div>
-
-            <label class="input-label" for="email">Email</label>
-            <div class="input">
-                <input type="email" id="email" name="email" value="{{ $user->email  }}">
-            </div>
-
-            <label class="input-label" for="role">Select user role</label>
-            <div class="input">
-                <select id="role" name="role_id">
-                    <option value="user">User</option>
-                    <option value="admin">Admin</option>
-                </select>
-            </div>
-
-            <button class="button is-green" type="submit">Update</button>
-
-        </form>
     </div>
 @endsection

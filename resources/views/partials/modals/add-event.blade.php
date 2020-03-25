@@ -18,16 +18,6 @@
                 <label for="" class="input-label">name</label>
                 <div class="input"><input v-model="event.name" type="text"></div>
                 <p class="error" v-if="event.errors.name" v-text="event.errors.name[0]"></p>
-                @if($authUser->isCompany())
-                    <label for="" class="input-label">Organized by</label>
-                    <div class="input">
-                        <select v-model="event.entity_id" type="text">
-                            @foreach($authUser->entities as $entity)
-                                <option value="{{$entity->id}}">{{$entity->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                @endif
 
                 <label for="" class="input-label">Registration link</label>
                 <p class="text-xs text-accent">links should start with (http:// or https://)</p>
