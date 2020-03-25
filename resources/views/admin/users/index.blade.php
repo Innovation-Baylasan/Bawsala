@@ -21,13 +21,13 @@
 
         </thead>
         <tbody>
-        @foreach($user as $row)
+        @foreach($users as $user)
             <tr>
-                <td><a href="{{route('users.show',$row)}}">{{ $row->name  }}</a></td>
-                <td class="capitalize"> {{ $row->role}} </td>
-                <td> {{ $row->email}} </td>
+                <td><a href="{{route('users.show',$user)}}">{{ $user->name  }}</a></td>
+                <td class="capitalize"> {{ $user->role}} </td>
+                <td> {{ $user->email}} </td>
                 <td class="flex">
-                    <a href="{{route('users.edit',$row)}}"
+                    <a href="{{route('users.edit',$user)}}"
                        class="flex  items-center justify-center p-2"
                     >
                         <div class="w-8 h-8 flex items-center justify-center p-1 rounded bg-gray-100">
@@ -35,7 +35,7 @@
                         </div>
                     </a>
                     <form method="POST"
-                          action="{{ route('users.destroy', $row)  }}"
+                          action="{{ route('users.destroy', $user)  }}"
                           id="remove-user-form"
                     >
                         <a href="#"
@@ -55,5 +55,5 @@
         </tbody>
     </table>
 
-    {{$user->links()}}
+    {{$users->links()}}
 @endsection

@@ -17,81 +17,17 @@ class EntitiesApiTest extends TestCase
 
     use DatabaseMigrations;
 
-    public function setUp(): void
-    {
-
-        parent::setUp();
-
-        $this->user = factory(User::class)->create();
-
-        $this->entities = factory(Entity::class, 2)->create([
-            'user_id' => $this->user->id
-        ]);
-
-        // Add Review
-        $this->entities[0]->review('Nice work', $this->user);
-        $this->entities[0]->review('Nice work', $this->user);
-        $this->entities[0]->review('Nice work', $this->user);
-        $this->entities[0]->review('Nice work', $this->user);
-
-        // Add Rating
-        $this->entities[0]->rate(5, $this->user);
-        $this->entities[0]->rate(1, factory(User::class)->create());
-        $this->entities[0]->rate(2, factory(User::class)->create());
-        $this->entities[0]->rate(2, factory(User::class)->create());
-
-        $this->user->follow($this->entities[0]);
-        factory(User::class)->create()->follow($this->entities[0]);
-
-        factory(Entity::class, 2)->create();
-
-    }
 
     /** @test */
-    public function it_should_return_all_entities()
+    public function entities_can_be_filtered_by_name()
     {
+        $entity = factory(Entity::class)->create();
 
-        $this->withoutExceptionHandling();
+        factory(Entity::class)->create();
 
-        $response = $this->get(route('api.entities.index'));
-
-        $response
-            ->assertOk();
-
-    }
-
-    /** @test */
-    public function it_should_filter_entities()
-    {
-
-        $response = $this->get(route('api.entities.index', [
-            'q' => $this->entities[0]->name
-        ]));
-
-        $response
+        $this->get(route('api.entities.index', ['q' => $entity->name,]))
             ->assertOk()
-            ->assertJsonFragment([
-                'name' => $this->entities[0]->name
-            ]);
-
-    }
-
-
-    /** @test */
-    public function it_should_show_entity_by_passing_id()
-    {
-
-        $this->signIn($this->user, 'api');
-
-        $response = $this->get(route('api.entities.show', [
-            'entity' => $this->entities[0]->id
-        ])); //->decodeResponseJson();
-
-        $response
-            ->assertOk()
-            ->assertJsonFragment([
-                'name' => $this->entities[0]->name
-            ]);
+            ->assertJsonFragment(['name' => $entity->name]);
 
     }
 
@@ -196,22 +132,18 @@ class EntitiesApiTest extends TestCase
 
 
     /** @test */
-    public function it_should_show_specific_entity_logged_in_user_rating()
+    public function it_shows_user_his_rating_for_requested_entity()
     {
 
-        $this->signIn($this->user, 'api');
+        $this->signIn(factory(User::class)->create(), 'api');
 
-        $response = $this->get(route('api.entities.show', [
-            'entity' => $this->entities[0]->id
-        ])); //->decodeResponseJson();
+        $entity = factory(Entity::class)->create();
 
-        $myRating = $this->entities[0]->ratings()->where('user_id', $this->user->id)->value('rating');
+        $response = $this->get(route('api.entities.show', $entity));
 
-        $response
-            ->assertOk()
-            ->assertJsonFragment([
-                "my_rating" => "$myRating"
-            ]);
+        $response->assertOk()->assertJsonFragment([
+            "my_rating" => $entity->ratingFor(auth()->user())
+        ]);
     }
 
 

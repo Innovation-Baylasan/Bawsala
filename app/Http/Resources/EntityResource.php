@@ -4,6 +4,10 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @property mixed name
+ * @property mixed longitude
+ */
 class EntityResource extends JsonResource
 {
     /**
@@ -23,6 +27,7 @@ class EntityResource extends JsonResource
             'cover' => $this->cover,
             'tags' => $this->tags,
             'rating' => $this->rating(),
+            'my_rating' => $this->ratingFor(auth()->user()),
             'location' => [
                     'lat' => $this->latitude,
                     'long' => $this->longitude,

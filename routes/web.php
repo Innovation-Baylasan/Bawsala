@@ -37,6 +37,7 @@ Route::get('/@{entity}', 'ProfilesController@index');
 
 Route::put('/user-info/update', 'UserInfoController@update');
 
+
 Route::namespace('Admin')
     ->prefix('admin')
     ->middleware(['admin'])
@@ -49,10 +50,11 @@ Route::namespace('Admin')
         Route::resource('profiles', 'ProfilesController');
         Route::resource('events', 'EventsController');
 
-        Route::post('/entities/{id}/verify', 'EntityVerificationController@store');
+        Route::post('/entities/{entity}/verify', 'EntityVerificationController@store');
 
-        Route::delete('/entities/{id}/verify', 'EntityVerificationController@destroy');
+        Route::delete('/entities/{entity}/verify', 'EntityVerificationController@destroy');
     });
+
 
 Auth::routes();
 

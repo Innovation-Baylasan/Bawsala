@@ -26,7 +26,9 @@ use Rennokki\Befriended\Traits\CanBeFollowed;
 class Entity extends Model implements Followable
 {
     use Reviewable, CanBeFollowed, CanBeRated, Searchable;
-
+    /**
+     * @var bool
+     */
     public $asYouType = true;
 
     /**

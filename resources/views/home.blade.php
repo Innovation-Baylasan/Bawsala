@@ -47,11 +47,6 @@
                         <li class="dropdown-item">
                             <a href="#" @click="$modal.show('settings-modal')">settings</a>
                         </li>
-                        @if($authUser->isCompany())
-                            <li class="dropdown-item">
-                                <a href="{{'@'.$authUser->mainEntity()->id}}">profile</a>
-                            </li>
-                        @endif
                         <li class="dropdown-item">
                             <form action="/logout" method="post" id="logout-form">
                                 @csrf

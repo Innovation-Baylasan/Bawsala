@@ -16,12 +16,6 @@ use Rennokki\Befriended\Traits\CanFollow;
 class User extends Authenticatable implements Follower
 {
     use HasApiTokens, Notifiable, CanFollow;
-
-    public function getRouteKeyName()
-    {
-        return 'username';
-    }
-
     /**
      * The attributes that are mass assignable.
      *
@@ -63,18 +57,6 @@ class User extends Authenticatable implements Follower
     }
 
     /**
-     * @param $name
-     * @return string
-     */
-    public static function generateUsername($name)
-    {
-        $username = Str::slug($name);
-        $userRows = static::whereRaw("username REGEXP '^{$username}(-[0-9]*)?$'")->get();
-        $countUser = count($userRows) + 1;
-        return ($countUser > 1) ? "{$username}-{$countUser}" : $username;
-    }
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function entities()
@@ -98,14 +80,6 @@ class User extends Authenticatable implements Follower
     }
 
     /**
-     * @return bool
-     */
-    public function isCompany()
-    {
-        return !!($this->role == 'company');
-    }
-
-    /**
      * check whether this user is admin or not
      *
      * @return bool
@@ -118,7 +92,6 @@ class User extends Authenticatable implements Follower
     public function profilePath()
     {
         $destinations = [
-            'company' => "/@" . $this->entities()->first() ?? $this->entities()->first()->id,
             'user' => "/account/{$this->username}",
             'admin' => "/account/{$this->username}",
         ];
