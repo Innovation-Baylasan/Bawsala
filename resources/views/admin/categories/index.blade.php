@@ -51,8 +51,8 @@
                           id="remove-category-{{$category->name}}"
                     >
                         <a href="#"
-                           onclick="event.preventDefault();
-                                   document.getElementById('remove-category-{{$category->name}}').submit();"
+
+                           onclick="confirmDeletion({{$category}})"
                            class="flex items-center justify-center p-2"
                         >
                             <div class="w-8 h-8 flex items-center justify-center p-1 rounded bg-gray-100">
@@ -70,4 +70,21 @@
     </table>
     {{$categories->links() }}
 
+    <script>
+        function confirmDeletion(category) {
+            Swal.fire({
+                title: 'Are you sure?',
+                html: "All places under <strong>" + category.name + "</strong> category will be deleted",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#b3b3b3',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value){
+                document.getElementById("remove-category-" + category.name).submit()
+            }
+        })
+        }
+    </script>
 @endsection

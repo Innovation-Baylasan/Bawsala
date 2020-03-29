@@ -58,8 +58,7 @@ class EntitiesController extends Controller
 
         $entity = auth()->user()
             ->mainEntity()
-            ->subEntities()
-            ->create($attributes);
+            ->create(collect($attributes)->except(['cover', 'avatar'])->toArray());
 
         if ($request->has('tags')) {
             $entity->tagMany(array_unique($request->tags));

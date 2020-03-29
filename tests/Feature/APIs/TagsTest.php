@@ -1,12 +1,12 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\APIs;
 
 use App\Tag;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
-class TagsApiTest extends TestCase
+class TagsTest extends TestCase
 {
 
     use DatabaseMigrations;
@@ -17,7 +17,7 @@ class TagsApiTest extends TestCase
      */
     public function it_should_return_default_take_tags()
     {
-        $tags = factory(Tag::class, 10)->create();
+        factory(Tag::class, 5)->create();
 
         $response = $this->get(route('api.tags.index'));
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\APIs;
 
 use App\Category;
 use App\Entity;
@@ -13,7 +13,7 @@ use App\User;
 use Illuminate\Support\Facades\Hash;
 use InvalidArgumentException;
 
-class EventApiTest extends TestCase
+class EventsTest extends TestCase
 {
     use DatabaseMigrations;
 
@@ -23,7 +23,7 @@ class EventApiTest extends TestCase
      * @return void
      */
     /** @test */
-    function it_should_return_stored_events()
+    function users_can_get_events()
     {
 
         factory(Event::class, 5)->create();
@@ -37,34 +37,7 @@ class EventApiTest extends TestCase
     }
 
     /** @test */
-    function it_should_create_event_for_a_registered_user()
-    {
-
-
-        $this->withoutExceptionHandling();
-
-        $event = [
-            'entity_id' => factory(Entity::class)->create()->id,
-            'name' => "Event Name",
-            'link' => "http://google.com",
-            'description' => "This is a very great description",
-            'start_date' => Carbon::now()->subMonth(),
-            'end_date' => Carbon::now(),
-            'latitude' => 3.5,
-            'longitude' => 9.6
-        ];
-
-        $this->signIn(factory(User::class)->create(), 'api');
-
-        $response = $this->json('post', route('api.events.store'), $event);
-
-        $response
-            ->assertStatus(201);
-    }
-
-
-    /** @test */
-    function it_should_create_event_for_a_registered_user_with_cover()
+    function users_can_create_event()
     {
 
 
@@ -98,38 +71,9 @@ class EventApiTest extends TestCase
 
     }
 
-    /** @test */
-    function it_should_create_event_for_a_registered_company_user()
-    {
-
-
-        $this->withoutExceptionHandling();
-
-        $this->signInAsCompany(factory(User::class)->create(), 'api');
-
-        $entity = factory(Entity::class)->create();
-
-        $event = [
-            'entity_id' => $entity->id,
-            'name' => "Event Name",
-            'link' => "http://google.com",
-            'description' => "This is a very great description",
-            'start_date' => Carbon::now()->subMonth(),
-            'end_date' => Carbon::now(),
-            'latitude' => 3.5,
-            'longitude' => 9.6,
-            'cover' => UploadedFile::fake()->image('cover.jpg')
-        ];
-
-        $response = $this->json('post', route('api.events.store'), $event);
-
-        $response->assertStatus(201);
-
-    }
-
 
     /** @test */
-    public function it_should_delete_events_created_by_the_authenticated_user()
+    public function users_can_delete_their_own_events()
     {
 
         // Given a user with 2 events
@@ -153,7 +97,7 @@ class EventApiTest extends TestCase
     }
 
     /** @test */
-    public function it_should_deny_delete_events_not_created_by_original_user()
+    public function users_cannot_delete_others_events()
     {
 
         // Given a user with 2 events

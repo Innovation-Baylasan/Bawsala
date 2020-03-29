@@ -3,14 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\URL;
 
+/**
+ * @property mixed $entities
+ * @property string $path
+ */
 class Category extends Model
 {
-    protected $fillable = [
-        'name', 'icon', 'icon_png'
-    ];
+    protected $guarded = [];
 
 
     /**
@@ -21,19 +21,6 @@ class Category extends Model
         return $this->hasMany(Entity::class);
     }
 
-    public function toArray()
-    {
-        return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'icon' => $this->icon,
-            'icon_png' => $this->icon_png,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at
-        ];
-    }
-
-
     /**
      * @return string
      */
@@ -41,4 +28,5 @@ class Category extends Model
     {
         return "/admin/categories/$this->id";
     }
+
 }

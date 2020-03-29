@@ -48,12 +48,7 @@ class User extends Authenticatable implements Follower
      */
     public static function register($attributes)
     {
-        $user = static::create($attributes);
-        if ($attributes['role'] == 'company') {
-            event(new CompanyRegistered($user));
-        }
-
-        return $user;
+        return static::create($attributes);
     }
 
     /**

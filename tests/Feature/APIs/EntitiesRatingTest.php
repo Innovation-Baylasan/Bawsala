@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\APIs;
 
 use App\Entity;
 use App\User;
@@ -11,7 +11,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use SebastianBergmann\Diff\InvalidArgumentExceptionTest;
 use Tests\TestCase;
 
-class EntitiesRatingApiTest extends TestCase
+class EntitiesRatingTest extends TestCase
 {
 
     use DatabaseMigrations;

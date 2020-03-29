@@ -50,11 +50,10 @@
                     </a>
                     <form method="POST"
                           action="{{ route('entities.destroy', $entity)  }}"
-                          id="remove-category-form-{{$entity->id}}"
+                          id="remove-entity-{{$entity->name}}"
                     >
                         <a href="#"
-                           onclick="event.preventDefault();
-                                   document.getElementById('remove-category-form-{{$entity->id}}').submit();"
+                           onclick="confirmDeletion({{$entity}})"
                            class="flex items-center justify-center p-2"
                         >
                             <div class="w-8 h-8 flex items-center justify-center p-1 rounded bg-gray-100">
@@ -71,4 +70,26 @@
     </table>
 
     {{$entities->links()}}
+
+
+    <script>
+        function confirmDeletion(entity) {
+            console.log(entity)
+            Swal.fire({
+                title: 'Are you sure?',
+                html: "The <strong>" + entity.name + "</strong> entity will be deleted and you can not revert",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#b3b3b3',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value
+        )
+            {
+                document.getElementById("remove-entity-" + entity.name).submit()
+            }
+        })
+        }
+    </script>
 @endsection

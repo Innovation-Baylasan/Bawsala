@@ -41,8 +41,9 @@ trait CanBeRated
      * @param  \App\User $user
      * @return mixed
      */
-    public function ratingFor(User $user)
+    public function ratingFor($user)
     {
+        if (!$user) return "0";
         return $this->ratings()->where('user_id', $user->id)->value('rating');
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\APIs;
 
 use App\Category;
 use App\Entity;
@@ -12,15 +12,17 @@ use Tests\TestCase;
 use App\User;
 
 
-class EntitiesApiTest extends TestCase
+class EntitiesTest extends TestCase
 {
 
     use DatabaseMigrations;
 
 
     /** @test */
-    public function entities_can_be_filtered_by_name()
+    public function users_can_filter_entities_by_its_name()
     {
+        $this->withoutExceptionHandling();
+
         $entity = factory(Entity::class)->create();
 
         factory(Entity::class)->create();
@@ -36,13 +38,18 @@ class EntitiesApiTest extends TestCase
     public function it_should_show_specific_entity_reviews_not_more_than_4()
     {
 
-        $this->signIn($this->user, 'api');
+        $this->signIn(factory(User::class)->create(), 'api');
 
-        $response = $this->get(route('api.entities.show', [
-            'entity' => $this->entities[0]->id
-        ])); //->decodeResponseJson();
+        $entity = factory(Entity::class)->create();
 
-        $response
+        $entity->review('fa');
+        $entity->review('fa');
+        $entity->review('fa');
+        $entity->review('fa');
+        $entity->review('fa');
+
+        $this->withoutExceptionHandling();
+        $this->get(route('api.entities.show', $entity))
             ->assertOk()
             ->assertJsonCount(4, 'data.reviews');
     }
@@ -51,16 +58,14 @@ class EntitiesApiTest extends TestCase
     public function it_should_show_specific_entity_total_reviews_count()
     {
 
-        $this->signIn($this->user, 'api');
+        $this->signIn($user = factory(User::class)->create(), 'api');
 
-        $response = $this->get(route('api.entities.show', [
-            'entity' => $this->entities[0]->id
-        ])); //->decodeResponseJson();
+        $entity = factory(Entity::class)->create();
 
-        $response
+        $this->get(route('api.entities.show', $entity))
             ->assertOk()
             ->assertJsonFragment([
-                "reviews_count" => $this->entities[0]->reviews()->count()
+                "reviews_count" => $entity->reviews()->count()
             ]);
     }
 
@@ -69,49 +74,38 @@ class EntitiesApiTest extends TestCase
     public function it_should_show_specific_entity_logged_in_user_following_status_true_if_followed()
     {
 
-        $this->signIn($this->user, 'api');
+        $this->signIn($user = factory(User::class)->create(), 'api');
 
-        $response = $this->get(route('api.entities.show', [
-            'entity' => $this->entities[0]->id
-        ])); //->decodeResponseJson();
+        $entity = factory(Entity::class)->create();
 
-        $response
-            ->assertOk()
-            ->assertJsonFragment([
-                "current_following_status" => true
-            ]);
+        $user->follow($entity);
+
+        $this->get(route('api.entities.show', $entity))->assertOk()
+            ->assertJsonFragment(["following" => true]);
     }
 
     /** @test */
     public function it_should_show_specific_entity_logged_in_user_following_status_false_if_not_followed()
     {
 
-        $this->signIn(factory(User::class)->create(), 'api');
 
-        $response = $this->get(route('api.entities.show', [
-            'entity' => $this->entities[0]->id
-        ])); //->decodeResponseJson();
+        $this->signIn($user = factory(User::class)->create(), 'api');
 
-        $response
+        $entity = factory(Entity::class)->create();
+
+        $this->get(route('api.entities.show', $entity))
             ->assertOk()
-            ->assertJsonFragment([
-                "current_following_status" => false
-            ]);
+            ->assertJsonFragment(["following" => false]);
     }
 
     /** @test */
     public function it_should_show_specific_entity_not_logged_in_user_following_status_false()
     {
+        $entity = factory(Entity::class)->create();
 
-        $response = $this->get(route('api.entities.show', [
-            'entity' => $this->entities[0]->id
-        ])); //->decodeResponseJson();
-
-        $response
+        $this->get(route('api.entities.show', $entity))
             ->assertOk()
-            ->assertJsonFragment([
-                "current_following_status" => false
-            ]);
+            ->assertJsonFragment(["following" => false]);
     }
 
 
@@ -119,20 +113,16 @@ class EntitiesApiTest extends TestCase
     public function it_should_show_specific_entity_average_rating()
     {
 
-        $response = $this->get(route('api.entities.show', [
-            'entity' => $this->entities[0]->id
-        ])); //->decodeResponseJson();
+        $this->signIn(null, 'api');
 
-        $response
+        $this->get(route('api.entities.show', factory(Entity::class)->create()->rate(2)))
             ->assertOk()
-            ->assertJsonFragment([
-                "average_rating" => "2.50"
-            ]);
+            ->assertJsonFragment(["average_rating" => "2.00"]);
     }
 
 
     /** @test */
-    public function it_shows_user_his_rating_for_requested_entity()
+    public function users_can_get_their_rate_for_a_specific_entity()
     {
 
         $this->signIn(factory(User::class)->create(), 'api');
@@ -148,14 +138,11 @@ class EntitiesApiTest extends TestCase
 
 
     /** @test */
-    public function it_should_show_specific_entity_not_logged_in_user_rating_as_0()
+    public function unauthenticated_users_will_get_0_for_their_rates_for_entities()
     {
+        $this->withoutExceptionHandling();
 
-        $response = $this->get(route('api.entities.show', [
-            'entity' => $this->entities[0]->id
-        ])); //->decodeResponseJson();
-
-        $response
+        $this->get(route('api.entities.show', factory(Entity::class)->create()))
             ->assertOk()
             ->assertJsonFragment([
                 "my_rating" => "0"
@@ -164,67 +151,20 @@ class EntitiesApiTest extends TestCase
 
 
     /** @test */
-    function it_should_allow_only_company_user_to_create_entity()
+    public function users_can_get_their_created_entities()
     {
 
-        $entity = [
-            'category_id' => factory(Category::class)->create()->id,
-            'name' => "My Entity",
-            'cover' => UploadedFile::fake()->image('cover.jpg'),
-            'avatar' => UploadedFile::fake()->image('avatar.jpg'),
-            'description' => "This is a very great description",
-            'latitude' => 3.5,
-            'longitude' => 9.6
-        ];
+        $this->withoutExceptionHandling();
 
         $this->signIn(factory(User::class)->create(), 'api');
 
-        $this->json('post', route('api.entities.store'), $entity)->assertStatus(403);
+        factory(Entity::class, 2)->create(['user_id' => auth()->id()]);
 
-        $this->signIn($this->createCompanyUser(), 'api');
-
-        $this->json('post', route('api.entities.store'), $entity)
-            ->assertJsonFragment([
-                'name' => 'My Entity'
-            ])
-            ->assertStatus(201);
-
-    }
-
-
-    /** @test */
-    public function it_should_return_user_entities()
-    {
-
-        $this->withoutExceptionHandling();
-
-        $this->signIn($this->user, 'api');
-
-        $response = $this->get(route('api.entities.myEntities'));
-
-        $response
+        $this->get(route('api.entities.myEntities'))
             ->assertJsonCount(2, 'data')
             ->assertOk();
 
     }
-
-
-    /** @test */
-    public function it_should_return_user_entities_user_following_status()
-    {
-
-        $this->withoutExceptionHandling();
-
-        $this->signIn($this->user, 'api');
-
-        $response = $this->get(route('api.entities.myEntities'));
-
-        $response
-            ->assertJsonCount(2, 'data')
-            ->assertOk();
-
-    }
-
 
     /** @test */
     public function it_should_get_entity_nearby_entities_within_1km()
@@ -285,14 +225,10 @@ class EntitiesApiTest extends TestCase
             'longitude' => 9.6
         ];
 
-        $this->signIn($this->createCompanyUser(), 'api');
+        $this->signIn(null, 'api');
 
-        $response = $this->json('post', route('api.entities.store'), $entity);
-
-        $response
-            ->assertJsonFragment([
-                Tag::all()
-            ])
+        $this->json('post', route('api.entities.store'), $entity)
+            ->assertJsonFragment([Tag::all()])
             ->assertStatus(201);
 
     }
@@ -302,6 +238,7 @@ class EntitiesApiTest extends TestCase
     public function it_should_ignore_duplicated_tags()
     {
 
+        $this->withoutExceptionHandling();
         $entity = [
             'category_id' => factory(Category::class)->create()->id,
             'name' => "My Entity",
@@ -313,13 +250,11 @@ class EntitiesApiTest extends TestCase
             'longitude' => 9.6
         ];
 
-        $this->signIn($this->createCompanyUser(), 'api');
+        $this->signIn(factory('App\User')->create(), 'api');
 
-        $response = $this->json('post', route('api.entities.store'), $entity);
-
-        $response->assertJsonCount(2, 'data.tags')
-            ->assertStatus(201);
-
+        $this->json('post', route('api.entities.store'), $entity)
+            ->assertStatus(201)
+            ->assertJsonCount(2, 'data.tags');
     }
 
 

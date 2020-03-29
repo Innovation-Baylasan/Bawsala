@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\APIs;
 
 use App\Entity;
 use App\EntityTag;
@@ -8,7 +8,7 @@ use App\Tag;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
-class RelatedPlacesApiTest extends TestCase
+class RelatedPlacesTest extends TestCase
 {
 
     use DatabaseMigrations;

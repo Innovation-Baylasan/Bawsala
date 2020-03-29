@@ -36,10 +36,10 @@
                     </a>
                     <form method="POST"
                           action="{{ route('users.destroy', $user)  }}"
-                          id="remove-user-form"
+                          id="remove-user-{{$user->name}}"
                     >
                         <a href="#"
-                           onclick="event.preventDefault();document.getElementById('remove-user-form').submit();"
+                           onclick="confirmDeletion({{$user}})"
                            class="flex items-center justify-center p-2"
                         >
                             <div class="w-8 h-8 flex items-center justify-center p-1 rounded bg-gray-100">
@@ -56,4 +56,23 @@
     </table>
 
     {{$users->links()}}
+
+
+    <script>
+        function confirmDeletion(user) {
+            Swal.fire({
+                title: 'Are you sure?',
+                html: "The user <strong>" + user.name + "</strong> will be deleted, and you can not revert this",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#b3b3b3',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value){
+                document.getElementById("remove-user-" + user.name).submit()
+            }
+        })
+        }
+    </script>
 @endsection

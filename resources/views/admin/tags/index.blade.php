@@ -19,11 +19,11 @@
         </thead>
 
         <tbody>
-        @foreach($tag as $row)
+        @foreach($tags as $tag)
             <tr>
-                <td> {{ $row->name  }} </td>
+                <td> {{ $tag->name  }} </td>
                 <td class="flex justify-center">
-                    <a href="{{route('tags.edit',$row)}}"
+                    <a href="{{route('tags.edit',$tag)}}"
                        class="flex  items-center justify-center p-2"
                     >
                         <div class="w-8 h-8 flex items-center justify-center p-1 rounded bg-gray-100">
@@ -31,19 +31,16 @@
                         </div>
                     </a>
                     <form method="POST"
-                          action="{{ route('tags.destroy', $row)  }}"
-                          id="remove-tag-form"
+                          action="{{ route('tags.destroy', $tag)  }}"
+                          id="remove-tag-{{$tag->name}}"
+                          onclick="confirmDeletion({{$tag}})"
+                          class="flex items-center justify-center p-2"
                     >
-                        <a href="#"
-                           onclick="event.preventDefault();
-                                                     document.getElementById('remove-tag-form').submit();"
-                           class="flex items-center justify-center p-2"
-                        >
-                            <div class="w-8 h-8 flex items-center justify-center p-1 rounded bg-gray-100">
-                                <img src="{{asset('/svg/remove-icon.svg')}}" alt="">
-                            </div>
-                            @csrf
-                            @method('DELETE')
+                        <div class="w-8 h-8 flex items-center justify-center p-1 rounded bg-gray-100">
+                            <img src="{{asset('/svg/remove-icon.svg')}}" alt="">
+                        </div>
+                        @csrf
+                        @method('DELETE')
                         </a>
                     </form>
                 </td>
@@ -52,6 +49,26 @@
         </tbody>
     </table>
 
+    {{ $tags->links() }}
 
-    {{ $tag->links() }}
+    <script>
+        function confirmDeletion(tag) {
+            console.log(tag)
+            Swal.fire({
+                title: 'Are you sure?',
+                html: "The <strong>" + tag.label + "</strong> tag will be deleted and you can not revert",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#b3b3b3',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value
+        )
+            {
+                document.getElementById("remove-tag-" + tag.label).submit()
+            }
+        })
+        }
+    </script>
 @endsection

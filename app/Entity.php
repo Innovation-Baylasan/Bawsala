@@ -22,6 +22,7 @@ use Rennokki\Befriended\Traits\CanBeFollowed;
  * @property mixed $reviews
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ * @property mixed $followers_count
  */
 class Entity extends Model implements Followable
 {
@@ -147,14 +148,10 @@ class Entity extends Model implements Followable
      * @return mixed
      *
      */
-    public function getCurrentFollowingStatusAttribute()
+    public function isFollowedBy($user)
     {
-        try {
-            return $this->followers(User::class)->where('follower_id', '=', auth('api')->user()->id)->exists();
-        } catch (\Exception $e) {
-            return false;
-        }
-
+        if (!$user) return false;
+        return !$this->followers(User::class)->where('follower_id', '=', $user->id)->get()->isEmpty();
     }
 
     /**
@@ -261,7 +258,6 @@ class Entity extends Model implements Followable
             'id' => $this->id,
             'name' => $this->name,
             'description' => $this->description,
-            'location' => json_encode($this->location),
         ];
     }
 

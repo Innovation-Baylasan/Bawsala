@@ -1,11 +1,11 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\APIs;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
-class EntitiesReviewApiTest extends TestCase
+class EntitiesReviewTest extends TestCase
 {
 
     use DatabaseMigrations;

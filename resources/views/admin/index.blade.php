@@ -35,7 +35,7 @@
     </div>
 @endsection
 @section('javascript')
-    {!! $entitiesPerCategory->renderChartJsLibrary() !!}
-    {!! $entitiesPerCategory->renderJs() !!}
-    {!! $usersPerType->renderJs() !!}
+    {{--{!! $entitiesPerCategory->renderChartJsLibrary() !!}--}}
+    {{--{!! $entitiesPerCategory->renderJs() !!}--}}
+    {{--{!! $usersPerType->renderJs() !!}--}}
 @endsection

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\APIs;
 
 use App\Entity;
 use App\User;
@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class EntitiesFollowingApiTest extends TestCase
+class EntitiesFollowingTest extends TestCase
 {
     use RefreshDatabase;
 

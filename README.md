@@ -1,8 +1,9 @@
-Bawsala is an opensource platform based on [Laravel](https://laravel.com) framework for storing locations and managing it, users can interact with places adding reviews and rate them. 
+**Bawsala** is an opensource platform based on [Laravel](https://laravel.com) framework for storing locations and managing it, users can interact with places adding reviews and rate them. 
 you can access **Bawsala** live on [here](http://104.248.145.132)
 
 ## SERVER REQUIREMENTS
-Bawsala has a few system requirements.
+
+**Bawsala** has a few system requirements.
 
 Below is the list which you will need to make sure your server meets the following requirements:
 
@@ -16,9 +17,10 @@ Below is the list which you will need to make sure your server meets the followi
 * PDO PHP Extension
 * Tokenizer PHP Extension
 * XML PHP Extension
+* GD PHP Extension
 
 ## INSTLATION
-Bawsala utilizes Composer to manage its dependencies. So, before using Bawsala, make sure you have Composer installed on your machine
+**Bawsala** utilizes Composer to manage its dependencies. So, before using Bawsala, make sure you have Composer installed on your machine
 
 * Install depandancies 
 
