@@ -1,6 +1,7 @@
 <modal name="add-event"
        classes="rounded bg-default overflow-hidden"
        scrollable
+       adaptive
        v-cloak
        height="auto" xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
     <create-event-view inline-template>
@@ -45,7 +46,10 @@
                 <input type="hidden" name="latitude" :value="event.latitude">
                 <input type="hidden" name="longitude" :value="event.longitude">
 
+                <div class="flex justify-between">
+                <button type="button" class="button is-muted" @click="$modal.hide('add-event')">Cancel</button>
                 <button type="submit" class="button">add event</button>
+                </div>
             </form>
         </div>
     </create-event-view>

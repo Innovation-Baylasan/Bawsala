@@ -21,6 +21,15 @@
 @import "./components/editor";
 @import './components/vue-select';
 @import './components/cropper';
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  body {
+    overflow: visible;
+  }
+}
+
 modal, dropdown {
   display: none;
 }

@@ -80,8 +80,10 @@
                 confirmButtonColor: '#d33',
                 cancelButtonColor: '#b3b3b3',
                 confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.value){
+            }).then((result) = > {
+                if (result.value
+        )
+            {
                 document.getElementById("remove-category-" + category.name).submit()
             }
         })

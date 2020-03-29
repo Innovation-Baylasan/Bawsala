@@ -5,7 +5,7 @@
                 <img src="/svg/search-icon.svg" alt="search what you looking for">
             </a>
 
-            <input class="outline-none text-black px-8"
+            <input class="outline-none text-black md:px-8"
                    type="text"
                    v-model="query"
                    @input="search"

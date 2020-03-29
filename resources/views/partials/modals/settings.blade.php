@@ -3,7 +3,7 @@
        scrollable
        v-cloak
        classes="rounded bg-white">
-    <user-info-view inline-template>
+    <user-info-view inline-template :user="{{$authUser}}">
         <div>
             <div class="flex flex-col items-center">
                 <div class="bg-secondary w-full h-40"></div>
@@ -26,19 +26,13 @@
                     </div>
                     <p class="error" v-if="form.errors.name" v-text="form.errors.email[0]"></p>
 
-                    <label for="old-password" class="input-label">old password</label>
-                    <div class="input">
-                        <input type="password" v-model="form.old_password" id="old-password">
-                    </div>
-                    <p class="error" v-if="form.errors.old_password" v-text="form.errors.old_password[0]"></p>
-
-                    <label for="new-password" class="input-label">new password</label>
+                    <label for="new-password" class="input-label">password</label>
                     <div class="input">
                         <input type="password" v-model="form.password" id="new-password">
                     </div>
                     <p class="error" v-if="form.errors.password" v-text="form.errors.password[0]"></p>
 
-                    <label for="password-confirmation" class="input-label">new password confirmation</label>
+                    <label for="password-confirmation" class="input-label">password confirmation</label>
                     <div class="input">
                         <input type="password" v-model="form.password_confirmation" id="password-confirmation">
                     </div>

@@ -11,19 +11,21 @@
 <div id="app">
     <map-view inline-template>
         <div>
-            <header class="fixed py-4 w-full z-10 flex -mx-4 justify-end">
+            <header class="fixed py-4 w-full z-10 flex md:-mx-4 justify-end px-2">
 
                 <div v-if="showing == 'places'"
-                     class="relative mx-4">
-                    <map-categories :initial-categories="{{$categories}}" @category-change="getPlaces"></map-categories>
+                     class="relative hidden md:block mx-4">
+                    <map-categories :initial-categories="{{$categories}}"
+                    @category-change="getPlaces"></map-categories>
                 </div>
 
-                <search-input class="self-start" :category="selectedCategories" @result-clicked="selectPlace"
+                <search-input class="self-start"
+                              :category="selectedCategories" @result-clicked="selectPlace"
                 ></search-input>
 
                 <dropdown>
                     <template v-slot:trigger>
-                        <div class="rounded-full cursor-pointer mb-4 ml-20 w-12 h-12 overflow-hidden">
+                        <div class="rounded-full cursor-pointer ml-4 md:mb-4 md:ml-20 w-12 h-12 overflow-hidden">
                             <img src="https://www.gravatar.com/avatar/?s=200" alt="">
                         </div>
                     </template>
@@ -86,6 +88,10 @@
                             Add Event
                         </span>
                     </button>
+                </div>
+
+                <div v-if="showing == 'places'" class="flex justify-center mb-2">
+                    <a href="/entities/create" class="button">Add Place</a>
                 </div>
 
                 <div class=" flex justify-center">

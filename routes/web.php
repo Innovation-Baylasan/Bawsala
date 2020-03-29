@@ -13,26 +13,29 @@
 
 Route::get('/', 'HomeController@index');
 
-Route::get('/account', 'UsersProfilesController@index')->middleware('auth');
-
-Route::get('/account/{user}', 'UsersProfilesController@show')->middleware('auth');
-
-Route::get('/entities/create', 'EntitiesController@create')->middleware('auth');
-
 Route::get('/entities', 'EntitiesController@index');
 
-Route::post('/entities', 'EntitiesController@store')->middleware(['auth', 'company']);
+Route::middleware('auth')->group(function(){
 
-Route::put('/entities/{entity}', 'EntitiesController@update')->middleware(['auth', 'company']);
+    Route::get('/account', 'UsersProfilesController@index')->middleware('auth');
 
-Route::put('/entities/{entity}/follow', 'EntitiesFollowersController@update')->middleware('auth');
+    Route::get('/account/{user}', 'UsersProfilesController@show')->middleware('auth');
 
-Route::post('/entities/{entity}/rate', 'EntitiesRatingController@store')->middleware('auth');
+    Route::get('/entities/create', 'EntitiesController@create')->middleware('auth');
 
-Route::post('/entities/{entity}/reviews', 'EntitiesReviewsController@store')->middleware('auth');
+    Route::post('/entities', 'EntitiesController@store')->middleware('auth');
 
-Route::post('/events', 'EventsController@store')->middleware('auth')->middleware('auth');
+    Route::put('/entities/{entity}', 'EntitiesController@update')->middleware('auth');
 
+    Route::put('/entities/{entity}/follow', 'EntitiesFollowersController@update')->middleware('auth');
+
+    Route::post('/entities/{entity}/rate', 'EntitiesRatingController@store')->middleware('auth');
+
+    Route::post('/entities/{entity}/reviews', 'EntitiesReviewsController@store')->middleware('auth');
+
+    Route::post('/events', 'EventsController@store')->middleware('auth')->middleware('auth');
+
+});
 Route::get('/@{entity}', 'ProfilesController@index');
 
 Route::put('/user-info/update', 'UserInfoController@update');

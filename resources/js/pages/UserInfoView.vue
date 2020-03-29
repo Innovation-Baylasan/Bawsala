@@ -1,13 +1,13 @@
 <script>
     import Form from '../Form'
     export default{
+        props: ['user'],
         data(){
             return {
                 loading: false,
                 form: new Form({
-                    name: '',
-                    email: '',
-                    old_password: '',
+                    name: this.user.name,
+                    email: this.user.emailse,
                     password: '',
                     password_confirmation: '',
                 })

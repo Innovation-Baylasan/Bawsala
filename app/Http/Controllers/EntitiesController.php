@@ -25,8 +25,6 @@ class EntitiesController extends Controller
 
     public function create()
     {
-        $this->authorize('create', Entity::class);
-
         $categories = Category::all();
 
         return view('entities.create', compact('categories'));
@@ -40,7 +38,6 @@ class EntitiesController extends Controller
 
         $entity = auth()->user()
             ->mainEntity()
-            ->subEntities()
             ->create($attributes);
 
         if ($request->has('tags')) {
@@ -55,7 +52,7 @@ class EntitiesController extends Controller
         }
 
 
-        session()->flash('message', 'your entity has been created successfully');
+        session()->flash('message', 'Your entity has been created successfully, it\'s need to be verified then it will be visible');
 
         return response(null, 200);
     }

@@ -143,27 +143,7 @@
                 </h3>
 
                 <div class="flex -mx-2">
-                    @if($authUser->mainEntity()->is($entity))
-                        <div class="bg-gray-200 rounded overflow-hidden text-gray-500 w-48 h-48 mx-2">
-                            <div class="flex h-full items-center justify-center">
-                                <a href="#" @click.prevent="$modal.show('add-entity')"
-                                   class="button">add new place</a>
-                            </div>
-                        </div>
-                    @endif
-                    @if($authUser->mainEntity()->is($entity))
-                        @forelse($entity->subEntities as $subEntity)
-                            @include('partials.profile-min-card',['entity' => $subEntity])
-                        @empty
-                            <p class="text-sm text-gray-500">there no related places</p>
-                        @endforelse
-                    @else
-                        @forelse($entity->siblings() as $sibling)
-                            @include('partials.profile-min-card',['entity' => $sibling])
-                        @empty
-                            <p class="text-sm text-gray-500">there no related places</p>
-                        @endforelse
-                    @endif
+
                 </div>
             </div>
         </div>
