@@ -10829,7 +10829,8 @@ video {
 
 .dropdown .dropdown-item a {
   color: var(--text-accent-color);
-  font-weight: 700;
+  font-size: 0.875rem;
+  font-weight: 400;
   text-transform: capitalize;
 }
 

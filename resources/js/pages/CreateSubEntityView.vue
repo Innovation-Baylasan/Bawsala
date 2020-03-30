@@ -61,7 +61,7 @@
                 this.loading = true;
                 this.entity.post(endpoint).then(res => {
                     location.replace('/')
-                })
+                }).catch(e => this.loading = false)
             }
         },
 

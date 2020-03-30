@@ -6999,10 +6999,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     classes: function classes() {
-      var defaults = ['fixed', 'p-4', 'border', 'text-white', 'z-10', 'shadow-sm', 'rounded'];
-      if (this.level === 'success') defaults.push('bg-green-600', 'border-green-600');
-      if (this.level === 'warning') defaults.push('bg-yellow', 'border-yellow-800');
-      if (this.level === 'danger') defaults.push('bg-red-500', 'border-red-dark');
+      var defaults = ['fixed', 'p-4', 'border', 'bg-white', 'shadow', 'z-10', 'shadow-sm', 'rounded'];
+      if (this.level === 'success') defaults.push('border-green-600');
+      if (this.level === 'warning') defaults.push('border-yellow-800');
+      if (this.level === 'danger') defaults.push('border-red-dark');
       return defaults;
     }
   },
@@ -7891,10 +7891,14 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
       return option;
     },
     save: function save() {
+      var _this3 = this;
+
       var endpoint = '/entities';
       this.loading = true;
       this.entity.post(endpoint).then(function (res) {
         location.replace('/');
+      })["catch"](function (e) {
+        return _this3.loading = false;
       });
     }
   },

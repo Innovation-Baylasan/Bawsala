@@ -19,8 +19,9 @@ class GuestUser
      */
     public function handle($request, Closure $next)
     {
+        $user = auth()->user() ?: new \App\GuestUser;
         view()->share('signedIn', auth()->check());
-        view()->share('authUser', auth()->user() ?: new \App\GuestUser);
+        view()->share('authUser', $user);
         return $next($request);
     }
 }

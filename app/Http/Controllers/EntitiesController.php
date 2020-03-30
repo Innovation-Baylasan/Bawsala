@@ -10,6 +10,10 @@ use App\Http\Resources\EntityResource;
 
 class EntitiesController extends Controller
 {
+    /**
+     * @param EntitiesFilter $filters
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
     public function index(EntitiesFilter $filters)
     {
         if (\request()->has('q')) {
@@ -23,6 +27,20 @@ class EntitiesController extends Controller
         return EntityResource::collection($entities);
     }
 
+    /**
+     * @param Entity $entity
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function show(Entity $entity)
+    {
+        $entity = $entity->load('reviews');
+
+        return view('profile', compact('entity'));
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create()
     {
         $categories = Category::all();
@@ -30,6 +48,10 @@ class EntitiesController extends Controller
         return view('entities.create', compact('categories'));
     }
 
+    /**
+     * @param EntityRequest $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     */
     public function store(EntityRequest $request)
     {
         $attributes = $request->validated();

@@ -5,25 +5,26 @@
         <div class="container mx-auto">
             <div class="my-4 rounded">
                 <create-sub-entity-view inline-template>
-                    <div>
-                        <div class="flex flex-col md:flex-row">
-                            @if($errors->any())
-                                <div class="alert is-danger">
-                                    <ul>
-                                        @foreach($errors->all() as $error)
-                                            <li> {{ $error  }} </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
+                    <form method="POST"
+                          enctype="multipart/form-data"
+                          @submit.prevent="save"
+                          action="{{ route('entities.store')  }}">
 
-                            <div class="bg-white mx-4 md:mx-0 mb-4 md:mb-0 shadow-sm rounded overflow-hidden">
-                                <form method="POST"
-                                      enctype="multipart/form-data"
-                                      @submit.prevent="save"
-                                      action="{{ route('entities.store')  }}">
+                        @csrf
 
-                                    @csrf
+                        <div>
+                            <div class="flex flex-col md:flex-row">
+                                @if($errors->any())
+                                    <div class="alert is-danger">
+                                        <ul>
+                                            @foreach($errors->all() as $error)
+                                                <li> {{ $error  }} </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+
+                                <div class="bg-white mx-4 md:mx-0 mb-4 md:mb-0 shadow-sm rounded overflow-hidden">
                                     <div class="flex flex-col justify-center items-center">
                                         <image-picker
                                                 class="relative"
@@ -92,25 +93,26 @@
                                         <input type="hidden" name="latitude" :value="entity.latitude">
                                         <input type="hidden" name="longitude" :value="entity.longitude">
                                     </div>
-                                </form>
-                                @include('partials.modals.CropImageModal')
-                            </div>
-                            <div class="bg-white shadow-sm rounded overflow-hidden mx-4 flex-1 md:self-start p-4">
-                                <label class="input-label" for="category">Tags</label>
+                                    @include('partials.modals.CropImageModal')
+                                </div>
+                                <div class="bg-white shadow-sm rounded overflow-hidden mx-4 flex-1 md:self-start p-4">
+                                    <label class="input-label" for="category">Tags</label>
 
-                                <v-select multiple push-tags taggable :options="tags"
-                                          v-model="entity.tags"
-                                          :reduce="reduceTags"
-                                          @search="getTags"></v-select>
-                            </div>
+                                    <v-select multiple push-tags taggable :options="tags"
+                                              v-model="entity.tags"
+                                              :reduce="reduceTags"
+                                              @search="getTags"></v-select>
+                                </div>
 
+                            </div>
+                            <div class="p-4 my-2 rounded shadow bg-white">
+                                <button class="button is-green" :class="{'is-loading' : loading}" type="submit">
+                                    Create
+                                </button>
+                            </div>
                         </div>
-                        <div class="p-4 my-2 rounded shadow bg-white">
-                            <button class="button is-green" :class="{'is-loading' : loading}" type="submit">
-                                Create
-                            </button>
-                        </div>
-                    </div>
+                    </form>
+
                 </create-sub-entity-view>
             </div>
         </div>

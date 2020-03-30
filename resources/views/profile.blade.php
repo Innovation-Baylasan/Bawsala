@@ -44,7 +44,7 @@
                         <span>Events</span>
                     </div>
                     <div class="text-gray-500 flex flex-col text-center">
-                        <span class="font-bold text-black">{{$entity->reviews->count()}}</span>
+                        <span class="font-bold text-black">{{$entity->reviews()->count()}}</span>
                         <span>Review</span>
                     </div>
                 </div>
@@ -91,7 +91,7 @@
             </div>
             <div class="bg-default p-8 mb-4 rounded">
                 <div class="flex flex-col justify-between">
-                    @forelse($entity->reviews->take(5) as $review)
+                    @forelse($entity->reviews()->take(5) as $review)
                         <div class="flex flex-1 py-4 items-start border-b border-solid border-gray-100">
                             <img class="rounded shadow-sm w-12 h-12 mr-4"
                                  src="https://www.gravatar.com/avatar/{{md5( strtolower(trim( $review->writer->email)) )}}?s=200"
@@ -148,9 +148,6 @@
             </div>
         </div>
     </div>
-
-    @include('partials.modals.add-entity')
-    @include('partials.modals.edit-entity')
 </div>
 <script src="{{asset('js/app.js')}}"></script>
 </body>

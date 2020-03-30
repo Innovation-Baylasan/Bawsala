@@ -25,7 +25,7 @@
                             {{ $event->name}}
                         </a>
                     </td>
-                    <td> {{ $event->user->name  }} </td>
+                    <td> {{ $event->name  }} </td>
 
                     <td> {{ Str::limit($event->description,50)}} </td>
                     <td>

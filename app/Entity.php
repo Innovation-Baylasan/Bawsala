@@ -38,14 +38,6 @@ class Entity extends Model implements Followable
      * @var array
      */
     protected $guarded = [];
-
-    /**
-     * Determine what relations to eager load when retrieving activity
-     *
-     * @var array
-     */
-    protected $with = ['category', 'tags'];
-
     /**
      * Determine what attributes  append when retrieving activity
      *

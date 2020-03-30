@@ -51,6 +51,14 @@
                         <li class="dropdown-item">
                             <a href="#" @click="$modal.show('settings-modal')">settings</a>
                         </li>
+                        @endauth
+                        <li class="dropdown-item">
+                            <a href="#" @click="$modal.show('settings-modal')">Report issue</a>
+                        </li>
+                        <li class="dropdown-item">
+                            <a href="#" @click="$modal.show('settings-modal')">FAQ</a>
+                        </li>
+                        @auth()
                         <li class="dropdown-item">
                             <form action="/logout" method="post" id="logout-form">
                                 @csrf

@@ -25,6 +25,10 @@ class EntitiesController extends Controller
             ->latest()
             ->paginate(10);
 
+        $entities->load('category')->each(function ($entity) {
+            $entity->setAppends([]);
+        });
+
         return view('admin.entities.index', compact('entities'));
     }
 

@@ -15,7 +15,7 @@ Route::get('/', 'HomeController@index');
 
 Route::get('/entities', 'EntitiesController@index');
 
-Route::middleware('auth')->group(function(){
+Route::middleware('auth')->group(function () {
 
     Route::get('/account', 'UsersProfilesController@index')->middleware('auth');
 
@@ -36,7 +36,8 @@ Route::middleware('auth')->group(function(){
     Route::post('/events', 'EventsController@store')->middleware('auth')->middleware('auth');
 
 });
-Route::get('/@{entity}', 'ProfilesController@index');
+
+Route::get('/@{entity}', 'EntitiesController@show');
 
 Route::put('/user-info/update', 'UserInfoController@update');
 
