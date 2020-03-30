@@ -1,5 +1,6 @@
 <modal name="cropImageModal"
        scrollable
+       adaptive
        height="auto"
        v-cloak
        :click-To-Close="false">

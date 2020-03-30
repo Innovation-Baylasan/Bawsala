@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Bawsala</title>
+    <title>{{config('app.name')}}</title>
     <link rel="shortcut icon" type="image/jpg" href="/images/fav-icon.png"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
@@ -20,7 +20,9 @@
                 </div>
 
                 <search-input class="self-start"
-                              :category="selectedCategories" @result-clicked="selectPlace"
+                              :category="selectedCategories"
+                              :placeholder="showing == 'places' ? 'Search Startups,investors and more' : 'Search events around you'"
+                @result-clicked="selectPlace"
                 ></search-input>
 
                 <dropdown>

@@ -23,8 +23,6 @@ class CreateEntitiesTable extends Migration
             $table->text('details')->nullable();
             $table->float('latitude', 10, 8);
             $table->float('longitude', 10, 8);
-            $table->boolean('verified')->default(false);
-            $table->timestamp('verified_at')->nullable();
             $table->timestamps();
         });
     }

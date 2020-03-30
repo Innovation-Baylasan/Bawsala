@@ -4,7 +4,7 @@
         <div class="flex justify-end p-2">
             <button :class="{'is-loading' : loading}"
                     @click="crop"
-                    class="button">Apply
+                    class="button is-green">Apply
             </button>
         </div>
     </div>

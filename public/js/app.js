@@ -7557,7 +7557,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['category'],
+  props: ['category', 'placeholder'],
   components: {},
   data: function data() {
     return {
@@ -31824,7 +31824,7 @@ var render = function() {
       _c(
         "button",
         {
-          staticClass: "button",
+          staticClass: "button is-green",
           class: { "is-loading": _vm.loading },
           on: { click: _vm.crop }
         },
@@ -32113,7 +32113,7 @@ var render = function() {
     "div",
     {
       staticClass:
-        "top-0 absolute bg-white rounded z-10 overflow-hidden shadow m-4 left-0"
+        "top-0 absolute w-full md:w-96 bg-white rounded z-10 overflow-hidden shadow m-4 left-0"
     },
     [
       _c("div", { staticClass: "flex flex-col justify-center items-center" }, [
@@ -32210,7 +32210,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "shadow rounded bg-white w-96" }, [
-    _c("div", { staticClass: "flex justify-between p-2" }, [
+    _c("div", { staticClass: "flex p-2" }, [
       _vm._m(0),
       _vm._v(" "),
       _c("input", {
@@ -32222,8 +32222,8 @@ var render = function() {
             expression: "query"
           }
         ],
-        staticClass: "outline-none text-black md:px-8",
-        attrs: { type: "text", placeholder: "Startups" },
+        staticClass: "outline-none flex-1 text-black md:px-8",
+        attrs: { type: "text", placeholder: _vm.placeholder },
         domProps: { value: _vm.query },
         on: {
           input: [
