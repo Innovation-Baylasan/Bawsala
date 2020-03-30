@@ -1,7 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    <div class="bg-gray-200">
-        @include('partials._navbar')
         <div class="container mx-auto">
             <div class="my-4 rounded">
                 <create-sub-entity-view inline-template>
@@ -116,5 +114,4 @@
                 </create-sub-entity-view>
             </div>
         </div>
-    </div>
 @endsection

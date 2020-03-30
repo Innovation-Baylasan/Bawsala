@@ -33,8 +33,10 @@ Vue.component('CreateEventView', require('./pages/CreateEventView.vue').default)
 Vue.component('RegisterView', require('./pages/RegisterView.vue').default)
 Vue.component("flash", require("./components/Flash.vue").default);
 Vue.component('v-select', require('vue-select').default)
+Vue.component('Accordion', require('./components/Accordion.vue').default)
 
 import VueFormWizard from 'vue-form-wizard'
+
 Vue.use(VueFormWizard)
 
 const app = new Vue({

@@ -18,8 +18,11 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-<div id="app">
-    @yield('content')
+<div id="app" class="h-full">
+    <div class="bg-gray-100 h-full">
+        @include('partials._navbar')
+        @yield('content')
+    </div>
 </div>
 </body>
 </html>

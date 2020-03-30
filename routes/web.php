@@ -39,6 +39,8 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/@{entity}', 'EntitiesController@show');
 
+Route::get('faq', 'QuestionsController@index');
+
 Route::put('/user-info/update', 'UserInfoController@update');
 
 
