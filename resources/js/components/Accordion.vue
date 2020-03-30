@@ -16,7 +16,7 @@
         </div>
         <div class="leading-none">
             <h3 @click="isActive = !isActive"
-                class="text-gray-900 mb-2 text-bold text-3xl  "
+                class="text-gray-900  mb-2 text-bold text-3xl  "
             >{{title}}</h3>
 
             <p v-if="isActive" class="text-gray-600">{{body}}</p>
