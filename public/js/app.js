@@ -31626,7 +31626,7 @@ var render = function() {
       _c(
         "h3",
         {
-          staticClass: "text-gray-900 mb-2 text-bold text-3xl ",
+          staticClass: "text-gray-900 mb-2 text-bold text-3xl  ",
           on: {
             click: function($event) {
               _vm.isActive = !_vm.isActive
