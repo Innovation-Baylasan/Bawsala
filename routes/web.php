@@ -50,6 +50,8 @@ Route::namespace('Admin')
     ->group(function () {
         Route::get('/', 'DashboardController@index');
         Route::resource('tags', 'TagsController');
+        Route::resource('questions', 'QuestionsController');
+        Route::resource('issues', 'IssuesController');
         Route::resource('users', 'UsersController');
         Route::resource('entities', 'EntitiesController');
         Route::resource('categories', 'CategoriesController');

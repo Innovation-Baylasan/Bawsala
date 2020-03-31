@@ -9,7 +9,7 @@ class QuestionsController extends Controller
 {
     public function index()
     {
-        $questions = Question::all();
+        $questions = Question::latest()->get();
 
         return view('faq', compact('questions'));
     }

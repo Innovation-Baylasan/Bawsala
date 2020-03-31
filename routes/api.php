@@ -51,6 +51,8 @@ Route::namespace('Api')->group(function () {
 
     Route::get('/tags', 'TagsController@index')->name('api.tags.index');
 
+    Route::get('/faq', 'QuestionsController@index')->name('questions.index');
+
     Route::get('/events', 'EventsController@index')->name('api.events.index');
 
     Route::middleware('auth:api')->get('/events/my', 'UserEventsController@index')->name('api.userEventsController.myEvents');

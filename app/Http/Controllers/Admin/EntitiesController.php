@@ -90,9 +90,7 @@ class EntitiesController extends Controller
      */
     public function show(Entity $entity)
     {
-
         return View('admin.entities.show', compact('entity'));
-
     }
 
     /**
@@ -106,9 +104,10 @@ class EntitiesController extends Controller
     {
 
         $categories = Category::all();
-        $users = User::all();
 
-        return view('admin.entities.edit', compact('entity', 'categories', 'users'));
+        $entity->load('tags');
+
+        return view('admin.entities.edit', compact('entity', 'categories'));
 
     }
 
@@ -124,8 +123,13 @@ class EntitiesController extends Controller
     {
         $attributes = $request->validated();
 
-        $entity->update($attributes);
-
+        $entity->update([
+            'category_id' => $attributes['category_id'],
+            'name' => $attributes['name'],
+            'description' => $attributes['description'],
+            'latitude' => $attributes['latitude'],
+            'longitude' => $attributes['longitude'],
+        ]);
         $entity->tags()->detach();
 
         if ($request->has('tags')) {
