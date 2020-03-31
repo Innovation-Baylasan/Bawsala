@@ -37,7 +37,7 @@
 
                     @if($errors->any())
                         @foreach($errors->all() as $error)
-                            <p class="text-sm text-accent -mt-2 mb-2">{{$error}}</p>
+                            <p class="text-sm error -mt-2 mb-2">{{$error}}</p>
                         @endforeach
                     @endif
 

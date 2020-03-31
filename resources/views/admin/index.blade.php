@@ -1,6 +1,4 @@
-@extends('layouts.admin')
-
-@section('content')
+<x-admin>
     <div class="p-4">
 
         <h1 class="mb-4 border-b border-gray-200 text-xl font-bold"> Dashboard</h1>
@@ -33,9 +31,10 @@
         </div>
 
     </div>
-@endsection
-@section('javascript')
-    {{--{!! $entitiesPerCategory->renderChartJsLibrary() !!}--}}
-    {{--{!! $entitiesPerCategory->renderJs() !!}--}}
-    {{--{!! $usersPerType->renderJs() !!}--}}
-@endsection
+    <x-slot name="scripts">
+        {{--{!! $entitiesPerCategory->renderChartJsLibrary() !!}--}}
+        {{--{!! $entitiesPerCategory->renderJs() !!}--}}
+        {{--{!! $usersPerType->renderJs() !!}--}}
+    </x-slot>
+
+</x-admin>

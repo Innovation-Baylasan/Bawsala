@@ -1,7 +1,4 @@
-@extends('layouts.admin')
-
-@section('content')
-
+<x-admin>
     <div class="p-4">
         <div class="mb-8">
             <a href="{{ route('events.index')  }}" class="button">back</a>
@@ -70,5 +67,4 @@
         </table>
 
     </div>
-
-@endsection
+</x-admin>

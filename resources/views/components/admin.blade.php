@@ -85,7 +85,7 @@
 
         <div class="flex p-2 flex-1">
             <main class="bg-default shadow-sm flex-1 mr-2">
-                @yield('content')
+                {{$slot}}
             </main>
             <div class="w-64 flex-col">
                 <div class="bg-default shadow-sm mb-2 p-4 flex justify-end">
@@ -130,6 +130,6 @@
 </div>
 <script src="{{asset('js/app.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-@yield('javascript')
+{{$scripts ?? ''}}
 </body>
 </html>

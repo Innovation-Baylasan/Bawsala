@@ -1,6 +1,4 @@
-@extends('layouts.admin')
-
-@section('content')
+<x-admin>
     <div class="p-4">
         <h1 class="mb-8"> Create Category </h1>
 
@@ -41,4 +39,4 @@
 
         </form>
     </div>
-@endsection
+</x-admin>

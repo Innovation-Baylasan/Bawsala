@@ -58,7 +58,8 @@
                         @endforeach
                     @endif
                     <form action="{{route('register')}}"
-                          method="post">
+                          method="post"
+                    >
 
                         @csrf
                         <label class="input-label" for="">name</label>
@@ -66,7 +67,7 @@
                             <input type="text" required name="name" value="{{old('name')}}">
                         </div>
                         @error('name')
-                        <p class="text-sm text-accent -mt-2 mb-2">{{$message}}</p>
+                        <p class="text-sm error -mt-2 mb-2">{{$message}}</p>
                         @enderror
 
                         <label class="input-label" for="">email</label>
@@ -74,7 +75,7 @@
                             <input type="text" required name="email" value="{{old('email')}}">
                         </div>
                         @error('email')
-                        <p class="text-sm text-accent -mt-2 mb-2">{{$message}}</p>
+                        <p class="text-sm error -mt-2 mb-2">{{$message}}</p>
                         @enderror
 
                         <label class="input-label" for="">password</label>
@@ -82,7 +83,7 @@
                             <input type="password" name="password">
                         </div>
                         @error('password')
-                        <p class="text-sm text-accent -mt-2 mb-2">{{$message}}</p>
+                        <p class="text-sm error -mt-2 mb-2">{{$message}}</p>
                         @enderror
 
                         <label class="input-label" for="">password confirmation</label>
@@ -90,7 +91,7 @@
                             <input type="password" name="password_confirmation">
                         </div>
                         @error('password')
-                        <p class="text-sm text-accent -mt-2 mb-2">{{$message}}</p>
+                        <p class="text-sm error -mt-2 mb-2">{{$message}}</p>
                         @enderror
 
                         <p class="text-gray-500">

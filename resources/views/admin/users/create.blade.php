@@ -1,6 +1,4 @@
-@extends('layouts.admin')
-
-@section('content')
+<x-admin>
     <div class="p-4">
         <h1 class="mb-4">Create User </h1>
 
@@ -17,4 +15,4 @@
 
         @include('admin.users._form')
     </div>
-@endsection
+</x-admin>

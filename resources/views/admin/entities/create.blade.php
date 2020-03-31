@@ -1,6 +1,4 @@
-@extends('layouts.admin')
-
-@section('content')
+<x-admin>
     <create-entity-view inline-template>
         <div>
             @if($errors->any())
@@ -52,14 +50,11 @@
                         </div>
                         <div>
                             <label class="input-label" for="category">Select entity category</label>
-                            <div class="input">
-                                <select id="category" v-model="entity.category_id" name="category_id">
-                                    @foreach($categories as $category)
-                                        <option
-                                                value="{{ $category->id  }}">{{ $category->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+                            <v-select label="name"
+                                      :options="{{$categories}}"
+                                      :reduce="category => category.id"
+                                      v-model="entity.category_id"
+                            ></v-select>
                             <p class="error" v-if="entity.errors.category_id" v-text="entity.errors.category_id[0]"></p>
                         </div>
                     </div>
@@ -100,4 +95,4 @@
             @include('partials.modals.CropImageModal')
         </div>
     </create-entity-view>
-@endsection
+</x-admin>

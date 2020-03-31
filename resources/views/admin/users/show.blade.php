@@ -1,6 +1,4 @@
-@extends('layouts.admin')
-
-@section('content')
+<x-admin>
     <h1> Show User </h1>
 
 
@@ -47,4 +45,4 @@
             <td>{{ $user->password  }} </td>
         </tr>
     </table>
-@endsection
+</x-admin>

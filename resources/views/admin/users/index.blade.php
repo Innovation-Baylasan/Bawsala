@@ -1,6 +1,4 @@
-@extends('layouts.admin')
-
-@section('content')
+<x-admin>
     <div class="p-4">
         @if($message = Session::get('success'))
             <div class="alert is-green">
@@ -57,22 +55,23 @@
 
     {{$users->links()}}
 
-
-    <script>
-        function confirmDeletion(user) {
-            Swal.fire({
-                title: 'Are you sure?',
-                html: "The user <strong>" + user.name + "</strong> will be deleted, and you can not revert this",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#b3b3b3',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.value){
-                document.getElementById("remove-user-" + user.name).submit()
+    <x-slot name="scripts">
+        <script>
+            function confirmDeletion(user) {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    html: "The user <strong>" + user.name + "</strong> will be deleted, and you can not revert this",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#b3b3b3',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.value) {
+                        document.getElementById("remove-user-" + user.name).submit()
+                    }
+                })
             }
-        })
-        }
-    </script>
-@endsection
+        </script>
+    </x-slot>
+</x-admin>

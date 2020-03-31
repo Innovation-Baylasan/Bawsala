@@ -1,6 +1,5 @@
-@extends('layouts.admin')
+<x-admin>
 
-@section('content')
     <div class="p-4">
 
         @if($message = Session::get('success'))
@@ -70,23 +69,25 @@
     </table>
     {{$categories->links() }}
 
-    <script>
-        function confirmDeletion(category) {
-            Swal.fire({
-                title: 'Are you sure?',
-                html: "All places under <strong>" + category.name + "</strong> category will be deleted",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#b3b3b3',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) = > {
-                if (result.value
-        )
-            {
-                document.getElementById("remove-category-" + category.name).submit()
+    <x-slot name="scripts">
+        <script>
+            function confirmDeletion(category) {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    html: "All places under <strong>" + category.name + "</strong> category will be deleted",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#b3b3b3',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.value
+            )
+                {
+                    document.getElementById("remove-category-" + category.name).submit()
+                }
+            })
             }
-        })
-        }
-    </script>
-@endsection
+        </script>
+    </x-slot>
+</x-admin>

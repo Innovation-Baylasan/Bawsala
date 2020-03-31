@@ -1,5 +1,4 @@
-@extends('layouts.admin')
-@section('content')
+<x-admin>
     <div class="p-4">
 
         @if($message = Session::get('success'))
@@ -54,5 +53,4 @@
 
         {{ $events->links() }}
     </div>
-
-@endsection
+</x-admin>

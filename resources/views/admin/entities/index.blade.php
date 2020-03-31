@@ -1,6 +1,5 @@
-@extends('layouts.admin')
+<x-admin>
 
-@section('content')
     <div class="p-4">
         <a class="button text-center" href="{{ route('entities.create')  }}">Create Entity</a>
     </div>
@@ -71,25 +70,25 @@
 
     {{$entities->links()}}
 
-
-    <script>
-        function confirmDeletion(entity) {
-            console.log(entity)
-            Swal.fire({
-                title: 'Are you sure?',
-                html: "The <strong>" + entity.name + "</strong> entity will be deleted and you can not revert",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#b3b3b3',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.value
-        )
-            {
-                document.getElementById("remove-entity-" + entity.name).submit()
+    <x-slot name="scripts">
+        <script>
+            function confirmDeletion(entity) {
+                console.log(entity)
+                Swal.fire({
+                    title: 'Are you sure?',
+                    html: "The <strong>" + entity.name + "</strong> entity will be deleted and you can not revert",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#b3b3b3',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.value
+                    ) {
+                        document.getElementById("remove-entity-" + entity.name).submit()
+                    }
+                })
             }
-        })
-        }
-    </script>
-@endsection
+        </script>
+    </x-slot>
+</x-admin>

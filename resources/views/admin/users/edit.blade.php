@@ -1,6 +1,4 @@
-@extends('layouts.admin')
-
-@section('content')
+<x-admin>
     <div class="p-4">
         @if($errors->any())
             <div class="alert is-danger">
@@ -20,4 +18,4 @@
         ])
 
     </div>
-@endsection
+</x-admin>
