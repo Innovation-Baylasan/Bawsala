@@ -45,10 +45,19 @@ class QuestionsController extends Controller
         return redirect(route('questions.index'));
     }
 
+    public function destroy(Question $question)
+    {
+        $question->delete();
+
+        session()->flash('message', 'The question has been deleted');
+
+        return redirect(route('questions.index'));
+    }
+
     /**
      * @return array
      */
-    public function validateRequest()
+    private function validateRequest()
     {
         return request()->validate([
             'title' => 'required|max:288',

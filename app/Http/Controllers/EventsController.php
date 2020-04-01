@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EventRequest;
+use Carbon\Carbon;
 
 class EventsController extends Controller
 {
@@ -10,6 +11,8 @@ class EventsController extends Controller
     {
         $attributes = $request->validated();
 
+        $attributes['end_date'] = Carbon::parse($attributes['end_date']);
+        $attributes['start_date'] = Carbon::parse($attributes['start_date']);
         auth()->user()
             ->events()
             ->create($attributes);

@@ -27,7 +27,7 @@
                     </a>
                     <form method="POST"
                           action="{{ route('questions.destroy', $Question)  }}"
-                          id="remove-Question-{{$Question->name}}"
+                          id="remove-question-{{$Question->title}}"
                           onclick="confirmDeletion({{$Question}})"
                           class="flex items-center justify-center p-2"
                     >
@@ -45,5 +45,27 @@
     </table>
 
     {{ $questions->links() }}
+
+    <x-slot name="scripts">
+        <script>
+            function confirmDeletion(question) {
+                console.log(question)
+                Swal.fire({
+                    title: 'Are you sure?',
+                    html: "The <strong>" + question.title + "</strong> question will be deleted and you can not revert",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#b3b3b3',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.value
+                    ) {
+                        document.getElementById("remove-question-" + question.title).submit()
+                    }
+                })
+            }
+        </script>
+    </x-slot>
 
 </x-admin>

@@ -37,6 +37,11 @@ Vue.component('Accordion', require('./components/Accordion.vue').default)
 
 import VueFormWizard from 'vue-form-wizard'
 
+import 'vue-datetime/dist/vue-datetime.css'
+import {Datetime} from 'vue-datetime';
+
+Vue.component('datetime', Datetime);
+
 Vue.use(VueFormWizard)
 
 const app = new Vue({

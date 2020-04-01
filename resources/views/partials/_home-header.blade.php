@@ -40,7 +40,7 @@
             </li>
             @endauth
             <li class="dropdown-item">
-                <a href="#" @click="$modal.show('settings-modal')">Report issue</a>
+                <a href="#" @click="$modal.show('report-issue')">Report issue</a>
             </li>
             <li class="dropdown-item">
                 <a href="/faq">FAQ</a>

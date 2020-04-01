@@ -17,7 +17,7 @@ class CreateIssuesTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->enum('status', ['reviewed', 'close', 'open']);
+            $table->enum('status', ['reviewed', 'close', 'open'])->default('open');
             $table->timestamps();
         });
     }

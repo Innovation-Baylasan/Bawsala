@@ -10924,6 +10924,29 @@ video {
   border-bottom: 8px solid #fff;
 }
 
+.status {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  text-transform: capitalize;
+  color: #fff;
+}
+
+.status.is-reviewed {
+  background-color: #ecc94b;
+}
+
+.status.is-close {
+  background-color: #f04238;
+}
+
+.status.is-open {
+  background-color: #4aab50;
+}
+
 .vue-form-wizard .wizard-card-footer {
   display: -webkit-box;
   display: flex;

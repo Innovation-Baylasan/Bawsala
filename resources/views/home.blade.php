@@ -60,6 +60,7 @@
 
             </footer>
             @include('partials.modals.settings')
+            @include('partials.modals.report-issue')
             @include('partials.modals.add-event')
         </div>
     </map-view>

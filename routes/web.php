@@ -11,6 +11,12 @@
 |
 */
 
+Route::domain('{domain}.bawsala.app')->group(function () {
+    Route::get('/', function ($domain) {
+        return $domain;
+    });
+});
+
 Route::get('/', 'HomeController@index');
 
 Route::get('/entities', 'EntitiesController@index');
@@ -39,7 +45,9 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/@{entity}', 'EntitiesController@show');
 
-Route::get('faq', 'QuestionsController@index');
+Route::get('/faq', 'QuestionsController@index');
+
+Route::post('/issues', 'IssuesController@store');
 
 Route::put('/user-info/update', 'UserInfoController@update');
 

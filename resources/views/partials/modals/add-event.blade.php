@@ -30,11 +30,15 @@
                 <p class="error" v-if="event.errors.description" v-text="event.errors.description[0]"></p>
 
                 <label for="" class="input-label">start datetime</label>
-                <div class="input"><input v-model="event.start_date" type="datetime-local"></div>
+                <div class="input">
+                    <datetime v-model="event.start_date" type="datetime"></datetime>
+                </div>
                 <p class="error" v-if="event.errors.start_date" v-text="event.errors.start_date[0]"></p>
 
                 <label for="" class="input-label">end datetime</label>
-                <div class="input"><input v-model="event.end_date" type="datetime-local"></div>
+                <div class="input">
+                    <datetime v-model="event.end_date" type="datetime"></datetime>
+                </div>
                 <p class="error" v-if="event.errors.end_date" v-text="event.errors.end_date[0]"></p>
 
                 <label class="input-label" for="location">Location</label>
@@ -47,8 +51,8 @@
                 <input type="hidden" name="longitude" :value="event.longitude">
 
                 <div class="flex justify-between">
-                <button type="button" class="button is-muted" @click="$modal.hide('add-event')">Cancel</button>
-                <button type="submit" class="button">add event</button>
+                    <button type="button" class="button is-muted" @click="$modal.hide('add-event')">Cancel</button>
+                    <button type="submit" class="button">add event</button>
                 </div>
             </form>
         </div>
