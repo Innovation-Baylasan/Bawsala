@@ -30,6 +30,7 @@ Vue.component('CreateSubEntityView', require('./pages/CreateSubEntityView.vue').
 Vue.component('EditSubEntityView', require('./pages/EditSubEntityView.vue').default)
 Vue.component('EditEntityView', require('./pages/EditEntityView.vue').default)
 Vue.component('CreateEventView', require('./pages/CreateEventView.vue').default)
+Vue.component('CreateIssueView', require('./pages/CreateIssueView.vue').default)
 Vue.component('RegisterView', require('./pages/RegisterView.vue').default)
 Vue.component("flash", require("./components/Flash.vue").default);
 Vue.component('v-select', require('vue-select').default)

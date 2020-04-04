@@ -22,7 +22,7 @@
                     <td class="flex items-center">
                         <form method="POST"
                               action="{{ route('issues.destroy', $issue)  }}"
-                              id="remove-issue-{{$issue->name}}"
+                              id="remove-issue-{{$issue->id}}"
                         >
                             <a href="#"
                                onclick="confirmDeletion({{$issue}})"

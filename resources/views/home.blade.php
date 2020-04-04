@@ -32,6 +32,8 @@
             </main>
             <footer class="fixed bottom-0 w-full z-1p-2 flex flex-col">
 
+
+                @auth()
                 <div v-if="showing == 'events'" class="flex justify-center mb-2">
                     <button @click="$modal.show('add-event')" class="button -mx-2 flex items-center">
                         <img class="mx-2" src="/svg/add-event-icon.svg" alt="add event">
@@ -44,7 +46,7 @@
                 <div v-if="showing == 'places'" class="flex justify-center mb-2">
                     <a href="/entities/create" class="button">Add Place</a>
                 </div>
-
+                @endauth
                 <div class=" flex justify-center">
                     <div class="bg-default shadow-sm rounded">
                         <a href="#" @click.prevent="showing = 'places'"

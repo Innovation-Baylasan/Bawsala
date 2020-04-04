@@ -10,23 +10,41 @@
             <img class="w-24 h-24" src="/svg/bawsla-icon.svg" alt="">
         </div>
     </div>
+    <create-issue-view inline-template>
+        <form action="/issues"
+              method="post"
+              @submit.prevent="save()"
+        >
+            @csrf
+            <div class="p-4 -mt-6">
+                <label for="title" class="input-label">The issue title</label>
+                <div class="input">
+                    <input id="title"
+                           name="title"
+                           v-model="issue.title"
+                           required
+                    />
+                </div>
+                <p class="error" v-if="issue.errors.title" v-text="issue.errors.title[0]"></p>
+                <label for="description" class="input-label">The issue description</label>
+                <div class="input">
+                <textarea id="description"
+                          name="description"
+                          v-model="issue.description"
+                          minlength="20"
+                          maxlength="350"
+                          rows="5"
+                          required
+                ></textarea>
+                </div>
+                <p class="error" v-if="issue.errors.description" v-text="issue.errors.description[0]"></p>
 
-    <form action="/issues" method="post">
-        @csrf
-        <div class="p-4 -mt-6">
-            <label for="title" class="input-label">The issue title</label>
-            <div class="input">
-                <input name="title" id="title"/>
-            </div>
-            <label for="description" class="input-label">The issue description</label>
-            <div class="input">
-                <textarea minlength="20" maxlength="350" name="description" id="description" rows="5"></textarea>
-            </div>
 
-            <div class="flex justify-between">
-                <button type="button" class="button is-muted" @click="$modal.hide('report-issue')">Cancel</button>
-                <button type="submit" class="button">Submit issue</button>
+                <div class="flex justify-between">
+                    <button type="button" class="button is-muted" @click="$modal.hide('report-issue')">Cancel</button>
+                    <button type="submit" class="button">Submit issue</button>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </create-issue-view>
 </modal>

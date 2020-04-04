@@ -17,8 +17,6 @@ class IssuesController extends Controller
             ])
         );
 
-        session()->flash('message', 'Your issue has been submitted, we will resolve it as soon as possible');
-
-        return back();
+        return response(['message' => 'Your issue has been submitted, we will resolve it as soon as possible']);
     }
 }

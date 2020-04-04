@@ -10739,6 +10739,10 @@ video {
   background-color: #F0F0F0;
 }
 
+.table a {
+  color: #0e5ab0;
+}
+
 .page-item {
   width: 2rem;
   height: 2rem;
@@ -10770,6 +10774,10 @@ video {
   color: #fff;
   border-radius: 8px;
   text-align: center;
+}
+
+.buttona[href] {
+  color: #fff;
 }
 
 .button.is-green {
