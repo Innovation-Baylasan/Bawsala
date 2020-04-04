@@ -17,19 +17,12 @@
 @import "./components/dropdown";
 @import "./components/status";
 @import "./components/wizard";
+@import "./components/tabs";
 @import "./components/star-rating";
 @import "~@glidejs/glide/src/assets/sass/glide.core";
 @import "./components/editor";
 @import './components/vue-select';
 @import './components/cropper';
-html, body {
-  height: 100%;
-  width: 100%;
-  overflow-x: hidden;
-  body {
-    overflow: visible;
-  }
-}
 
 modal, dropdown {
   display: none;

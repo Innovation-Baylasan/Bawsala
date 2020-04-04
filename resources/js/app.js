@@ -31,6 +31,7 @@ Vue.component('EditSubEntityView', require('./pages/EditSubEntityView.vue').defa
 Vue.component('EditEntityView', require('./pages/EditEntityView.vue').default)
 Vue.component('CreateEventView', require('./pages/CreateEventView.vue').default)
 Vue.component('CreateIssueView', require('./pages/CreateIssueView.vue').default)
+Vue.component('CreatePageView', require('./pages/CreatePageView.vue').default)
 Vue.component('RegisterView', require('./pages/RegisterView.vue').default)
 Vue.component("flash", require("./components/Flash.vue").default);
 Vue.component('v-select', require('vue-select').default)
@@ -40,6 +41,12 @@ import VueFormWizard from 'vue-form-wizard'
 
 import 'vue-datetime/dist/vue-datetime.css'
 import {Datetime} from 'vue-datetime';
+
+
+import {Tabs, Tab} from 'vue-tabs-component';
+
+Vue.component('tabs', Tabs);
+Vue.component('tab', Tab);
 
 Vue.component('datetime', Datetime);
 

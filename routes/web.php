@@ -45,11 +45,15 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/@{entity}', 'EntitiesController@show');
 
-Route::get('/faq', 'QuestionsController@index');
-
 Route::post('/issues', 'IssuesController@store');
 
 Route::put('/user-info/update', 'UserInfoController@update');
+
+Route::get('/faq', 'PagesController@faq');
+
+Route::get('/terms', 'PagesController@terms');
+
+Route::get('/policy', 'PagesController@policy');
 
 
 Route::namespace('Admin')
@@ -65,6 +69,10 @@ Route::namespace('Admin')
         Route::resource('categories', 'CategoriesController');
         Route::resource('profiles', 'ProfilesController');
         Route::resource('events', 'EventsController');
+
+        Route::get('/settings', 'SettingsController@index');
+
+        Route::post('/settings', 'SettingsController@store');
 
         Route::post('/entities/{entity}/verify', 'EntityVerificationController@store');
 

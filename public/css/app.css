@@ -706,7 +706,7 @@ video {
 }
 
 .bg-gray-100{
-  background-color: #F0F0F0;
+  background-color: #fafbfc;
 }
 
 .bg-gray-200{
@@ -1018,7 +1018,7 @@ video {
 }
 
 .hover\:bg-gray-100:hover{
-  background-color: #F0F0F0;
+  background-color: #fafbfc;
 }
 
 .hover\:bg-gray-200:hover{
@@ -1330,7 +1330,7 @@ video {
 }
 
 .focus\:bg-gray-100:focus{
-  background-color: #F0F0F0;
+  background-color: #fafbfc;
 }
 
 .focus\:bg-gray-200:focus{
@@ -1722,7 +1722,7 @@ video {
 }
 
 .border-gray-100{
-  border-color: #F0F0F0;
+  border-color: #fafbfc;
 }
 
 .border-gray-200{
@@ -2030,7 +2030,7 @@ video {
 }
 
 .hover\:border-gray-100:hover{
-  border-color: #F0F0F0;
+  border-color: #fafbfc;
 }
 
 .hover\:border-gray-200:hover{
@@ -2338,7 +2338,7 @@ video {
 }
 
 .focus\:border-gray-100:focus{
-  border-color: #F0F0F0;
+  border-color: #fafbfc;
 }
 
 .focus\:border-gray-200:focus{
@@ -5886,23 +5886,23 @@ video {
 }
 
 .placeholder-gray-100::-webkit-input-placeholder{
-  color: #F0F0F0;
+  color: #fafbfc;
 }
 
 .placeholder-gray-100::-moz-placeholder{
-  color: #F0F0F0;
+  color: #fafbfc;
 }
 
 .placeholder-gray-100:-ms-input-placeholder{
-  color: #F0F0F0;
+  color: #fafbfc;
 }
 
 .placeholder-gray-100::-ms-input-placeholder{
-  color: #F0F0F0;
+  color: #fafbfc;
 }
 
 .placeholder-gray-100::placeholder{
-  color: #F0F0F0;
+  color: #fafbfc;
 }
 
 .placeholder-gray-200::-webkit-input-placeholder{
@@ -7446,23 +7446,23 @@ video {
 }
 
 .focus\:placeholder-gray-100:focus::-webkit-input-placeholder{
-  color: #F0F0F0;
+  color: #fafbfc;
 }
 
 .focus\:placeholder-gray-100:focus::-moz-placeholder{
-  color: #F0F0F0;
+  color: #fafbfc;
 }
 
 .focus\:placeholder-gray-100:focus:-ms-input-placeholder{
-  color: #F0F0F0;
+  color: #fafbfc;
 }
 
 .focus\:placeholder-gray-100:focus::-ms-input-placeholder{
-  color: #F0F0F0;
+  color: #fafbfc;
 }
 
 .focus\:placeholder-gray-100:focus::placeholder{
-  color: #F0F0F0;
+  color: #fafbfc;
 }
 
 .focus\:placeholder-gray-200:focus::-webkit-input-placeholder{
@@ -9233,7 +9233,7 @@ video {
 }
 
 .text-gray-100{
-  color: #F0F0F0;
+  color: #fafbfc;
 }
 
 .text-gray-200{
@@ -9545,7 +9545,7 @@ video {
 }
 
 .hover\:text-gray-100:hover{
-  color: #F0F0F0;
+  color: #fafbfc;
 }
 
 .hover\:text-gray-200:hover{
@@ -9857,7 +9857,7 @@ video {
 }
 
 .focus\:text-gray-100:focus{
-  color: #F0F0F0;
+  color: #fafbfc;
 }
 
 .focus\:text-gray-200:focus{
@@ -10736,7 +10736,7 @@ video {
 }
 
 .table.table-striped tr:nth-child(even) {
-  background-color: #F0F0F0;
+  background-color: #fafbfc;
 }
 
 .table a {
@@ -10984,6 +10984,89 @@ video {
   text-align: center;
 }
 
+.tabs-component {
+  height: 100%;
+}
+
+.tabs-component-tabs {
+  border-radius: 6px;
+  margin-bottom: 5px;
+  background-color: #fafbfc;
+}
+
+@media (min-width: 700px) {
+  .tabs-component-tabs {
+    border: 0;
+    -webkit-box-align: stretch;
+            align-items: stretch;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: start;
+            justify-content: flex-start;
+    margin-bottom: -1px;
+  }
+}
+
+.tabs-component-tab {
+  color: #999;
+  font-size: 14px;
+  font-weight: 600;
+  margin-right: 0;
+  list-style: none;
+}
+
+.tabs-component-tab:hover {
+  color: #666;
+}
+
+.tabs-component-tab.is-active {
+  color: #000;
+}
+
+.tabs-component-tab.is-disabled * {
+  color: #cdcdcd;
+  cursor: not-allowed !important;
+}
+
+@media (min-width: 700px) {
+  .tabs-component-tab {
+    background-color: transparent;
+    border-radius: 3px 3px 0 0;
+  }
+
+  .tabs-component-tab.is-active {
+    background: #fff;
+    border-width: 1px;
+    border-top-width: 3px;
+    border-style: solid;
+    border-color: #0e5ab0 #ddd #fff;
+    z-index: 2;
+  }
+}
+
+.tabs-component-tab-a {
+  -webkit-box-align: center;
+          align-items: center;
+  color: inherit;
+  display: -webkit-box;
+  display: flex;
+  padding: 0.75em 1em;
+  text-decoration: none;
+}
+
+.tabs-component-panels {
+  padding: 4em 0;
+}
+
+@media (min-width: 700px) {
+  .tabs-component-panels {
+    height: 100%;
+    background-color: #fff;
+    border: solid 1px #ddd;
+    padding: 1em;
+  }
+}
+
 .rating {
   width: 108px;
   height: 20px;
@@ -11098,11 +11181,13 @@ video {
 
 .editr {
   border: 1px solid #e4e4e4;
+  border-radius: 8px;
+  overflow: hidden;
   width: 100%;
 }
 
 .editr--toolbar {
-  background: #f6f6f6;
+  background: #fafbfc;
   border-bottom: 1px solid #e4e4e4;
   position: relative;
   display: -webkit-box;
@@ -11210,6 +11295,7 @@ video {
 .editr--content ul li,
 .editr--content ol li {
   list-style-position: inside;
+  list-style: inside;
 }
 
 @media screen and (max-width: 320px) {
@@ -11223,9 +11309,9 @@ video {
 }
 
 /*
-* The MIT License
-* Copyright (c) 2012 Matias Meno <m@tias.me>
-*/
+ * The MIT License
+ * Copyright (c) 2012 Matias Meno <m@tias.me>
+ */
 
 @-webkit-keyframes passing-through {
   0% {
@@ -12356,16 +12442,6 @@ video {
   cursor: not-allowed;
 }
 
-html, body {
-  height: 100%;
-  width: 100%;
-  overflow-x: hidden;
-}
-
-html body, body body {
-  overflow: visible;
-}
-
 modal, dropdown {
   display: none;
 }
@@ -12588,7 +12664,7 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .sm\:bg-gray-100{
-    background-color: #F0F0F0;
+    background-color: #fafbfc;
   }
 
   .sm\:bg-gray-200{
@@ -12900,7 +12976,7 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .sm\:hover\:bg-gray-100:hover{
-    background-color: #F0F0F0;
+    background-color: #fafbfc;
   }
 
   .sm\:hover\:bg-gray-200:hover{
@@ -13212,7 +13288,7 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .sm\:focus\:bg-gray-100:focus{
-    background-color: #F0F0F0;
+    background-color: #fafbfc;
   }
 
   .sm\:focus\:bg-gray-200:focus{
@@ -13604,7 +13680,7 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .sm\:border-gray-100{
-    border-color: #F0F0F0;
+    border-color: #fafbfc;
   }
 
   .sm\:border-gray-200{
@@ -13912,7 +13988,7 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .sm\:hover\:border-gray-100:hover{
-    border-color: #F0F0F0;
+    border-color: #fafbfc;
   }
 
   .sm\:hover\:border-gray-200:hover{
@@ -14220,7 +14296,7 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .sm\:focus\:border-gray-100:focus{
-    border-color: #F0F0F0;
+    border-color: #fafbfc;
   }
 
   .sm\:focus\:border-gray-200:focus{
@@ -17768,23 +17844,23 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .sm\:placeholder-gray-100::-webkit-input-placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .sm\:placeholder-gray-100::-moz-placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .sm\:placeholder-gray-100:-ms-input-placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .sm\:placeholder-gray-100::-ms-input-placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .sm\:placeholder-gray-100::placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .sm\:placeholder-gray-200::-webkit-input-placeholder{
@@ -19328,23 +19404,23 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .sm\:focus\:placeholder-gray-100:focus::-webkit-input-placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .sm\:focus\:placeholder-gray-100:focus::-moz-placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .sm\:focus\:placeholder-gray-100:focus:-ms-input-placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .sm\:focus\:placeholder-gray-100:focus::-ms-input-placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .sm\:focus\:placeholder-gray-100:focus::placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .sm\:focus\:placeholder-gray-200:focus::-webkit-input-placeholder{
@@ -21115,7 +21191,7 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .sm\:text-gray-100{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .sm\:text-gray-200{
@@ -21427,7 +21503,7 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .sm\:hover\:text-gray-100:hover{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .sm\:hover\:text-gray-200:hover{
@@ -21739,7 +21815,7 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .sm\:focus\:text-gray-100:focus{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .sm\:focus\:text-gray-200:focus{
@@ -22626,7 +22702,7 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .md\:bg-gray-100{
-    background-color: #F0F0F0;
+    background-color: #fafbfc;
   }
 
   .md\:bg-gray-200{
@@ -22938,7 +23014,7 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .md\:hover\:bg-gray-100:hover{
-    background-color: #F0F0F0;
+    background-color: #fafbfc;
   }
 
   .md\:hover\:bg-gray-200:hover{
@@ -23250,7 +23326,7 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .md\:focus\:bg-gray-100:focus{
-    background-color: #F0F0F0;
+    background-color: #fafbfc;
   }
 
   .md\:focus\:bg-gray-200:focus{
@@ -23642,7 +23718,7 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .md\:border-gray-100{
-    border-color: #F0F0F0;
+    border-color: #fafbfc;
   }
 
   .md\:border-gray-200{
@@ -23950,7 +24026,7 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .md\:hover\:border-gray-100:hover{
-    border-color: #F0F0F0;
+    border-color: #fafbfc;
   }
 
   .md\:hover\:border-gray-200:hover{
@@ -24258,7 +24334,7 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .md\:focus\:border-gray-100:focus{
-    border-color: #F0F0F0;
+    border-color: #fafbfc;
   }
 
   .md\:focus\:border-gray-200:focus{
@@ -27806,23 +27882,23 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .md\:placeholder-gray-100::-webkit-input-placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .md\:placeholder-gray-100::-moz-placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .md\:placeholder-gray-100:-ms-input-placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .md\:placeholder-gray-100::-ms-input-placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .md\:placeholder-gray-100::placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .md\:placeholder-gray-200::-webkit-input-placeholder{
@@ -29366,23 +29442,23 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .md\:focus\:placeholder-gray-100:focus::-webkit-input-placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .md\:focus\:placeholder-gray-100:focus::-moz-placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .md\:focus\:placeholder-gray-100:focus:-ms-input-placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .md\:focus\:placeholder-gray-100:focus::-ms-input-placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .md\:focus\:placeholder-gray-100:focus::placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .md\:focus\:placeholder-gray-200:focus::-webkit-input-placeholder{
@@ -31153,7 +31229,7 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .md\:text-gray-100{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .md\:text-gray-200{
@@ -31465,7 +31541,7 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .md\:hover\:text-gray-100:hover{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .md\:hover\:text-gray-200:hover{
@@ -31777,7 +31853,7 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .md\:focus\:text-gray-100:focus{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .md\:focus\:text-gray-200:focus{
@@ -32664,7 +32740,7 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .lg\:bg-gray-100{
-    background-color: #F0F0F0;
+    background-color: #fafbfc;
   }
 
   .lg\:bg-gray-200{
@@ -32976,7 +33052,7 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .lg\:hover\:bg-gray-100:hover{
-    background-color: #F0F0F0;
+    background-color: #fafbfc;
   }
 
   .lg\:hover\:bg-gray-200:hover{
@@ -33288,7 +33364,7 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .lg\:focus\:bg-gray-100:focus{
-    background-color: #F0F0F0;
+    background-color: #fafbfc;
   }
 
   .lg\:focus\:bg-gray-200:focus{
@@ -33680,7 +33756,7 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .lg\:border-gray-100{
-    border-color: #F0F0F0;
+    border-color: #fafbfc;
   }
 
   .lg\:border-gray-200{
@@ -33988,7 +34064,7 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .lg\:hover\:border-gray-100:hover{
-    border-color: #F0F0F0;
+    border-color: #fafbfc;
   }
 
   .lg\:hover\:border-gray-200:hover{
@@ -34296,7 +34372,7 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .lg\:focus\:border-gray-100:focus{
-    border-color: #F0F0F0;
+    border-color: #fafbfc;
   }
 
   .lg\:focus\:border-gray-200:focus{
@@ -37844,23 +37920,23 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .lg\:placeholder-gray-100::-webkit-input-placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .lg\:placeholder-gray-100::-moz-placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .lg\:placeholder-gray-100:-ms-input-placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .lg\:placeholder-gray-100::-ms-input-placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .lg\:placeholder-gray-100::placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .lg\:placeholder-gray-200::-webkit-input-placeholder{
@@ -39404,23 +39480,23 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .lg\:focus\:placeholder-gray-100:focus::-webkit-input-placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .lg\:focus\:placeholder-gray-100:focus::-moz-placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .lg\:focus\:placeholder-gray-100:focus:-ms-input-placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .lg\:focus\:placeholder-gray-100:focus::-ms-input-placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .lg\:focus\:placeholder-gray-100:focus::placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .lg\:focus\:placeholder-gray-200:focus::-webkit-input-placeholder{
@@ -41191,7 +41267,7 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .lg\:text-gray-100{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .lg\:text-gray-200{
@@ -41503,7 +41579,7 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .lg\:hover\:text-gray-100:hover{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .lg\:hover\:text-gray-200:hover{
@@ -41815,7 +41891,7 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .lg\:focus\:text-gray-100:focus{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .lg\:focus\:text-gray-200:focus{
@@ -42702,7 +42778,7 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .xl\:bg-gray-100{
-    background-color: #F0F0F0;
+    background-color: #fafbfc;
   }
 
   .xl\:bg-gray-200{
@@ -43014,7 +43090,7 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .xl\:hover\:bg-gray-100:hover{
-    background-color: #F0F0F0;
+    background-color: #fafbfc;
   }
 
   .xl\:hover\:bg-gray-200:hover{
@@ -43326,7 +43402,7 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .xl\:focus\:bg-gray-100:focus{
-    background-color: #F0F0F0;
+    background-color: #fafbfc;
   }
 
   .xl\:focus\:bg-gray-200:focus{
@@ -43718,7 +43794,7 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .xl\:border-gray-100{
-    border-color: #F0F0F0;
+    border-color: #fafbfc;
   }
 
   .xl\:border-gray-200{
@@ -44026,7 +44102,7 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .xl\:hover\:border-gray-100:hover{
-    border-color: #F0F0F0;
+    border-color: #fafbfc;
   }
 
   .xl\:hover\:border-gray-200:hover{
@@ -44334,7 +44410,7 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .xl\:focus\:border-gray-100:focus{
-    border-color: #F0F0F0;
+    border-color: #fafbfc;
   }
 
   .xl\:focus\:border-gray-200:focus{
@@ -47882,23 +47958,23 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .xl\:placeholder-gray-100::-webkit-input-placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .xl\:placeholder-gray-100::-moz-placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .xl\:placeholder-gray-100:-ms-input-placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .xl\:placeholder-gray-100::-ms-input-placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .xl\:placeholder-gray-100::placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .xl\:placeholder-gray-200::-webkit-input-placeholder{
@@ -49442,23 +49518,23 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .xl\:focus\:placeholder-gray-100:focus::-webkit-input-placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .xl\:focus\:placeholder-gray-100:focus::-moz-placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .xl\:focus\:placeholder-gray-100:focus:-ms-input-placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .xl\:focus\:placeholder-gray-100:focus::-ms-input-placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .xl\:focus\:placeholder-gray-100:focus::placeholder{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .xl\:focus\:placeholder-gray-200:focus::-webkit-input-placeholder{
@@ -51229,7 +51305,7 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .xl\:text-gray-100{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .xl\:text-gray-200{
@@ -51541,7 +51617,7 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .xl\:hover\:text-gray-100:hover{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .xl\:hover\:text-gray-200:hover{
@@ -51853,7 +51929,7 @@ input[type=checkbox]:checked, input[type=radio]:checked + .select-label {
   }
 
   .xl\:focus\:text-gray-100:focus{
-    color: #F0F0F0;
+    color: #fafbfc;
   }
 
   .xl\:focus\:text-gray-200:focus{
