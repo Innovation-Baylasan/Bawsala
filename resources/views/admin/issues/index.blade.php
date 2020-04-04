@@ -1,5 +1,4 @@
 <x-admin>
-
     <div class="pt-4">
         <table class="table-striped table">
 

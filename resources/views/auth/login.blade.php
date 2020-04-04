@@ -23,6 +23,14 @@
                     register to log in to obtain additional features</p>
             </header>
             <main>
+                @if($errors->any())
+                    <ul class="p-2 border border-red-500 rounded mb-2">
+                        @foreach($errors->all() as $error)
+                            <li class="text-sm error -mt-2 mb-2">{{$error}}</li>
+                        @endforeach
+                    </ul>
+                @endif
+
                 <form action="/login" method="post">
                     @csrf
                     <label class="input-label" for="">email</label>
@@ -33,13 +41,6 @@
                     <div class="input">
                         <input type="password" name="password">
                     </div>
-
-
-                    @if($errors->any())
-                        @foreach($errors->all() as $error)
-                            <p class="text-sm error -mt-2 mb-2">{{$error}}</p>
-                        @endforeach
-                    @endif
 
                     <p class="text-gray-500">
                         Here a text is placed explaining to the user that upon registration, the <a href="#"

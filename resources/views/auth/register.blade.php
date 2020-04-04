@@ -53,10 +53,13 @@
                 </header>
                 <main>
                     @if($errors->any())
-                        @foreach($errors->all() as $error)
-                            <p>{{$error}}</p>
-                        @endforeach
+                        <ul class="p-2 border border-red-500 rounded mb-2">
+                            @foreach($errors->all() as $error)
+                                <li class="text-sm error -mt-2 mb-2">{{$error}}</li>
+                            @endforeach
+                        </ul>
                     @endif
+
                     <form action="{{route('register')}}"
                           method="post"
                     >
@@ -66,33 +69,22 @@
                         <div class="input">
                             <input type="text" required name="name" value="{{old('name')}}">
                         </div>
-                        @error('name')
-                        <p class="text-sm error -mt-2 mb-2">{{$message}}</p>
-                        @enderror
 
                         <label class="input-label" for="">email</label>
                         <div class="input">
                             <input type="text" required name="email" value="{{old('email')}}">
                         </div>
-                        @error('email')
-                        <p class="text-sm error -mt-2 mb-2">{{$message}}</p>
-                        @enderror
 
                         <label class="input-label" for="">password</label>
                         <div class="input">
                             <input type="password" name="password">
                         </div>
-                        @error('password')
-                        <p class="text-sm error -mt-2 mb-2">{{$message}}</p>
-                        @enderror
 
                         <label class="input-label" for="">password confirmation</label>
                         <div class="input">
                             <input type="password" name="password_confirmation">
                         </div>
-                        @error('password')
-                        <p class="text-sm error -mt-2 mb-2">{{$message}}</p>
-                        @enderror
+
 
                         <p class="text-gray-500">
                             Here a text is placed explaining to the user that upon registration, the <a href="#"
