@@ -250,7 +250,9 @@ class Entity extends Model implements Followable
             'id' => $this->id,
             'name' => $this->name,
             'description' => $this->description,
+            'tags' => json_encode($this->tags()->pluck('name')),
         ];
     }
+
 
 }

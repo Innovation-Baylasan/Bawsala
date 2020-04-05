@@ -51,7 +51,11 @@ Route::namespace('Api')->group(function () {
 
     Route::get('/tags', 'TagsController@index')->name('api.tags.index');
 
-    Route::get('/faq', 'QuestionsController@index')->name('questions.index');
+    Route::get('/faq', 'PagesController@faq');
+
+    Route::get('/terms', 'PagesController@terms');
+
+    Route::get('/policy', 'PagesController@policy');
 
     Route::get('/events', 'EventsController@index')->name('api.events.index');
 
