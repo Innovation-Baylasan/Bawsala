@@ -139,11 +139,12 @@
             </div>
             <div class="bg-default p-8 rounded">
                 <h3 class="uppercase border-b mb-4 border-solid border-gray-100 text-2xl font-bold">
-                    Places
+                    Related Places
                 </h3>
-
                 <div class="flex -mx-2">
-
+                    @foreach($entity->relatedPlaces()->take(4) as $place)
+                        @include("partials.profile-min-card",['entity' => $place])
+                    @endforeach
                 </div>
             </div>
         </div>

@@ -19,7 +19,7 @@ class RelatedPlacesController extends Controller
     public function index(Entity $entity)
     {
 
-        return Entity::relatedPlaces($entity)->get();
+        return $entity->relatedPlaces();
 
     }
 

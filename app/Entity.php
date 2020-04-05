@@ -231,11 +231,12 @@ class Entity extends Model implements Followable
      * @param $entity
      * @return mixed
      */
-    public function scopeRelatedPlaces($query, $entity)
+    public function relatedPlaces()
     {
-        return $query->whereHas('tags', function ($q) use ($entity) {
-            return $q->whereIn('tag_id', $entity->tags->pluck('id'));
-        })->where('id', '!=', $entity->id);
+        $tags = $this->tags->pluck('name');
+        return $this->whereHas('tags', function ($q) use ($tags) {
+            return $q->whereIn('name', $tags);
+        })->where('id', '!=', $this->id)->get();
     }
 
 
