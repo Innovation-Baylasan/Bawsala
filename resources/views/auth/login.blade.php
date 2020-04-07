@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <title>Login into Bawsala</title>
     <link rel="shortcut icon" type="image/jpg" href="/images/fav-icon.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
 <body>
 <div id="app" class="theme-light">
     <div class="flex">
-        <div class="flex-1 w-1/2  py-4">
+        <div class="flex-1 w-1/2  py-4 hidden md:block">
             <div class="relative">
                 <img class="absolute top-0 left-0" src="{{asset('/images/map-overlay.png')}}" alt="">
                 <img class="absolute top-0 left-0" src="{{asset('/images/app-mockup.png')}}" alt="">
@@ -19,8 +20,9 @@
         <div class="flex-1 px-16 py-4">
             <header class="mb-8">
                 <h3 class="text-4xl font-bold">Sign in</h3>
-                <p class="leading-normal font-hairline text-gray-500 pr-10">Here is placed a text the user wants to
-                    register to log in to obtain additional features</p>
+                <p class="leading-normal font-hairline text-gray-500 pr-10">
+                    Sign in Bawsala now and find the industry related places
+                </p>
             </header>
             <main>
                 @if($errors->any())
@@ -43,19 +45,13 @@
                     </div>
 
                     <p class="text-gray-500">
-                        Here a text is placed explaining to the user that upon registration, the <a href="#"
-                                                                                                    class="text-accent font-bold">agreement
-                            policy</a> and
-                        <a href="#"
-                           class="text-accent font-bold">privacy policy</a>
-                        will be approved and their consequences bear
+                        No account ! <a href="/register" class="text-accent font-bold">create one</a>
                     </p>
 
-                    <div class="flex items-center justify-between mt-8">
-                        <a class="text-accent text-sm" href="/password/reset">Forget password ?</a>
+                    <div class="flex items-center justify-center mt-8">
                         <button type="submit"
                                 class="button is-wide">
-                            Sing
+                            Singe
                             In
                         </button>
                     </div>
