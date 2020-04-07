@@ -15,7 +15,6 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'register_as' => ['sometimes', 'string'],
             'location' => ['sometimes', 'required', 'string', 'min:8'],
             'category' => ['sometimes', 'required', 'numeric', 'min:1'],
             'avatar' => ['sometimes'],
@@ -27,7 +26,6 @@ class RegisterController extends Controller
             'name' => $attributes['name'],
             'email' => $attributes['email'],
             'password' => Hash::make($attributes['password']),
-            'role' => $attributes['register_as'] ?? 'user',
         ]);
 
         return response([

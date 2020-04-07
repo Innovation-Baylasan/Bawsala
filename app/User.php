@@ -12,6 +12,9 @@ use Rennokki\Befriended\Traits\CanFollow;
 
 /**
  * @property mixed $role
+ * @property \Carbon\Carbon $created_at
+ * @property int $id
+ * @property \Carbon\Carbon $updated_at
  */
 class User extends Authenticatable implements Follower
 {
