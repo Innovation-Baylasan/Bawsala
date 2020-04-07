@@ -35,10 +35,46 @@
                                 @method('DELETE')
                             </a>
                         </form>
+
+                        <form method="POST"
+                              action="{{ route('issues.update', $issue)  }}"
+                              id="remove-issue-close-{{$issue->id}}"
+                        >
+                            <button
+                                    onclick="document.getElementById('remove-issue-close-{{$issue->id}}').submit()"
+                                    class="button {{$issue->isClosed() ? 'is-success': 'is-danger'}}"
+                            >
+                                {{$issue->isClosed() ? 'open': 'close'}}
+
+                                @csrf
+                                @method('PUT')
+                            </button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
             </tbody>
         </table>
     </div>
+    <x-slot name="scripts">
+        <script>
+            function confirmDeletion(issue) {
+                console.log(issue)
+                Swal.fire({
+                    title: 'Are you sure?',
+                    html: "The <strong>" + issue.title + "</strong> issue will be deleted and you can not revert",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#b3b3b3',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.value
+                    ) {
+                        document.getElementById("remove-issue-" + issue.id).submit()
+                    }
+                })
+            }
+        </script>
+    </x-slot>
 </x-admin>

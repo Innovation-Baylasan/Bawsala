@@ -7321,7 +7321,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     apiKey: String,
     multiple: Boolean,
-    center: Object
+    center: Object,
+    initialMarker: Object
   },
   data: function data() {
     return {
@@ -7341,6 +7342,12 @@ __webpack_require__.r(__webpack_exports__);
       _this.initializeMap();
 
       _this.centeringMap();
+
+      if (_this.initialMarker) {
+        var latLang = new _this.google.maps.LatLng(_this.initialMarker.latitude, _this.initialMarker.longitude);
+
+        _this.placeMarker(latLang);
+      }
     });
   },
   watch: {
@@ -7358,8 +7365,7 @@ __webpack_require__.r(__webpack_exports__);
           lng: 32.5599
         },
         zoom: 12,
-        streetViewControl: false,
-        disableDefaultUI: true
+        streetViewControl: false
       });
       this.map.addListener('click', function (event) {
         _this2.placeMarker(event.latLng);
@@ -56459,14 +56465,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!****************************************************!*\
   !*** ./resources/js/components/LocationPicker.vue ***!
   \****************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _LocationPicker_vue_vue_type_template_id_17f8cb64___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LocationPicker.vue?vue&type=template&id=17f8cb64& */ "./resources/js/components/LocationPicker.vue?vue&type=template&id=17f8cb64&");
 /* harmony import */ var _LocationPicker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LocationPicker.vue?vue&type=script&lang=js& */ "./resources/js/components/LocationPicker.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _LocationPicker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _LocationPicker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -56496,7 +56503,7 @@ component.options.__file = "resources/js/components/LocationPicker.vue"
 /*!*****************************************************************************!*\
   !*** ./resources/js/components/LocationPicker.vue?vue&type=script&lang=js& ***!
   \*****************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

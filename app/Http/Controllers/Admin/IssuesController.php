@@ -26,4 +26,26 @@ class IssuesController extends Controller
         $issue->update(['status' => 'reviewed']);
         return view('admin.issues.show', compact('issue'));
     }
+
+    /**
+     * @param Issue $issue
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function update(Issue $issue)
+    {
+        $issue->toggleStatus();
+
+        return back();
+    }
+
+    /**
+     * @param Issue $issue
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function destroy(Issue $issue)
+    {
+        $issue->delete();
+
+        return back();
+    }
 }

@@ -10784,6 +10784,18 @@ video {
   background-color: #4aab50;
 }
 
+.button.is-success {
+  background-color: #4aab50;
+}
+
+.button.is-danger {
+  background-color: #f04238;
+}
+
+.button.is-warning {
+  background-color: #f6e05e;
+}
+
 .button.is-muted {
   background-color: var(--text-muted-color);
 }

@@ -6,6 +6,15 @@
   &.is-green {
     @apply bg-green-600;
   }
+  &.is-success {
+    @apply bg-green-600;
+  }
+  &.is-danger{
+    @apply bg-red-500;
+  }
+  &.is-warning {
+    @apply bg-yellow-400;
+  }
   &.is-muted {
     @apply bg-muted;
   }

@@ -85,8 +85,12 @@
 
 
                     <label class="input-label" for="location">Entity Location</label>
-                    <location-picker class="w-full h-56 rounded mb-4" api-key="{{config('app.mapKey')}}"
-                    @marker-placed="setLocation"></location-picker>
+                    <location-picker class="w-full h-56 rounded mb-4"
+                                     api-key="{{config('app.mapKey')}}"
+                                     :initial-marker="{latitude:entity.latitude, longitude:entity.longitude,}"
+                                     :center="{latitude:entity.latitude, longitude:entity.longitude,}"
+                    @marker-placed="setLocation"
+                    ></location-picker>
                     <p class="error" v-if="entity.errors.longitude" v-text="entity.errors.longitude[0]"></p>
                     <input type="hidden" name="latitude" :value="entity.latitude">
                     <input type="hidden" name="longitude" :value="entity.longitude">
