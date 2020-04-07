@@ -29,17 +29,18 @@
                         File</label>
                     <input class="invisible" type="file" id="icon" name="icon">
                 </div>
-                <img class="mx-2 w-8 h-8" src="{{Storage::url($category->icon  )}}" alt="">
+                <img class="mx-2 w-8 h-8" src="{{asset($category->icon  )}}" alt="">
             </div>
 
             <label class="input-label" for="icon">Marker</label>
             <div class="flex ">
                 <div class="input flex-1">
-                    <label class="text-center p-2 m-1 rounded bg-accent-light text-accent cursor-pointer" for="icon">Upload
+                    <label class="text-center p-2 m-1 rounded bg-accent-light text-accent cursor-pointer"
+                           for="icon_png">Upload
                         File</label>
-                    <input class="invisible" type="file" id="icon" name="icon_png">
+                    <input class="invisible" type="file" id="icon_png" name="icon_png">
                 </div>
-                <img class="mx-2 w-8 h-8" src="{{Storage::url($category->icon  )}}" alt="">
+                <img class="mx-2 w-8 h-8" src="{{asset($category->icon)}}" alt="">
             </div>
 
 

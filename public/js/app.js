@@ -6829,6 +6829,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['title', 'body'],
   data: function data() {
@@ -40985,7 +40990,35 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "mb-12 flex -mx-4" }, [
+  return _c("div", { staticClass: "mb-12 flex -mx-4 justify-between" }, [
+    _c("div", { staticClass: "flex items-start" }, [
+      _c("img", {
+        staticClass: "mr-2",
+        attrs: { src: "/images/bawsala-logo-mini.png", alt: "" }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "leading-none" }, [
+        _c(
+          "h3",
+          {
+            staticClass: "text-gray-900  mb-2 text-bold text-3xl  ",
+            on: {
+              click: function($event) {
+                _vm.isActive = !_vm.isActive
+              }
+            }
+          },
+          [_vm._v(_vm._s(_vm.title))]
+        ),
+        _vm._v(" "),
+        _vm.isActive
+          ? _c("p", { staticClass: "text-gray-600" }, [
+              _vm._v(_vm._s(_vm.body))
+            ])
+          : _vm._e()
+      ])
+    ]),
+    _vm._v(" "),
     _c("div", { staticClass: "mx-4" }, [
       _c(
         "button",
@@ -41039,25 +41072,6 @@ var render = function() {
             : _vm._e()
         ]
       )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "leading-none" }, [
-      _c(
-        "h3",
-        {
-          staticClass: "text-gray-900  mb-2 text-bold text-3xl  ",
-          on: {
-            click: function($event) {
-              _vm.isActive = !_vm.isActive
-            }
-          }
-        },
-        [_vm._v(_vm._s(_vm.title))]
-      ),
-      _vm._v(" "),
-      _vm.isActive
-        ? _c("p", { staticClass: "text-gray-600" }, [_vm._v(_vm._s(_vm.body))])
-        : _vm._e()
     ])
   ])
 }
@@ -41700,7 +41714,7 @@ var render = function() {
               _vm._l(_vm.place.tags, function(tag) {
                 return _c("span", {
                   staticClass:
-                    "rounded mx-1 px-5 bg-gray-200 text-sm shadow-sm text-gray-500",
+                    "rounded mx-1 px-5 border border-gray-200 text-sm shadow-sm text-gray-500",
                   domProps: { textContent: _vm._s(tag.label) }
                 })
               }),
@@ -56466,15 +56480,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!****************************************************!*\
   !*** ./resources/js/components/LocationPicker.vue ***!
   \****************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _LocationPicker_vue_vue_type_template_id_17f8cb64___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LocationPicker.vue?vue&type=template&id=17f8cb64& */ "./resources/js/components/LocationPicker.vue?vue&type=template&id=17f8cb64&");
 /* harmony import */ var _LocationPicker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LocationPicker.vue?vue&type=script&lang=js& */ "./resources/js/components/LocationPicker.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _LocationPicker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _LocationPicker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -56504,7 +56517,7 @@ component.options.__file = "resources/js/components/LocationPicker.vue"
 /*!*****************************************************************************!*\
   !*** ./resources/js/components/LocationPicker.vue?vue&type=script&lang=js& ***!
   \*****************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

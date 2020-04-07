@@ -1,15 +1,24 @@
 <x-app>
-    <div class="container mx-auto bg-white rounded my-4 shadow-sm p-2">
-        <div class="w-3/5 mx-auto">
+    <div>
+        <aside class="fixed h-screen  p-2 w-2/5">
+            <div class="w-full h-full faq p-8">
+                <img src="/images/bawsala-logo.png" class="self-center" alt="">
+
+            </div>
+        </aside>
+        <section class="ml-2/5 p-16">
             <div class="text-center mb-16">
-                <h1 class="text-bold text-2xl text-gray-900">FAQ</h1>
-                <p class="text-gray-600">It's okay. From time to time, we all have questions.</p>
+                <h1 class="text-gray-800 font-bold text-4xl capitalize">How we can help you</h1>
+
             </div>
             @foreach($questions as $question)
-                <Accordion title="{{$question->title}}"
+                <Accordion class="{{!$loop->last ? 'border-b': ''}} pb-4" title="{{$question->title}}"
                            body="{{$question->answer}}"
                 ></Accordion>
-            @endforeach
+            @endforeach </section>
+        <div>
+
         </div>
     </div>
+
 </x-app>

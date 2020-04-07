@@ -19,10 +19,7 @@
 </head>
 <body>
 <div id="app" class="h-full">
-    <div class="bg-gray-100 h-full">
-        @include('partials._navbar')
-        {{$slot}}
-    </div>
+    {{$slot}}
 </div>
 </body>
 </html>

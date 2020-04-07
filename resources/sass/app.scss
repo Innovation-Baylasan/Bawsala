@@ -120,4 +120,25 @@ input[type='checkbox']:checked, input[type='radio']:checked + .select-label {
   transform: scale(1.15);
 }
 
+.terms {
+  background-image: url('/images/terms-overlay.png');
+  background-size: initial;
+  background-repeat: no-repeat;
+  background-position: 50px 150px;
+}
+
+.faq {
+  background-image: url('/images/faq-overlay.png');
+  background-size: initial;
+  background-repeat: no-repeat;
+  background-position: 60px -70px;
+}
+
+.policy {
+  background-image: url('/images/policy-overlay.png');
+  background-size: initial;
+  background-repeat: no-repeat;
+  background-position: 50px 150px;
+}
+
 /*! purgecss end ignore */
