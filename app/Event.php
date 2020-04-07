@@ -16,21 +16,11 @@ class Event extends Model implements HasMedia
     use HasMediaTrait, Searchable;
 
     /**
-     * Determine fillable fields
+     * Determine guarded fields
      *
      * @var array
      */
-    protected $fillable = [
-        'creator_id',
-        'entity_id',
-        'name',
-        'link',
-        'description',
-        'start_date',
-        'end_date',
-        'latitude',
-        'longitude'
-    ];
+    protected $guarded = [];
 
     /**
      * Determine what to eager load when retrieving activity

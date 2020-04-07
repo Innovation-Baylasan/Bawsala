@@ -78,6 +78,15 @@
                                        v-text="entity.errors.description[0]"></p>
 
 
+
+                                    <label class="input-label" for="location">Entity Details</label>
+                                    <div class="max-w-full h-56 overflow-hidden mb-2">
+                                        <wysiwyg placeholder="Enter entity details"
+                                                 class="overflow-hidden"
+                                                 v-model="entity.details"/>
+                                    </div>
+
+
                                     <label class="input-label" for="location">Entity Location</label>
                                     <location-picker class="w-full h-56 rounded mb-4"
                                                      api-key="{{config('app.mapKey')}}"

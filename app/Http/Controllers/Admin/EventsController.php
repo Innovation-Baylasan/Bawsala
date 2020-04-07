@@ -114,8 +114,9 @@ class EventsController extends Controller
 
         $event->delete();
 
-        return redirect('/admin/events')
-            ->with('success', 'Data deleted successfully');
+        session()->flash('message', "the $event->name event has been deleted");
+
+        return redirect('/admin/events');
 
     }
 }
