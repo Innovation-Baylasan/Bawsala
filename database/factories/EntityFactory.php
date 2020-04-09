@@ -15,6 +15,7 @@ $factory->define(Entity::class, function (Faker $faker) use ($places) {
         'name' => $places[array_rand($places)]->name,
         'description' => $faker->paragraph,
         'details' => $faker->randomHtml,
+        'verified' => true,
         'latitude' => $places[array_rand($places)]->location->latitude,
         'longitude' => $places[array_rand($places)]->location->longitude
     ];

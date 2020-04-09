@@ -13,10 +13,8 @@ class RegisterController extends Controller
     {
         $attributes = request()->validate([
             'name' => ['required', 'string', 'max:255'],
-            'username' => ['sometimes', 'string', 'min:8', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'register_as' => ['sometimes', 'string'],
             'location' => ['sometimes', 'required', 'string', 'min:8'],
             'category' => ['sometimes', 'required', 'numeric', 'min:1'],
             'avatar' => ['sometimes'],
@@ -27,16 +25,13 @@ class RegisterController extends Controller
         $user = User::register([
             'name' => $attributes['name'],
             'email' => $attributes['email'],
-            'username' => $attributes['username'] ?? User::generateUsername($attributes['name']),
             'password' => Hash::make($attributes['password']),
-            'role' => $attributes['register_as'] ?? 'user',
         ]);
 
         return response([
             'data' => [
                 'user' => $user,
                 'token' => $user->token,
-                'main_entity' => $user->isCompany() ? $user->mainEntity() : null
             ],
             'message' => 'user registered successfully'
         ], 200);

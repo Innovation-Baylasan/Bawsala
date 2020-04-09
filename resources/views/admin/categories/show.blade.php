@@ -1,38 +1,36 @@
-@extends('layouts.admin')
-
-@section('content')
-<h1> Show Category </h1>
+<x-admin>
+    <h1> Show Category </h1>
 
 
-<br>
-<br>
-<br>
+    <br>
+    <br>
+    <br>
 
 
-<a href="{{ route('categories.index')  }}"><< Back</a>
+    <a href="{{ route('categories.index')  }}"><< Back</a>
 
-<br>
-<br>
-<br>
+    <br>
+    <br>
+    <br>
 
-<table class="table table-striped">
-    <tr>
-        <th>Field</th>
-        <th>Value</th>
-    </tr>
+    <table class="table table-striped">
+        <tr>
+            <th>Field</th>
+            <th>Value</th>
+        </tr>
 
-    <tr>
-        <td>ID</td>
-        <td>{{ $category->id  }}</td>
-    </tr>
-    <tr>
-        <td>Tag</td>
-        <td>{{ $category->name  }}</td>
-    </tr>
-    <tr>
-        <td>Icon</td>
-        <td><img src="{{ URL::to('/')  }}/images/categoryIcon/{{ $category->icon  }}" alt=""></td>
-    </tr>
+        <tr>
+            <td>ID</td>
+            <td>{{ $category->id  }}</td>
+        </tr>
+        <tr>
+            <td>Tag</td>
+            <td>{{ $category->name  }}</td>
+        </tr>
+        <tr>
+            <td>Icon</td>
+            <td><img src="{{ URL::to('/')  }}/images/categoryIcon/{{ $category->icon  }}" alt=""></td>
+        </tr>
 
-</table>
-@endsection
+    </table>
+</x-admin>

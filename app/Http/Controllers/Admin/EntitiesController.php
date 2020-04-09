@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 class EntitiesController extends Controller
 {
     /**
-     * Display a listing of the entities.
+     * Display a listing of all entities paginated.
      *
      * @return \Illuminate\Http\Response
      *
@@ -21,7 +21,13 @@ class EntitiesController extends Controller
      */
     public function index()
     {
-        $entities = Entity::latest()->paginate(10);
+        $entities = Entity::withoutGlobalScope('verified')
+            ->latest()
+            ->paginate(10);
+
+        $entities->load('category')->each(function ($entity) {
+            $entity->setAppends([]);
+        });
 
         return view('admin.entities.index', compact('entities'));
     }
@@ -84,9 +90,7 @@ class EntitiesController extends Controller
      */
     public function show(Entity $entity)
     {
-
         return View('admin.entities.show', compact('entity'));
-
     }
 
     /**
@@ -100,9 +104,10 @@ class EntitiesController extends Controller
     {
 
         $categories = Category::all();
-        $users = User::all();
 
-        return view('admin.entities.edit', compact('entity', 'categories', 'users'));
+        $entity->load('tags');
+
+        return view('admin.entities.edit', compact('entity', 'categories'));
 
     }
 
@@ -118,8 +123,13 @@ class EntitiesController extends Controller
     {
         $attributes = $request->validated();
 
-        $entity->update($attributes);
-
+        $entity->update([
+            'category_id' => $attributes['category_id'],
+            'name' => $attributes['name'],
+            'description' => $attributes['description'],
+            'latitude' => $attributes['latitude'],
+            'longitude' => $attributes['longitude'],
+        ]);
         $entity->tags()->detach();
 
         if ($request->has('tags')) {

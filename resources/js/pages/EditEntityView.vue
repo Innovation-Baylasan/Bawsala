@@ -65,7 +65,9 @@
             save(){
                 this.loading = true;
                 let endpoint = '/admin/entities';
-                this.entity.put(endpoint + '/' + this.entity.id).then(res => location.replace(endpoint))
+                this.entity.put(endpoint + '/' + this.entity.id)
+                    .then(res => location.replace(endpoint))
+                    .catch(e => this.loading = false)
             }
         },
 

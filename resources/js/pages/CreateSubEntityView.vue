@@ -8,6 +8,7 @@
                     cover: '',
                     avatar: '',
                     description: '',
+                    details: '',
                     name: '',
                     category_id: '',
                     latitude: '',
@@ -61,7 +62,7 @@
                 this.loading = true;
                 this.entity.post(endpoint).then(res => {
                     location.replace('/')
-                })
+                }).catch(e => this.loading = false)
             }
         },
 

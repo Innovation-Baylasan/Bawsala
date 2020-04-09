@@ -12,23 +12,16 @@ class UserInfoController extends Controller
         $attributes = request()->validate([
             'name' => 'required',
             'email' => 'required|email',
-            'old_password' => 'sometimes|required',
-            'password' => 'required_unless:old_password,|confirmed',
+            'password' => 'sometimes|confirmed',
         ]);
 
 
-
-        if (request()->has('old_password')) {
-            if (!(Hash::check(request('old_password'), auth()->user()->getAuthPassword()))) {
-                $errors = new MessageBag(['old_password' => 'old password dose not match our records']);
-                return response()->json(['errors' => $errors], 422);
-            };
-
+        if (isset($attributes['password'])) {
             $attributes['password'] = Hash::make($attributes['password']);
         }
 
         auth()->user()->update($attributes);
 
-        return response('user updated successfully');
+        return response('User updated successfully');
     }
 }

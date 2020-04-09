@@ -2,8 +2,13 @@
 
 namespace App\Http\Resources;
 
+use App\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @property mixed name
+ * @property mixed longitude
+ */
 class EntityResource extends JsonResource
 {
     /**
@@ -22,7 +27,11 @@ class EntityResource extends JsonResource
             'avatar' => $this->avatar,
             'cover' => $this->cover,
             'tags' => $this->tags,
-            'rating' => $this->rating(),
+            'average_rating' => $this->rating(),
+            'reviews' => $this->reviews,
+            'reviews_count' => $this->reviews->count(),
+            'my_rating' => $this->ratingFor(auth()->user()),
+            'following' => $this->isFollowedBy(auth()->user()),
             'location' => [
                     'lat' => $this->latitude,
                     'long' => $this->longitude,

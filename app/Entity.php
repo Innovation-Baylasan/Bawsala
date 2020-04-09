@@ -11,32 +11,40 @@ use Mockery\Exception;
 use Rennokki\Befriended\Contracts\Followable;
 use Rennokki\Befriended\Traits\CanBeFollowed;
 
+/**
+ * @property int $id
+ * @property mixed $owner
+ * @property mixed $profile
+ * @property mixed $category
+ * @property mixed $tags
+ * @property mixed $avatar
+ * @property mixed $cover
+ * @property mixed $reviews
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property mixed $followers_count
+ */
 class Entity extends Model implements Followable
 {
     use Reviewable, CanBeFollowed, CanBeRated, Searchable;
-
+    /**
+     * @var bool
+     */
     public $asYouType = true;
 
     /**
-     * Determine fillable fields
+     * Determine guarded fields
      *
      * @var array
      */
-    protected $fillable = ['user_id', 'category_id', 'name', 'description', 'latitude', 'longitude', 'details'];
+    protected $guarded = [];
     /**
-     * Determine what to eager load when retrieving activity
+     * Determine what attributes  append when retrieving activity
      *
      * @var array
      */
-    protected $with = ['category', 'tags', 'parent'];
+    protected $appends = ['cover', 'avatar', 'followers_count'];
 
-    /**
-     * Determine what to eager load when retrieving activity
-     *
-     * @var array
-     */
-    protected $appends = ['cover', 'avatar', 'followers_count', 'reviews', 'reviews_count',
-        'average_rating', 'current_following_status', 'my_rating'];
     protected $hidden = ['profile', 'profile_id', 'followers'];
 
 
@@ -46,6 +54,10 @@ class Entity extends Model implements Followable
 
         static::created(function ($modal) {
             Profile::create(['entity_id' => $modal->id]);
+        });
+
+        static::addGlobalScope('verified', function ($builder) {
+            $builder->whereVerified(true);
         });
     }
 
@@ -72,27 +84,6 @@ class Entity extends Model implements Followable
     public function profile()
     {
         return $this->hasOne(Profile::class);
-    }
-
-    /**
-     *
-     */
-    public function parent()
-    {
-        return $this->belongsTo(static::class, 'parent_id');
-    }
-
-    public function siblings()
-    {
-        return $this->where('parent_id', $this->parent_id)->where('parent_id', '!=', null)->get();
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function subEntities()
-    {
-        return $this->hasMany(static::class, 'parent_id');
     }
 
     /**
@@ -149,32 +140,11 @@ class Entity extends Model implements Followable
      * @return mixed
      *
      */
-    public function getCurrentFollowingStatusAttribute()
+    public function isFollowedBy($user)
     {
-        try {
-            return $this->followers(User::class)->where('follower_id', '=', auth('api')->user()->id)->exists();
-        } catch (\Exception $e) {
-            return false;
-        }
-
+        if (!$user) return false;
+        return !$this->followers(User::class)->where('follower_id', '=', $user->id)->get()->isEmpty();
     }
-
-
-    /**
-     * @return mixed
-     *
-     */
-    public function getMyRatingAttribute()
-    {
-
-        try {
-            return $this->ratings()->where('user_id', auth('api')->user()->id)->value('rating') ?: 0;
-        } catch (\Exception $e) {
-            return "0";
-        }
-
-    }
-
 
     /**
      * @return mixed
@@ -214,32 +184,18 @@ class Entity extends Model implements Followable
         return $this->profile->cover;
     }
 
-    /**
-     * Get the indexable data array for the model.
-     *
-     * @return array
-     */
-    public function toSearchableArray()
-    {
-        return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'description' => $this->description,
-            'location' => json_encode($this->location),
-        ];
-    }
 
     /**
      * Query builder scope to list neighboring locations
      * within a given distance from a given location
      *
-     * @param  Illuminate\Database\Query\Builder $query Query builder instance
-     * @param  mixed $lat Lattitude of given location
-     * @param  mixed $lng Longitude of given location
-     * @param  integer $radius Optional distance
-     * @param  string $unit Optional unit
      *
-     *
+     * @param $query
+     * @param $lat
+     * @param $lng
+     * @param float $radius
+     * @param string $unit
+     * @return mixed
      */
     public function scopeNearby($query, $lat, $lng, $radius = 1.5, $unit = "km")
     {
@@ -258,6 +214,9 @@ class Entity extends Model implements Followable
     }
 
     /**
+     * Query builder scope to filter the entities according to
+     * given key,value pairs form request query params
+     *
      * @param $query
      * @param $filters
      * @return
@@ -267,13 +226,34 @@ class Entity extends Model implements Followable
         return $filters->apply($query);
     }
 
-
-    public function scopeRelatedPlaces($query, $entity)
+    /**
+     * @param $query
+     * @param $entity
+     * @return mixed
+     */
+    public function relatedPlaces()
     {
-        return $query->whereHas('tags', function ($q) use ($entity) {
-            return $q->whereIn('tag_id', $entity->tags->pluck('id'));
-        })
-            ->where('id', '!=', $entity->id);
+        $tags = $this->tags->pluck('name');
+        return $this->whereHas('tags', function ($q) use ($tags) {
+            return $q->whereIn('name', $tags);
+        })->where('id', '!=', $this->id)->get();
     }
+
+
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'description' => $this->description,
+            'tags' => json_encode($this->tags()->pluck('name')),
+        ];
+    }
+
 
 }

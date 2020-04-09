@@ -1,6 +1,4 @@
-@extends('layouts.admin')
-
-@section('content')
+<x-admin>
     <div class="p-4">
         @if($message = Session::get('success'))
             <div class="alert is-green">
@@ -21,13 +19,13 @@
 
         </thead>
         <tbody>
-        @foreach($user as $row)
+        @foreach($users as $user)
             <tr>
-                <td><a href="{{route('users.show',$row)}}">{{ $row->name  }}</a></td>
-                <td class="capitalize"> {{ $row->role}} </td>
-                <td> {{ $row->email}} </td>
+                <td><a href="{{route('users.show',$user)}}">{{ $user->name  }}</a></td>
+                <td class="capitalize"> {{ $user->role}} </td>
+                <td> {{ $user->email}} </td>
                 <td class="flex">
-                    <a href="{{route('users.edit',$row)}}"
+                    <a href="{{route('users.edit',$user)}}"
                        class="flex  items-center justify-center p-2"
                     >
                         <div class="w-8 h-8 flex items-center justify-center p-1 rounded bg-gray-100">
@@ -35,11 +33,11 @@
                         </div>
                     </a>
                     <form method="POST"
-                          action="{{ route('users.destroy', $row)  }}"
-                          id="remove-user-form"
+                          action="{{ route('users.destroy', $user)  }}"
+                          id="remove-user-{{$user->name}}"
                     >
                         <a href="#"
-                           onclick="event.preventDefault();document.getElementById('remove-user-form').submit();"
+                           onclick="confirmDeletion({{$user}})"
                            class="flex items-center justify-center p-2"
                         >
                             <div class="w-8 h-8 flex items-center justify-center p-1 rounded bg-gray-100">
@@ -55,5 +53,25 @@
         </tbody>
     </table>
 
-    {{$user->links()}}
-@endsection
+    {{$users->links()}}
+
+    <x-slot name="scripts">
+        <script>
+            function confirmDeletion(user) {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    html: "The user <strong>" + user.name + "</strong> will be deleted, and you can not revert this",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#b3b3b3',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.value) {
+                        document.getElementById("remove-user-" + user.name).submit()
+                    }
+                })
+            }
+        </script>
+    </x-slot>
+</x-admin>

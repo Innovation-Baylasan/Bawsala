@@ -1,149 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Bawsala | Register now</title>
+    <link rel="shortcut icon" type="image/jpg" href="/images/fav-icon.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
 <body>
 <div id="app" class="theme-light">
     <register-view inline-template>
         <div class="flex">
-            <div class="flex-1 w-1/2 px-16 py-4">
+            <div class="hidden md:block flex-1 w-1/2 px-16 py-4">
                 <Carousel>
                     <slide classes="search-interaction w-3/4 h-3/4 mb-auto">
                         <template v-slot:footer>
                             <h3 class="uppercase text-2xl font-bold mb-4">find out</h3>
-                            <p class="text-gray-500 font-hairline capitalize">rambled it to make a type specimen book.
-                                It
-                                has survived not
-                                only five centuries, but also the leap into electronic
-                                typesetting, remaining essentially unchanged.</p>
+                            <p class="text-gray-500 font-hairline capitalize">
+                                Find out the industry related places such as co-work spaces,labs and more
+                            </p>
                         </template>
                     </slide>
                     <slide classes="map-interaction w-3/4 h-3/4 mb-auto">
                         <template v-slot:footer>
-                            <h3 class="uppercase text-2xl font-bold mb-4">Communicate</h3>
-                            <p class="text-gray-500 font-hairline capitalize">rambled it to make a type specimen book.
-                                It
-                                has survived not
-                                only five centuries, but also the leap into electronic
-                                typesetting, remaining essentially unchanged.</p>
+                            <h3 class="uppercase text-2xl font-bold mb-4">Feedback</h3>
+                            <p class="text-gray-500 font-hairline capitalize">
+                                Get the feedback from others and share yours with others around places.
+                            </p>
                         </template>
                     </slide>
                     <slide classes="editor-interaction w-3/4 h-3/4 mb-auto">
                         <template v-slot:footer>
                             <h3 class="uppercase text-2xl font-bold mb-4">Explore</h3>
-                            <p class="text-gray-500 font-hairline capitalize">rambled it to make a type specimen book.
-                                It
-                                has survived not
-                                only five centuries, but also the leap into electronic
-                                typesetting, remaining essentially unchanged.</p>
+                            <p class="text-gray-500 font-hairline capitalize">Explore the places,universities and more
+                                around you</p>
                         </template>
                     </slide>
                 </Carousel>
             </div>
 
-            <div class="flex-1 px-16 py-4 border-l border-gray-100 border-solid">
+            <div class="flex-1 px-4 md:px-16 py-4 border-l border-gray-100 border-solid">
                 <header class="mb-8">
                     <h3 class="text-4xl font-bold">Sign up</h3>
-                    <p class="leading-normal font-hairline text-gray-500 pr-10">Here is placed a text the user wants to
-                        register to log in to obtain additional features</p>
+                    <p class="leading-normal font-hairline text-gray-500 pr-10">
+                        Join Bawsala now and find the industry related places
+                    </p>
                 </header>
                 <main>
                     @if($errors->any())
-                        @foreach($errors->all() as $error)
-                            <p>{{$error}}</p>
-                        @endforeach
+                        <ul class="p-2 border border-red-500 rounded mb-2">
+                            @foreach($errors->all() as $error)
+                                <li class="text-sm error -mt-2 mb-2">{{$error}}</li>
+                            @endforeach
+                        </ul>
                     @endif
+
                     <form action="{{route('register')}}"
-                          method="post">
+                          method="post"
+                    >
 
                         @csrf
                         <label class="input-label" for="">name</label>
                         <div class="input">
                             <input type="text" required name="name" value="{{old('name')}}">
                         </div>
-                        @error('name')
-                        <p class="text-sm text-accent -mt-2 mb-2">{{$message}}</p>
-                        @enderror
 
                         <label class="input-label" for="">email</label>
                         <div class="input">
                             <input type="text" required name="email" value="{{old('email')}}">
                         </div>
-                        @error('email')
-                        <p class="text-sm text-accent -mt-2 mb-2">{{$message}}</p>
-                        @enderror
 
                         <label class="input-label" for="">password</label>
                         <div class="input">
                             <input type="password" name="password">
                         </div>
-                        @error('password')
-                        <p class="text-sm text-accent -mt-2 mb-2">{{$message}}</p>
-                        @enderror
 
                         <label class="input-label" for="">password confirmation</label>
                         <div class="input">
                             <input type="password" name="password_confirmation">
                         </div>
-                        @error('password')
-                        <p class="text-sm text-accent -mt-2 mb-2">{{$message}}</p>
-                        @enderror
-
-                        <label class="text-gray-700 capitalize block mb-2" for="">Register as</label>
-                        <div class="flex items-center -mx-2 mb-4">
-                            <div class="flex mx-2">
-                                <input class="appearance-none" name="registerAs" v-model="registerAs" value="company"
-                                       type="radio" id="company">
-                                <label class="select-label" for="company">company</label>
-                            </div>
-                            <div class="flex">
-                                <input class="appearance-none" name="registerAs" v-model="registerAs" value="user"
-                                       checked type="radio" id="user">
-                                <label class="select-label" for="user">user</label>
-                            </div>
-                        </div>
-
-                        <div v-if="registerAs == 'company'" class="mb-2">
-                            <label class="text-gray-700 capitalize block mb-2" for="">Location</label>
-
-                            <location-picker api-key="{{config('app.mapKey')}}"
-                                             v-model="location"
-                                             class="rounded mb-2 h-32 w-full"></location-picker>
-
-                            <input type="hidden" name="location" :value="location.latitude + ',' + location.longitude">
-
-                            <label class="input-label" for="">Category</label>
-                            <div class="input">
-                                <select name="category">
-                                    @foreach($categories as $category)
-                                        <option value="{{$category->id}}">{{$category->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <label class="input-label" for="">Description</label>
-                            <div class="input">
-                                <textarea name="description">{{old('description')}}</textarea>
-                            </div>
-                            @error('description')
-                            <p class="text-sm text-accent -mt-2 mb-2">{{$message}}</p>
-                            @enderror
-
-                        </div>
 
 
                         <p class="text-gray-500">
-                            Here a text is placed explaining to the user that upon registration, the <a href="#"
-                                                                                                        class="text-accent font-bold">agreement
-                                policy</a> and
-                            <a href="#"
+                            by registering on Bawsala you accept the
+                            <a href="/terms" class="text-accent font-bold">Terms of use</a> and
+                            the
+                            <a href="/policy"
                                class="text-accent font-bold">privacy policy</a>
-                            will be approved and their consequences bear
+                            of Bawsala
                         </p>
                         <div class="flex items-center justify-center mt-8">
-                            <button class="bg-accent rounded px-20 py-3 outline-none uppercase text-default font-bold">
+                            <button class="bg-accent rounded px-4 md:px-20 py-3 outline-none uppercase text-default font-bold">
                                 register
                                 now
                             </button>

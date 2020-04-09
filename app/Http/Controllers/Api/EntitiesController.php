@@ -38,13 +38,11 @@ class EntitiesController extends Controller
      *
      * @param \App\Entity $entity
      *
-     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @return EntityResource
      */
     public function show(Entity $entity)
     {
-        return response([
-            'data' => $entity
-        ], 200);
+        return new EntityResource($entity);
     }
 
 
@@ -60,18 +58,17 @@ class EntitiesController extends Controller
 
         $entity = auth()->user()
             ->mainEntity()
-            ->subEntities()
-            ->create($attributes);
+            ->create(collect($attributes)->except(['cover', 'avatar'])->toArray());
 
         if ($request->has('tags')) {
-            $entity->tagMany(array_unique ($request->tags));
+            $entity->tagMany(array_unique($request->tags));
         }
         if (isset($attributes['avatar'])) {
-            $entity->profile->setAvatar($attributes['avatar'],null);
+            $entity->profile->setAvatar($attributes['avatar'], null);
         };
 
         if (isset($attributes['cover'])) {
-            $entity->profile->setCover($attributes['cover'],null);
+            $entity->profile->setCover($attributes['cover'], null);
         }
 
         return new EntityResource($entity);

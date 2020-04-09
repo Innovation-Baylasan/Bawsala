@@ -17,7 +17,7 @@ class EventsController extends Controller
     public function index()
     {
 
-        $events = Event::latest()->paginate(5);
+        $events = Event::latest()->with('user')->paginate(5);
 
         return view('admin.events.index', compact('events'));
     }
@@ -114,8 +114,9 @@ class EventsController extends Controller
 
         $event->delete();
 
-        return redirect('/admin/events')
-            ->with('success', 'Data deleted successfully');
+        session()->flash('message', "the $event->name event has been deleted");
+
+        return redirect('/admin/events');
 
     }
 }

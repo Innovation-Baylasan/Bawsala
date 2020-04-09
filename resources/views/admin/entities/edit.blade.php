@@ -1,6 +1,4 @@
-@extends('layouts.admin')
-
-@section('content')
+<x-admin>
     <edit-entity-view inline-template :initial-entity="{{$entity}}">
         <div>
             @if($errors->any())
@@ -52,14 +50,11 @@
                         </div>
                         <div>
                             <label class="input-label" for="category">Select entity category</label>
-                            <div class="input">
-                                <select id="category" v-model="entity.category_id" name="category_id">
-                                    @foreach($categories as $category)
-                                        <option
-                                                value="{{ $category->id  }}">{{ $category->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+                            <v-select label="name"
+                                      :options="{{$categories}}"
+                                      :reduce="category => category.id"
+                                      v-model="entity.category_id"
+                            ></v-select>
                             <p class="error" v-if="entity.errors.category_id" v-text="entity.errors.category_id[0]"></p>
                         </div>
                     </div>
@@ -90,8 +85,12 @@
 
 
                     <label class="input-label" for="location">Entity Location</label>
-                    <location-picker class="w-full h-56 rounded mb-4" api-key="{{config('app.mapKey')}}"
-                    @marker-placed="setLocation"></location-picker>
+                    <location-picker class="w-full h-56 rounded mb-4"
+                                     api-key="{{config('app.mapKey')}}"
+                                     :initial-marker="{latitude:entity.latitude, longitude:entity.longitude,}"
+                                     :center="{latitude:entity.latitude, longitude:entity.longitude,}"
+                    @marker-placed="setLocation"
+                    ></location-picker>
                     <p class="error" v-if="entity.errors.longitude" v-text="entity.errors.longitude[0]"></p>
                     <input type="hidden" name="latitude" :value="entity.latitude">
                     <input type="hidden" name="longitude" :value="entity.longitude">
@@ -102,4 +101,4 @@
             @include('partials.modals.CropImageModal')
         </div>
     </edit-entity-view>
-@endsection
+</x-admin>

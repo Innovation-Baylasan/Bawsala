@@ -1,12 +1,5 @@
-@extends('layouts.admin')
-@section('content')
+<x-admin>
     <div class="p-4">
-
-        @if($message = Session::get('success'))
-            <div class="alert is-green">
-                {{ $message  }}
-            </div>
-        @endif
 
         <a class="button" href="{{ route('events.create')  }}">Create Event</a>
 
@@ -25,18 +18,17 @@
                             {{ $event->name}}
                         </a>
                     </td>
-                    <td> {{ $event->user->name  }} </td>
+                    <td> {{ $event->name  }} </td>
 
                     <td> {{ Str::limit($event->description,50)}} </td>
                     <td>
                         <a href="{{ route('events.edit', $event->id)  }}">
                             <form method="POST"
                                   action="{{ route('events.destroy', $event)  }}"
-                                  id="remove-event-form-{{$event->id}}"
+                                  id="remove-event-{{$event->id}}"
                             >
                                 <a href="#"
-                                   onclick="event.preventDefault();
-                                           document.getElementById('remove-event-form-{{$event->id}}').submit();"
+                                   onclick="confirmDeletion({{$event}})"
                                    class="flex items-center justify-center p-2"
                                 >
                                     <div class="w-8 h-8 flex items-center justify-center p-1 rounded bg-gray-100">
@@ -54,5 +46,25 @@
 
         {{ $events->links() }}
     </div>
-
-@endsection
+    <x-slot name="scripts">
+        <script>
+            function confirmDeletion(event) {
+                console.log(event)
+                Swal.fire({
+                    title: 'Are you sure?',
+                    html: "The <strong>" + event.name + "</strong> event will be deleted and you can not revert",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#b3b3b3',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.value
+                    ) {
+                        document.getElementById("remove-event-" + event.id).submit()
+                    }
+                })
+            }
+        </script>
+    </x-slot>
+</x-admin>

@@ -12,16 +12,13 @@ use Rennokki\Befriended\Traits\CanFollow;
 
 /**
  * @property mixed $role
+ * @property \Carbon\Carbon $created_at
+ * @property int $id
+ * @property \Carbon\Carbon $updated_at
  */
 class User extends Authenticatable implements Follower
 {
     use HasApiTokens, Notifiable, CanFollow;
-
-    public function getRouteKeyName()
-    {
-        return 'username';
-    }
-
     /**
      * The attributes that are mass assignable.
      *
@@ -54,24 +51,7 @@ class User extends Authenticatable implements Follower
      */
     public static function register($attributes)
     {
-        $user = static::create($attributes);
-        if ($attributes['role'] == 'company') {
-            event(new CompanyRegistered($user));
-        }
-
-        return $user;
-    }
-
-    /**
-     * @param $name
-     * @return string
-     */
-    public static function generateUsername($name)
-    {
-        $username = Str::slug($name);
-        $userRows = static::whereRaw("username REGEXP '^{$username}(-[0-9]*)?$'")->get();
-        $countUser = count($userRows) + 1;
-        return ($countUser > 1) ? "{$username}-{$countUser}" : $username;
+        return static::create($attributes);
     }
 
     /**
@@ -98,14 +78,6 @@ class User extends Authenticatable implements Follower
     }
 
     /**
-     * @return bool
-     */
-    public function isCompany()
-    {
-        return !!($this->role == 'company');
-    }
-
-    /**
      * check whether this user is admin or not
      *
      * @return bool
@@ -118,7 +90,6 @@ class User extends Authenticatable implements Follower
     public function profilePath()
     {
         $destinations = [
-            'company' => "/@" . $this->entities()->first() ?? $this->entities()->first()->id,
             'user' => "/account/{$this->username}",
             'admin' => "/account/{$this->username}",
         ];

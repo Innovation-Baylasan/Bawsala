@@ -15,12 +15,15 @@
 @import "./components/tag";
 @import "./components/alert";
 @import "./components/dropdown";
+@import "./components/status";
 @import "./components/wizard";
+@import "./components/tabs";
 @import "./components/star-rating";
 @import "~@glidejs/glide/src/assets/sass/glide.core";
 @import "./components/editor";
 @import './components/vue-select';
 @import './components/cropper';
+
 modal, dropdown {
   display: none;
 }
@@ -115,6 +118,34 @@ input[type='checkbox']:checked, input[type='radio']:checked + .select-label {
 
 .custom-pin:hover {
   transform: scale(1.15);
+}
+
+.terms {
+  background-image: url('/images/terms-overlay.png');
+  background-size: initial;
+  background-repeat: no-repeat;
+  background-position: 50px 150px;
+}
+
+.faq {
+  background-image: url('/images/faq-overlay.png');
+  background-size: initial;
+  background-repeat: no-repeat;
+  background-position: 60px -70px;
+}
+
+.policy {
+  background-image: url('/images/policy-overlay.png');
+  background-size: initial;
+  background-repeat: no-repeat;
+  background-position: 50px 150px;
+}
+
+.reset-password {
+  background-image: url('/images/reset-password-overlay.png');
+  background-size: initial;
+  background-repeat: no-repeat;
+  background-position: 50px 150px;
 }
 
 /*! purgecss end ignore */

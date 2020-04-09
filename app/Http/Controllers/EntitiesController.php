@@ -10,6 +10,10 @@ use App\Http\Resources\EntityResource;
 
 class EntitiesController extends Controller
 {
+    /**
+     * @param EntitiesFilter $filters
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
     public function index(EntitiesFilter $filters)
     {
         if (\request()->has('q')) {
@@ -23,15 +27,31 @@ class EntitiesController extends Controller
         return EntityResource::collection($entities);
     }
 
+    /**
+     * @param Entity $entity
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function show(Entity $entity)
+    {
+        $entity = $entity->load('reviews');
+
+        return view('profile', compact('entity'));
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create()
     {
-        $this->authorize('create', Entity::class);
-
         $categories = Category::all();
 
         return view('entities.create', compact('categories'));
     }
 
+    /**
+     * @param EntityRequest $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     */
     public function store(EntityRequest $request)
     {
         $attributes = $request->validated();
@@ -40,7 +60,6 @@ class EntitiesController extends Controller
 
         $entity = auth()->user()
             ->mainEntity()
-            ->subEntities()
             ->create($attributes);
 
         if ($request->has('tags')) {
@@ -55,7 +74,7 @@ class EntitiesController extends Controller
         }
 
 
-        session()->flash('message', 'your entity has been created successfully');
+        session()->flash('message', 'Your entity has been created successfully, it\'s need to be verified then it will be visible');
 
         return response(null, 200);
     }

@@ -1,7 +1,19 @@
 .button {
   @apply bg-accent  px-6 py-2 outline-none text-sm capitalize text-white rounded text-center;
+  &a[href] {
+    @apply text-white;
+  }
   &.is-green {
     @apply bg-green-600;
+  }
+  &.is-success {
+    @apply bg-green-600;
+  }
+  &.is-danger{
+    @apply bg-red-500;
+  }
+  &.is-warning {
+    @apply bg-yellow-400;
   }
   &.is-muted {
     @apply bg-muted;

@@ -23,20 +23,6 @@
                             <span v-text="event.end_date"></span></p>
                     </td>
                 </tr>
-                <tr>
-                    <td class="border p-4 text-center pb-0">
-                        <p class="flex flex-col">
-                            <img src="/svg/event-fees-icon.svg" alt="">
-                            <span class="text-sm text-muted">fees</span>
-                            <span>0</span></p>
-                    </td>
-                    <td class="border p-4 text-center pb-0">
-                        <p class="flex flex-col">
-                            <img src="/svg/event-seats-icon.svg" alt="">
-                            <span class="text-sm text-muted">seats</span>
-                            <span>100</span></p>
-                    </td>
-                </tr>
                 </tbody>
             </table>
             <div class="p-2">

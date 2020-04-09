@@ -3,7 +3,7 @@
         <div @click="isOpen = !isOpen">
             <slot name="trigger"></slot>
         </div>
-        <div class="absolute" v-if="isOpen">
+        <div style="top: 120%;right: 0;" class="absolute" v-if="isOpen">
             <slot>
 
             </slot>

@@ -22,6 +22,10 @@ class EntitiesFilter extends Filters
      */
     protected $always = ['location'];
 
+    /**
+     * @param $categories
+     * @return $this
+     */
     public function category($categories)
     {
         $categories = explode(',', $categories);
@@ -31,6 +35,10 @@ class EntitiesFilter extends Filters
         return $this->builder->whereIn('category_id', $categoriesIds);
     }
 
+    /**
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function location()
     {
         if (($latitude = $this->request['@lat']) && ($longitude = $this->request['@long'])) {

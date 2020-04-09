@@ -16,9 +16,9 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $user = User::latest()->paginate(5);
+        $users = User::latest()->paginate(10);
 
-        return view('admin.users.index', compact('user'));
+        return view('admin.users.index', compact('users'));
     }
 
     /**
@@ -28,7 +28,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        return view('admin.users.create', ['user' => new User()]);
     }
 
     /**
@@ -42,8 +42,8 @@ class UsersController extends Controller
         $attributes = $request->validate([
             'name' => 'required',
             'role' => 'required',
-            'email' => 'email|required',
-            'password' => 'required'
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|confirmed',
         ]);
 
         User::create($attributes);
@@ -84,15 +84,17 @@ class UsersController extends Controller
      * @param  User $user
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, User $user)
+    public function update(User $user)
     {
-        $attributes = $request->validate([
-            'name' => 'required|string',
-            'role' => 'required|string',
-            'email' => 'required|email|unique:users'
-        ]);
 
-        $user->update($attributes);
+
+        $user->update(
+            request()->validate([
+                'name' => 'required|string',
+                'role' => 'required|string',
+                'email' => "required|email|unique:users:email:$user->email",
+            ])
+        );
 
         return redirect('/admin/users')
             ->with('success', 'Data updated successfully.');

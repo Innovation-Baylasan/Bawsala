@@ -65,7 +65,6 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'registerAs' => ['required', 'string'],
             'location' => ['sometimes', 'required', 'string', 'min:8'],
             'category' => ['sometimes', 'required', 'numeric', 'min:1'],
             'description' => ['sometimes', 'required', 'string', 'min:8', 'max:500'],
@@ -83,8 +82,6 @@ class RegisterController extends Controller
         $user = User::register([
             'name' => $data['name'],
             'email' => $data['email'],
-            'role' => $data['registerAs'],
-            'username' => $data['username'] ?? User::generateUsername($data['name']),
             'password' => Hash::make($data['password']),
             'api_token' => Str::random(80)
         ]);

@@ -27,7 +27,7 @@ Route::namespace('Api')->group(function () {
 
     Route::get('/entities', 'EntitiesController@index')->name('api.entities.index');
 
-    Route::post('/entities', 'EntitiesController@store')->middleware(['auth:api', 'company'])->name('api.entities.store');
+    Route::post('/entities', 'EntitiesController@store')->middleware('auth:api')->name('api.entities.store');
 
     Route::get('/entities/my', 'UserEntitiesController@index')->middleware('auth:api')->name('api.entities.myEntities');
 
@@ -51,6 +51,12 @@ Route::namespace('Api')->group(function () {
 
     Route::get('/tags', 'TagsController@index')->name('api.tags.index');
 
+    Route::get('/faq', 'PagesController@faq');
+
+    Route::get('/terms', 'PagesController@terms');
+
+    Route::get('/policy', 'PagesController@policy');
+
     Route::get('/events', 'EventsController@index')->name('api.events.index');
 
     Route::middleware('auth:api')->get('/events/my', 'UserEventsController@index')->name('api.userEventsController.myEvents');
@@ -61,4 +67,4 @@ Route::namespace('Api')->group(function () {
 
 });
 
-Route::middleware('auth:api')->get('/user', 'UsersController@show');
+Route::middleware('auth:api')->get('/user', 'Api\UsersController@show');

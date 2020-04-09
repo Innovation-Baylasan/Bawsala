@@ -18,6 +18,7 @@
             apiKey: String,
             multiple: Boolean,
             center: Object,
+            initialMarker: Object,
         },
 
         data() {
@@ -35,6 +36,13 @@
                 this.google = response
                 this.initializeMap()
                 this.centeringMap()
+                if (this.initialMarker) {
+                    let latLang = new this.google.maps.LatLng(
+                        this.initialMarker.latitude,
+                        this.initialMarker.longitude
+                    )
+                    this.placeMarker(latLang)
+                }
             })
         },
 
@@ -51,7 +59,6 @@
                         center: {lat: 15.5007, lng: 32.5599},
                         zoom: 12,
                         streetViewControl: false,
-                        disableDefaultUI: true
                     }
                 )
                 this.map.addListener('click', (event) => {

@@ -44,15 +44,10 @@ class CategoriesController extends Controller
 
         $this->validateRequest($request);
 
-        $iconPath = $request->file('icon')->store('public/icons');
-
-        $markerPath = $request->file('icon_png')->store('public/markers');
-
-
         Category::create([
             'name' => $request->name,
-            'icon' => $iconPath,
-            'icon_png' => $markerPath
+            'icon' => $request->file('icon')->store('icons'),
+            'icon_png' => $request->file('icon_png')->store('markers')
         ]);
 
         return redirect('/admin/categories')
@@ -98,15 +93,10 @@ class CategoriesController extends Controller
 
         Storage::delete([$category->icon, $category->icon_png]);
 
-        $iconPath = $request->file('icon')->store('public/icons');
-
-        $markerPath = $request->file('icon_png')->store('public/markers');
-
-
         $category->update([
             'name' => $request->name,
-            'icon' => $iconPath,
-            'icon_png' => $markerPath
+            'icon' => $request->file('icon')->store('icons'),
+            'icon_png' => $request->file('icon_png')->store('markers')
         ]);
 
         return redirect('/admin/categories')
@@ -128,11 +118,14 @@ class CategoriesController extends Controller
     }
 
     /**
-     * @param Request $request
+     * validate the request for creating of updating category
+     * and return the validated attributes
+     *
+     * @return array
      */
-    public function validateRequest(Request $request): void
+    public function validateRequest()
     {
-        $request->validate([
+        return request()->validate([
             'name' => 'required',
             'icon' => 'required|image|max:2048',
             'icon_png' => 'required|image|max:2048'

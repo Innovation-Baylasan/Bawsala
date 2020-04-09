@@ -1,15 +1,15 @@
 <template>
-    <div  class="shadow rounded bg-white w-96" v-cloak>
-        <div class="flex justify-between p-2">
+    <div class="shadow rounded bg-white w-96" v-cloak>
+        <div class="flex p-2">
             <a href="#" class="p-2 w-8 h-8 bg-accent-light rounded flex items-center justify-center">
                 <img src="/svg/search-icon.svg" alt="search what you looking for">
             </a>
 
-            <input class="outline-none text-black px-8"
+            <input class="outline-none flex-1 text-black md:px-8"
                    type="text"
                    v-model="query"
                    @input="search"
-                   placeholder="Startups">
+                   :placeholder="placeholder">
 
         </div>
         <div v-if="results && query" class="bg-gray-200">
@@ -40,7 +40,7 @@
 <script>
     import StarRating from './StarRating.vue'
     export default{
-        props: ['category'],
+        props: ['category', 'placeholder'],
         components: {},
         data(){
             return {

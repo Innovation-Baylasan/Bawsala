@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Baylasan Innovation | Eco Map Dashboard</title>
+    <title>Bawsala | Admin Dashboard</title>
     <link rel="shortcut icon" type="image/jpg" href="/images/fav-icon.png"/>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
@@ -65,6 +65,20 @@
                         <span class="text-gray-500">Tags</span>
                     </a>
 
+                    <a href="{{route('issues.index')}}" class="flex  items-center p-1 text-sm px-3  fade">
+                        <div class="w-10 h-10 flex items-center justify-center  mr-4">
+                            <img src="{{asset('svg/tags-icon.svg')}}" alt="">
+                        </div>
+                        <span class="text-gray-500">Issues</span>
+                    </a>
+
+                    <a href="{{route('questions.index')}}" class="flex  items-center p-1 text-sm px-3  fade">
+                        <div class="w-10 h-10 flex items-center justify-center  mr-4">
+                            <img src="{{asset('svg/tags-icon.svg')}}" alt="">
+                        </div>
+                        <span class="text-gray-500">FAQ</span>
+                    </a>
+
                 </div>
             </header>
         </nav>
@@ -115,6 +129,7 @@
     </div>
 </div>
 <script src="{{asset('js/app.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 @yield('javascript')
 </body>
 </html>

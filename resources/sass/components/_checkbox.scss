@@ -1,5 +1,5 @@
 .checkbox {
-  @apply appearance-none border-none rounded-sm bg-accent-light h-4 w-4;
+  @apply appearance-none border-gray-300 rounded-sm bg-accent-light h-4 w-4;
   &:checked {
     background-image: url("/images/check-tick.png");
     background-repeat: no-repeat;

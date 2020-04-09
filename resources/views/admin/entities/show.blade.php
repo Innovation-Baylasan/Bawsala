@@ -1,19 +1,7 @@
-@extends('layouts.admin')
-
-@section('content')
+<x-admin>
     <h1> Show Entity </h1>
 
-
-    <br>
-    <br>
-    <br>
-
-
     <a href="{{ route('entities.index')  }}"><< Back</a>
-
-    <br>
-    <br>
-    <br>
 
     <table class="table-auto table">
         <tr>
@@ -49,4 +37,4 @@
             <td>{{ json_encode($entity->location)  }} </td>
         </tr>
     </table>
-@endsection
+</x-admin>

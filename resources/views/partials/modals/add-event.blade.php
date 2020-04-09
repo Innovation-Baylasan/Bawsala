@@ -1,6 +1,7 @@
 <modal name="add-event"
        classes="rounded bg-default overflow-hidden"
        scrollable
+       adaptive
        v-cloak
        height="auto" xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
     <create-event-view inline-template>
@@ -18,16 +19,6 @@
                 <label for="" class="input-label">name</label>
                 <div class="input"><input v-model="event.name" type="text"></div>
                 <p class="error" v-if="event.errors.name" v-text="event.errors.name[0]"></p>
-                @if($authUser->isCompany())
-                    <label for="" class="input-label">Organized by</label>
-                    <div class="input">
-                        <select v-model="event.entity_id" type="text">
-                            @foreach($authUser->entities as $entity)
-                                <option value="{{$entity->id}}">{{$entity->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                @endif
 
                 <label for="" class="input-label">Registration link</label>
                 <p class="text-xs text-accent">links should start with (http:// or https://)</p>
@@ -39,11 +30,15 @@
                 <p class="error" v-if="event.errors.description" v-text="event.errors.description[0]"></p>
 
                 <label for="" class="input-label">start datetime</label>
-                <div class="input"><input v-model="event.start_date" type="datetime-local"></div>
+                <div class="input">
+                    <datetime v-model="event.start_date" type="datetime"></datetime>
+                </div>
                 <p class="error" v-if="event.errors.start_date" v-text="event.errors.start_date[0]"></p>
 
                 <label for="" class="input-label">end datetime</label>
-                <div class="input"><input v-model="event.end_date" type="datetime-local"></div>
+                <div class="input">
+                    <datetime v-model="event.end_date" type="datetime"></datetime>
+                </div>
                 <p class="error" v-if="event.errors.end_date" v-text="event.errors.end_date[0]"></p>
 
                 <label class="input-label" for="location">Location</label>
@@ -55,7 +50,10 @@
                 <input type="hidden" name="latitude" :value="event.latitude">
                 <input type="hidden" name="longitude" :value="event.longitude">
 
-                <button type="submit" class="button">add event</button>
+                <div class="flex justify-between">
+                    <button type="button" class="button is-muted" @click="$modal.hide('add-event')">Cancel</button>
+                    <button type="submit" class="button">add event</button>
+                </div>
             </form>
         </div>
     </create-event-view>
