@@ -48,6 +48,10 @@
                         No account ! <a href="/register" class="text-accent font-bold">create one</a>
                     </p>
 
+                    <p class="text-gray-500">
+                        Forget your password! <a href="/password/reset" class="text-accent font-bold">reset now</a>
+                    </p>
+
                     <div class="flex items-center justify-center mt-8">
                         <button type="submit"
                                 class="button is-wide">
