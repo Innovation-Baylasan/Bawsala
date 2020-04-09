@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+
 
 /**
  * @property mixed $entities
@@ -24,6 +26,24 @@ class Category extends Model
     public function entities()
     {
         return $this->hasMany(Entity::class);
+    }
+
+    /**
+     * @param $value
+     * @return string
+     */
+    public function getIconAttribute($value)
+    {
+        return asset($value);
+    }
+
+    /**
+     * @param $value
+     * @return string
+     */
+    public function getIconPngAttribute($value)
+    {
+        return asset($value);
     }
 
     /**
