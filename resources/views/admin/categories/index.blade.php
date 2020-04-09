@@ -31,6 +31,7 @@
                 </td>
                 <td class="text-center">
                     <img class="inline-block w-8 h-8" src="{{$category->icon_png}}" alt="">
+
                 </td>
 
                 <td class="text-center">
