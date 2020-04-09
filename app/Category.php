@@ -34,7 +34,7 @@ class Category extends Model
      */
     public function getIconAttribute($value)
     {
-        return asset($value);
+        return Storage::url($value);
     }
 
     /**
@@ -43,7 +43,7 @@ class Category extends Model
      */
     public function getIconPngAttribute($value)
     {
-        return asset($value);
+        return Storage::url($value);
     }
 
     /**
