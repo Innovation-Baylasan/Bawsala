@@ -30,12 +30,12 @@
                     </a>
                 </td>
                 <td class="text-center">
-                    <img class="inline-block w-8 h-8" src="{{asset($category->icon_png)}}" alt="">
+                    <img class="inline-block w-8 h-8" src="{{$category->icon_png}}" alt="">
                 </td>
 
                 <td class="text-center">
                     <img class="inline-block w-8 h-8"
-                         src="{{asset($category->icon)}}" alt="">
+                         src="{{$category->icon}}" alt="">
                 </td>
                 <td class="flex justify-end">
                     <a href="{{route('categories.edit',$category)}}"
