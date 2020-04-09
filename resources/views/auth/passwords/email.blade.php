@@ -1,13 +1,17 @@
-@extends('layouts.app')
+<x-app>
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+    <div class="h-full">
+        <aside class="fixed h-screen bg-gray-100 p-2 w-2/5">
+            <div class="w-full h-full terms p-8">
+                <img src="/images/bawsala-logo.png" class="self-center" alt="">
 
-                <div class="card-body">
+            </div>
+        </aside>
+        <section class="ml-2/5 h-full flex items-center justify-center p-16">
+            <div class="w-3/2">
+                <h1 class="text-4xl mb-12 font-bold text-center">{{ __('Reset Password') }}</h1>
+
+                <div>
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
@@ -17,31 +21,30 @@
                     <form method="POST" action="{{ route('password.email') }}">
                         @csrf
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                        <label for="email"
+                               class="input-label"
+                        >{{ __('E-Mail Address') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                        <input id="email"
+                               type="email"
+                               class="input w-full @error('email') is-invalid @enderror"
+                               name="email"
+                               value="{{ old('email') }}" required autocomplete="email" autofocus>
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
+                        @error('email')
+                        <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
-                            </div>
-                        </div>
+                        @enderror
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
-                                </button>
-                            </div>
+                        <div class="text-center">
+                            <button type="submit" class="button is-primary">
+                                {{ __('Send Password Reset Link') }}
+                            </button>
                         </div>
                     </form>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
-</div>
-@endsection
+</x-app>

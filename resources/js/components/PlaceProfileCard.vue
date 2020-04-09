@@ -23,10 +23,10 @@
             <p class="text-sm text-gray-500 capitalize" v-text="place.description"></p>
             <a :href="'/@'+place.id" class="text-accent p-4 text-xl block text-center font-bold">Visit Profile</a>
 
-            <a :href="'https://www.google.com/maps/dir/api=1&dir_action=navigate&&destination='+place.location.lat +',' + place.location.long"
-               class="text-accent p-4 text-xl block text-center font-bold"
-               target="_blank"
-            >Open in Google map</a>
+            <!--<a :href="'https://www.google.com/maps/dir/api=1&dir_action=navigate&&destination='+place.location.lat +',' + place.location.long"-->
+               <!--class="text-accent p-4 text-xl block text-center font-bold"-->
+               <!--target="_blank"-->
+            <!--&gt;Open in Google map</a>-->
         </div>
     </div>
 </template>

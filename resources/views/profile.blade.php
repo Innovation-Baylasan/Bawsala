@@ -78,9 +78,12 @@
                 @endcan
             </header>
             <div class="bg-default p-8 mb-4 rounded">
-                <h3 class="uppercase border-b mb-4 border-solid border-gray-100 text-2xl font-bold">
-                    Info
-                </h3>
+                <div class="flex justify-between">
+                    <h3 class="uppercase border-b mb-4 border-solid border-gray-100 text-2xl font-bold">
+                        Info
+                    </h3>
+                    <span>{{$entity->category->name}}</span>
+                </div>
                 <p class="text-gray-500 mr-8 ">{{$entity->description}}</p>
             </div>
             <div class="bg-default p-8 mb-4 rounded">

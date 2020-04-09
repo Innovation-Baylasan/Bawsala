@@ -41734,22 +41734,6 @@ var render = function() {
             attrs: { href: "/@" + _vm.place.id }
           },
           [_vm._v("Visit Profile")]
-        ),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            staticClass: "text-accent p-4 text-xl block text-center font-bold",
-            attrs: {
-              href:
-                "https://www.google.com/maps/dir/api=1&dir_action=navigate&&destination=" +
-                _vm.place.location.lat +
-                "," +
-                _vm.place.location.long,
-              target: "_blank"
-            }
-          },
-          [_vm._v("Open in Google map")]
         )
       ])
     ]

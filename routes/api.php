@@ -67,4 +67,4 @@ Route::namespace('Api')->group(function () {
 
 });
 
-Route::middleware('auth:api')->get('/user', 'UsersController@show');
+Route::middleware('auth:api')->get('/user', 'Api\UsersController@show');
